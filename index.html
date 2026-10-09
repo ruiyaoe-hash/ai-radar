@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Radar</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #141a22;
+      --text: #e8eef6;
+      --muted: #8b9bb0;
+      --line: #243041;
+      --accent: #5b9fd4;
+      --p0: #e85d4c;
+      --发布: #5b9fd4;
+      --论文: #7c6cf0;
+      --评测: #3db89a;
+      --观点: #d4a017;
+      --工具: #8b9bb0;
+      --安全: #e07a5f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #152033 0%, var(--bg) 55%);
+      color: var(--text); line-height: 1.5; min-height: 100vh;
+    }
+    header {
+      max-width: 720px; margin: 0 auto; padding: 28px 20px 12px;
+    }
+    h1 { font-size: 1.5rem; font-weight: 650; margin: 0 0 6px; letter-spacing: 0.02em; }
+    .sub { color: var(--muted); font-size: 0.9rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .chip {
+      border: 1px solid var(--line); background: transparent; color: var(--muted);
+      border-radius: 999px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;
+    }
+    .chip.active { color: var(--text); border-color: var(--accent); background: #182536; }
+    main { max-width: 720px; margin: 0 auto; padding: 8px 20px 48px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 14px 16px; margin: 12px 0; border-left: 3px solid var(--accent);
+    }
+    .card.p0 { border-left-color: var(--p0); }
+    .tag {
+      display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+      padding: 2px 8px; border-radius: 6px; background: #1c2736; color: var(--accent); margin-right: 8px;
+    }
+    .title { font-size: 1.02rem; font-weight: 600; margin: 8px 0; }
+    ul { margin: 8px 0 0; padding-left: 1.1rem; color: #c5d0de; font-size: 0.92rem; }
+    .meta { margin-top: 12px; font-size: 0.8rem; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .empty { color: var(--muted); padding: 32px 8px; text-align: center; }
+    footer { max-width: 720px; margin: 0 auto; padding: 0 20px 40px; color: var(--muted); font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI Radar</h1>
+    <div class="sub">A 级信源精选 · 北京时间 08:00 / 13:30 更新 · <span id="updated">尚未拉取</span></div>
+    <div class="chips" id="chips">
+      <button class="chip active" data-filter="all">全部</button>
+      <button class="chip" data-filter="发布">发布</button>
+      <button class="chip" data-filter="论文">论文</button>
+      <button class="chip" data-filter="评测">评测</button>
+      <button class="chip" data-filter="观点">观点</button>
+      <button class="chip" data-filter="P0">仅 P0</button>
+    </div>
+  </header>
+  <main id="feed"><div class="empty">还没有卡片。等早报/主报跑起来后这里会自动更新。</div></main>
+  <footer>免费静态页 · 原文均链到 X · 由 Alba 监控生成</footer>
+  <script>
+    async function load() {
+      try {
+        const res = await fetch('./items.json?' + Date.now());
+        if (!res.ok) return;
+        const items = await res.json();
+        window.__items = items;
+        if (items.updated) document.getElementById('updated').textContent = items.updated;
+        render('all');
+      } catch (e) {}
+    }
+    function render(filter) {
+      const raw = window.__items;
+      const list = Array.isArray(raw) ? raw : (raw.items || []);
+      const feed = document.getElementById('feed');
+      const filtered = list.filter(it => {
+        if (filter === 'all') return true;
+        if (filter === 'P0') return it.priority === 'P0';
+        return it.tag === filter;
+      });
+      if (!filtered.length) {
+        feed.innerHTML = '<div class="empty">这一筛选项下暂无内容。</div>';
+        return;
+      }
+      feed.innerHTML = filtered.map(it => `
+        <article class="card ${it.priority === 'P0' ? 'p0' : ''}">
+          <div><span class="tag">${it.tag || '动态'}</span>${it.priority === 'P0' ? '<span class="tag" style="color:#e85d4c">P0</span>' : ''}</div>
+          <div class="title">${it.title || ''}</div>
+          <ul>${(it.bullets || []).map(b => `<li>${b}</li>`).join('')}</ul>
+          <div class="meta">
+            <span>@${it.handle || ''}</span>
+            <span>${it.time || ''}</span>
+            ${it.url ? `<a href="${it.url}" target="_blank" rel="noopener">打开原文 ↗</a>` : ''}
+          </div>
+        </article>`).join('');
+    }
+    document.getElementById('chips').addEventListener('click', (e) => {
+      const btn = e.target.closest('.chip');
+      if (!btn) return;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.filter);
+    });
+    load();
+  </script>
+</body>
+</html>
