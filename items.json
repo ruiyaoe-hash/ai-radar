@@ -1,1 +1,135 @@
-[]
+{
+  "updated": "2026-10-09 22:50 北京时间（样例）",
+  "items": [
+    {
+      "tag": "发布",
+      "priority": "P0",
+      "title": "OpenAI 推 GPT-6 与 Intelligent UI",
+      "bullets": [
+        "ChatGPT 全量上线 GPT-6，回答可混排文字、图表与可交互控件",
+        "Plus/Pro/商务/企业用 Sol；Free/Go 用 Luna，交互工具可当场生成",
+        "同步预告 ChatGPT for Teens 与大学规划工具"
+      ],
+      "handle": "OpenAI",
+      "time": "10-08 02:05",
+      "url": "https://x.com/OpenAI/status/2107894997538525580"
+    },
+    {
+      "tag": "发布",
+      "priority": "P0",
+      "title": "Anthropic 发布 Claude Haiku 5.5",
+      "bullets": [
+        "自称迄今最便宜、最快、最强的小模型",
+        "相对 Haiku 4.5 平均运行成本约降 75%",
+        "官号转发 @claudeai 首发线程"
+      ],
+      "handle": "AnthropicAI",
+      "time": "10-08 02:01",
+      "url": "https://x.com/AnthropicAI/status/2107894208547983705"
+    },
+    {
+      "tag": "安全",
+      "priority": "P0",
+      "title": "Anthropic 启动 Cyber Mission",
+      "bullets": [
+        "面向关键基础设施与开源软件的安全新计划",
+        "OSS Scanner：用前沿模型免费扫描 opt-in 开源项目并给 PoC/修复建议",
+        "另设关键基础设施防御计划，派驻工程与 Claude"
+      ],
+      "handle": "AnthropicAI",
+      "time": "10-09 05:04",
+      "url": "https://x.com/AnthropicAI/status/2108302539498414208"
+    },
+    {
+      "tag": "发布",
+      "priority": "P0",
+      "title": "Qwen-Image-2.1-Turbo 开源权重",
+      "bullets": [
+        "仅 8 步去噪即可生成/编辑图像，同系 7B 视觉架构加速版",
+        "官方称步数减少不牺牲质量，权重已开放",
+        "另有 Qwen3.8-Max/Flash 与 Wan3.0 云端免费试用周"
+      ],
+      "handle": "Alibaba_Qwen",
+      "time": "10-09 21:24",
+      "url": "https://x.com/Alibaba_Qwen/status/2108549075218120949"
+    },
+    {
+      "tag": "安全",
+      "priority": "P1",
+      "title": "DeepMind 开放 SynthID Detector",
+      "bullets": [
+        "公开检测 Google AI 及合作方（含 OpenAI、NVIDIA 等）水印内容",
+        "支持视频/音频/图像，编辑加滤镜后仍可识别",
+        "与 Chrome、Search、Gemini 既有 AI 标识能力互补"
+      ],
+      "handle": "GoogleDeepMind",
+      "time": "10-07 22:03",
+      "url": "https://x.com/GoogleDeepMind/status/2107834249680499136"
+    },
+    {
+      "tag": "评测",
+      "priority": "P1",
+      "title": "Grok Imagine Video 1.5 Lite 上榜",
+      "bullets": [
+        "AA-Video-T2V v2.0 双榜均第 17，质量-速度 Pareto 前沿",
+        "1080p+音频约 $0.14/秒，约为 Veo 3.1 的三分之一且名次更高",
+        "Silent 榜上无模型同时更快更高质"
+      ],
+      "handle": "ArtificialAnlys",
+      "time": "10-09 06:23",
+      "url": "https://x.com/ArtificialAnlys/status/2108322397237764460"
+    },
+    {
+      "tag": "论文",
+      "priority": "P1",
+      "title": "Agent Plasticity：经验自改进度量",
+      "bullets": [
+        "AK 推送：Measuring Self-Improvement Through Experience",
+        "关注智能体经经验后的可塑性/自改进能力",
+        "附 arXiv 链接，适合跟进 Agent 评测范式"
+      ],
+      "handle": "_akhaliq",
+      "time": "10-09 07:08",
+      "url": "https://x.com/_akhaliq/status/2108333776774508934"
+    },
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "Simon：语音驱动 Codex 改博客",
+      "bullets": [
+        "晚饭做饭时用 Codex Desktop 纯语音完成博客新功能",
+        "展示端侧/语音 Agent 编码工作流已可落地",
+        "附示例 prompt，工程向实测信号"
+      ],
+      "handle": "simonw",
+      "time": "10-09 21:16",
+      "url": "https://x.com/simonw/status/2108547065634844839"
+    },
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "Craft 开源系盯上 Office 套件",
+      "bullets": [
+        "邵猛提及：复刻 Adobe 全家桶的 Craft，现扩展 deckcraft/wordcraft/gridcraft",
+        "对应 PPT/Word/Excel 场景，开源可跟",
+        "中文圈高信号工具雷达"
+      ],
+      "handle": "shao__meng",
+      "time": "10-09 18:23",
+      "url": "https://x.com/shao__meng/status/2108503493279683016"
+    },
+    {
+      "tag": "观点",
+      "priority": "P1",
+      "title": "宝玉：Claude 看板与动画讲解上线",
+      "bullets": [
+        "中文拆解：Dashboards 把公司数据做成自动更新看板",
+        "Motion 把报告/图表做成数十秒动画讲解，均在测试",
+        "Design/Slides 等功能结束测试并并入网页 Artifacts 趋势"
+      ],
+      "handle": "dotey",
+      "time": "10-09 12:08",
+      "url": "https://x.com/dotey/status/2108409240847016347"
+    }
+  ]
+}
