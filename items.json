@@ -1,161 +1,69 @@
 {
-  "updated": "2026-10-10 08:09 北京时间",
+  "updated": "2026-10-10 13:33 北京时间",
   "items": [
     {
-      "tag": "安全",
+      "tag": "模型",
       "priority": "P0",
-      "title": "Anthropic 启动更频繁的模型行为报告",
+      "title": "Google 内部测试新模型 Carbon，编码「感觉像 Opus 5.5」",
       "bullets": [
-        "官号宣布将定期发布模型行为报告，超越系统卡与常规风险报告",
-        "首期报告列出评测与内部使用中发现的四类 Claude 真实行为",
-        "属官方安全/对齐口径更新，早间需知"
-      ],
-      "handle": "AnthropicAI",
-      "time": "10-10 06:04",
-      "url": "https://x.com/AnthropicAI/status/2108680150556737819"
-    },
-    {
-      "tag": "开源",
-      "priority": "P0",
-      "title": "Qwen-Image-2.1-Turbo 开源权重",
-      "bullets": [
-        "仅 8 步去噪即可生成/编辑图像，同系 7B 视觉架构加速版",
-        "官方称步数减少不牺牲质量，权重已开放",
-        "另有 Qwen3.8-Max/Flash 与 Wan3.0 云端免费试用周"
-      ],
-      "handle": "Alibaba_Qwen",
-      "time": "10-09 21:24",
-      "url": "https://x.com/Alibaba_Qwen/status/2108549075218120949"
-    },
-    {
-      "tag": "评测",
-      "priority": "P0",
-      "title": "ARC-AGI-2 新高分 88.06%（tufalabs）",
-      "bullets": [
-        "ARC Prize 2026 官方公布 ARC-AGI-2 高分 88.06% by @tufalabs",
-        "超 85% 队伍将分摊 15 万美元 Bonus Prize",
-        "Chollet 同步称 Kaggle 上 ARC-AGI-2 成绩已很好"
-      ],
-      "handle": "arcprize",
-      "time": "10-09 23:19",
-      "url": "https://x.com/arcprize/status/2108578092558250148"
-    },
-    {
-      "tag": "工具",
-      "priority": "P1",
-      "title": "Claude Code Projects 向 Pro/Max 候补全量开放",
-      "bullets": [
-        "宝玉转发：候补名单上的 Pro/Max 用户已全部放行",
-        "功能仍为公开测试版、分批推送；Team/Enterprise 暂不可用",
-        "与 Claude Managed Agents「动态工作流」同日密集产品更新"
+        "Business Insider：Carbon 部署在内部编程工具 Jetski；在 Gemini 4 Argon（Barium-B）之后训练",
+        "第三方 Terminal Bench 4：Argon 57%，低于 Sonnet 5.5 / Opus 5.5 / GPT-6 Astra；Google 曾放开全员用 Claude 写代码",
+        "尚无公开跑分与发布时间；对外仍主要是部分合作方可用的 Argon"
       ],
       "handle": "dotey",
-      "time": "10-10 07:30",
-      "url": "https://x.com/dotey/status/2108701555058790506"
-    },
-    {
-      "tag": "工具",
-      "priority": "P1",
-      "title": "Claude Managed Agents 上线动态工作流",
-      "bullets": [
-        "主智能体写计划后分阶段调度大批子智能体并行，最后汇总",
-        "单次运行最多可调度约 1000 个智能体，已公测开放",
-        "中文圈高信号拆解，适合跟进 Agent 编排能力"
-      ],
-      "handle": "dotey",
-      "time": "10-10 07:04",
-      "url": "https://x.com/dotey/status/2108695019846619424"
-    },
-    {
-      "tag": "开源",
-      "priority": "P1",
-      "title": "Chollet 转发 Busabase：Agent 开源数据库/工作区",
-      "bullets": [
-        "指出当前 Agent 像单机游戏：结果困在聊天记录、难以复利",
-        "Busabase 以 MIT 开源数据库+工作区，让多 Agent 结果可沉淀",
-        "来自 ARC 作者本人背书，工具向高信号"
-      ],
-      "handle": "fchollet",
-      "time": "10-10 00:31",
-      "url": "https://x.com/fchollet/status/2108596098277249441"
-    },
-    {
-      "tag": "评测",
-      "priority": "P1",
-      "title": "AA：多轮图像编辑一致性对比 Ideogram 领先",
-      "bullets": [
-        "四款前沿图像编辑模型同一照片连续 30 次编辑",
-        "Ideogram 4.5 房间结构最稳；GPT Image 2.5 Sunburst 漂移最明显",
-        "独立评测可改变对多轮编辑产品的判断"
-      ],
-      "handle": "ArtificialAnlys",
-      "time": "10-10 00:47",
-      "url": "https://x.com/ArtificialAnlys/status/2108600224478572767"
-    },
-    {
-      "tag": "评测",
-      "priority": "P1",
-      "title": "AA-Robotics v0.1：前沿 LLM 零样本控真机臂？",
-      "bullets": [
-        "Artificial Analysis 预告机器人评测套件 AA-Robotics v0.1",
-        "关注点：无辅导零样本控制真实机械臂",
-        "具身评测雷达，值得盯首发结果"
-      ],
-      "handle": "ArtificialAnlys",
-      "time": "10-10 01:47",
-      "url": "https://x.com/ArtificialAnlys/status/2108615253085041003"
+      "time": "10-10 08:14",
+      "url": "https://x.com/dotey/status/2108712677971206387"
     },
     {
       "tag": "观点",
       "priority": "P1",
-      "title": "《State of AI Report 2026》：AI 参与自身研发",
+      "title": "Lee Robinson 斯坦福讲座：常驻主动智能体与 Grok Bot 架构",
       "bullets": [
-        "宝玉拆解年度报告：AI 已实质参与模型研发流程",
-        "称 Anthropic 内部约 26% 模型研发工作由 Claude 完成",
-        "智能体进入真实系统，属年度产业级信号摘要"
-      ],
-      "handle": "dotey",
-      "time": "10-09 22:57",
-      "url": "https://x.com/dotey/status/2108572683453501884"
-    },
-    {
-      "tag": "开源",
-      "priority": "P1",
-      "title": "Craft 开源项目扩到 Office：deck/word/gridcraft",
-      "bullets": [
-        "邵猛：复刻 Adobe 全家桶的 Craft 现盯上 Office",
-        "PPT→deckcraft、Word→wordcraft、Excel→gridcraft",
-        "开源工具向，适合跟进本地生产力 Agent 栈"
+        "CS146S「AI 原生软件开发」第三周：always-on / proactive agents",
+        "六段：演进史、模型能力变化、内部构成、Harness、上下文工程、前瞻",
+        "强调 harness 与 context engineering 是当前 agent 工程主战场"
       ],
       "handle": "shao__meng",
-      "time": "10-09 18:23",
-      "url": "https://x.com/shao__meng/status/2108503493279683016"
+      "time": "10-10 09:58",
+      "url": "https://x.com/shao__meng/status/2108738979277471813"
     },
     {
-      "tag": "评测",
+      "tag": "案例",
       "priority": "P1",
-      "title": "ARC-AGI-3 新高分 59.17%（Yi-Chia Chen）",
+      "title": "OpenRouter 销售智能体 Rasp：5 人团队月省约 600 小时",
       "bullets": [
-        "ARC Prize 官方：ARC-AGI-3 领先分 59.17%",
-        "反超此前领先的 tufalabs",
-        "与 ARC-AGI-2 同日刷新，能力边界持续移动"
+        "自动资格审查 inbound、首触邮件（约 93% 自动化）、通话简报/笔记、CRM 填写",
+        "工程原则：单一 pipeline、默认关闭渐进放量、首日埋点、Slack 即界面",
+        "推理用 GLM 5.2（约 $18/天），可路由到更便宜模型；不替代谈判与客户关系"
       ],
-      "handle": "arcprize",
-      "time": "10-09 23:16",
-      "url": "https://x.com/arcprize/status/2108577347192676612"
+      "handle": "shao__meng",
+      "time": "10-10 10:31",
+      "url": "https://x.com/shao__meng/status/2108747094576295986"
     },
     {
       "tag": "工具",
       "priority": "P1",
-      "title": "Unsloth×Windows：mxc 沙箱隔离 Agent 代码执行",
+      "title": "SpaceXAI 发布 4 个可用 Grok Bot 模板",
       "bullets": [
-        "邵猛：Unsloth 集成微软开源跨平台沙箱 mxc",
-        "面向 Windows 上 AI Agent 代码执行隔离",
-        "工程安全向，本地 Agent 部署可参考"
+        "LaunchBot / Threat Hunter / Threat Intelligence Lead / X API Engineer",
+        "覆盖产品发布、agentic 安全威胁猎捕、OpenCTI+Wazuh 情报链路、X API 开发",
+        "信号：X 被当作 Agent 运行环境与可复制 bot 基础设施"
       ],
       "handle": "shao__meng",
-      "time": "10-09 10:44",
-      "url": "https://x.com/shao__meng/status/2108388066486616235"
+      "time": "10-10 10:10",
+      "url": "https://x.com/shao__meng/status/2108741985284895153"
+    },
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "用 Claude Dashboard 分析自己的 X 账号数据",
+      "bullets": [
+        "下载 X 账号各 Tab 数据，Artifacts 新建 Dashboard 上传分析",
+        "适合看哪些推文更受欢迎、怎么优化"
+      ],
+      "handle": "dotey",
+      "time": "10-10 10:25",
+      "url": "https://x.com/dotey/status/2108745745721413678"
     }
   ]
 }
