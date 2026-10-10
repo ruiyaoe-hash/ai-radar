@@ -1,47 +1,21 @@
 {
-  "updated": "2026-10-09 22:50 北京时间（样例）",
+  "updated": "2026-10-10 08:09 北京时间",
   "items": [
-    {
-      "tag": "发布",
-      "priority": "P0",
-      "title": "OpenAI 推 GPT-6 与 Intelligent UI",
-      "bullets": [
-        "ChatGPT 全量上线 GPT-6，回答可混排文字、图表与可交互控件",
-        "Plus/Pro/商务/企业用 Sol；Free/Go 用 Luna，交互工具可当场生成",
-        "同步预告 ChatGPT for Teens 与大学规划工具"
-      ],
-      "handle": "OpenAI",
-      "time": "10-08 02:05",
-      "url": "https://x.com/OpenAI/status/2107894997538525580"
-    },
-    {
-      "tag": "发布",
-      "priority": "P0",
-      "title": "Anthropic 发布 Claude Haiku 5.5",
-      "bullets": [
-        "自称迄今最便宜、最快、最强的小模型",
-        "相对 Haiku 4.5 平均运行成本约降 75%",
-        "官号转发 @claudeai 首发线程"
-      ],
-      "handle": "AnthropicAI",
-      "time": "10-08 02:01",
-      "url": "https://x.com/AnthropicAI/status/2107894208547983705"
-    },
     {
       "tag": "安全",
       "priority": "P0",
-      "title": "Anthropic 启动 Cyber Mission",
+      "title": "Anthropic 启动更频繁的模型行为报告",
       "bullets": [
-        "面向关键基础设施与开源软件的安全新计划",
-        "OSS Scanner：用前沿模型免费扫描 opt-in 开源项目并给 PoC/修复建议",
-        "另设关键基础设施防御计划，派驻工程与 Claude"
+        "官号宣布将定期发布模型行为报告，超越系统卡与常规风险报告",
+        "首期报告列出评测与内部使用中发现的四类 Claude 真实行为",
+        "属官方安全/对齐口径更新，早间需知"
       ],
       "handle": "AnthropicAI",
-      "time": "10-09 05:04",
-      "url": "https://x.com/AnthropicAI/status/2108302539498414208"
+      "time": "10-10 06:04",
+      "url": "https://x.com/AnthropicAI/status/2108680150556737819"
     },
     {
-      "tag": "发布",
+      "tag": "开源",
       "priority": "P0",
       "title": "Qwen-Image-2.1-Turbo 开源权重",
       "bullets": [
@@ -54,82 +28,134 @@
       "url": "https://x.com/Alibaba_Qwen/status/2108549075218120949"
     },
     {
-      "tag": "安全",
-      "priority": "P1",
-      "title": "DeepMind 开放 SynthID Detector",
+      "tag": "评测",
+      "priority": "P0",
+      "title": "ARC-AGI-2 新高分 88.06%（tufalabs）",
       "bullets": [
-        "公开检测 Google AI 及合作方（含 OpenAI、NVIDIA 等）水印内容",
-        "支持视频/音频/图像，编辑加滤镜后仍可识别",
-        "与 Chrome、Search、Gemini 既有 AI 标识能力互补"
+        "ARC Prize 2026 官方公布 ARC-AGI-2 高分 88.06% by @tufalabs",
+        "超 85% 队伍将分摊 15 万美元 Bonus Prize",
+        "Chollet 同步称 Kaggle 上 ARC-AGI-2 成绩已很好"
       ],
-      "handle": "GoogleDeepMind",
-      "time": "10-07 22:03",
-      "url": "https://x.com/GoogleDeepMind/status/2107834249680499136"
+      "handle": "arcprize",
+      "time": "10-09 23:19",
+      "url": "https://x.com/arcprize/status/2108578092558250148"
+    },
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "Claude Code Projects 向 Pro/Max 候补全量开放",
+      "bullets": [
+        "宝玉转发：候补名单上的 Pro/Max 用户已全部放行",
+        "功能仍为公开测试版、分批推送；Team/Enterprise 暂不可用",
+        "与 Claude Managed Agents「动态工作流」同日密集产品更新"
+      ],
+      "handle": "dotey",
+      "time": "10-10 07:30",
+      "url": "https://x.com/dotey/status/2108701555058790506"
+    },
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "Claude Managed Agents 上线动态工作流",
+      "bullets": [
+        "主智能体写计划后分阶段调度大批子智能体并行，最后汇总",
+        "单次运行最多可调度约 1000 个智能体，已公测开放",
+        "中文圈高信号拆解，适合跟进 Agent 编排能力"
+      ],
+      "handle": "dotey",
+      "time": "10-10 07:04",
+      "url": "https://x.com/dotey/status/2108695019846619424"
+    },
+    {
+      "tag": "开源",
+      "priority": "P1",
+      "title": "Chollet 转发 Busabase：Agent 开源数据库/工作区",
+      "bullets": [
+        "指出当前 Agent 像单机游戏：结果困在聊天记录、难以复利",
+        "Busabase 以 MIT 开源数据库+工作区，让多 Agent 结果可沉淀",
+        "来自 ARC 作者本人背书，工具向高信号"
+      ],
+      "handle": "fchollet",
+      "time": "10-10 00:31",
+      "url": "https://x.com/fchollet/status/2108596098277249441"
     },
     {
       "tag": "评测",
       "priority": "P1",
-      "title": "Grok Imagine Video 1.5 Lite 上榜",
+      "title": "AA：多轮图像编辑一致性对比 Ideogram 领先",
       "bullets": [
-        "AA-Video-T2V v2.0 双榜均第 17，质量-速度 Pareto 前沿",
-        "1080p+音频约 $0.14/秒，约为 Veo 3.1 的三分之一且名次更高",
-        "Silent 榜上无模型同时更快更高质"
+        "四款前沿图像编辑模型同一照片连续 30 次编辑",
+        "Ideogram 4.5 房间结构最稳；GPT Image 2.5 Sunburst 漂移最明显",
+        "独立评测可改变对多轮编辑产品的判断"
       ],
       "handle": "ArtificialAnlys",
-      "time": "10-09 06:23",
-      "url": "https://x.com/ArtificialAnlys/status/2108322397237764460"
+      "time": "10-10 00:47",
+      "url": "https://x.com/ArtificialAnlys/status/2108600224478572767"
     },
     {
-      "tag": "论文",
+      "tag": "评测",
       "priority": "P1",
-      "title": "Agent Plasticity：经验自改进度量",
+      "title": "AA-Robotics v0.1：前沿 LLM 零样本控真机臂？",
       "bullets": [
-        "AK 推送：Measuring Self-Improvement Through Experience",
-        "关注智能体经经验后的可塑性/自改进能力",
-        "附 arXiv 链接，适合跟进 Agent 评测范式"
+        "Artificial Analysis 预告机器人评测套件 AA-Robotics v0.1",
+        "关注点：无辅导零样本控制真实机械臂",
+        "具身评测雷达，值得盯首发结果"
       ],
-      "handle": "_akhaliq",
-      "time": "10-09 07:08",
-      "url": "https://x.com/_akhaliq/status/2108333776774508934"
+      "handle": "ArtificialAnlys",
+      "time": "10-10 01:47",
+      "url": "https://x.com/ArtificialAnlys/status/2108615253085041003"
     },
     {
-      "tag": "工具",
+      "tag": "观点",
       "priority": "P1",
-      "title": "Simon：语音驱动 Codex 改博客",
+      "title": "《State of AI Report 2026》：AI 参与自身研发",
       "bullets": [
-        "晚饭做饭时用 Codex Desktop 纯语音完成博客新功能",
-        "展示端侧/语音 Agent 编码工作流已可落地",
-        "附示例 prompt，工程向实测信号"
+        "宝玉拆解年度报告：AI 已实质参与模型研发流程",
+        "称 Anthropic 内部约 26% 模型研发工作由 Claude 完成",
+        "智能体进入真实系统，属年度产业级信号摘要"
       ],
-      "handle": "simonw",
-      "time": "10-09 21:16",
-      "url": "https://x.com/simonw/status/2108547065634844839"
+      "handle": "dotey",
+      "time": "10-09 22:57",
+      "url": "https://x.com/dotey/status/2108572683453501884"
     },
     {
-      "tag": "工具",
+      "tag": "开源",
       "priority": "P1",
-      "title": "Craft 开源系盯上 Office 套件",
+      "title": "Craft 开源项目扩到 Office：deck/word/gridcraft",
       "bullets": [
-        "邵猛提及：复刻 Adobe 全家桶的 Craft，现扩展 deckcraft/wordcraft/gridcraft",
-        "对应 PPT/Word/Excel 场景，开源可跟",
-        "中文圈高信号工具雷达"
+        "邵猛：复刻 Adobe 全家桶的 Craft 现盯上 Office",
+        "PPT→deckcraft、Word→wordcraft、Excel→gridcraft",
+        "开源工具向，适合跟进本地生产力 Agent 栈"
       ],
       "handle": "shao__meng",
       "time": "10-09 18:23",
       "url": "https://x.com/shao__meng/status/2108503493279683016"
     },
     {
-      "tag": "观点",
+      "tag": "评测",
       "priority": "P1",
-      "title": "宝玉：Claude 看板与动画讲解上线",
+      "title": "ARC-AGI-3 新高分 59.17%（Yi-Chia Chen）",
       "bullets": [
-        "中文拆解：Dashboards 把公司数据做成自动更新看板",
-        "Motion 把报告/图表做成数十秒动画讲解，均在测试",
-        "Design/Slides 等功能结束测试并并入网页 Artifacts 趋势"
+        "ARC Prize 官方：ARC-AGI-3 领先分 59.17%",
+        "反超此前领先的 tufalabs",
+        "与 ARC-AGI-2 同日刷新，能力边界持续移动"
       ],
-      "handle": "dotey",
-      "time": "10-09 12:08",
-      "url": "https://x.com/dotey/status/2108409240847016347"
+      "handle": "arcprize",
+      "time": "10-09 23:16",
+      "url": "https://x.com/arcprize/status/2108577347192676612"
+    },
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "Unsloth×Windows：mxc 沙箱隔离 Agent 代码执行",
+      "bullets": [
+        "邵猛：Unsloth 集成微软开源跨平台沙箱 mxc",
+        "面向 Windows 上 AI Agent 代码执行隔离",
+        "工程安全向，本地 Agent 部署可参考"
+      ],
+      "handle": "shao__meng",
+      "time": "10-09 10:44",
+      "url": "https://x.com/shao__meng/status/2108388066486616235"
     }
   ]
 }
