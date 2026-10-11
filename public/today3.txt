@@ -1,0 +1,15 @@
+AI Radar · 今日3条（2026-10-11）
+
+1. [P0/工具] 华为开源多智能体框架 JiuwenSwarm：纯 Harness、模型无关
+   · 邵萌转发梳理：华为/openJiuwen 开源多智能体协作框架「JiuwenSwarm」，口号「理解意图、自主进化」
+   https://x.com/shao__meng/status/2109083154682351988
+
+2. [P0-待证/赛道] 传闻：英伟达洽谈收购或加码 Reflection AI（Beam 刚火）
+   · 东锡梳理：Beam 被视为西方开源模型重要突破后不久，传出 NVIDIA 收购 Reflection 的消息
+   https://x.com/dongxi_nlp/status/2109054116458566094
+
+3. [P1/工具] 宝玉：用 REA 逆向 Claude Slides 编辑器，几乎完整功能
+   · 作者演示：先下载 Claude Slides 核心脚本与样式表，经 Codex 安装 REA，再用 REA Skill 逆向混淆代码
+   https://x.com/dotey/status/2109151666020794711
+
+看板 https://ruiyaoe-hash.github.io/ai-radar/

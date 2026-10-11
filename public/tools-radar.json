@@ -1,0 +1,82 @@
+{
+  "updated": "2026-10-11 16:37 北京时间",
+  "rings": {
+    "采纳": [],
+    "试用": [
+      {
+        "id": "evt-20261011-jiuwenswarm-harness",
+        "title": "华为开源多智能体框架 JiuwenSwarm：纯 Harness、模型无关",
+        "date": "2026-10-11",
+        "try_url": "https://github.com/openJiuwen-ai/jiuwenswarm",
+        "access": "开源 Apache-2.0",
+        "integration": "OpenAI 兼容 API / 华为云 MaaS / 本地模型",
+        "first_step": "clone 仓库，用兼容 API 跑通 Leader→专家示例",
+        "alternatives": [
+          "Claude Code swarm",
+          "CrewAI",
+          "AutoGen"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      }
+    ],
+    "评估": [
+      {
+        "id": "evt-20261010-claude-design-claude-12-14",
+        "title": "Claude Design 并入 Claude：独立站点将于 12/14 关闭",
+        "date": "2026-10-10",
+        "try_url": "https://x.com/shao__meng/status/2108832696117952600",
+        "access": null,
+        "integration": null,
+        "first_step": null,
+        "alternatives": [],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261010-rea-claude-code-codex-cursor",
+        "title": "REA：把逆向分析接到 Claude Code / Codex / Cursor 等智能体",
+        "date": "2026-10-10",
+        "try_url": "https://github.com/search?q=REA+MCP",
+        "access": "开源",
+        "integration": "MCP / Claude Code / Codex / Cursor",
+        "first_step": "安装 MCP 后对本地二进制跑一轮只读逆向",
+        "alternatives": [
+          "Ghidra 手工",
+          "IDA + 脚本"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261011-rea-claude-slides",
+        "title": "宝玉：用 REA 逆向 Claude Slides 编辑器，几乎完整功能",
+        "date": "2026-10-11",
+        "try_url": "https://github.com/search?q=REA+MCP",
+        "access": "开源",
+        "integration": "MCP / Claude Code / Codex / Cursor",
+        "first_step": "安装 MCP 后对本地二进制跑一轮只读逆向",
+        "alternatives": [
+          "Ghidra 手工",
+          "IDA + 脚本"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261011-chollet-kerashub-jax-tpu-llm",
+        "title": "Chollet：用 KerasHub + JAX + TPU 做 LLM 后训练实验，考虑开源部分",
+        "date": "2026-10-11",
+        "try_url": "https://x.com/fchollet/status/2109096597011534242",
+        "access": null,
+        "integration": null,
+        "first_step": null,
+        "alternatives": [],
+        "status": "confirmed",
+        "priority": "P1"
+      }
+    ],
+    "暂缓": []
+  },
+  "note": "Tech Radar：采纳 / 试用 / 评估 / 暂缓。主人可在归档卡上写 tool_radar 字段。"
+}

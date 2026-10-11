@@ -1,0 +1,213 @@
+#!/usr/bin/env python3
+"""Migrate legacy cards in public/archive to schema_version 2 event model.
+
+- Adds id, status, sources[], lens, schema_version
+- Drops bullets (objective kept; feed maps objective→bullets if needed)
+- Infers rumor from 传闻 titles; maps tag→lens
+- Idempotent: skips cards already at schema_version 2 with id
+"""
+from __future__ import annotations
+
+import json
+import re
+import unicodedata
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+PUBLIC = ROOT / "public"
+ARCHIVE = PUBLIC / "archive"
+
+TAG_TO_LENS = {
+    "工具": "工具",
+    "产品": "工具",
+    "模型": "赛道",
+    "并购": "赛道",
+    "行业": "赛道",
+    "发布": "时机",
+    "论文": "赛道",
+    "评测": "赛道",
+    "观点": "模式",
+    "案例": "模式",
+    "安全": "赛道",
+}
+
+# Handles that are typically primary (labs / official)
+PRIMARY_HANDLES = {
+    "openai", "anthropicai", "googledeepmind", "aiatmeta", "deepseek_ai",
+    "alibaba_qwen", "mistralai", "huggingface", "sama", "gdb", "karpathy",
+}
+
+
+def slugify(title: str, max_len: int = 48) -> str:
+    s = title.lower().strip()
+    # keep ascii letters/digits; map CJK to pinyin-less short hash from chars
+    ascii_part = re.sub(r"[^a-z0-9]+", "-", s)
+    ascii_part = re.sub(r"-+", "-", ascii_part).strip("-")
+    if len(ascii_part) >= 8:
+        return ascii_part[:max_len].strip("-")
+    # fallback: use hex of normalized title
+    norm = unicodedata.normalize("NFKC", title)
+    h = abs(hash(norm)) % (10**8)
+    base = ascii_part or "card"
+    return f"{base}-{h}"[:max_len].strip("-")
+
+
+def infer_lens(tag: str) -> str:
+    return TAG_TO_LENS.get(tag, "赛道")
+
+
+def infer_status(title: str, handle: str) -> str:
+    t = title or ""
+    if "传闻" in t or "据传" in t or "外媒称" in t[:20]:
+        return "rumor"
+    h = (handle or "").lstrip("@").lower()
+    if h in PRIMARY_HANDLES:
+        return "confirmed"
+    # analysis/curation accounts → report unless rumor
+    return "confirmed" if "传闻" not in t else "rumor"
+
+
+def infer_role(handle: str, status: str) -> str:
+    h = (handle or "").lstrip("@").lower()
+    if h in PRIMARY_HANDLES:
+        return "primary"
+    if status == "rumor":
+        return "report"
+    # curators / analysts
+    if h in {"dotey", "shao__meng", "dongxi_nlp", "natolambert", "simonw"}:
+        return "analysis"
+    return "report"
+
+
+def migrate_item(it: dict) -> dict:
+    if it.get("schema_version") == 2 and it.get("id") and it.get("sources"):
+        # still drop bullets if present
+        out = dict(it)
+        out.pop("bullets", None)
+        return out
+
+    date = (it.get("date") or "1970-01-01").strip()
+    ymd = date.replace("-", "")
+    title = it.get("title") or "untitled"
+    eid = it.get("id") or f"evt-{ymd}-{slugify(title)}"
+
+    handle = it.get("handle") or "unknown"
+    url = it.get("url") or ""
+    status = it.get("status") or infer_status(title, handle)
+    role = infer_role(handle, status)
+
+    objective = list(it.get("objective") or it.get("bullets") or [])
+    if not objective:
+        objective = [title]
+
+    sources = it.get("sources")
+    if not sources:
+        sources = [{"url": url, "handle": handle, "role": role}]
+
+    out = {
+        "schema_version": 2,
+        "id": eid,
+        "status": status,
+        "tag": it.get("tag") or "动态",
+        "lens": it.get("lens") or infer_lens(it.get("tag") or ""),
+        "priority": it.get("priority") or "P1",
+        "title": title,
+        "date": date,
+        "time": it.get("time") or "",
+        "handle": handle,
+        "url": url,
+        "objective": objective,
+        "sources": sources,
+    }
+
+    # optional legacy judgment (kept for display until so_what adopted)
+    if it.get("judgment"):
+        out["judgment"] = list(it["judgment"])
+        out["judgment_label"] = it.get("judgment_label") or "主观判断"
+    elif "judgment" in it:
+        out["judgment"] = []
+
+    if it.get("correction"):
+        out["correction"] = it["correction"]
+
+    # tool fields passthrough
+    for k in ("try_url", "access", "integration", "first_step", "alternatives",
+              "tool_radar", "so_what", "lead_lag_hours", "shift"):
+        if k in it and it[k] is not None:
+            out[k] = it[k]
+
+    # Enrich a few known tool cards for demo radar
+    if out["lens"] == "工具" and "REA" in title:
+        out.setdefault("try_url", "https://github.com/search?q=REA+MCP")
+        out.setdefault("access", "开源")
+        out.setdefault("integration", "MCP / Claude Code / Codex / Cursor")
+        out.setdefault("first_step", "安装 MCP 后对本地二进制跑一轮只读逆向")
+        out.setdefault("alternatives", ["Ghidra 手工", "IDA + 脚本"])
+        out.setdefault("tool_radar", "评估")
+    if "JiuwenSwarm" in title or "jiuwenswarm" in title.lower():
+        out.setdefault("try_url", "https://github.com/openJiuwen-ai/jiuwenswarm")
+        out.setdefault("access", "开源 Apache-2.0")
+        out.setdefault("integration", "OpenAI 兼容 API / 华为云 MaaS / 本地模型")
+        out.setdefault("first_step", "clone 仓库，用兼容 API 跑通 Leader→专家示例")
+        out.setdefault("alternatives", ["Claude Code swarm", "CrewAI", "AutoGen"])
+        out.setdefault("tool_radar", "试用")
+        out["lens"] = "工具"
+
+    # Example so_what only when we can write a falsifier
+    if "MiMo-V2.6" in title or "MiMo" in title:
+        out["so_what"] = {
+            "lens": "赛道",
+            "impact": "开源侧把「RL 三维扩展」成本数字公开，影响对标闭源 grader 投入叙事",
+            "action": "观察",
+            "window": "未来 1–2 个季度",
+            "confidence": "中",
+            "falsifier": "若后续开源复现无法接近报告基准，或官方撤回/大幅修正 RL 成本口径，则此判断作废",
+            "thesis_id": "T-002",
+        }
+        out["lens"] = "赛道"
+    if "Reflection" in title and status == "rumor":
+        out["so_what"] = {
+            "lens": "赛道",
+            "impact": "若属实，英伟达在开源模型股权布局继续加码，影响开源分发与 infra 并购预期",
+            "action": "观察",
+            "window": "未来 2–6 周",
+            "confidence": "低",
+            "falsifier": "若官方否认洽谈或无独立一手确认，且 Beam 热度消退后无跟进，则此判断作废",
+            "thesis_id": "T-004",
+        }
+        out["lens"] = "赛道"
+    if "JiuwenSwarm" in title:
+        out["so_what"] = {
+            "lens": "工具",
+            "impact": "国内大厂开源模型无关 multi-agent harness，可对比 Claude Code / 开源 swarm 的分发路径",
+            "action": "试用",
+            "window": "本周内可 clone 试跑",
+            "confidence": "中",
+            "falsifier": "若仓库无实质更新/示例无法对接 OpenAI 兼容 API，或仅为营销壳，则此判断作废",
+            "thesis_id": "T-001",
+        }
+
+    return out
+
+
+def migrate_archive_file(path: Path) -> int:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    items = [migrate_item(it) for it in data.get("items", [])]
+    data["items"] = items
+    data["count"] = len(items)
+    data["schema_version"] = 2
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return len(items)
+
+
+def main():
+    total = 0
+    for path in sorted(ARCHIVE.glob("????-??-??.json")):
+        n = migrate_archive_file(path)
+        print(f"migrated {path.name}: {n} cards")
+        total += n
+    print(f"done, {total} cards")
+
+
+if __name__ == "__main__":
+    main()

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Radar · 时间线</title>
+  <title>AI Radar · 决策信号</title>
   <link rel="alternate" type="application/rss+xml" title="AI Radar RSS" href="./feed.xml" />
   <style>
     :root {
@@ -14,10 +14,14 @@
       --line: #243041;
       --accent: #5b9fd4;
       --p0: #e85d4c;
+      --p0pend: #e0a21a;
       --obj: #3a4a5c;
       --judge: #c4892a;
       --judge-bg: rgba(196, 137, 42, 0.08);
+      --sowhat: #6bcb8b;
+      --sowhat-bg: rgba(107, 203, 139, 0.08);
       --sticky: rgba(11, 15, 20, 0.92);
+      --corr: #c45b8a;
     }
     * { box-sizing: border-box; }
     body {
@@ -26,28 +30,39 @@
       background: radial-gradient(1200px 600px at 10% -10%, #152033 0%, var(--bg) 55%);
       color: var(--text); line-height: 1.55; min-height: 100vh;
     }
-    header { max-width: 760px; margin: 0 auto; padding: 28px 20px 8px; }
+    header { max-width: 780px; margin: 0 auto; padding: 28px 20px 8px; }
     h1 { font-size: 1.5rem; font-weight: 650; margin: 0 0 6px; letter-spacing: 0.02em; }
     .sub { color: var(--muted); font-size: 0.9rem; }
     .note {
       margin-top: 10px; font-size: 0.82rem; color: var(--muted);
       background: #101820; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
     }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
     .chip {
       border: 1px solid var(--line); background: transparent; color: var(--muted);
       border-radius: 999px; padding: 6px 12px; font-size: 0.8rem; cursor: pointer;
     }
     .chip.active { color: var(--text); border-color: var(--accent); background: #182536; }
+    .chip.lens-active { border-color: var(--sowhat); color: var(--text); background: #15261c; }
     .day-nav {
       display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center;
     }
     .day-nav label { font-size: 0.8rem; color: var(--muted); }
-    .day-nav select {
+    .day-nav select, .btn {
       background: #101820; color: var(--text); border: 1px solid var(--line);
-      border-radius: 8px; padding: 6px 10px; font-size: 0.85rem;
+      border-radius: 8px; padding: 6px 10px; font-size: 0.85rem; cursor: pointer;
     }
-    main { max-width: 760px; margin: 0 auto; padding: 4px 20px 48px; }
+    .btn:hover { border-color: var(--accent); }
+    .today3 {
+      margin-top: 12px; background: #101820; border: 1px solid var(--line);
+      border-radius: 10px; padding: 10px 12px; display: none;
+    }
+    .today3 pre {
+      margin: 8px 0 0; white-space: pre-wrap; word-break: break-word;
+      font-size: 0.8rem; color: #c5d0de; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    main { max-width: 780px; margin: 0 auto; padding: 4px 20px 48px; }
     .day-block { margin-top: 8px; }
     .day-header {
       position: sticky; top: 0; z-index: 5;
@@ -62,20 +77,22 @@
       padding: 14px 16px; margin: 12px 0; border-left: 3px solid var(--accent);
     }
     .card.p0 { border-left-color: var(--p0); }
+    .card.p0-pending { border-left-color: var(--p0pend); }
     .tag {
       display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
       padding: 2px 8px; border-radius: 6px; background: #1c2736; color: var(--accent); margin-right: 6px;
     }
     .tag.p0 { color: var(--p0); }
+    .tag.p0pend { color: var(--p0pend); }
+    .tag.lens { color: var(--sowhat); }
+    .tag.status { color: #9bb6d4; }
     .title { font-size: 1.02rem; font-weight: 600; margin: 8px 0; }
     .section { margin-top: 10px; }
     .section-label {
       font-size: 0.72rem; font-weight: 650; letter-spacing: 0.06em;
-      color: var(--muted); text-transform: none; margin-bottom: 4px;
+      color: var(--muted); margin-bottom: 4px;
     }
-    .objective {
-      border-left: 2px solid var(--obj); padding-left: 10px;
-    }
+    .objective { border-left: 2px solid var(--obj); padding-left: 10px; }
     .judgment {
       margin-top: 10px; border: 1px solid rgba(196, 137, 42, 0.45);
       background: var(--judge-bg); border-radius: 10px; padding: 10px 12px;
@@ -83,7 +100,24 @@
     .judgment .badge {
       display: inline-block; font-size: 0.72rem; font-weight: 700;
       color: #1a1408; background: var(--judge); border-radius: 6px;
-      padding: 2px 8px; margin-bottom: 6px; letter-spacing: 0.04em;
+      padding: 2px 8px; margin-bottom: 6px;
+    }
+    .sowhat {
+      margin-top: 10px; border: 1px solid rgba(107, 203, 139, 0.45);
+      background: var(--sowhat-bg); border-radius: 10px; padding: 10px 12px;
+    }
+    .sowhat .badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 700;
+      color: #0c1a12; background: var(--sowhat); border-radius: 6px;
+      padding: 2px 8px; margin-bottom: 6px;
+    }
+    .sowhat dl { margin: 0; display: grid; grid-template-columns: 5.5rem 1fr; gap: 4px 8px; font-size: 0.88rem; }
+    .sowhat dt { color: var(--muted); }
+    .sowhat dd { margin: 0; color: #d5ecdd; }
+    .correction {
+      margin-top: 10px; border-left: 3px solid var(--corr); padding: 8px 10px;
+      background: rgba(196, 91, 138, 0.08); border-radius: 0 8px 8px 0;
+      font-size: 0.88rem; color: #e8c0d4;
     }
     ul { margin: 4px 0 0; padding-left: 1.1rem; color: #c5d0de; font-size: 0.92rem; }
     .judgment ul { color: #e6d3a8; }
@@ -95,35 +129,58 @@
     a:hover { text-decoration: underline; }
     .empty { color: var(--muted); padding: 32px 8px; text-align: center; }
     footer {
-      max-width: 760px; margin: 0 auto; padding: 0 20px 40px;
+      max-width: 780px; margin: 0 auto; padding: 0 20px 40px;
       color: var(--muted); font-size: 0.75rem;
     }
     @media (max-width: 480px) {
       header, main, footer { padding-left: 14px; padding-right: 14px; }
       .title { font-size: 0.98rem; }
+      .sowhat dl { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>AI Radar</h1>
+    <h1>AI Radar · 决策信号</h1>
     <div class="sub">
-      A 级信源按日归档 · 北京时间 08:00 / 13:30 ·
+      事件模型 · lens 过滤 · 北京时间 08:00 / 13:30 ·
       <span id="updated">尚未拉取</span> ·
-      <a href="./feed.xml">RSS</a>
+      <a href="./feed.xml">RSS</a> ·
+      <a href="./tools-radar.html">工具雷达</a> ·
+      <a href="./theses.json">论点</a>
     </div>
     <div class="note">
-      看板展示<strong>近几日</strong>精选（约 7 天 / 最多约 50 条）。客观摘要只写事实；带琥珀色标记的是「主观判断」，勿当作事实。更早日期可从下方归档选择加载。
+      主过滤按 <strong>lens</strong>（工具 / 赛道 / 模式 / 时机）。
+      <strong>P0</strong> = 今天没看到会做错或错过决策；
+      <span style="color:var(--p0pend)">P0-待证</span> = rumor，需一手或两独立源才升正式 P0。
+      无 falsifier 不写 so_what。更早日期从归档加载。
+    </div>
+    <div class="chips" id="lensChips">
+      <button class="chip lens-active" data-lens="all">全部 lens</button>
+      <button class="chip" data-lens="工具">工具</button>
+      <button class="chip" data-lens="赛道">赛道</button>
+      <button class="chip" data-lens="模式">模式</button>
+      <button class="chip" data-lens="时机">时机</button>
     </div>
     <div class="chips" id="chips">
       <button class="chip active" data-filter="all">全部</button>
+      <button class="chip" data-filter="P0">正式 P0</button>
+      <button class="chip" data-filter="P0pending">P0-待证</button>
       <button class="chip" data-filter="发布">发布</button>
       <button class="chip" data-filter="论文">论文</button>
       <button class="chip" data-filter="评测">评测</button>
       <button class="chip" data-filter="观点">观点</button>
-      <button class="chip" data-filter="工具">工具</button>
+      <button class="chip" data-filter="工具">tag:工具</button>
       <button class="chip" data-filter="行业">行业</button>
-      <button class="chip" data-filter="P0">仅 P0</button>
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="btnToday3">今日3条 · 复制</button>
+      <a class="btn" href="./today3.txt" target="_blank" rel="noopener">today3.txt</a>
+      <a class="btn" href="./feeds/lens-tools.xml">lens RSS</a>
+    </div>
+    <div class="today3" id="today3box">
+      <div class="section-label">今日3条（纯文本，已尝试复制到剪贴板）</div>
+      <pre id="today3pre"></pre>
     </div>
     <div class="day-nav">
       <label for="archiveSelect">归档日期</label>
@@ -133,9 +190,12 @@
     </div>
   </header>
   <main id="feed"><div class="empty">加载中…</div></main>
-  <footer>免费静态页 · 原文均链到 X · 由 Alba 监控生成 · 客观摘要 ≠ 主观判断</footer>
+  <footer>
+    免费静态页 · 单源 public/archive · Pages 由 Actions 部署 ·
+    主人 action（tried/thesis_updated/shared/ignored）见 owner-actions.json（隐私说明见文件）
+  </footer>
   <script>
-    const state = { filter: 'all', mode: 'board', items: [], archiveIndex: [] };
+    const state = { filter: 'all', lens: 'all', mode: 'board', items: [], archiveIndex: [], today3: '' };
 
     function esc(s) {
       return String(s || '').replace(/[&<>"']/g, c => (
@@ -143,13 +203,16 @@
       ));
     }
 
+    function isP0Pending(it) {
+      return it.priority === 'P0' && it.status === 'rumor';
+    }
+    function isP0Formal(it) {
+      return it.priority === 'P0' && it.status !== 'rumor';
+    }
+
     function objectiveOf(it) {
       if (it.objective && it.objective.length) return it.objective;
       return it.bullets || [];
-    }
-
-    function judgmentOf(it) {
-      return it.judgment || [];
     }
 
     function weekdayCN(dateStr) {
@@ -158,29 +221,67 @@
       return '周' + map[d.getDay()];
     }
 
+    function renderSources(it) {
+      const srcs = it.sources || [];
+      if (!srcs.length) {
+        return it.handle ? `<span>@${esc(it.handle)}</span>` : '';
+      }
+      return srcs.map(s =>
+        `<span>@${esc(s.handle)} <em style="opacity:.7">${esc(s.role)}</em></span>`
+      ).join('');
+    }
+
+    function renderSoWhat(so) {
+      if (!so || !so.falsifier) return '';
+      const rows = ['impact','action','window','confidence','falsifier','thesis_id']
+        .filter(k => so[k])
+        .map(k => `<dt>${esc(k)}</dt><dd>${esc(so[k])}</dd>`)
+        .join('');
+      return `<div class="sowhat"><span class="badge">so_what · 可证伪</span><dl>${rows}</dl></div>`;
+    }
+
     function renderCard(it) {
       const obj = objectiveOf(it);
-      const jud = judgmentOf(it);
+      const jud = it.judgment || [];
       const label = it.judgment_label || '主观判断';
+      const pending = isP0Pending(it);
+      const formal = isP0Formal(it);
+      const cardClass = pending ? 'p0-pending' : (formal ? 'p0' : '');
       const objHtml = obj.length
         ? `<div class="section objective"><div class="section-label">客观摘要</div><ul>${obj.map(b => `<li>${esc(b)}</li>`).join('')}</ul></div>`
         : '';
-      const judHtml = jud.length
+      const soHtml = renderSoWhat(it.so_what);
+      const judHtml = (!it.so_what && jud.length)
         ? `<div class="judgment"><span class="badge">${esc(label)}</span><ul>${jud.map(b => `<li>${esc(b)}</li>`).join('')}</ul></div>`
         : '';
-      return `<article class="card ${it.priority === 'P0' ? 'p0' : ''}">
+      const corr = it.correction;
+      const corrHtml = corr
+        ? `<div class="correction"><strong>更正</strong> ${esc(corr.note || JSON.stringify(corr))}</div>`
+        : '';
+      const toolBits = [];
+      if (it.try_url) toolBits.push(`<a href="${esc(it.try_url)}" target="_blank" rel="noopener">试用</a>`);
+      if (it.tool_radar) toolBits.push(`雷达:${esc(it.tool_radar)}`);
+      if (it.first_step) toolBits.push(esc(it.first_step));
+      return `<article class="card ${cardClass}" id="${esc(it.id || '')}">
         <div>
+          <span class="tag lens">${esc(it.lens || '')}</span>
           <span class="tag">${esc(it.tag || '动态')}</span>
-          ${it.priority === 'P0' ? '<span class="tag p0">P0</span>' : ''}
+          ${formal ? '<span class="tag p0">P0</span>' : ''}
+          ${pending ? '<span class="tag p0pend">P0-待证</span>' : ''}
+          <span class="tag status">${esc(it.status || '')}</span>
         </div>
         <div class="title">${esc(it.title || '')}</div>
         ${objHtml}
+        ${soHtml}
         ${judHtml}
+        ${corrHtml}
         <div class="meta">
-          <span>@${esc(it.handle || '')}</span>
+          ${renderSources(it)}
           <span>${esc(it.time || '')}</span>
           ${it.date ? `<span>${esc(it.date)}</span>` : ''}
-          ${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">打开原文 ↗</a>` : ''}
+          ${it.id ? `<span style="opacity:.65">${esc(it.id)}</span>` : ''}
+          ${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">原文 ↗</a>` : ''}
+          ${toolBits.length ? `<span>${toolBits.join(' · ')}</span>` : ''}
         </div>
       </article>`;
     }
@@ -196,10 +297,12 @@
     }
 
     function applyFilter(list) {
-      const f = state.filter;
       return list.filter(it => {
+        if (state.lens !== 'all' && it.lens !== state.lens) return false;
+        const f = state.filter;
         if (f === 'all') return true;
-        if (f === 'P0') return it.priority === 'P0';
+        if (f === 'P0') return isP0Formal(it);
+        if (f === 'P0pending') return isP0Pending(it);
         return it.tag === f;
       });
     }
@@ -221,6 +324,12 @@
           ${items.map(renderCard).join('')}
         </section>
       `).join('');
+      // deep link #/evt-...
+      const hash = location.hash.replace(/^#\/?/, '');
+      if (hash) {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
     async function loadBoard() {
@@ -259,12 +368,28 @@
       render();
     }
 
+    async function loadToday3() {
+      try {
+        const res = await fetch('./today3.txt?' + Date.now());
+        if (res.ok) state.today3 = await res.text();
+      } catch (e) {}
+    }
+
     document.getElementById('chips').addEventListener('click', (e) => {
       const btn = e.target.closest('.chip');
       if (!btn) return;
-      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('#chips .chip').forEach(c => c.classList.remove('active'));
       btn.classList.add('active');
       state.filter = btn.dataset.filter;
+      render();
+    });
+
+    document.getElementById('lensChips').addEventListener('click', (e) => {
+      const btn = e.target.closest('.chip');
+      if (!btn) return;
+      document.querySelectorAll('#lensChips .chip').forEach(c => c.classList.remove('lens-active'));
+      btn.classList.add('lens-active');
+      state.lens = btn.dataset.lens;
       render();
     });
 
@@ -278,10 +403,22 @@
       }
     });
 
+    document.getElementById('btnToday3').addEventListener('click', async () => {
+      if (!state.today3) await loadToday3();
+      const box = document.getElementById('today3box');
+      const pre = document.getElementById('today3pre');
+      pre.textContent = state.today3 || '（暂无 today3.txt）';
+      box.style.display = 'block';
+      try {
+        await navigator.clipboard.writeText(state.today3 || '');
+      } catch (e) {}
+    });
+
     (async () => {
       try {
         await loadBoard();
         await loadArchiveIndex();
+        await loadToday3();
       } catch (e) {
         document.getElementById('feed').innerHTML = '<div class="empty">还没有卡片。等早报/主报跑起来后这里会自动更新。</div>';
       }

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "privacy": "主人私用。默认不要把含隐私备注的副本推到公开 Pages；若需同步，可只提交 action 枚举与 event_id，勿写私人笔记。也可使用未跟踪的 owner-actions.local.json（见 .gitignore）。",
+  "allowed_actions": [
+    "tried",
+    "thesis_updated",
+    "shared",
+    "ignored"
+  ],
+  "actions": [
+    {
+      "event_id": "evt-20261011-jiuwenswarm-harness",
+      "action": "tried",
+      "at": "2026-10-11T16:00:00+08:00",
+      "note": "示例：已标记试用 JiuwenSwarm（可改）"
+    }
+  ]
+}
