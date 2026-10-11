@@ -1,0 +1,11 @@
+{
+  "timezone": "Asia/Shanghai",
+  "digests": ["08:00", "13:30"],
+  "a_tier": [
+    "karpathy", "gdb", "markchen90", "ilyasut", "geoffreyhinton", "JeffDean",
+    "demishassabis", "drfeifei", "DrJimFan", "fchollet", "natolambert", "polynoamial",
+    "OpenAI", "AnthropicAI", "GoogleDeepMind", "AIatMeta", "deepseek_ai", "Alibaba_Qwen",
+    "MistralAI", "_akhaliq", "huggingface", "ArtificialAnlys", "arcprize", "lmarena_ai",
+    "dotey", "shao__meng", "dongxi_nlp", "simonw", "sama", "clementdelangue"
+  ]
+}
