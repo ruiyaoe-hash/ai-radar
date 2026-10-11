@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>AI Radar · lens=模式</title>
+<link>https://ruiyaoe-hash.github.io/ai-radar/</link>
+<description>仅 lens=模式 的决策信号</description>
+<language>zh-cn</language>
+<lastBuildDate>Sun, 11 Oct 2026 16:37:20 +0800</lastBuildDate>
+<atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-models.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P1/模式/观点] Chollet：AI 从「逐 token 补全」转向「即时合成推理链」</title>
+<link>https://x.com/fchollet/status/2108951977904517409</link>
+<guid isPermaLink="false">evt-20261011-chollet-ai-token</guid>
+<pubDate>Sun, 11 Oct 2026 00:05:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• 一张图概括 2025–2026 主线：transductive → inductive（on-the-fly reasoning chain synthesis）<br/>• 他称之为 coding agents 能工作的关键故事<br/>来源 @fchollet(report)<br/>日期 2026-10-11]]></description>
+</item>
+<item>
+<title>[P1/模式/案例] Uber 法务红线 Agent：从 RAG 失败到 91% 准确率的四次演进</title>
+<link>https://x.com/shao__meng/status/2108835904534290445</link>
+<guid isPermaLink="false">evt-20261010-uber-agent-rag-91</guid>
+<pubDate>Sat, 10 Oct 2026 16:23:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• Word 插件交付；AI 只建议、人做决策；真实谈判轨迹驱动「从决策学」<br/>• 四版：朴素 RAG 失败 → 反馈闭环 → 语气分层（律师管 prompt）→ agentic 起草反提案<br/>• 合同审核时间降 20%+；获 2026 ALM Legalweek 年度最具创新力法务部<br/>来源 @shao__meng(analysis)<br/>日期 2026-10-10]]></description>
+</item>
+</channel>
+</rss>
