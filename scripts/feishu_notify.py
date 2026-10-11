@@ -14,9 +14,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 ARCHIVE = PUBLIC / "archive"
-STATE = ROOT / "state.json"
+# Actions sets FEISHU_STATE_PATH to a cached file so notified ids survive runs.
+# Local default is a sidecar, not state.json (watermark must stay untouched).
+STATE = Path(os.environ.get("FEISHU_STATE_PATH") or (ROOT / ".feishu-notify-state.json"))
 TZ = timezone(timedelta(hours=8))
 SITE = "https://ruiyaoe-hash.github.io/ai-radar/"
+HEALTH_COOLDOWN = timedelta(hours=20)
 
 
 def load_state() -> dict:
@@ -95,11 +98,22 @@ def main():
         except Exception:
             continue
 
-    health_alert = False
-    if newest is None or (now - newest) > timedelta(hours=24):
-        health_alert = True
-        lag = "无卡片" if newest is None else f"最新 {newest.isoformat()}（>{24}h）"
-        messages.append(f"【AI Radar 健康告警】24h 无新卡。{lag}\n请检查 Alba digest / archive。")
+    health_alert = newest is None or (now - newest) > timedelta(hours=24)
+    if health_alert:
+        last_alert = st.get("last_health_alert")
+        cooled = False
+        if last_alert:
+            try:
+                prev = datetime.fromisoformat(last_alert)
+                cooled = (now - prev) < HEALTH_COOLDOWN
+            except Exception:
+                cooled = False
+        if cooled:
+            print("health alert suppressed (cooldown)")
+            health_alert = False
+        else:
+            lag = "无卡片" if newest is None else f"最新 {newest.isoformat()}（>24h）"
+            messages.append(f"【AI Radar 健康告警】24h 无新卡。{lag}\n请检查 Alba digest / archive。")
 
     if not messages:
         print("nothing to notify")
@@ -115,19 +129,18 @@ def main():
                 print("feishu error:", e)
                 raise
         else:
-            print("(FEISHU_BOT_WEBHOOK unset — dry run)")
+            print("(FEISHU_BOT_WEBHOOK unset — dry run, not marking ids sent)")
 
-    if webhook and new_p0:
+    if webhook:
         for it in new_p0:
-            notified.add(it["id"])
+            if it.get("id"):
+                notified.add(it["id"])
         st["feishu_notified_ids"] = sorted(notified)
         st["last_feishu_run"] = now.isoformat()
-        # Note: state.json commit is optional; Actions checkout is ephemeral.
-        # Persist via repo only if a later step commits; for now write locally for logs.
+        if health_alert:
+            st["last_health_alert"] = now.isoformat()
         save_state(st)
-
-    if health_alert and not webhook:
-        print("health alert noted (no webhook)")
+        print(f"wrote notify state {STATE}")
 
 
 if __name__ == "__main__":

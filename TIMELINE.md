@@ -23,26 +23,31 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
    - 按 `id`（或 url）去重；升级传闻时更新原卡并写 `correction`  
    - `count` = `len(items)`；`schema_version: 2`
 
-3. **本地可选派生（调试）**  
+3. **本地派生（并刷新旧版 Pages 根镜像）**  
    ```bash
    python3 generate_feed.py
-   # 等同 python3 scripts/generate_derived.py
+   # = scripts/generate_derived.py + 根目录镜像（不覆盖 README.md）
+   pip install -r requirements-ci.txt
    python3 scripts/validate.py
    ```
+   需要 `jsonschema` 才能跑校验。归档相对上一提交只增不减（日期与事件 id）。
 
 4. **提交并推送**  
    ```bash
-   git add public/archive/YYYY-MM-DD.json public/archive/index.json
-   # 若本地跑过派生，也可 add 其它 public/ 派生文件；CI 会再生成一遍
+   git add public/archive/YYYY-MM-DD.json
+   # 旧版 Pages 仍从 main 根目录发布时，把 generate_feed.py 同步出的根镜像一并提交
+   git add public/ index.html items.json feed.xml archive/ feeds/ tools-radar.html tools-radar.json today3.txt
    git commit -m "chore: AI Radar digest YYYY-MM-DD HH:MM CST"
    git push origin main
    ```
+   不要提交 `.feishu-notify-state.json`。CI 会再派生并校验一遍。
 
-5. **CI 负责**  
-   - Schema 校验；归档相对 `main` 只增不减  
+5. **CI 负责**（`.github/workflows/`）  
+   - Schema（`schemas/*.json`）；归档相对基线只增不减（日期、条数、事件 id）  
+   - `feed.xml` 良构且条数 = `items.json`；lens feed 条数与看板一致  
    - 派生 `items.json`、`archive/index.json`、`feed.xml`、`feeds/lens-*.xml`、`tools-radar.json`、`today3.txt`、周报草稿  
-   - `deploy-pages` 只发 `public/`  
-   - 可选：正式 P0 + 24h 健康 → Feishu（secret `FEISHU_BOT_WEBHOOK`）
+   - `deploy-pages` 只上传 `public/`。Pages 源仍是 legacy `main` `/` 时该工作流会失败并提示去设置里改成 GitHub Actions；改完之前看板仍靠根镜像  
+   - 正式 P0 + 24h 健康 → Feishu（secret `FEISHU_BOT_WEBHOOK`，未配置则 dry-run）
 
 ## 目录约定
 
@@ -62,4 +67,4 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 
 - 客观与 so_what **分栏**；无 falsifier 不写 so_what  
 - 归档按日累积；看板是滑动窗口（约 7 天 / ≤50 条）  
-- Pages 来自 Actions，不再依赖仓库根目录镜像
+- 工作流在 `.github/workflows/`。Pages 源改成 GitHub Actions 之前，根镜像仍要提交；改完并确认部署后，再跑 `scripts/retire_root_mirrors.py`

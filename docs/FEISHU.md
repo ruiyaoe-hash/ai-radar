@@ -9,11 +9,13 @@
 
 ## 行为
 
-工作流：`.github/workflows/feishu-and-health.yml`
+工作流：`.github/workflows/feishu-and-health.yml`  
+（`docs/workflows/` 里是同一份副本，方便在没有 workflow 权限时审阅。）
 
 - 推送 **正式 P0**（`priority=P0` 且 `status` 为 `confirmed` 或 `multi_source`），**不推** P0-待证（rumor）
-- **24h 无新卡** 健康告警
-- 未配置 secret 时脚本 dry-run，CI 不失败
+- **24h 无新卡** 健康告警；同一告警至少间隔 20 小时，避免每 6 小时重复刷屏
+- 已推送的事件 id 写在 Actions cache（`.feishu-notify-state.json`），不写进 `state.json` 水位
+- 未配置 secret 时脚本 dry-run，**不会**把 id 标成已发送，CI 不失败
 
 ## 本地试跑
 

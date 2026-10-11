@@ -1,0 +1,46 @@
+# Formal P0 push + 24h silence alert. Secret name: FEISHU_BOT_WEBHOOK (unset = dry-run, job stays green).
+name: Feishu P0 + 24h health
+
+on:
+  schedule:
+    # every 6 hours
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "public/archive/**"
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore notify state
+        uses: actions/cache/restore@v4
+        with:
+          path: .feishu-notify-state.json
+          key: feishu-notify-${{ github.run_id }}
+          restore-keys: |
+            feishu-notify-
+
+      - name: Notify formal P0 + health check
+        env:
+          FEISHU_BOT_WEBHOOK: ${{ secrets.FEISHU_BOT_WEBHOOK }}
+          FEISHU_STATE_PATH: .feishu-notify-state.json
+        run: python3 scripts/feishu_notify.py
+
+      - name: Save notify state
+        if: always() && hashFiles('.feishu-notify-state.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .feishu-notify-state.json
+          key: feishu-notify-${{ github.run_id }}
