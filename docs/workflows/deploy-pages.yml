@@ -1,3 +1,5 @@
+# Canonical Pages deploy. Publishes public/ only.
+# Legacy branch deploy (main /) stays live until Settings → Pages → Source = GitHub Actions.
 name: Deploy Pages · public/
 
 on:
@@ -19,14 +21,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install JSON Schema validator
+        run: pip install -r requirements-ci.txt
       - name: Derive + validate
+        env:
+          VALIDATE_BASE_SHA: ${{ github.event.before }}
         run: |
           python3 scripts/generate_derived.py
-          python3 scripts/score_sources.py || true
-          python3 scripts/generate_weekly_memo.py || true
+          python3 scripts/score_sources.py
+          python3 scripts/generate_weekly_memo.py
           python3 scripts/validate.py
       - name: Ensure .nojekyll
         run: touch public/.nojekyll
@@ -41,5 +49,16 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Require Pages source = GitHub Actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          build=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type || true)
+          echo "pages build_type=${build:-unknown}"
+          if [ "$build" != "workflow" ]; then
+            echo "::error::Pages build_type is '${build:-unknown}', not workflow. Open Settings → Pages → Build and deployment → Source = GitHub Actions, then re-run this workflow. Until that switch, the live site still comes from the legacy main:/ mirror; do not delete root mirrors yet."
+            exit 1
+          fi
       - id: deployment
         uses: actions/deploy-pages@v4
