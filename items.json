@@ -1,69 +1,93 @@
 {
-  "updated": "2026-10-10 13:33 北京时间",
+  "updated": "2026-10-11 08:11 北京时间",
   "items": [
+    {
+      "tag": "收购",
+      "priority": "P0",
+      "title": "传闻：英伟达洽谈收购或加码 Reflection AI（Beam 刚火）",
+      "bullets": [
+        "东锡梳理：Beam 被视为西方开源模型重要突破后不久，传出 NVIDIA 收购 Reflection 的消息",
+        "外媒/早报口径多为「洽谈收购或追加投资」；3 月估值约 $250 亿；英伟达已投约 $8 亿",
+        "同脉络支出：Essential AI / Poolside / Reflection；分发 Hugging Face；infra Nexusflow / Groq——不止卖卡"
+      ],
+      "handle": "dongxi_nlp",
+      "time": "10-11 06:51",
+      "url": "https://x.com/dongxi_nlp/status/2109054116458566094"
+    },
     {
       "tag": "模型",
       "priority": "P0",
-      "title": "Google 内部测试新模型 Carbon，编码「感觉像 Opus 5.5」",
+      "title": "小米 MiMo-V2.6 技术报告：260 万美元 RL 三维扩展进前沿梯队",
       "bullets": [
-        "Business Insider：Carbon 部署在内部编程工具 Jetski；在 Gemini 4 Argon（Barium-B）之后训练",
-        "第三方 Terminal Bench 4：Argon 57%，低于 Sonnet 5.5 / Opus 5.5 / GPT-6 Astra；Google 曾放开全员用 Claude 写代码",
-        "尚无公开跑分与发布时间；对外仍主要是部分合作方可用的 Argon"
+        "主张：提升智能最有效路径是系统性扩展 RL（大批次 × 多样环境 × 更贵 grader），而非继续堆预训练",
+        "Pro 1.02T MoE（激活 42B）RL 约 $260 万；Flash 310B（激活 15B）约 $90 万；相对 V2.5 多项基准大幅跃升",
+        "要点：冻结 MoE router 防负载崩塌；GRS/GAR 把 grader 当第三条算力轴；开源蒸馏 9B + 环境 + RL 框架"
+      ],
+      "handle": "shao__meng",
+      "time": "10-10 15:57",
+      "url": "https://x.com/shao__meng/status/2108829340704162034"
+    },
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "REA：把逆向分析接到 Claude Code / Codex / Cursor 等智能体",
+      "bullets": [
+        "开源 MCP：无源码时让 agent 拆程序、给证据、再在你项目里复刻类似功能",
+        "覆盖原生（Hopper/Ghidra/IDA）、Electron ASAR、.NET、APK、固件、合约字节码等；分析在本机",
+        "GitHub 已约 5 万星；合规与授权由使用者自负"
       ],
       "handle": "dotey",
-      "time": "10-10 08:14",
-      "url": "https://x.com/dotey/status/2108712677971206387"
+      "time": "10-10 13:39",
+      "url": "https://x.com/dotey/status/2108794629172682783"
     },
     {
       "tag": "观点",
       "priority": "P1",
-      "title": "Lee Robinson 斯坦福讲座：常驻主动智能体与 Grok Bot 架构",
+      "title": "Chollet：AI 从「逐 token 补全」转向「即时合成推理链」",
       "bullets": [
-        "CS146S「AI 原生软件开发」第三周：always-on / proactive agents",
-        "六段：演进史、模型能力变化、内部构成、Harness、上下文工程、前瞻",
-        "强调 harness 与 context engineering 是当前 agent 工程主战场"
+        "一张图概括 2025–2026 主线：transductive → inductive（on-the-fly reasoning chain synthesis）",
+        "他称之为 coding agents 能工作的关键故事"
       ],
-      "handle": "shao__meng",
-      "time": "10-10 09:58",
-      "url": "https://x.com/shao__meng/status/2108738979277471813"
+      "handle": "fchollet",
+      "time": "10-11 00:05",
+      "url": "https://x.com/fchollet/status/2108951977904517409"
     },
     {
       "tag": "案例",
       "priority": "P1",
-      "title": "OpenRouter 销售智能体 Rasp：5 人团队月省约 600 小时",
+      "title": "Uber 法务红线 Agent：从 RAG 失败到 91% 准确率的四次演进",
       "bullets": [
-        "自动资格审查 inbound、首触邮件（约 93% 自动化）、通话简报/笔记、CRM 填写",
-        "工程原则：单一 pipeline、默认关闭渐进放量、首日埋点、Slack 即界面",
-        "推理用 GLM 5.2（约 $18/天），可路由到更便宜模型；不替代谈判与客户关系"
+        "Word 插件交付；AI 只建议、人做决策；真实谈判轨迹驱动「从决策学」",
+        "四版：朴素 RAG 失败 → 反馈闭环 → 语气分层（律师管 prompt）→ agentic 起草反提案",
+        "合同审核时间降 20%+；获 2026 ALM Legalweek 年度最具创新力法务部"
       ],
       "handle": "shao__meng",
-      "time": "10-10 10:31",
-      "url": "https://x.com/shao__meng/status/2108747094576295986"
+      "time": "10-10 16:23",
+      "url": "https://x.com/shao__meng/status/2108835904534290445"
     },
     {
-      "tag": "工具",
+      "tag": "行业",
       "priority": "P1",
-      "title": "SpaceXAI 发布 4 个可用 Grok Bot 模板",
+      "title": "Nathan Lambert：追踪的开源大模型 HuggingFace 下载量持续下滑",
       "bullets": [
-        "LaunchBot / Threat Hunter / Threat Intelligence Lead / X API Engineer",
-        "覆盖产品发布、agentic 安全威胁猎捕、OpenCTI+Wazuh 情报链路、X API 开发",
-        "信号：X 被当作 Agent 运行环境与可复制 bot 基础设施"
+        "一度见约 30% 计数口径变化后的下跌，但趋势仍在延续；征询社区解释",
+        "Clem 回应：Hub 总 DAU 仍在涨；其图只跟踪约 2000 个模型，口径需对齐"
+      ],
+      "handle": "natolambert",
+      "time": "10-11 00:13",
+      "url": "https://x.com/natolambert/status/2108954173316178231"
+    },
+    {
+      "tag": "产品",
+      "priority": "P1",
+      "title": "Claude Design 并入 Claude：独立站点将于 12/14 关闭",
+      "bullets": [
+        "设计/设计系统/PPT 以对话内 artifact 形式创建；Free 到 Enterprise 均可",
+        "9/16 起对话内已可用；claude.ai/design 将跳转到 Claude"
       ],
       "handle": "shao__meng",
-      "time": "10-10 10:10",
-      "url": "https://x.com/shao__meng/status/2108741985284895153"
-    },
-    {
-      "tag": "工具",
-      "priority": "P1",
-      "title": "用 Claude Dashboard 分析自己的 X 账号数据",
-      "bullets": [
-        "下载 X 账号各 Tab 数据，Artifacts 新建 Dashboard 上传分析",
-        "适合看哪些推文更受欢迎、怎么优化"
-      ],
-      "handle": "dotey",
-      "time": "10-10 10:25",
-      "url": "https://x.com/dotey/status/2108745745721413678"
+      "time": "10-10 16:11",
+      "url": "https://x.com/shao__meng/status/2108832696117952600"
     }
   ]
 }
