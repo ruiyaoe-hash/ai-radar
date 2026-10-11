@@ -1,52 +1,65 @@
-# AI Radar 时间线例程（给 Alba）
+# AI Radar 时间线例程（给 Alba）· append-only archive
 
 看板：https://ruiyaoe-hash.github.io/ai-radar/  
 RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml  
-写作规范：`CARD_SPEC.md`
+规范：`CARD_SPEC.md`（schema_version 2）
 
-## 每次 digest 完成后（08:00 / 13:30 北京时间）
+## 原则
 
-1. **写卡片**  
-   按 `CARD_SPEC.md` 产出条目：必有 `date`（YYYY-MM-DD 北京）、`objective`（2–4 条事实）；可选 `judgment` + `judgment_label: "主观判断"`。  
-   同步填 `bullets` = `objective`（兼容）。
+1. **只写** `public/archive/YYYY-MM-DD.json`（追加或按 `id`/`url` 更新原卡）
+2. **不要**手改 `items.json` / `feed.xml` / 根镜像（已废除）
+3. commit + push `main` → GitHub Actions：校验、派生、部署 `public/`
+
+## 每次 digest（08:00 / 13:30 北京）
+
+1. **写卡片**（事件模型）  
+   - 生成 `id = evt-YYYYMMDD-slug`  
+   - 填 `status` / `sources[{url,handle,role}]` / `lens` / `objective`  
+   - rumor 不得当正式 P0；有判断则写带 `falsifier` 的 `so_what`，否则省略  
+   - **不要**写 `bullets`
 
 2. **合并当日归档**  
-   - 路径：`public/archive/YYYY-MM-DD.json`（镜像 `data/archive/`）  
-   - 按 `url`（或 title+handle）去重后追加/更新当日 `items`  
-   - 更新 `public/archive/index.json`：`{ "dates": [ { "date", "count" }, ... ] }`（新在前）
+   - 路径：`public/archive/YYYY-MM-DD.json`  
+   - 按 `id`（或 url）去重；升级传闻时更新原卡并写 `correction`  
+   - `count` = `len(items)`；`schema_version: 2`
 
-3. **刷新看板窗口 `public/items.json`**  
-   - 合并近 **7 个日历日** 的归档（或最多约 **40–50** 张卡）  
-   - `items` **最新在前**  
-   - 写 `updated`：如 `"2026-10-11 13:30 北京时间"`  
-   - 可保留 `window_note` 说明「近期窗口 / 更早见归档」
-
-4. **生成 RSS**  
+3. **本地可选派生（调试）**  
    ```bash
    python3 generate_feed.py
-   ```  
-   脚本会：用 objective 写摘要；若有 judgment 则单独标注「主观判断」；并把 `feed.xml` / `items.json` / `archive/*` 镜像到**仓库根目录**（GitHub Pages `path=/`）。
+   # 等同 python3 scripts/generate_derived.py
+   python3 scripts/validate.py
+   ```
 
-5. **提交并推送**  
+4. **提交并推送**  
    ```bash
-   git add public/ index.html items.json feed.xml archive/ generate_feed.py CARD_SPEC.md TIMELINE.md
+   git add public/archive/YYYY-MM-DD.json public/archive/index.json
+   # 若本地跑过派生，也可 add 其它 public/ 派生文件；CI 会再生成一遍
    git commit -m "chore: AI Radar digest YYYY-MM-DD HH:MM CST"
    git push origin main
    ```
+
+5. **CI 负责**  
+   - Schema 校验；归档相对 `main` 只增不减  
+   - 派生 `items.json`、`archive/index.json`、`feed.xml`、`feeds/lens-*.xml`、`tools-radar.json`、`today3.txt`、周报草稿  
+   - `deploy-pages` 只发 `public/`  
+   - 可选：正式 P0 + 24h 健康 → Feishu（secret `FEISHU_BOT_WEBHOOK`）
 
 ## 目录约定
 
 | 路径 | 用途 |
 |------|------|
-| `public/items.json` | 看板近期窗口（源） |
-| `public/archive/*.json` | 按日全量 |
-| `public/archive/index.json` | 归档目录 |
-| `public/index.html` / 根 `index.html` | 时间线 UI |
-| 根 `items.json` `feed.xml` `archive/` | Pages 发布镜像（由 `generate_feed.py` 同步） |
-| `data/` | 可选本地镜像，不必须上 Pages |
+| `public/archive/*.json` | 按日全量（唯一写入源） |
+| `public/items.json` | 看板窗口（派生） |
+| `public/index.html` | 决策信号 UI（lens / P0-待证 / 今日3条） |
+| `public/tools-radar.html` | 工具雷达 |
+| `public/theses.json` | 长期论点 |
+| `public/owner-actions.json` | 主人 action（注意隐私） |
+| `public/config/sources.json` | 一手信源清单 |
+| `schemas/` | JSON Schema |
+| `scripts/` | migrate / derive / validate / memo / score / feishu |
 
 ## 注意
 
-- 客观与主观**分栏**；旧卡无 judgment 可留空，勿把判断句写进 objective。  
-- 不要只覆盖最新一批：归档按日累积，看板是滑动窗口。  
-- Pages 从 **main 仓库根目录** 发布；改完跑 `generate_feed.py` 再 push。
+- 客观与 so_what **分栏**；无 falsifier 不写 so_what  
+- 归档按日累积；看板是滑动窗口（约 7 天 / ≤50 条）  
+- Pages 来自 Actions，不再依赖仓库根目录镜像

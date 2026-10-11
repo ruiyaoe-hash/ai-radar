@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "note": "一手信源配置：实验室博客/changelog RSS、GitHub Releases、HF、arXiv、PH AI、融资并购。Alba/CI 可据此扩展抓取；当前 digest 仍以 X A 级为主。",
+  "shift_assumption": {
+    "verify_midday": "13:30",
+    "verify_evening": "20:00-21:00",
+    "timezone": "Asia/Shanghai",
+    "lead_lag_field": "lead_lag_hours"
+  },
+  "primary_sources": [
+    {
+      "id": "openai-blog",
+      "name": "OpenAI Blog",
+      "type": "rss",
+      "url": "https://openai.com/blog/rss.xml",
+      "role": "primary",
+      "lens_hint": ["工具", "赛道"]
+    },
+    {
+      "id": "anthropic-news",
+      "name": "Anthropic News",
+      "type": "rss",
+      "url": "https://www.anthropic.com/news/rss",
+      "role": "primary",
+      "lens_hint": ["工具", "赛道"]
+    },
+    {
+      "id": "deepmind-blog",
+      "name": "Google DeepMind Blog",
+      "type": "rss",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "role": "primary",
+      "lens_hint": ["赛道"]
+    },
+    {
+      "id": "huggingface-blog",
+      "name": "Hugging Face Blog",
+      "type": "rss",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "role": "primary",
+      "lens_hint": ["工具", "赛道"]
+    },
+    {
+      "id": "gh-releases-openai",
+      "name": "OpenAI GitHub Releases (example)",
+      "type": "github_releases",
+      "url": "https://github.com/openai/openai-python/releases.atom",
+      "role": "primary",
+      "lens_hint": ["工具"]
+    },
+    {
+      "id": "gh-releases-anthropic-sdk",
+      "name": "Anthropic SDK Releases",
+      "type": "github_releases",
+      "url": "https://github.com/anthropics/anthropic-sdk-python/releases.atom",
+      "role": "primary",
+      "lens_hint": ["工具"]
+    },
+    {
+      "id": "hf-trending",
+      "name": "Hugging Face Trending Models",
+      "type": "web",
+      "url": "https://huggingface.co/models?sort=trending",
+      "role": "report",
+      "lens_hint": ["赛道", "时机"]
+    },
+    {
+      "id": "arxiv-cs-ai",
+      "name": "arXiv cs.AI recent",
+      "type": "rss",
+      "url": "https://rss.arxiv.org/rss/cs.AI",
+      "role": "primary",
+      "lens_hint": ["赛道"]
+    },
+    {
+      "id": "producthunt-ai",
+      "name": "Product Hunt AI",
+      "type": "web",
+      "url": "https://www.producthunt.com/topics/artificial-intelligence",
+      "role": "report",
+      "lens_hint": ["工具", "时机"]
+    },
+    {
+      "id": "techcrunch-ai",
+      "name": "TechCrunch AI",
+      "type": "rss",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "role": "report",
+      "lens_hint": ["赛道", "模式"]
+    },
+    {
+      "id": "news-funding",
+      "name": "AI funding / M&A roundups",
+      "type": "rss",
+      "url": "https://news.google.com/rss/search?q=AI+funding+OR+acquisition&hl=en-US&gl=US&ceid=US:en",
+      "role": "report",
+      "lens_hint": ["赛道", "时机"]
+    }
+  ]
+}

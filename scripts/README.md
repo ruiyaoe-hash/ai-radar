@@ -1,0 +1,12 @@
+# scripts/
+
+| Script | Role |
+|--------|------|
+| `migrate_cards.py` | Legacy cards → schema_version 2 (idempotent) |
+| `generate_derived.py` | archive → items/feed/lens feeds/tools-radar/today3 |
+| `validate.py` | Schema + archive monotonic vs origin/main + feed count |
+| `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |
+| `score_sources.py` | Source scoreboard → `public/source-scores.json` |
+| `feishu_notify.py` | Formal P0 + 24h health (needs `FEISHU_BOT_WEBHOOK`) |
+
+Repo-root `generate_feed.py` is a thin wrapper around `generate_derived.py` for Alba habit.

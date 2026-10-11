@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>AI Radar · lens=赛道</title>
+<link>https://ruiyaoe-hash.github.io/ai-radar/</link>
+<description>仅 lens=赛道 的决策信号</description>
+<language>zh-cn</language>
+<lastBuildDate>Sun, 11 Oct 2026 16:37:20 +0800</lastBuildDate>
+<atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P0-待证/赛道/收购] 传闻：英伟达洽谈收购或加码 Reflection AI（Beam 刚火）</title>
+<link>https://x.com/dongxi_nlp/status/2109054116458566094</link>
+<guid isPermaLink="false">evt-20261011-reflection-ai-beam</guid>
+<pubDate>Sun, 11 Oct 2026 06:51:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• 东锡梳理：Beam 被视为西方开源模型重要突破后不久，传出 NVIDIA 收购 Reflection 的消息<br/>• 外媒/早报口径多为「洽谈收购或追加投资」；3 月估值约 $250 亿；英伟达已投约 $8 亿<br/>• 同脉络支出：Essential AI / Poolside / Reflection；分发 Hugging Face；infra Nexusflow / Groq——不止卖卡<br/><strong>【so_what】</strong><br/>• impact: 若属实，英伟达在开源模型股权布局继续加码，影响开源分发与 infra 并购预期<br/>• action: 观察<br/>• window: 未来 2–6 周<br/>• confidence: 低<br/>• falsifier: 若官方否认洽谈或无独立一手确认，且 Beam 热度消退后无跟进，则此判断作废<br/>• thesis_id: T-004<br/>来源 @dongxi_nlp(report)<br/>日期 2026-10-11]]></description>
+</item>
+<item>
+<title>[P1/赛道/行业] Nathan Lambert：追踪的开源大模型 HuggingFace 下载量持续下滑</title>
+<link>https://x.com/natolambert/status/2108954173316178231</link>
+<guid isPermaLink="false">evt-20261011-nathan-lambert-huggingface</guid>
+<pubDate>Sun, 11 Oct 2026 00:13:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• 一度见约 30% 计数口径变化后的下跌，但趋势仍在延续；征询社区解释<br/>• Clem 回应：Hub 总 DAU 仍在涨；其图只跟踪约 2000 个模型，口径需对齐<br/>来源 @natolambert(analysis)<br/>日期 2026-10-11]]></description>
+</item>
+<item>
+<title>[P0/赛道/模型] 小米 MiMo-V2.6 技术报告：260 万美元 RL 三维扩展进前沿梯队</title>
+<link>https://x.com/shao__meng/status/2108829340704162034</link>
+<guid isPermaLink="false">evt-20261010-mimo-v2-6-260-rl</guid>
+<pubDate>Sat, 10 Oct 2026 15:57:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• 主张：提升智能最有效路径是系统性扩展 RL（大批次 × 多样环境 × 更贵 grader），而非继续堆预训练<br/>• Pro 1.02T MoE（激活 42B）RL 约 $260 万；Flash 310B（激活 15B）约 $90 万；相对 V2.5 多项基准大幅跃升<br/>• 要点：冻结 MoE router 防负载崩塌；GRS/GAR 把 grader 当第三条算力轴；开源蒸馏 9B + 环境 + RL 框架<br/><strong>【so_what】</strong><br/>• impact: 开源侧把「RL 三维扩展」成本数字公开，影响对标闭源 grader 投入叙事<br/>• action: 观察<br/>• window: 未来 1–2 个季度<br/>• confidence: 中<br/>• falsifier: 若后续开源复现无法接近报告基准，或官方撤回/大幅修正 RL 成本口径，则此判断作废<br/>• thesis_id: T-002<br/>来源 @shao__meng(analysis)<br/>日期 2026-10-10]]></description>
+</item>
+</channel>
+</rss>

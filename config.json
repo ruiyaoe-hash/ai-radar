@@ -1,11 +1,22 @@
 {
   "timezone": "Asia/Shanghai",
   "digests": ["08:00", "13:30"],
+  "evening_verify": "20:00-21:00",
+  "success_metrics": {
+    "decisions_per_week_N": 3,
+    "p0_hit_rate_target": "待校准",
+    "lead_lag_hours_target": 6,
+    "note": "N/X/Y 可调；见 README「成功是什么样子」"
+  },
+  "lenses": ["工具", "赛道", "模式", "时机"],
+  "statuses": ["rumor", "multi_source", "confirmed"],
   "a_tier": [
     "karpathy", "gdb", "markchen90", "ilyasut", "geoffreyhinton", "JeffDean",
     "demishassabis", "drfeifei", "DrJimFan", "fchollet", "natolambert", "polynoamial",
     "OpenAI", "AnthropicAI", "GoogleDeepMind", "AIatMeta", "deepseek_ai", "Alibaba_Qwen",
     "MistralAI", "_akhaliq", "huggingface", "ArtificialAnlys", "arcprize", "lmarena_ai",
     "dotey", "shao__meng", "dongxi_nlp", "simonw", "sama", "clementdelangue"
-  ]
+  ],
+  "primary_sources_config": "public/config/sources.json",
+  "single_source_of_truth": "public/archive/"
 }
