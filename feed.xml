@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>AI Radar · Alba</title>
+<link>https://ruiyaoe-hash.github.io/ai-radar/</link>
+<description>Alba AI Radar：A 级 X 信源提炼（P0/P1），给人看看板、给 Agent 订阅。</description>
+<language>zh-cn</language>
+<lastBuildDate>Sun, 11 Oct 2026 11:08:28 +0800</lastBuildDate>
+<atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P0/收购] 传闻：英伟达洽谈收购或加码 Reflection AI（Beam 刚火）</title>
+<link>https://x.com/dongxi_nlp/status/2109054116458566094</link>
+<guid isPermaLink="true">https://x.com/dongxi_nlp/status/2109054116458566094</guid>
+<pubDate>Sun, 11 Oct 2026 06:51:00 +0800</pubDate>
+<description><![CDATA[• 东锡梳理：Beam 被视为西方开源模型重要突破后不久，传出 NVIDIA 收购 Reflection 的消息<br/>• 外媒/早报口径多为「洽谈收购或追加投资」；3 月估值约 $250 亿；英伟达已投约 $8 亿<br/>• 同脉络支出：Essential AI / Poolside / Reflection；分发 Hugging Face；infra Nexusflow / Groq——不止卖卡<br/>来源 @dongxi_nlp]]></description>
+</item>
+<item>
+<title>[P0/模型] 小米 MiMo-V2.6 技术报告：260 万美元 RL 三维扩展进前沿梯队</title>
+<link>https://x.com/shao__meng/status/2108829340704162034</link>
+<guid isPermaLink="true">https://x.com/shao__meng/status/2108829340704162034</guid>
+<pubDate>Sat, 10 Oct 2026 15:57:00 +0800</pubDate>
+<description><![CDATA[• 主张：提升智能最有效路径是系统性扩展 RL（大批次 × 多样环境 × 更贵 grader），而非继续堆预训练<br/>• Pro 1.02T MoE（激活 42B）RL 约 $260 万；Flash 310B（激活 15B）约 $90 万；相对 V2.5 多项基准大幅跃升<br/>• 要点：冻结 MoE router 防负载崩塌；GRS/GAR 把 grader 当第三条算力轴；开源蒸馏 9B + 环境 + RL 框架<br/>来源 @shao__meng]]></description>
+</item>
+<item>
+<title>[P1/工具] REA：把逆向分析接到 Claude Code / Codex / Cursor 等智能体</title>
+<link>https://x.com/dotey/status/2108794629172682783</link>
+<guid isPermaLink="true">https://x.com/dotey/status/2108794629172682783</guid>
+<pubDate>Sat, 10 Oct 2026 13:39:00 +0800</pubDate>
+<description><![CDATA[• 开源 MCP：无源码时让 agent 拆程序、给证据、再在你项目里复刻类似功能<br/>• 覆盖原生（Hopper/Ghidra/IDA）、Electron ASAR、.NET、APK、固件、合约字节码等；分析在本机<br/>• GitHub 已约 5 万星；合规与授权由使用者自负<br/>来源 @dotey]]></description>
+</item>
+<item>
+<title>[P1/观点] Chollet：AI 从「逐 token 补全」转向「即时合成推理链」</title>
+<link>https://x.com/fchollet/status/2108951977904517409</link>
+<guid isPermaLink="true">https://x.com/fchollet/status/2108951977904517409</guid>
+<pubDate>Sun, 11 Oct 2026 00:05:00 +0800</pubDate>
+<description><![CDATA[• 一张图概括 2025–2026 主线：transductive → inductive（on-the-fly reasoning chain synthesis）<br/>• 他称之为 coding agents 能工作的关键故事<br/>来源 @fchollet]]></description>
+</item>
+<item>
+<title>[P1/案例] Uber 法务红线 Agent：从 RAG 失败到 91% 准确率的四次演进</title>
+<link>https://x.com/shao__meng/status/2108835904534290445</link>
+<guid isPermaLink="true">https://x.com/shao__meng/status/2108835904534290445</guid>
+<pubDate>Sat, 10 Oct 2026 16:23:00 +0800</pubDate>
+<description><![CDATA[• Word 插件交付；AI 只建议、人做决策；真实谈判轨迹驱动「从决策学」<br/>• 四版：朴素 RAG 失败 → 反馈闭环 → 语气分层（律师管 prompt）→ agentic 起草反提案<br/>• 合同审核时间降 20%+；获 2026 ALM Legalweek 年度最具创新力法务部<br/>来源 @shao__meng]]></description>
+</item>
+<item>
+<title>[P1/行业] Nathan Lambert：追踪的开源大模型 HuggingFace 下载量持续下滑</title>
+<link>https://x.com/natolambert/status/2108954173316178231</link>
+<guid isPermaLink="true">https://x.com/natolambert/status/2108954173316178231</guid>
+<pubDate>Sun, 11 Oct 2026 00:13:00 +0800</pubDate>
+<description><![CDATA[• 一度见约 30% 计数口径变化后的下跌，但趋势仍在延续；征询社区解释<br/>• Clem 回应：Hub 总 DAU 仍在涨；其图只跟踪约 2000 个模型，口径需对齐<br/>来源 @natolambert]]></description>
+</item>
+<item>
+<title>[P1/产品] Claude Design 并入 Claude：独立站点将于 12/14 关闭</title>
+<link>https://x.com/shao__meng/status/2108832696117952600</link>
+<guid isPermaLink="true">https://x.com/shao__meng/status/2108832696117952600</guid>
+<pubDate>Sat, 10 Oct 2026 16:11:00 +0800</pubDate>
+<description><![CDATA[• 设计/设计系统/PPT 以对话内 artifact 形式创建；Free 到 Enterprise 均可<br/>• 9/16 起对话内已可用；claude.ai/design 将跳转到 Claude<br/>来源 @shao__meng]]></description>
+</item>
+</channel>
+</rss>
