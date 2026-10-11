@@ -5,8 +5,29 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>Alba AI Radar：按日归档的 A 级信源精选。客观摘要与主观判断分栏，关注新工具、新方向、新商业模式。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sun, 11 Oct 2026 12:20:23 +0800</lastBuildDate>
+<lastBuildDate>Sun, 11 Oct 2026 13:33:37 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P1/工具] 宝玉：用 REA 逆向 Claude Slides 编辑器，几乎完整功能</title>
+<link>https://x.com/dotey/status/2109151666020794711</link>
+<guid isPermaLink="true">https://x.com/dotey/status/2109151666020794711</guid>
+<pubDate>Sun, 11 Oct 2026 13:18:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• 作者演示：先下载 Claude Slides 核心脚本与样式表，经 Codex 安装 REA，再用 REA Skill 逆向混淆代码<br/>• 称逆向后的 Slides 编辑器「几乎完整功能」；引用早前 REA 接到 Claude Code/Codex/Cursor 的帖<br/>• 强调用法仅为个人参考，不一定是最佳实践<br/><strong>【主观判断】</strong><br/>• REA 从「接上 agent IDE」走到具体产品逆向案例，说明逆向-as-skill 对闭源 Web 应用的可复用路径在打开<br/>来源 @dotey<br/>日期 2026-10-11]]></description>
+</item>
+<item>
+<title>[P1/工具] Chollet：用 KerasHub + JAX + TPU 做 LLM 后训练实验，考虑开源部分</title>
+<link>https://x.com/fchollet/status/2109096597011534242</link>
+<guid isPermaLink="true">https://x.com/fchollet/status/2109096597011534242</guid>
+<pubDate>Sun, 11 Oct 2026 09:39:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• François Chollet 称近期用 KerasHub + JAX + TPU 做了大量 LLM 后训练实验，并表示「玩得很开心」<br/>• 他表示可能会开源其中一部分（Might open-source some of that）<br/><strong>【主观判断】</strong><br/>• 若落地，会给「非 PyTorch 默认栈」的后训练/实验路径多一个可对标的开源入口，值得盯仓库动态<br/>来源 @fchollet<br/>日期 2026-10-11]]></description>
+</item>
+<item>
+<title>[P0/工具] 华为开源多智能体框架 JiuwenSwarm：纯 Harness、模型无关</title>
+<link>https://x.com/shao__meng/status/2109083154682351988</link>
+<guid isPermaLink="true">https://x.com/shao__meng/status/2109083154682351988</guid>
+<pubDate>Sun, 11 Oct 2026 08:46:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• 邵萌转发梳理：华为/openJiuwen 开源多智能体协作框架「JiuwenSwarm」，口号「理解意图、自主进化」<br/>• 架构：Leader 分解任务、组建专家团队、调度技能与工具，交付端到端结果；不内置模型，属纯 Harness<br/>• 可对接 OpenAI 兼容 API、华为云 MaaS 及本地模型；GitHub openJiuwen-ai/jiuwenswarm（Apache-2.0）<br/><strong>【主观判断】</strong><br/>• 国内大厂把「多 agent harness」开源且强调模型无关，对 OPC 可对比 Claude Code / 开源 swarm 路线的分发与渠道（飞书/小艺）<br/>来源 @shao__meng<br/>日期 2026-10-11]]></description>
+</item>
 <item>
 <title>[P0/收购] 传闻：英伟达洽谈收购或加码 Reflection AI（Beam 刚火）</title>
 <link>https://x.com/dongxi_nlp/status/2109054116458566094</link>

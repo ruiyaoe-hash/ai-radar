@@ -1,7 +1,74 @@
 {
-  "updated": "2026-10-11 08:11 北京时间",
+  "updated": "2026-10-11 13:30 北京时间",
   "window_note": "看板展示近几日精选（约 7 天 / 最多约 50 条）；更早日期见归档。",
   "items": [
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "宝玉：用 REA 逆向 Claude Slides 编辑器，几乎完整功能",
+      "handle": "dotey",
+      "time": "10-11 13:18",
+      "url": "https://x.com/dotey/status/2109151666020794711",
+      "date": "2026-10-11",
+      "objective": [
+        "作者演示：先下载 Claude Slides 核心脚本与样式表，经 Codex 安装 REA，再用 REA Skill 逆向混淆代码",
+        "称逆向后的 Slides 编辑器「几乎完整功能」；引用早前 REA 接到 Claude Code/Codex/Cursor 的帖",
+        "强调用法仅为个人参考，不一定是最佳实践"
+      ],
+      "bullets": [
+        "作者演示：先下载 Claude Slides 核心脚本与样式表，经 Codex 安装 REA，再用 REA Skill 逆向混淆代码",
+        "称逆向后的 Slides 编辑器「几乎完整功能」；引用早前 REA 接到 Claude Code/Codex/Cursor 的帖",
+        "强调用法仅为个人参考，不一定是最佳实践"
+      ],
+      "judgment": [
+        "REA 从「接上 agent IDE」走到具体产品逆向案例，说明逆向-as-skill 对闭源 Web 应用的可复用路径在打开"
+      ],
+      "judgment_label": "主观判断"
+    },
+    {
+      "tag": "工具",
+      "priority": "P1",
+      "title": "Chollet：用 KerasHub + JAX + TPU 做 LLM 后训练实验，考虑开源部分",
+      "handle": "fchollet",
+      "time": "10-11 09:39",
+      "url": "https://x.com/fchollet/status/2109096597011534242",
+      "date": "2026-10-11",
+      "objective": [
+        "François Chollet 称近期用 KerasHub + JAX + TPU 做了大量 LLM 后训练实验，并表示「玩得很开心」",
+        "他表示可能会开源其中一部分（Might open-source some of that）"
+      ],
+      "bullets": [
+        "François Chollet 称近期用 KerasHub + JAX + TPU 做了大量 LLM 后训练实验，并表示「玩得很开心」",
+        "他表示可能会开源其中一部分（Might open-source some of that）"
+      ],
+      "judgment": [
+        "若落地，会给「非 PyTorch 默认栈」的后训练/实验路径多一个可对标的开源入口，值得盯仓库动态"
+      ],
+      "judgment_label": "主观判断"
+    },
+    {
+      "tag": "工具",
+      "priority": "P0",
+      "title": "华为开源多智能体框架 JiuwenSwarm：纯 Harness、模型无关",
+      "handle": "shao__meng",
+      "time": "10-11 08:46",
+      "url": "https://x.com/shao__meng/status/2109083154682351988",
+      "date": "2026-10-11",
+      "objective": [
+        "邵萌转发梳理：华为/openJiuwen 开源多智能体协作框架「JiuwenSwarm」，口号「理解意图、自主进化」",
+        "架构：Leader 分解任务、组建专家团队、调度技能与工具，交付端到端结果；不内置模型，属纯 Harness",
+        "可对接 OpenAI 兼容 API、华为云 MaaS 及本地模型；GitHub openJiuwen-ai/jiuwenswarm（Apache-2.0）"
+      ],
+      "bullets": [
+        "邵萌转发梳理：华为/openJiuwen 开源多智能体协作框架「JiuwenSwarm」，口号「理解意图、自主进化」",
+        "架构：Leader 分解任务、组建专家团队、调度技能与工具，交付端到端结果；不内置模型，属纯 Harness",
+        "可对接 OpenAI 兼容 API、华为云 MaaS 及本地模型；GitHub openJiuwen-ai/jiuwenswarm（Apache-2.0）"
+      ],
+      "judgment": [
+        "国内大厂把「多 agent harness」开源且强调模型无关，对 OPC 可对比 Claude Code / 开源 swarm 路线的分发与渠道（飞书/小艺）"
+      ],
+      "judgment_label": "主观判断"
+    },
     {
       "tag": "收购",
       "priority": "P0",
