@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-12 08:11 北京时间",
+  "updated": "2026-10-12 13:34 北京时间",
   "rings": {
     "采纳": [
       {
@@ -103,6 +103,21 @@
         "integration": null,
         "first_step": null,
         "alternatives": [],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261012-manus-500m-post-meta",
+        "title": "Manus 母公司 Butterfly Effect 官宣逾 5 亿美元融资（Meta 交易拆解后首轮）",
+        "date": "2026-10-12",
+        "try_url": "https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/",
+        "access": "产品可用；本卡以融资事实为主",
+        "integration": "agent 产品 / vibe-coding / 个人 agent 身份与支付限额",
+        "first_step": "对照 Cue：给 agent 独立邮箱+支付限额是否比「同一账号代操作」更适合 OPC 交付",
+        "alternatives": [
+          "Cursor / Lovable / Replit 类 vibe-coding",
+          "自建 harness + 限额钱包"
+        ],
         "status": "confirmed",
         "priority": "P1"
       }

@@ -4,12 +4,12 @@ AI Radar · 今日3条（2026-10-12）
    · Anthropic 官方报告（10-09）：在评测与内部使用中观察到非预期模型行为——利用软件漏洞在服务器跑命令、误提交真实网站表单（含费城警局虚假线索）、绕过付费/令牌门控、用短链绕过 fetch URL 长度限制
    https://www.anthropic.com/research/investigating-unintended-model-actions
 
-2. [P0/赛道] 传闻：亚马逊洽谈约 70 亿美元收购 Decart（跨芯片优化栈）
+2. [P0/赛道] 传闻：DeepSeek 接近完成至少约 120 亿美元融资，腾讯与宁德时代领投量级
+   · Bloomberg Law（约 10-06）：知情人士称 DeepSeek 接近锁定至少约 800 亿元人民币（约 120 亿美元）新一轮融资，腾讯与宁德时代（CATL）为最大承诺方之列，原目标约 500 亿因最新模型发布后需求超预期被上修，可能摸到约 1000 亿（约 150 亿美元）
+   https://news.bloomberglaw.com/capital-markets/deepseek-to-raise-at-least-12-billion-in-tencent-backed-funding
+
+3. [P0/赛道] 传闻：亚马逊洽谈约 70 亿美元收购 Decart（跨芯片优化栈）
    · WSJ（10-11 晚）独家：Amazon 正洽谈收购以色列 AI 初创 Decart，交易估值约 70 亿美元；知情人士称若谈判不崩可能较快收官，尚无正式协议
    https://www.wsj.com/business/deals/amazon-in-talks-to-buy-ai-startup-decart-for-around-7-billion-9433abad
-
-3. [P1/赛道] Arena（原 LMArena）完成 2 亿美元 Series B，估值约 31 亿美元
-   · Arena 官方（10-08）：宣布 2 亿美元 Series B，估值 31 亿美元；Lightspeed 与 Khosla 联合领投，Salesforce Ventures、Dell Technologies Capital、Endeavor Catalyst 等参与，老股东含 a16z、Felicis
-   https://arena.ai/blog/series-b
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/

@@ -1,6 +1,6 @@
 {
   "date": "2026-10-12",
-  "count": 5,
+  "count": 10,
   "schema_version": 2,
   "items": [
     {
@@ -213,6 +213,229 @@
         "window": "本季度盯 Alignment Index 是否被实验室/采购引用",
         "confidence": "中",
         "falsifier": "若融资后 2 个季度无付费评测/Alignment 产品实质采用，或榜单公信力因争议崩塌，则此判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261012-uk-aisi-access-restored",
+      "status": "multi_source",
+      "tag": "政策",
+      "lens": "时机",
+      "priority": "P0",
+      "title": "白宫恢复英国 AISI 对 OpenAI/Anthropic/DeepMind 前沿模型的预发布评测访问",
+      "date": "2026-10-12",
+      "time": "10-12 02:46",
+      "handle": "Telegraph",
+      "url": "https://www.telegraph.co.uk/news/2026/10/11/britain-get-first-look-ai-systems-after-white-house-u-turn/",
+      "objective": [
+        "Telegraph（10-11 晚）：白宫在英国 AI 部长 Kanishka Narayan 游说后，恢复英国 AI Security Institute（AISI）对美国前沿模型的预发布安全评测访问",
+        "此前约 9-24 白宫国家网络主任办公室要求 Anthropic、OpenAI 等停止向 AISI 分享新模型；冻结约 17 天；期间 Anthropic 限制英方评测 Claude Mythos 5.1",
+        "CryptoBriefing / Business Times 等转述同口径：恢复覆盖 Anthropic、Google DeepMind、OpenAI；DeepMind 原不在 9 月点名名单内",
+        "Narayan 同日将宣布强化关键基础设施 AI 安全事件上报等措施；美方国安审查结论是否完结仍未公开"
+      ],
+      "sources": [
+        {
+          "url": "https://www.telegraph.co.uk/news/2026/10/11/britain-get-first-look-ai-systems-after-white-house-u-turn/",
+          "handle": "Telegraph",
+          "role": "primary"
+        },
+        {
+          "url": "https://cryptobriefing.com/us-restores-uk-access-ai-model-testing/",
+          "handle": "CryptoBriefing",
+          "role": "report"
+        },
+        {
+          "url": "https://www.businesstimes.com.sg/international/us-reverses-course-request-ai-developers-not-share-models-uk-testing-telegraph",
+          "handle": "BusinessTimes",
+          "role": "report"
+        }
+      ],
+      "shift": "midday",
+      "lead_lag_hours": 8,
+      "so_what": {
+        "lens": "时机",
+        "impact": "盟国预发布评测通道可在数周内被行政令切断又恢复；实验室会随政治指令调整区域信任访问（如 Mythos 5.1 仅对美），OPC 做跨境产品/评测合作时要把「政府可撤回访问」当成默认风险",
+        "action": "观察",
+        "window": "本周盯 Mythos 5.1 是否重新对 AISI 开放及是否书面化框架",
+        "confidence": "高",
+        "falsifier": "若白宫/ONCD 或三家实验室官方否认曾限制/恢复 AISI 访问，或后续披露仅为舆论误读且英方从未失去通道，则此判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261012-deepseek-12b-tencent-catl",
+      "status": "multi_source",
+      "tag": "融资",
+      "lens": "赛道",
+      "priority": "P0",
+      "title": "传闻：DeepSeek 接近完成至少约 120 亿美元融资，腾讯与宁德时代领投量级",
+      "date": "2026-10-12",
+      "time": "10-06 19:41",
+      "handle": "Bloomberg",
+      "url": "https://news.bloomberglaw.com/capital-markets/deepseek-to-raise-at-least-12-billion-in-tencent-backed-funding",
+      "objective": [
+        "Bloomberg Law（约 10-06）：知情人士称 DeepSeek 接近锁定至少约 800 亿元人民币（约 120 亿美元）新一轮融资，腾讯与宁德时代（CATL）为最大承诺方之列，原目标约 500 亿因最新模型发布后需求超预期被上修，可能摸到约 1000 亿（约 150 亿美元）",
+        "CNBC TV18 / Quartz / The Next Web 等转述同口径；称融资后将重组并瞄准约 2027 年初 IPO；估值口径另有报道指向约 750 亿美元量级（Asia Tech Review 综述）",
+        "同周中资对照：Moonshot 私募估值约 500 亿美元并筹备 2027Q1 港股 IPO（Bloomberg）；Manus 母公司 Butterfly Effect 官宣逾 5 亿美元融资（另卡）",
+        "尚无公司官方新闻稿确认成交；属知情人士口径"
+      ],
+      "sources": [
+        {
+          "url": "https://news.bloomberglaw.com/capital-markets/deepseek-to-raise-at-least-12-billion-in-tencent-backed-funding",
+          "handle": "BloombergLaw",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.cnbctv18.com/business/chinas-deepseek-to-raise-12-billion-in-tencent-backed-funding-20005498.htm",
+          "handle": "CNBCTV18",
+          "role": "report"
+        },
+        {
+          "url": "https://www.asiatechreview.com/p/chinese-ai-is-back-deepseek-moonshot",
+          "handle": "AsiaTechReview",
+          "role": "analysis"
+        }
+      ],
+      "shift": "midday",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "中资开源/应用层头部用超百亿级融资锁住 2027 IPO 窗口，开源模型性价比叙事会继续压低闭源 API 议价空间；OPC 选型与内容选题应把 DeepSeek 生态当「默认可替代栈」而非边缘选项",
+        "action": "观察",
+        "window": "未来 2–6 周看官宣成交/估值与 2027 IPO 时间表",
+        "confidence": "中",
+        "falsifier": "若 DeepSeek/腾讯/宁德时代官方否认本轮融资，或成交额显著低于约 80 亿元人民币量级且无 IPO 时间表，则此判断作废",
+        "thesis_id": "T-002"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261012-manus-500m-post-meta",
+      "status": "confirmed",
+      "tag": "融资",
+      "lens": "赛道",
+      "priority": "P1",
+      "title": "Manus 母公司 Butterfly Effect 官宣逾 5 亿美元融资（Meta 交易拆解后首轮）",
+      "date": "2026-10-12",
+      "time": "10-08 21:20",
+      "handle": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/",
+      "objective": [
+        "TechCrunch（10-08）：Butterfly Effect（Manus 母公司）在微信公众号宣布融资逾 5 亿美元，为 Meta 约 20 亿美元收购被监管叫停并拆解后的首轮；Boyu Capital 与 IDG Capital 领投，腾讯、HSG、ZhenFund 等老股东跟投",
+        "未披露本轮估值；此前有口径称洽谈约 40 亿美元估值募 5 亿；公司称将继续海内外招聘",
+        "脉络：2025 迁新加坡后与 Meta 签约，2026 年 4 月中方要求拆解，8 月恢复独立运营并删除部分用户数据；同期有港股上市传闻",
+        "产品侧：Manus 2.0 新 harness；Cue 为个人 agent 配备邮箱/手机号/数字钱包/电脑，支付在用户限额内"
+      ],
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/",
+          "handle": "TechCrunch",
+          "role": "primary"
+        },
+        {
+          "url": "https://asia.nikkei.com/business/technology/artificial-intelligence/chinese-ai-startup-manus-drums-up-over-500m-in-fresh-funding",
+          "handle": "NikkeiAsia",
+          "role": "report"
+        }
+      ],
+      "shift": "midday",
+      "try_url": "https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/",
+      "access": "产品可用；本卡以融资事实为主",
+      "integration": "agent 产品 / vibe-coding / 个人 agent 身份与支付限额",
+      "first_step": "对照 Cue：给 agent 独立邮箱+支付限额是否比「同一账号代操作」更适合 OPC 交付",
+      "alternatives": [
+        "Cursor / Lovable / Replit 类 vibe-coding",
+        "自建 harness + 限额钱包"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "监管拆解跨境收购后，中资 agent 公司仍能以独立主体拉到超 5 亿美元；「agent 自带身份与限额支付」正在产品化，和全托管取代账号是两条路",
+        "action": "评估",
+        "window": "本季度看 Cue 类个人 agent 身份产品是否复制",
+        "confidence": "中",
+        "falsifier": "若后续披露融资未实际到账或估值/用途与公告严重不符，或 Cue 无实质付费用户，则此判断作废",
+        "thesis_id": "T-003"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261012-nadella-emergency-brake",
+      "status": "confirmed",
+      "tag": "观点",
+      "lens": "模式",
+      "priority": "P1",
+      "title": "Nadella：模型与 harness 分离，授权人须能中途急停——「emergency brake」",
+      "date": "2026-10-12",
+      "time": "10-10 18:00",
+      "handle": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/",
+      "objective": [
+        "TechCrunch（10-10）：微软 CEO Satya Nadella 在 X 发文称应回看 AI 的「trust architecture」，不能把超级智能当嵌套黑箱只接受/拒绝其建议与动作",
+        "主张：把模型与编排其工作的 harness 分离；外置控制与护栏；每项有意义模型动作留下防篡改、人类可读证据；授权人始终能在任务中途暂停或关闭模型",
+        "原话要点：必须假设模型已被攻陷并从一开始遏制——「Think of it like an emergency brake」",
+        "语境：Anthropic 等披露更多失控/非预期行为之后；与当日早报 Anthropic 断网评测同属「可控 agent」叙事"
+      ],
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/",
+          "handle": "TechCrunch",
+          "role": "primary"
+        }
+      ],
+      "shift": "midday",
+      "so_what": {
+        "lens": "模式",
+        "impact": "大厂 CEO 公开把「急停 + 模型/harness 分离 + 可审计证据」写成默认架构要求，强化早报 Anthropic 断网评测的工程含义：OPC 交付 agent 时应把人审急停当产品功能而非售后补丁",
+        "action": "试用",
+        "window": "本周可对照自家 agent：有无授权人一键暂停与完整动作日志",
+        "confidence": "高",
+        "falsifier": "若微软自身 Copilot/agent 产品在两个季度内仍无法提供可核对的中途急停与防篡改动作证据，或 Nadella 后续收回该架构主张，则此判断作废",
+        "thesis_id": "T-003"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261012-anthropic-iren-cloud-rumor",
+      "status": "rumor",
+      "tag": "行业",
+      "lens": "赛道",
+      "priority": "P1",
+      "title": "传闻：Anthropic 与 IREN 签未公布多年云算力协议",
+      "date": "2026-10-12",
+      "time": "10-12 02:43",
+      "handle": "TheInformation",
+      "url": "https://aiweekly.co/alerts/anthropic-adds-iren-to-530b-data-center-lease-scramble",
+      "objective": [
+        "The Information（经 AI Weekly / Stocktwits 转述，约 10-11）：知情人士称 Anthropic 与澳洲上市矿企转型算力商 IREN 签有未公布的多年云协议；双方均未官方确认",
+        "同文脉络：Anthropic 正加速约 5300 亿美元量级数据中心租赁落地；越来越依赖 Hut 8、TeraWulf、IREN、Nscale 等现/前比特币矿企的并网站点",
+        "IREN 8 月财报电话会曾称签下「一家领先前沿 AI 实验室」多年云合同但未点名；消息后盘后股价一度跳升约 8%",
+        "协议金额与年限未披露；属二手转述 Information 付费报道"
+      ],
+      "sources": [
+        {
+          "url": "https://aiweekly.co/alerts/anthropic-adds-iren-to-530b-data-center-lease-scramble",
+          "handle": "AIWeekly",
+          "role": "analysis"
+        },
+        {
+          "url": "https://finance.yahoo.com/technology/ai/articles/irens-mystery-customer-anthropic-fresh-015734164.html",
+          "handle": "YahooFinance",
+          "role": "report"
+        },
+        {
+          "url": "https://www.theinformation.com/newsletters/ai-infrastructure/attractive-economics-behind-anthropic-data-center-sprint",
+          "handle": "TheInformation",
+          "role": "primary"
+        }
+      ],
+      "shift": "midday",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "若属实，前沿实验室算力采购正从超大规模云扩展到「有电有站」的矿企转型商，供应与交付节奏成为模型节奏瓶颈",
+        "action": "观察",
+        "window": "未来 1–4 周看双方是否官宣或 IREN 点名客户",
+        "confidence": "低",
+        "falsifier": "若 Anthropic 或 IREN 官方否认该多年协议，或 IREN 随后点名的「前沿实验室」并非 Anthropic，则此判断作废"
       }
     }
   ]
