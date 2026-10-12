@@ -5,8 +5,22 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>仅 lens=赛道 的决策信号</description>
 <language>zh-cn</language>
-<lastBuildDate>Sun, 11 Oct 2026 16:46:03 +0800</lastBuildDate>
+<lastBuildDate>Mon, 12 Oct 2026 08:11:34 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P1/赛道/融资] Arena（原 LMArena）完成 2 亿美元 Series B，估值约 31 亿美元</title>
+<link>https://arena.ai/blog/series-b</link>
+<guid isPermaLink="false">evt-20261012-arena-series-b-3b</guid>
+<pubDate>Mon, 12 Oct 2026 18:19:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• Arena 官方（10-08）：宣布 2 亿美元 Series B，估值 31 亿美元；Lightspeed 与 Khosla 联合领投，Salesforce Ventures、Dell Technologies Capital、Endeavor Catalyst 等参与，老股东含 a16z、Felicis<br/>• 自称年化收入已超 1 亿美元；相对 1 月 Series A（TechCrunch 口径约 17 亿美元估值、年化约 3000 万美元）估值近乎翻倍<br/>• 同步预览 Alignment Index：从真实 Agent Arena 轨迹度量 Unauthorized Action / False Attribution / Deceptive Completion 三类偏离；并称 Agent Arena 上线未满 5 个月已有约 700 万会话<br/><strong>【so_what】</strong><br/>• impact: 评测从「实验室排行榜」变成独立大生意；alignment 指标产品化，可能成为 agent 采购与对标的第三方尺子<br/>• action: 观察<br/>• window: 本季度盯 Alignment Index 是否被实验室/采购引用<br/>• confidence: 中<br/>• falsifier: 若融资后 2 个季度无付费评测/Alignment 产品实质采用，或榜单公信力因争议崩塌，则此判断作废<br/>来源 @Arena(primary), @TechCrunch(report)<br/>日期 2026-10-12]]></description>
+</item>
+<item>
+<title>[P0/赛道/收购] 传闻：亚马逊洽谈约 70 亿美元收购 Decart（跨芯片优化栈）</title>
+<link>https://www.wsj.com/business/deals/amazon-in-talks-to-buy-ai-startup-decart-for-around-7-billion-9433abad</link>
+<guid isPermaLink="false">evt-20261012-amazon-decart-talks</guid>
+<pubDate>Mon, 12 Oct 2026 04:26:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• WSJ（10-11 晚）独家：Amazon 正洽谈收购以色列 AI 初创 Decart，交易估值约 70 亿美元；知情人士称若谈判不崩可能较快收官，尚无正式协议<br/>• Bloomberg Law / Business Times 转述同口径；Reuters 亦报道洽谈，但称未能独立核实细节<br/>• Decart 核心产品 DOS（Optimization Stack）优化模型在 NVIDIA GPU / Google TPU / Amazon Trainium 上的运行；另有实时视频/世界模型 Lucy、Oasis；2023 创立，融资逾 4.5 亿美元<br/>• 脉络：Anthropic 曾按约 60 亿美元做尽调并于 9 月退出；NVIDIA 亦曾竞逐该标的<br/><strong>【so_what】</strong><br/>• impact: 若成交，算力巨头继续用股权锁定「跨芯片效率层」，可能削弱 DOS 对 Trainium 以外平台的中立性，并强化「卖卡之外买效率软件」叙事<br/>• action: 观察<br/>• window: 未来 2–6 周（尽调/官宣窗口）<br/>• confidence: 中<br/>• falsifier: 若 Amazon/Decart 官方否认洽谈，或交易在尽调后像 Anthropic 一样退出且无替代买方官宣，则此判断作废<br/>• thesis_id: T-004<br/>来源 @WSJ(primary), @BloombergLaw(report), @CryptoBriefing(analysis)<br/>日期 2026-10-12]]></description>
+</item>
 <item>
 <title>[P0-待证/赛道/收购] 传闻：英伟达洽谈收购或加码 Reflection AI（Beam 刚火）</title>
 <link>https://x.com/dongxi_nlp/status/2109054116458566094</link>
