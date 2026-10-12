@@ -32,7 +32,8 @@
       "falsifier": "若主要开源实验室在 2 个季度内停止加大 RL/grader 投入并回归纯预训练扩参，则论点作废",
       "status": "待定",
       "evidence_for": [
-        "evt-20261010-mimo-v2-6-260-rl"
+        "evt-20261010-mimo-v2-6-260-rl",
+        "evt-20261012-deepseek-12b-tencent-catl"
       ],
       "evidence_against": []
     },
@@ -46,7 +47,9 @@
       "status": "待定",
       "evidence_for": [
         "evt-20261012-anthropic-evals-offline",
-        "evt-20261012-sophos-daybreak-mdr"
+        "evt-20261012-sophos-daybreak-mdr",
+        "evt-20261012-manus-500m-post-meta",
+        "evt-20261012-nadella-emergency-brake"
       ],
       "evidence_against": []
     },

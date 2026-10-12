@@ -5,7 +5,14 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>仅 lens=时机 的决策信号</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 12 Oct 2026 08:11:34 +0800</lastBuildDate>
+<lastBuildDate>Mon, 12 Oct 2026 13:34:46 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-timing.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P0/时机/政策] 白宫恢复英国 AISI 对 OpenAI/Anthropic/DeepMind 前沿模型的预发布评测访问</title>
+<link>https://www.telegraph.co.uk/news/2026/10/11/britain-get-first-look-ai-systems-after-white-house-u-turn/</link>
+<guid isPermaLink="false">evt-20261012-uk-aisi-access-restored</guid>
+<pubDate>Mon, 12 Oct 2026 02:46:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• Telegraph（10-11 晚）：白宫在英国 AI 部长 Kanishka Narayan 游说后，恢复英国 AI Security Institute（AISI）对美国前沿模型的预发布安全评测访问<br/>• 此前约 9-24 白宫国家网络主任办公室要求 Anthropic、OpenAI 等停止向 AISI 分享新模型；冻结约 17 天；期间 Anthropic 限制英方评测 Claude Mythos 5.1<br/>• CryptoBriefing / Business Times 等转述同口径：恢复覆盖 Anthropic、Google DeepMind、OpenAI；DeepMind 原不在 9 月点名名单内<br/>• Narayan 同日将宣布强化关键基础设施 AI 安全事件上报等措施；美方国安审查结论是否完结仍未公开<br/><strong>【so_what】</strong><br/>• impact: 盟国预发布评测通道可在数周内被行政令切断又恢复；实验室会随政治指令调整区域信任访问（如 Mythos 5.1 仅对美），OPC 做跨境产品/评测合作时要把「政府可撤回访问」当成默认风险<br/>• action: 观察<br/>• window: 本周盯 Mythos 5.1 是否重新对 AISI 开放及是否书面化框架<br/>• confidence: 高<br/>• falsifier: 若白宫/ONCD 或三家实验室官方否认曾限制/恢复 AISI 访问，或后续披露仅为舆论误读且英方从未失去通道，则此判断作废<br/>来源 @Telegraph(primary), @CryptoBriefing(report), @BusinessTimes(report)<br/>日期 2026-10-12]]></description>
+</item>
 </channel>
 </rss>

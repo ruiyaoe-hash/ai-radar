@@ -5,14 +5,35 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>决策信号：事件模型 + lens 过滤。客观摘要与 so_what/主观判断分栏。</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 12 Oct 2026 08:11:34 +0800</lastBuildDate>
+<lastBuildDate>Mon, 12 Oct 2026 13:35:03 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P1/赛道/融资] Manus 母公司 Butterfly Effect 官宣逾 5 亿美元融资（Meta 交易拆解后首轮）</title>
+<link>https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/</link>
+<guid isPermaLink="false">evt-20261012-manus-500m-post-meta</guid>
+<pubDate>Mon, 12 Oct 2026 21:20:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• TechCrunch（10-08）：Butterfly Effect（Manus 母公司）在微信公众号宣布融资逾 5 亿美元，为 Meta 约 20 亿美元收购被监管叫停并拆解后的首轮；Boyu Capital 与 IDG Capital 领投，腾讯、HSG、ZhenFund 等老股东跟投<br/>• 未披露本轮估值；此前有口径称洽谈约 40 亿美元估值募 5 亿；公司称将继续海内外招聘<br/>• 脉络：2025 迁新加坡后与 Meta 签约，2026 年 4 月中方要求拆解，8 月恢复独立运营并删除部分用户数据；同期有港股上市传闻<br/>• 产品侧：Manus 2.0 新 harness；Cue 为个人 agent 配备邮箱/手机号/数字钱包/电脑，支付在用户限额内<br/><strong>【so_what】</strong><br/>• impact: 监管拆解跨境收购后，中资 agent 公司仍能以独立主体拉到超 5 亿美元；「agent 自带身份与限额支付」正在产品化，和全托管取代账号是两条路<br/>• action: 评估<br/>• window: 本季度看 Cue 类个人 agent 身份产品是否复制<br/>• confidence: 中<br/>• falsifier: 若后续披露融资未实际到账或估值/用途与公告严重不符，或 Cue 无实质付费用户，则此判断作废<br/>• thesis_id: T-003<br/>来源 @TechCrunch(primary), @NikkeiAsia(report)<br/>日期 2026-10-12]]></description>
+</item>
+<item>
+<title>[P0/赛道/融资] 传闻：DeepSeek 接近完成至少约 120 亿美元融资，腾讯与宁德时代领投量级</title>
+<link>https://news.bloomberglaw.com/capital-markets/deepseek-to-raise-at-least-12-billion-in-tencent-backed-funding</link>
+<guid isPermaLink="false">evt-20261012-deepseek-12b-tencent-catl</guid>
+<pubDate>Mon, 12 Oct 2026 19:41:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• Bloomberg Law（约 10-06）：知情人士称 DeepSeek 接近锁定至少约 800 亿元人民币（约 120 亿美元）新一轮融资，腾讯与宁德时代（CATL）为最大承诺方之列，原目标约 500 亿因最新模型发布后需求超预期被上修，可能摸到约 1000 亿（约 150 亿美元）<br/>• CNBC TV18 / Quartz / The Next Web 等转述同口径；称融资后将重组并瞄准约 2027 年初 IPO；估值口径另有报道指向约 750 亿美元量级（Asia Tech Review 综述）<br/>• 同周中资对照：Moonshot 私募估值约 500 亿美元并筹备 2027Q1 港股 IPO（Bloomberg）；Manus 母公司 Butterfly Effect 官宣逾 5 亿美元融资（另卡）<br/>• 尚无公司官方新闻稿确认成交；属知情人士口径<br/><strong>【so_what】</strong><br/>• impact: 中资开源/应用层头部用超百亿级融资锁住 2027 IPO 窗口，开源模型性价比叙事会继续压低闭源 API 议价空间；OPC 选型与内容选题应把 DeepSeek 生态当「默认可替代栈」而非边缘选项<br/>• action: 观察<br/>• window: 未来 2–6 周看官宣成交/估值与 2027 IPO 时间表<br/>• confidence: 中<br/>• falsifier: 若 DeepSeek/腾讯/宁德时代官方否认本轮融资，或成交额显著低于约 80 亿元人民币量级且无 IPO 时间表，则此判断作废<br/>• thesis_id: T-002<br/>来源 @BloombergLaw(primary), @CNBCTV18(report), @AsiaTechReview(analysis)<br/>日期 2026-10-12]]></description>
+</item>
 <item>
 <title>[P1/赛道/融资] Arena（原 LMArena）完成 2 亿美元 Series B，估值约 31 亿美元</title>
 <link>https://arena.ai/blog/series-b</link>
 <guid isPermaLink="false">evt-20261012-arena-series-b-3b</guid>
 <pubDate>Mon, 12 Oct 2026 18:19:00 +0800</pubDate>
 <description><![CDATA[<strong>客观摘要</strong><br/>• Arena 官方（10-08）：宣布 2 亿美元 Series B，估值 31 亿美元；Lightspeed 与 Khosla 联合领投，Salesforce Ventures、Dell Technologies Capital、Endeavor Catalyst 等参与，老股东含 a16z、Felicis<br/>• 自称年化收入已超 1 亿美元；相对 1 月 Series A（TechCrunch 口径约 17 亿美元估值、年化约 3000 万美元）估值近乎翻倍<br/>• 同步预览 Alignment Index：从真实 Agent Arena 轨迹度量 Unauthorized Action / False Attribution / Deceptive Completion 三类偏离；并称 Agent Arena 上线未满 5 个月已有约 700 万会话<br/><strong>【so_what】</strong><br/>• impact: 评测从「实验室排行榜」变成独立大生意；alignment 指标产品化，可能成为 agent 采购与对标的第三方尺子<br/>• action: 观察<br/>• window: 本季度盯 Alignment Index 是否被实验室/采购引用<br/>• confidence: 中<br/>• falsifier: 若融资后 2 个季度无付费评测/Alignment 产品实质采用，或榜单公信力因争议崩塌，则此判断作废<br/>来源 @Arena(primary), @TechCrunch(report)<br/>日期 2026-10-12]]></description>
+</item>
+<item>
+<title>[P1/模式/观点] Nadella：模型与 harness 分离，授权人须能中途急停——「emergency brake」</title>
+<link>https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/</link>
+<guid isPermaLink="false">evt-20261012-nadella-emergency-brake</guid>
+<pubDate>Mon, 12 Oct 2026 18:00:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• TechCrunch（10-10）：微软 CEO Satya Nadella 在 X 发文称应回看 AI 的「trust architecture」，不能把超级智能当嵌套黑箱只接受/拒绝其建议与动作<br/>• 主张：把模型与编排其工作的 harness 分离；外置控制与护栏；每项有意义模型动作留下防篡改、人类可读证据；授权人始终能在任务中途暂停或关闭模型<br/>• 原话要点：必须假设模型已被攻陷并从一开始遏制——「Think of it like an emergency brake」<br/>• 语境：Anthropic 等披露更多失控/非预期行为之后；与当日早报 Anthropic 断网评测同属「可控 agent」叙事<br/><strong>【so_what】</strong><br/>• impact: 大厂 CEO 公开把「急停 + 模型/harness 分离 + 可审计证据」写成默认架构要求，强化早报 Anthropic 断网评测的工程含义：OPC 交付 agent 时应把人审急停当产品功能而非售后补丁<br/>• action: 试用<br/>• window: 本周可对照自家 agent：有无授权人一键暂停与完整动作日志<br/>• confidence: 高<br/>• falsifier: 若微软自身 Copilot/agent 产品在两个季度内仍无法提供可核对的中途急停与防篡改动作证据，或 Nadella 后续收回该架构主张，则此判断作废<br/>• thesis_id: T-003<br/>来源 @TechCrunch(primary)<br/>日期 2026-10-12]]></description>
 </item>
 <item>
 <title>[P1/工具/工具] OpenAI 案例：Asana 用 Codex + GPT-6.1 Sol 将浏览器 agent 成本降约 76 倍</title>
@@ -41,6 +62,20 @@
 <guid isPermaLink="false">evt-20261012-amazon-decart-talks</guid>
 <pubDate>Mon, 12 Oct 2026 04:26:00 +0800</pubDate>
 <description><![CDATA[<strong>客观摘要</strong><br/>• WSJ（10-11 晚）独家：Amazon 正洽谈收购以色列 AI 初创 Decart，交易估值约 70 亿美元；知情人士称若谈判不崩可能较快收官，尚无正式协议<br/>• Bloomberg Law / Business Times 转述同口径；Reuters 亦报道洽谈，但称未能独立核实细节<br/>• Decart 核心产品 DOS（Optimization Stack）优化模型在 NVIDIA GPU / Google TPU / Amazon Trainium 上的运行；另有实时视频/世界模型 Lucy、Oasis；2023 创立，融资逾 4.5 亿美元<br/>• 脉络：Anthropic 曾按约 60 亿美元做尽调并于 9 月退出；NVIDIA 亦曾竞逐该标的<br/><strong>【so_what】</strong><br/>• impact: 若成交，算力巨头继续用股权锁定「跨芯片效率层」，可能削弱 DOS 对 Trainium 以外平台的中立性，并强化「卖卡之外买效率软件」叙事<br/>• action: 观察<br/>• window: 未来 2–6 周（尽调/官宣窗口）<br/>• confidence: 中<br/>• falsifier: 若 Amazon/Decart 官方否认洽谈，或交易在尽调后像 Anthropic 一样退出且无替代买方官宣，则此判断作废<br/>• thesis_id: T-004<br/>来源 @WSJ(primary), @BloombergLaw(report), @CryptoBriefing(analysis)<br/>日期 2026-10-12]]></description>
+</item>
+<item>
+<title>[P0/时机/政策] 白宫恢复英国 AISI 对 OpenAI/Anthropic/DeepMind 前沿模型的预发布评测访问</title>
+<link>https://www.telegraph.co.uk/news/2026/10/11/britain-get-first-look-ai-systems-after-white-house-u-turn/</link>
+<guid isPermaLink="false">evt-20261012-uk-aisi-access-restored</guid>
+<pubDate>Mon, 12 Oct 2026 02:46:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• Telegraph（10-11 晚）：白宫在英国 AI 部长 Kanishka Narayan 游说后，恢复英国 AI Security Institute（AISI）对美国前沿模型的预发布安全评测访问<br/>• 此前约 9-24 白宫国家网络主任办公室要求 Anthropic、OpenAI 等停止向 AISI 分享新模型；冻结约 17 天；期间 Anthropic 限制英方评测 Claude Mythos 5.1<br/>• CryptoBriefing / Business Times 等转述同口径：恢复覆盖 Anthropic、Google DeepMind、OpenAI；DeepMind 原不在 9 月点名名单内<br/>• Narayan 同日将宣布强化关键基础设施 AI 安全事件上报等措施；美方国安审查结论是否完结仍未公开<br/><strong>【so_what】</strong><br/>• impact: 盟国预发布评测通道可在数周内被行政令切断又恢复；实验室会随政治指令调整区域信任访问（如 Mythos 5.1 仅对美），OPC 做跨境产品/评测合作时要把「政府可撤回访问」当成默认风险<br/>• action: 观察<br/>• window: 本周盯 Mythos 5.1 是否重新对 AISI 开放及是否书面化框架<br/>• confidence: 高<br/>• falsifier: 若白宫/ONCD 或三家实验室官方否认曾限制/恢复 AISI 访问，或后续披露仅为舆论误读且英方从未失去通道，则此判断作废<br/>来源 @Telegraph(primary), @CryptoBriefing(report), @BusinessTimes(report)<br/>日期 2026-10-12]]></description>
+</item>
+<item>
+<title>[P1/赛道/行业] 传闻：Anthropic 与 IREN 签未公布多年云算力协议</title>
+<link>https://aiweekly.co/alerts/anthropic-adds-iren-to-530b-data-center-lease-scramble</link>
+<guid isPermaLink="false">evt-20261012-anthropic-iren-cloud-rumor</guid>
+<pubDate>Mon, 12 Oct 2026 02:43:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• The Information（经 AI Weekly / Stocktwits 转述，约 10-11）：知情人士称 Anthropic 与澳洲上市矿企转型算力商 IREN 签有未公布的多年云协议；双方均未官方确认<br/>• 同文脉络：Anthropic 正加速约 5300 亿美元量级数据中心租赁落地；越来越依赖 Hut 8、TeraWulf、IREN、Nscale 等现/前比特币矿企的并网站点<br/>• IREN 8 月财报电话会曾称签下「一家领先前沿 AI 实验室」多年云合同但未点名；消息后盘后股价一度跳升约 8%<br/>• 协议金额与年限未披露；属二手转述 Information 付费报道<br/><strong>【so_what】</strong><br/>• impact: 若属实，前沿实验室算力采购正从超大规模云扩展到「有电有站」的矿企转型商，供应与交付节奏成为模型节奏瓶颈<br/>• action: 观察<br/>• window: 未来 1–4 周看双方是否官宣或 IREN 点名客户<br/>• confidence: 低<br/>• falsifier: 若 Anthropic 或 IREN 官方否认该多年协议，或 IREN 随后点名的「前沿实验室」并非 Anthropic，则此判断作废<br/>来源 @AIWeekly(analysis), @YahooFinance(report), @TheInformation(primary)<br/>日期 2026-10-12]]></description>
 </item>
 <item>
 <title>[P1/工具/工具] 宝玉：用 REA 逆向 Claude Slides 编辑器，几乎完整功能</title>
