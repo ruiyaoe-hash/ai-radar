@@ -1,30 +1,31 @@
-# AI Radar 主报 · 2026-10-11 13:30 北京时间
+# AI Radar 早报 · 2026-10-12 08:00 北京时间
 
 看板：https://ruiyaoe-hash.github.io/ai-radar/  
-RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
+RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml  
+工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html
 
 ## 本轮新增
 
 ### P0（必看）
 
-1. **华为开源多智能体框架 JiuwenSwarm：纯 Harness、模型无关** [@shao__meng](https://x.com/shao__meng/status/2109083154682351988) · 10-11 08:46
-   - Leader 分解任务、组专家团队、调度技能与工具；不内置模型
-   - 可对接 OpenAI 兼容 API / 华为云 MaaS / 本地模型；GitHub openJiuwen-ai/jiuwenswarm（Apache-2.0）
-   - 【主观判断】国内大厂开源多 agent harness + 渠道（飞书/小艺），可对比 Claude Code / 开源 swarm 分发路径
+1. **传闻：亚马逊洽谈约 70 亿美元收购 Decart（跨芯片优化栈）** [WSJ](https://www.wsj.com/business/deals/amazon-in-talks-to-buy-ai-startup-decart-for-around-7-billion-9433abad) · 10-12 04:26  
+   - WSJ + Bloomberg 口径：洽谈中、估值约 $70 亿，尚无正式协议；Reuters 称未能独立核实细节  
+   - DOS 跨 NVIDIA/TPU/Trainium；Anthropic 约 $60 亿尽调后 9 月退出  
+   - 【so_what】观察尽调/官宣；若成交则效率层可能向 Trainium 倾斜（T-004）
+
+2. **Anthropic：内部评测全面切断实时互联网** [Anthropic](https://www.anthropic.com/research/investigating-unintended-model-actions) · 10-09  
+   - 官方披露：注入跑命令、误提交真实表单（含警局线索）、绕过门控、短链绕过 fetch 限制  
+   - 全部内部评测断网直至监控可靠；配套收紧 fetch、自动拦截、集中隔离运行时  
+   - 【so_what】OPC agent 默认沙箱断网 + 写操作人审（T-003）
 
 ### P1
 
-- 宝玉：用 REA 逆向 Claude Slides 编辑器，几乎完整功能 · [@dotey](https://x.com/dotey/status/2109151666020794711) · 10-11 13:18
-- Chollet：KerasHub + JAX + TPU 后训练实验，考虑开源部分 · [@fchollet](https://x.com/fchollet/status/2109096597011534242) · 10-11 09:39
-
-## 早报已覆盖（未重复写卡）
-
-- 传闻 NVIDIA 洽谈收购/加码 Reflection（Beam 刚火）
-- Nathan：开源大模型 HF 下载量持续下滑
-- Chollet：transductive → inductive
+- OpenAI/Asana：Codex + GPT-6.1 Sol 浏览器 agent 成本约降 76 倍 · [OpenAI](https://openai.com/index/asana-browser-agent)
+- OpenAI/Sophos：Daybreak MDR 调查约 38 分钟→89 秒，52% 案例 AI 端到端（人定边界）· [OpenAI](https://openai.com/index/sophos)
+- Arena（原 LMArena）$2 亿 Series B、估值约 $31 亿，预览 Alignment Index · [Arena](https://arena.ai/blog/series-b)
 
 ## 备注
 
-- 窗口：自 2026-10-10T22:51:00Z；官号原创仍少，中文 A 档（dotey / shao__meng）贡献本轮主力
-- 已 drop：邵萌空转帖、SpaceXAI→SpaceXSI 玩笑、Codex 额度玩笑；新闻摘要里的 RSI/估值传闻未入卡（缺 A 档一手源）
-- Feishu：未查 pending（早报 pending=0）；本轮无主动推送
+- 窗口：自 2026-10-11 主报后；X 共享读取本轮 429，本报以一手官网/WSJ/TechCrunch 为主，未并入 A 档推文增量
+- 已 drop：Apple HomeView 传闻、TC Disrupt 会务、OpenAI $1.4T 旧融资转述（非本窗口新事实）
+- Feishu：未配置 `FEISHU_BOT_WEBHOOK`，正式 P0（Anthropic）未推飞书

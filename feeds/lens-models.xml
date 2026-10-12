@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>仅 lens=模式 的决策信号</description>
 <language>zh-cn</language>
-<lastBuildDate>Sun, 11 Oct 2026 16:46:03 +0800</lastBuildDate>
+<lastBuildDate>Mon, 12 Oct 2026 08:11:34 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-models.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P1/模式/案例] OpenAI 案例：Sophos 用 Daybreak agent 将 MDR 调查时间从约 38 分钟降至约 89 秒</title>
+<link>https://openai.com/index/sophos</link>
+<guid isPermaLink="false">evt-20261012-sophos-daybreak-mdr</guid>
+<pubDate>Mon, 12 Oct 2026 15:00:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• OpenAI 客户故事（约 10-09）：Sophos 经 Daybreak 项目把自有威胁情报、响应剧本与模型结合，构建调查 agent（收集上下文/检测/IoC）与 plan–execute–review 环<br/>• 官方口径：使用 agent 的案例平均响应时间从约 38 分钟降至约 89 秒（约 96%）；约 52% 的 MDR 案例在分析师标定边界内由 AI 端到端解决<br/>• 强调人工保留对威胁、例外与决策的监督，而非无人值守替换全部分析师<br/><strong>【so_what】</strong><br/>• impact: 又一例「AI 跑闭环、人定边界」付费交付：垂直 MDR 用 agent 放大稀缺专家带宽，而不是宣称全自动 SOC<br/>• action: 观察<br/>• window: 1–2 个季度看更多独立口径<br/>• confidence: 中<br/>• falsifier: 若后续披露显示 89 秒/52% 仅覆盖极窄案例子集且无法迁移，或客户侧出现大规模误处置事故，则此判断作废<br/>• thesis_id: T-003<br/>来源 @OpenAI(primary)<br/>日期 2026-10-12]]></description>
+</item>
 <item>
 <title>[P1/模式/观点] Chollet：AI 从「逐 token 补全」转向「即时合成推理链」</title>
 <link>https://x.com/fchollet/status/2108951977904517409</link>
