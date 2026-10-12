@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-11",
+  "updated": "2026-10-12",
   "scoring": {
     "states": [
       "命中",
@@ -44,7 +44,10 @@
       "confidence": "高",
       "falsifier": "若出现可复核的全自动垂直 agent 在无人工审批下稳定超过人机协作产品的付费转化，则论点作废",
       "status": "待定",
-      "evidence_for": [],
+      "evidence_for": [
+        "evt-20261012-anthropic-evals-offline",
+        "evt-20261012-sophos-daybreak-mdr"
+      ],
       "evidence_against": []
     },
     {
@@ -56,7 +59,8 @@
       "falsifier": "若未来两个季度无新的大厂模型股权投资或相关并购推进，则论点作废",
       "status": "待定",
       "evidence_for": [
-        "evt-20261011-reflection-ai-beam"
+        "evt-20261011-reflection-ai-beam",
+        "evt-20261012-amazon-decart-talks"
       ],
       "evidence_against": []
     },

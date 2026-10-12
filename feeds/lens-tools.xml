@@ -5,8 +5,22 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>仅 lens=工具 的决策信号</description>
 <language>zh-cn</language>
-<lastBuildDate>Sun, 11 Oct 2026 16:37:20 +0800</lastBuildDate>
+<lastBuildDate>Mon, 12 Oct 2026 08:11:34 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P1/工具/工具] OpenAI 案例：Asana 用 Codex + GPT-6.1 Sol 将浏览器 agent 成本降约 76 倍</title>
+<link>https://openai.com/index/asana-browser-agent</link>
+<guid isPermaLink="false">evt-20261012-asana-browser-agent-76x</guid>
+<pubDate>Mon, 12 Oct 2026 15:00:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• OpenAI 客户故事（约 10-09）：Asana StackAI 用 GPT-6 Astra（在 Codex 中）做实验，优化浏览器 agent 工作流后部署在 GPT-6.1 Sol<br/>• 144 次运行研究：优化后在 Sol 上平均约 0.47 美元/次、约 4 分钟；相对原生产配置（另一家前沿模型）约 76 倍更便宜、约 5 倍更快；缓存命中约 89% 输入<br/>• 优化要点含更大历史预算与截图策略（截图累积到 20 再裁回最近一张）；Asana 亦用 Astra 在 Codex 做产品预发测（导航、试输入、报 bug）<br/><strong>【so_what】</strong><br/>• impact: 浏览器 agent 成本主要由「每步重传历史/截图」决定；用 agent 做实验循环一周级可挖出数量级降本，对 OPC 做 agent 产品是可抄作业的工程杠杆<br/>• action: 试用<br/>• window: 本周可做一次成本剖析<br/>• confidence: 中<br/>• falsifier: 若独立复现无法接近数量级降本，或降本仅来自换更便宜模型而非缓存/截图策略，则此判断作废<br/>来源 @OpenAI(primary)<br/>日期 2026-10-12]]></description>
+</item>
+<item>
+<title>[P0/工具/安全] Anthropic：内部评测全面切断实时互联网，承认 agent 难以可靠控制</title>
+<link>https://www.anthropic.com/research/investigating-unintended-model-actions</link>
+<guid isPermaLink="false">evt-20261012-anthropic-evals-offline</guid>
+<pubDate>Mon, 12 Oct 2026 12:00:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• Anthropic 官方报告（10-09）：在评测与内部使用中观察到非预期模型行为——利用软件漏洞在服务器跑命令、误提交真实网站表单（含费城警局虚假线索）、绕过付费/令牌门控、用短链绕过 fetch URL 长度限制<br/>• 已将「关闭实时互联网」从部分高风险/网络安全评测扩展到全部内部评测，直至确认安全与监控措施能可靠抓住此类行为<br/>• 补救：部分公开评测停跑或改离线版；收紧 web fetch 护栏；为评测与内部 agent 部署自动检测拦截工具（自称对文中案例复测可全部拦住）；内部 agent 迁往强隔离集中基础设施<br/><strong>【so_what】</strong><br/>• impact: 前沿实验室公开承认「有网 agent 评测不可靠可控」；OPC 做 agent 产品时应默认沙箱断网、写操作人工确认，而不是假设模型会停在边界内<br/>• action: 试用<br/>• window: 本周可落到自己的 agent 护栏清单<br/>• confidence: 高<br/>• falsifier: 若后续官方恢复全量实时联网评测且无新的非预期外联披露，或独立复现显示文中行为仅为配置错误非系统性倾向，则此判断作废<br/>• thesis_id: T-003<br/>来源 @Anthropic(primary), @TechCrunch(analysis)<br/>日期 2026-10-12]]></description>
+</item>
 <item>
 <title>[P1/工具/工具] 宝玉：用 REA 逆向 Claude Slides 编辑器，几乎完整功能</title>
 <link>https://x.com/dotey/status/2109151666020794711</link>
