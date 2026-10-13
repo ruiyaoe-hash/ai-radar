@@ -289,6 +289,15 @@ h1 {
   margin: 8px 0 0;
 }
 .fine { color: var(--muted); font-size: 0.78rem; margin-top: 28px; }
+.site-footer {
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+.site-footer p { margin: 0 0 6px; }
 
 .prose p { color: #c5d0dc; }
 .prose ul { color: #c5d0dc; padding-left: 1.2rem; }

@@ -22,6 +22,17 @@
     ));
   }
 
+  const safeHref = global.safeHref;
+  if (typeof safeHref !== "function") {
+    throw new Error("safe-href.js must load before cards.js");
+  }
+
+  function externalAnchor(url, labelHtml) {
+    const href = safeHref(url);
+    if (!href) return "";
+    return `<a href="${esc(href)}" target="_blank" rel="noopener">${labelHtml}</a>`;
+  }
+
   function isMarket(it) {
     if (!it || it.priority !== "P0") return false;
     if (it.status === "rumor") return true;
@@ -87,8 +98,7 @@
       const role = ROLE_LABEL[s.role] || "";
       const name = esc(s.handle || "");
       const inner = role ? `${name} · ${role}` : name;
-      if (s.url) return `<a href="${esc(s.url)}" target="_blank" rel="noopener">${inner}</a>`;
-      return `<span>${inner}</span>`;
+      return externalAnchor(s.url, inner) || `<span>${inner}</span>`;
     }).join("");
   }
 
@@ -104,12 +114,10 @@
     const obj = (it.objective && it.objective.length) ? it.objective : (it.bullets || []);
     const corr = it.correction && typeof it.correction === "object" ? (it.correction.note || "") : "";
     const sourceLine = renderSources(it);
-    const tryLink = it.try_url && it.try_url !== it.url
-      ? `<p><a href="${esc(it.try_url)}" target="_blank" rel="noopener">去试用</a></p>`
-      : "";
-    const primaryLink = it.url
-      ? `<p><a href="${esc(it.url)}" target="_blank" rel="noopener">打开原文</a></p>`
-      : "";
+    const tryAnchor = it.try_url && it.try_url !== it.url ? externalAnchor(it.try_url, "去试用") : "";
+    const primaryAnchor = externalAnchor(it.url, "打开原文");
+    const tryLink = tryAnchor ? `<p>${tryAnchor}</p>` : "";
+    const primaryLink = primaryAnchor ? `<p>${primaryAnchor}</p>` : "";
     const fold = [
       obj.length ? `<ul>${obj.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>` : "",
       sourceLine ? `<p class="src">${sourceLine}</p>` : "",
@@ -240,6 +248,7 @@
 
   global.Radar = {
     esc,
+    safeHref,
     bandOf,
     LENS_LABEL,
     renderCard,
