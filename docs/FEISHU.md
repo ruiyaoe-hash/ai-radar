@@ -1,4 +1,14 @@
-# 飞书推送配置
+# 飞书
+
+## 整站反馈
+
+侧栏「说明」末尾的「反馈 / 建议」，以及首页、关于、订阅页脚的更正入口，都打开同一份公开问卷（新标签页）：
+
+https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd
+
+这是整站意见，不是单卡赞踩，也还没有订阅群入口。站点只放链接：问卷在飞书侧匿名填写，不向飞书发脚本请求，也不放宽 CSP 的 `connect-src` / `form-action`。导航地址先经 `safeHref()`。
+
+## 出站推送
 
 ## Secret
 

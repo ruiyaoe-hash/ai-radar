@@ -43,6 +43,10 @@ const allowed = [
   ["https://www.reddit.com/r/MachineLearning/", "https://www.reddit.com/r/MachineLearning/"],
   ["https://github.com/ruiyaoe-hash/ai-radar", "https://github.com/ruiyaoe-hash/ai-radar"],
   ["https://www.anthropic.com/research/x", "https://www.anthropic.com/research/x"],
+  [
+    "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd",
+    "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd",
+  ],
   ["http://example.com/a", "http://example.com/a"],
   ["HTTP://example.com/a", "http://example.com/a"],
   ["./feed.xml", "./feed.xml"],
