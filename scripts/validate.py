@@ -382,7 +382,7 @@ def check_public_ui() -> None:
             "方法模式",
             "时机窗口",
             "未经证实的传闻与第三方帖子",
-            "更正与下架：请通过站点「订阅更新」页或飞书反馈（链接稍后接入）。",
+            '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
         "practice.html": ["工具用法", "创意作品", "变现", "Skill / 工作流", "硬件", "还没有可照着做的实操。"],
         "tools-radar.html": ["值得用上", "可以试", "先评估", "先别跟"],
@@ -393,7 +393,7 @@ def check_public_ui() -> None:
             "方法模式",
             "时机窗口",
             "未经证实的传闻与第三方帖子",
-            "更正与下架：请通过站点「订阅更新」页或飞书反馈（链接稍后接入）。",
+            '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
         "week.html": ["本周归档"],
         "agent.html": ["today3.txt", "practice.json"],
@@ -401,13 +401,16 @@ def check_public_ui() -> None:
             "对你意味着什么",
             "背景与出处",
             "未经证实的传闻与第三方帖子",
-            "更正与下架：请通过站点「订阅更新」页或飞书反馈（链接稍后接入）。",
+            '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
-    for label in ("今日必看", "博主实操", "本周归档", "可试用工具", "订阅更新", "给 Agent 用", "这是什么"):
+    for label in ("今日必看", "博主实操", "本周归档", "可试用工具", "订阅更新", "给 Agent 用", "这是什么", "反馈 / 建议"):
         if label not in shell:
             fail(f"shell.js missing nav label {label}")
+    feedback = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd"
+    if feedback not in shell or 'target="_blank"' not in shell or 'rel="noopener noreferrer"' not in shell:
+        fail("shell.js feedback link must be the Feishu form, target=_blank, rel=noopener noreferrer")
     if "AIHOT" in shell:
         fail("shell.js must not add a text wordmark besides AI / RADAR")
     cards = (PUBLIC / "assets" / "cards.js").read_text(encoding="utf-8")

@@ -8,6 +8,7 @@
 - 锚点走 `public/assets/safe-href.js` 的 `safeHref()`。只允许 `http:` / `https:`，以及站内相对路径（`./`、`../`、`/`、`?`、`#`、无协议路径）。
 - **不按主机名过滤。** 站点会链到 HN、Reddit、GitHub、实验室博客等。协议相对地址（`//host`）以及 `javascript:`、`data:`、`vbscript:` 会被丢掉，链接退回纯文本。
 - 导航（`shell.js`）、卡片、实操、工具雷达、订阅列表里动态拼出来的 `href` 都经过 `safeHref()`。
+- 侧栏「反馈 / 建议」是整站飞书问卷 `https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd`。地址先经 `safeHref()`，再带 `target="_blank"` 和 `rel="noopener noreferrer"`。页脚更正入口写死同一条 https。这是普通跳转，不放宽 CSP。
 
 ## CSP
 

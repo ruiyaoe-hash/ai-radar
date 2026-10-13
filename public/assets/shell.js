@@ -7,16 +7,21 @@
     grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
     rss: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>',
     agent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M19 8v4M17 10h4"/></svg>',
-    info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>'
+    info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>',
+    msg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 6h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9l-4 3v-3H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"/></svg>'
   };
 
-  function item(href, id, label, icon) {
+  // 整站反馈问卷（匿名填写）。不是单卡投票，也不是飞书订阅群。
+  const FEEDBACK_FORM = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd";
+
+  function item(href, id, label, icon, external) {
     const safe = typeof window.safeHref === "function" ? window.safeHref(href) : "";
     if (!safe) return "";
     const hrefAttr = safe.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
-    const active = page === id ? " active" : "";
-    const current = page === id ? ' aria-current="page"' : "";
-    return `<a class="${active.trim()}" href="${hrefAttr}"${current}><span class="ico" aria-hidden="true">${icons[icon]}</span>${label}</a>`;
+    const active = !external && page === id ? " active" : "";
+    const current = !external && page === id ? ' aria-current="page"' : "";
+    const blank = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<a class="${active.trim()}" href="${hrefAttr}"${current}${blank}><span class="ico" aria-hidden="true">${icons[icon]}</span>${label}</a>`;
   }
 
   const spec = `<svg class="wm-spec" viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true">
@@ -49,6 +54,7 @@
     ${item("./agent.html", "agent", "给 Agent 用", "agent")}
     <div class="nav-sec">说明</div>
     ${item("./about.html", "about", "这是什么", "info")}
+    ${item(FEEDBACK_FORM, "feedback", "反馈 / 建议", "msg", true)}
   </aside>
   <div class="nav-backdrop" id="nav-backdrop"></div>`);
 
