@@ -11,9 +11,12 @@
   };
 
   function item(href, id, label, icon) {
+    const safe = typeof window.safeHref === "function" ? window.safeHref(href) : "";
+    if (!safe) return "";
+    const hrefAttr = safe.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
     const active = page === id ? " active" : "";
     const current = page === id ? ' aria-current="page"' : "";
-    return `<a class="${active.trim()}" href="${href}"${current}><span class="ico" aria-hidden="true">${icons[icon]}</span>${label}</a>`;
+    return `<a class="${active.trim()}" href="${hrefAttr}"${current}><span class="ico" aria-hidden="true">${icons[icon]}</span>${label}</a>`;
   }
 
   const spec = `<svg class="wm-spec" viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true">

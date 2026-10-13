@@ -2,6 +2,7 @@
 <html lang="zh-CN" data-page="practice">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mZN7PCq5GuSQmGMjj3jYwqUscuceOrkKOTgsJkoqCeo='; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c0e12" />
   <title>博主实操 · AI Radar</title>
@@ -10,6 +11,7 @@
 </head>
 <body>
   <div class="app">
+    <script src="./assets/safe-href.js"></script>
     <script src="./assets/shell.js"></script>
     <div class="content">
       <div class="topbar">
@@ -37,10 +39,11 @@
 
     function renderPractice(it) {
       const steps = Array.isArray(it.steps) ? it.steps.filter(Boolean) : [];
+      const href = Radar.safeHref(it.url);
       const fold = [
         steps.length ? `<ol>${steps.map((s) => `<li>${Radar.esc(s)}</li>`).join("")}</ol>` : "",
         it.caution ? `<p>${Radar.esc(it.caution)}</p>` : "",
-        it.url ? `<p><a href="${Radar.esc(it.url)}" target="_blank" rel="noopener">打开原文</a></p>` : ""
+        href ? `<p><a href="${Radar.esc(href)}" target="_blank" rel="noopener">打开原文</a></p>` : ""
       ].join("");
       const details = fold.trim()
         ? `<details><summary>步骤摘要</summary><div class="fold">${fold}</div></details>`

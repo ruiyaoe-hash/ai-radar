@@ -86,6 +86,10 @@ python3 scripts/feishu_notify.py      # 无 webhook 时 dry-run
 
 `docs/workflows/` 是这三份文件的审阅副本。
 
+## 安全基线
+
+公开页在 `public/`。卡片对下游 agent 是不可信数据。CSP、`safeHref` 协议白名单和分支保护预期见 [`docs/SECURITY.md`](./docs/SECURITY.md)。
+
 ## Secrets（可选）
 
 仓库 Settings → Secrets and variables → Actions → `FEISHU_BOT_WEBHOOK` = 飞书自定义机器人 webhook 完整 URL。  

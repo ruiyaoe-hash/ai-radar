@@ -2,6 +2,7 @@
 <html lang="zh-CN" data-page="subscribe">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-eU8Bk4yT5FPiStrfNBsD2oFPBgN4VUk+BA3IJMTtDm4='; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c0e12" />
   <title>订阅更新 · AI Radar</title>
@@ -11,6 +12,7 @@
 </head>
 <body>
   <div class="app">
+    <script src="./assets/safe-href.js"></script>
     <script src="./assets/shell.js"></script>
     <div class="content">
       <div class="topbar">
@@ -21,6 +23,10 @@
         <h1>订阅更新</h1>
         <p class="sub">用阅读器订阅。分册和首页「看什么」是同一套叫法。</p>
         <ul class="feed-list" id="feeds"></ul>
+        <footer class="site-footer">
+          <p>内容可能包含未经证实的传闻与第三方帖子，请自行核对。</p>
+          <p>更正与下架：请通过站点「订阅更新」页或飞书反馈（链接稍后接入）。</p>
+        </footer>
       </main>
     </div>
   </div>
@@ -34,18 +40,23 @@
     ];
 
     const host = document.getElementById("feeds");
-    host.innerHTML = feeds.map(([title, desc, href], i) => `
+    host.innerHTML = feeds.map(([title, desc, href]) => {
+      const safe = safeHref(href);
+      if (!safe) return "";
+      const hrefAttr = safe.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+      return `
       <li>
         <div>
           <strong>${title}</strong>
           <span>${desc}</span>
         </div>
         <div class="feed-actions">
-          <a href="${href}">打开</a>
-          <button class="btn" type="button" data-copy="${href}">复制地址</button>
+          <a href="${hrefAttr}">打开</a>
+          <button class="btn" type="button" data-copy="${hrefAttr}">复制地址</button>
         </div>
       </li>
-    `).join("");
+    `;
+    }).join("");
 
     host.addEventListener("click", async (event) => {
       const btn = event.target.closest("[data-copy]");
