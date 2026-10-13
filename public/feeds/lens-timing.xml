@@ -5,8 +5,22 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看时机窗口。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 13 Oct 2026 13:36:31 +0800</lastBuildDate>
+<lastBuildDate>Tue, 13 Oct 2026 21:15:15 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-timing.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[重点关注 · 时机窗口 · 行业] Character.AI 申请 Chapter 11：拟售部分资产予 Disney，平台或停运</title>
+<link>https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/</link>
+<guid isPermaLink="false">evt-20261013-character-ai-ch11</guid>
+<pubDate>Tue, 13 Oct 2026 20:23:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• TechCrunch（10-13 约 05:23 PDT）：Character.AI 申请 Chapter 11；法院文件称资产与负债均在约 5000万–1 亿美元区间；CEO Colin Adams 称法院监管出售是最大化利益相关方价值的路径<br/>• 已同意向 Disney 出售部分资产约 2000 万美元，并授予技术非独占永久许可；Disney 将通过上月随前 CEO Anand 加入的前员工提供过渡服务；出售目标约 11 月末至 12 月初完成<br/>• 若无可行买家接手运营，平台将清盘；背景含未成年人安全诉讼/德州调查、高互动带来的推理成本与变现压力；PitchBook 口径累计融资超约 1.93 亿美元<br/><strong>对你意味着什么</strong> 高时长消费级聊天并不等于可规模化单位经济；角色陪伴赛道的合规与算力成本双重挤压被写进破产文件——OPC 做 C 端内容/陪伴产品时，要把「每用户推理成本+未成年人合规」当硬约束而非增长后话<br/>建议：观察 · 盯 11–12 月出售结果与平台是否清盘<br/>有多确定：高<br/>什么情况下当这判断作废：若出售后平台在合规约束下恢复可持续毛利且用户不崩，则「高互动陪伴难自我造血」判断需下调<br/>来源 TechCrunch（一手）<br/>日期 2026-10-13]]></description>
+</item>
+<item>
+<title>[重点关注 · 时机窗口 · 融资] 传闻：DeepSeek 二轮融资拟从约500亿增至约1000亿元（投前约5000亿）</title>
+<link>https://www.mycaijing.com/article/detail/584924?source_id=40</link>
+<guid isPermaLink="false">evt-20261013-deepseek-100b-cny-round</guid>
+<pubDate>Tue, 13 Oct 2026 09:29:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 《财经》邹露（10-13 09:29）：多位交易人士称 DeepSeek 将在近期完成第二轮融资，金额从此前计划约500亿元增至约1000亿元；投前估值仍约5000亿元；新老股东拟各占约一半<br/>• 报道称新进方含石溪资本、中芯聚源、CPE源峰、君联、吉利等产业方；老股东含宁德时代（拟加码约100亿）、腾讯、IDG、砺思、拾象等；《财经》称向 DeepSeek 求证截至发稿未获回应<br/>• 同文称公司加速科创板 IPO（最快今年末递表、目标2027挂牌），并调整基金结构以符合股东人数等申报要求；另称 CFO 严文韬（原高瓴）约9月下旬到任<br/><strong>对你意味着什么</strong> 若属实，国内一级市场单笔体量再抬一档，且产业资本绑芯片/汽车/制造上下游；对 OPC 意味「国产底座+产业闭环」叙事升温，但二级智谱/MiniMax 回调也说明高估值需兑现增速——跟风叙事前先看交割与招股文件<br/>建议：观察 · 盯官方/监管披露或交割事实（数周内）<br/>有多确定：低<br/>什么情况下当这判断作废：若 DeepSeek 官方否认、或最终交割金额/估值显著低于报道且无科创板推进信号，则此融资节奏判断作废<br/>来源 财经（转述）, thexpin（转述）<br/>日期 2026-10-13]]></description>
+</item>
 <item>
 <title>[今日必看 · 时机窗口 · 政策] 白宫恢复英国 AISI 对 OpenAI/Anthropic/DeepMind 前沿模型的预发布评测访问</title>
 <link>https://www.telegraph.co.uk/news/2026/10/11/britain-get-first-look-ai-systems-after-white-house-u-turn/</link>

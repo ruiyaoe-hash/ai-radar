@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13 13:36 北京时间",
+  "updated": "2026-10-13 21:15 北京时间",
   "rings": {
     "采纳": [
       {
@@ -65,6 +65,22 @@
         ],
         "status": "confirmed",
         "priority": "P0"
+      },
+      {
+        "id": "evt-20261013-scaledown-cdm-langchain",
+        "title": "ScaleDown CDM 接入 LangChain/Deep Agents：长程 agent 上下文决策降本",
+        "date": "2026-10-13",
+        "try_url": "https://www.langchain.com/blog/building-long-running-agents-with-scaledown-and-deep-agents",
+        "access": "API Key；langchain-scaledown；可选经 LangSmith Gateway",
+        "integration": "LangChain create_agent / Deep Agents middleware / LangSmith Gateway",
+        "first_step": "在现有长程 agent 上只替换摘要或工具结果压缩中间件，对照延迟与 token 账单",
+        "alternatives": [
+          "Jev / SubQ Snap 等决策模型",
+          "自建小模型分类/摘要",
+          "继续用前沿模型做上下文管理"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
       }
     ],
     "评估": [
@@ -152,6 +168,22 @@
         ],
         "status": "confirmed",
         "priority": "P1"
+      },
+      {
+        "id": "evt-20261013-zhipu-glm-legal",
+        "title": "智谱 Z.ai 发布法律垂类模型 GLM-Legal（Harvey LAB 19.2%）",
+        "date": "2026-10-13",
+        "try_url": "https://z.ai/consultation/legal",
+        "access": "API 申请制；AutoClaw 即将接入",
+        "integration": "Z.ai API / AutoClaw / 法律工作流 agent",
+        "first_step": "若做合同/合规辅助：用同一份合同对照现用通用模型，看条款改写与引用是否更可落地",
+        "alternatives": [
+          "Harvey / 通用 Claude·GPT 法律提示",
+          "国内其他法律垂类 API",
+          "人工律师工作流"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
       }
     ],
     "暂缓": [
@@ -185,6 +217,22 @@
           "独立超级助手 App"
         ],
         "status": "multi_source",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261013-amex-intent-intelligence",
+        "title": "Amex Intent Intelligence：先捕获并鉴权购买意图，再让 agent 下单",
+        "date": "2026-10-13",
+        "try_url": "https://www.americanexpress.com/en-us/company/agentic-commerce/",
+        "access": "ACE 开发者工具包 / 合作伙伴对接",
+        "integration": "Create Intent API + Intent token + 限域支付凭证",
+        "first_step": "若产品含代下单：对照「意图令牌 vs 事后争议」路径，把约束写入结账前而非客服后",
+        "alternatives": [
+          "卡组织/钱包现有 token 化",
+          "每笔人工确认",
+          "商户侧 agent 白名单"
+        ],
+        "status": "confirmed",
         "priority": "P1"
       }
     ]

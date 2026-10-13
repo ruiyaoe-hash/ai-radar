@@ -5,14 +5,14 @@ AI Radar · 今天先做这 3 件（2026-10-13）
    建议：试用 · 本周做一次同任务对照即可
    https://about.fb.com/news/2026/10/introducing-muse-wonder-models/
 
-2. Hone 获 Benchmark/Index 领投 6000 万美元种子：Engines 认领业务结果而非任务
-   对你意味着什么：顶级种子把「agent = 任务工具」升级成「agent = 结果负责人」；对 OPC 意味着产品叙事要从功能列表转向可度量的业务结果与任期式记忆，否则会被定位成可替换插件
-   建议：观察 · 未来 1–2 个季度看首批企业案例是否交付可核验 KPI
-   https://hone.com/blog/introducing-engines/
+2. Amex Intent Intelligence：先捕获并鉴权购买意图，再让 agent 下单
+   对你意味着什么：支付网络把「agent 商」风险前移到意图层：未来自主补货类 agent 可能默认需要可审计意图凭证；做交易型 agent 的 OPC 应把 intent 日志当产品能力，而不是合规补丁
+   建议：观察 · 等 ACE 合作方落地案例（1–2 个季度）
+   https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/
 
-3. Anthropic：蒸馏防御使 Claude 被采集数据降约 90–99%
-   对你意味着什么：闭源 frontier 把「防蒸馏」做成与生武同级的产品护栏；用 Claude 做 agent 的人要适应 preserved thinking / 不可乱改先验上下文，否则集成会碎；开源/亚洲实验室靠蒸馏追赶的路径被官方点名收紧
-   建议：观察 · 本周检查自己 Claude API 集成是否依赖「编辑先验 thinking」
-   https://www.anthropic.com/research/distillation-defenses
+3. Character.AI 申请 Chapter 11：拟售部分资产予 Disney，平台或停运
+   对你意味着什么：高时长消费级聊天并不等于可规模化单位经济；角色陪伴赛道的合规与算力成本双重挤压被写进破产文件——OPC 做 C 端内容/陪伴产品时，要把「每用户推理成本+未成年人合规」当硬约束而非增长后话
+   建议：观察 · 盯 11–12 月出售结果与平台是否清盘
+   https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/
