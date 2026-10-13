@@ -10,9 +10,9 @@ AI Radar · 今天先做这 3 件（2026-10-13）
    建议：观察 · 未来 1–2 个季度看首批企业案例是否交付可核验 KPI
    https://hone.com/blog/introducing-engines/
 
-3. YC Agent37：低成本 agent harness 沙箱上线（客户均耗约 $0.37/月）
-   对你意味着什么：agent 产品的「每客户一沙箱」成本被压到美元级以下，使个人/小团队可验证 always-on agent；赛道拥挤、比价战明显，价值在交付速度而非长期护城河
-   建议：评估 · 本周可试用免费档验证计费与休眠
-   https://www.agent37.com/
+3. Anthropic：蒸馏防御使 Claude 被采集数据降约 90–99%
+   对你意味着什么：闭源 frontier 把「防蒸馏」做成与生武同级的产品护栏；用 Claude 做 agent 的人要适应 preserved thinking / 不可乱改先验上下文，否则集成会碎；开源/亚洲实验室靠蒸馏追赶的路径被官方点名收紧
+   建议：观察 · 本周检查自己 Claude API 集成是否依赖「编辑先验 thinking」
+   https://www.anthropic.com/research/distillation-defenses
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/

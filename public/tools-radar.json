@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13 10:57 北京时间",
+  "updated": "2026-10-13 13:36 北京时间",
   "rings": {
     "采纳": [
       {
@@ -167,6 +167,22 @@
           "Plaud / 传统会议纪要",
           "Apple Audio Intelligence",
           "Limitless / Rewind 类桌面记忆"
+        ],
+        "status": "multi_source",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261013-kakao-kanana-space",
+        "title": "Kakao if(kakao)26：Kanana Space 嵌入 KakaoTalk（12 月封闭 beta）",
+        "date": "2026-10-13",
+        "try_url": "https://kanana.kakao.com/",
+        "access": "预登记开放；12 月封闭 beta；正式版目标约 2027 Q1（韩国 KakaoTalk）",
+        "integration": "KakaoTalk 内嵌层 / Kanvas PC agent / 后续交易与预约",
+        "first_step": "若做东亚超级 App 内 agent：对照「聊天层唤起 + 支付/预约闭环」与微信/飞书路径，不必立刻跟产品形态",
+        "alternatives": [
+          "微信小程序/插件生态",
+          "LINE / Meta Muse agent",
+          "独立超级助手 App"
         ],
         "status": "multi_source",
         "priority": "P1"
