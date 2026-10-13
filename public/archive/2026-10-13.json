@@ -1,6 +1,6 @@
 {
   "date": "2026-10-13",
-  "count": 4,
+  "count": 7,
   "schema_version": 2,
   "items": [
     {
@@ -206,6 +206,148 @@
         "confidence": "中",
         "falsifier": "若公开案例仍停留在任务自动化且无独立可核验业务 KPI，或因安全事故被迫退回「每步人工确认」而名存实亡，则此模式判断作废",
         "thesis_id": "T-003"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-anthropic-distillation-defenses",
+      "status": "confirmed",
+      "tag": "安全",
+      "lens": "赛道",
+      "priority": "P1",
+      "title": "Anthropic：蒸馏防御使 Claude 被采集数据降约 90–99%",
+      "date": "2026-10-13",
+      "time": "10-13 07:58",
+      "handle": "Anthropic",
+      "url": "https://www.anthropic.com/research/distillation-defenses",
+      "objective": [
+        "Anthropic 研究博文（标日期 10-12；@AnthropicAI 约 10-12 23:58 UTC 推送）：称新防御使蒸馏者从 Claude 采到的数据量大约下降 90–99%；自测平台上被抽走的 reasoning token 常为原先的 1/10–1/100",
+        "手段包括：Fable 5.1 / Opus 5.5 的 preserved thinking（2026-08-31 及以后新建 API 账号不可编辑先验上下文）；推理不可被弱防护旧模型读取；Sonnet 5.5 推理仅限本组织；双阶段分类器（误报率自称 <0.1%），防护强度对标生武/网安有害任务",
+        "已封禁数万蒸馏相关账号；自 9-24 起对误报率极低的拦截请求重新计费；承认未完全做到「不影响正经用户」——部分开发者需改集成，极少数良性请求会被拦并计费",
+        "点名 Zhipu 在 GLM-5.3 研发中蒸馏美方模型网安能力、Moonshot 等代理流量案例；呼吁其他 frontier 与云平台一起打击蒸馏，否则单方投入会被绕开"
+      ],
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/research/distillation-defenses",
+          "handle": "Anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/AnthropicAI/status/2109795898909950247",
+          "handle": "AnthropicAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://madrobot.blog/2026/10/13/anthropic-distillation-defenses-claude-reasoning-99-percent/",
+          "handle": "MadRobot",
+          "role": "analysis"
+        }
+      ],
+      "shift": "midday",
+      "lead_lag_hours": 5.5,
+      "so_what": {
+        "lens": "赛道",
+        "impact": "闭源 frontier 把「防蒸馏」做成与生武同级的产品护栏；用 Claude 做 agent 的人要适应 preserved thinking / 不可乱改先验上下文，否则集成会碎；开源/亚洲实验室靠蒸馏追赶的路径被官方点名收紧",
+        "action": "观察",
+        "window": "本周检查自己 Claude API 集成是否依赖「编辑先验 thinking」",
+        "confidence": "高",
+        "falsifier": "若独立流量/评测显示蒸馏流量与能力迁移未实质下降，或 OpenAI/Google 长期不跟进导致攻击者整体迁走，则「行业可联防」判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-anthropic-iot-replicator",
+      "status": "confirmed",
+      "tag": "安全",
+      "lens": "赛道",
+      "priority": "P1",
+      "title": "Anthropic Red Team：小开源模型或数月内具备 IoT 自复制能力",
+      "date": "2026-10-13",
+      "time": "10-13 07:47",
+      "handle": "Anthropic",
+      "url": "https://www.anthropic.com/research/self-replicating-ai",
+      "objective": [
+        "Anthropic Frontier Red Team（William Zhou / Daniel Freeman，标日期 10-12）：实验称小型模型「可能数月内」具备在商用 IoT（如智能烤箱、杂牌 Android TV 盒）上自复制的能力；无中心关停点，倍增时间或按天计",
+        "简化评测中仅开源权重模型 GLM-5.2 可靠完成端到端复制（8 节点中 4/5 次全覆盖、1 次 7/8）；≤30B 模型已能完成多步分项但端到端易错；作者强调网安利用步骤被故意简化，结果为现实成功率上界",
+        "演示：约 15 台 ~$55 Android TV 盒分布式跑 Gemma4-26B-A4B，约 0.39 tok/s；按历史 ECI 趋势外推，小模型或在 2026 年底触及 GLM-5.2 级复制能力门槛",
+        "The Verge 同日转述并引用「digital slime mold」等威胁形态；文中建议 ISP 隔离、默认密码治理与蜜罐取证等蓝队方向"
+      ],
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/research/self-replicating-ai",
+          "handle": "Anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1009658/anthropic-self-propagating-ai-slime-mold-botnets",
+          "handle": "TheVerge",
+          "role": "analysis"
+        }
+      ],
+      "shift": "midday",
+      "lead_lag_hours": 5.7,
+      "so_what": {
+        "lens": "赛道",
+        "impact": "「agent 会写代码」已外溢到「可编排复制链」；开源权重发布与边缘/IoT 部署的安全叙事会变硬，OPC 做边缘 agent 或开源分发需默认假设复制能力在评估表上",
+        "action": "观察",
+        "window": "盯 2026 年底前后下一批 ≤30B 开源发布是否自带复制评测",
+        "confidence": "中",
+        "falsifier": "若后续独立复现显示端到端复制在真实认证/补丁设备上系统性失败，或能力曲线明显放缓使门槛后移超过一年，则「数月窗口」判断作废",
+        "thesis_id": "T-003"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-kakao-kanana-space",
+      "status": "multi_source",
+      "tag": "发布",
+      "lens": "模式",
+      "priority": "P1",
+      "title": "Kakao if(kakao)26：Kanana Space 嵌入 KakaoTalk（12 月封闭 beta）",
+      "date": "2026-10-13",
+      "time": "10-13 11:00",
+      "handle": "Kakao",
+      "url": "https://www.yna.co.kr/view/AKR20261013075900017",
+      "objective": [
+        "联合新闻/Digital Today 等（10-13）：Kakao 在龙仁 AI 校园举办 if(kakao)26，公布将 KakaoTalk 做成「agentic AI 界面」：助手 Kanana Space + PC 端搭 agent 的 Kanvas",
+        "Kanana Space：任意 KakaoTalk 画面双指下滑（或悬浮按钮）唤出 Ryan，语音/文字可发消息、管日程、搜网页、改设置；规划扩展到点单、送礼、预约、转账；今日起可预登记，12 月封闭 beta，正式上线目标约 2027 Q1",
+        "模型侧：强调 on-device 与大模型分流、AI conductor 调度、自研 tokenizer；介绍 omni 模型 Kanana-o（计划开源）与同听同说的 Kanana Live；Mosaic 个性化项目同场"
+      ],
+      "sources": [
+        {
+          "url": "https://www.yna.co.kr/view/AKR20261013075900017",
+          "handle": "Yonhap",
+          "role": "report"
+        },
+        {
+          "url": "https://www.digitaltoday.co.kr/en/view/113773/kakao-unveils-kanana-space-kanvas-to-turn-kakaotalk-into-ai-launchpad",
+          "handle": "DigitalToday",
+          "role": "report"
+        },
+        {
+          "url": "https://biz.chosun.com/en/en-it/2026/10/13/DQEWQXTMXRBTNOJMC7TQ7IMO5E/",
+          "handle": "ChosunBiz",
+          "role": "report"
+        }
+      ],
+      "shift": "midday",
+      "try_url": "https://kanana.kakao.com/",
+      "access": "预登记开放；12 月封闭 beta；正式版目标约 2027 Q1（韩国 KakaoTalk）",
+      "integration": "KakaoTalk 内嵌层 / Kanvas PC agent / 后续交易与预约",
+      "first_step": "若做东亚超级 App 内 agent：对照「聊天层唤起 + 支付/预约闭环」与微信/飞书路径，不必立刻跟产品形态",
+      "alternatives": [
+        "微信小程序/插件生态",
+        "LINE / Meta Muse agent",
+        "独立超级助手 App"
+      ],
+      "tool_radar": "暂缓",
+      "so_what": {
+        "lens": "模式",
+        "impact": "日活聊天 App 把 agent 嵌进既有手势流，而不是新开 Tab——验证「入口即对话层」；对中国区 OPC 启发在飞书/微信侧做轻唤起，但支付闭环与合规门槛不同，不宜照搬时间表",
+        "action": "观察",
+        "window": "等 12 月 beta 留存与任务完成率公开",
+        "confidence": "中",
+        "falsifier": "若封闭 beta 后主路径仍停在闲聊/设置、交易与预约长期未打通，或留存显著低于普通助手，则「超级 App 内 agent 入口」判断作废"
       }
     }
   ]

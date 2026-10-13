@@ -1,30 +1,38 @@
-# AI Radar 早报 · 2026-10-13 08:00 北京时间
+# AI Radar 主报 · 2026-10-13 13:30 北京时间
 
 看板：https://ruiyaoe-hash.github.io/ai-radar/  
 RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml  
 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html
 
-睿，昨夜到今早真正新的决策信号就这几条——Meta 进前沿阵营是今天唯一正式 P0。
+睿，午间新增 3 条决策信号（早报后补漏 + 今日韩系入口）。正式 P0 仍只有早报的 Meta Muse Wonder，本班无新正式 P0。
 
-## P0
+## 午间新增
 
-**Meta 发布首款前沿模型 Muse Wonder / Wonder Full**（confirmed）  
-- 官方：Wonder 已开 Meta Model API + Muse Code；Wonder Full 只给 Muse Code 订阅，不上 API。  
-- Active Memory + Active Focus；定价约 $4/$20 每百万 token（对标 Sol / Opus 5.5）。  
-- 自测在部分长程 coding / legal agent 任务领先，AA Index ~56（Opus 5.5 ~58）。  
-- **你今天要做的：** 同一套 coding/长程任务对照 Wonder vs 现用模型，别默认只有两极。
+1. **Anthropic 蒸馏防御：采数据量自称降 90–99%**（confirmed · P1 · 赛道）  
+   - preserved thinking + 双阶段分类器；新 API 账号不可编辑先验上下文；拦截请求可计费。  
+   - **你今天可做的：** 若 Claude agent 集成会改先验 thinking，本周核对一次，避免踩护栏。  
+   - https://www.anthropic.com/research/distillation-defenses
 
-## P1
+2. **Anthropic：小开源模型或数月内具备 IoT 自复制**（confirmed · P1 · 赛道）  
+   - 简化评测里 GLM-5.2 端到端复制可靠；≥30B 以下多步已会、端到端仍易错；作者强调网安步骤被故意简化。  
+   - 盯开源 ≤30B 发布是否自带复制评测；边缘 agent 默认把复制能力写进威胁模型。  
+   - https://www.anthropic.com/research/self-replicating-ai
 
-1. **Agent37（YC）低成本 agent 沙箱** — 多 harness（Claude Code / Hermes / Codex…），客户均耗约 $0.37/月；适合验证「每客户一沙箱」。免费档可试，赛道挤、先当成本探针。  
-2. **Mistlabs Ambi 出 beta + $26M** — 全天候聆听、会中主动开任务；隐私披露仍靠用户。做会议工具可观察，**默认暂缓跟风 ambient**。  
-3. **Hone $60M 种子（Benchmark/Index）** — Engines「认领业务结果而非任务」；Cognition 出身做长程 harness。叙事从功能列表 → 可核验 KPI，值得盯案例。
+3. **Kakao Kanana Space：KakaoTalk 内嵌 agent 层**（multi_source · P1 · 模式）  
+   - 双指下滑唤 Ryan；预登记今日开，12 月封闭 beta，正式约 2027 Q1；另有 PC 端 Kanvas。  
+   - 东亚「超级 App 内入口」样本；国内路径别照搬时间表。  
+   - https://www.yna.co.kr/view/AKR20261013075900017
 
-## 链接
+## 今日看板（含早报）
 
-- 看板 / RSS / 工具雷达见文首  
-- 本日归档：`public/archive/2026-10-13.json`（4 张卡）
+**正式 P0**  
+- Meta Muse Wonder / Wonder Full（API + Muse Code）— 仍建议本周同任务对照试用。
 
-## 未发 Feishu
+**P1（早报）**  
+- Agent37 低成本 agent 沙箱 · Ambi $26M ambient · Hone $60M Engines
 
-本班有 1 条正式 P0（Muse Wonder），但环境无 `FEISHU_BOT_WEBHOOK`，飞书推送 dry-run 跳过。
+本日归档 7 张卡：`public/archive/2026-10-13.json`
+
+## Feishu
+
+本班无新正式 P0；环境无 `FEISHU_BOT_WEBHOOK`，未推飞书（dry-run）。
