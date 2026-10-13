@@ -15,6 +15,7 @@ from __future__ import annotations
 import html
 import json
 import sys
+import urllib.parse
 from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime
 from pathlib import Path
@@ -51,6 +52,46 @@ TOOL_RING_LABEL = {
 
 def esc(t: str) -> str:
     return html.escape(t or "", quote=True)
+
+
+def safe_http_url(url: object) -> str:
+    """Absolute http(s) only. Reject javascript:, data:, and protocol-relative URLs.
+
+    Feed links are absolute. Relative paths stay on the HTML pages, not in RSS.
+    Hosts are not filtered: HN, Reddit, GitHub, and lab blogs are all valid.
+    """
+    raw = str(url or "").strip()
+    if not raw:
+        return ""
+    if any(c.isspace() or ord(c) < 32 or c in '<>"\'`\\' for c in raw):
+        return ""
+    if raw.startswith("//"):
+        return ""
+    parts = urllib.parse.urlsplit(raw)
+    if parts.scheme.lower() not in {"http", "https"} or not parts.netloc:
+        return ""
+    return raw
+
+
+def feed_item_link(it: dict) -> str:
+    chosen = safe_http_url(it.get("url") or "")
+    if chosen:
+        return chosen
+    fallback = safe_http_url(event_permalink(it))
+    if fallback:
+        return fallback
+    return SITE
+
+
+def rss_html_description(desc_html: str) -> str:
+    """Card fields are HTML-escaped before this join. Trusted tags are only <strong> and <br/>.
+
+    html.escape encodes '>', so a card cannot close the CDATA section with ']]>'.
+    A leftover terminator or a raw <script means a field skipped escaping.
+    """
+    if "]]>" in desc_html or "<script" in desc_html.lower():
+        raise ValueError("RSS description has an unescaped HTML payload")
+    return desc_html
 
 
 def load_all_archive_items() -> list[dict]:
@@ -132,7 +173,7 @@ def build_rss(items: list[dict], title: str, description: str, self_url: str) ->
         bits = [b for b in (band, lens, tag) if b]
         prefix = f"[{' · '.join(bits)}] " if bits else ""
         title_s = f"{prefix}{it.get('title', '')}"
-        link = it.get("url") or event_permalink(it)
+        link = feed_item_link(it)
         guid = event_permalink(it)
         obj = objective_lines(it)
         jud = list(it.get("judgment") or [])
@@ -168,7 +209,7 @@ def build_rss(items: list[dict], title: str, description: str, self_url: str) ->
             desc_parts.append(f"来源 {handles}")
         if it.get("date"):
             desc_parts.append(f"日期 {esc(it['date'])}")
-        desc = "<br/>".join(desc_parts)
+        desc = rss_html_description("<br/>".join(desc_parts))
         pub = parse_item_time(it)
         parts += [
             "<item>",

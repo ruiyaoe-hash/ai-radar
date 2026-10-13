@@ -2,6 +2,7 @@
 <html lang="zh-CN" data-page="tools">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-IOKTMj2PwDVQ60yH8bhcQvfXZPfT0arSeKPqq+PtA94='; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c0e12" />
   <title>可试用工具 · AI Radar</title>
@@ -10,6 +11,7 @@
 </head>
 <body>
   <div class="app">
+    <script src="./assets/safe-href.js"></script>
     <script src="./assets/shell.js"></script>
     <div class="content">
       <div class="topbar">
@@ -42,7 +44,7 @@
           const list = groups[key] || [];
           const body = list.length
             ? list.map((it) => {
-                const href = it.try_url || it.url || "";
+                const href = Radar.safeHref(it.try_url || it.url || "");
                 const titleHtml = href
                   ? `<a href="${Radar.esc(href)}" target="_blank" rel="noopener">${Radar.esc(it.title)}</a>`
                   : Radar.esc(it.title);

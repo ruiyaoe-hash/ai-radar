@@ -12,11 +12,14 @@ that cannot be read fails the job.
 """
 from __future__ import annotations
 
+import base64
+import hashlib
 import json
 import os
 import re
 import subprocess
 import sys
+import urllib.parse
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -317,6 +320,7 @@ def check_feed() -> None:
         if got != expect:
             fail(f"{name}: {got} items != board lens {lens!r} count {expect}")
     print("OK lens feeds: counts match items.json")
+    check_feed_link_safety()
 
 
 def check_practice() -> None:
@@ -377,13 +381,28 @@ def check_public_ui() -> None:
             "行业动态",
             "方法模式",
             "时机窗口",
+            "未经证实的传闻与第三方帖子",
+            "更正与下架：请通过站点「订阅更新」页或飞书反馈（链接稍后接入）。",
         ],
         "practice.html": ["工具用法", "创意作品", "变现", "Skill / 工作流", "硬件", "还没有可照着做的实操。"],
         "tools-radar.html": ["值得用上", "可以试", "先评估", "先别跟"],
-        "subscribe.html": ["./feed.xml", "试用工具", "行业动态", "方法模式", "时机窗口"],
+        "subscribe.html": [
+            "./feed.xml",
+            "试用工具",
+            "行业动态",
+            "方法模式",
+            "时机窗口",
+            "未经证实的传闻与第三方帖子",
+            "更正与下架：请通过站点「订阅更新」页或飞书反馈（链接稍后接入）。",
+        ],
         "week.html": ["本周归档"],
         "agent.html": ["today3.txt", "practice.json"],
-        "about.html": ["对你意味着什么", "背景与出处"],
+        "about.html": [
+            "对你意味着什么",
+            "背景与出处",
+            "未经证实的传闻与第三方帖子",
+            "更正与下架：请通过站点「订阅更新」页或飞书反馈（链接稍后接入）。",
+        ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
     for label in ("今日必看", "博主实操", "本周归档", "可试用工具", "订阅更新", "给 Agent 用", "这是什么"):
@@ -411,6 +430,149 @@ def check_public_ui() -> None:
     print("OK public UI copy")
 
 
+def check_feed_link_safety() -> None:
+    paths = [PUBLIC / "feed.xml", *sorted((PUBLIC / "feeds").glob("*.xml"))]
+    for path in paths:
+        for el in parse_feed(path):
+            link = (el.findtext("link") or "").strip()
+            if re.search(r"javascript\s*:", link, re.I):
+                fail(f"{path.name}: javascript: in item link {link!r}")
+            parts = urllib.parse.urlsplit(link)
+            if parts.scheme.lower() not in {"http", "https"} or not parts.netloc:
+                fail(f"{path.name}: item link is not http(s): {link!r}")
+    print("OK feed links: http(s) only, no javascript:")
+
+
+def check_rss_escape() -> None:
+    """A hostile card must not become a raw tag or a javascript: item link."""
+    try:
+        from generate_derived import SITE, build_rss
+    except ImportError:
+        from scripts.generate_derived import SITE, build_rss
+
+    evil = {
+        "id": "evt-20261013-xss-probe",
+        "title": "</title><script>alert(1)</script>",
+        "url": "javascript:alert(1)",
+        "try_url": "data:text/html,<script>alert(2)</script>",
+        "date": "2026-10-13",
+        "lens": "工具",
+        "tag": "<script>tag</script>",
+        "priority": "P0",
+        "status": "rumor",
+        "objective": ["]]> <img src=x onerror=alert(1)>", "<script>alert(3)</script>"],
+        "so_what": {
+            "impact": "<script>alert(4)</script>",
+            "action": "javascript:alert(5)",
+            "window": "now",
+            "confidence": "<b>x</b>",
+            "falsifier": "]]></description><script>alert(6)</script>",
+        },
+        "sources": [
+            {"handle": "<script>h</script>", "role": "primary", "url": "javascript:alert(7)"}
+        ],
+        "correction": {"note": "<script>c</script>"},
+    }
+    xml = build_rss([evil], "t <script>", "d <script>alert(1)</script>", SITE + "feed.xml")
+    if re.search(r"<\s*script", xml, re.I):
+        fail("RSS emitter wrote a raw script tag")
+    try:
+        root = ET.fromstring(xml)
+    except ET.ParseError as exc:
+        fail(f"malicious card broke RSS: {exc}")
+    link = root.findtext("./channel/item/link") or ""
+    if re.search(r"javascript\s*:", link, re.I) or not link.startswith("https://"):
+        fail(f"unsafe card url was not replaced with an https permalink: {link!r}")
+    desc = root.findtext("./channel/item/description") or ""
+    if "<script" in desc.lower() or "]]>" in desc:
+        fail("description decoded to raw markup or a CDATA terminator")
+    if "&lt;script&gt;" not in desc:
+        fail("card text was not HTML-escaped inside the RSS description")
+    print("OK rss escaping: card text is escaped, bad urls leave the item link")
+
+
+INLINE_SCRIPT_RE = re.compile(r"<script(?![^>]*\bsrc\b)[^>]*>(.*?)</script>", re.I | re.S)
+CSP_META_RE = re.compile(
+    r'<meta\s+http-equiv="Content-Security-Policy"\s+content="([^"]+)"\s*/?>',
+    re.I,
+)
+
+
+def csp_hash(body: str) -> str:
+    digest = hashlib.sha256(body.encode("utf-8")).digest()
+    return "'sha256-" + base64.b64encode(digest).decode("ascii") + "'"
+
+
+def expected_csp(hashes: list[str]) -> str:
+    script = " ".join(["'self'", *hashes])
+    return (
+        "default-src 'self'; "
+        f"script-src {script}; "
+        "script-src-attr 'none'; "
+        "style-src 'self'; "
+        "img-src 'self'; "
+        "font-src 'self'; "
+        "connect-src 'self'; "
+        "object-src 'none'; "
+        "base-uri 'none'; "
+        "form-action 'none'; "
+        "frame-src 'none'"
+    )
+
+
+def check_csp() -> None:
+    pages = sorted(PUBLIC.glob("*.html"))
+    if not pages:
+        fail("no public HTML pages")
+    for path in pages:
+        raw = path.read_text(encoding="utf-8")
+        found = CSP_META_RE.findall(raw)
+        if len(found) != 1:
+            fail(f"{path.name}: expected one Content-Security-Policy meta, found {len(found)}")
+        if raw.find("Content-Security-Policy") > raw.lower().find("<script"):
+            fail(f"{path.name}: CSP meta must come before the first script")
+        hashes = [csp_hash(body) for body in INLINE_SCRIPT_RE.findall(raw)]
+        policy = found[0]
+        expect = expected_csp(hashes)
+        if policy != expect:
+            fail(f"{path.name}: CSP mismatch\n  got:  {policy}\n  want: {expect}")
+        lowered = policy.lower()
+        for banned in ("unsafe-inline", "unsafe-eval", "http://", "https://", "*", "data:", "blob:"):
+            if banned in lowered:
+                fail(f"{path.name}: CSP allows {banned}")
+    print(f"OK csp: {len(pages)} html pages, script-src self + inline hashes only")
+
+
+def check_safe_href() -> None:
+    helper = (PUBLIC / "assets" / "safe-href.js").read_text(encoding="utf-8")
+    cards = (PUBLIC / "assets" / "cards.js").read_text(encoding="utf-8")
+    shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
+    if "function safeHref" not in helper:
+        fail("safe-href.js missing safeHref")
+    if "function externalAnchor" not in cards or "safeHref" not in cards:
+        fail("cards.js must build anchors with safeHref")
+    if re.search(r"esc\((?:s\.url|it\.url|it\.try_url)\)", cards):
+        fail("cards.js still puts a raw card url through esc() into markup")
+    if "safeHref(" not in shell:
+        fail("shell.js must filter nav hrefs with safeHref")
+    for name in ("practice.html", "tools-radar.html", "subscribe.html"):
+        raw = (PUBLIC / name).read_text(encoding="utf-8")
+        if "safeHref(" not in raw:
+            fail(f"{name} builds anchors without safeHref")
+        if re.search(r"esc\(it\.(?:url|try_url)\)", raw):
+            fail(f"{name} still puts a raw card url through esc() into href")
+    script = ROOT / "scripts" / "test_safe_href.js"
+    proc = subprocess.run(
+        ["node", str(script)],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+    if proc.returncode != 0:
+        fail(f"safeHref tests failed\n{proc.stdout}\n{proc.stderr}")
+    print(proc.stdout.strip())
+
+
 def main() -> None:
     try:
         from card_times import self_check as check_card_times
@@ -423,8 +585,11 @@ def main() -> None:
     check_schema()
     check_monotonic()
     check_feed()
+    check_rss_escape()
     check_practice()
     check_public_ui()
+    check_csp()
+    check_safe_href()
     print("ALL CHECKS PASSED")
 
 
