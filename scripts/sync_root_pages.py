@@ -17,8 +17,10 @@ MARKER = ROOT / ".no-root-mirror"
 FILES = [
     "index.html", "items.json", "feed.xml", "tools-radar.html", "tools-radar.json",
     "today3.txt", "theses.json", "source-scores.json", "owner-actions.json", ".nojekyll",
+    "practice.html", "week.html", "subscribe.html", "agent.html", "about.html",
+    "practice.json", "practice.sample.json",
 ]
-DIRS = ["archive", "feeds", "config", "memos"]
+DIRS = ["archive", "feeds", "config", "memos", "assets", "practice"]
 
 
 def main() -> None:
