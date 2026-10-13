@@ -7,7 +7,8 @@ Writes into public/ only:
   - feed.xml            (main RSS; guid = event id permalink)
   - feeds/lens-*.xml    (per-lens feeds)
   - tools-radar.json    (tools with tool_radar / lens=工具)
-  - today3.txt          (今日3条 plain text for copy)
+  - today3.txt          (今天先做这 3 件，纯文本，页面叫法)
+  - practice.json       (only when public/practice/inbox/*.json has items)
 """
 from __future__ import annotations
 
@@ -26,6 +27,19 @@ TZ = timezone(timedelta(hours=8))
 WINDOW_DAYS = 7
 MAX_ITEMS = 50
 LENSES = ["工具", "赛道", "模式", "时机"]
+LENS_LABEL = {
+    "工具": "试用工具",
+    "赛道": "行业动态",
+    "模式": "方法模式",
+    "时机": "时机窗口",
+}
+ROLE_LABEL = {"primary": "一手", "analysis": "解读", "report": "转述"}
+TOOL_RING_LABEL = {
+    "采纳": "值得用上",
+    "试用": "可以试",
+    "评估": "先评估",
+    "暂缓": "先别跟",
+}
 
 
 def esc(t: str) -> str:
@@ -70,6 +84,19 @@ def objective_lines(it: dict) -> list[str]:
     return list(it.get("objective") or [])
 
 
+def public_band(it: dict) -> str:
+    """Page label for priority. P0 rumor/pending → 市场信号; other P0 → 今日必看; P1 → 重点关注."""
+    if it.get("priority") == "P0" and (
+        it.get("status") == "rumor" or it.get("pending") in (True, "pending", "rumor")
+    ):
+        return "市场信号"
+    if it.get("priority") == "P0":
+        return "今日必看"
+    if it.get("priority") == "P1":
+        return "重点关注"
+    return ""
+
+
 def build_rss(items: list[dict], title: str, description: str, self_url: str) -> str:
     now = datetime.now(TZ)
     parts = [
@@ -84,37 +111,42 @@ def build_rss(items: list[dict], title: str, description: str, self_url: str) ->
         f'<atom:link href="{esc(self_url)}" rel="self" type="application/rss+xml"/>',
     ]
     for it in items:
-        prio = it.get("priority", "")
-        status = it.get("status", "")
-        pending = prio == "P0" and status == "rumor"
-        prio_label = "P0-待证" if pending else prio
-        lens = it.get("lens") or ""
+        band = public_band(it)
+        lens = LENS_LABEL.get(it.get("lens") or "", "")
         tag = it.get("tag") or ""
-        title_s = f"[{prio_label}/{lens}/{tag}] {it.get('title', '')}"
+        bits = [b for b in (band, lens, tag) if b]
+        prefix = f"[{' · '.join(bits)}] " if bits else ""
+        title_s = f"{prefix}{it.get('title', '')}"
         link = it.get("url") or event_permalink(it)
         guid = event_permalink(it)
         obj = objective_lines(it)
         jud = list(it.get("judgment") or [])
-        label = it.get("judgment_label") or "主观判断"
+        label = it.get("judgment_label") or "判断"
         desc_parts = []
         if obj:
-            desc_parts.append("<strong>客观摘要</strong>")
+            desc_parts.append("<strong>背景</strong>")
             desc_parts.extend(f"• {esc(b)}" for b in obj)
-        so = it.get("so_what")
-        if isinstance(so, dict) and so.get("falsifier"):
-            desc_parts.append("<strong>【so_what】</strong>")
-            for k in ("impact", "action", "window", "confidence", "falsifier", "thesis_id"):
-                if so.get(k):
-                    desc_parts.append(f"• {esc(k)}: {esc(str(so[k]))}")
+        so = it.get("so_what") if isinstance(it.get("so_what"), dict) else {}
+        if so.get("falsifier"):
+            if so.get("impact"):
+                desc_parts.append(f"<strong>对你意味着什么</strong> {esc(str(so['impact']))}")
+            suggest = " · ".join(
+                str(so[k]) for k in ("action", "window") if so.get(k)
+            )
+            if suggest:
+                desc_parts.append(f"建议：{esc(suggest)}")
+            if so.get("confidence"):
+                desc_parts.append(f"有多确定：{esc(str(so['confidence']))}")
+            desc_parts.append(f"什么情况下当这判断作废：{esc(str(so['falsifier']))}")
         elif jud:
-            desc_parts.append(f"<strong>【{esc(label)}】</strong>")
+            desc_parts.append(f"<strong>{esc(label)}</strong>")
             desc_parts.extend(f"• {esc(b)}" for b in jud)
         if it.get("correction"):
             c = it["correction"]
             note = c.get("note") if isinstance(c, dict) else str(c)
-            desc_parts.append(f"<strong>【更正】</strong> {esc(note or '')}")
+            desc_parts.append(f"<strong>更正</strong> {esc(note or '')}")
         handles = ", ".join(
-            f"@{esc(s.get('handle', ''))}({esc(s.get('role', ''))})"
+            f"{esc(s.get('handle', ''))}（{esc(ROLE_LABEL.get(s.get('role', ''), s.get('role', '')))}）"
             for s in (it.get("sources") or [])
         )
         if handles:
@@ -190,7 +222,9 @@ def build_tools_radar(all_items: list[dict]) -> dict:
     return {
         "updated": datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间"),
         "rings": rings,
-        "note": "Tech Radar：采纳 / 试用 / 评估 / 暂缓。主人可在归档卡上写 tool_radar 字段。",
+        "note": "按你现在该怎么对待来分："
+        + "、".join(TOOL_RING_LABEL[k] for k in ("采纳", "试用", "评估", "暂缓"))
+        + "。不按热度排。",
     }
 
 
@@ -206,20 +240,103 @@ def build_today3(board: list[dict]) -> str:
         return (p, s, -(parse_item_time(it).timestamp()))
 
     picked = sorted(day_items, key=score)[:3]
-    lines = [f"AI Radar · 今日3条（{today}）", ""]
+    lines = [f"AI Radar · 今天先做这 3 件（{today}）", ""]
     for i, it in enumerate(picked, 1):
-        prio = it.get("priority", "")
-        pending = prio == "P0" and it.get("status") == "rumor"
-        pl = "P0-待证" if pending else prio
-        lines.append(f"{i}. [{pl}/{it.get('lens','')}] {it.get('title','')}")
-        obj = objective_lines(it)
-        if obj:
-            lines.append(f"   · {obj[0]}")
+        lines.append(f"{i}. {it.get('title', '')}")
+        so = it.get("so_what") if isinstance(it.get("so_what"), dict) else {}
+        impact = str(so.get("impact") or "").strip()
+        if not impact:
+            jud = list(it.get("judgment") or [])
+            obj = objective_lines(it)
+            impact = jud[0] if jud else (obj[0] if obj else "")
+        if impact:
+            lines.append(f"   对你意味着什么：{impact}")
+        suggest = " · ".join(
+            str(so[k]).strip() for k in ("action", "window") if str(so.get(k) or "").strip()
+        )
+        if suggest:
+            lines.append(f"   建议：{suggest}")
         if it.get("url"):
             lines.append(f"   {it['url']}")
         lines.append("")
     lines.append(f"看板 {SITE}")
     return "\n".join(lines).rstrip() + "\n"
+
+
+def _practice_items(payload) -> list[dict]:
+    if isinstance(payload, list):
+        return [it for it in payload if isinstance(it, dict)]
+    if isinstance(payload, dict):
+        if isinstance(payload.get("items"), list):
+            return [it for it in payload["items"] if isinstance(it, dict)]
+        if payload.get("id"):
+            return [payload]
+    raise ValueError("practice inbox entry must be an item, a list, or {items: []}")
+
+
+def sync_practice_inbox() -> None:
+    """Merge public/practice/inbox/*.json into practice.json.
+
+    Empty inbox leaves the committed file alone (the page then shows an empty state).
+    Sample cards live in practice.sample.json and are not published here.
+    """
+    inbox = PUBLIC / "practice" / "inbox"
+    incoming: list[dict] = []
+    if inbox.is_dir():
+        for path in sorted(inbox.glob("*.json")):
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                raise SystemExit(f"practice inbox {path.name}: {exc}") from exc
+            try:
+                incoming.extend(_practice_items(payload))
+            except ValueError as exc:
+                raise SystemExit(f"practice inbox {path.name}: {exc}") from exc
+    dest = PUBLIC / "practice.json"
+    if not incoming:
+        if not dest.exists():
+            dest.write_text(
+                json.dumps(
+                    {"schema_version": 1, "updated": None, "items": []},
+                    ensure_ascii=False,
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+        return
+    existing: list[dict] = []
+    if dest.exists():
+        try:
+            doc = json.loads(dest.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise SystemExit(f"practice.json: {exc}") from exc
+        existing = [it for it in (doc.get("items") or []) if isinstance(it, dict)]
+    by_id: dict[str, dict] = {}
+    order: list[str] = []
+    for it in existing + incoming:
+        eid = str(it.get("id") or "")
+        if not eid:
+            raise SystemExit("practice item missing id")
+        if eid not in by_id:
+            order.append(eid)
+        by_id[eid] = it
+    items = [by_id[eid] for eid in order]
+    items.sort(key=lambda it: str(it.get("time") or ""), reverse=True)
+    dest.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "updated": datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间"),
+                "items": items,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    print(f"  practice.json: {len(items)} items ({len(incoming)} from inbox)")
 
 
 def main():
@@ -231,7 +348,7 @@ def main():
     items_doc = {
         "schema_version": 2,
         "updated": now.strftime("%Y-%m-%d %H:%M 北京时间"),
-        "window_note": "看板展示近几日精选（约 7 天 / 最多约 50 条）；更早日期见归档。主过滤按 lens。",
+        "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
         "items": board,
     }
     (PUBLIC / "items.json").write_text(
@@ -241,8 +358,8 @@ def main():
     (PUBLIC / "feed.xml").write_text(
         build_rss(
             board,
-            "AI Radar · Decision Signal",
-            "决策信号：事件模型 + lens 过滤。客观摘要与 so_what/主观判断分栏。",
+            "AI Radar",
+            "会影响下一步的信号。北京时间每天 08:00 / 13:30 更新。",
             SITE + "feed.xml",
         ),
         encoding="utf-8",
@@ -251,11 +368,12 @@ def main():
     for lens in LENSES:
         lens_items = [it for it in board if it.get("lens") == lens]
         slug = {"工具": "tools", "赛道": "tracks", "模式": "models", "时机": "timing"}[lens]
+        label = LENS_LABEL[lens]
         (FEEDS / f"lens-{slug}.xml").write_text(
             build_rss(
                 lens_items,
-                f"AI Radar · lens={lens}",
-                f"仅 lens={lens} 的决策信号",
+                f"AI Radar · {label}",
+                f"只看{label}。",
                 SITE + f"feeds/lens-{slug}.xml",
             ),
             encoding="utf-8",
@@ -266,6 +384,7 @@ def main():
         json.dumps(radar, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     (PUBLIC / "today3.txt").write_text(build_today3(board), encoding="utf-8")
+    sync_practice_inbox()
 
     print(f"derived: {len(all_items)} archive cards → {len(board)} board items")
     print(f"  items.json, feed.xml, feeds/lens-*.xml, tools-radar.json, today3.txt, archive/index.json")

@@ -1,8 +1,213 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-12 13:34 北京时间",
-  "window_note": "看板展示近几日精选（约 7 天 / 最多约 50 条）；更早日期见归档。主过滤按 lens。",
+  "updated": "2026-10-13 10:57 北京时间",
+  "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-ambi-26m",
+      "status": "multi_source",
+      "tag": "融资",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Mistlabs Ambi 出 beta：全天候聆听式 AI + 融资 2600 万美元",
+      "date": "2026-10-13",
+      "time": "10-12 20:47",
+      "handle": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/",
+      "objective": [
+        "TechCrunch（10-12）：前 Plaud 高管 Peter Mo 创办 Ambi（Mistlabs），宣称全天候聆听以提供实时洞察；出 Apple 生态 beta，推 iPhone / Mac / Apple Watch 应用",
+        "融资 2600 万美元（多轮、Pre-A），由 Luminous Ventures 与华勤（Huaqin）领投；计划自研带屏/扬声器/摄像头/麦克风的硬件，可加入 waitlist",
+        "产品差异：会议中即可主动建议与开任务（非会后摘要）；桌面版将观察工作内容写入记忆；环境采集默认关闭、可随时关，称不存录音并加密，但第三方知情披露仍靠用户",
+        "SiliconANGLE 同日：约 50 人分布旧金山与北上深；Routine 等能力可把会中承诺变成会后提案草稿"
+      ],
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/",
+          "handle": "TechCrunch",
+          "role": "primary"
+        },
+        {
+          "url": "https://siliconangle.com/2026/10/12/mistlabs-takes-its-ambi-ai-system-out-of-beta-on-apple-devices-with-26m-in-funding/",
+          "handle": "SiliconANGLE",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/",
+      "access": "iOS 18+ / Mac 应用出 beta；硬件 waitlist",
+      "integration": "日历 / 会议 / 知识库 / 跨设备任务；后续硬件传感",
+      "first_step": "若做会议流：对比 Ambi 与现用 notetaker，看「会中主动开任务」是否值得隐私成本",
+      "alternatives": [
+        "Plaud / 传统会议纪要",
+        "Apple Audio Intelligence",
+        "Limitless / Rewind 类桌面记忆"
+      ],
+      "tool_radar": "暂缓",
+      "so_what": {
+        "lens": "工具",
+        "impact": "「ambient + 会中代理」融资继续验证，但隐私披露未解；OPC 做内容/会议工具应默认关采集、明示第三方，不宜跟风全天候听",
+        "action": "观察",
+        "window": "等硬件与合规实践更清晰（1–2 季度）",
+        "confidence": "中",
+        "falsifier": "若主要市场出现强制指示灯/同意法规使 ambient 默认不可行，或早期用户因隐私诉讼大规模弃用，则此模式判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-hone-60m-engines",
+      "status": "confirmed",
+      "tag": "融资",
+      "lens": "模式",
+      "priority": "P1",
+      "title": "Hone 获 Benchmark/Index 领投 6000 万美元种子：Engines 认领业务结果而非任务",
+      "date": "2026-10-13",
+      "time": "10-08 12:00",
+      "handle": "Hone",
+      "url": "https://hone.com/blog/introducing-engines/",
+      "objective": [
+        "Hone 官方（10-08）：五个月新公司，前 Cognition / Harvey / Mercor 背景；发布 Engines——被指派目标（如「提升客户留存」）而非任务，自助入职学系统/人/历史后长期执行",
+        "种子轮 6000 万美元，Benchmark 与 Index Ventures 领投；Dealroom 称估值约 2.85 亿美元；Peter Fenton、Shardul Shah 入董事会",
+        "Index 投资备忘：CEO Moritz Stephan 曾在 Cognition 做 Devin 规划-执行 harness 与长程 agent；早期客户含 Cognition、Modal；成功标准对齐 P&L/「本周做成了什么」"
+      ],
+      "sources": [
+        {
+          "url": "https://hone.com/blog/introducing-engines/",
+          "handle": "Hone",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.indexventures.com/perspectives/ai-that-owns-business-outcomes-our-investment-in-hone/",
+          "handle": "IndexVentures",
+          "role": "primary"
+        },
+        {
+          "url": "https://dealroom.co/news/161745-hone-raises-60m-seed-to-build-ai-that-owns-business-outcomes/",
+          "handle": "Dealroom",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "so_what": {
+        "lens": "模式",
+        "impact": "顶级种子把「agent = 任务工具」升级成「agent = 结果负责人」；对 OPC 意味着产品叙事要从功能列表转向可度量的业务结果与任期式记忆，否则会被定位成可替换插件",
+        "action": "观察",
+        "window": "未来 1–2 个季度看首批企业案例是否交付可核验 KPI",
+        "confidence": "中",
+        "falsifier": "若公开案例仍停留在任务自动化且无独立可核验业务 KPI，或因安全事故被迫退回「每步人工确认」而名存实亡，则此模式判断作废",
+        "thesis_id": "T-003"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-meta-muse-wonder",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "赛道",
+      "priority": "P0",
+      "title": "Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）",
+      "date": "2026-10-13",
+      "time": "10-13 01:56",
+      "handle": "Meta",
+      "url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+      "objective": [
+        "Meta 官方（10-12 PDT）：发布 Muse Wonder 与 Muse Wonder Full，自称迄今最强、面向个人/专业 agent 任务（保险理赔、租约理解、编码等），建立在 Muse Spark 之上",
+        "Wonder 今日起经 Meta Model API 与 Muse Code 开放；Wonder Full 仅限 Muse Code 订阅者、不经 API；Wonder 将很快驱动 Muse agent，订阅用户优先",
+        "新能力：Active Memory（跨会话记住相关细节）、Active Focus（卡住时换路径、纠错、重要动作前确认）；TechCrunch 称 API 定价约 $4/百万 input、$20/百万 output（接近 GPT-6 Sol / Opus 5.5）",
+        "SiliconANGLE/模型卡转述：自测对标 GPT-6 Astra、Claude Fable 5.1、Opus 5.5；Wonder Full 在 SWE-Marathon、Legal Agent 等长程任务领先部分竞品，AA Intelligence Index 约 56（Opus 5.5 约 58）；完整安全报告待发"
+      ],
+      "sources": [
+        {
+          "url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+          "handle": "Meta",
+          "role": "primary"
+        },
+        {
+          "url": "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/",
+          "handle": "TechCrunch",
+          "role": "analysis"
+        },
+        {
+          "url": "https://siliconangle.com/2026/10/12/meta-releases-muse-wonder-ai-models-built-to-run-personal-and-professional-agents/",
+          "handle": "SiliconANGLE",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+      "access": "Wonder：Meta Model API + Muse Code；Wonder Full：仅 Muse Code 订阅",
+      "integration": "Meta Model API / Muse Code / 即将接入 Muse agent",
+      "first_step": "用同一套 coding 或长程 agent 任务跑 Wonder vs 现用 Sol/Opus，对照成本与完成率",
+      "alternatives": [
+        "GPT-6.1 Sol / Astra",
+        "Claude Opus 5.5 / Fable 5.1",
+        "Muse Spark 1.x（轻量）"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "Meta 正式进入「可对标前沿 API」阵营；OPC 选模型时不能再默认只有 OpenAI/Anthropic 两极，Wonder Full 锁 Muse Code 也意味着最强档可能走封闭 coding 产品而非开放 API",
+        "action": "试用",
+        "window": "本周做一次同任务对照即可",
+        "confidence": "高",
+        "falsifier": "若独立评测显示 Wonder 系列系统性低于同价位 Sol/Opus，或 API 长期缺货/无实质流量，则「第三极可用」判断作废",
+        "thesis_id": "T-001"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-agent37-sandbox",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "YC Agent37：低成本 agent harness 沙箱上线（客户均耗约 $0.37/月）",
+      "date": "2026-10-13",
+      "time": "10-13 01:30",
+      "handle": "Agent37",
+      "url": "https://www.agent37.com/",
+      "objective": [
+        "YC F26 Agent37（Launch HN，约 10-12）：提供隔离持久沙箱托管 Hermes / OpenClaw / Claude Code / Codex / OpenCode / Grok / Pi 及自定义镜像；自称成本可达多数沙箱商的约 10% 以下",
+        "官网计价：按分钟计量；示例 2 vCPU/4GB 常开约 $4.76/月，休眠仅磁盘约 $0.36/月；营销称客户均耗约 $0.37/月/沙箱；gVisor 隔离，另有全量 VM 选项",
+        "创始人 Vishnu（前 Amazon）：从 OpenClaw wrapper 扩展多 harness；免费档基础设施成本约 $0.05–0.10/用户/月；支持 sleep/wake、cron 唤醒、Composio 连接与自有 LLM gateway"
+      ],
+      "sources": [
+        {
+          "url": "https://www.agent37.com/",
+          "handle": "Agent37",
+          "role": "primary"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=50059096",
+          "handle": "HN",
+          "role": "report"
+        },
+        {
+          "url": "https://www.ycombinator.com/launches/UTg-agent37-host-any-agent-harness",
+          "handle": "YCombinator",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://www.agent37.com/",
+      "access": "注册即用；有免费档与 $5 起步额度（绑卡后）",
+      "integration": "多 harness 模板 / OpenAI-compatible gateway / cron / Composio",
+      "first_step": "用免费档起一个 Hermes 或 Claude Code 沙箱，跑一次真实任务看休眠与账单",
+      "alternatives": [
+        "E2B / Daytona / Modal",
+        "Fly Sprites / Cloudflare Sandbox",
+        "自建 Hetzner + gVisor/Firecracker"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "agent 产品的「每客户一沙箱」成本被压到美元级以下，使个人/小团队可验证 always-on agent；赛道拥挤、比价战明显，价值在交付速度而非长期护城河",
+        "action": "评估",
+        "window": "本周可试用免费档验证计费与休眠",
+        "confidence": "中",
+        "falsifier": "若实测常开账单接近 E2B/Daytona，或关键 harness 不稳定/无 SLA，则「低成本可量产」判断作废"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261012-manus-500m-post-meta",
@@ -474,7 +679,10 @@
         "Ghidra 手工",
         "IDA + 脚本"
       ],
-      "tool_radar": "评估"
+      "tool_radar": "评估",
+      "shift": "midday",
+      "lead_lag_hours": 0.2,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -502,7 +710,10 @@
       "judgment": [
         "若落地，会给「非 PyTorch 默认栈」的后训练/实验路径多一个可对标的开源入口，值得盯仓库动态"
       ],
-      "judgment_label": "主观判断"
+      "judgment_label": "主观判断",
+      "shift": "midday",
+      "lead_lag_hours": 3.85,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -550,7 +761,10 @@
         "confidence": "中",
         "falsifier": "若仓库无实质更新/示例无法对接 OpenAI 兼容 API，或仅为营销壳，则此判断作废",
         "thesis_id": "T-001"
-      }
+      },
+      "shift": "midday",
+      "lead_lag_hours": 4.73,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -585,7 +799,10 @@
         "confidence": "低",
         "falsifier": "若官方否认洽谈或无独立一手确认，且 Beam 热度消退后无跟进，则此判断作废",
         "thesis_id": "T-004"
-      }
+      },
+      "shift": "morning",
+      "lead_lag_hours": 1.15,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -610,7 +827,10 @@
           "role": "analysis"
         }
       ],
-      "judgment": []
+      "judgment": [],
+      "shift": "morning",
+      "lead_lag_hours": 7.78,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -635,7 +855,10 @@
           "role": "report"
         }
       ],
-      "judgment": []
+      "judgment": [],
+      "shift": "morning",
+      "lead_lag_hours": 7.92,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -661,7 +884,10 @@
           "role": "analysis"
         }
       ],
-      "judgment": []
+      "judgment": [],
+      "shift": "morning",
+      "lead_lag_hours": 15.62,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -686,7 +912,10 @@
           "role": "analysis"
         }
       ],
-      "judgment": []
+      "judgment": [],
+      "shift": "morning",
+      "lead_lag_hours": 15.82,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -721,7 +950,10 @@
         "confidence": "中",
         "falsifier": "若后续开源复现无法接近报告基准，或官方撤回/大幅修正 RL 成本口径，则此判断作废",
         "thesis_id": "T-002"
-      }
+      },
+      "shift": "morning",
+      "lead_lag_hours": 16.05,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -756,7 +988,10 @@
         "Ghidra 手工",
         "IDA + 脚本"
       ],
-      "tool_radar": "评估"
+      "tool_radar": "评估",
+      "shift": "morning",
+      "lead_lag_hours": 18.35,
+      "lead_lag_basis": "assumed_next_digest"
     }
   ]
 }

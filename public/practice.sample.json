@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-13",
+  "note": "版式示例。页面默认读 practice.json；地址加 ?sample=1 才看这里。正式条目放到 public/practice/inbox/*.json 后运行 python3 scripts/generate_derived.py。",
+  "items": [
+    {
+      "id": "prac-20261013-sample-editor",
+      "kind": "工具用法",
+      "title": "版式示例：把闭源界面拆成可复刻的步骤",
+      "author": "版式示例",
+      "url": "https://ruiyaoe-hash.github.io/ai-radar/practice.html?sample=1",
+      "time": "2026-10-13 09:00",
+      "takeaway": "没有源码时，先拆交互、留下证据，再在自己的项目里做一版最小复刻。适合个人学习。",
+      "steps": [
+        "打开目标界面，记下关键交互和可见状态",
+        "让助手整理成 3 到 5 步，并标出不确定的地方",
+        "在自己的项目里做一版最小复刻，对照差异"
+      ],
+      "caution": "商用前自行确认授权与合规。",
+      "sample": true
+    },
+    {
+      "id": "prac-20261013-sample-offer",
+      "kind": "变现",
+      "title": "版式示例：一个人用助手接外包时怎么报价和交付",
+      "author": "版式示例",
+      "url": "https://ruiyaoe-hash.github.io/ai-radar/practice.html?sample=1",
+      "time": "2026-10-13 09:05",
+      "takeaway": "只收说清怎么赚钱、怎么交付的帖。报价、周期、验收要写具体，不收空泛安利。",
+      "steps": [
+        "写清客户拿到什么、什么算做完",
+        "用一次真实小单试周期和改稿次数",
+        "把可重复的步骤收成自己的工作流"
+      ],
+      "sample": true
+    }
+  ]
+}

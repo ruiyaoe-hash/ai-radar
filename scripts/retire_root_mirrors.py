@@ -24,8 +24,15 @@ FILES = [
     "theses.json",
     "source-scores.json",
     "owner-actions.json",
+    "practice.html",
+    "week.html",
+    "subscribe.html",
+    "agent.html",
+    "about.html",
+    "practice.json",
+    "practice.sample.json",
 ]
-DIRS = ["archive", "feeds", "memos", "config"]
+DIRS = ["archive", "feeds", "memos", "config", "assets", "practice"]
 
 
 def main() -> None:

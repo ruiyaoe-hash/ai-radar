@@ -3,7 +3,7 @@
 | Script | Role |
 |--------|------|
 | `migrate_cards.py` | Legacy cards → schema_version 2 (idempotent) |
-| `generate_derived.py` | archive → items/feed/lens feeds/tools-radar/today3 |
+| `generate_derived.py` | archive → items/feed/lens feeds/tools-radar/today3；若 `public/practice/inbox/` 有 JSON 则并入 `practice.json` |
 | `validate.py` | Schema + archive monotonic vs origin/main + feed count |
 | `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |
 | `score_sources.py` | Source scoreboard → `public/source-scores.json` |
