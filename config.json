@@ -15,8 +15,10 @@
     "demishassabis", "drfeifei", "DrJimFan", "fchollet", "natolambert", "polynoamial",
     "OpenAI", "AnthropicAI", "GoogleDeepMind", "AIatMeta", "deepseek_ai", "Alibaba_Qwen",
     "MistralAI", "_akhaliq", "huggingface", "ArtificialAnlys", "arcprize", "lmarena_ai",
-    "dotey", "shao__meng", "dongxi_nlp", "simonw", "sama", "clementdelangue"
+    "dotey", "shao__meng", "dongxi_nlp", "simonw", "sama", "clementdelangue",
+    "op7418", "vista8", "lijigang", "bcherny", "trq212", "mattpocockuk", "addyosmani", "ryolu_"
   ],
+  "a_tier_practice_note": "博主实操 / practice-oriented（无独立 practice 列表，已并入 a_tier，不重复 dotey / simonw / shao__meng）: op7418, vista8, lijigang, bcherny, trq212, mattpocockuk, addyosmani, ryolu_",
   "primary_sources_config": "public/config/sources.json",
   "single_source_of_truth": "public/archive/"
 }
