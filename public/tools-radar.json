@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-12 13:35 北京时间",
+  "updated": "2026-10-13 08:07 北京时间",
   "rings": {
     "采纳": [
       {
@@ -49,6 +49,22 @@
         ],
         "status": "confirmed",
         "priority": "P1"
+      },
+      {
+        "id": "evt-20261013-meta-muse-wonder",
+        "title": "Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）",
+        "date": "2026-10-13",
+        "try_url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+        "access": "Wonder：Meta Model API + Muse Code；Wonder Full：仅 Muse Code 订阅",
+        "integration": "Meta Model API / Muse Code / 即将接入 Muse agent",
+        "first_step": "用同一套 coding 或长程 agent 任务跑 Wonder vs 现用 Sol/Opus，对照成本与完成率",
+        "alternatives": [
+          "GPT-6.1 Sol / Astra",
+          "Claude Opus 5.5 / Fable 5.1",
+          "Muse Spark 1.x（轻量）"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
       }
     ],
     "评估": [
@@ -120,9 +136,42 @@
         ],
         "status": "confirmed",
         "priority": "P1"
+      },
+      {
+        "id": "evt-20261013-agent37-sandbox",
+        "title": "YC Agent37：低成本 agent harness 沙箱上线（客户均耗约 $0.37/月）",
+        "date": "2026-10-13",
+        "try_url": "https://www.agent37.com/",
+        "access": "注册即用；有免费档与 $5 起步额度（绑卡后）",
+        "integration": "多 harness 模板 / OpenAI-compatible gateway / cron / Composio",
+        "first_step": "用免费档起一个 Hermes 或 Claude Code 沙箱，跑一次真实任务看休眠与账单",
+        "alternatives": [
+          "E2B / Daytona / Modal",
+          "Fly Sprites / Cloudflare Sandbox",
+          "自建 Hetzner + gVisor/Firecracker"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
       }
     ],
-    "暂缓": []
+    "暂缓": [
+      {
+        "id": "evt-20261013-ambi-26m",
+        "title": "Mistlabs Ambi 出 beta：全天候聆听式 AI + 融资 2600 万美元",
+        "date": "2026-10-13",
+        "try_url": "https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/",
+        "access": "iOS 18+ / Mac 应用出 beta；硬件 waitlist",
+        "integration": "日历 / 会议 / 知识库 / 跨设备任务；后续硬件传感",
+        "first_step": "若做会议流：对比 Ambi 与现用 notetaker，看「会中主动开任务」是否值得隐私成本",
+        "alternatives": [
+          "Plaud / 传统会议纪要",
+          "Apple Audio Intelligence",
+          "Limitless / Rewind 类桌面记忆"
+        ],
+        "status": "multi_source",
+        "priority": "P1"
+      }
+    ]
   },
   "note": "Tech Radar：采纳 / 试用 / 评估 / 暂缓。主人可在归档卡上写 tool_radar 字段。"
 }
