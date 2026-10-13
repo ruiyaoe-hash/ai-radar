@@ -5,9 +5,10 @@
 - [x] schema_version；去掉 bullets（feed 生成时可由 objective 映射）
 - [x] lens: 工具|赛道|模式|时机；UI 主过滤按 lens
 - [x] P0-待证 vs 正式 P0 规则与 UI
-- [x] JSON Schema + GH Actions CI：schema 合法；归档只增不减；feed 合法且条数≈items
+- [x] JSON Schema + GH Actions CI：schema 合法；归档只增不减；feed 合法且条数≈items（`.github/workflows/ci.yml` 读取 `schemas/*.json`）
 - [x] Actions 从 archive 派生 items.json、archive/index.json、feed.xml、lens feeds
-- [x] deploy-pages 只发 public/；删除根目录镜像与 data/ 三份副本策略
+- [x] deploy-pages 工作流只上传 `public/`（`.github/workflows/deploy-pages.yml`）；`data/` 副本已删除
+- [ ] 删除根目录镜像：Pages 仍是 legacy `main` + `/`。改成 GitHub Actions 且部署成功后运行 `python3 scripts/retire_root_mirrors.py --i-switched-pages-to-actions`。在此之前保留根镜像，避免看板 404
 - [x] 迁移现有卡片到事件模型（兼容旧字段）
 - [x] Alba 工作流文档：只追加 archive 并 commit；其余 CI
 

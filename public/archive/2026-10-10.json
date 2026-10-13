@@ -26,7 +26,10 @@
           "role": "analysis"
         }
       ],
-      "judgment": []
+      "judgment": [],
+      "shift": "morning",
+      "lead_lag_hours": 15.62,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -51,7 +54,10 @@
           "role": "analysis"
         }
       ],
-      "judgment": []
+      "judgment": [],
+      "shift": "morning",
+      "lead_lag_hours": 15.82,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -86,7 +92,10 @@
         "confidence": "中",
         "falsifier": "若后续开源复现无法接近报告基准，或官方撤回/大幅修正 RL 成本口径，则此判断作废",
         "thesis_id": "T-002"
-      }
+      },
+      "shift": "morning",
+      "lead_lag_hours": 16.05,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -121,7 +130,10 @@
         "Ghidra 手工",
         "IDA + 脚本"
       ],
-      "tool_radar": "评估"
+      "tool_radar": "评估",
+      "shift": "morning",
+      "lead_lag_hours": 18.35,
+      "lead_lag_basis": "assumed_next_digest"
     }
   ],
   "schema_version": 2
