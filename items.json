@@ -1,8 +1,57 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-13 13:36 北京时间",
+  "updated": "2026-10-13 21:15 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-amex-intent-intelligence",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "模式",
+      "priority": "P1",
+      "title": "Amex Intent Intelligence：先捕获并鉴权购买意图，再让 agent 下单",
+      "date": "2026-10-13",
+      "time": "10-13 21:00",
+      "handle": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/",
+      "objective": [
+        "TechCrunch（10-13 约 06:00 PDT）：American Express 推出 Intent Intelligence Framework，希望成为 AI 代下单交易的行业标准；在 agent 完成支付前捕获并鉴权用户购买意图与约束",
+        "流程：Create Intent API 记录商户/预算/偏好等 → 用户鉴权确认 → 生成 Intent ID 与 Proof of Intent Token → 换取限域支付凭证（非卡号）供 agent 结账；意图不匹配（如要 Nike 却买 Adidas）可拦单",
+        "该框架挂在 4 月已发布的 ACE（Agentic Commerce Experiences）开发者工具包之下；Amex 称尚未见 agent 商纠纷激增，属前瞻建设；同日 Disrupt 有相关演讲"
+      ],
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/",
+          "handle": "TechCrunch",
+          "role": "report"
+        },
+        {
+          "url": "https://www.americanexpress.com/en-us/company/agentic-commerce/",
+          "handle": "AmericanExpress",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://www.americanexpress.com/en-us/company/agentic-commerce/",
+      "access": "ACE 开发者工具包 / 合作伙伴对接",
+      "integration": "Create Intent API + Intent token + 限域支付凭证",
+      "first_step": "若产品含代下单：对照「意图令牌 vs 事后争议」路径，把约束写入结账前而非客服后",
+      "alternatives": [
+        "卡组织/钱包现有 token 化",
+        "每笔人工确认",
+        "商户侧 agent 白名单"
+      ],
+      "tool_radar": "暂缓",
+      "so_what": {
+        "lens": "模式",
+        "impact": "支付网络把「agent 商」风险前移到意图层：未来自主补货类 agent 可能默认需要可审计意图凭证；做交易型 agent 的 OPC 应把 intent 日志当产品能力，而不是合规补丁",
+        "action": "观察",
+        "window": "等 ACE 合作方落地案例（1–2 个季度）",
+        "confidence": "中",
+        "falsifier": "若主流 agent 结账仍只用卡号+人工确认、Intent 框架无实质商户采用，则「意图凭证成标配」判断作废"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261013-ambi-26m",
@@ -51,6 +100,94 @@
         "window": "等硬件与合规实践更清晰（1–2 季度）",
         "confidence": "中",
         "falsifier": "若主要市场出现强制指示灯/同意法规使 ambient 默认不可行，或早期用户因隐私诉讼大规模弃用，则此模式判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-character-ai-ch11",
+      "status": "confirmed",
+      "tag": "行业",
+      "lens": "时机",
+      "priority": "P1",
+      "title": "Character.AI 申请 Chapter 11：拟售部分资产予 Disney，平台或停运",
+      "date": "2026-10-13",
+      "time": "10-13 20:23",
+      "handle": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/",
+      "objective": [
+        "TechCrunch（10-13 约 05:23 PDT）：Character.AI 申请 Chapter 11；法院文件称资产与负债均在约 5000万–1 亿美元区间；CEO Colin Adams 称法院监管出售是最大化利益相关方价值的路径",
+        "已同意向 Disney 出售部分资产约 2000 万美元，并授予技术非独占永久许可；Disney 将通过上月随前 CEO Anand 加入的前员工提供过渡服务；出售目标约 11 月末至 12 月初完成",
+        "若无可行买家接手运营，平台将清盘；背景含未成年人安全诉讼/德州调查、高互动带来的推理成本与变现压力；PitchBook 口径累计融资超约 1.93 亿美元"
+      ],
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/",
+          "handle": "TechCrunch",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "so_what": {
+        "lens": "时机",
+        "impact": "高时长消费级聊天并不等于可规模化单位经济；角色陪伴赛道的合规与算力成本双重挤压被写进破产文件——OPC 做 C 端内容/陪伴产品时，要把「每用户推理成本+未成年人合规」当硬约束而非增长后话",
+        "action": "观察",
+        "window": "盯 11–12 月出售结果与平台是否清盘",
+        "confidence": "高",
+        "falsifier": "若出售后平台在合规约束下恢复可持续毛利且用户不崩，则「高互动陪伴难自我造血」判断需下调"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-scaledown-cdm-langchain",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "ScaleDown CDM 接入 LangChain/Deep Agents：长程 agent 上下文决策降本",
+      "date": "2026-10-13",
+      "time": "10-13 20:01",
+      "handle": "LangChain",
+      "url": "https://www.langchain.com/blog/building-long-running-agents-with-scaledown-and-deep-agents",
+      "objective": [
+        "LangChain 官方博文（10-13，Sydney Runkle 等）：发布 langchain-scaledown，把 ScaleDown 的 constrained decoding models（CDM）接到 LangChain / Deep Agents，并支持 LangSmith LLM Gateway",
+        "CDM 面向摘要/压缩/抽取/分类等受限输出任务；自称较前沿模型在窄任务上约 200× 更快、约 467× 更便宜；输入最长约 1M token，部分模型支持图像/扫描 PDF",
+        "自带中间件：ScaledownSummarizationMiddleware、ScaledownToolCompressionMiddleware、ScaledownExtractionMiddleware；示例含用 Classify 做漂移熔断；安装：uv pip install -U langchain-scaledown"
+      ],
+      "sources": [
+        {
+          "url": "https://www.langchain.com/blog/building-long-running-agents-with-scaledown-and-deep-agents",
+          "handle": "LangChain",
+          "role": "primary"
+        },
+        {
+          "url": "https://docs.scaledown.ai/api-reference/decisions-overview",
+          "handle": "ScaleDown",
+          "role": "primary"
+        },
+        {
+          "url": "https://pypi.org/project/langchain-scaledown/0.2.0/",
+          "handle": "PyPI",
+          "role": "report"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://www.langchain.com/blog/building-long-running-agents-with-scaledown-and-deep-agents",
+      "access": "API Key；langchain-scaledown；可选经 LangSmith Gateway",
+      "integration": "LangChain create_agent / Deep Agents middleware / LangSmith Gateway",
+      "first_step": "在现有长程 agent 上只替换摘要或工具结果压缩中间件，对照延迟与 token 账单",
+      "alternatives": [
+        "Jev / SubQ Snap 等决策模型",
+        "自建小模型分类/摘要",
+        "继续用前沿模型做上下文管理"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "长程 agent 成本大头常在「每轮用大模型做上下文家政」；CDM+中间件把这条路径产品化，OPC 做常驻 agent 应默认「便宜模型管上下文、前沿模型管生成」",
+        "action": "试用",
+        "window": "本周可在一条真实长任务上 A/B",
+        "confidence": "中",
+        "falsifier": "若实测压缩/摘要错误率导致任务失败率显著上升，或账单相对自建小模型无优势，则「默认换 CDM」判断作废"
       }
     },
     {
@@ -150,6 +287,45 @@
         "window": "等 12 月 beta 留存与任务完成率公开",
         "confidence": "中",
         "falsifier": "若封闭 beta 后主路径仍停在闲聊/设置、交易与预约长期未打通，或留存显著低于普通助手，则「超级 App 内 agent 入口」判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-deepseek-100b-cny-round",
+      "status": "rumor",
+      "tag": "融资",
+      "lens": "时机",
+      "priority": "P1",
+      "title": "传闻：DeepSeek 二轮融资拟从约500亿增至约1000亿元（投前约5000亿）",
+      "date": "2026-10-13",
+      "time": "10-13 09:29",
+      "handle": "财经",
+      "url": "https://www.mycaijing.com/article/detail/584924?source_id=40",
+      "objective": [
+        "《财经》邹露（10-13 09:29）：多位交易人士称 DeepSeek 将在近期完成第二轮融资，金额从此前计划约500亿元增至约1000亿元；投前估值仍约5000亿元；新老股东拟各占约一半",
+        "报道称新进方含石溪资本、中芯聚源、CPE源峰、君联、吉利等产业方；老股东含宁德时代（拟加码约100亿）、腾讯、IDG、砺思、拾象等；《财经》称向 DeepSeek 求证截至发稿未获回应",
+        "同文称公司加速科创板 IPO（最快今年末递表、目标2027挂牌），并调整基金结构以符合股东人数等申报要求；另称 CFO 严文韬（原高瓴）约9月下旬到任"
+      ],
+      "sources": [
+        {
+          "url": "https://www.mycaijing.com/article/detail/584924?source_id=40",
+          "handle": "财经",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/thexpin/status/2109976191763698041",
+          "handle": "thexpin",
+          "role": "report"
+        }
+      ],
+      "shift": "evening",
+      "so_what": {
+        "lens": "时机",
+        "impact": "若属实，国内一级市场单笔体量再抬一档，且产业资本绑芯片/汽车/制造上下游；对 OPC 意味「国产底座+产业闭环」叙事升温，但二级智谱/MiniMax 回调也说明高估值需兑现增速——跟风叙事前先看交割与招股文件",
+        "action": "观察",
+        "window": "盯官方/监管披露或交割事实（数周内）",
+        "confidence": "低",
+        "falsifier": "若 DeepSeek 官方否认、或最终交割金额/估值显著低于报道且无科创板推进信号，则此融资节奏判断作废"
       }
     },
     {
@@ -348,6 +524,60 @@
         "window": "本周可试用免费档验证计费与休眠",
         "confidence": "中",
         "falsifier": "若实测常开账单接近 E2B/Daytona，或关键 harness 不稳定/无 SLA，则「低成本可量产」判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261013-zhipu-glm-legal",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "智谱 Z.ai 发布法律垂类模型 GLM-Legal（Harvey LAB 19.2%）",
+      "date": "2026-10-13",
+      "time": "10-13 00:10",
+      "handle": "Z.ai",
+      "url": "https://z.ai/blog/glm-legal",
+      "objective": [
+        "Z.ai 官方博文（标日期 10-12；@Zai_org 约 10-12 16:10 UTC 推送）：发布法律垂类模型 GLM-Legal，底座为轻量 GLM-5.3-Flash，面向合同审查、证据分析、合规等真实法律工作流",
+        "自称 Harvey LAB all-pass 19.2%（较底座提升约 12.5 个百分点）；LegalBench / 中文 PLawBench 称可对标前沿闭源；Vals 独立评测见 vals.ai/models/zai_glm-legal",
+        "训练强调 mid-training 法律语料 + 与 harness 共进化的 post-training RL；将接入桌面 agent 平台 AutoClaw；API 需申请 https://z.ai/consultation/legal；官方称开源在计划中、先保证能力"
+      ],
+      "sources": [
+        {
+          "url": "https://z.ai/blog/glm-legal",
+          "handle": "Z.ai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/Zai_org/status/2109678174468534511",
+          "handle": "Zai_org",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.vals.ai/models/zai_glm-legal",
+          "handle": "Vals",
+          "role": "analysis"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://z.ai/consultation/legal",
+      "access": "API 申请制；AutoClaw 即将接入",
+      "integration": "Z.ai API / AutoClaw / 法律工作流 agent",
+      "first_step": "若做合同/合规辅助：用同一份合同对照现用通用模型，看条款改写与引用是否更可落地",
+      "alternatives": [
+        "Harvey / 通用 Claude·GPT 法律提示",
+        "国内其他法律垂类 API",
+        "人工律师工作流"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "国产实验室用轻量底座打「专业工作流 agent」样板：垂类不是更大通用模型，而是 harness+评测+交付物格式一起训；法律文本密、可核验，适合 OPC 观察「专业 cowork」产品形态",
+        "action": "评估",
+        "window": "等 API 开通后做一次同任务对照即可",
+        "confidence": "中",
+        "falsifier": "若独立复现显示 Harvey LAB/真实交付物质量系统性低于同价通用模型，或 API 长期不开，则「轻量垂类可落地」判断作废"
       }
     },
     {

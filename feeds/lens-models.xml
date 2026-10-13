@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看方法模式。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 13 Oct 2026 13:36:31 +0800</lastBuildDate>
+<lastBuildDate>Tue, 13 Oct 2026 21:15:15 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-models.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[重点关注 · 方法模式 · 发布] Amex Intent Intelligence：先捕获并鉴权购买意图，再让 agent 下单</title>
+<link>https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/</link>
+<guid isPermaLink="false">evt-20261013-amex-intent-intelligence</guid>
+<pubDate>Tue, 13 Oct 2026 21:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• TechCrunch（10-13 约 06:00 PDT）：American Express 推出 Intent Intelligence Framework，希望成为 AI 代下单交易的行业标准；在 agent 完成支付前捕获并鉴权用户购买意图与约束<br/>• 流程：Create Intent API 记录商户/预算/偏好等 → 用户鉴权确认 → 生成 Intent ID 与 Proof of Intent Token → 换取限域支付凭证（非卡号）供 agent 结账；意图不匹配（如要 Nike 却买 Adidas）可拦单<br/>• 该框架挂在 4 月已发布的 ACE（Agentic Commerce Experiences）开发者工具包之下；Amex 称尚未见 agent 商纠纷激增，属前瞻建设；同日 Disrupt 有相关演讲<br/><strong>对你意味着什么</strong> 支付网络把「agent 商」风险前移到意图层：未来自主补货类 agent 可能默认需要可审计意图凭证；做交易型 agent 的 OPC 应把 intent 日志当产品能力，而不是合规补丁<br/>建议：观察 · 等 ACE 合作方落地案例（1–2 个季度）<br/>有多确定：中<br/>什么情况下当这判断作废：若主流 agent 结账仍只用卡号+人工确认、Intent 框架无实质商户采用，则「意图凭证成标配」判断作废<br/>来源 TechCrunch（转述）, AmericanExpress（一手）<br/>日期 2026-10-13]]></description>
+</item>
 <item>
 <title>[重点关注 · 方法模式 · 融资] Hone 获 Benchmark/Index 领投 6000 万美元种子：Engines 认领业务结果而非任务</title>
 <link>https://hone.com/blog/introducing-engines/</link>
