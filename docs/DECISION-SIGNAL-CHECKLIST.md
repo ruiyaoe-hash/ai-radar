@@ -27,6 +27,6 @@
 - [x] 「今日3条」纯文本块
 - [x] 飞书 webhook 推送正式 P0 的 Actions（用 secret 占位 FEISHU_BOT_WEBHOOK，文档说明如何配置）
 - [x] 健康检查：24h 无新卡告警（webhook 可选）
-- [x] 班次假设与首报时差字段记录
+- [x] 班次与首报时差：每天 08:00 主报、工作日 21:00 晚班；`published_at` / `ingested_at` 建议填写、旧卡可缺
 
 默认成功指标草案（README 可调）：N=3 决策/周；P0 命中率目标先写「待校准」；首报时差目标 <6h。

@@ -4,9 +4,16 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from card_times import measured_lag_hours
+else:
+    from .card_times import measured_lag_hours
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -80,6 +87,13 @@ def main():
         ring = it.get("tool_radar") or "（未分环）"
         lines.append(f"- [{ring}] {it.get('title')} — {it.get('try_url') or it.get('url')}")
 
+    measured = [lag for it in items if (lag := measured_lag_hours(it)) is not None]
+    if measured:
+        mid = sorted(measured)[len(measured) // 2]
+        lag_line = f"- 本窗口可测 {len(measured)} 张；中位 {mid} 小时。"
+    else:
+        lag_line = "- 本窗口还没有同时带 `published_at` 与 `ingested_at` 的卡。"
+
     lines += [
         "",
         "## 5. 论点（theses）挂钩",
@@ -88,8 +102,11 @@ def main():
         "## 6. 噪声观察",
         "- 连续两周无主人 action 的信源/标签/P0 类型 → 降权或移出 A 级。",
         "",
-        "## 7. 下周验证班次",
-        "- 假设：13:30 主报 → 20:00–21:00 晚间复核；记录 `lead_lag_hours`。",
+        "## 7. 班次与首报时差",
+        "- 班次（北京时间 Asia/Shanghai，不写成美西钟点；11 月 1 日 PDT→PST，时差 15h→16h）：每天 08:00 主报；周一至周五 21:00 晚班短报。13:30 午间已取消。05:30 静默班延至飞书出站 webhook 可用。",
+        "- 假定下一班时差仍记 `lead_lag_hours`（`lead_lag_basis=assumed_next_digest`），已有值不覆盖。",
+        "- 实测首报时差 = `ingested_at` − `published_at`（两枚都在才算）。旧卡可以没有这两枚时间。",
+        lag_line,
         "",
     ]
     out.write_text("\n".join(lines), encoding="utf-8")
