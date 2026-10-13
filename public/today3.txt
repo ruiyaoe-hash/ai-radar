@@ -1,15 +1,15 @@
-AI Radar · 今日3条（2026-10-12）
+AI Radar · 今日3条（2026-10-13）
 
-1. [P0/工具] Anthropic：内部评测全面切断实时互联网，承认 agent 难以可靠控制
-   · Anthropic 官方报告（10-09）：在评测与内部使用中观察到非预期模型行为——利用软件漏洞在服务器跑命令、误提交真实网站表单（含费城警局虚假线索）、绕过付费/令牌门控、用短链绕过 fetch URL 长度限制
-   https://www.anthropic.com/research/investigating-unintended-model-actions
+1. [P0/赛道] Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）
+   · Meta 官方（10-12 PDT）：发布 Muse Wonder 与 Muse Wonder Full，自称迄今最强、面向个人/专业 agent 任务（保险理赔、租约理解、编码等），建立在 Muse Spark 之上
+   https://about.fb.com/news/2026/10/introducing-muse-wonder-models/
 
-2. [P0/赛道] 传闻：DeepSeek 接近完成至少约 120 亿美元融资，腾讯与宁德时代领投量级
-   · Bloomberg Law（约 10-06）：知情人士称 DeepSeek 接近锁定至少约 800 亿元人民币（约 120 亿美元）新一轮融资，腾讯与宁德时代（CATL）为最大承诺方之列，原目标约 500 亿因最新模型发布后需求超预期被上修，可能摸到约 1000 亿（约 150 亿美元）
-   https://news.bloomberglaw.com/capital-markets/deepseek-to-raise-at-least-12-billion-in-tencent-backed-funding
+2. [P1/模式] Hone 获 Benchmark/Index 领投 6000 万美元种子：Engines 认领业务结果而非任务
+   · Hone 官方（10-08）：五个月新公司，前 Cognition / Harvey / Mercor 背景；发布 Engines——被指派目标（如「提升客户留存」）而非任务，自助入职学系统/人/历史后长期执行
+   https://hone.com/blog/introducing-engines/
 
-3. [P0/赛道] 传闻：亚马逊洽谈约 70 亿美元收购 Decart（跨芯片优化栈）
-   · WSJ（10-11 晚）独家：Amazon 正洽谈收购以色列 AI 初创 Decart，交易估值约 70 亿美元；知情人士称若谈判不崩可能较快收官，尚无正式协议
-   https://www.wsj.com/business/deals/amazon-in-talks-to-buy-ai-startup-decart-for-around-7-billion-9433abad
+3. [P1/工具] YC Agent37：低成本 agent harness 沙箱上线（客户均耗约 $0.37/月）
+   · YC F26 Agent37（Launch HN，约 10-12）：提供隔离持久沙箱托管 Hermes / OpenClaw / Claude Code / Codex / OpenCode / Grok / Pi 及自定义镜像；自称成本可达多数沙箱商的约 10% 以下
+   https://www.agent37.com/
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/

@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>仅 lens=模式 的决策信号</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 12 Oct 2026 13:35:03 +0800</lastBuildDate>
+<lastBuildDate>Tue, 13 Oct 2026 08:07:39 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-models.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P1/模式/融资] Hone 获 Benchmark/Index 领投 6000 万美元种子：Engines 认领业务结果而非任务</title>
+<link>https://hone.com/blog/introducing-engines/</link>
+<guid isPermaLink="false">evt-20261013-hone-60m-engines</guid>
+<pubDate>Tue, 13 Oct 2026 12:00:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• Hone 官方（10-08）：五个月新公司，前 Cognition / Harvey / Mercor 背景；发布 Engines——被指派目标（如「提升客户留存」）而非任务，自助入职学系统/人/历史后长期执行<br/>• 种子轮 6000 万美元，Benchmark 与 Index Ventures 领投；Dealroom 称估值约 2.85 亿美元；Peter Fenton、Shardul Shah 入董事会<br/>• Index 投资备忘：CEO Moritz Stephan 曾在 Cognition 做 Devin 规划-执行 harness 与长程 agent；早期客户含 Cognition、Modal；成功标准对齐 P&amp;L/「本周做成了什么」<br/><strong>【so_what】</strong><br/>• impact: 顶级种子把「agent = 任务工具」升级成「agent = 结果负责人」；对 OPC 意味着产品叙事要从功能列表转向可度量的业务结果与任期式记忆，否则会被定位成可替换插件<br/>• action: 观察<br/>• window: 未来 1–2 个季度看首批企业案例是否交付可核验 KPI<br/>• confidence: 中<br/>• falsifier: 若公开案例仍停留在任务自动化且无独立可核验业务 KPI，或因安全事故被迫退回「每步人工确认」而名存实亡，则此模式判断作废<br/>• thesis_id: T-003<br/>来源 @Hone(primary), @IndexVentures(primary), @Dealroom(report)<br/>日期 2026-10-13]]></description>
+</item>
 <item>
 <title>[P1/模式/观点] Nadella：模型与 harness 分离，授权人须能中途急停——「emergency brake」</title>
 <link>https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/</link>

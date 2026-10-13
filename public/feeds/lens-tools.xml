@@ -5,8 +5,22 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>仅 lens=工具 的决策信号</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 12 Oct 2026 13:35:03 +0800</lastBuildDate>
+<lastBuildDate>Tue, 13 Oct 2026 08:07:39 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P1/工具/融资] Mistlabs Ambi 出 beta：全天候聆听式 AI + 融资 2600 万美元</title>
+<link>https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/</link>
+<guid isPermaLink="false">evt-20261013-ambi-26m</guid>
+<pubDate>Tue, 13 Oct 2026 20:47:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• TechCrunch（10-12）：前 Plaud 高管 Peter Mo 创办 Ambi（Mistlabs），宣称全天候聆听以提供实时洞察；出 Apple 生态 beta，推 iPhone / Mac / Apple Watch 应用<br/>• 融资 2600 万美元（多轮、Pre-A），由 Luminous Ventures 与华勤（Huaqin）领投；计划自研带屏/扬声器/摄像头/麦克风的硬件，可加入 waitlist<br/>• 产品差异：会议中即可主动建议与开任务（非会后摘要）；桌面版将观察工作内容写入记忆；环境采集默认关闭、可随时关，称不存录音并加密，但第三方知情披露仍靠用户<br/>• SiliconANGLE 同日：约 50 人分布旧金山与北上深；Routine 等能力可把会中承诺变成会后提案草稿<br/><strong>【so_what】</strong><br/>• impact: 「ambient + 会中代理」融资继续验证，但隐私披露未解；OPC 做内容/会议工具应默认关采集、明示第三方，不宜跟风全天候听<br/>• action: 观察<br/>• window: 等硬件与合规实践更清晰（1–2 季度）<br/>• confidence: 中<br/>• falsifier: 若主要市场出现强制指示灯/同意法规使 ambient 默认不可行，或早期用户因隐私诉讼大规模弃用，则此模式判断作废<br/>来源 @TechCrunch(primary), @SiliconANGLE(report)<br/>日期 2026-10-13]]></description>
+</item>
+<item>
+<title>[P1/工具/工具] YC Agent37：低成本 agent harness 沙箱上线（客户均耗约 $0.37/月）</title>
+<link>https://www.agent37.com/</link>
+<guid isPermaLink="false">evt-20261013-agent37-sandbox</guid>
+<pubDate>Tue, 13 Oct 2026 01:30:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• YC F26 Agent37（Launch HN，约 10-12）：提供隔离持久沙箱托管 Hermes / OpenClaw / Claude Code / Codex / OpenCode / Grok / Pi 及自定义镜像；自称成本可达多数沙箱商的约 10% 以下<br/>• 官网计价：按分钟计量；示例 2 vCPU/4GB 常开约 $4.76/月，休眠仅磁盘约 $0.36/月；营销称客户均耗约 $0.37/月/沙箱；gVisor 隔离，另有全量 VM 选项<br/>• 创始人 Vishnu（前 Amazon）：从 OpenClaw wrapper 扩展多 harness；免费档基础设施成本约 $0.05–0.10/用户/月；支持 sleep/wake、cron 唤醒、Composio 连接与自有 LLM gateway<br/><strong>【so_what】</strong><br/>• impact: agent 产品的「每客户一沙箱」成本被压到美元级以下，使个人/小团队可验证 always-on agent；赛道拥挤、比价战明显，价值在交付速度而非长期护城河<br/>• action: 评估<br/>• window: 本周可试用免费档验证计费与休眠<br/>• confidence: 中<br/>• falsifier: 若实测常开账单接近 E2B/Daytona，或关键 harness 不稳定/无 SLA，则「低成本可量产」判断作废<br/>来源 @Agent37(primary), @HN(report), @YCombinator(report)<br/>日期 2026-10-13]]></description>
+</item>
 <item>
 <title>[P1/工具/工具] OpenAI 案例：Asana 用 Codex + GPT-6.1 Sol 将浏览器 agent 成本降约 76 倍</title>
 <link>https://openai.com/index/asana-browser-agent</link>

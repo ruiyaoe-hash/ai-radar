@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>仅 lens=赛道 的决策信号</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 12 Oct 2026 13:35:03 +0800</lastBuildDate>
+<lastBuildDate>Tue, 13 Oct 2026 08:07:39 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[P0/赛道/发布] Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）</title>
+<link>https://about.fb.com/news/2026/10/introducing-muse-wonder-models/</link>
+<guid isPermaLink="false">evt-20261013-meta-muse-wonder</guid>
+<pubDate>Tue, 13 Oct 2026 01:56:00 +0800</pubDate>
+<description><![CDATA[<strong>客观摘要</strong><br/>• Meta 官方（10-12 PDT）：发布 Muse Wonder 与 Muse Wonder Full，自称迄今最强、面向个人/专业 agent 任务（保险理赔、租约理解、编码等），建立在 Muse Spark 之上<br/>• Wonder 今日起经 Meta Model API 与 Muse Code 开放；Wonder Full 仅限 Muse Code 订阅者、不经 API；Wonder 将很快驱动 Muse agent，订阅用户优先<br/>• 新能力：Active Memory（跨会话记住相关细节）、Active Focus（卡住时换路径、纠错、重要动作前确认）；TechCrunch 称 API 定价约 $4/百万 input、$20/百万 output（接近 GPT-6 Sol / Opus 5.5）<br/>• SiliconANGLE/模型卡转述：自测对标 GPT-6 Astra、Claude Fable 5.1、Opus 5.5；Wonder Full 在 SWE-Marathon、Legal Agent 等长程任务领先部分竞品，AA Intelligence Index 约 56（Opus 5.5 约 58）；完整安全报告待发<br/><strong>【so_what】</strong><br/>• impact: Meta 正式进入「可对标前沿 API」阵营；OPC 选模型时不能再默认只有 OpenAI/Anthropic 两极，Wonder Full 锁 Muse Code 也意味着最强档可能走封闭 coding 产品而非开放 API<br/>• action: 试用<br/>• window: 本周做一次同任务对照即可<br/>• confidence: 高<br/>• falsifier: 若独立评测显示 Wonder 系列系统性低于同价位 Sol/Opus，或 API 长期缺货/无实质流量，则「第三极可用」判断作废<br/>• thesis_id: T-001<br/>来源 @Meta(primary), @TechCrunch(analysis), @SiliconANGLE(report)<br/>日期 2026-10-13]]></description>
+</item>
 <item>
 <title>[P1/赛道/融资] Manus 母公司 Butterfly Effect 官宣逾 5 亿美元融资（Meta 交易拆解后首轮）</title>
 <link>https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/</link>
