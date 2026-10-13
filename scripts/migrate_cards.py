@@ -11,11 +11,13 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 ARCHIVE = PUBLIC / "archive"
+TZ = timezone(timedelta(hours=8))
 
 TAG_TO_LENS = {
     "工具": "工具",
@@ -79,12 +81,49 @@ def infer_role(handle: str, status: str) -> str:
     return "report"
 
 
+def infer_shift_and_lag(date: str, time_s: str):
+    """Hours from the source timestamp to the next Alba publish slot.
+
+    Publish slots (Asia/Shanghai): 08:00 morning, 13:30 midday.
+    20:00–21:00 is a verify shift and is not a publish slot.
+    Returns (shift, lead_lag_hours) or (None, None).
+    """
+    if not date or " " not in (time_s or ""):
+        return None, None
+    try:
+        hh, mi = map(int, time_s.split(" ", 1)[1].split(":"))
+        y, m, d = map(int, date.split("-"))
+        post = datetime(y, m, d, hh, mi, tzinfo=TZ)
+    except Exception:
+        return None, None
+    slots = []
+    for add in (0, 1):
+        day = post + timedelta(days=add)
+        slots.append(day.replace(hour=8, minute=0, second=0, microsecond=0))
+        slots.append(day.replace(hour=13, minute=30, second=0, microsecond=0))
+    nxt = min(s for s in slots if s >= post)
+    lag_h = round((nxt - post).total_seconds() / 3600, 2)
+    shift = "morning" if nxt.hour == 8 else "midday"
+    return shift, lag_h
+
+
+def fill_shift(out: dict) -> dict:
+    """Record assumed first-report lag. Never overwrite a value Alba already set."""
+    shift, lag = infer_shift_and_lag(out.get("date") or "", out.get("time") or "")
+    if shift and not out.get("shift"):
+        out["shift"] = shift
+    if lag is not None and out.get("lead_lag_hours") is None:
+        out["lead_lag_hours"] = lag
+        out["lead_lag_basis"] = "assumed_next_digest"
+    return out
+
+
 def migrate_item(it: dict) -> dict:
     if it.get("schema_version") == 2 and it.get("id") and it.get("sources"):
-        # still drop bullets if present
+        # still drop bullets if present; backfill shift / lead_lag when absent
         out = dict(it)
         out.pop("bullets", None)
-        return out
+        return fill_shift(out)
 
     date = (it.get("date") or "1970-01-01").strip()
     ymd = date.replace("-", "")
@@ -187,7 +226,7 @@ def migrate_item(it: dict) -> dict:
             "thesis_id": "T-001",
         }
 
-    return out
+    return fill_shift(out)
 
 
 def migrate_archive_file(path: Path) -> int:

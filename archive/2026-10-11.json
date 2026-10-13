@@ -38,7 +38,10 @@
         "Ghidra 手工",
         "IDA + 脚本"
       ],
-      "tool_radar": "评估"
+      "tool_radar": "评估",
+      "shift": "midday",
+      "lead_lag_hours": 0.2,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -66,7 +69,10 @@
       "judgment": [
         "若落地，会给「非 PyTorch 默认栈」的后训练/实验路径多一个可对标的开源入口，值得盯仓库动态"
       ],
-      "judgment_label": "主观判断"
+      "judgment_label": "主观判断",
+      "shift": "midday",
+      "lead_lag_hours": 3.85,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -114,7 +120,10 @@
         "confidence": "中",
         "falsifier": "若仓库无实质更新/示例无法对接 OpenAI 兼容 API，或仅为营销壳，则此判断作废",
         "thesis_id": "T-001"
-      }
+      },
+      "shift": "midday",
+      "lead_lag_hours": 4.73,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -149,7 +158,10 @@
         "confidence": "低",
         "falsifier": "若官方否认洽谈或无独立一手确认，且 Beam 热度消退后无跟进，则此判断作废",
         "thesis_id": "T-004"
-      }
+      },
+      "shift": "morning",
+      "lead_lag_hours": 1.15,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -174,7 +186,10 @@
           "role": "analysis"
         }
       ],
-      "judgment": []
+      "judgment": [],
+      "shift": "morning",
+      "lead_lag_hours": 7.78,
+      "lead_lag_basis": "assumed_next_digest"
     },
     {
       "schema_version": 2,
@@ -199,7 +214,10 @@
           "role": "report"
         }
       ],
-      "judgment": []
+      "judgment": [],
+      "shift": "morning",
+      "lead_lag_hours": 7.92,
+      "lead_lag_basis": "assumed_next_digest"
     }
   ],
   "schema_version": 2

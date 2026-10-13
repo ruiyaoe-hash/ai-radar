@@ -1,0 +1,47 @@
+# Canonical CI. A review copy is kept at docs/workflows/ci.yml.
+name: CI · validate + derive
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-derive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install JSON Schema validator
+        run: pip install -r requirements-ci.txt
+
+      - name: Derive from archive
+        run: python3 scripts/generate_derived.py
+
+      - name: Validate schema + monotonic + feed
+        env:
+          # PR: base commit. Push: previous main SHA. Skip the all-zero first-push placeholder.
+          VALIDATE_BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: python3 scripts/validate.py
+
+      - name: Score sources + weekly memo draft
+        run: |
+          python3 scripts/score_sources.py
+          python3 scripts/generate_weekly_memo.py
+
+      - name: Upload derived artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-derived
+          path: public/

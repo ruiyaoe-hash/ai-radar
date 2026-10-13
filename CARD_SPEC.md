@@ -65,8 +65,12 @@
 
 ## 班次与首报时差
 
-- 验证班次假设：13:30 主报 → 20:00–21:00 晚间复核（见 `config.json`）
-- 可选字段 `lead_lag_hours`、`shift`（`morning`\|`midday`\|`evening`\|`other`）
+- 发布班次（北京时间）：08:00 `morning`、13:30 `midday`
+- 验证班次：20:00–21:00 只复核、不发新卡（见 `config.json` 的 `evening_verify`）
+- `shift`：这张卡被编入的下一发布班
+- `lead_lag_hours`：信源时间到下一发布班的小时数
+- `lead_lag_basis`：`assumed_next_digest` 表示按班次假定回填。Alba 有实测首报时差时覆盖 `lead_lag_hours`，不要改历史归档里已写好的值
+- 迁移脚本只在字段为空时回填，不覆盖手写值
 
 ## 主人 action（私用）
 

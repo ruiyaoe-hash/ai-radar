@@ -1,25 +1,30 @@
 #!/usr/bin/env python3
-"""INTERIM: mirror public/ → repo root for legacy GitHub Pages (branch /).
+"""INTERIM: mirror public/ → repo root for legacy GitHub Pages (branch main /).
 
-Remove this once .github/workflows/deploy-pages.yml is installed (needs gh
-token with `workflow` scope) and Pages source is set to GitHub Actions.
+Stop once Pages source is GitHub Actions and scripts/retire_root_mirrors.py
+has written .no-root-mirror. Never copies README.md (repo docs, not the site).
 """
 from __future__ import annotations
 
+import os
 import shutil
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
+MARKER = ROOT / ".no-root-mirror"
 FILES = [
     "index.html", "items.json", "feed.xml", "tools-radar.html", "tools-radar.json",
     "today3.txt", "theses.json", "source-scores.json", "owner-actions.json", ".nojekyll",
-    "README.md",
 ]
 DIRS = ["archive", "feeds", "config", "memos"]
 
 
 def main() -> None:
+    if MARKER.exists() and os.environ.get("FORCE_ROOT_MIRROR") != "1":
+        print("root mirror retired (.no-root-mirror present); skip sync", file=sys.stderr)
+        return
     for name in FILES:
         src = PUBLIC / name
         if src.exists():

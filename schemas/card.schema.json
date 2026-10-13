@@ -80,6 +80,10 @@
       "enum": ["采纳", "试用", "评估", "暂缓"]
     },
     "lead_lag_hours": { "type": ["number", "null"] },
+    "lead_lag_basis": {
+      "type": "string",
+      "description": "assumed_next_digest when filled by migrate; Alba may replace lead_lag_hours with a measured value"
+    },
     "shift": { "type": "string", "enum": ["morning", "midday", "evening", "other"] }
   },
   "allOf": [
