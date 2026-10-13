@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-day.schema.json",
   "title": "AI Radar Archive Day",
+  "description": "One Beijing calendar day of event cards. published_at and ingested_at are recommended on new cards and optional on older cards; see card.schema.json.",
   "type": "object",
   "required": ["date", "count", "items"],
   "properties": {

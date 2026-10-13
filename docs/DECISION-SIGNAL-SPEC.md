@@ -12,6 +12,6 @@
 theses.json、so_what（lens/impact/action/window/confidence/falsifier/thesis_id）、工具字段+工具雷达页、P0-待证、一手信源。
 
 ## 阶段3 闭环分发
-action 记录、信源记分、首报时差、漏报审计、周度决策备忘、飞书 webhook 主动推正式 P0、班次验证（13:30→晚间假设）。
+action 记录、信源记分、首报时差、漏报审计、周度决策备忘、飞书 webhook 主动推正式 P0。班次（北京时间）：每天 08:00 主报，周一至周五 21:00 晚班；13:30 主报已取消；05:30 静默班待飞书出站 webhook。实测时差用 `ingested_at` − `published_at`。
 
 详见用户消息全文（聊天 t58u）。

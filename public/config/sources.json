@@ -2,10 +2,15 @@
   "schema_version": 1,
   "note": "一手信源配置：实验室博客/changelog RSS、GitHub Releases、HF、arXiv、PH AI、融资并购，以及过滤后的 HN / Reddit LocalLLaMA / GitHub 语言日榜（试用工具与市场信号）。Alba/CI 可据此扩展抓取；当前 digest 仍以 X A 级为主。",
   "shift_assumption": {
-    "verify_midday": "13:30",
-    "verify_evening": "20:00-21:00",
+    "main": "08:00",
+    "evening": "21:00",
+    "evening_days": "Mon-Fri",
+    "removed_midday": "13:30",
+    "deferred_silent": "05:30",
     "timezone": "Asia/Shanghai",
-    "lead_lag_field": "lead_lag_hours"
+    "timezone_note": "存北京时间。不要用美西钟点排班：11 月 1 日 PDT→PST，时差 15h→16h。",
+    "lead_lag_field": "lead_lag_hours",
+    "measured_lag": "ingested_at - published_at when both present"
   },
   "primary_sources": [
     {

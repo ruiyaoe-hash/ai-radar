@@ -79,12 +79,29 @@
       "type": "string",
       "enum": ["采纳", "试用", "评估", "暂缓"]
     },
-    "lead_lag_hours": { "type": ["number", "null"] },
+    "lead_lag_hours": {
+      "type": ["number", "null"],
+      "description": "Assumed hours from the display source clock to the next publish slot. Not the measured lag."
+    },
     "lead_lag_basis": {
       "type": "string",
-      "description": "assumed_next_digest when filled by migrate; Alba may replace lead_lag_hours with a measured value"
+      "description": "assumed_next_digest when filled by migrate. Leave this pair in place. Measured first-report lag is ingested_at − published_at when both stamps are present."
     },
-    "shift": { "type": "string", "enum": ["morning", "midday", "evening", "other"] }
+    "published_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|\\+00:00)$",
+      "description": "Recommended on new cards, optional on legacy cards. Original post/publish time, ISO-8601 UTC (Z or +00:00). Set from a source clock such as X created_at or RSS pubDate. Omit when the source has no time; do not guess."
+    },
+    "ingested_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|\\+00:00)$",
+      "description": "Recommended on new cards, optional on legacy cards. When the card was first written onto the archive board, ISO-8601 UTC. Set once; do not refresh on later edits. Measured lag hours = ingested_at − published_at when both are present."
+    },
+    "shift": {
+      "type": "string",
+      "enum": ["morning", "midday", "evening", "other"],
+      "description": "morning = 08:00 Asia/Shanghai 主报 (daily). evening = 21:00 Asia/Shanghai 晚班 (Mon–Fri). midday is legacy from the removed 13:30 slot. other = outside publish slots."
+    }
   },
   "allOf": [
     {

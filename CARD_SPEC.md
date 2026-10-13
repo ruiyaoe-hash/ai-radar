@@ -1,6 +1,6 @@
 # AI Radar 卡片写作规范（CARD_SPEC）· schema_version 2
 
-供 Alba 早报 / 主报例程使用。读者：Rui（AI OPC）与其他从业者。
+供 Alba 主报 / 晚班例程使用。读者：Rui（AI OPC）与其他从业者。
 
 ## 产品焦点（lens）
 
@@ -65,12 +65,23 @@
 
 ## 班次与首报时差
 
-- 发布班次（北京时间）：08:00 `morning`、13:30 `midday`
-- 验证班次：20:00–21:00 只复核、不发新卡（见 `config.json` 的 `evening_verify`）
-- `shift`：这张卡被编入的下一发布班
-- `lead_lag_hours`：信源时间到下一发布班的小时数
-- `lead_lag_basis`：`assumed_next_digest` 表示按班次假定回填。Alba 有实测首报时差时覆盖 `lead_lag_hours`，不要改历史归档里已写好的值
-- 迁移脚本只在字段为空时回填，不覆盖手写值
+班次一律写北京时间（Asia/Shanghai）。不要换成美西钟点：11 月 1 日 PDT→PST，与北京的时差从 15 小时变成 16 小时。
+
+| 班次 | `shift` | 时间 | 说明 |
+|------|---------|------|------|
+| 主报 | `morning` | 08:00 | 每天。覆盖美西上一工作日收盘窗口 |
+| 晚班 | `evening` | 21:00 | 周一至周五短报。覆盖中国白天 + 美东早晨 |
+
+- 13:30 `midday` 已取消。历史卡上的 `midday` 留着，不要改归档。
+- 05:30 静默班暂缓，直到飞书出站 webhook 可用。它不是发布槽。
+- 原 20:00–21:00「只复核、不发新卡」已取消。工作日 21:00 现在会写新卡（见 `config.json`）。
+- `shift`：这张卡被编入的下一发布班。
+- `lead_lag_hours` / `lead_lag_basis`：按下一发布班假定的时差。`assumed_next_digest` 表示迁移脚本回填。已有值不要覆盖，也不要改历史归档里写好的数。
+- `published_at`：信源原发时间，ISO-8601 UTC（`Z`）。用 X `created_at`、RSS `pubDate` 等。信源没有时间就省略，不要用展示字段 `time`（`MM-DD HH:MM`）去猜。
+- `ingested_at`：这张卡第一次写入 `public/archive/` 的时间，ISO-8601 UTC。只写一次；按 `id` 更新原卡时不要改。
+- 两枚时间都在时，实测首报时差 = `ingested_at` − `published_at`。这和 `lead_lag_hours` 是两套数。
+- 旧卡可以没有这两枚时间，校验仍通过。
+- 迁移脚本只在字段为空时回填。已经在归档上的卡不会被补 `ingested_at`（那会把迁移时刻当成入库时刻）。
 
 ## 主人 action（私用）
 

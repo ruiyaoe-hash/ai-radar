@@ -17,6 +17,19 @@
 
 北极星指标：**可行动信号数**（主人 `action`：`tried` / `thesis_updated` / `shared` / `ignored`），每周回看。记录在 `public/owner-actions.json`（或未跟踪的 `owner-actions.local.json`）。
 
+## 班次（北京时间）
+
+时间一律按 **Asia/Shanghai** 存储和书写，不要换成美西钟点。11 月 1 日夏令时结束（PDT→PST），美西与北京的时差会从 15 小时变成 16 小时。
+
+| 班次 | 时间 | 日期 | 窗口 |
+|------|------|------|------|
+| 主报 | 08:00 | 每天 | 美西上一工作日收盘 |
+| 晚班 | 21:00 | 周一至周五 | 短报：中国白天 + 美东早晨 |
+
+13:30 午间主报已取消。05:30 静默班暂缓，直到飞书出站 webhook 可用。配置见 `config.json`。
+
+新卡建议写 `published_at`（信源原发时间；没有就不写）和 `ingested_at`（首次写入归档的时间）。两者都是 ISO-8601 UTC。都在时，实测首报时差 = `ingested_at` − `published_at`。`lead_lag_hours` 仍是按下一班假定的时差，已有值不覆盖。旧归档卡可以没有这两枚时间。
+
 ## 单源真相
 
 | 路径 | 用途 |
@@ -51,7 +64,8 @@ git add -A && git commit -m "chore: retire legacy Pages root mirror" && git push
 
 ```bash
 pip install -r requirements-ci.txt   # jsonschema，CI 同样安装
-python3 scripts/migrate_cards.py      # 旧卡 → 事件模型（幂等；空的 shift/lead_lag 会回填）
+python3 scripts/migrate_cards.py      # 旧卡 → 事件模型（幂等；空的 shift/lead_lag 会回填；不给已入库的卡补 ingested_at）
+python3 scripts/card_times.py         # 自检 published_at / ingested_at 解析
 python3 scripts/generate_derived.py   # 只写 public/
 python3 generate_feed.py              # 派生 + 刷新根镜像（不覆盖本 README）
 python3 scripts/validate.py           # schema、归档只增不减、feed 条数

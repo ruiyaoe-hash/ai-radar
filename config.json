@@ -1,7 +1,26 @@
 {
   "timezone": "Asia/Shanghai",
-  "digests": ["08:00", "13:30"],
-  "evening_verify": "20:00-21:00",
+  "timezone_note": "班次一律用北京时间（Asia/Shanghai）存储和书写。不要写成美西钟点：11 月 1 日 PDT→PST，与北京的时差从 15 小时变成 16 小时。",
+  "digests": ["08:00", "21:00"],
+  "schedule": {
+    "main": {
+      "name": "主报",
+      "time": "08:00",
+      "days": "daily",
+      "window": "美西上一工作日收盘窗口"
+    },
+    "evening": {
+      "name": "晚班",
+      "time": "21:00",
+      "days": "Mon-Fri",
+      "kind": "short",
+      "window": "中国白天 + 美东早晨"
+    },
+    "removed_midday": "13:30 午间主报已取消",
+    "deferred_silent": "05:30 静默班延后，直到飞书出站 webhook 可用"
+  },
+  "evening_verify": "retired",
+  "evening_verify_note": "原 20:00–21:00 只复核、不发新卡。工作日 21:00 现为晚班短报，会写新卡。",
   "success_metrics": {
     "decisions_per_week_N": 3,
     "p0_hit_rate_target": "待校准",

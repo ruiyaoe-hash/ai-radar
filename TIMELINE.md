@@ -10,13 +10,26 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 2. **不要**手改 `items.json` / `feed.xml` / 根镜像（已废除）
 3. commit + push `main` → GitHub Actions：校验、派生、部署 `public/`
 
-## 每次 digest（08:00 / 13:30 北京）
+## 每次 digest（北京时间 Asia/Shanghai）
+
+不要用美西钟点排班。11 月 1 日 PDT→PST，与北京的时差从 15 小时变成 16 小时。
+
+| 班次 | 时间 | 日期 | 窗口 |
+|------|------|------|------|
+| 主报 | 08:00 | 每天 | 美西上一工作日收盘 |
+| 晚班 | 21:00 | 周一至周五 | 短报：中国白天 + 美东早晨 |
+
+13:30 午间已取消，不再当主报。05:30 静默班暂缓，直到飞书出站 webhook 可用。
 
 1. **写卡片**（事件模型）  
    - 生成 `id = evt-YYYYMMDD-slug`  
    - 填 `status` / `sources[{url,handle,role}]` / `lens` / `objective`  
+   - 新卡写 `ingested_at` = 此刻 UTC（ISO-8601，如 `2026-10-13T00:00:00Z`）。按 `id` 更新原卡时不要改它  
+   - `published_at` 只在信源有时间时写：X 用 `created_at`，RSS 用 `pubDate`，转成 UTC。没有时间就省略，不要猜  
+   - 已有的 `lead_lag_hours` / `lead_lag_basis` 不动。两枚时间都在时，实测时差 = `ingested_at` − `published_at`  
    - rumor 不得当正式 P0；有判断则写带 `falsifier` 的 `so_what`，否则省略  
-   - **不要**写 `bullets`
+   - **不要**写 `bullets`  
+   - 需要解析信源时间时用 `scripts/card_times.py` 的 `stamp_first_report`（`python3 scripts/card_times.py` 可自检）
 
 2. **合并当日归档**  
    - 路径：`public/archive/YYYY-MM-DD.json`  
