@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="agent">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c0e12" />
+  <title>给 Agent 用 · AI Radar</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./assets/radar.css" />
+</head>
+<body>
+  <div class="app">
+    <script src="./assets/shell.js"></script>
+    <div class="content">
+      <div class="topbar">
+        <button class="menu-btn" type="button" data-nav-open>菜单</button>
+        <span class="topbar-title">给 Agent 用</span>
+      </div>
+      <main>
+        <h1>给 Agent 用</h1>
+        <p class="sub">给人看的页面用中文叫法。程序直接读下面这些地址，字段保持稳定。</p>
+        <div class="stack">
+          <article class="link-row">
+            <div>
+              <strong>今天先做这 3 件</strong>
+              <span>纯文本，适合贴进对话或早报。</span>
+            </div>
+            <a href="./today3.txt">today3.txt</a>
+          </article>
+          <article class="link-row">
+            <div>
+              <strong>近期信号</strong>
+              <span>近几天的卡片列表。</span>
+            </div>
+            <a href="./items.json">items.json</a>
+          </article>
+          <article class="link-row">
+            <div>
+              <strong>全部订阅</strong>
+              <span>和「订阅更新」里的全部更新是同一份。</span>
+            </div>
+            <a href="./feed.xml">feed.xml</a>
+          </article>
+          <article class="link-row">
+            <div>
+              <strong>可试用工具</strong>
+              <span>四档：值得用上、可以试、先评估、先别跟。</span>
+            </div>
+            <a href="./tools-radar.json">tools-radar.json</a>
+          </article>
+          <article class="link-row">
+            <div>
+              <strong>博主实操</strong>
+              <span>可照着做的条目。没有时列表为空。</span>
+            </div>
+            <a href="./practice.json">practice.json</a>
+          </article>
+          <article class="link-row">
+            <div>
+              <strong>按日归档</strong>
+              <span>日期索引。某一天在 archive/日期.json。</span>
+            </div>
+            <a href="./archive/index.json">archive/index.json</a>
+          </article>
+          <article class="link-row">
+            <div>
+              <strong>长期判断</strong>
+              <span>跨越多天的论点，不出现在首页卡片上。</span>
+            </div>
+            <a href="./theses.json">theses.json</a>
+          </article>
+        </div>
+        <p class="fine">个人处理记录不进公开正文。需要对接时看 owner-actions.json 里的说明。</p>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

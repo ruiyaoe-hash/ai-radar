@@ -1,15 +1,18 @@
-AI Radar · 今日3条（2026-10-13）
+AI Radar · 今天先做这 3 件（2026-10-13）
 
-1. [P0/赛道] Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）
-   · Meta 官方（10-12 PDT）：发布 Muse Wonder 与 Muse Wonder Full，自称迄今最强、面向个人/专业 agent 任务（保险理赔、租约理解、编码等），建立在 Muse Spark 之上
+1. Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）
+   对你意味着什么：Meta 正式进入「可对标前沿 API」阵营；OPC 选模型时不能再默认只有 OpenAI/Anthropic 两极，Wonder Full 锁 Muse Code 也意味着最强档可能走封闭 coding 产品而非开放 API
+   建议：试用 · 本周做一次同任务对照即可
    https://about.fb.com/news/2026/10/introducing-muse-wonder-models/
 
-2. [P1/模式] Hone 获 Benchmark/Index 领投 6000 万美元种子：Engines 认领业务结果而非任务
-   · Hone 官方（10-08）：五个月新公司，前 Cognition / Harvey / Mercor 背景；发布 Engines——被指派目标（如「提升客户留存」）而非任务，自助入职学系统/人/历史后长期执行
+2. Hone 获 Benchmark/Index 领投 6000 万美元种子：Engines 认领业务结果而非任务
+   对你意味着什么：顶级种子把「agent = 任务工具」升级成「agent = 结果负责人」；对 OPC 意味着产品叙事要从功能列表转向可度量的业务结果与任期式记忆，否则会被定位成可替换插件
+   建议：观察 · 未来 1–2 个季度看首批企业案例是否交付可核验 KPI
    https://hone.com/blog/introducing-engines/
 
-3. [P1/工具] YC Agent37：低成本 agent harness 沙箱上线（客户均耗约 $0.37/月）
-   · YC F26 Agent37（Launch HN，约 10-12）：提供隔离持久沙箱托管 Hermes / OpenClaw / Claude Code / Codex / OpenCode / Grok / Pi 及自定义镜像；自称成本可达多数沙箱商的约 10% 以下
+3. YC Agent37：低成本 agent harness 沙箱上线（客户均耗约 $0.37/月）
+   对你意味着什么：agent 产品的「每客户一沙箱」成本被压到美元级以下，使个人/小团队可验证 always-on agent；赛道拥挤、比价战明显，价值在交付速度而非长期护城河
+   建议：评估 · 本周可试用免费档验证计费与休眠
    https://www.agent37.com/
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/

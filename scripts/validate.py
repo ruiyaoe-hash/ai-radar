@@ -110,7 +110,7 @@ def validate_card(it: dict, path: str, card_validator) -> None:
     if so is not None:
         if not isinstance(so, dict) or not (so.get("falsifier") or "").strip():
             fail(f"{path}: so_what requires non-empty falsifier")
-    # rumor may stay priority P0; the board renders that as P0-待证, never as formal P0.
+    # rumor may stay priority P0; the board renders that as 市场信号, never as 今日必看.
 
 
 def check_schema() -> int:
@@ -308,10 +308,104 @@ def check_feed() -> None:
     print("OK lens feeds: counts match items.json")
 
 
+def check_practice() -> None:
+    try:
+        from jsonschema import Draft202012Validator
+    except ImportError:
+        fail("jsonschema is not installed. Run: pip install -r requirements-ci.txt")
+    schema = json.loads((SCHEMAS / "practice.schema.json").read_text(encoding="utf-8"))
+    validator = Draft202012Validator(schema)
+    for rel in ("public/practice.json", "public/practice.sample.json"):
+        path = ROOT / rel
+        if not path.exists():
+            fail(f"missing {rel}")
+        data = json.loads(path.read_text(encoding="utf-8"))
+        errors = sorted(validator.iter_errors(data), key=lambda e: list(e.path))
+        if errors:
+            first = errors[0]
+            loc = "/".join(str(p) for p in first.path) or "(root)"
+            fail(f"{rel}: schema {loc}: {first.message}")
+    live = json.loads((PUBLIC / "practice.json").read_text(encoding="utf-8"))
+    sample_ids = {
+        it.get("id")
+        for it in json.loads((PUBLIC / "practice.sample.json").read_text(encoding="utf-8")).get("items") or []
+    }
+    leaked = [it.get("id") for it in live.get("items") or [] if it.get("sample") or it.get("id") in sample_ids]
+    if leaked:
+        fail(f"practice.json must not publish sample cards: {leaked}")
+    inbox = PUBLIC / "practice" / "inbox"
+    if inbox.is_dir():
+        for path in sorted(inbox.glob("*.json")):
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            items = payload.get("items") if isinstance(payload, dict) and "items" in payload else (
+                payload if isinstance(payload, list) else [payload]
+            )
+            wrapped = {"schema_version": 1, "items": items}
+            errors = sorted(validator.iter_errors(wrapped), key=lambda e: list(e.path))
+            if errors:
+                first = errors[0]
+                fail(f"practice/inbox/{path.name}: {first.message}")
+    print(
+        f"OK practice: {len(live.get('items') or [])} live, "
+        f"{len(sample_ids)} sample"
+    )
+
+
+def check_public_ui() -> None:
+    """Chinese-first pages: required labels exist, jargon stays out of visible HTML."""
+    required = {
+        "index.html": [
+            "今天先做这 3 件",
+            "精选",
+            "全部",
+            "今日必看",
+            "市场信号",
+            "重点关注",
+            "不限",
+            "试用工具",
+            "行业动态",
+            "方法模式",
+            "时机窗口",
+        ],
+        "practice.html": ["工具用法", "创意作品", "变现", "Skill / 工作流", "硬件", "还没有可照着做的实操。"],
+        "tools-radar.html": ["值得用上", "可以试", "先评估", "先别跟"],
+        "subscribe.html": ["./feed.xml", "试用工具", "行业动态", "方法模式", "时机窗口"],
+        "week.html": ["本周归档"],
+        "agent.html": ["today3.txt", "practice.json"],
+        "about.html": ["对你意味着什么", "背景与出处"],
+    }
+    shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
+    for label in ("今日必看", "博主实操", "本周归档", "可试用工具", "订阅更新", "给 Agent 用", "这是什么"):
+        if label not in shell:
+            fail(f"shell.js missing nav label {label}")
+    if "AIHOT" in shell:
+        fail("shell.js must not add a text wordmark besides AI / RADAR")
+    cards = (PUBLIC / "assets" / "cards.js").read_text(encoding="utf-8")
+    for label in ("对你意味着什么", "背景与出处", "什么情况下当这判断作废"):
+        if label not in cards:
+            fail(f"cards.js missing {label}")
+    forbidden = ("P0-待证", "so_what", "falsifier", "AIHOT", "Tech Radar", "全部 lens")
+    for name, needles in required.items():
+        raw = (PUBLIC / name).read_text(encoding="utf-8")
+        for needle in needles:
+            if needle not in raw:
+                fail(f"{name} missing {needle}")
+        visible = re.sub(r"<script\b[^>]*>[\s\S]*?</script>", "", raw, flags=re.I)
+        visible = re.sub(r"<style\b[^>]*>[\s\S]*?</style>", "", visible, flags=re.I)
+        for word in forbidden:
+            if word in visible:
+                fail(f"{name} shows jargon {word}")
+        if re.search(r"\bP0\b|\bP1\b|\blens\b", visible):
+            fail(f"{name} shows priority or lens jargon in visible HTML")
+    print("OK public UI copy")
+
+
 def main() -> None:
     check_schema()
     check_monotonic()
     check_feed()
+    check_practice()
+    check_public_ui()
     print("ALL CHECKS PASSED")
 
 

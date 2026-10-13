@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="subscribe">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c0e12" />
+  <title>订阅更新 · AI Radar</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./assets/radar.css" />
+  <link rel="alternate" type="application/rss+xml" title="AI Radar 全部更新" href="./feed.xml" />
+</head>
+<body>
+  <div class="app">
+    <script src="./assets/shell.js"></script>
+    <div class="content">
+      <div class="topbar">
+        <button class="menu-btn" type="button" data-nav-open>菜单</button>
+        <span class="topbar-title">订阅更新</span>
+      </div>
+      <main>
+        <h1>订阅更新</h1>
+        <p class="sub">用阅读器订阅。分册和首页「看什么」是同一套叫法。</p>
+        <ul class="feed-list" id="feeds"></ul>
+      </main>
+    </div>
+  </div>
+  <script>
+    const feeds = [
+      ["全部更新", "每天两次的信号都在这一份。", "./feed.xml"],
+      ["试用工具", "只收能试用、能接进流程的。", "./feeds/lens-tools.xml"],
+      ["行业动态", "谁在发布、融资、换赛道。", "./feeds/lens-tracks.xml"],
+      ["方法模式", "做事方式和交付形态的变化。", "./feeds/lens-models.xml"],
+      ["时机窗口", "窗口打开或关上的时候。", "./feeds/lens-timing.xml"]
+    ];
+
+    const host = document.getElementById("feeds");
+    host.innerHTML = feeds.map(([title, desc, href], i) => `
+      <li>
+        <div>
+          <strong>${title}</strong>
+          <span>${desc}</span>
+        </div>
+        <div class="feed-actions">
+          <a href="${href}">打开</a>
+          <button class="btn" type="button" data-copy="${href}">复制地址</button>
+        </div>
+      </li>
+    `).join("");
+
+    host.addEventListener("click", async (event) => {
+      const btn = event.target.closest("[data-copy]");
+      if (!btn) return;
+      const absolute = new URL(btn.dataset.copy, location.href).href;
+      try {
+        await navigator.clipboard.writeText(absolute);
+        btn.textContent = "已复制";
+        btn.classList.add("done");
+      } catch (err) {
+        btn.textContent = absolute;
+      }
+      setTimeout(() => {
+        btn.textContent = "复制地址";
+        btn.classList.remove("done");
+      }, 1800);
+    });
+  </script>
+</body>
+</html>

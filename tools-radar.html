@@ -1,96 +1,61 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-page="tools">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Radar · 工具雷达</title>
-  <style>
-    :root {
-      --bg: #0b0f14; --card: #141a22; --text: #e8eef6; --muted: #8b9bb0;
-      --line: #243041; --accent: #5b9fd4;
-      --adopt: #6bcb8b; --trial: #5b9fd4; --assess: #c4892a; --hold: #8b9bb0;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: ui-sans-serif, system-ui, "PingFang SC", "Noto Sans SC", sans-serif;
-      background: radial-gradient(1000px 500px at 80% -10%, #1a2030 0%, var(--bg) 50%);
-      color: var(--text); line-height: 1.5; min-height: 100vh;
-    }
-    header, main, footer { max-width: 960px; margin: 0 auto; padding: 24px 20px; }
-    h1 { margin: 0 0 6px; font-size: 1.4rem; }
-    .sub { color: var(--muted); font-size: 0.9rem; }
-    .grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px;
-    }
-    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
-    .ring {
-      background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px;
-    }
-    .ring h2 {
-      margin: 0 0 10px; font-size: 1rem; display: flex; align-items: center; gap: 8px;
-    }
-    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-    .dot.采纳 { background: var(--adopt); }
-    .dot.试用 { background: var(--trial); }
-    .dot.评估 { background: var(--assess); }
-    .dot.暂缓 { background: var(--hold); }
-    .item {
-      border-top: 1px solid var(--line); padding: 10px 0; font-size: 0.9rem;
-    }
-    .item:first-of-type { border-top: none; }
-    .item a { color: var(--accent); text-decoration: none; }
-    .meta { color: var(--muted); font-size: 0.78rem; margin-top: 4px; }
-    .empty { color: var(--muted); font-size: 0.85rem; padding: 8px 0; }
-    footer { color: var(--muted); font-size: 0.75rem; padding-top: 0; }
-  </style>
+  <meta name="theme-color" content="#0c0e12" />
+  <title>可试用工具 · AI Radar</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./assets/radar.css" />
 </head>
 <body>
-  <header>
-    <h1>工具雷达</h1>
-    <div class="sub">
-      Tech Radar 四环：采纳 / 试用 / 评估 / 暂缓 ·
-      <a href="./index.html" style="color:var(--accent)">← 决策信号看板</a> ·
-      <span id="updated"></span>
+  <div class="app">
+    <script src="./assets/shell.js"></script>
+    <div class="content">
+      <div class="topbar">
+        <button class="menu-btn" type="button" data-nav-open>菜单</button>
+        <span class="topbar-title">可试用工具</span>
+      </div>
+      <main>
+        <h1>可试用工具</h1>
+        <p class="sub">按你现在该怎么对待来分，不按热度排。 <span id="updated"></span></p>
+        <div class="tool-grid" id="grid"><p class="empty">正在读取…</p></div>
+        <p class="fine">点进去用一次真实任务，再决定留不留。</p>
+      </main>
     </div>
-  </header>
-  <main>
-    <div class="grid" id="grid"><div class="empty">加载中…</div></div>
-  </main>
-  <footer>
-    在归档卡片上设置 <code>tool_radar</code> 与 try_url / access / integration / first_step / alternatives；
-    CI 从 archive 派生 <code>tools-radar.json</code>。
-  </footer>
+  </div>
+  <script src="./assets/cards.js"></script>
   <script>
-    function esc(s) {
-      return String(s || '').replace(/[&<>"']/g, c => (
-        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-      ));
-    }
-    const order = ['采纳', '试用', '评估', '暂缓'];
-    fetch('./tools-radar.json?' + Date.now())
-      .then(r => r.json())
-      .then(data => {
-        if (data.updated) document.getElementById('updated').textContent = data.updated;
-        const rings = data.rings || {};
-        document.getElementById('grid').innerHTML = order.map(name => {
-          const list = rings[name] || [];
+    const rings = [
+      ["采纳", "值得用上", "现在就可以放进你的流程。", ""],
+      ["试用", "可以试", "本周用一次真实任务摸清楚。", ""],
+      ["评估", "先评估", "先看成本和边界，不必马上用。", "assess"],
+      ["暂缓", "先别跟", "先观察，不据此改做法。", "hold"]
+    ];
+
+    fetch("./tools-radar.json?" + Date.now())
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.updated) document.getElementById("updated").textContent = "最近更新 " + data.updated;
+        const groups = data.rings || {};
+        document.getElementById("grid").innerHTML = rings.map(([key, title, hint, dot]) => {
+          const list = groups[key] || [];
           const body = list.length
-            ? list.map(it => `
-                <div class="item">
-                  <div><a href="${esc(it.try_url || '#')}" target="_blank" rel="noopener">${esc(it.title)}</a></div>
-                  <div class="meta">
-                    ${esc(it.access || '')}
-                    ${it.integration ? ' · ' + esc(it.integration) : ''}
-                    ${it.first_step ? '<br/>第一步：' + esc(it.first_step) : ''}
-                    ${it.id ? '<br/>' + esc(it.id) : ''}
-                  </div>
-                </div>`).join('')
-            : '<div class="empty">暂无</div>';
-          return `<section class="ring"><h2><span class="dot ${name}"></span>${name}</h2>${body}</section>`;
-        }).join('');
+            ? list.map((it) => {
+                const href = it.try_url || it.url || "";
+                const titleHtml = href
+                  ? `<a href="${Radar.esc(href)}" target="_blank" rel="noopener">${Radar.esc(it.title)}</a>`
+                  : Radar.esc(it.title);
+                const bits = [it.access, it.integration].filter(Boolean).map(Radar.esc);
+                const step = it.first_step ? `<div>第一步：${Radar.esc(it.first_step)}</div>` : "";
+                return `<div class="tool-item"><div>${titleHtml}</div><div class="meta">${bits.join(" · ")}${step}</div></div>`;
+              }).join("")
+            : '<p class="empty">这一档还没有。</p>';
+          return `<section class="card ring"><h2><span class="ring-dot ${dot}"></span>${title}</h2><p class="hint">${hint}</p>${body}</section>`;
+        }).join("");
       })
       .catch(() => {
-        document.getElementById('grid').innerHTML = '<div class="empty">无法加载 tools-radar.json</div>';
+        document.getElementById("grid").innerHTML = '<p class="empty">暂时读不到工具列表。</p>';
       });
   </script>
 </body>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="week">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c0e12" />
+  <title>本周归档 · AI Radar</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./assets/radar.css" />
+</head>
+<body>
+  <div class="app">
+    <script src="./assets/shell.js"></script>
+    <div class="content">
+      <div class="topbar">
+        <button class="menu-btn" type="button" data-nav-open>菜单</button>
+        <span class="topbar-title">本周归档</span>
+      </div>
+      <main>
+        <h1>本周归档</h1>
+        <p class="sub">按北京时间的这一周回看已经收进来的信号。按日期排列，不是热度排行。</p>
+        <div class="week-nav">
+          <label for="weekSelect">选择一周</label>
+          <select id="weekSelect"></select>
+        </div>
+        <div id="feed"><p class="empty">正在读取…</p></div>
+      </main>
+    </div>
+  </div>
+  <script src="./assets/cards.js"></script>
+  <script>
+    function beijingToday() {
+      return new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Shanghai",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).format(new Date());
+    }
+
+    function addDays(dateStr, n) {
+      const [y, m, d] = dateStr.split("-").map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, d));
+      dt.setUTCDate(dt.getUTCDate() + n);
+      return dt.toISOString().slice(0, 10);
+    }
+
+    function mondayOf(dateStr) {
+      const [y, m, d] = dateStr.split("-").map(Number);
+      const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+      return addDays(dateStr, -((dow + 6) % 7));
+    }
+
+    function weekDates(monday) {
+      return Array.from({ length: 7 }, (_, i) => addDays(monday, i));
+    }
+
+    function weekLabel(monday) {
+      const end = addDays(monday, 6);
+      return `${monday.slice(5)} – ${end.slice(5)}`;
+    }
+
+    const known = new Set();
+    let indexDates = [];
+
+    async function loadWeek(monday) {
+      const host = document.getElementById("feed");
+      const days = weekDates(monday).filter((d) => known.has(d)).sort().reverse();
+      if (!days.length) {
+        host.innerHTML = '<p class="empty">这一周还没有归档。</p>';
+        return;
+      }
+      const packs = await Promise.all(days.map(async (date) => {
+        const res = await fetch("./archive/" + date + ".json?" + Date.now());
+        if (!res.ok) return [];
+        const data = await res.json();
+        return data.items || [];
+      }));
+      host.innerHTML = Radar.renderGroups(packs.flat(), new Set());
+    }
+
+    (async () => {
+      const res = await fetch("./archive/index.json?" + Date.now());
+      const data = res.ok ? await res.json() : { dates: [] };
+      indexDates = (data.dates || []).map((d) => d.date).filter(Boolean);
+      indexDates.forEach((d) => known.add(d));
+      const mondays = [];
+      const seen = new Set();
+      const seeds = indexDates.slice();
+      const today = beijingToday();
+      if (!seeds.includes(today)) seeds.unshift(today);
+      for (const date of seeds) {
+        const monday = mondayOf(date);
+        if (seen.has(monday)) continue;
+        seen.add(monday);
+        mondays.push(monday);
+      }
+      mondays.sort().reverse();
+      const select = document.getElementById("weekSelect");
+      const current = mondayOf(today);
+      for (const monday of mondays) {
+        const opt = document.createElement("option");
+        opt.value = monday;
+        opt.textContent = weekLabel(monday) + (monday === current ? " · 本周" : "");
+        if (monday === current) opt.selected = true;
+        select.appendChild(opt);
+      }
+      select.addEventListener("change", () => {
+        loadWeek(select.value).catch(() => {
+          document.getElementById("feed").innerHTML = '<p class="empty">这一周暂时读不出来。</p>';
+        });
+      });
+      await loadWeek(select.value || current);
+    })().catch(() => {
+      document.getElementById("feed").innerHTML = '<p class="empty">暂时读不到归档。</p>';
+    });
+  </script>
+</body>
+</html>
