@@ -1,4 +1,6 @@
-# AI Radar 主报 · 2026-10-13 13:30 北京时间
+# AI Radar digest · 2026-10-13 13:30 北京时间
+
+> 这是 13:30 午间班的历史稿，不是现行主报。现行班次（Asia/Shanghai，不写美西钟点）：每天 08:00 主报；周一至周五 21:00 晚班。13:30 已取消。11 月 1 日 PDT→PST，时差 15h→16h。
 
 看板：https://ruiyaoe-hash.github.io/ai-radar/  
 RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml  

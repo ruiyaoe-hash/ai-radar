@@ -34,6 +34,11 @@ LENS_FEEDS = {
 }
 STATUSES = {"rumor", "multi_source", "confirmed"}
 ID_RE = re.compile(r"^evt-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$")
+# Recommended on new cards. Legacy archive cards omit them and still validate.
+OPTIONAL_CARD_TIMES = ("published_at", "ingested_at")
+UTC_STAMP = re.compile(
+    r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]+)?(?:Z|\+00:00)$"
+)
 ZERO_SHA = "0" * 40
 ATOM = "{http://www.w3.org/2005/Atom}"
 
@@ -110,6 +115,12 @@ def validate_card(it: dict, path: str, card_validator) -> None:
     if so is not None:
         if not isinstance(so, dict) or not (so.get("falsifier") or "").strip():
             fail(f"{path}: so_what requires non-empty falsifier")
+    for key in OPTIONAL_CARD_TIMES:
+        val = it.get(key)
+        if val is None:
+            continue
+        if not isinstance(val, str) or not UTC_STAMP.match(val):
+            fail(f"{path}: {key} must be ISO-8601 UTC, got {val!r}")
     # rumor may stay priority P0; the board renders that as 市场信号, never as 今日必看.
 
 
@@ -401,6 +412,14 @@ def check_public_ui() -> None:
 
 
 def main() -> None:
+    try:
+        from card_times import self_check as check_card_times
+        from migrate_cards import check_shift_slots
+    except ImportError:
+        from scripts.card_times import self_check as check_card_times
+        from scripts.migrate_cards import check_shift_slots
+    check_card_times()
+    check_shift_slots()
     check_schema()
     check_monotonic()
     check_feed()

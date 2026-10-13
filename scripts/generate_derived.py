@@ -14,9 +14,16 @@ from __future__ import annotations
 
 import html
 import json
+import sys
 from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime
 from pathlib import Path
+
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from card_times import parse_source_timestamp
+else:
+    from .card_times import parse_source_timestamp
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -56,6 +63,14 @@ def load_all_archive_items() -> list[dict]:
 
 
 def parse_item_time(it: dict) -> datetime:
+    """Board/RSS order. Prefer published_at when the card has a real source clock.
+
+    Does not invent published_at. Cards without it keep the Beijing display clock
+    (`date` + `time`), then noon on `date` only.
+    """
+    published = parse_source_timestamp(it.get("published_at"))
+    if published:
+        return datetime.fromisoformat(published.replace("Z", "+00:00")).astimezone(TZ)
     now = datetime.now(TZ)
     date = (it.get("date") or "").strip()
     time_s = (it.get("time") or "").strip()
@@ -359,7 +374,7 @@ def main():
         build_rss(
             board,
             "AI Radar",
-            "会影响下一步的信号。北京时间每天 08:00 / 13:30 更新。",
+            "会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。",
             SITE + "feed.xml",
         ),
         encoding="utf-8",

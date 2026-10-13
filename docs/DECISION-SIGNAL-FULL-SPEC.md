@@ -42,7 +42,8 @@ lens=工具 时：try_url, access, integration, first_step, alternatives
 ## 六、信源
 - 补一手：实验室博客/changelog RSS、GitHub Releases、HF Trending、arXiv、PH AI、融资并购 RSS
 - 信源记分：P0 数、首报、误报、被采取行动
-- 班次：验证 13:30→20:00–21:00；记录首报时差
+- 班次（北京时间 Asia/Shanghai，不写美西钟点；11 月 1 日 PDT→PST 时差 15h→16h）：每天 08:00 主报（美西上一工作日收盘窗口）；周一至周五 21:00 晚班短报（中国白天 + 美东早晨）。13:30 午间主报已取消。05:30 静默班延至飞书出站 webhook 可用
+- 首报时差：`lead_lag_hours` 仍是按下一班假定的数，已有值不改。新卡写 `published_at`（信源原发，ISO-8601 UTC；没有时间就省略）和 `ingested_at`（首次写入归档）。两枚都在时，实测时差 = `ingested_at` − `published_at`
 
 ## 七、分发
 - 周度决策备忘（自动起草+人工改定）

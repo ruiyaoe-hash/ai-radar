@@ -10,9 +10,16 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 import unicodedata
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from card_times import source_timestamp_from_record, stamp_first_report
+else:
+    from .card_times import source_timestamp_from_record, stamp_first_report
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -82,11 +89,15 @@ def infer_role(handle: str, status: str) -> str:
 
 
 def infer_shift_and_lag(date: str, time_s: str):
-    """Hours from the source timestamp to the next Alba publish slot.
+    """Hours from the display clock to the next publish slot.
 
-    Publish slots (Asia/Shanghai): 08:00 morning, 13:30 midday.
-    20:00–21:00 is a verify shift and is not a publish slot.
+    Slots are stored as Beijing time (Asia/Shanghai), not a US West clock
+    (PDT→PST on Nov 1 moves the offset from 15h to 16h):
+      08:00 daily            morning  主报
+      21:00 Monday–Friday    evening  晚班
+    13:30 midday is removed. 05:30 silent shift is deferred and is not a slot.
     Returns (shift, lead_lag_hours) or (None, None).
+    This assumed lag is lead_lag_hours. Measured lag is ingested_at − published_at.
     """
     if not date or " " not in (time_s or ""):
         return None, None
@@ -96,14 +107,15 @@ def infer_shift_and_lag(date: str, time_s: str):
         post = datetime(y, m, d, hh, mi, tzinfo=TZ)
     except Exception:
         return None, None
-    slots = []
-    for add in (0, 1):
+    slots: list[tuple[datetime, str]] = []
+    # Friday after 21:00 still needs the next morning; a weekend gap needs Monday.
+    for add in range(0, 4):
         day = post + timedelta(days=add)
-        slots.append(day.replace(hour=8, minute=0, second=0, microsecond=0))
-        slots.append(day.replace(hour=13, minute=30, second=0, microsecond=0))
-    nxt = min(s for s in slots if s >= post)
+        slots.append((day.replace(hour=8, minute=0, second=0, microsecond=0), "morning"))
+        if day.weekday() < 5:
+            slots.append((day.replace(hour=21, minute=0, second=0, microsecond=0), "evening"))
+    nxt, shift = min((slot for slot in slots if slot[0] >= post), key=lambda slot: slot[0])
     lag_h = round((nxt - post).total_seconds() / 3600, 2)
-    shift = "morning" if nxt.hour == 8 else "midday"
     return shift, lag_h
 
 
@@ -118,12 +130,23 @@ def fill_shift(out: dict) -> dict:
     return out
 
 
+def fill_report_times(out: dict, source: dict, *, first_write: bool) -> dict:
+    """Stamp ingested_at on first archive write; copy published_at only from a real source clock."""
+    return stamp_first_report(
+        out,
+        first_write=first_write,
+        source_time=source_timestamp_from_record(source),
+    )
+
+
 def migrate_item(it: dict) -> dict:
     if it.get("schema_version") == 2 and it.get("id") and it.get("sources"):
-        # still drop bullets if present; backfill shift / lead_lag when absent
+        # still drop bullets if present; backfill shift / lead_lag when absent.
+        # Already on the board: do not invent ingested_at. published_at is filled
+        # only when the record already carries a source clock (created_at / pubDate).
         out = dict(it)
         out.pop("bullets", None)
-        return fill_shift(out)
+        return fill_shift(fill_report_times(out, it, first_write=False))
 
     date = (it.get("date") or "1970-01-01").strip()
     ymd = date.replace("-", "")
@@ -171,7 +194,8 @@ def migrate_item(it: dict) -> dict:
 
     # tool fields passthrough
     for k in ("try_url", "access", "integration", "first_step", "alternatives",
-              "tool_radar", "so_what", "lead_lag_hours", "shift"):
+              "tool_radar", "so_what", "lead_lag_hours", "lead_lag_basis", "shift",
+              "published_at", "ingested_at"):
         if k in it and it[k] is not None:
             out[k] = it[k]
 
@@ -226,7 +250,9 @@ def migrate_item(it: dict) -> dict:
             "thesis_id": "T-001",
         }
 
-    return fill_shift(out)
+    # Legacy row is materialized as a v2 card here — that is the first archive write
+    # of this object. ingested_at = now. published_at only if the row has a source clock.
+    return fill_shift(fill_report_times(out, it, first_write=True))
 
 
 def migrate_archive_file(path: Path) -> int:
@@ -237,6 +263,25 @@ def migrate_archive_file(path: Path) -> int:
     data["schema_version"] = 2
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return len(items)
+
+
+def check_shift_slots() -> None:
+    """Publish slots are Beijing 08:00 daily and 21:00 Mon–Fri. 13:30 is not a slot."""
+    cases = {
+        ("2026-10-12", "10-12 07:00"): ("morning", 1.0),  # Monday
+        ("2026-10-12", "10-12 10:00"): ("evening", 11.0),
+        ("2026-10-12", "10-12 21:00"): ("evening", 0.0),
+        ("2026-10-16", "10-16 22:00"): ("morning", 10.0),  # Friday → Saturday 08:00
+        ("2026-10-17", "10-17 09:00"): ("morning", 23.0),  # Saturday → Sunday 08:00
+        ("2026-10-18", "10-18 22:00"): ("morning", 10.0),  # Sunday → Monday 08:00
+    }
+    for (date, time_s), expect in cases.items():
+        got = infer_shift_and_lag(date, time_s)
+        if got != expect:
+            raise SystemExit(f"FAIL shift {date} {time_s}: {got} != {expect}")
+    if infer_shift_and_lag("2026-10-13", "10-13 13:30")[0] == "midday":
+        raise SystemExit("FAIL shift: 13:30 must not be a publish slot")
+    print("OK shift slots")
 
 
 def main():
