@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261014-llm-template",
+  "kind": "工具用法",
+  "title": "把常用模型和提示存成 llm 模板，接单时一条命令复用",
+  "author": "Simon Willison",
+  "url": "https://llm.datasette.io/en/stable/templates.html",
+  "time": "2026-10-14 09:40",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "llm 已能成功跑一条提示",
+    "有一段你已经手动用顺的系统提示"
+  ],
+  "estimated_time": "约 30 分钟",
+  "verified": true,
+  "takeaway": "提示词试顺之后存成模板。下次用 llm -t 名字 喂材料，不必从聊天记录里翻。",
+  "steps": [
+    "把系统提示存起来：llm --system \"你的说明\" --save 模板名",
+    "要固定模型就加上 --model。提示里需要插入对方原文时写 $input",
+    "用没有敏感内容的练习文本试跑：echo \"一段练习文本\" | llm -t 模板名",
+    "要改措辞就执行 llm templates edit 模板名，或用 llm templates path 找到 YAML 后手改",
+    "想把模型选项和提示词拆开时，再试 llm -t 模型模板 -t 提示模板。跑不通就改回单个 -t"
+  ],
+  "caution": "稳定版文档开头写一次只用一个模板，同页后文又写 -t 可以重复、从左到右合并。以你本机实际行为为准，先用练习文本试。不要把客户原文放进会同步出去的模板。时间为编辑估计。对照 2026-10-14 的模板文档。"
+}

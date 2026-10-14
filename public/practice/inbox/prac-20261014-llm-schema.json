@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261014-llm-schema",
+  "kind": "工具用法",
+  "title": "用 llm --schema 把一段材料收成固定字段，再决定要不要做产品",
+  "author": "Simon Willison",
+  "url": "https://llm.datasette.io/en/stable/schemas.html",
+  "time": "2026-10-14 09:50",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "llm 已能跑通一条提示",
+    "一段你自己的、可以外发的短文本"
+  ],
+  "estimated_time": "约 25 分钟",
+  "verified": true,
+  "takeaway": "接单前先证明这段乱文字能稳定变成你要的字段。命令行过关，再写进脚本或后台。",
+  "steps": [
+    "先用文档里的短语法热身：llm --schema 'name, age int, one_sentence_bio' 'invent a cool dog'，确认输出是 JSON",
+    "换成你的字段，例如 llm --schema 'client, deliverable, deadline, open_questions'，后面接材料或用管道喂入",
+    "执行 llm models --schemas，看当前哪些模型支持 schema，不要假设默认模型永远支持",
+    "要一次抽出多条再用 --schema-multi。字段没回来就缩短字段列表，而不是把提示词越写越长",
+    "连续三次字段都齐全，再考虑收成模板，或写进自己的脚本"
+  ],
+  "caution": "模型仍可能漏字段或编造。交给客户前对照原文看一遍。不要把未脱敏的合同或证件送进云端模型。时间为编辑估计。步骤对照 2026-10-14 的 schema 文档。"
+}
