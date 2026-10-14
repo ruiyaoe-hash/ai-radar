@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13 21:15 北京时间",
+  "updated": "2026-10-14 08:04 北京时间",
   "rings": {
     "采纳": [
       {
@@ -81,6 +81,22 @@
         ],
         "status": "confirmed",
         "priority": "P1"
+      },
+      {
+        "id": "evt-20261014-gemini-4-argon",
+        "title": "Google 全球开放 Gemini 4 Argon（API + Antigravity + Gemini App）",
+        "date": "2026-10-14",
+        "try_url": "https://aistudio.google.com/",
+        "access": "Gemini API 付费档；Antigravity 需 Ultra；App/Search 需 Pro 或 Ultra",
+        "integration": "Gemini API / AI Studio / Antigravity / Android Studio",
+        "first_step": "用同一套长程 coding 或 agent 任务对照 Argon（导入价）vs 现用 Sol/Opus/Wonder，看完成率与账单",
+        "alternatives": [
+          "GPT-6 Astra / Sol",
+          "Claude Opus 5.5 / Fable",
+          "Meta Muse Wonder"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
       }
     ],
     "评估": [
@@ -181,6 +197,70 @@
           "Harvey / 通用 Claude·GPT 法律提示",
           "国内其他法律垂类 API",
           "人工律师工作流"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261014-fish-drama-3",
+        "title": "Fish Audio Drama 3：开放权重表情 TTS，AA 发音稳健榜第一",
+        "date": "2026-10-14",
+        "try_url": "https://fish.audio/",
+        "access": "API（model: drama-3 / drama-3-preview）或 HF 自托管；商用看营收门槛",
+        "integration": "Fish Audio TTS API / SGLang Omni / Hugging Face Space",
+        "first_step": "用 API 跑 3 条难发音样本（数字/专名/代码）对照 Eleven/现用 TTS",
+        "alternatives": [
+          "ElevenLabs v4",
+          "Speechify Simba",
+          "Cartesia Sonic"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261014-play-personal-apps",
+        "title": "Google Play「个人库」：AI Studio 手搓安卓 App 可私装，无需开发者账号",
+        "date": "2026-10-14",
+        "try_url": "https://aistudio.google.com/",
+        "access": "美国等部分市场、18+、普通 Google 账号；中国区可用性未在官方稿确认",
+        "integration": "Google AI Studio → Google Play Personal Library",
+        "first_step": "若账号在开放市场：用 AI Studio 做一个单用途工具 App，装到自己手机验证流程",
+        "alternatives": [
+          "PWA / 网页版",
+          "TestFlight 类分发",
+          "侧载 APK"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261014-liquid-lfm25",
+        "title": "Liquid LFM2.5-24B-A2B：2B 激活的端侧推理 agent 开源权重",
+        "date": "2026-10-14",
+        "try_url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+        "access": "开源权重；需本地/云 GPU 或高端 Apple Silicon",
+        "integration": "llama.cpp / MLX / vLLM / SGLang + OpenAI-compatible harness",
+        "first_step": "若有本地算力：用 llama.cpp 或 MLX 起服务，把 Hermes 或现有 agent 指到本地端点跑一轮工具调用",
+        "alternatives": [
+          "Qwen3.6-35B-A3B",
+          "Gemma-4 MoE",
+          "云端小模型 API"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261014-aa-decision-index",
+        "title": "Artificial Analysis Decision Index v1.0：给「决策模型」立独立评测轴",
+        "date": "2026-10-14",
+        "try_url": "https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index",
+        "access": "公开榜单与方法论文章",
+        "integration": "选型参考；可对接 ScaleDown/Jev 等决策 API",
+        "first_step": "对照榜单挑一个决策模型，替换现有 agent 里的「是否调工具/分类」步骤做 A/B",
+        "alternatives": [
+          "ScaleDown CDM",
+          "自建分类小模型",
+          "继续用小参数 LLM"
         ],
         "status": "confirmed",
         "priority": "P1"

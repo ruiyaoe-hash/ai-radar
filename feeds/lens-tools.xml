@@ -5,8 +5,36 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看试用工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 13 Oct 2026 21:15:15 +0800</lastBuildDate>
+<lastBuildDate>Wed, 14 Oct 2026 08:04:07 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[重点关注 · 试用工具 · 工具] Fish Audio Drama 3：开放权重表情 TTS，AA 发音稳健榜第一</title>
+<link>https://fish.audio/blog/fish-audio-drama-3/</link>
+<guid isPermaLink="false">evt-20261014-fish-drama-3</guid>
+<pubDate>Wed, 14 Oct 2026 02:55:12 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Fish Audio 官方：发布 Drama 3（及 preview），面向自然语言导演、多角色对白、克隆与流式；权重在 Hugging Face（fishaudio/drama-3），推理可用 SGLang Omni<br/>• Artificial Analysis（10-13）：Drama 3 Preview 为开放权重 TTS 榜首；Pronunciation Robustness 总体 93.2% 领先 Eleven v4；Provider Voice Arena Elo 约 1243（#10，较 S2.1 Pro 升约 101 点）<br/>• 许可：Fish Audio Community License v1.0——年营收低于约 50 万美元可商用自托管；更高或对外提供 TTS/克隆服务需另购许可；禁止未经同意克隆真人声音；自托管约需 ≥48GB NVIDIA GPU（FP8）<br/><strong>对你意味着什么</strong> 开放权重 TTS 质量追上闭源头部，OPC 做播客/口播/agent 语音可先用 API 验证，营收低时再评估自托管降本<br/>建议：评估 · 本周可 API 盲听对照，不必急着自托管<br/>有多确定：中<br/>什么情况下当这判断作废：若中文/多角色实测明显差于 Eleven，或许可/克隆合规卡住交付，则「默认换 Drama 3」判断作废<br/>来源 FishAudio（一手）, ArtificialAnlys（解读）, HuggingFace（一手）<br/>日期 2026-10-14]]></description>
+</item>
+<item>
+<title>[重点关注 · 试用工具 · 工具] Liquid LFM2.5-24B-A2B：2B 激活的端侧推理 agent 开源权重</title>
+<link>https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b</link>
+<guid isPermaLink="false">evt-20261014-liquid-lfm25</guid>
+<pubDate>Wed, 14 Oct 2026 01:05:48 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Liquid AI / HF 博文（10-13）：发布 LFM2.5-24B-A2B（及 Base），24B 总参、每 token 约 2B 激活，面向端侧私有 agent；上下文扩至 131K；推理前强制出链<br/>• 自测：LiveClaw 48.09 高于 Qwen3.6-35B-A3B 的 38.19；工具/指令跟随多项领先或持平；知识与 SWE 仍弱于更大模型；自称 M5 Max 约 184 tok/s，单卡 B300 高并发可达约 21K output tok/s<br/>• 日一支持 llama.cpp / MLX / vLLM / SGLang / ONNX；示例可挂 Hermes/OpenClaw/Pi 等 harness；权重 Hugging Face 开放<br/><strong>对你意味着什么</strong> 端侧「常驻 agent」在速度/隐私上更可谈；OPC 若做本地助手可列入候选，知识任务仍需检索或外挂大模型<br/>建议：评估 · 有本地 GPU/M 系列再试；否则只跟踪<br/>有多确定：中<br/>什么情况下当这判断作废：若独立复现工具调用失败率高，或端侧内存/速度达不到「可常驻」，则「默认本地 agent 底座」判断作废<br/>来源 HuggingFace（一手）, LiquidAI（一手）<br/>日期 2026-10-14]]></description>
+</item>
+<item>
+<title>[重点关注 · 试用工具 · 工具] Google Play「个人库」：AI Studio 手搓安卓 App 可私装，无需开发者账号</title>
+<link>https://blog.google/products-and-platforms/platforms/google-play/google-play-updates-october-2026/</link>
+<guid isPermaLink="false">evt-20261014-play-personal-apps</guid>
+<pubDate>Wed, 14 Oct 2026 01:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Google Play 官方更新（10-13）：可用 Google AI Studio vibe-code 安卓应用，经 Play 装到自己设备的 Personal Library；默认私有、不进公开目录与搜索<br/>• 只需普通 Google 账号，无需开发者账号；仍须遵守 Play 政策；先在美国等部分市场向 18+ 用户滚动开放；后续计划小范围分享与迁移到正式上架<br/>• TechCrunch/Ars：动机是规避「个人工具必须公开上架」摩擦；公开迁移仍走信任与安全审核<br/><strong>对你意味着什么</strong> 「为自己做安卓小工具」分发摩擦下降；对 OPC 是验证个人/小圈分发路径，不是立刻做公开商店生意——且需确认账号市场是否开放<br/>建议：评估 · 有美区账号本周可试；否则只记模式<br/>有多确定：中<br/>什么情况下当这判断作废：若个人库长期不到中国常用账号、或政策把实用工具挡死，则「可落地个人安卓工具」判断作废<br/>来源 GooglePlay（一手）, TechCrunch（解读）, dotey（转述）<br/>日期 2026-10-14]]></description>
+</item>
+<item>
+<title>[重点关注 · 试用工具 · 工具] Artificial Analysis Decision Index v1.0：给「决策模型」立独立评测轴</title>
+<link>https://artificialanalysis.ai/articles/artificial-analysis-decision-index</link>
+<guid isPermaLink="false">evt-20261014-aa-decision-index</guid>
+<pubDate>Wed, 14 Oct 2026 00:34:39 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Artificial Analysis（10-13）：发布 Decision Index v1.0，评测返回结构化选项+概率的决策模型；四项等权：AA-Omniscience-Decision、HLE-MultiChoice、When2Call、WildGuardTest<br/>• 发布时 Jev 1.13 以 58 分领先；称决策模型在分类/工具调用上可接近语言模型，但知识与推理明显落后，且校准偏乐观；另强调相对 LLM 的速度与成本优势<br/>• 与昨夜 ScaleDown CDM×LangChain 信号同向：长程 agent 应用把「路由/分类/是否调工具」从大模型拆出<br/><strong>对你意味着什么</strong> 决策模型从营销名词变成可横比品类；OPC 做 agent 时应把「便宜决策层」与「贵生成层」分开选型，用 Index 而非厂商自宣<br/>建议：评估 · 与 ScaleDown 试用同一周做<br/>有多确定：中<br/>什么情况下当这判断作废：若真实业务任务上决策模型错误代价高于省下的钱，或榜单与线上差距过大，则「默认拆决策层」判断作废<br/>来源 ArtificialAnlys（一手）, ArtificialAnlys（一手）, ArtificialAnlys（一手）<br/>日期 2026-10-14]]></description>
+</item>
 <item>
 <title>[重点关注 · 试用工具 · 融资] Mistlabs Ambi 出 beta：全天候聆听式 AI + 融资 2600 万美元</title>
 <link>https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/</link>

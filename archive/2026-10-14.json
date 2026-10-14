@@ -1,0 +1,335 @@
+{
+  "date": "2026-10-14",
+  "count": 6,
+  "schema_version": 2,
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261014-gemini-4-argon",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "赛道",
+      "priority": "P0",
+      "title": "Google 全球开放 Gemini 4 Argon（API + Antigravity + Gemini App）",
+      "date": "2026-10-14",
+      "time": "10-14 00:00",
+      "handle": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+      "published_at": "2026-10-13T16:00:00Z",
+      "ingested_at": "2026-10-14T00:03:53Z",
+      "objective": [
+        "Google 官方博文（2026-10-13）：Gemini 4 Argon 全球可用——开发者/企业经 Gemini API（AI Studio / Gemini platform）；Google AI Ultra 可用 Antigravity；Pro/Ultra 可用 Gemini App 与 Search AI Mode",
+        "定位长程复杂工作流（编码、金融、法律、网络安全、科研）；自称行业领先 1M 统一输入输出 token 上限；企业内部称 Antigravity 中 agentic 提交量升约 35%、回滚降近三分之一",
+        "导入价：$2/百万 input、$10/百万 output（缓存 input 约 95% off）；2026-11-30 后升至 $4/$20；Artificial Analysis 称 Intelligence Index 与 GPT-6 Astra 持平、Cost per Task 约其 60%（折扣期）",
+        "DeepMind 同日发布安全/机器人配套博文；机器人示意：仅看视频即可教 Apptronik Apollo 投玉米袋连中 7 次（Video-to-Sim-to-Real）"
+      ],
+      "sources": [
+        {
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+          "handle": "Google",
+          "role": "primary"
+        },
+        {
+          "url": "https://deepmind.google/blog/introducing-gemini-4-argon/",
+          "handle": "GoogleDeepMind",
+          "role": "primary"
+        },
+        {
+          "url": "https://artificialanalysis.ai/models/gemini-4-argon",
+          "handle": "ArtificialAnlys",
+          "role": "analysis"
+        },
+        {
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1009862/google-releases-gemini-4-argon",
+          "handle": "TheVerge",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://aistudio.google.com/",
+      "access": "Gemini API 付费档；Antigravity 需 Ultra；App/Search 需 Pro 或 Ultra",
+      "integration": "Gemini API / AI Studio / Antigravity / Android Studio",
+      "first_step": "用同一套长程 coding 或 agent 任务对照 Argon（导入价）vs 现用 Sol/Opus/Wonder，看完成率与账单",
+      "alternatives": [
+        "GPT-6 Astra / Sol",
+        "Claude Opus 5.5 / Fable",
+        "Meta Muse Wonder"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "Google 重回公开前沿 API 阵营且导入价显著低于同档；OPC 选模型从双极/三极变成必须把 Argon 放进同任务对照，尤其长上下文与 agent 编码",
+        "action": "试用",
+        "window": "导入价至 11-30，本周做一次对照最划算",
+        "confidence": "高",
+        "falsifier": "若独立评测显示 Argon 在真实长程任务上系统性低于同价位 Sol/Opus，或 API 配额/延迟不可用，则「第四极可默认纳入」判断作废",
+        "thesis_id": "T-001"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261014-fish-drama-3",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Fish Audio Drama 3：开放权重表情 TTS，AA 发音稳健榜第一",
+      "date": "2026-10-14",
+      "time": "10-14 02:55",
+      "handle": "FishAudio",
+      "url": "https://fish.audio/blog/fish-audio-drama-3/",
+      "published_at": "2026-10-13T18:55:12Z",
+      "ingested_at": "2026-10-14T00:03:53Z",
+      "objective": [
+        "Fish Audio 官方：发布 Drama 3（及 preview），面向自然语言导演、多角色对白、克隆与流式；权重在 Hugging Face（fishaudio/drama-3），推理可用 SGLang Omni",
+        "Artificial Analysis（10-13）：Drama 3 Preview 为开放权重 TTS 榜首；Pronunciation Robustness 总体 93.2% 领先 Eleven v4；Provider Voice Arena Elo 约 1243（#10，较 S2.1 Pro 升约 101 点）",
+        "许可：Fish Audio Community License v1.0——年营收低于约 50 万美元可商用自托管；更高或对外提供 TTS/克隆服务需另购许可；禁止未经同意克隆真人声音；自托管约需 ≥48GB NVIDIA GPU（FP8）"
+      ],
+      "sources": [
+        {
+          "url": "https://fish.audio/blog/fish-audio-drama-3/",
+          "handle": "FishAudio",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/ArtificialAnlys/status/2110081938140582085",
+          "handle": "ArtificialAnlys",
+          "role": "analysis"
+        },
+        {
+          "url": "https://huggingface.co/fishaudio/drama-3",
+          "handle": "HuggingFace",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://fish.audio/",
+      "access": "API（model: drama-3 / drama-3-preview）或 HF 自托管；商用看营收门槛",
+      "integration": "Fish Audio TTS API / SGLang Omni / Hugging Face Space",
+      "first_step": "用 API 跑 3 条难发音样本（数字/专名/代码）对照 Eleven/现用 TTS",
+      "alternatives": [
+        "ElevenLabs v4",
+        "Speechify Simba",
+        "Cartesia Sonic"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "开放权重 TTS 质量追上闭源头部，OPC 做播客/口播/agent 语音可先用 API 验证，营收低时再评估自托管降本",
+        "action": "评估",
+        "window": "本周可 API 盲听对照，不必急着自托管",
+        "confidence": "中",
+        "falsifier": "若中文/多角色实测明显差于 Eleven，或许可/克隆合规卡住交付，则「默认换 Drama 3」判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261014-anthropic-scion",
+      "status": "confirmed",
+      "tag": "模式",
+      "lens": "模式",
+      "priority": "P1",
+      "title": "Anthropic 自研源控 Scion：日合并从约2500升至3万+后五个月迁出 Git",
+      "date": "2026-10-14",
+      "time": "10-14 00:36",
+      "handle": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/redesigning-source-control",
+      "published_at": "2026-10-13T16:36:41Z",
+      "ingested_at": "2026-10-14T00:03:53Z",
+      "objective": [
+        "Anthropic 工程博文（10-13）：因 agent 写码导致日合并从约 2500 增至逾 30000，Git 式假设成为瓶颈；自研服务端中心源控 Scion，五个月内完成 monorepo 迁移",
+        "同期交付 Antique（代码评审）、代码搜索、源控 IAM 等；7 人小团队；原则：客户端多为在线 agent/CI，稀疏检出、服务端提交与可查询 API，而非人人完整离线 clone",
+        "负荷量级：主分支历史近 100GB、压缩工作副本逾 25GB、CI 日检出约 2500 万次量级；强调 Claude 既制造了规模问题也加速了重建"
+      ],
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/engineering/redesigning-source-control",
+          "handle": "Anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/AnthropicAI/status/2110047081414987957",
+          "handle": "AnthropicAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.theregister.com/devops/2026/10/13/anthropic-reinvents-source-control-as-claude-floods-the-world-with-code/5302943",
+          "handle": "TheRegister",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "so_what": {
+        "lens": "模式",
+        "impact": "agent 规模会先打穿「为人设计的开发者基础设施」；OPC 不必自建 Scion，但应默认假设 GitHub/CI/评审会成瓶颈，优先稀疏工作区、任务队列与可机读仓库 API",
+        "action": "观察",
+        "window": "读完博文原则即可，无短期采购动作",
+        "confidence": "中",
+        "falsifier": "若后续披露 Scion 仅限内部、外部生态仍以 Git 稳跑同等 agent 吞吐，则「必须换源控」判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261014-play-personal-apps",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Google Play「个人库」：AI Studio 手搓安卓 App 可私装，无需开发者账号",
+      "date": "2026-10-14",
+      "time": "10-14 01:00",
+      "handle": "GooglePlay",
+      "url": "https://blog.google/products-and-platforms/platforms/google-play/google-play-updates-october-2026/",
+      "published_at": "2026-10-13T17:00:00Z",
+      "ingested_at": "2026-10-14T00:03:53Z",
+      "objective": [
+        "Google Play 官方更新（10-13）：可用 Google AI Studio vibe-code 安卓应用，经 Play 装到自己设备的 Personal Library；默认私有、不进公开目录与搜索",
+        "只需普通 Google 账号，无需开发者账号；仍须遵守 Play 政策；先在美国等部分市场向 18+ 用户滚动开放；后续计划小范围分享与迁移到正式上架",
+        "TechCrunch/Ars：动机是规避「个人工具必须公开上架」摩擦；公开迁移仍走信任与安全审核"
+      ],
+      "sources": [
+        {
+          "url": "https://blog.google/products-and-platforms/platforms/google-play/google-play-updates-october-2026/",
+          "handle": "GooglePlay",
+          "role": "primary"
+        },
+        {
+          "url": "https://techcrunch.com/2026/10/13/google-play-now-supports-private-vibe-coded-apps-built-just-for-you/",
+          "handle": "TechCrunch",
+          "role": "analysis"
+        },
+        {
+          "url": "https://x.com/dotey/status/2110106922322120937",
+          "handle": "dotey",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://aistudio.google.com/",
+      "access": "美国等部分市场、18+、普通 Google 账号；中国区可用性未在官方稿确认",
+      "integration": "Google AI Studio → Google Play Personal Library",
+      "first_step": "若账号在开放市场：用 AI Studio 做一个单用途工具 App，装到自己手机验证流程",
+      "alternatives": [
+        "PWA / 网页版",
+        "TestFlight 类分发",
+        "侧载 APK"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "「为自己做安卓小工具」分发摩擦下降；对 OPC 是验证个人/小圈分发路径，不是立刻做公开商店生意——且需确认账号市场是否开放",
+        "action": "评估",
+        "window": "有美区账号本周可试；否则只记模式",
+        "confidence": "中",
+        "falsifier": "若个人库长期不到中国常用账号、或政策把实用工具挡死，则「可落地个人安卓工具」判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261014-liquid-lfm25",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Liquid LFM2.5-24B-A2B：2B 激活的端侧推理 agent 开源权重",
+      "date": "2026-10-14",
+      "time": "10-14 01:05",
+      "handle": "LiquidAI",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
+      "published_at": "2026-10-13T17:05:48Z",
+      "ingested_at": "2026-10-14T00:03:53Z",
+      "objective": [
+        "Liquid AI / HF 博文（10-13）：发布 LFM2.5-24B-A2B（及 Base），24B 总参、每 token 约 2B 激活，面向端侧私有 agent；上下文扩至 131K；推理前强制出链",
+        "自测：LiveClaw 48.09 高于 Qwen3.6-35B-A3B 的 38.19；工具/指令跟随多项领先或持平；知识与 SWE 仍弱于更大模型；自称 M5 Max 约 184 tok/s，单卡 B300 高并发可达约 21K output tok/s",
+        "日一支持 llama.cpp / MLX / vLLM / SGLang / ONNX；示例可挂 Hermes/OpenClaw/Pi 等 harness；权重 Hugging Face 开放"
+      ],
+      "sources": [
+        {
+          "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
+          "handle": "HuggingFace",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+          "handle": "LiquidAI",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+      "access": "开源权重；需本地/云 GPU 或高端 Apple Silicon",
+      "integration": "llama.cpp / MLX / vLLM / SGLang + OpenAI-compatible harness",
+      "first_step": "若有本地算力：用 llama.cpp 或 MLX 起服务，把 Hermes 或现有 agent 指到本地端点跑一轮工具调用",
+      "alternatives": [
+        "Qwen3.6-35B-A3B",
+        "Gemma-4 MoE",
+        "云端小模型 API"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "端侧「常驻 agent」在速度/隐私上更可谈；OPC 若做本地助手可列入候选，知识任务仍需检索或外挂大模型",
+        "action": "评估",
+        "window": "有本地 GPU/M 系列再试；否则只跟踪",
+        "confidence": "中",
+        "falsifier": "若独立复现工具调用失败率高，或端侧内存/速度达不到「可常驻」，则「默认本地 agent 底座」判断作废"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261014-aa-decision-index",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Artificial Analysis Decision Index v1.0：给「决策模型」立独立评测轴",
+      "date": "2026-10-14",
+      "time": "10-14 00:34",
+      "handle": "ArtificialAnlys",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-decision-index",
+      "published_at": "2026-10-13T16:34:39Z",
+      "ingested_at": "2026-10-14T00:03:53Z",
+      "objective": [
+        "Artificial Analysis（10-13）：发布 Decision Index v1.0，评测返回结构化选项+概率的决策模型；四项等权：AA-Omniscience-Decision、HLE-MultiChoice、When2Call、WildGuardTest",
+        "发布时 Jev 1.13 以 58 分领先；称决策模型在分类/工具调用上可接近语言模型，但知识与推理明显落后，且校准偏乐观；另强调相对 LLM 的速度与成本优势",
+        "与昨夜 ScaleDown CDM×LangChain 信号同向：长程 agent 应用把「路由/分类/是否调工具」从大模型拆出"
+      ],
+      "sources": [
+        {
+          "url": "https://artificialanalysis.ai/articles/artificial-analysis-decision-index",
+          "handle": "ArtificialAnlys",
+          "role": "primary"
+        },
+        {
+          "url": "https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index",
+          "handle": "ArtificialAnlys",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/ArtificialAnlys/status/2110046568669904987",
+          "handle": "ArtificialAnlys",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index",
+      "access": "公开榜单与方法论文章",
+      "integration": "选型参考；可对接 ScaleDown/Jev 等决策 API",
+      "first_step": "对照榜单挑一个决策模型，替换现有 agent 里的「是否调工具/分类」步骤做 A/B",
+      "alternatives": [
+        "ScaleDown CDM",
+        "自建分类小模型",
+        "继续用小参数 LLM"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "决策模型从营销名词变成可横比品类；OPC 做 agent 时应把「便宜决策层」与「贵生成层」分开选型，用 Index 而非厂商自宣",
+        "action": "评估",
+        "window": "与 ScaleDown 试用同一周做",
+        "confidence": "中",
+        "falsifier": "若真实业务任务上决策模型错误代价高于省下的钱，或榜单与线上差距过大，则「默认拆决策层」判断作废"
+      }
+    }
+  ]
+}

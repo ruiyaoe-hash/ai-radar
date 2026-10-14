@@ -1,4 +1,4 @@
-# AI Radar 晚班短报 · 2026-10-13 21:00 北京时间
+# AI Radar 主报 · 2026-10-14 08:00 北京时间
 
 > 现行班次（Asia/Shanghai）：每天 08:00 主报；周一至周五 21:00 晚班。13:30 午间班已取消。
 
@@ -6,37 +6,36 @@
 RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml  
 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html
 
-睿，晚班无新正式 P0（全日正式 P0 仍只有早报 Meta Muse Wonder）。白天国内一手 + 美东上午窗口补 5 条 P1（含 1 条融资传闻）。
+睿，美西周二收盘 + 隔夜窗口：正式 P0 只有一条——**Google 全球开放 Gemini 4 Argon**。另有 5 条 P1（开放 TTS、Anthropic 源控重建、Play 个人 App、端侧 agent 权重、决策模型榜）。
 
-## 晚班新增
+## 一句话总览
 
-1. **智谱 GLM-Legal：轻量底座打法律工作流**（confirmed · P1 · 工具）  
-   - Harvey LAB 自称 19.2% all-pass；API 申请制，将进 AutoClaw。  
-   - **可做的：** 有合同/合规场景再申请对照试用，不必追评测分数。  
-   - https://z.ai/blog/glm-legal
+Google 以导入价把 Argon 推回公开前沿；语音/端侧/决策层同步变「可拆可换」——本周优先同任务对照 Argon，其余按需评估。
 
-2. **传闻：DeepSeek 二轮拟融约 1000 亿元**（rumor · P1 · 时机）  
-   - 《财经》称计划从约 500 亿翻倍、投前仍约 5000 亿；公司未回应。  
-   - 只观察交割/IPO 披露，不当事实。  
-   - https://www.mycaijing.com/article/detail/584924?source_id=40
+## 今日必看
 
-3. **ScaleDown CDM × LangChain：长程 agent 上下文降本**（confirmed · P1 · 工具）  
-   - 摘要/压缩/抽取/分类中间件；自称窄任务相对前沿模型数量级更便宜。  
-   - **可做的：** 本周在一条长任务上只换摘要或工具压缩中间件做 A/B。  
-   - https://www.langchain.com/blog/building-long-running-agents-with-scaledown-and-deep-agents
+1. **Gemini 4 Argon 全球开放**（confirmed · **P0** · 赛道）  
+   - API / Antigravity / Gemini App；导入价约 $2/$10 per M tok，11-30 后 $4/$20；AA 称 Intelligence Index 对齐 Astra、任务成本约 60%。  
+   - **可做的：** 本周用同一套长程 coding/agent 任务对照 Argon vs 现用 Sol/Opus/Wonder。  
+   - https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/
 
-4. **Character.AI Chapter 11**（confirmed · P1 · 时机）  
-   - 拟售部分资产予 Disney ~$20M；若无买家接手平台或清盘。  
-   - C 端高互动 ≠ 单位经济；合规+推理成本是硬约束。  
-   - https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/
+## 市场信号
 
-5. **Amex Intent Intelligence：下单前鉴权购买意图**（confirmed · P1 · 模式）  
-   - Intent ID + 限域支付凭证；挂在 ACE 工具包下。  
-   - 做交易型 agent 时把「意图日志」当产品能力。  
-   - https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/
+- DeepMind 同日发 Argon 安全与机器人配套博文（Video-to-Sim-to-Real）。  
+- AA 上线 Decision Index v1.0，与昨夜 ScaleDown CDM 同向：agent 里「分类/是否调工具」可从大模型拆出。  
+- Anthropic：日合并 2.5k→30k+ 后五个月迁到自研源控 Scion——agent 会先打穿为人设计的 Git/CI。
 
-## 今日正式 P0（早报）
+## 重点关注（P1）
 
-- Meta Muse Wonder / Wonder Full — 仍建议本周同任务对照。
+1. **Fish Audio Drama 3**（工具）— 开放权重表情 TTS；AA 发音稳健榜第一。API 先盲听对照，营收低再谈自托管。https://fish.audio/blog/fish-audio-drama-3/  
+2. **Anthropic Scion**（模式）— 读原则即可：稀疏检出 + 服务端提交 + 可机读 API。https://www.anthropic.com/engineering/redesigning-source-control  
+3. **Play 个人库**（工具）— AI Studio App 私装、无需开发者账号；先确认账号市场。https://blog.google/products-and-platforms/platforms/google-play/google-play-updates-october-2026/  
+4. **Liquid LFM2.5-24B-A2B**（工具）— 2B 激活端侧推理 agent；有本地算力再挂 harness。https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b  
+5. **AA Decision Index**（工具）— 决策模型横比轴；与 ScaleDown 试用同一周。https://artificialanalysis.ai/articles/artificial-analysis-decision-index
 
-本日归档 12 张卡：`public/archive/2026-10-13.json`
+## 跳过 / 不升格
+
+- Claude Fable 5.5 Azure 目录泄露：仅传闻，未官方确认 → 不写卡。  
+- OpenAI 员工窃听案、Bain 万亿收入缺口等：缺清晰 OPC 动作 → 不入板。
+
+本日归档 6 张卡：`public/archive/2026-10-14.json`
