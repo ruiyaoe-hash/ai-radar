@@ -744,6 +744,14 @@ def main() -> None:
         from scripts.ingest_x import self_check as check_ingest_x
         from scripts.pool_trace import live_report, self_check as check_pool_trace
     check_ingest_x()
+    try:
+        from annotate_gates import self_check as check_gates
+        from ingest_rss import self_check as check_rss
+    except ImportError:
+        from scripts.annotate_gates import self_check as check_gates
+        from scripts.ingest_rss import self_check as check_rss
+    check_gates()
+    check_rss()
     check_pool_trace()
     live_report()
     check_public_ui()

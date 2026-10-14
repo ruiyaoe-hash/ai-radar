@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>FIXTURE lab</title>
+    <item>
+      <title>FIXTURE lab note</title>
+      <link>https://openai.com/blog/fixture-rss-today?utm_source=rss</link>
+      <pubDate>Wed, 14 Oct 2026 01:00:00 GMT</pubDate>
+      <description>夹具：虚构句子，不是第三方原文。FIXTURE agents model release.</description>
+    </item>
+    <item>
+      <title>FIXTURE older note</title>
+      <link>https://openai.com/blog/fixture-rss-old</link>
+      <pubDate>Fri, 09 Oct 2026 01:00:00 GMT</pubDate>
+      <description>FIXTURE agents older model note.</description>
+    </item>
+    <item>
+      <title>FIXTURE missing link</title>
+      <description>FIXTURE agents but no permalink</description>
+    </item>
+  </channel>
+</rss>

@@ -41,6 +41,8 @@
 
 今天没看到会做错或错过决策。
 
+媒体 alone（单独二手：`role=report` 且没有一手或官方链接）不能升正式 P0，最高是 P0-待证或 P1；机器门闩在 `scripts/annotate_gates.py`（无晋升意图时留 notes，notes 含 `attempt_formal_p0` 才写 `drop_reason=media_alone`），见 `docs/candidate-pool.md`。
+
 ## so_what（可证伪；可选）
 
 ```json

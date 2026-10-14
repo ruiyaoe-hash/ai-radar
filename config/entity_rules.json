@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "note": "L2 实体规则（entity rules）。cluster_alone=true：命中的原文片段本身就是簇键（CVE、具体模型名）。cluster_alone=false：必须再叠加标题相似才合并，标题单独永远不成簇。表故意很小，加宽泛词之前先看 7 日 no_new_info 会不会误伤。X 没有 title 时跳过标题这一步。",
+  "rules": [
+    {
+      "id": "cve",
+      "kind": "cve",
+      "pattern": "CVE-\\d{4}-\\d{4,7}",
+      "cluster_alone": true
+    },
+    {
+      "id": "examplemodel-9",
+      "kind": "model",
+      "pattern": "ExampleModel-9",
+      "cluster_alone": true
+    },
+    {
+      "id": "fixtureproduct-arc",
+      "kind": "product",
+      "pattern": "FixtureProduct-Arc",
+      "cluster_alone": true
+    },
+    {
+      "id": "gpt-5",
+      "kind": "model",
+      "pattern": "\\bgpt-5(?:\\.\\d+)?\\b",
+      "cluster_alone": true
+    },
+    {
+      "id": "claude-family",
+      "kind": "model",
+      "pattern": "\\bclaude[- ](?:opus|sonnet|haiku)[- ]?\\d+(?:\\.\\d+)?\\b",
+      "cluster_alone": true
+    },
+    {
+      "id": "gemini-version",
+      "kind": "model",
+      "pattern": "\\bgemini[- ]?\\d+(?:\\.\\d+)?\\b",
+      "cluster_alone": true
+    },
+    {
+      "id": "fixtureloose-name",
+      "kind": "product",
+      "pattern": "FixtureLoose-Name",
+      "cluster_alone": false
+    }
+  ]
+}

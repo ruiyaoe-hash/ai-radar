@@ -2,7 +2,8 @@
 """Derive board artifacts from public/archive (single source of truth).
 
 Reads public/archive and, for the practice lane, public/practice/inbox.
-Does not read or write a candidate pool. Pages output stays the promoted public artifacts.
+Those are the only inputs. Does not read or write a candidate pool, and does not score.
+Pages output stays the promoted public artifacts.
 
 Writes into public/ only:
   - items.json          (rolling window)
@@ -339,6 +340,7 @@ PRACTICE_NOTE = "编辑精选、每周投放，非自动从监控信源捞取。
 def sync_practice_inbox() -> None:
     """Merge public/practice/inbox/*.json into practice.json.
 
+    Inbox JSON only. This is not a private checkout and not a score input.
     Empty inbox leaves the committed file alone (the page then shows an empty state).
     Sample cards live in practice.sample.json and are not published here.
     Optional editorial fields (difficulty, prerequisites, estimated_time, verified)

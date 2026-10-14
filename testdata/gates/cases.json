@@ -1,0 +1,572 @@
+{
+  "note": "Synthetic gate fixtures. Not a pool dump and not third-party text.",
+  "as_of": "2026-10-14T12:00:00Z",
+  "cases": [
+    {
+      "name": "pass-stays-active",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000001",
+          "url": "https://openai.com/blog/fixture-pass",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T01:00:00Z",
+          "snippet": "FIXTURE agents model release for the same Shanghai day"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000001": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "prefilter": "PASS",
+          "tier_prior": "T1",
+          "role_guess": "primary",
+          "notes_equals": ""
+        }
+      }
+    },
+    {
+      "name": "dedup-url",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000002",
+          "url": "https://openai.com/blog/fixture-a?utm_source=x",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T08:00:00Z",
+          "snippet": "FIXTURE agents model release"
+        },
+        {
+          "id": "cand-20261014-000000000003",
+          "url": "https://openai.com/blog/fixture-a",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T08:05:00Z",
+          "snippet": "FIXTURE agents model release"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000002": {"status_in_pool": "active", "drop_reason": null, "prefilter": "PASS"},
+        "cand-20261014-000000000003": {"status_in_pool": "dropped", "drop_reason": "duplicate_url", "prefilter": "PASS"}
+      }
+    },
+    {
+      "name": "same-source-window",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000004",
+          "url": "https://openai.com/blog/fixture-window-1",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T10:00:00Z",
+          "snippet": "FIXTURE agents model card"
+        },
+        {
+          "id": "cand-20261014-000000000005",
+          "url": "https://openai.com/blog/fixture-window-2",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T10:10:00Z",
+          "snippet": "FIXTURE agents model card"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000004": {"status_in_pool": "active", "drop_reason": null},
+        "cand-20261014-000000000005": {"status_in_pool": "dropped", "drop_reason": "duplicate_event"}
+      }
+    },
+    {
+      "name": "same-source-keeps-new-link",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000006",
+          "url": "https://openai.com/blog/fixture-window-3",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T10:00:00Z",
+          "snippet": "FIXTURE agents pricing overview"
+        },
+        {
+          "id": "cand-20261014-000000000007",
+          "url": "https://openai.com/blog/fixture-window-4",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T10:12:00Z",
+          "snippet": "FIXTURE agents pricing overview https://example.com/fixture-new-paper"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000006": {"status_in_pool": "active", "drop_reason": null},
+        "cand-20261014-000000000007": {"status_in_pool": "active", "drop_reason": null}
+      }
+    },
+    {
+      "name": "stale-deferred",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000008",
+          "url": "https://x.com/karpathy/status/800",
+          "channel": "x",
+          "handle": "karpathy",
+          "published_at": "2026-10-10T00:00:00Z",
+          "snippet": "FIXTURE agents model note from earlier in the week"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000008": {
+          "status_in_pool": "deferred",
+          "drop_reason": null,
+          "prefilter": "PASS",
+          "tier_prior": "a_tier",
+          "role_guess": null,
+          "notes_contains": "stale_window",
+          "notes_absent": "rss_backfill"
+        }
+      }
+    },
+    {
+      "name": "rss-backfill-deferred",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000009",
+          "url": "https://openai.com/blog/fixture-backfill",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-13T02:00:00Z",
+          "snippet": "FIXTURE agents model note from the previous Shanghai day"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000009": {
+          "status_in_pool": "deferred",
+          "drop_reason": null,
+          "prefilter": "PASS",
+          "notes_contains": "rss_backfill_not_today",
+          "notes_absent": "stale_window"
+        }
+      }
+    },
+    {
+      "name": "no-reliable-time-pending",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000000a",
+          "url": "https://openai.com/blog/fixture-no-clock",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": null,
+          "snippet": "FIXTURE agents model note without a clock"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000000a": {
+          "status_in_pool": "pending",
+          "drop_reason": null,
+          "prefilter": "UNKNOWN",
+          "tier_prior": "T1",
+          "notes_contains": "no_reliable_time pending"
+        }
+      }
+    },
+    {
+      "name": "prefilter-block",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000000b",
+          "url": "https://example.com/fixture-weather",
+          "channel": "web",
+          "handle": "randomreader",
+          "published_at": "2026-10-14T09:00:00Z",
+          "snippet": "FIXTURE weather forecast for the weekend picnic"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000000b": {
+          "status_in_pool": "dropped",
+          "drop_reason": "prefilter_block",
+          "prefilter": "BLOCK"
+        }
+      }
+    },
+    {
+      "name": "unsafe-url",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000000c",
+          "url": "javascript:alert(1)",
+          "channel": "web",
+          "handle": "randomreader",
+          "published_at": "2026-10-14T09:00:00Z",
+          "snippet": "FIXTURE agents should still be blocked for the scheme"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000000c": {
+          "status_in_pool": "dropped",
+          "drop_reason": "prefilter_block",
+          "prefilter": "BLOCK",
+          "notes_contains": "unsafe_url"
+        }
+      }
+    },
+    {
+      "name": "media-alone-active",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000000d",
+          "url": "https://techcrunch.com/2026/10/14/fixture-story",
+          "channel": "rss",
+          "handle": "techcrunch-ai",
+          "published_at": "2026-10-14T09:00:00Z",
+          "snippet": "FIXTURE agents rumor without a lab link"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000000d": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "prefilter": "PASS",
+          "tier_prior": "T3",
+          "role_guess": "report",
+          "notes_contains": "media_alone"
+        }
+      }
+    },
+    {
+      "name": "media-alone-drop-when-attempting-p0",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000000e",
+          "url": "https://techcrunch.com/2026/10/14/fixture-p0",
+          "channel": "rss",
+          "handle": "techcrunch-ai",
+          "published_at": "2026-10-14T09:30:00Z",
+          "snippet": "FIXTURE agents rumor without a lab link",
+          "notes": "attempt_formal_p0"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000000e": {
+          "status_in_pool": "dropped",
+          "drop_reason": "media_alone",
+          "prefilter": "PASS",
+          "role_guess": "report",
+          "notes_contains": "attempt_formal_p0"
+        }
+      }
+    },
+    {
+      "name": "media-not-alone-with-primary-link",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000000f",
+          "url": "https://techcrunch.com/2026/10/14/fixture-linked",
+          "channel": "rss",
+          "handle": "techcrunch-ai",
+          "published_at": "2026-10-14T09:40:00Z",
+          "snippet": "FIXTURE agents see https://openai.com/index/fixture-official"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000000f": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "role_guess": "report",
+          "tier_prior": "T3",
+          "notes_absent": "media_alone"
+        }
+      }
+    },
+    {
+      "name": "no-new-info",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000010",
+          "url": "https://openai.com/blog/fixture-nm1",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T06:00:00Z",
+          "snippet": "FIXTURE ExampleModel-9 launches today"
+        },
+        {
+          "id": "cand-20261014-000000000011",
+          "url": "https://huggingface.co/blog/fixture-nm2",
+          "channel": "rss",
+          "handle": "huggingface-blog",
+          "published_at": "2026-10-14T09:00:00Z",
+          "snippet": "FIXTURE ExampleModel-9 launches today"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000010": {"status_in_pool": "active", "drop_reason": null},
+        "cand-20261014-000000000011": {"status_in_pool": "dropped", "drop_reason": "no_new_info"}
+      },
+      "same_cluster": [["cand-20261014-000000000010", "cand-20261014-000000000011"]]
+    },
+    {
+      "name": "x-no-title-shared-link",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000012",
+          "url": "https://x.com/karpathy/status/120",
+          "channel": "x",
+          "handle": "karpathy",
+          "title": null,
+          "published_at": "2026-10-14T09:00:00Z",
+          "snippet": "FIXTURE see https://openai.com/blog/fixture-cluster"
+        },
+        {
+          "id": "cand-20261014-000000000013",
+          "url": "https://x.com/simonw/status/121",
+          "channel": "x",
+          "handle": "simonw",
+          "title": null,
+          "published_at": "2026-10-14T09:20:00Z",
+          "snippet": "FIXTURE weights API price and context window https://openai.com/blog/fixture-cluster"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000012": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "tier_prior": "a_tier",
+          "role_guess": null
+        },
+        "cand-20261014-000000000013": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "tier_prior": "a_tier"
+        }
+      },
+      "same_cluster": [["cand-20261014-000000000012", "cand-20261014-000000000013"]]
+    },
+    {
+      "name": "title-not-sole-key",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000014",
+          "url": "https://example.com/fixture-title-a",
+          "channel": "web",
+          "handle": "reader_one",
+          "title": "FIXTURE shared headline alpha",
+          "published_at": "2026-10-14T08:00:00Z",
+          "snippet": "FIXTURE agents one specific benchmark result"
+        },
+        {
+          "id": "cand-20261014-000000000015",
+          "url": "https://example.com/fixture-title-b",
+          "channel": "web",
+          "handle": "reader_two",
+          "title": "FIXTURE shared headline alpha",
+          "published_at": "2026-10-14T11:00:00Z",
+          "snippet": "FIXTURE agents another specific benchmark result"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000014": {"status_in_pool": "active", "drop_reason": null, "tier_prior": null, "role_guess": null},
+        "cand-20261014-000000000015": {"status_in_pool": "active", "drop_reason": null, "tier_prior": null}
+      },
+      "different_cluster": [["cand-20261014-000000000014", "cand-20261014-000000000015"]]
+    },
+    {
+      "name": "entity-plus-title",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000016",
+          "url": "https://example.com/fixture-loose-a",
+          "channel": "web",
+          "handle": "reader_one",
+          "title": "FixtureLoose-Name weekly notes",
+          "published_at": "2026-10-14T07:00:00Z",
+          "snippet": "FIXTURE agents"
+        },
+        {
+          "id": "cand-20261014-000000000017",
+          "url": "https://example.net/fixture-loose-b",
+          "channel": "web",
+          "handle": "reader_two",
+          "title": "FixtureLoose-Name weekly notes",
+          "published_at": "2026-10-14T10:00:00Z",
+          "snippet": "FIXTURE agents pricing region rollout"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000016": {"status_in_pool": "active", "drop_reason": null},
+        "cand-20261014-000000000017": {"status_in_pool": "active", "drop_reason": null}
+      },
+      "same_cluster": [["cand-20261014-000000000016", "cand-20261014-000000000017"]]
+    },
+    {
+      "name": "unlisted-not-excluded",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000018",
+          "url": "https://example.com/fixture-unlisted",
+          "channel": "web",
+          "handle": "randomreader",
+          "published_at": "2026-10-14T10:00:00Z",
+          "snippet": "FIXTURE agents benchmark"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000018": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "prefilter": "PASS",
+          "tier_prior": null,
+          "role_guess": null
+        }
+      }
+    },
+    {
+      "name": "promoted-preserved",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000019",
+          "url": "https://openai.com/blog/fixture-promoted",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-10T00:00:00Z",
+          "snippet": "FIXTURE ExampleModel-9 launches today",
+          "status_in_pool": "promoted",
+          "prefilter": "PASS",
+          "tier_prior": "T1",
+          "role_guess": "primary",
+          "archive_id": "evt-20261014-fixture-keep",
+          "promotion_path": "normal",
+          "notes": "alba kept"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000019": {
+          "status_in_pool": "promoted",
+          "drop_reason": null,
+          "archive_id": "evt-20261014-fixture-keep",
+          "notes_equals": "alba kept"
+        }
+      }
+    },
+    {
+      "name": "correction-path",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000019",
+          "url": "https://openai.com/blog/fixture-promoted",
+          "channel": "rss",
+          "handle": "openai-blog",
+          "published_at": "2026-10-14T06:00:00Z",
+          "snippet": "FIXTURE ExampleModel-9 launches today",
+          "status_in_pool": "promoted",
+          "prefilter": "PASS",
+          "tier_prior": "T1",
+          "role_guess": "primary",
+          "archive_id": "evt-20261014-fixture-keep",
+          "promotion_path": "normal",
+          "notes": "alba kept"
+        },
+        {
+          "id": "cand-20261014-00000000001a",
+          "url": "https://huggingface.co/blog/fixture-followup",
+          "channel": "rss",
+          "handle": "huggingface-blog",
+          "published_at": "2026-10-14T09:00:00Z",
+          "snippet": "FIXTURE ExampleModel-9 launches today with regional pricing details"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000019": {
+          "status_in_pool": "promoted",
+          "drop_reason": null,
+          "notes_equals": "alba kept"
+        },
+        "cand-20261014-00000000001a": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "notes_contains": "correction_path update evt-20261014-fixture-keep"
+        }
+      },
+      "same_cluster": [["cand-20261014-000000000019", "cand-20261014-00000000001a"]]
+    },
+    {
+      "name": "cve-cluster-without-title",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000001b",
+          "url": "https://example.com/fixture-cve-a",
+          "channel": "web",
+          "handle": "reader_one",
+          "title": null,
+          "published_at": "2026-10-14T06:00:00Z",
+          "snippet": "FIXTURE agents patch CVE-2026-99999"
+        },
+        {
+          "id": "cand-20261014-00000000001c",
+          "url": "https://example.com/fixture-cve-b",
+          "channel": "web",
+          "handle": "reader_two",
+          "title": null,
+          "published_at": "2026-10-14T08:00:00Z",
+          "snippet": "FIXTURE agents CVE-2026-99999 hotfix rollback window"
+        },
+        {
+          "id": "cand-20261014-00000000001d",
+          "url": "https://example.com/fixture-cve-c",
+          "channel": "web",
+          "handle": "reader_three",
+          "title": null,
+          "published_at": "2026-10-14T09:00:00Z",
+          "snippet": "FIXTURE agents patch CVE-2026-11111"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000001b": {"status_in_pool": "active", "drop_reason": null},
+        "cand-20261014-00000000001c": {"status_in_pool": "active", "drop_reason": null},
+        "cand-20261014-00000000001d": {"status_in_pool": "active", "drop_reason": null}
+      },
+      "same_cluster": [["cand-20261014-00000000001b", "cand-20261014-00000000001c"]],
+      "different_cluster": [["cand-20261014-00000000001b", "cand-20261014-00000000001d"]]
+    },
+    {
+      "name": "practice-prior",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000001e",
+          "url": "https://x.com/op7418/status/9002",
+          "channel": "x",
+          "handle": "op7418",
+          "published_at": "2026-10-14T10:00:00Z",
+          "snippet": "FIXTURE agents step by step"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000001e": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "tier_prior": "practice",
+          "role_guess": null
+        }
+      }
+    },
+    {
+      "name": "official-handle-role",
+      "rows": [
+        {
+          "id": "cand-20261014-00000000001f",
+          "url": "https://x.com/OpenAI/status/9001",
+          "channel": "x",
+          "handle": "OpenAI",
+          "published_at": "2026-10-14T10:00:00Z",
+          "snippet": "FIXTURE agents"
+        }
+      ],
+      "expect": {
+        "cand-20261014-00000000001f": {
+          "status_in_pool": "active",
+          "drop_reason": null,
+          "tier_prior": "a_tier",
+          "role_guess": "primary"
+        }
+      }
+    }
+  ]
+}
