@@ -8,7 +8,7 @@
 - [x] JSON Schema + GH Actions CI：schema 合法；归档只增不减；feed 合法且条数≈items（`.github/workflows/ci.yml` 读取 `schemas/*.json`）
 - [x] Actions 从 archive 派生 items.json、archive/index.json、feed.xml、lens feeds
 - [x] deploy-pages 工作流只上传 `public/`（`.github/workflows/deploy-pages.yml`）；`data/` 副本已删除
-- [ ] 删除根目录镜像：Pages 仍是 legacy `main` + `/`。改成 GitHub Actions 且部署成功后运行 `python3 scripts/retire_root_mirrors.py --i-switched-pages-to-actions`。在此之前保留根镜像，避免看板 404
+- [x] 删除根目录镜像：Pages Source 已是 GitHub Actions，只部署 `public/`。根镜像已删除，并由 `.no-root-mirror` 阻止再生成
 - [x] 迁移现有卡片到事件模型（兼容旧字段）
 - [x] Alba 工作流文档：只追加 archive 并 commit；其余 CI
 
