@@ -1,0 +1,78 @@
+# Batch-1 lab RSS → private pool only. Public CI does not run this file.
+# Cron is UTC: 00:30, 06:30, 12:30 = 08:30, 14:30, 20:30 Asia/Shanghai (3×/day).
+# Secret AI_RADAR_POOL_TOKEN: fine-grained PAT, Contents read/write on
+# ruiyaoe-hash/ai-radar-pool only. Do not grant it write access to public ai-radar.
+# Missing secret: warn and exit 0. Never push pool JSONL to the public repo.
+name: Ingest RSS into private pool
+
+on:
+  schedule:
+    - cron: "30 0,6,12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ingest-rss-pool:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public scripts
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check pool token
+        id: token
+        env:
+          AI_RADAR_POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}
+        run: |
+          if [ -z "${AI_RADAR_POOL_TOKEN}" ]; then
+            echo "::warning::AI_RADAR_POOL_TOKEN is unset. Soft-fail. Add a fine-grained PAT scoped only to ruiyaoe-hash/ai-radar-pool (Contents read and write). Public CI is unchanged."
+            echo "AI_RADAR_POOL_TOKEN 未配置。软失败：不拉取 RSS，不写私有池，也不动公开仓。公开 CI 不依赖这枚密钥。"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout private pool
+        if: steps.token.outputs.skip != 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ruiyaoe-hash/ai-radar-pool
+          token: ${{ secrets.AI_RADAR_POOL_TOKEN }}
+          path: pool
+          persist-credentials: true
+
+      - name: Ingest batch 1 and annotate new rows
+        if: steps.token.outputs.skip != 'true'
+        run: |
+          set +e
+          python3 scripts/ingest_rss.py --pool-dir pool --sources public/config/sources.json
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "FAIL: every batch-1 feed failed"
+            exit 1
+          fi
+          # Exit 2 means some items had no link (FETCH_GAP). Rows that parsed are still on disk.
+          python3 scripts/annotate_gates.py --pool-dir pool --only-pending
+
+      - name: Push private pool only
+        if: steps.token.outputs.skip != 'true'
+        working-directory: pool
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add candidates
+          if git diff --cached --quiet; then
+            echo "无更新"
+          else
+            git commit -m "ingest: RSS batch1 candidates"
+            git push origin HEAD
+          fi

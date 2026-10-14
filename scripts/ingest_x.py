@@ -307,7 +307,19 @@ def extract_status_id(item: dict, explicit_url: str | None) -> str | None:
     return from_url
 
 
-def skeleton(record_id: str, url_norm: str, ingested_at: str, handle: str | None, published_at: str | None, snippet: str | None, title: str | None) -> dict:
+def skeleton(
+    record_id: str,
+    url_norm: str,
+    ingested_at: str,
+    handle: str | None,
+    published_at: str | None,
+    snippet: str | None,
+    title: str | None,
+    channel: str = "x",
+) -> dict:
+    """Pending pool row. Judgment stays empty. channel is x, rss, or web."""
+    if channel not in {"x", "rss", "web"}:
+        raise IngestError(f"unsupported channel {channel!r}")
     return {
         "schema_version": 1,
         "id": record_id,
@@ -318,7 +330,7 @@ def skeleton(record_id: str, url_norm: str, ingested_at: str, handle: str | None
         "published_at": published_at,
         "ingested_at": ingested_at,
         "source": {
-            "channel": "x",
+            "channel": channel,
             "handle": handle,
             "role_guess": None,
         },

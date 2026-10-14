@@ -58,6 +58,8 @@ python3 generate_feed.py              # 派生 public/；有 .no-root-mirror 时
 python3 scripts/validate.py           # schema、归档只增不减、feed 条数、候选池夹具
 python3 scripts/ingest_x.py --self-check
 python3 scripts/ingest_x.py --input fetch.json --out /tmp/batch.jsonl --ingested-at 2026-10-14T00:05:00Z
+python3 scripts/annotate_gates.py --self-check
+python3 scripts/ingest_rss.py --self-check
 python3 scripts/score_sources.py
 python3 scripts/generate_weekly_memo.py
 python3 scripts/feishu_notify.py      # 无 webhook 时 dry-run
@@ -72,8 +74,9 @@ python3 scripts/feishu_notify.py      # 无 webhook 时 dry-run
 | `.github/workflows/ci.yml` | 派生后校验：JSON Schema、归档日期/条数/事件 id 只增不减、`feed.xml` 良构且条数 = `items.json`、lens feed 条数一致 |
 | `.github/workflows/deploy-pages.yml` | 只上传 `public/`。Pages Source 已是 GitHub Actions |
 | `.github/workflows/feishu-and-health.yml` | 正式 P0 与 24h 无新卡。Secret 名 `FEISHU_BOT_WEBHOOK`，不入库 |
+| `.github/workflows/ingest-rss-pool.yml` | 每天 3 次把 T1 实验室 RSS 写入私有池。Secret 名 `AI_RADAR_POOL_TOKEN`。没配密钥时软失败，不参加公开 CI |
 
-`docs/workflows/` 是这三份文件的审阅副本。
+`docs/workflows/` 是这些工作流的审阅副本。RSS 密钥和轮换见 [`docs/rss-pool-ingest.md`](./docs/rss-pool-ingest.md)。
 
 ## 安全基线
 
@@ -83,3 +86,5 @@ python3 scripts/feishu_notify.py      # 无 webhook 时 dry-run
 
 仓库 Settings → Secrets and variables → Actions → `FEISHU_BOT_WEBHOOK` = 飞书自定义机器人 webhook 完整 URL。  
 未配置时推送与健康告警为 dry-run，校验和部署不受影响。详见 [`docs/FEISHU.md`](./docs/FEISHU.md)。
+
+私有池写入用另一枚密钥：`AI_RADAR_POOL_TOKEN`。细粒度 PAT，只给 `ruiyaoe-hash/ai-radar-pool` 的 Contents 读写。不要用它往公开仓推候选 JSONL。未配置时 RSS 工作流打警告并成功退出。详见 [`docs/rss-pool-ingest.md`](./docs/rss-pool-ingest.md)。
