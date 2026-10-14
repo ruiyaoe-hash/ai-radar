@@ -18,4 +18,4 @@ python3 scripts/generate_derived.py
 python3 scripts/validate.py
 ```
 
-Repo-root `generate_feed.py` derives and, until mirrors are retired, syncs the legacy Pages root.
+Repo-root `generate_feed.py` derives `public/` and skips the legacy root mirror while `.no-root-mirror` exists.

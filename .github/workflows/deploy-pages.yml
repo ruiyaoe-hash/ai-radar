@@ -1,5 +1,5 @@
 # Canonical Pages deploy. Publishes public/ only.
-# Legacy branch deploy (main /) stays live until Settings → Pages → Source = GitHub Actions.
+# Pages Source is GitHub Actions (build_type=workflow). Root mirrors are retired via .no-root-mirror.
 name: Deploy Pages · public/
 
 on:
@@ -57,7 +57,7 @@ jobs:
           build=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type || true)
           echo "pages build_type=${build:-unknown}"
           if [ "$build" != "workflow" ]; then
-            echo "::error::Pages build_type is '${build:-unknown}', not workflow. Open Settings → Pages → Build and deployment → Source = GitHub Actions, then re-run this workflow. Until that switch, the live site still comes from the legacy main:/ mirror; do not delete root mirrors yet."
+            echo "::error::Pages build_type is '${build:-unknown}', not workflow. Settings → Pages → Source must be GitHub Actions. This workflow deploys public/ only; root mirrors are retired (.no-root-mirror)."
             exit 1
           fi
       - id: deployment
