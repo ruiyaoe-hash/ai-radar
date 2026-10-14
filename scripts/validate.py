@@ -745,6 +745,11 @@ def main() -> None:
         from scripts.pool_trace import live_report, self_check as check_pool_trace
     check_ingest_x()
     try:
+        from shift_ingest_x_to_pool import self_check as check_shift_x
+    except ImportError:
+        from scripts.shift_ingest_x_to_pool import self_check as check_shift_x
+    check_shift_x()
+    try:
         from annotate_gates import self_check as check_gates
         from ingest_rss import self_check as check_rss
     except ImportError:
