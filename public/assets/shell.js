@@ -13,6 +13,8 @@
 
   // 整站反馈问卷（匿名填写）。不是单卡投票，也不是飞书订阅群。
   const FEEDBACK_FORM = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd";
+  // 飞书订阅群邀请。给人的零后端订阅路径，不是反馈问卷。
+  const FEISHU_GROUP = "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83";
 
   function item(href, id, label, icon, external) {
     const safe = typeof window.safeHref === "function" ? window.safeHref(href) : "";
@@ -51,6 +53,7 @@
     ${item("./tools-radar.html", "tools", "可试用工具", "grid")}
     <div class="nav-sec">订阅</div>
     ${item("./subscribe.html", "subscribe", "订阅更新", "rss")}
+    ${item(FEISHU_GROUP, "feishu", "飞书订阅群", "rss", true)}
     ${item("./agent.html", "agent", "给 Agent 用", "agent")}
     <div class="nav-sec">说明</div>
     ${item("./about.html", "about", "这是什么", "info")}

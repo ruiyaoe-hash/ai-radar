@@ -9,6 +9,7 @@
 - **不按主机名过滤。** 站点会链到 HN、Reddit、GitHub、实验室博客等。协议相对地址（`//host`）以及 `javascript:`、`data:`、`vbscript:` 会被丢掉，链接退回纯文本。
 - 导航（`shell.js`）、卡片、实操、工具雷达、订阅列表里动态拼出来的 `href` 都经过 `safeHref()`。
 - 侧栏「反馈 / 建议」是整站飞书问卷 `https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd`。地址先经 `safeHref()`，再带 `target="_blank"` 和 `rel="noopener noreferrer"`。页脚更正入口写死同一条 https。这是普通跳转，不放宽 CSP。
+- 侧栏「飞书订阅群」和订阅页「加入订阅群」是邀请链接 `https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83`。导航同样先经 `safeHref()`。`applink.feishu.cn` 与 `my.feishu.cn` 一样只是 https 跳转，不进 CSP 白名单。
 
 ## CSP
 
