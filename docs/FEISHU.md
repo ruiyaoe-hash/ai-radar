@@ -6,7 +6,15 @@
 
 https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd
 
-这是整站意见，不是单卡赞踩，也还没有订阅群入口。站点只放链接：问卷在飞书侧匿名填写，不向飞书发脚本请求，也不放宽 CSP 的 `connect-src` / `form-action`。导航地址先经 `safeHref()`。
+这是整站意见，不是单卡赞踩，也不是订阅群。站点只放链接：问卷在飞书侧匿名填写，不向飞书发脚本请求，也不放宽 CSP 的 `connect-src` / `form-action`。导航地址先经 `safeHref()`。
+
+## 订阅群
+
+侧栏「订阅」里的「飞书订阅群」，以及订阅页 RSS 列表下方的「加入订阅群」，打开同一个邀请链接（新标签页）：
+
+https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83
+
+这是给人的零后端订阅路径。RSS 仍是主要订阅方式。导航地址先经 `safeHref()`。普通跳转，不放宽 CSP，也不把 `applink.feishu.cn` 加进 `connect-src`。
 
 ## 出站推送
 

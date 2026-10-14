@@ -10,10 +10,17 @@
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>'
   };
 
-  function item(href, id, label, icon) {
-    const active = page === id ? " active" : "";
-    const current = page === id ? ' aria-current="page"' : "";
-    return `<a class="${active.trim()}" href="${href}"${current}><span class="ico" aria-hidden="true">${icons[icon]}</span>${label}</a>`;
+  // 飞书订阅群邀请。给人的零后端订阅路径。legacy 根页面不加载 safe-href.js，这里只放固定 https。
+  const FEISHU_GROUP = "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83";
+
+  function item(href, id, label, icon, external) {
+    const safe = typeof window.safeHref === "function" ? window.safeHref(href) : href;
+    if (!safe) return "";
+    const hrefAttr = String(safe).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+    const active = !external && page === id ? " active" : "";
+    const current = !external && page === id ? ' aria-current="page"' : "";
+    const blank = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<a class="${active.trim()}" href="${hrefAttr}"${current}${blank}><span class="ico" aria-hidden="true">${icons[icon]}</span>${label}</a>`;
   }
 
   const spec = `<svg class="wm-spec" viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true">
@@ -43,6 +50,7 @@
     ${item("./tools-radar.html", "tools", "可试用工具", "grid")}
     <div class="nav-sec">订阅</div>
     ${item("./subscribe.html", "subscribe", "订阅更新", "rss")}
+    ${item(FEISHU_GROUP, "feishu", "飞书订阅群", "rss", true)}
     ${item("./agent.html", "agent", "给 Agent 用", "agent")}
     <div class="nav-sec">说明</div>
     ${item("./about.html", "about", "这是什么", "info")}

@@ -47,6 +47,10 @@ const allowed = [
     "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd",
     "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd",
   ],
+  [
+    "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83",
+    "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83",
+  ],
   ["http://example.com/a", "http://example.com/a"],
   ["HTTP://example.com/a", "http://example.com/a"],
   ["./feed.xml", "./feed.xml"],

@@ -393,6 +393,9 @@ def check_public_ui() -> None:
             "方法模式",
             "时机窗口",
             "未经证实的传闻与第三方帖子",
+            "飞书订阅群",
+            "加入订阅群",
+            "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
         "week.html": ["本周归档"],
@@ -405,12 +408,27 @@ def check_public_ui() -> None:
         ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
-    for label in ("今日必看", "博主实操", "本周归档", "可试用工具", "订阅更新", "给 Agent 用", "这是什么", "反馈 / 建议"):
+    for label in ("今日必看", "博主实操", "本周归档", "可试用工具", "订阅更新", "飞书订阅群", "给 Agent 用", "这是什么", "反馈 / 建议"):
         if label not in shell:
             fail(f"shell.js missing nav label {label}")
     feedback = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd"
     if feedback not in shell or 'target="_blank"' not in shell or 'rel="noopener noreferrer"' not in shell:
         fail("shell.js feedback link must be the Feishu form, target=_blank, rel=noopener noreferrer")
+    invite = "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83"
+    if invite not in shell:
+        fail("shell.js missing Feishu subscribe-group invite")
+    nav = shell.split('<div class="nav-sec">订阅</div>', 1)[-1]
+    nav_order = ["订阅更新", "飞书订阅群", "给 Agent 用", "这是什么", "反馈 / 建议"]
+    positions = [nav.find(label) for label in nav_order]
+    if any(pos < 0 for pos in positions) or positions != sorted(positions):
+        fail("shell.js nav order: 飞书订阅群 stays in 订阅; 反馈 / 建议 stays in 说明")
+    for rel in ("assets/shell.js", "subscribe.html"):
+        mirror = ROOT / rel
+        if not mirror.exists():
+            continue
+        mirrored = mirror.read_text(encoding="utf-8")
+        if invite not in mirrored or "飞书订阅群" not in mirrored:
+            fail(f"{rel} root mirror missing Feishu subscribe-group invite")
     if "AIHOT" in shell:
         fail("shell.js must not add a text wordmark besides AI / RADAR")
     cards = (PUBLIC / "assets" / "cards.js").read_text(encoding="utf-8")
