@@ -92,6 +92,17 @@
 - objective：只写可核对事实；传闻须归因
 - 禁止在 objective 写「我们应该…」「赛道已定」等
 
+## 从候选池晋升（北京日历日 ≥ 2026-10-15）
+
+遗留卡（2026-10-14 及更早）不要回填。新的 `evt-*`：
+
+| 字段 | 何时写 |
+|------|--------|
+| `candidate_id` | 对应私有池那一行的 `id`（`cand-YYYYMMDD-` + 12 位十六进制）。公开仓不放池正文 |
+| `promotion_path` | `normal`：池里已是 `status_in_pool=promoted`。`emergency`：来不及入池的紧急例外，可以不写 `candidate_id` |
+
+没有 `candidate_id`、也不是 `emergency` 的新卡，校验会失败。能读到池快照时，还要对上 `promoted` 和 `archive_id`。契约见 `docs/candidate-pool.md`。
+
 ## 产出后动作
 
 见 `TIMELINE.md`：只追加 `public/archive/` → commit → CI 派生与部署。

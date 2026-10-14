@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """CI validators: JSON Schema, archive monotonicity, feed well-formed + counts.
 
+Promotion traceability uses testdata/ when the private pool is absent. See docs/candidate-pool.md.
+
   pip install -r requirements-ci.txt
   python3 scripts/generate_derived.py && python3 scripts/validate.py
 
@@ -388,6 +390,9 @@ def check_practice() -> None:
             fail(f"{it.get('id')}: live practice card needs caution")
         if not str(it.get("takeaway") or "").strip():
             fail(f"{it.get('id')}: live practice card needs takeaway")
+    learner = ("difficulty", "prerequisites", "estimated_time", "verified")
+    if not any(all(key in it and it.get(key) not in (None, "", []) for key in learner) for it in live_items):
+        fail("need at least one practice card with difficulty, prerequisites, estimated_time, verified")
     print(
         f"OK practice: {len(live_items)} live, "
         f"{len(sample_ids)} sample"
@@ -664,6 +669,57 @@ def check_safe_href() -> None:
     print(proc.stdout.strip())
 
 
+PRACTICE_HANDLES = [
+    "op7418",
+    "vista8",
+    "lijigang",
+    "bcherny",
+    "trq212",
+    "mattpocockuk",
+    "addyosmani",
+    "ryolu_",
+]
+
+
+def check_practice_handles() -> None:
+    """The 8 practice accounts live on practice_handles, not inside a_tier."""
+    cfg = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
+    if cfg.get("practice_handles") != PRACTICE_HANDLES:
+        fail(f"practice_handles must be the 8 migrated accounts, got {cfg.get('practice_handles')!r}")
+    overlap = sorted(set(PRACTICE_HANDLES) & set(cfg.get("a_tier") or []))
+    if overlap:
+        fail(f"practice_handles still listed in a_tier: {overlap}")
+    if cfg.get("digests") != ["08:00", "21:00"]:
+        fail("digests must stay 08:00 and 21:00")
+    blob = json.dumps(cfg, ensure_ascii=False)
+    if "已并入 a_tier" in blob:
+        fail("config still claims practice handles are covered by a_tier")
+    for keep in ("dotey", "simonw", "shao__meng", "OpenAI"):
+        if keep not in (cfg.get("a_tier") or []):
+            fail(f"a_tier lost decision/intel handle {keep}")
+    print("OK practice_handles: 8 accounts moved out of a_tier; digests unchanged")
+
+
+def check_derive_ignores_pool() -> None:
+    src = (ROOT / "scripts" / "generate_derived.py").read_text(encoding="utf-8")
+    for banned in ("ai-radar-pool", "status_in_pool", "ingest_x", "candidates/"):
+        if banned in src:
+            fail(f"generate_derived.py must not reference {banned}")
+    print("OK derive: archive and practice inbox only; pool is not an input")
+
+
+def check_public_excludes_pool() -> None:
+    for path in PUBLIC.rglob("*"):
+        if not path.is_file():
+            continue
+        rel = path.relative_to(PUBLIC)
+        if path.suffix == ".jsonl" or "candidates" in rel.parts:
+            fail(f"public/ must not contain pool output: {rel}")
+        if path.suffix == ".json" and "status_in_pool" in path.read_text(encoding="utf-8"):
+            fail(f"public/ contains a pool record: {rel}")
+    print("OK public/: no pool JSONL or status_in_pool records")
+
+
 def main() -> None:
     try:
         from card_times import self_check as check_card_times
@@ -678,6 +734,18 @@ def main() -> None:
     check_feed()
     check_rss_escape()
     check_practice()
+    check_practice_handles()
+    check_derive_ignores_pool()
+    check_public_excludes_pool()
+    try:
+        from ingest_x import self_check as check_ingest_x
+        from pool_trace import live_report, self_check as check_pool_trace
+    except ImportError:
+        from scripts.ingest_x import self_check as check_ingest_x
+        from scripts.pool_trace import live_report, self_check as check_pool_trace
+    check_ingest_x()
+    check_pool_trace()
+    live_report()
     check_public_ui()
     try:
         from ops_retract import self_check as check_ops_retract
