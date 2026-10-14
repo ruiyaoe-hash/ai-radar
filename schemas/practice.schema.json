@@ -42,15 +42,25 @@
         "sample": { "type": "boolean" },
         "difficulty": {
           "type": "string",
-          "enum": ["入门", "进阶"]
+          "enum": ["入门", "进阶"],
+          "description": "Learner level (难度). Optional on each card."
         },
         "prerequisites": {
           "type": "array",
+          "description": "Prerequisites (前置条件): skills, accounts, or tools.",
           "items": { "type": "string", "minLength": 1 },
           "maxItems": 6
         },
-        "estimated_time": { "type": "string", "minLength": 1, "maxLength": 40 },
-        "verified": { "type": "boolean" }
+        "estimated_time": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "Estimated time (预计耗时). A readable time box, not a timestamp."
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "Verified (已验证): an editor or the owner ran the steps. The share of verified=true cards is a collection metric, not a field on the pool."
+        }
       }
     }
   }

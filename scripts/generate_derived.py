@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Derive board artifacts from public/archive (single source of truth).
 
+Reads public/archive and, for the practice lane, public/practice/inbox.
+Does not read or write a candidate pool. Pages output stays the promoted public artifacts.
+
 Writes into public/ only:
   - items.json          (rolling window)
   - archive/index.json

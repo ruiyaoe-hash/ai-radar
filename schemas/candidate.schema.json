@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/candidate.schema.json",
+  "title": "AI Radar candidate pool record",
+  "description": "Contract for one row in the private ai-radar-pool JSONL. The public repo keeps this schema only. Do not commit pool JSONL, third-party full text, scores, or drop dumps here. status_in_pool is circulation (池内状态). drop_reason is a true drop (真丢弃) only: pending, wrong_lane, quota, and quota_defer are not drop reasons. no_new_info is a true drop. Scores and rankers are out of scope for this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "url",
+    "url_norm",
+    "ingested_at",
+    "source",
+    "participation",
+    "tier_prior",
+    "prefilter",
+    "status_in_pool"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^cand-[0-9]{8}-[a-f0-9]{12}$",
+      "description": "Stable candidate id (cid). cand-YYYYMMDD- plus 12 hex chars. The date is the Asia/Shanghai calendar day of published_at, else of ingested_at. The suffix hashes the status id when the post has one, else the normalized URL."
+    },
+    "url": { "type": "string", "minLength": 1 },
+    "url_norm": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Normalized permalink. https, host x.com for X posts, tracking query removed."
+    },
+    "title": { "type": ["string", "null"] },
+    "snippet": {
+      "type": ["string", "null"],
+      "description": "Source text. Private pool only. Never copy this into the public repo."
+    },
+    "published_at": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|\\+00:00)$"
+    },
+    "ingested_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|\\+00:00)$",
+      "description": "When ingest_x wrote the skeleton. ISO-8601 UTC. Not a judgment."
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channel", "handle", "role_guess"],
+      "properties": {
+        "channel": { "type": "string", "enum": ["x", "rss", "web"] },
+        "handle": { "type": ["string", "null"] },
+        "role_guess": {
+          "type": ["string", "null"],
+          "enum": ["primary", "analysis", "report", null],
+          "description": "Judgment. ingest_x leaves this null."
+        }
+      }
+    },
+    "tier_prior": {
+      "type": ["string", "null"],
+      "description": "Trust prior (信任先验), e.g. a_tier. Not an ingest gate. Null until a judgment pass."
+    },
+    "participation": {
+      "type": ["string", "null"],
+      "enum": ["editorial", "practice", "hot_signal", null],
+      "description": "Judgment. practice_handles default to practice in a later routing phase. ingest_x leaves this null."
+    },
+    "lane_hint": {
+      "type": ["string", "null"],
+      "enum": ["digest", "practice", "tools", null]
+    },
+    "prefilter": {
+      "type": ["string", "null"],
+      "enum": ["PASS", "BLOCK", "UNKNOWN", null],
+      "description": "Gate annotation (门槛标注). BLOCK still keeps the pool row. Null at ingest."
+    },
+    "cluster_id": { "type": ["string", "null"] },
+    "status_in_pool": {
+      "type": "string",
+      "enum": ["pending", "active", "deferred", "rerouted", "promoted", "dropped"],
+      "description": "Pool status (池内状态). pending=已入池，门槛/评分未完; active=在池可晋升; deferred=延后，非真丢; rerouted=改道，非真丢; promoted=已写公开卡; dropped=真丢弃，必须有 drop_reason. ingest_x always writes pending."
+    },
+    "drop_reason": {
+      "description": "True-drop reason (真丢弃原因). Required iff status_in_pool=dropped; otherwise null. Includes no_new_info. Does not include pending, wrong_lane, quota, or quota_defer.",
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "string",
+          "enum": [
+            "prefilter_block",
+            "prefilter_unknown",
+            "not_opc_action",
+            "rumor_no_upgrade",
+            "media_alone",
+            "duplicate_event",
+            "duplicate_url",
+            "stale_old",
+            "no_reliable_time",
+            "no_new_info",
+            "practice_not_steps",
+            "hot_signal_only",
+            "editor_skip"
+          ]
+        }
+      ]
+    },
+    "archive_id": {
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "string",
+          "pattern": "^(evt|prac)-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$"
+        }
+      ],
+      "description": "Public card id after promotion. Required when status_in_pool=promoted."
+    },
+    "promotion_path": {
+      "type": ["string", "null"],
+      "enum": ["normal", "emergency", null],
+      "description": "normal = left the pool through promotion. emergency is a card-side exception and is not a pool status."
+    },
+    "notes": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status_in_pool": { "const": "dropped" } },
+        "required": ["status_in_pool"]
+      },
+      "then": {
+        "required": ["drop_reason"],
+        "properties": {
+          "drop_reason": {
+            "type": "string",
+            "enum": [
+              "prefilter_block",
+              "prefilter_unknown",
+              "not_opc_action",
+              "rumor_no_upgrade",
+              "media_alone",
+              "duplicate_event",
+              "duplicate_url",
+              "stale_old",
+              "no_reliable_time",
+              "no_new_info",
+              "practice_not_steps",
+              "hot_signal_only",
+              "editor_skip"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "drop_reason": { "type": "null" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "status_in_pool": { "const": "promoted" } },
+        "required": ["status_in_pool"]
+      },
+      "then": {
+        "required": ["archive_id"],
+        "properties": {
+          "archive_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(evt|prac)-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "drop_reason": { "const": "editor_skip" } },
+        "required": ["drop_reason"]
+      },
+      "then": {
+        "required": ["notes"],
+        "properties": {
+          "notes": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  ]
+}

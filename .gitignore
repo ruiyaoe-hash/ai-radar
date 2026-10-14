@@ -1,3 +1,6 @@
+# Local candidate-pool output. Production JSONL lives in the private ai-radar-pool repo.
+/candidates/
+
 # Private owner notes (prefer over committing secrets in notes)
 owner-actions.local.json
 public/owner-actions.local.json

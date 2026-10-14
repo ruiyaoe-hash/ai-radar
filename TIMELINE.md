@@ -88,9 +88,18 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 - 去重仍按归档 `id` / `url`（上面的合并步骤）
 - 飞书已推送的 id 继续只放在 Actions cache
 
+## 候选池（Phase 1）
+
+筛选留在私有仓 `ai-radar-pool`。公开仓只有 schema、枚举和说明，见 `docs/candidate-pool.md`。
+
+1. 原始 X fetch 交给 `scripts/ingest_x.py`。不要手写 JSONL。脚本把**每一条**写成 `status_in_pool=pending`，判断字段留空。
+2. Alba 只回填判断：门槛、`status_in_pool`、真丢时的 `drop_reason`、晋升时的 `archive_id`。
+3. 北京日历日 **≥ 2026-10-15** 的新归档卡要带 `candidate_id`，或写 `promotion_path=emergency`。更早的卡是遗留，不回填。
+4. `derive` 仍只读 `public/archive` 和 practice inbox，不读池。
+
 ## 博主实操
 
-这一栏是编辑精选、每周投放，**非自动从监控捞**。不要用 digest 的 `a_tier` 假装已经覆盖。
+这一栏是编辑精选、每周投放，**非自动从监控捞**。实操向 8 个账号在 `config.json` 的 `practice_handles`，**不要**再用 digest 的 `a_tier` 假装已经覆盖。这 8 个是：`op7418`、`vista8`、`lijigang`、`bcherny`、`trq212`、`mattpocockuk`、`addyosmani`、`ryolu_`。
 
 1. 人工写 `prac-*` JSON，放进 `public/practice/inbox/`
 2. `python3 scripts/generate_derived.py` 才会写入 `public/practice.json`
