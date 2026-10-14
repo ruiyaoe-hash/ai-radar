@@ -86,4 +86,27 @@
     if (event.key === "Escape") closeNav();
   });
   window.RadarShell = { open: openNav, close: closeNav };
+
+  // Cloudflare Web Analytics。token 必须与这段片段一致，不要改。
+  // 在 DOMContentLoaded 时追加到 body 末尾，这样每个加载 shell 的页面都会在 </body> 前带上 beacon。
+  const CF_BEACON_SNIPPET = `<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "964a2081359a4ef8aa36617df12bae1f"}'></script><!-- End Cloudflare Web Analytics -->`;
+
+  function installCfBeacon() {
+    if (!document.body || document.querySelector("script[data-cf-beacon]")) return;
+    const holder = document.createElement("template");
+    holder.innerHTML = CF_BEACON_SNIPPET;
+    const parsed = holder.content.querySelector("script");
+    if (!parsed) return;
+    const script = document.createElement("script");
+    for (const name of ["type", "src", "data-cf-beacon"]) {
+      const value = parsed.getAttribute(name);
+      if (value) script.setAttribute(name, value);
+    }
+    document.body.appendChild(script);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", installCfBeacon);
+  } else {
+    installCfBeacon();
+  }
 })();

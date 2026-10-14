@@ -524,8 +524,20 @@ def csp_hash(body: str) -> str:
     return "'sha256-" + base64.b64encode(digest).decode("ascii") + "'"
 
 
+# Cloudflare Web Analytics beacon. script host serves beacon.min.js; connect host
+# receives the RUM POST at https://cloudflareinsights.com/cdn-cgi/rum.
+CF_SCRIPT_ORIGIN = "https://static.cloudflareinsights.com"
+CF_CONNECT_ORIGIN = "https://cloudflareinsights.com"
+CF_BEACON_SNIPPET = (
+    "<!-- Cloudflare Web Analytics -->"
+    "<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' "
+    "data-cf-beacon='{\"token\": \"964a2081359a4ef8aa36617df12bae1f\"}'></script>"
+    "<!-- End Cloudflare Web Analytics -->"
+)
+
+
 def expected_csp(hashes: list[str]) -> str:
-    script = " ".join(["'self'", *hashes])
+    script = " ".join(["'self'", *hashes, CF_SCRIPT_ORIGIN])
     return (
         "default-src 'self'; "
         f"script-src {script}; "
@@ -533,7 +545,7 @@ def expected_csp(hashes: list[str]) -> str:
         "style-src 'self'; "
         "img-src 'self'; "
         "font-src 'self'; "
-        "connect-src 'self'; "
+        f"connect-src 'self' {CF_CONNECT_ORIGIN}; "
         "object-src 'none'; "
         "base-uri 'none'; "
         "form-action 'none'; "
@@ -557,11 +569,25 @@ def check_csp() -> None:
         expect = expected_csp(hashes)
         if policy != expect:
             fail(f"{path.name}: CSP mismatch\n  got:  {policy}\n  want: {expect}")
-        lowered = policy.lower()
+        scrubbed = policy.replace(CF_SCRIPT_ORIGIN, "").replace(CF_CONNECT_ORIGIN, "").lower()
         for banned in ("unsafe-inline", "unsafe-eval", "http://", "https://", "*", "data:", "blob:"):
-            if banned in lowered:
+            if banned in scrubbed:
                 fail(f"{path.name}: CSP allows {banned}")
-    print(f"OK csp: {len(pages)} html pages, script-src self + inline hashes only")
+    print(f"OK csp: {len(pages)} html pages, script-src self + inline hashes + cloudflare beacon")
+
+
+def check_beacon() -> None:
+    shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
+    if CF_BEACON_SNIPPET not in shell:
+        fail("shell.js must include the Cloudflare Web Analytics snippet with the exact token")
+    if "installCfBeacon" not in shell or "DOMContentLoaded" not in shell:
+        fail("shell.js must install the beacon on DOMContentLoaded, before </body>")
+    pages = sorted(PUBLIC.glob("*.html"))
+    for path in pages:
+        raw = path.read_text(encoding="utf-8")
+        if 'src="./assets/shell.js"' not in raw:
+            fail(f"{path.name}: must load ./assets/shell.js so the analytics beacon is injected")
+    print(f"OK beacon: exact snippet via shell.js on {len(pages)} html pages")
 
 
 def check_safe_href() -> None:
@@ -610,6 +636,7 @@ def main() -> None:
     check_practice()
     check_public_ui()
     check_csp()
+    check_beacon()
     check_safe_href()
     print("ALL CHECKS PASSED")
 
