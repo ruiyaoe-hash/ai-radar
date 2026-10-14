@@ -92,8 +92,8 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 
 筛选留在私有仓 `ai-radar-pool`。公开仓只有 schema、枚举和说明，见 `docs/candidate-pool.md`。
 
-1. 原始 X fetch 交给 `scripts/ingest_x.py`。不要手写 JSONL。脚本把**每一条**写成 `status_in_pool=pending`，判断字段留空。
-2. 入池之后跑 `scripts/annotate_gates.py`（L0 门槛 + L2 聚簇）。真丢才写 `drop_reason`；`deferred` / `rerouted` 不是丢弃。晋升时再写 `archive_id`。
+1. 原始 X 抓取不要直接写进公开归档。交给 `scripts/shift_ingest_x_to_pool.py`：全量 `ingest_x`（每一条先是 `pending`，判断字段留空），再 `annotate_gates --only-pending`。不要手写 JSONL。检出、退出码和提交说明见 `docs/x-pool-ingest.md`。
+2. 真丢才写 `drop_reason`；`deferred` / `rerouted` 不是丢弃。晋升时公开卡写 `candidate_id`（或 `promotion_path=emergency`），池行再改成 `promoted` 并写 `archive_id`。池 JSONL 只留在私有仓。
 3. 北京日历日 **≥ 2026-10-15** 的新归档卡要带 `candidate_id`，或写 `promotion_path=emergency`。更早的卡是遗留，不回填。
 4. `derive` 仍只读 `public/archive` 和 practice inbox，不读池。
 5. RSS 首批由 Actions `ingest-rss-pool` 写入私有池（密钥 `AI_RADAR_POOL_TOKEN`，只授给 `ai-radar-pool`）。班次扫池里的新 RSS 行，不自动发板。见 `docs/rss-pool-ingest.md`。

@@ -7,6 +7,7 @@
 | `generate_derived.py` | archive → items/feed/lens feeds/tools-radar/today3；若 `public/practice/inbox/` 有 JSON 则并入 `practice.json` |
 | `validate.py` | Schema + archive monotonic vs origin/main + feed count + pool-contract fixtures |
 | `ingest_x.py` | Raw X fetch JSON → candidate JSONL (all items, stable cid). Judgment fields stay empty |
+| `shift_ingest_x_to_pool.py` | Alba shift: `ingest_x` then `annotate_gates --only-pending` into a private `--pool-dir`. No X fetch, no promote |
 | `ingest_rss.py` | Batch-1 lab RSS / GitHub Releases → the same pending rows (`channel=rss`). Live fetch stays out of public CI |
 | `annotate_gates.py` | L0 gates + L2 `cluster_id`. Writes judgment fields back. Does not promote |
 | `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |
