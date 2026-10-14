@@ -17,10 +17,12 @@
 
 当前策略：
 
-- `script-src 'self'`，再加上**该页内联脚本正文的 sha256**。没有 `'unsafe-inline'`，也没有 `'unsafe-eval'`。
+- `script-src 'self'`，再加上**该页内联脚本正文的 sha256**，以及 Cloudflare Web Analytics 脚本源 `https://static.cloudflareinsights.com`。没有 `'unsafe-inline'`，也没有 `'unsafe-eval'`。
 - `script-src-attr 'none'`：内联事件处理器（`onclick` 等）不执行。
-- `style-src 'self'`、`img-src 'self'`、`font-src 'self'`、`connect-src 'self'`。没有第三方 CDN；页面也不嵌外链图片。
+- `style-src 'self'`、`img-src 'self'`、`font-src 'self'`。页面不嵌外链图片。
+- `connect-src 'self' https://cloudflareinsights.com`。多出来的主机只给 beacon 上报 `https://cloudflareinsights.com/cdn-cgi/rum`。
 - `object-src 'none'`、`base-uri 'none'`、`form-action 'none'`、`frame-src 'none'`。
+- `public/assets/shell.js` 在 `DOMContentLoaded` 时把 Web Analytics beacon 加到 `body` 末尾。每张公开页都加载 `shell.js`，所以新页面只要沿用壳子就会带上同一条 beacon。
 
 例外（故意没做严的部分）：
 
