@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看行业动态。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 13 Oct 2026 21:15:15 +0800</lastBuildDate>
+<lastBuildDate>Wed, 14 Oct 2026 08:04:07 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[今日必看 · 行业动态 · 发布] Google 全球开放 Gemini 4 Argon（API + Antigravity + Gemini App）</title>
+<link>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/</link>
+<guid isPermaLink="false">evt-20261014-gemini-4-argon</guid>
+<pubDate>Wed, 14 Oct 2026 00:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Google 官方博文（2026-10-13）：Gemini 4 Argon 全球可用——开发者/企业经 Gemini API（AI Studio / Gemini platform）；Google AI Ultra 可用 Antigravity；Pro/Ultra 可用 Gemini App 与 Search AI Mode<br/>• 定位长程复杂工作流（编码、金融、法律、网络安全、科研）；自称行业领先 1M 统一输入输出 token 上限；企业内部称 Antigravity 中 agentic 提交量升约 35%、回滚降近三分之一<br/>• 导入价：$2/百万 input、$10/百万 output（缓存 input 约 95% off）；2026-11-30 后升至 $4/$20；Artificial Analysis 称 Intelligence Index 与 GPT-6 Astra 持平、Cost per Task 约其 60%（折扣期）<br/>• DeepMind 同日发布安全/机器人配套博文；机器人示意：仅看视频即可教 Apptronik Apollo 投玉米袋连中 7 次（Video-to-Sim-to-Real）<br/><strong>对你意味着什么</strong> Google 重回公开前沿 API 阵营且导入价显著低于同档；OPC 选模型从双极/三极变成必须把 Argon 放进同任务对照，尤其长上下文与 agent 编码<br/>建议：试用 · 导入价至 11-30，本周做一次对照最划算<br/>有多确定：高<br/>什么情况下当这判断作废：若独立评测显示 Argon 在真实长程任务上系统性低于同价位 Sol/Opus，或 API 配额/延迟不可用，则「第四极可默认纳入」判断作废<br/>来源 Google（一手）, GoogleDeepMind（一手）, ArtificialAnlys（解读）, TheVerge（转述）<br/>日期 2026-10-14]]></description>
+</item>
 <item>
 <title>[重点关注 · 行业动态 · 安全] Anthropic：蒸馏防御使 Claude 被采集数据降约 90–99%</title>
 <link>https://www.anthropic.com/research/distillation-defenses</link>

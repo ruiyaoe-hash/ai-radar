@@ -1,18 +1,18 @@
-AI Radar · 今天先做这 3 件（2026-10-13）
+AI Radar · 今天先做这 3 件（2026-10-14）
 
-1. Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）
-   对你意味着什么：Meta 正式进入「可对标前沿 API」阵营；OPC 选模型时不能再默认只有 OpenAI/Anthropic 两极，Wonder Full 锁 Muse Code 也意味着最强档可能走封闭 coding 产品而非开放 API
-   建议：试用 · 本周做一次同任务对照即可
-   https://about.fb.com/news/2026/10/introducing-muse-wonder-models/
+1. Google 全球开放 Gemini 4 Argon（API + Antigravity + Gemini App）
+   对你意味着什么：Google 重回公开前沿 API 阵营且导入价显著低于同档；OPC 选模型从双极/三极变成必须把 Argon 放进同任务对照，尤其长上下文与 agent 编码
+   建议：试用 · 导入价至 11-30，本周做一次对照最划算
+   https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/
 
-2. Amex Intent Intelligence：先捕获并鉴权购买意图，再让 agent 下单
-   对你意味着什么：支付网络把「agent 商」风险前移到意图层：未来自主补货类 agent 可能默认需要可审计意图凭证；做交易型 agent 的 OPC 应把 intent 日志当产品能力，而不是合规补丁
-   建议：观察 · 等 ACE 合作方落地案例（1–2 个季度）
-   https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/
+2. Fish Audio Drama 3：开放权重表情 TTS，AA 发音稳健榜第一
+   对你意味着什么：开放权重 TTS 质量追上闭源头部，OPC 做播客/口播/agent 语音可先用 API 验证，营收低时再评估自托管降本
+   建议：评估 · 本周可 API 盲听对照，不必急着自托管
+   https://fish.audio/blog/fish-audio-drama-3/
 
-3. Character.AI 申请 Chapter 11：拟售部分资产予 Disney，平台或停运
-   对你意味着什么：高时长消费级聊天并不等于可规模化单位经济；角色陪伴赛道的合规与算力成本双重挤压被写进破产文件——OPC 做 C 端内容/陪伴产品时，要把「每用户推理成本+未成年人合规」当硬约束而非增长后话
-   建议：观察 · 盯 11–12 月出售结果与平台是否清盘
-   https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/
+3. Liquid LFM2.5-24B-A2B：2B 激活的端侧推理 agent 开源权重
+   对你意味着什么：端侧「常驻 agent」在速度/隐私上更可谈；OPC 若做本地助手可列入候选，知识任务仍需检索或外挂大模型
+   建议：评估 · 有本地 GPU/M 系列再试；否则只跟踪
+   https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/
