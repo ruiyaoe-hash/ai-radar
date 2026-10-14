@@ -97,6 +97,16 @@
       "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|\\+00:00)$",
       "description": "Recommended on new cards, optional on legacy cards. When the card was first written onto the archive board, ISO-8601 UTC. Set once; do not refresh on later edits. Measured lag hours = ingested_at − published_at when both are present."
     },
+    "candidate_id": {
+      "type": "string",
+      "pattern": "^cand-[0-9]{8}-[a-f0-9]{12}$",
+      "description": "Pool cid this card was promoted from. Required on archive cards dated on or after config.json pool_traceability_since, unless promotion_path is emergency. Omit on legacy cards."
+    },
+    "promotion_path": {
+      "type": "string",
+      "enum": ["normal", "emergency"],
+      "description": "normal = promoted from a pool record. emergency = written onto the archive without a pool row. Omit on legacy cards."
+    },
     "shift": {
       "type": "string",
       "enum": ["morning", "midday", "evening", "other"],

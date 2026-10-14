@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-15",
+  "items": [
+    {
+      "id": "evt-20261015-fixture-promoted",
+      "date": "2026-10-15",
+      "candidate_id": "cand-20261015-8e17a490afb1",
+      "promotion_path": "normal"
+    },
+    {
+      "id": "evt-20261015-fixture-emergency",
+      "date": "2026-10-15",
+      "promotion_path": "emergency"
+    }
+  ]
+}

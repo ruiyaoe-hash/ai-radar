@@ -10,6 +10,7 @@
 - 全量规格：[`docs/DECISION-SIGNAL-FULL-SPEC.md`](./docs/DECISION-SIGNAL-FULL-SPEC.md)
 - 验收清单：[`docs/DECISION-SIGNAL-CHECKLIST.md`](./docs/DECISION-SIGNAL-CHECKLIST.md)
 - 飞书：[`docs/FEISHU.md`](./docs/FEISHU.md)
+- 候选池契约：[`docs/candidate-pool.md`](./docs/candidate-pool.md)（正文在私有仓 `ai-radar-pool`；公开仓只有 schema / 枚举 / 文档）
 
 ## 成功是什么样子
 
@@ -54,7 +55,9 @@ python3 scripts/migrate_cards.py      # 旧卡 → 事件模型（幂等；空�
 python3 scripts/card_times.py         # 自检 published_at / ingested_at 解析
 python3 scripts/generate_derived.py   # 只写 public/
 python3 generate_feed.py              # 派生 public/；有 .no-root-mirror 时不再同步根镜像（不覆盖本 README）
-python3 scripts/validate.py           # schema、归档只增不减、feed 条数
+python3 scripts/validate.py           # schema、归档只增不减、feed 条数、候选池夹具
+python3 scripts/ingest_x.py --self-check
+python3 scripts/ingest_x.py --input fetch.json --out /tmp/batch.jsonl --ingested-at 2026-10-14T00:05:00Z
 python3 scripts/score_sources.py
 python3 scripts/generate_weekly_memo.py
 python3 scripts/feishu_notify.py      # 无 webhook 时 dry-run
