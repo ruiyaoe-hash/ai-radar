@@ -360,8 +360,36 @@ def check_practice() -> None:
             if errors:
                 first = errors[0]
                 fail(f"practice/inbox/{path.name}: {first.message}")
+    live_items = [it for it in live.get("items") or [] if isinstance(it, dict)]
+    if len(live_items) < 3:
+        fail(f"practice.json needs at least 3 editor cards, found {len(live_items)}")
+    note = str(live.get("note") or "")
+    if "编辑精选" not in note or "非自动" not in note:
+        fail("practice.json note must say the lane is editor-curated, not auto-scraped")
+    inbox_ids: list[str] = []
+    if inbox.is_dir():
+        for path in sorted(inbox.glob("*.json")):
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            items = payload.get("items") if isinstance(payload, dict) and "items" in payload else (
+                payload if isinstance(payload, list) else [payload]
+            )
+            for it in items:
+                if isinstance(it, dict) and it.get("id"):
+                    inbox_ids.append(it["id"])
+    live_ids = {it.get("id") for it in live_items}
+    missing = [eid for eid in inbox_ids if eid not in live_ids]
+    if missing:
+        fail(f"practice.json missing inbox ids (run generate_derived.py): {missing}")
+    for it in live_items:
+        steps = [s for s in (it.get("steps") or []) if isinstance(s, str) and s.strip()]
+        if len(steps) < 2:
+            fail(f"{it.get('id')}: live practice card needs at least 2 steps")
+        if not str(it.get("caution") or "").strip():
+            fail(f"{it.get('id')}: live practice card needs caution")
+        if not str(it.get("takeaway") or "").strip():
+            fail(f"{it.get('id')}: live practice card needs takeaway")
     print(
-        f"OK practice: {len(live.get('items') or [])} live, "
+        f"OK practice: {len(live_items)} live, "
         f"{len(sample_ids)} sample"
     )
 
@@ -383,8 +411,17 @@ def check_public_ui() -> None:
             "时机窗口",
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
+            "每天 08:00 主报，工作日 21:00 晚班",
         ],
-        "practice.html": ["工具用法", "创意作品", "变现", "Skill / 工作流", "硬件", "还没有可照着做的实操。"],
+        "practice.html": [
+            "工具用法",
+            "创意作品",
+            "变现",
+            "Skill / 工作流",
+            "硬件",
+            "还没有可照着做的实操。",
+            "编辑精选、每周投放、非自动从监控捞",
+        ],
         "tools-radar.html": ["值得用上", "可以试", "先评估", "先别跟"],
         "subscribe.html": [
             "./feed.xml",
@@ -399,12 +436,14 @@ def check_public_ui() -> None:
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
         "week.html": ["本周归档"],
-        "agent.html": ["today3.txt", "practice.json"],
+        "agent.html": ["today3.txt", "practice.json", "编辑精选、每周投放，非自动从监控捞"],
         "about.html": [
             "对你意味着什么",
             "背景与出处",
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
+            "编辑精选、每周投放，非自动从监控捞",
+            "每天 08:00 主报，工作日 21:00 晚班",
         ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
@@ -448,6 +487,11 @@ def check_public_ui() -> None:
                 fail(f"{name} shows jargon {word}")
         if re.search(r"\bP0\b|\bP1\b|\blens\b", visible):
             fail(f"{name} shows priority or lens jargon in visible HTML")
+        if "13:30" in visible or "从监控信源里捞" in visible:
+            fail(f"{name} still shows a removed schedule slot or an auto-scrape claim")
+    shell_visible = shell
+    if "13:30" in shell_visible:
+        fail("shell.js still shows 13:30")
     print("OK public UI copy")
 
 
@@ -635,6 +679,12 @@ def main() -> None:
     check_rss_escape()
     check_practice()
     check_public_ui()
+    try:
+        from ops_retract import self_check as check_ops_retract
+    except ImportError:
+        from scripts.ops_retract import self_check as check_ops_retract
+    if check_ops_retract() != 0:
+        fail("ops retract/pause dry-run self-check failed")
     check_csp()
     check_beacon()
     check_safe_href()

@@ -74,6 +74,32 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 | `schemas/` | JSON Schema |
 | `scripts/` | migrate / derive / validate / memo / score / feishu |
 
+## state.json（2026-10-14 核实：弃）
+
+仓库根的 `state.json` 仍有 `watermark`、`last_run`、`seen_ids`、`last_digest`。这四项停在 **2026-10-12T05:35:03Z**，`last_digest` 仍是 `2026-10-12 13:30 CST main`。
+
+其后的 digest 没有改它：`public/archive/2026-10-13.json`、`public/archive/2026-10-14.json` 和 `DIGEST_LATEST.md`（2026-10-14 08:00）都已发布。`scripts/` 里没有读写这份水位的例程。`scripts/feishu_notify.py` 只用 `.feishu-notify-state.json`，并写明不要碰 `state.json`。
+
+**结论：弃。** 文件留着当历史快照，并加了 `contract: deprecated`。它不是去重契约，也不是班次打卡。
+
+下一班 Alba：
+
+- 不要更新 `state.json`，不要用 `seen_ids` 判断「已经报过」
+- 去重仍按归档 `id` / `url`（上面的合并步骤）
+- 飞书已推送的 id 继续只放在 Actions cache
+
+## 博主实操
+
+这一栏是编辑精选、每周投放，**非自动从监控捞**。不要用 digest 的 `a_tier` 假装已经覆盖。
+
+1. 人工写 `prac-*` JSON，放进 `public/practice/inbox/`
+2. `python3 scripts/generate_derived.py` 才会写入 `public/practice.json`
+3. 每条要有步骤、可借鉴点和注意。难度、开始前、用时、是否对照原文按 `schemas/practice.schema.json` 的可选字段写
+
+## 撤稿与暂停
+
+见 `docs/runbook-retract.md`。Actions 里的 `Ops · retract or pause (dry-run)` 只查卡、只打印下一步，不改归档、不调飞书。
+
 ## 注意
 
 - 客观与 so_what **分栏**；无 falsifier 不写 so_what  

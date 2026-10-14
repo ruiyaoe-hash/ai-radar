@@ -1,0 +1,47 @@
+# Dry-run only. Looks up a card or prints how to skip one digest shift.
+# Does not commit, delete archive rows, or call Feishu.
+name: Ops · retract or pause (dry-run)
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "retract 或 pause"
+        required: true
+        type: choice
+        options:
+          - retract
+          - pause
+      card_id:
+        description: "撤稿必填：evt- 或 prac-。暂停留空。"
+        required: false
+        type: string
+        default: ""
+      reason:
+        description: "原因（事实错误 / 侵权 / 误升正式 P0 / 暂停班次）"
+        required: true
+        type: string
+      shift:
+        description: "暂停班次：08:00 或 21:00。撤稿留空。不要填 13:30。"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dry-run retract or pause
+        env:
+          OPS_ACTION: ${{ inputs.action }}
+          OPS_CARD_ID: ${{ inputs.card_id }}
+          OPS_REASON: ${{ inputs.reason }}
+          OPS_SHIFT: ${{ inputs.shift }}
+        run: python3 scripts/ops_retract.py

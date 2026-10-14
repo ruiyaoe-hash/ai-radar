@@ -1,0 +1,25 @@
+{
+  "id": "prac-20261014-llm-file",
+  "kind": "工具用法",
+  "title": "用 llm 命令对本地文件跑一次说明，不必先做应用",
+  "author": "Simon Willison",
+  "url": "https://llm.datasette.io/en/stable/",
+  "time": "2026-10-14 09:20",
+  "difficulty": "入门",
+  "prerequisites": [
+    "有 Python，或已安装 uv / pipx",
+    "一份自己的文本或代码文件",
+    "要用云端模型时自备 API key"
+  ],
+  "estimated_time": "约 20 分钟",
+  "verified": true,
+  "takeaway": "一个人要解释一段代码或改一版说明时，先用命令行把文件送进模型，确认提示词有用，再决定要不要做成产品。",
+  "steps": [
+    "安装：uv tool install llm，或 pipx install llm，或 pip install llm",
+    "云端模型需要钥匙时执行 llm keys set openai，按提示粘贴。不要把钥匙写进仓库",
+    "对本地文件试一条：cat 你的文件 | llm -s \"用中文说明这段在做什么，并标出不确定处\"",
+    "换模型再加 -m。本机 Ollama 需另装 llm-ollama，先拉取模型再 llm -m 模型名",
+    "用 llm logs 回看刚才的提示和回答。能复用的说法留到模板，不要从聊天记录里再抄一遍"
+  ],
+  "caution": "文档里的默认模型名会变，以你本机 llm models 为准。不要把客户原稿或密钥送进第三方 API。日志默认留在本机。时间为编辑估计。步骤对照 2026-10-14 的官方快速开始。"
+}

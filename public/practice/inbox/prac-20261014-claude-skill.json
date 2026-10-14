@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261014-claude-skill",
+  "kind": "Skill / 工作流",
+  "title": "把每周重复粘贴的说明收成一条 Claude Skill",
+  "author": "Anthropic · Claude Code 文档",
+  "url": "https://code.claude.com/docs/en/skills",
+  "time": "2026-10-14 09:10",
+  "difficulty": "入门",
+  "prerequisites": [
+    "电脑上已能运行 claude",
+    "手头有一段你反复粘贴进对话的步骤或清单"
+  ],
+  "estimated_time": "约 30 分钟",
+  "verified": true,
+  "takeaway": "重复粘贴的交付步骤不要堆在一直加载的说明里。收成个人 Skill 后，正文只在用到时加载，也可以用斜杠命令直接调用。",
+  "steps": [
+    "建目录 ~/.claude/skills/你的技能名/。这是个人技能，各个项目都能用；只给当前仓库用则放 .claude/skills/",
+    "在目录里写 SKILL.md。开头用 --- 包住 YAML，至少写 description：做什么、什么时候该用",
+    "description 下面用自己的话写步骤。先跑通纯文字，再考虑文档里那种把命令输出嵌进正文的写法",
+    "打开一个仓库，运行 claude。用和 description 相符的话试一次，或输入 /技能名",
+    "没有被自动选中就改 description，写清触发场景，而不是把正文越写越长"
+  ],
+  "caution": "步骤对照 2026-10-14 的官方文档，编辑估计用时。不要把客户密钥写进 SKILL.md。description 决定会不会被自动加载。"
+}

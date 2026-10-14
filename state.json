@@ -74,5 +74,8 @@
     "2108374124821381419",
     "2108369624832356447"
   ],
-  "last_digest": "2026-10-12 13:30 CST main"
+  "last_digest": "2026-10-12 13:30 CST main",
+  "contract": "deprecated",
+  "deprecated_on": "2026-10-14",
+  "contract_note": "弃用。2026-10-13 与 2026-10-14 的 digest 没有改本文件。去重看归档 id/url，不要再写 watermark、seen_ids 或 last_digest。飞书推送状态在 .feishu-notify-state.json，与本文件无关。"
 }

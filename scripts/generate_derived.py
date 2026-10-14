@@ -330,11 +330,16 @@ def _practice_items(payload) -> list[dict]:
     raise ValueError("practice inbox entry must be an item, a list, or {items: []}")
 
 
+PRACTICE_NOTE = "编辑精选、每周投放，非自动从监控信源捞取。"
+
+
 def sync_practice_inbox() -> None:
     """Merge public/practice/inbox/*.json into practice.json.
 
     Empty inbox leaves the committed file alone (the page then shows an empty state).
     Sample cards live in practice.sample.json and are not published here.
+    Optional editorial fields (difficulty, prerequisites, estimated_time, verified)
+    are copied through unchanged.
     """
     inbox = PUBLIC / "practice" / "inbox"
     incoming: list[dict] = []
@@ -384,6 +389,7 @@ def sync_practice_inbox() -> None:
             {
                 "schema_version": 1,
                 "updated": datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间"),
+                "note": PRACTICE_NOTE,
                 "items": items,
             },
             ensure_ascii=False,
