@@ -7,6 +7,8 @@
 | `generate_derived.py` | archive → items/feed/lens feeds/tools-radar/today3；若 `public/practice/inbox/` 有 JSON 则并入 `practice.json` |
 | `validate.py` | Schema + archive monotonic vs origin/main + feed count + pool-contract fixtures |
 | `ingest_x.py` | Raw X fetch JSON → candidate JSONL (all items, stable cid). Judgment fields stay empty |
+| `ingest_rss.py` | Batch-1 lab RSS / GitHub Releases → the same pending rows (`channel=rss`). Live fetch stays out of public CI |
+| `annotate_gates.py` | L0 gates + L2 `cluster_id`. Writes judgment fields back. Does not promote |
 | `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |
 | `score_sources.py` | Source scoreboard → `public/source-scores.json` |
 | `feishu_notify.py` | Formal P0 + 24h health (needs `FEISHU_BOT_WEBHOOK`; state in `.feishu-notify-state.json`) |

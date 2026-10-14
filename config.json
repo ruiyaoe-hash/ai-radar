@@ -44,5 +44,7 @@
   "pool_traceability_since": "2026-10-15",
   "pool_traceability_note": "北京日历日 >= 此日的新 archive 卡，必须带 candidate_id，或 promotion_path=emergency。能读到池快照时，candidate_id 还须对应 status_in_pool=promoted。2026-10-14 及更早的卡是遗留，不回填。公开 CI 没有私有池时跳过实卡对池，只用 testdata/ 夹具。",
   "primary_sources_config": "public/config/sources.json",
+  "source_tier_map": "config/source_tier_map.json",
+  "entity_rules": "config/entity_rules.json",
   "single_source_of_truth": "public/archive/"
 }
