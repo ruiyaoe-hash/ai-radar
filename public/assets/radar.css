@@ -317,6 +317,8 @@ h1 {
 .feed-list strong, .link-row strong { display: block; font-weight: 650; }
 .feed-list span, .link-row span { color: var(--muted); font-size: 0.86rem; }
 .feed-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+.join-row { margin-top: 18px; }
+a.btn:hover { text-decoration: none; }
 
 .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .ring h2 {
