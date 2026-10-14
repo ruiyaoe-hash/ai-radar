@@ -9,6 +9,7 @@
 | `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |
 | `score_sources.py` | Source scoreboard → `public/source-scores.json` |
 | `feishu_notify.py` | Formal P0 + 24h health (needs `FEISHU_BOT_WEBHOOK`; state in `.feishu-notify-state.json`) |
+| `ops_retract.py` | Dry-run retract/pause lookup. Does not edit archive, git, or Feishu. See `docs/runbook-retract.md` |
 | `sync_root_pages.py` | Interim mirror public/ → repo root for legacy Pages. Skips README.md. Stops when `.no-root-mirror` exists |
 | `retire_root_mirrors.py` | Delete root mirrors after Pages source is GitHub Actions |
 

@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261014-codex-agents",
+  "kind": "Skill / 工作流",
+  "title": "给 Codex 写一份短 AGENTS.md，避免每个仓库重复叮嘱",
+  "author": "OpenAI",
+  "url": "https://developers.openai.com/codex/guides/agents-md",
+  "time": "2026-10-14 09:30",
+  "difficulty": "入门",
+  "prerequisites": [
+    "已安装并能登录 Codex CLI",
+    "一个你正在改的 git 仓库"
+  ],
+  "estimated_time": "约 25 分钟",
+  "verified": true,
+  "takeaway": "Codex 开工前会读 AGENTS.md。把怎么构建、怎么测试、什么不要做写成短文件，比每次对话重讲一遍更稳。",
+  "steps": [
+    "在仓库根打开 Codex，用 CLI 入门页里的 /init 草拟 AGENTS.md，然后改成仓库里真实存在的命令",
+    "根文件只留：目录怎么分、怎么安装、测试和 lint 命令、怎样算做完",
+    "某子目录规则不同时，在该目录放 AGENTS.override.md。离当前目录更近的文件会盖过上层",
+    "个人习惯放 ~/.codex/AGENTS.md，不要写进客户仓库",
+    "在仓库根再开一次 Codex，让它复述当前加载了哪些说明。对不上就查是不是空文件，或被 override 盖住"
+  ],
+  "caution": "默认合并上限约 32KiB，写太长会被截断。/init 只在 Codex CLI 入门页里，本卡链接是说明文件怎么叠放。草稿必须改成你仓库里真实的命令。时间为编辑估计。对照 2026-10-14 的官方说明。"
+}

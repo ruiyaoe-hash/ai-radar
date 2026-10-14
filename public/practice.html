@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-page="practice">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mZN7PCq5GuSQmGMjj3jYwqUscuceOrkKOTgsJkoqCeo=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-htOIP5WTNcA5D5DFmfy6ygodfiUvG9MsCIK/bwRGKhE=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c0e12" />
   <title>博主实操 · AI Radar</title>
@@ -20,7 +20,7 @@
       </div>
       <main>
         <h1>博主实操</h1>
-        <p class="sub">从监控信源里捞<strong>可照着做</strong>的用法、创意、变现——不是又一篇行业新闻。</p>
+        <p class="sub">编辑精选、每周投放、非自动从监控捞。只收<strong>可照着做</strong>的用法、创意、变现和工作流。</p>
         <div class="filters" id="kindFilters">
           <button class="chip on" type="button" data-kind="all">全部</button>
           <button class="chip" type="button" data-kind="工具用法">工具用法</button>
@@ -37,8 +37,20 @@
   <script>
     const state = { kind: "all", items: [] };
 
+    function practiceFacts(it) {
+      const bits = [];
+      if (it.difficulty) bits.push(Radar.esc(it.difficulty));
+      if (it.estimated_time) bits.push(Radar.esc(it.estimated_time));
+      if (it.verified === true) bits.push("已对照原文");
+      if (it.verified === false) bits.push("步骤未复核");
+      if (it.author) bits.push(Radar.esc(it.author));
+      if (it.time) bits.push(Radar.esc(it.time));
+      return bits.map((bit) => `<span>${bit}</span>`).join('<span>·</span>');
+    }
+
     function renderPractice(it) {
       const steps = Array.isArray(it.steps) ? it.steps.filter(Boolean) : [];
+      const needs = Array.isArray(it.prerequisites) ? it.prerequisites.filter(Boolean) : [];
       const href = Radar.safeHref(it.url);
       const fold = [
         steps.length ? `<ol>${steps.map((s) => `<li>${Radar.esc(s)}</li>`).join("")}</ol>` : "",
@@ -48,14 +60,17 @@
       const details = fold.trim()
         ? `<details><summary>步骤摘要</summary><div class="fold">${fold}</div></details>`
         : "";
+      const before = needs.length
+        ? `<p class="mean"><b>开始前：</b>${Radar.esc(needs.join("；"))}</p>`
+        : "";
       return `<article class="card">
         <div class="meta">
           <span class="tag prac">${Radar.esc(it.kind || "实操")}</span>
-          <span>${Radar.esc(it.author || "")}</span>
-          ${it.time ? `<span>·</span><span>${Radar.esc(it.time)}</span>` : ""}
+          ${practiceFacts(it)}
         </div>
         <h3>${Radar.esc(it.title || "")}</h3>
         ${it.takeaway ? `<p class="mean"><b>可借鉴点：</b>${Radar.esc(it.takeaway)}</p>` : ""}
+        ${before}
         ${details}
       </article>`;
     }

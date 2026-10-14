@@ -16,6 +16,10 @@ https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-38
 
 这是给人的零后端订阅路径。RSS 仍是主要订阅方式。导航地址先经 `safeHref()`。普通跳转，不放宽 CSP，也不把 `applink.feishu.cn` 加进 `connect-src`。
 
+## 撤稿与暂停
+
+不在这里做。步骤、批准人和空跑工作流见 `docs/runbook-retract.md`。不要为了撤稿改 `FEISHU_BOT_WEBHOOK`。
+
 ## 出站推送
 
 ## Secret

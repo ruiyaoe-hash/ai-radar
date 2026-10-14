@@ -39,7 +39,18 @@
           "maxItems": 8
         },
         "caution": { "type": "string" },
-        "sample": { "type": "boolean" }
+        "sample": { "type": "boolean" },
+        "difficulty": {
+          "type": "string",
+          "enum": ["入门", "进阶"]
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "maxItems": 6
+        },
+        "estimated_time": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "verified": { "type": "boolean" }
       }
     }
   }

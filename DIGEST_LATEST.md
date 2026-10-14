@@ -39,3 +39,5 @@ Google 以导入价把 Argon 推回公开前沿；语音/端侧/决策层同步�
 - OpenAI 员工窃听案、Bain 万亿收入缺口等：缺清晰 OPC 动作 → 不入板。
 
 本日归档 6 张卡：`public/archive/2026-10-14.json`
+
+水位：`state.json` 自 2026-10-12 起未再更新（`last_digest` 仍写着已取消的 13:30）。本班不依赖它。结论见 `TIMELINE.md`「state.json」。
