@@ -163,6 +163,10 @@ python3 scripts/annotate_gates.py --pool-dir ../ai-radar-pool --only-pending
 
 高门槛不等于拦截。名单外的行不会因为「没录入」被丢掉。
 
+## X 班次入池
+
+早班每天 08:00、晚班工作日 21:00（Asia/Shanghai）。Alba 自己准备原始 X JSON（公开 CI 不抓 X），用 `scripts/shift_ingest_x_to_pool.py --fetch … --pool-dir …` 写进私有仓：先全量 `ingest_x`，再 `annotate_gates.py --only-pending`。只在私有仓提交 `candidates/`。之后再晋升：公开卡写 `candidate_id`，或 `promotion_path=emergency`。池 JSONL 不进 `public/`。检出、JSON 形状、退出码和提交说明见 `docs/x-pool-ingest.md`。
+
 ## RSS 入池（Phase 4）
 
 `scripts/ingest_rss.py` 只拉 `public/config/sources.json` 里 `fetch_batch=1` 的六条：`openai-blog`、`anthropic-news`、`deepmind-blog`、`huggingface-blog`、`gh-releases-openai`、`gh-releases-anthropic-sdk`。
