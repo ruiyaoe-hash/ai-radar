@@ -1,4 +1,4 @@
-# AI Radar 晚班短报 · 2026-10-14 21:00 北京时间
+# AI Radar 主报 · 2026-10-15 08:00 北京时间
 
 > 现行班次（Asia/Shanghai）：每天 08:00 主报；周一至周五 21:00 晚班。13:30 午间班已取消。
 
@@ -6,23 +6,27 @@
 RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml  
 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html
 
-睿，**晚班无正式 P0（今日必看）**。中国白天一手 + 美东上午窗口未出现「今天错过会做错决策」的新品/新模型/新 API；不写填充卡。全日正式 P0 仍只有早报 **Gemini 4 Argon**。
+睿，**主报无正式 P0（今日必看）**。美西上一工作日收盘窗口（约 2026-10-14 21:00 → 2026-10-15 08:00 北京时间）未出现「今天错过会做错决策」的新品 / 新模型 / 新 API（应用程序接口）；不写填充卡。
 
-## 晚班新增
+## 本班窗口结论
 
-无。
+无新增归档卡。`public/archive/2026-10-15.json` 未创建。
 
-## 今日正式 P0（早报）
+## 昨日正式 P0（仍有效）
 
 - Gemini 4 Argon 全球开放 — 仍建议本周同任务对照（导入价至 11-30）。  
   https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/
 
-## 跳过 / 不升格（晚班扫视）
+## 跳过 / 不升格（主报扫视）
 
-- Anthropic 新加坡办公室 + 政府 MOU：一手确认，但无新模型/API/可试用能力 → 不入板。  
-- AA-AgentPerf 纳入 DeepSeek V4.1 Flash：模型本身 9 月已发，属机架级吞吐评测更新，非 OPC 当日决策 → 不入板。  
-- Claude Fable 5.5 Azure 目录泄露：仍传闻，未官方确认 → 继续不写卡。  
-- MiniCPM-V 4.7 / sgrep 等：发布时间早于本班窗口（或已在早报窗口），不回补。  
-- 国内聚合站「智谱/MiniMax/Moonshot 今日发布」多为旧闻重发 → 未核验一手则不写。
+- **AA-Robotics v0.1**（Artificial Analysis 具身评测预览）：官方评测站发布，但非可试用新模型 / API，对 OPC（一人公司）当日选型无强制动作 → 不入板。
+- **Grok Voice 3.0**：仅 AA（Artificial Analysis）榜单二手；窗口内无 xAI / 官方一手确认；媒体 alone（单独二手）≠ 正式 P0 → 不入板。
+- **DeepMind 科学家免费 Antigravity 高用量档**：Gemini 4 Argon 后续科研赠送，非新品发布；Argon 已在昨日报 → 不重复写卡。
+- **Claude Code idle compaction（空闲压缩）**：实用工程提示（practice），非「今日必看」决策级 → 不入板。
+- **Ultramarine 1 Flash / Ling-3.1-flash / Nemotron 4 预告**：单源或预告 / 权重未齐，未达 confirmed（已确认）或多源 → 不升格。
+- **Mistral 收购 New Material**：设计团队入驻，无新模型 / API → 不入板。
+- **OpenAI 欧盟 agentic（代理式）采用报告 / SDK 小版本**：研究或库增量，非当日决策 → 不入板。
+- **LFM2.5-24B-A2B / HiRO-ACEv2**：端侧或科学仿真向，对当前 OPC 主线非强制 → 不入板。
+- **practice_handles（实操账号）** 本班多为技巧 / 产品侧栏，步骤不足以强行进 digest（简报）。
 
-本日归档仍 6 张卡：`public/archive/2026-10-14.json`（晚班未追加）
+X 抓取：38 handles（账号）全解析；窗口内 122 帖已入私有池并门槛标注。
