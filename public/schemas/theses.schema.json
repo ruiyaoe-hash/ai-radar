@@ -27,7 +27,7 @@
           "minItems": 1,
           "items": { "type": "string", "enum": ["命中", "未命中", "待定"] }
         },
-        "note": { "type": "string" }
+        "note": { "type": "string", "maxLength": 120 }
       }
     },
     "theses": {
@@ -53,10 +53,15 @@
       "properties": {
         "id": { "type": "string", "pattern": "^T-[0-9]{3,}$" },
         "lens": { "type": "string", "enum": ["工具", "赛道", "模式", "时机"] },
-        "statement": { "type": "string", "minLength": 1 },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "description": "Editor-written thesis. Not a raw social post."
+        },
         "horizon": { "type": "string", "pattern": "^[0-9]{4}-Q[1-4]$" },
         "confidence": { "type": "string", "enum": ["高", "中", "低"] },
-        "falsifier": { "type": "string", "minLength": 1 },
+        "falsifier": { "type": "string", "minLength": 1, "maxLength": 280 },
         "status": { "type": "string", "enum": ["命中", "未命中", "待定"] },
         "evidence_for": {
           "type": "array",

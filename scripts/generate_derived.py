@@ -17,6 +17,10 @@ Writes into public/ only:
 today3 keeps the line labels the homepage parser expects
 (「对你意味着什么」「建议」). Spoken wording comes from the card.
 Machine ids are stripped. See scripts/human_layer.py.
+
+Public JSON uses the edited objective / so_what / title. Raw social-post
+keys (text, full_text, snippet, and the other names in prompt_guard) are
+removed before write. The private pool may keep those fields.
 """
 from __future__ import annotations
 
@@ -32,9 +36,11 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from card_times import parse_source_timestamp
     from human_layer import strip_machine_ids
+    from prompt_guard import strip_raw_post_fields
 else:
     from .card_times import parse_source_timestamp
     from .human_layer import strip_machine_ids
+    from .prompt_guard import strip_raw_post_fields
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -109,7 +115,8 @@ def load_all_archive_items() -> list[dict]:
     for path in sorted(ARCHIVE.glob("????-??-??.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
         for it in data.get("items", []):
-            items.append(it)
+            # Archive files stay as committed. Derived copies drop raw post bodies.
+            items.append(strip_raw_post_fields(it))
     return items
 
 
@@ -395,7 +402,7 @@ def sync_practice_inbox() -> None:
             raise SystemExit("practice item missing id")
         if eid not in by_id:
             order.append(eid)
-        by_id[eid] = it
+        by_id[eid] = strip_raw_post_fields(it)
     items = [by_id[eid] for eid in order]
     items.sort(key=lambda it: str(it.get("time") or ""), reverse=True)
     dest.write_text(

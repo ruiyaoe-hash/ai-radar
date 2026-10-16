@@ -7,8 +7,8 @@
   "additionalProperties": true,
   "properties": {
     "schema_version": { "type": "integer", "const": 1 },
-    "updated": { "type": ["string", "null"] },
-    "note": { "type": "string" },
+    "updated": { "type": ["string", "null"], "maxLength": 48 },
+    "note": { "type": "string", "maxLength": 200 },
     "items": {
       "type": "array",
       "items": { "$ref": "#/$defs/item" }
@@ -28,17 +28,21 @@
           "type": "string",
           "enum": ["工具用法", "创意作品", "变现", "Skill / 工作流", "硬件"]
         },
-        "title": { "type": "string", "minLength": 1 },
-        "author": { "type": "string", "minLength": 1 },
-        "url": { "type": "string" },
-        "time": { "type": "string" },
-        "takeaway": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "author": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "url": {
+          "type": "string",
+          "maxLength": 500,
+          "pattern": "^https?://[^\\s<>]+$"
+        },
+        "time": { "type": "string", "maxLength": 32 },
+        "takeaway": { "type": "string", "minLength": 1, "maxLength": 240 },
         "steps": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": { "type": "string", "minLength": 1, "maxLength": 320 },
           "maxItems": 8
         },
-        "caution": { "type": "string" },
+        "caution": { "type": "string", "maxLength": 320 },
         "sample": { "type": "boolean" },
         "difficulty": {
           "type": "string",
@@ -48,7 +52,7 @@
         "prerequisites": {
           "type": "array",
           "description": "Prerequisites (前置条件): skills, accounts, or tools.",
-          "items": { "type": "string", "minLength": 1 },
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 },
           "maxItems": 6
         },
         "estimated_time": {
