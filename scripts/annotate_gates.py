@@ -31,6 +31,9 @@ correction_path note on the other rows. This phase does not write a new card.
   python3 scripts/annotate_gates.py --pool-dir ../ai-radar-pool --only-pending
 
 Refuses to write under public/.
+Public title / objective / so_what prose is written on the archive card, not here.
+See scripts/human_layer.py and docs/AIHOT对接与表达规范-v0.md.
+Gate outcomes (including media_alone) are unchanged.
 """
 from __future__ import annotations
 

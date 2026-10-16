@@ -10,7 +10,7 @@
       "tag": "发布",
       "lens": "赛道",
       "priority": "P0",
-      "title": "Google 全球开放 Gemini 4 Argon（API + Antigravity + Gemini App）",
+      "title": "Google 向全球开放 Gemini 4 Argon",
       "date": "2026-10-14",
       "time": "10-14 00:00",
       "handle": "Google",
@@ -18,10 +18,10 @@
       "published_at": "2026-10-13T16:00:00Z",
       "ingested_at": "2026-10-14T00:03:53Z",
       "objective": [
-        "Google 官方博文（2026-10-13）：Gemini 4 Argon 全球可用——开发者/企业经 Gemini API（AI Studio / Gemini platform）；Google AI Ultra 可用 Antigravity；Pro/Ultra 可用 Gemini App 与 Search AI Mode",
-        "定位长程复杂工作流（编码、金融、法律、网络安全、科研）；自称行业领先 1M 统一输入输出 token 上限；企业内部称 Antigravity 中 agentic 提交量升约 35%、回滚降近三分之一",
-        "导入价：$2/百万 input、$10/百万 output（缓存 input 约 95% off）；2026-11-30 后升至 $4/$20；Artificial Analysis 称 Intelligence Index 与 GPT-6 Astra 持平、Cost per Task 约其 60%（折扣期）",
-        "DeepMind 同日发布安全/机器人配套博文；机器人示意：仅看视频即可教 Apptronik Apollo 投玉米袋连中 7 次（Video-to-Sim-to-Real）"
+        "Google 在 2026 年 10 月 13 日向全球开放 Gemini 4 Argon。开发者和企业可以通过 Gemini 接口使用。",
+        "Google AI Ultra 可以用 Antigravity。Pro 和 Ultra 可以用 Gemini 应用，也可以用搜索里的 AI 模式。它面向写代码、金融、法律、网络安全和科研这类长程工作。输入和输出上限都是 1M token。",
+        "现在的导入价是每百万 token 输入 2 美元、输出 10 美元。缓存过的输入大约便宜 95%。2026 年 11 月 30 日之后升到输入 4 美元、输出 20 美元。",
+        "Artificial Analysis 称它的智力指数和 GPT-6 Astra 持平。折扣期内，单次任务成本大约是 Astra 的 60%。公司内部说，Antigravity 里智能体提交量大约升了 35%，回滚大约少了三分之一。DeepMind 同一天发了安全和机器人配套说明。机器人演示里，只看视频就能教 Apptronik Apollo 连投 7 袋玉米。"
       ],
       "sources": [
         {
@@ -47,9 +47,9 @@
       ],
       "shift": "morning",
       "try_url": "https://aistudio.google.com/",
-      "access": "Gemini API 付费档；Antigravity 需 Ultra；App/Search 需 Pro 或 Ultra",
+      "access": "开发者和企业走 Gemini 付费接口。Antigravity 需要 Google AI Ultra。应用和搜索需要 Pro 或 Ultra。",
       "integration": "Gemini API / AI Studio / Antigravity / Android Studio",
-      "first_step": "用同一套长程 coding 或 agent 任务对照 Argon（导入价）vs 现用 Sol/Opus/Wonder，看完成率与账单",
+      "first_step": "用同一套长程写代码或智能体任务，把 Argon 的导入价和你现在用的 Sol、Opus 或 Wonder 对打一遍，看完成率和账单。",
       "alternatives": [
         "GPT-6 Astra / Sol",
         "Claude Opus 5.5 / Fable",
@@ -58,11 +58,11 @@
       "tool_radar": "试用",
       "so_what": {
         "lens": "赛道",
-        "impact": "Google 重回公开前沿 API 阵营且导入价显著低于同档；OPC 选模型从双极/三极变成必须把 Argon 放进同任务对照，尤其长上下文与 agent 编码",
+        "impact": "Google 又提供了公开的前沿模型接口，而且眼下的导入价明显更低。选模型时，尤其是长上下文和用智能体写代码，这周要把 Argon 放进同一套任务里对照。",
         "action": "试用",
-        "window": "导入价至 11-30，本周做一次对照最划算",
+        "window": "导入价维持到 11 月 30 日。这周对照最划算。",
         "confidence": "高",
-        "falsifier": "若独立评测显示 Argon 在真实长程任务上系统性低于同价位 Sol/Opus，或 API 配额/延迟不可用，则「第四极可默认纳入」判断作废",
+        "falsifier": "如果独立评测显示，Argon 在真实长程任务上稳定差于同样价位的 Sol 或 Opus，或者接口的配额和延迟用不起来，就收回「可以默认放进对照表」。",
         "thesis_id": "T-001"
       }
     },

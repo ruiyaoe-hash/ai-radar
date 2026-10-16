@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Draft a weekly decision memo from public/archive (human edits after)."""
+"""Draft a weekly decision memo from public/archive (human edits after).
+
+Spoken blocks follow docs/AIHOT对接与表达规范-v0.md via scripts/human_layer.py.
+Card ids stay in the appendix. Priority rules are unchanged.
+"""
 from __future__ import annotations
 
 import argparse
@@ -12,8 +16,10 @@ from pathlib import Path
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from card_times import measured_lag_hours
+    from human_layer import digest_card_md
 else:
     from .card_times import measured_lag_hours
+    from .human_layer import digest_card_md
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -59,26 +65,27 @@ def main():
         "",
         "## 1. 本周信号概览",
         f"- 卡片总数：{len(items)}",
-        f"- 正式 P0：{len(p0_formal)}；P0-待证（rumor）：{len(p0_pending)}",
+        f"- 今日必看：{len(p0_formal)}；传闻待核对：{len(p0_pending)}",
         f"- 按 lens：{dict(by_lens)}",
         f"- 含 so_what（可证伪）：{len(with_so)}",
         "",
-        "## 2. 正式 P0（需决策）",
+        "## 2. 本周今日必看",
+        "",
+        "> 机器规则未改：这里只收 priority 为 P0、且不是传闻的卡。编号在文末附录。",
+        "",
     ]
     if not p0_formal:
         lines.append("- （无）")
     for it in p0_formal:
-        lines.append(f"- **{it.get('title')}** `{it.get('id')}` · {it.get('lens')} · {it.get('status')}")
-        if it.get("so_what"):
-            so = it["so_what"]
-            lines.append(f"  - impact: {so.get('impact')}")
-            lines.append(f"  - action: {so.get('action')} · falsifier: {so.get('falsifier')}")
-        lines.append(f"  - 建议主人 action：tried / thesis_updated / shared / ignored")
-    lines += ["", "## 3. P0-待证（勿当正式信号）"]
+        lines.append(digest_card_md(it).rstrip())
+        lines.append("")
+        lines.append("- 建议主人记下：tried / thesis_updated / shared / ignored")
+        lines.append("")
+    lines += ["", "## 3. 传闻，先核对", ""]
     if not p0_pending:
         lines.append("- （无）")
     for it in p0_pending:
-        lines.append(f"- {it.get('title')} `{it.get('id')}` — 待一手或两独立源确认")
+        lines.append(f"- {it.get('title')} — 还缺一手，或还缺两个独立来源。先不要当成今日必看。")
 
     lines += ["", "## 4. 工具雷达候选"]
     if not tools:
@@ -108,7 +115,14 @@ def main():
         "- 实测首报时差 = `ingested_at` − `published_at`（两枚都在才算）。旧卡可以没有这两枚时间。",
         lag_line,
         "",
+        "## 附录 · 机器编号（不进主报正文）",
+        "",
     ]
+    for it in p0_formal + p0_pending:
+        eid = it.get("id")
+        if eid:
+            lines.append(f"- `{eid}`")
+    lines.append("")
     out.write_text("\n".join(lines), encoding="utf-8")
     print(f"wrote {out}")
 

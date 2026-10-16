@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16 08:03 北京时间",
+  "updated": "2026-10-16 15:36 北京时间",
   "rings": {
     "采纳": [
       {
@@ -52,12 +52,12 @@
       },
       {
         "id": "evt-20261013-meta-muse-wonder",
-        "title": "Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）",
+        "title": "Meta 发布 Muse Wonder 和 Wonder Full",
         "date": "2026-10-13",
         "try_url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
-        "access": "Wonder：Meta Model API + Muse Code；Wonder Full：仅 Muse Code 订阅",
+        "access": "Wonder 可以通过 Meta 的模型接口和 Muse Code 使用。Wonder Full 只给 Muse Code 的订阅用户。",
         "integration": "Meta Model API / Muse Code / 即将接入 Muse agent",
-        "first_step": "用同一套 coding 或长程 agent 任务跑 Wonder vs 现用 Sol/Opus，对照成本与完成率",
+        "first_step": "用同一套写代码或长程智能体任务，把 Wonder 和你现在的 Sol 或 Opus 对打一遍，看成本和完成率。",
         "alternatives": [
           "GPT-6.1 Sol / Astra",
           "Claude Opus 5.5 / Fable 5.1",
@@ -84,12 +84,12 @@
       },
       {
         "id": "evt-20261014-gemini-4-argon",
-        "title": "Google 全球开放 Gemini 4 Argon（API + Antigravity + Gemini App）",
+        "title": "Google 向全球开放 Gemini 4 Argon",
         "date": "2026-10-14",
         "try_url": "https://aistudio.google.com/",
-        "access": "Gemini API 付费档；Antigravity 需 Ultra；App/Search 需 Pro 或 Ultra",
+        "access": "开发者和企业走 Gemini 付费接口。Antigravity 需要 Google AI Ultra。应用和搜索需要 Pro 或 Ultra。",
         "integration": "Gemini API / AI Studio / Antigravity / Android Studio",
-        "first_step": "用同一套长程 coding 或 agent 任务对照 Argon（导入价）vs 现用 Sol/Opus/Wonder，看完成率与账单",
+        "first_step": "用同一套长程写代码或智能体任务，把 Argon 的导入价和你现在用的 Sol、Opus 或 Wonder 对打一遍，看完成率和账单。",
         "alternatives": [
           "GPT-6 Astra / Sol",
           "Claude Opus 5.5 / Fable",
@@ -100,12 +100,12 @@
       },
       {
         "id": "evt-20261016-meta-muse-spark-open",
-        "title": "Meta 开放权重发布 Muse Spark Open（816B/42B MoE，1M 上下文）",
+        "title": "Meta 放出可下载的 Muse Spark Open",
         "date": "2026-10-16",
         "try_url": "https://huggingface.co/collections/meta-models/muse-spark-open",
-        "access": "权重下载（Muse Model License）或第三方 API（OpenRouter 等）",
-        "integration": "HF / vLLM / SGLang / MLX / OpenRouter 等",
-        "first_step": "若走开放权重：先在 OpenRouter/Fireworks 等托管 API 用同一套长程 coding 任务对照 Spark Open vs 现用闭源；有双 Mac Studio 再试 MLX 本地",
+        "access": "模型权重可以在 Hugging Face、Amazon SageMaker AI、Google Cloud Model Garden 和 Microsoft Foundry 下载。托管接口包括 Baseten、Fireworks、Groq、Modal、Nebius、OpenRouter 和 Together AI。许可是 Muse Model License，在有限商用条款下可以免费使用。",
+        "integration": "推理可以用 SGLang、vLLM、TensorRT-LLM、Transformers、llama.cpp、Unsloth 或 Apple MLX。",
+        "first_step": "先在 OpenRouter 或 Fireworks 这类托管接口上，用同一套长程写代码的题，把 Spark Open 和你现在的模型对打一遍。有两台 Mac Studio，再试本地。",
         "alternatives": [
           "Muse Wonder / Wonder Full（闭源 API）",
           "DeepSeek / Kimi / GLM 等开源前沿",
@@ -283,12 +283,12 @@
       },
       {
         "id": "evt-20261016-flux3-image-klein",
-        "title": "Black Forest Labs 发布 FLUX.3 Image Klein（开源权重 + Diffusers 布局控制）",
+        "title": "Black Forest Labs 放出可下载的 FLUX.3 Image Klein",
         "date": "2026-10-16",
         "try_url": "https://huggingface.co/blog/flux-3",
         "access": "开放权重 + Diffusers；需较新 GPU 显存（量化可降）",
         "integration": "diffusers ModularPipeline / HF Space",
-        "first_step": "pip install -U diffusers transformers 后按博客跑一条文生图；若做版式控制再试 bbox JSON prompt",
+        "first_step": "先升级 Diffusers 和 Transformers，按博客跑一条文生图。要控制版式时，再试在提示词里加边界框。",
         "alternatives": [
           "FLUX.2 / FLUX.1",
           "SD3 系",

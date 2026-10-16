@@ -10,16 +10,16 @@
       "tag": "发布",
       "lens": "赛道",
       "priority": "P0",
-      "title": "Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）",
+      "title": "Meta 发布 Muse Wonder 和 Wonder Full",
       "date": "2026-10-13",
       "time": "10-13 01:56",
       "handle": "Meta",
       "url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
       "objective": [
-        "Meta 官方（10-12 PDT）：发布 Muse Wonder 与 Muse Wonder Full，自称迄今最强、面向个人/专业 agent 任务（保险理赔、租约理解、编码等），建立在 Muse Spark 之上",
-        "Wonder 今日起经 Meta Model API 与 Muse Code 开放；Wonder Full 仅限 Muse Code 订阅者、不经 API；Wonder 将很快驱动 Muse agent，订阅用户优先",
-        "新能力：Active Memory（跨会话记住相关细节）、Active Focus（卡住时换路径、纠错、重要动作前确认）；TechCrunch 称 API 定价约 $4/百万 input、$20/百万 output（接近 GPT-6 Sol / Opus 5.5）",
-        "SiliconANGLE/模型卡转述：自测对标 GPT-6 Astra、Claude Fable 5.1、Opus 5.5；Wonder Full 在 SWE-Marathon、Legal Agent 等长程任务领先部分竞品，AA Intelligence Index 约 56（Opus 5.5 约 58）；完整安全报告待发"
+        "Meta 在 2026 年 10 月 12 日发布 Muse Wonder 和 Wonder Full。官方称这是他们迄今最强的模型，面向保险理赔、读租约、写代码这类任务。它建立在 Muse Spark 之上。",
+        "Wonder 从当天起可以通过 Meta 的模型接口和 Muse Code 使用。Wonder Full 只开放给 Muse Code 的订阅用户，不提供接口。订阅用户会先用上即将接入的 Muse 智能体。",
+        "两项新能力是 Active Memory（跨会话记住相关细节）和 Active Focus（卡住时换路径、纠错，重要动作前先确认）。TechCrunch 称接口大约每百万 token 输入 4 美元、输出 20 美元，接近 GPT-6 Sol 和 Opus 5.5。",
+        "公开转述的自测对标了 GPT-6 Astra、Claude Fable 5.1 和 Opus 5.5。Wonder Full 在一部分长程任务上领先一些竞品。Artificial Analysis 的智力指数大约是 56，Opus 5.5 大约是 58。完整安全报告还没发。"
       ],
       "sources": [
         {
@@ -40,9 +40,9 @@
       ],
       "shift": "morning",
       "try_url": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
-      "access": "Wonder：Meta Model API + Muse Code；Wonder Full：仅 Muse Code 订阅",
+      "access": "Wonder 可以通过 Meta 的模型接口和 Muse Code 使用。Wonder Full 只给 Muse Code 的订阅用户。",
       "integration": "Meta Model API / Muse Code / 即将接入 Muse agent",
-      "first_step": "用同一套 coding 或长程 agent 任务跑 Wonder vs 现用 Sol/Opus，对照成本与完成率",
+      "first_step": "用同一套写代码或长程智能体任务，把 Wonder 和你现在的 Sol 或 Opus 对打一遍，看成本和完成率。",
       "alternatives": [
         "GPT-6.1 Sol / Astra",
         "Claude Opus 5.5 / Fable 5.1",
@@ -51,11 +51,11 @@
       "tool_radar": "试用",
       "so_what": {
         "lens": "赛道",
-        "impact": "Meta 正式进入「可对标前沿 API」阵营；OPC 选模型时不能再默认只有 OpenAI/Anthropic 两极，Wonder Full 锁 Muse Code 也意味着最强档可能走封闭 coding 产品而非开放 API",
+        "impact": "选模型时不能再默认只有 OpenAI 和 Anthropic 两家。最强的 Wonder Full 锁在 Muse Code 里，不一定走开放接口。这周用同一套写代码或长程任务，把它和你现在的模型对打一遍。",
         "action": "试用",
-        "window": "本周做一次同任务对照即可",
+        "window": "这周做一次同一套任务的对照就够。",
         "confidence": "高",
-        "falsifier": "若独立评测显示 Wonder 系列系统性低于同价位 Sol/Opus，或 API 长期缺货/无实质流量，则「第三极可用」判断作废",
+        "falsifier": "如果独立评测显示 Wonder 系列稳定差于同样价位的 Sol 或 Opus，或者接口长期缺货、没有实际用量，就收回「可以当作另一家来用」。",
         "thesis_id": "T-001"
       }
     },

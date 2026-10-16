@@ -35,6 +35,10 @@
 - lens：工具/赛道/模式/时机（人主过滤）
 - P0：今天没看到会做错或错过决策
 
+### 人读层
+
+给人看的 `title`、`objective`、`so_what` 散文和 `DIGEST_LATEST.md`，按 [`AIHOT对接与表达规范-v0.md`](./AIHOT对接与表达规范-v0.md)：一句一事实，正文不写 `evt-` / `cand-`。上面的 P0 定义、一手门闩和 falsifier 要求不改。`priority` / `status` 仍是机器字段。
+
 ## 五、工具字段 + 工具雷达页
 lens=工具 时：try_url, access, integration, first_step, alternatives
 常驻 Tech Radar：采纳/试用/评估/暂缓

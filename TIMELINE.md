@@ -112,6 +112,7 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 
 ## 注意
 
+- 人读层按 `docs/AIHOT对接与表达规范-v0.md`（2026-10-16）：主报和 `title` / `objective` / `so_what` 一句一事实，正文不写 `evt-` / `cand-`，跳过清单放附录。决策门闩不改。
 - 客观与 so_what **分栏**；无 falsifier 不写 so_what  
 - 归档按日累积；看板是滑动窗口（约 7 天 / ≤50 条）  
 - 工作流在 `.github/workflows/`。根镜像已退役（`.no-root-mirror`），线上只部署 `public/`
