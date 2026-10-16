@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """CI validators: JSON Schema, archive monotonicity, feed well-formed + counts.
 
+Also rejects obvious instruction-shaped sentences in public prose, and raw
+social-post fields on public JSON. See scripts/prompt_guard.py.
+
 Promotion traceability uses testdata/ when the private pool is absent. See docs/candidate-pool.md.
 
   pip install -r requirements-ci.txt
@@ -841,6 +844,57 @@ def check_published_schemas() -> None:
     print(f"OK published schemas: {len(PUBLISHED_SCHEMA_DOCS)} docs, {n_days} archive days; pool schema stays off Pages")
 
 
+def check_prompt_injection() -> None:
+    """Fail CI when public prose looks like an imperative jailbreak.
+
+    Fixtures cover true positives and near-miss benign sentences (system-prompt
+    news, "you are now able"). Live archive, items, practice, theses, tools,
+    today3, and memos are scanned. Raw post keys are rejected on public JSON.
+    """
+    try:
+        from human_layer import _self_check as human_self_check
+        from prompt_guard import (
+            check_fixtures,
+            find_instruction_override,
+            iter_public_prose,
+            iter_public_raw_keys,
+        )
+    except ImportError:
+        from scripts.human_layer import _self_check as human_self_check
+        from scripts.prompt_guard import (
+            check_fixtures,
+            find_instruction_override,
+            iter_public_prose,
+            iter_public_raw_keys,
+        )
+
+    if human_self_check() != 0:
+        fail("human_layer self-check failed")
+    derived = (ROOT / "scripts" / "generate_derived.py").read_text(encoding="utf-8")
+    if "strip_raw_post_fields" not in derived:
+        fail("generate_derived.py must strip raw post fields before writing public JSON")
+    migrated = (ROOT / "scripts" / "migrate_cards.py").read_text(encoding="utf-8")
+    if "strip_raw_post_fields" not in migrated:
+        fail("migrate_cards.py must strip raw post fields when writing a card")
+
+    errors = check_fixtures(ROOT)
+    if errors:
+        fail("prompt-injection fixtures:\n  " + "\n  ".join(errors))
+
+    hits = []
+    for where, field, text in iter_public_prose(PUBLIC):
+        rule = find_instruction_override(text)
+        if rule:
+            hits.append(f"{where} {field} matches {rule}")
+    raw = list(iter_public_raw_keys(PUBLIC))
+    if hits or raw:
+        shown = (hits + raw)[:20]
+        extra = len(hits) + len(raw) - len(shown)
+        tail = f"\n  … {extra} more" if extra > 0 else ""
+        fail("public prompt-injection check:\n  " + "\n  ".join(shown) + tail)
+    print("OK prompt injection: fixtures, edited public prose, no raw post fields")
+
+
 def check_public_excludes_pool() -> None:
     for path in PUBLIC.rglob("*"):
         if not path.is_file():
@@ -862,6 +916,7 @@ def main() -> None:
         from scripts.migrate_cards import check_shift_slots
     check_card_times()
     check_shift_slots()
+    check_prompt_injection()
     check_schema()
     check_published_schemas()
     check_monotonic()
