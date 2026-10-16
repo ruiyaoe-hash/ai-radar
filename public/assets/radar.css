@@ -302,6 +302,24 @@ h1 {
 .prose p { color: #c5d0dc; }
 .prose ul { color: #c5d0dc; padding-left: 1.2rem; }
 .prose li { margin: 8px 0; }
+.prose h2 {
+  font-size: 1.08rem;
+  font-weight: 650;
+  margin: 28px 0 8px;
+}
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.84em;
+  word-break: break-all;
+}
+.endpoint {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  word-break: break-all;
+}
 
 .feed-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .feed-list li, .link-row {
