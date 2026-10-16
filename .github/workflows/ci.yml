@@ -29,7 +29,7 @@ jobs:
       - name: Derive from archive
         run: python3 scripts/generate_derived.py
 
-      - name: Validate schema + monotonic + feed
+      - name: Validate schema, feeds, and instruction-like public text
         env:
           # PR: base commit. Push: previous main SHA. Skip the all-zero first-push placeholder.
           VALIDATE_BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}

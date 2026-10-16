@@ -93,6 +93,7 @@
 
 - objective：只写可核对事实；传闻须归因
 - 禁止在 objective 写「我们应该…」「赛道已定」等
+- 公开 JSON 只放编辑后的摘要。不要把社交帖原文、`snippet`、`text`、`full_text` 写进归档；那些只留在私有池。单条 `objective` 不超过 schema 里的长度上限。
 
 ## 人读层
 
