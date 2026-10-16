@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看行业动态。</description>
 <language>zh-cn</language>
-<lastBuildDate>Wed, 14 Oct 2026 08:04:07 +0800</lastBuildDate>
+<lastBuildDate>Fri, 16 Oct 2026 08:03:44 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[今日必看 · 行业动态 · 发布] Meta 开放权重发布 Muse Spark Open（816B/42B MoE，1M 上下文）</title>
+<link>https://research.meta.ai/blog/muse-spark-open</link>
+<guid isPermaLink="false">evt-20261016-meta-muse-spark-open</guid>
+<pubDate>Fri, 16 Oct 2026 01:08:04 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Meta / AIatMeta 官方（2026-10-15）：发布 Muse Spark Open 权重，自称迄今最强美国开放权重模型；816B 总参 / 42B 激活 MoE（混合专家），原生多模态（文/图/视/音→文），1M token 上下文；面向长程 coding 与 agentic（代理式）任务<br/>• 权重今日可下：Hugging Face、Amazon SageMaker AI、Google Cloud Model Garden、Microsoft Foundry；API 平台：Baseten、Fireworks、Groq、Modal、Nebius、OpenRouter、Together AI；许可为 Muse Model License（有限商用条款下可免费用）<br/>• 推理栈：SGLang / vLLM / TensorRT-LLM / Transformers / llama.cpp / Unsloth / Apple MLX；官方称可在两台 M5 Ultra Mac Studio（各至约 512GB 统一内存）上本地跑通<br/>• 与 10-13 的 Muse Wonder（闭源 API / Muse Code）不同：本卡是 Spark 的开放权重版；安全侧称额外做了开放权重场景的 post-training，完整评测报告待发<br/><strong>对你意味着什么</strong> 美国侧首次出现「近前沿 agentic + 可下权重」选项；OPC 若依赖开源/自托管或要避开闭源配额，选型表必须把 Spark Open 放进同任务对照，而不能只盯 Wonder API 或中系开源<br/>建议：试用 · 本周先做 API 托管对照；本地双机门槛高，勿默认可家用<br/>有多确定：高<br/>什么情况下当这判断作废：若独立评测显示 Spark Open 在真实长程 coding/agent 上系统性弱于同成本中系开源或托管价不可用，则「美国开源近前沿可用」判断作废<br/>来源 Meta（一手）, AIatMeta（一手）, HuggingFace（一手）, natolambert（解读）<br/>日期 2026-10-16]]></description>
+</item>
 <item>
 <title>[今日必看 · 行业动态 · 发布] Google 全球开放 Gemini 4 Argon（API + Antigravity + Gemini App）</title>
 <link>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/</link>
