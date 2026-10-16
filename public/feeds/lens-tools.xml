@@ -5,14 +5,14 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看试用工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Fri, 16 Oct 2026 08:03:44 +0800</lastBuildDate>
+<lastBuildDate>Fri, 16 Oct 2026 15:36:13 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
 <item>
-<title>[重点关注 · 试用工具 · 工具] Black Forest Labs 发布 FLUX.3 Image Klein（开源权重 + Diffusers 布局控制）</title>
+<title>[重点关注 · 试用工具 · 工具] Black Forest Labs 放出可下载的 FLUX.3 Image Klein</title>
 <link>https://huggingface.co/blog/flux-3</link>
 <guid isPermaLink="false">evt-20261016-flux3-image-klein</guid>
 <pubDate>Thu, 15 Oct 2026 08:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Black Forest Labs 发布 FLUX.3 Image Klein 开放权重；Hugging Face Diffusers 博客（2026-10-15）称 day-one 支持：文生图、多参考图生图，以及 prompt 内 bounding box（边界框）布局控制<br/>• 两个开放 checkpoint：`flux-3-image-klein`（时间步蒸馏，默认 16 步、无 CFG）与 `flux-3-image-klein-base`（50 步 + CFG，适合微调）；另有 FP8 / NVFP4 单文件权重<br/>• 博客称蒸馏档约 2 秒出 1024²（H100）；文本编码器为 Qwen3-VL；附 LoRA DreamBooth 训练脚本与 Modular Diffusers 管线<br/><strong>对你意味着什么</strong> 开源图像栈出现带布局控制的新主干；内容/封面生产若自托管，值得进评估队列，但非当日模型选型强制项<br/>建议：评估 · 有图床/封面需求时本周试一条即可<br/>有多确定：中<br/>什么情况下当这判断作废：若实际画质/可控性明显弱于现用闭源图模且显存门槛过高，则「优先评估 FLUX.3」作废<br/>来源 HuggingFace（一手）, huggingface（转述）<br/>日期 2026-10-16]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• Black Forest Labs 放出 FLUX.3 Image Klein，模型权重可以下载。Hugging Face 在 2026 年 10 月 15 日写道，发布当天就能做文生图、用多张参考图生图，以及在提示词里用边界框控制布局。<br/>• 有两份检查点。蒸馏版默认 16 步，不使用分类器无关引导。基础版是 50 步，适合继续微调。另外提供 FP8 和 NVFP4 的单文件权重。<br/>• 博客说蒸馏版在 H100 上大约 2 秒可以出一张 1024 像素的图。文本编码器是 Qwen3-VL。仓库里附了微调脚本和管线。<br/><strong>对你意味着什么</strong> 开源画图多了一条能控制布局的新主干。如果你自己托管图床或封面，值得排进评估。这不是今天必须换掉现用模型的事。<br/>建议：评估 · 有图床或封面需求时，这周试一条就够。<br/>有多确定：中<br/>什么情况下当这判断作废：如果实际画质和可控性明显弱于你现在用的闭源画图模型，而且显存门槛太高，就收回「优先评估 FLUX.3」。<br/>来源 HuggingFace（一手）, huggingface（转述）<br/>日期 2026-10-16]]></description>
 </item>
 <item>
 <title>[重点关注 · 试用工具 · 工具] Fish Audio Drama 3：开放权重表情 TTS，AA 发音稳健榜第一</title>

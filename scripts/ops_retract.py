@@ -77,7 +77,7 @@ def run(action: str, card_id: str, reason: str, shift: str, quiet: bool = False)
         slot = shift or "（未指定，请写成 08:00 或 21:00）"
         say(f"暂停班次: {slot}")
         say("Alba 自行跳过这一班：不要写新卡，不要把本班当成已发布。")
-        say("在 DIGEST_LATEST.md 用一句话记下暂停原因。")
+        say("在 DIGEST_LATEST.md 用一句话记下暂停原因。按 docs/AIHOT对接与表达规范-v0.md：一句一事，不要写 evt- 或 cand-。")
         say("不要更新 state.json（已弃用，见 TIMELINE）。")
         say("飞书订阅群若需要告知，由人发一句。不要改 FEISHU_BOT_WEBHOOK。")
         say("24 小时无新卡的健康检查仍可能响，本命令不会关掉它。")
