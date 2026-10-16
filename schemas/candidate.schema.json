@@ -33,7 +33,7 @@
     "title": { "type": ["string", "null"] },
     "snippet": {
       "type": ["string", "null"],
-      "description": "Source text. Private pool only. Never copy this into the public repo."
+      "description": "Source text. Private pool only. Never copy this into the public repo. Public validate rejects this key on public JSON; public cards publish edited objective text instead."
     },
     "published_at": {
       "type": ["string", "null"],

@@ -12,18 +12,45 @@
       "pattern": "^evt-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$"
     },
     "status": { "type": "string", "enum": ["rumor", "multi_source", "confirmed"] },
-    "tag": { "type": "string", "minLength": 1 },
+    "tag": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 16,
+      "description": "Short event type. Rewritten label, not a raw post."
+    },
     "lens": { "type": "string", "enum": ["工具", "赛道", "模式", "时机"] },
     "priority": { "type": "string", "enum": ["P0", "P1"] },
-    "title": { "type": "string", "minLength": 1 },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "One rewritten headline. Not a raw social post."
+    },
     "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
-    "time": { "type": "string" },
-    "handle": { "type": "string" },
-    "url": { "type": "string" },
+    "time": {
+      "type": "string",
+      "maxLength": 11,
+      "pattern": "^[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$",
+      "description": "Beijing display clock, MM-DD HH:MM."
+    },
+    "handle": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "pattern": "^[^\\s<>]{1,40}$"
+    },
+    "url": {
+      "type": "string",
+      "maxLength": 500,
+      "pattern": "^https?://[^\\s<>]+$",
+      "description": "Primary link. http or https only."
+    },
     "objective": {
       "type": "array",
-      "items": { "type": "string" },
-      "minItems": 1
+      "minItems": 1,
+      "maxItems": 6,
+      "description": "Edited factual sentences. Public cards carry this summary, not a raw social post body.",
+      "items": { "type": "string", "minLength": 1, "maxLength": 400 }
     },
     "sources": {
       "type": "array",
@@ -32,8 +59,17 @@
         "type": "object",
         "required": ["url", "handle", "role"],
         "properties": {
-          "url": { "type": "string" },
-          "handle": { "type": "string" },
+          "url": {
+            "type": "string",
+            "maxLength": 500,
+            "pattern": "^https?://[^\\s<>]+$"
+          },
+          "handle": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "pattern": "^[^\\s<>]{1,40}$"
+          },
           "role": { "type": "string", "enum": ["primary", "analysis", "report"] },
           "first_seen_at": { "type": "string" }
         },
@@ -43,37 +79,43 @@
     "correction": {
       "type": ["object", "null"],
       "properties": {
-        "at": { "type": "string" },
-        "note": { "type": "string" },
-        "previous_status": { "type": "string" }
+        "at": { "type": "string", "maxLength": 40 },
+        "note": { "type": "string", "maxLength": 240 },
+        "previous_status": { "type": "string", "maxLength": 32 }
       }
     },
     "judgment": {
       "type": "array",
-      "items": { "type": "string" }
+      "maxItems": 6,
+      "items": { "type": "string", "minLength": 1, "maxLength": 240 }
     },
-    "judgment_label": { "type": "string" },
+    "judgment_label": { "type": "string", "maxLength": 16 },
     "so_what": {
       "type": "object",
       "required": ["falsifier"],
       "properties": {
         "lens": { "type": "string", "enum": ["工具", "赛道", "模式", "时机"] },
-        "impact": { "type": "string" },
-        "action": { "type": "string" },
-        "window": { "type": "string" },
+        "impact": { "type": "string", "maxLength": 320 },
+        "action": { "type": "string", "maxLength": 24 },
+        "window": { "type": "string", "maxLength": 80 },
         "confidence": { "type": "string", "enum": ["高", "中", "低"] },
-        "falsifier": { "type": "string", "minLength": 1 },
-        "thesis_id": { "type": "string" }
+        "falsifier": { "type": "string", "minLength": 1, "maxLength": 320 },
+        "thesis_id": { "type": "string", "pattern": "^T-[0-9]{3,}$", "maxLength": 16 }
       },
       "additionalProperties": true
     },
-    "try_url": { "type": "string" },
-    "access": { "type": "string" },
-    "integration": { "type": "string" },
-    "first_step": { "type": "string" },
+    "try_url": {
+      "type": "string",
+      "maxLength": 500,
+      "pattern": "^https?://[^\\s<>]+$"
+    },
+    "access": { "type": "string", "maxLength": 400 },
+    "integration": { "type": "string", "maxLength": 200 },
+    "first_step": { "type": "string", "maxLength": 240 },
     "alternatives": {
       "type": "array",
-      "items": { "type": "string" }
+      "maxItems": 8,
+      "items": { "type": "string", "minLength": 1, "maxLength": 80 }
     },
     "tool_radar": {
       "type": "string",
@@ -124,7 +166,7 @@
           "so_what": {
             "required": ["falsifier"],
             "properties": {
-              "falsifier": { "type": "string", "minLength": 1 }
+              "falsifier": { "type": "string", "minLength": 1, "maxLength": 320 }
             }
           }
         }

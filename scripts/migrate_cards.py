@@ -18,8 +18,10 @@ from pathlib import Path
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from card_times import source_timestamp_from_record, stamp_first_report
+    from prompt_guard import strip_raw_post_fields
 else:
     from .card_times import source_timestamp_from_record, stamp_first_report
+    from .prompt_guard import strip_raw_post_fields
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -140,6 +142,7 @@ def fill_report_times(out: dict, source: dict, *, first_write: bool) -> dict:
 
 
 def migrate_item(it: dict) -> dict:
+    it = strip_raw_post_fields(it)
     if it.get("schema_version") == 2 and it.get("id") and it.get("sources"):
         # still drop bullets if present; backfill shift / lead_lag when absent.
         # Already on the board: do not invent ingested_at. published_at is filled
