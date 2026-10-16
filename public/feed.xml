@@ -5,21 +5,21 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Fri, 16 Oct 2026 08:03:44 +0800</lastBuildDate>
+<lastBuildDate>Fri, 16 Oct 2026 15:36:13 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
-<title>[今日必看 · 行业动态 · 发布] Meta 开放权重发布 Muse Spark Open（816B/42B MoE，1M 上下文）</title>
+<title>[今日必看 · 行业动态 · 发布] Meta 放出可下载的 Muse Spark Open</title>
 <link>https://research.meta.ai/blog/muse-spark-open</link>
 <guid isPermaLink="false">evt-20261016-meta-muse-spark-open</guid>
 <pubDate>Fri, 16 Oct 2026 01:08:04 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Meta / AIatMeta 官方（2026-10-15）：发布 Muse Spark Open 权重，自称迄今最强美国开放权重模型；816B 总参 / 42B 激活 MoE（混合专家），原生多模态（文/图/视/音→文），1M token 上下文；面向长程 coding 与 agentic（代理式）任务<br/>• 权重今日可下：Hugging Face、Amazon SageMaker AI、Google Cloud Model Garden、Microsoft Foundry；API 平台：Baseten、Fireworks、Groq、Modal、Nebius、OpenRouter、Together AI；许可为 Muse Model License（有限商用条款下可免费用）<br/>• 推理栈：SGLang / vLLM / TensorRT-LLM / Transformers / llama.cpp / Unsloth / Apple MLX；官方称可在两台 M5 Ultra Mac Studio（各至约 512GB 统一内存）上本地跑通<br/>• 与 10-13 的 Muse Wonder（闭源 API / Muse Code）不同：本卡是 Spark 的开放权重版；安全侧称额外做了开放权重场景的 post-training，完整评测报告待发<br/><strong>对你意味着什么</strong> 美国侧首次出现「近前沿 agentic + 可下权重」选项；OPC 若依赖开源/自托管或要避开闭源配额，选型表必须把 Spark Open 放进同任务对照，而不能只盯 Wonder API 或中系开源<br/>建议：试用 · 本周先做 API 托管对照；本地双机门槛高，勿默认可家用<br/>有多确定：高<br/>什么情况下当这判断作废：若独立评测显示 Spark Open 在真实长程 coding/agent 上系统性弱于同成本中系开源或托管价不可用，则「美国开源近前沿可用」判断作废<br/>来源 Meta（一手）, AIatMeta（一手）, HuggingFace（一手）, natolambert（解读）<br/>日期 2026-10-16]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• Meta 在 2026 年 10 月 15 日放出 Muse Spark Open。模型权重可以下载到自己的电脑或服务器上使用。官方称这是目前最强的美国开放权重模型。<br/>• 总参数 816B，每个词大约激活 42B，结构是混合专家。上下文最长 1M token。它能读文字、图片、音频和视频，再输出文字，主打长程写代码和智能体任务。<br/>• 权重可以在 Hugging Face 下载，也可以走 OpenRouter 这类托管接口。许可在有限商用条款下可以免费使用。大厂商如果要卖接口，需要另谈。<br/>• 官方演示过用两台高配 Mac Studio 在本地跑通，内存门槛高，别默认家里的电脑能跑。它和 10 月 13 日的 Muse Wonder 不是一条线，Wonder 走的是闭源接口。完整评测报告还没发。<br/><strong>对你意味着什么</strong> 美国这边第一次有接近前沿、又能下载权重的智能体模型。如果你依赖开源或自己托管，或者想躲开闭源配额，这周要用同一套任务把 Spark Open 放进对照，不要只看 Wonder 的接口或国内的开源模型。<br/>建议：试用 · 这周先用托管接口对照。本地要两台高配电脑，别默认家里能跑。<br/>有多确定：高<br/>什么情况下当这判断作废：如果独立评测显示，它在真实的长程写代码和智能体任务上稳定弱于同样成本的开源模型，或者托管接口的价格用不起来，就收回「美国这边的开放权重已经接近前沿，应该放进对照表」。<br/>来源 Meta（一手）, AIatMeta（一手）, HuggingFace（一手）, natolambert（解读）<br/>日期 2026-10-16]]></description>
 </item>
 <item>
-<title>[重点关注 · 试用工具 · 工具] Black Forest Labs 发布 FLUX.3 Image Klein（开源权重 + Diffusers 布局控制）</title>
+<title>[重点关注 · 试用工具 · 工具] Black Forest Labs 放出可下载的 FLUX.3 Image Klein</title>
 <link>https://huggingface.co/blog/flux-3</link>
 <guid isPermaLink="false">evt-20261016-flux3-image-klein</guid>
 <pubDate>Thu, 15 Oct 2026 08:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Black Forest Labs 发布 FLUX.3 Image Klein 开放权重；Hugging Face Diffusers 博客（2026-10-15）称 day-one 支持：文生图、多参考图生图，以及 prompt 内 bounding box（边界框）布局控制<br/>• 两个开放 checkpoint：`flux-3-image-klein`（时间步蒸馏，默认 16 步、无 CFG）与 `flux-3-image-klein-base`（50 步 + CFG，适合微调）；另有 FP8 / NVFP4 单文件权重<br/>• 博客称蒸馏档约 2 秒出 1024²（H100）；文本编码器为 Qwen3-VL；附 LoRA DreamBooth 训练脚本与 Modular Diffusers 管线<br/><strong>对你意味着什么</strong> 开源图像栈出现带布局控制的新主干；内容/封面生产若自托管，值得进评估队列，但非当日模型选型强制项<br/>建议：评估 · 有图床/封面需求时本周试一条即可<br/>有多确定：中<br/>什么情况下当这判断作废：若实际画质/可控性明显弱于现用闭源图模且显存门槛过高，则「优先评估 FLUX.3」作废<br/>来源 HuggingFace（一手）, huggingface（转述）<br/>日期 2026-10-16]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• Black Forest Labs 放出 FLUX.3 Image Klein，模型权重可以下载。Hugging Face 在 2026 年 10 月 15 日写道，发布当天就能做文生图、用多张参考图生图，以及在提示词里用边界框控制布局。<br/>• 有两份检查点。蒸馏版默认 16 步，不使用分类器无关引导。基础版是 50 步，适合继续微调。另外提供 FP8 和 NVFP4 的单文件权重。<br/>• 博客说蒸馏版在 H100 上大约 2 秒可以出一张 1024 像素的图。文本编码器是 Qwen3-VL。仓库里附了微调脚本和管线。<br/><strong>对你意味着什么</strong> 开源画图多了一条能控制布局的新主干。如果你自己托管图床或封面，值得排进评估。这不是今天必须换掉现用模型的事。<br/>建议：评估 · 有图床或封面需求时，这周试一条就够。<br/>有多确定：中<br/>什么情况下当这判断作废：如果实际画质和可控性明显弱于你现在用的闭源画图模型，而且显存门槛太高，就收回「优先评估 FLUX.3」。<br/>来源 HuggingFace（一手）, huggingface（转述）<br/>日期 2026-10-16]]></description>
 </item>
 <item>
 <title>[重点关注 · 试用工具 · 工具] Fish Audio Drama 3：开放权重表情 TTS，AA 发音稳健榜第一</title>
@@ -57,11 +57,11 @@
 <description><![CDATA[<strong>背景</strong><br/>• Artificial Analysis（10-13）：发布 Decision Index v1.0，评测返回结构化选项+概率的决策模型；四项等权：AA-Omniscience-Decision、HLE-MultiChoice、When2Call、WildGuardTest<br/>• 发布时 Jev 1.13 以 58 分领先；称决策模型在分类/工具调用上可接近语言模型，但知识与推理明显落后，且校准偏乐观；另强调相对 LLM 的速度与成本优势<br/>• 与昨夜 ScaleDown CDM×LangChain 信号同向：长程 agent 应用把「路由/分类/是否调工具」从大模型拆出<br/><strong>对你意味着什么</strong> 决策模型从营销名词变成可横比品类；OPC 做 agent 时应把「便宜决策层」与「贵生成层」分开选型，用 Index 而非厂商自宣<br/>建议：评估 · 与 ScaleDown 试用同一周做<br/>有多确定：中<br/>什么情况下当这判断作废：若真实业务任务上决策模型错误代价高于省下的钱，或榜单与线上差距过大，则「默认拆决策层」判断作废<br/>来源 ArtificialAnlys（一手）, ArtificialAnlys（一手）, ArtificialAnlys（一手）<br/>日期 2026-10-14]]></description>
 </item>
 <item>
-<title>[今日必看 · 行业动态 · 发布] Google 全球开放 Gemini 4 Argon（API + Antigravity + Gemini App）</title>
+<title>[今日必看 · 行业动态 · 发布] Google 向全球开放 Gemini 4 Argon</title>
 <link>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/</link>
 <guid isPermaLink="false">evt-20261014-gemini-4-argon</guid>
 <pubDate>Wed, 14 Oct 2026 00:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Google 官方博文（2026-10-13）：Gemini 4 Argon 全球可用——开发者/企业经 Gemini API（AI Studio / Gemini platform）；Google AI Ultra 可用 Antigravity；Pro/Ultra 可用 Gemini App 与 Search AI Mode<br/>• 定位长程复杂工作流（编码、金融、法律、网络安全、科研）；自称行业领先 1M 统一输入输出 token 上限；企业内部称 Antigravity 中 agentic 提交量升约 35%、回滚降近三分之一<br/>• 导入价：$2/百万 input、$10/百万 output（缓存 input 约 95% off）；2026-11-30 后升至 $4/$20；Artificial Analysis 称 Intelligence Index 与 GPT-6 Astra 持平、Cost per Task 约其 60%（折扣期）<br/>• DeepMind 同日发布安全/机器人配套博文；机器人示意：仅看视频即可教 Apptronik Apollo 投玉米袋连中 7 次（Video-to-Sim-to-Real）<br/><strong>对你意味着什么</strong> Google 重回公开前沿 API 阵营且导入价显著低于同档；OPC 选模型从双极/三极变成必须把 Argon 放进同任务对照，尤其长上下文与 agent 编码<br/>建议：试用 · 导入价至 11-30，本周做一次对照最划算<br/>有多确定：高<br/>什么情况下当这判断作废：若独立评测显示 Argon 在真实长程任务上系统性低于同价位 Sol/Opus，或 API 配额/延迟不可用，则「第四极可默认纳入」判断作废<br/>来源 Google（一手）, GoogleDeepMind（一手）, ArtificialAnlys（解读）, TheVerge（转述）<br/>日期 2026-10-14]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• Google 在 2026 年 10 月 13 日向全球开放 Gemini 4 Argon。开发者和企业可以通过 Gemini 接口使用。<br/>• Google AI Ultra 可以用 Antigravity。Pro 和 Ultra 可以用 Gemini 应用，也可以用搜索里的 AI 模式。它面向写代码、金融、法律、网络安全和科研这类长程工作。输入和输出上限都是 1M token。<br/>• 现在的导入价是每百万 token 输入 2 美元、输出 10 美元。缓存过的输入大约便宜 95%。2026 年 11 月 30 日之后升到输入 4 美元、输出 20 美元。<br/>• Artificial Analysis 称它的智力指数和 GPT-6 Astra 持平。折扣期内，单次任务成本大约是 Astra 的 60%。公司内部说，Antigravity 里智能体提交量大约升了 35%，回滚大约少了三分之一。DeepMind 同一天发了安全和机器人配套说明。机器人演示里，只看视频就能教 Apptronik Apollo 连投 7 袋玉米。<br/><strong>对你意味着什么</strong> Google 又提供了公开的前沿模型接口，而且眼下的导入价明显更低。选模型时，尤其是长上下文和用智能体写代码，这周要把 Argon 放进同一套任务里对照。<br/>建议：试用 · 导入价维持到 11 月 30 日。这周对照最划算。<br/>有多确定：高<br/>什么情况下当这判断作废：如果独立评测显示，Argon 在真实长程任务上稳定差于同样价位的 Sol 或 Opus，或者接口的配额和延迟用不起来，就收回「可以默认放进对照表」。<br/>来源 Google（一手）, GoogleDeepMind（一手）, ArtificialAnlys（解读）, TheVerge（转述）<br/>日期 2026-10-14]]></description>
 </item>
 <item>
 <title>[重点关注 · 方法模式 · 发布] Amex Intent Intelligence：先捕获并鉴权购买意图，再让 agent 下单</title>
@@ -127,11 +127,11 @@
 <description><![CDATA[<strong>背景</strong><br/>• Anthropic Frontier Red Team（William Zhou / Daniel Freeman，标日期 10-12）：实验称小型模型「可能数月内」具备在商用 IoT（如智能烤箱、杂牌 Android TV 盒）上自复制的能力；无中心关停点，倍增时间或按天计<br/>• 简化评测中仅开源权重模型 GLM-5.2 可靠完成端到端复制（8 节点中 4/5 次全覆盖、1 次 7/8）；≤30B 模型已能完成多步分项但端到端易错；作者强调网安利用步骤被故意简化，结果为现实成功率上界<br/>• 演示：约 15 台 ~$55 Android TV 盒分布式跑 Gemma4-26B-A4B，约 0.39 tok/s；按历史 ECI 趋势外推，小模型或在 2026 年底触及 GLM-5.2 级复制能力门槛<br/>• The Verge 同日转述并引用「digital slime mold」等威胁形态；文中建议 ISP 隔离、默认密码治理与蜜罐取证等蓝队方向<br/><strong>对你意味着什么</strong> 「agent 会写代码」已外溢到「可编排复制链」；开源权重发布与边缘/IoT 部署的安全叙事会变硬，OPC 做边缘 agent 或开源分发需默认假设复制能力在评估表上<br/>建议：观察 · 盯 2026 年底前后下一批 ≤30B 开源发布是否自带复制评测<br/>有多确定：中<br/>什么情况下当这判断作废：若后续独立复现显示端到端复制在真实认证/补丁设备上系统性失败，或能力曲线明显放缓使门槛后移超过一年，则「数月窗口」判断作废<br/>来源 Anthropic（一手）, TheVerge（解读）<br/>日期 2026-10-13]]></description>
 </item>
 <item>
-<title>[今日必看 · 行业动态 · 发布] Meta 发布首款前沿模型 Muse Wonder / Wonder Full（API + Muse Code）</title>
+<title>[今日必看 · 行业动态 · 发布] Meta 发布 Muse Wonder 和 Wonder Full</title>
 <link>https://about.fb.com/news/2026/10/introducing-muse-wonder-models/</link>
 <guid isPermaLink="false">evt-20261013-meta-muse-wonder</guid>
 <pubDate>Tue, 13 Oct 2026 01:56:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Meta 官方（10-12 PDT）：发布 Muse Wonder 与 Muse Wonder Full，自称迄今最强、面向个人/专业 agent 任务（保险理赔、租约理解、编码等），建立在 Muse Spark 之上<br/>• Wonder 今日起经 Meta Model API 与 Muse Code 开放；Wonder Full 仅限 Muse Code 订阅者、不经 API；Wonder 将很快驱动 Muse agent，订阅用户优先<br/>• 新能力：Active Memory（跨会话记住相关细节）、Active Focus（卡住时换路径、纠错、重要动作前确认）；TechCrunch 称 API 定价约 $4/百万 input、$20/百万 output（接近 GPT-6 Sol / Opus 5.5）<br/>• SiliconANGLE/模型卡转述：自测对标 GPT-6 Astra、Claude Fable 5.1、Opus 5.5；Wonder Full 在 SWE-Marathon、Legal Agent 等长程任务领先部分竞品，AA Intelligence Index 约 56（Opus 5.5 约 58）；完整安全报告待发<br/><strong>对你意味着什么</strong> Meta 正式进入「可对标前沿 API」阵营；OPC 选模型时不能再默认只有 OpenAI/Anthropic 两极，Wonder Full 锁 Muse Code 也意味着最强档可能走封闭 coding 产品而非开放 API<br/>建议：试用 · 本周做一次同任务对照即可<br/>有多确定：高<br/>什么情况下当这判断作废：若独立评测显示 Wonder 系列系统性低于同价位 Sol/Opus，或 API 长期缺货/无实质流量，则「第三极可用」判断作废<br/>来源 Meta（一手）, TechCrunch（解读）, SiliconANGLE（转述）<br/>日期 2026-10-13]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• Meta 在 2026 年 10 月 12 日发布 Muse Wonder 和 Wonder Full。官方称这是他们迄今最强的模型，面向保险理赔、读租约、写代码这类任务。它建立在 Muse Spark 之上。<br/>• Wonder 从当天起可以通过 Meta 的模型接口和 Muse Code 使用。Wonder Full 只开放给 Muse Code 的订阅用户，不提供接口。订阅用户会先用上即将接入的 Muse 智能体。<br/>• 两项新能力是 Active Memory（跨会话记住相关细节）和 Active Focus（卡住时换路径、纠错，重要动作前先确认）。TechCrunch 称接口大约每百万 token 输入 4 美元、输出 20 美元，接近 GPT-6 Sol 和 Opus 5.5。<br/>• 公开转述的自测对标了 GPT-6 Astra、Claude Fable 5.1 和 Opus 5.5。Wonder Full 在一部分长程任务上领先一些竞品。Artificial Analysis 的智力指数大约是 56，Opus 5.5 大约是 58。完整安全报告还没发。<br/><strong>对你意味着什么</strong> 选模型时不能再默认只有 OpenAI 和 Anthropic 两家。最强的 Wonder Full 锁在 Muse Code 里，不一定走开放接口。这周用同一套写代码或长程任务，把它和你现在的模型对打一遍。<br/>建议：试用 · 这周做一次同一套任务的对照就够。<br/>有多确定：高<br/>什么情况下当这判断作废：如果独立评测显示 Wonder 系列稳定差于同样价位的 Sol 或 Opus，或者接口长期缺货、没有实际用量，就收回「可以当作另一家来用」。<br/>来源 Meta（一手）, TechCrunch（解读）, SiliconANGLE（转述）<br/>日期 2026-10-13]]></description>
 </item>
 <item>
 <title>[重点关注 · 试用工具 · 工具] YC Agent37：低成本 agent harness 沙箱上线（客户均耗约 $0.37/月）</title>

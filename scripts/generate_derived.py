@@ -13,6 +13,10 @@ Writes into public/ only:
   - tools-radar.json    (tools with tool_radar / lens=工具)
   - today3.txt          (今天先做这 3 件，纯文本，页面叫法)
   - practice.json       (only when public/practice/inbox/*.json has items)
+
+today3 keeps the line labels the homepage parser expects
+(「对你意味着什么」「建议」). Spoken wording comes from the card.
+Machine ids are stripped. See scripts/human_layer.py.
 """
 from __future__ import annotations
 
@@ -27,8 +31,10 @@ from pathlib import Path
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from card_times import parse_source_timestamp
+    from human_layer import strip_machine_ids
 else:
     from .card_times import parse_source_timestamp
+    from .human_layer import strip_machine_ids
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -302,17 +308,20 @@ def build_today3(board: list[dict]) -> str:
     picked = sorted(day_items, key=score)[:3]
     lines = [f"AI Radar · 今天先做这 3 件（{today}）", ""]
     for i, it in enumerate(picked, 1):
-        lines.append(f"{i}. {it.get('title', '')}")
+        title = strip_machine_ids(str(it.get("title") or ""))
+        lines.append(f"{i}. {title}")
         so = it.get("so_what") if isinstance(it.get("so_what"), dict) else {}
-        impact = str(so.get("impact") or "").strip()
+        impact = strip_machine_ids(str(so.get("impact") or ""))
         if not impact:
             jud = list(it.get("judgment") or [])
             obj = objective_lines(it)
-            impact = jud[0] if jud else (obj[0] if obj else "")
+            impact = strip_machine_ids(jud[0] if jud else (obj[0] if obj else ""))
         if impact:
             lines.append(f"   对你意味着什么：{impact}")
         suggest = " · ".join(
-            str(so[k]).strip() for k in ("action", "window") if str(so.get(k) or "").strip()
+            strip_machine_ids(str(so.get(k) or ""))
+            for k in ("action", "window")
+            if str(so.get(k) or "").strip()
         )
         if suggest:
             lines.append(f"   建议：{suggest}")

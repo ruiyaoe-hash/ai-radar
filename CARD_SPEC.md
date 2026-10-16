@@ -24,10 +24,10 @@
 | `tag` | 事件类型 |
 | `lens` | `工具`\|`赛道`\|`模式`\|`时机` |
 | `priority` | `P0` 或 `P1` |
-| `title` | 可扫读事实标题；传闻标明「传闻」 |
+| `title` | 一句可扫读的事实，像新闻标题。传闻标明「传闻」。不要把参数表塞进标题 |
 | `date` | `YYYY-MM-DD`（北京日历日） |
 | `time` | `MM-DD HH:MM`（北京） |
-| `objective` | 2–4 条客观事实（**不要**再写 `bullets`） |
+| `objective` | 2–4 条客观事实，每条一句完整口语（**不要**再写 `bullets`） |
 | `handle` / `url` | 兼容展示的主链；与 `sources[0]` 对齐即可 |
 
 ### status 与 P0
@@ -93,6 +93,17 @@
 
 - objective：只写可核对事实；传闻须归因
 - 禁止在 objective 写「我们应该…」「赛道已定」等
+
+## 人读层
+
+`id`、`candidate_id`、`status`、`priority`、`sources`、班次和入库时间留在 JSON。给人看的 `title`、`objective`、`so_what.impact`、`so_what.falsifier`，以及 `DIGEST_LATEST.md`，按 [`docs/AIHOT对接与表达规范-v0.md`](docs/AIHOT对接与表达规范-v0.md) 写。
+
+- 一句一事实，用完整的口语句。不要写「权重能下」这种压缩，写成「模型权重可以下载到自己的电脑或服务器上使用」。
+- 英文专名每张卡每种术语最多括注一次。
+- 正文不出现 `evt-` / `cand-`，也不写抓取条数。
+- 主报顺序是：是什么 → 要点 → 所以呢 → 若证伪。跳过清单放附录，不铺进正文。
+
+决策规则不改。P0 仍是「今天没看到会做错或错过决策」。只有媒体二手不能升正式 P0。写了 `so_what` 就必须有 `falsifier`。
 
 ## 从候选池晋升（北京日历日 ≥ 2026-10-15）
 

@@ -6,6 +6,7 @@
 - RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 - 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html
 - 卡片规范：[`CARD_SPEC.md`](./CARD_SPEC.md)
+- 人读层：[`docs/AIHOT对接与表达规范-v0.md`](./docs/AIHOT对接与表达规范-v0.md)（主报和卡片口语；决策门闩不改）
 - Alba 例程：[`TIMELINE.md`](./TIMELINE.md)
 - 全量规格：[`docs/DECISION-SIGNAL-FULL-SPEC.md`](./docs/DECISION-SIGNAL-FULL-SPEC.md)
 - 验收清单：[`docs/DECISION-SIGNAL-CHECKLIST.md`](./docs/DECISION-SIGNAL-CHECKLIST.md)

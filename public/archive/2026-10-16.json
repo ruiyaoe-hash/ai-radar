@@ -10,7 +10,7 @@
       "tag": "发布",
       "lens": "赛道",
       "priority": "P0",
-      "title": "Meta 开放权重发布 Muse Spark Open（816B/42B MoE，1M 上下文）",
+      "title": "Meta 放出可下载的 Muse Spark Open",
       "date": "2026-10-16",
       "time": "10-16 01:08",
       "handle": "AIatMeta",
@@ -20,10 +20,10 @@
       "candidate_id": "cand-20261016-04c0b2ee0f46",
       "promotion_path": "normal",
       "objective": [
-        "Meta / AIatMeta 官方（2026-10-15）：发布 Muse Spark Open 权重，自称迄今最强美国开放权重模型；816B 总参 / 42B 激活 MoE（混合专家），原生多模态（文/图/视/音→文），1M token 上下文；面向长程 coding 与 agentic（代理式）任务",
-        "权重今日可下：Hugging Face、Amazon SageMaker AI、Google Cloud Model Garden、Microsoft Foundry；API 平台：Baseten、Fireworks、Groq、Modal、Nebius、OpenRouter、Together AI；许可为 Muse Model License（有限商用条款下可免费用）",
-        "推理栈：SGLang / vLLM / TensorRT-LLM / Transformers / llama.cpp / Unsloth / Apple MLX；官方称可在两台 M5 Ultra Mac Studio（各至约 512GB 统一内存）上本地跑通",
-        "与 10-13 的 Muse Wonder（闭源 API / Muse Code）不同：本卡是 Spark 的开放权重版；安全侧称额外做了开放权重场景的 post-training，完整评测报告待发"
+        "Meta 在 2026 年 10 月 15 日放出 Muse Spark Open。模型权重可以下载到自己的电脑或服务器上使用。官方称这是目前最强的美国开放权重模型。",
+        "总参数 816B，每个词大约激活 42B，结构是混合专家。上下文最长 1M token。它能读文字、图片、音频和视频，再输出文字，主打长程写代码和智能体任务。",
+        "权重可以在 Hugging Face 下载，也可以走 OpenRouter 这类托管接口。许可在有限商用条款下可以免费使用。大厂商如果要卖接口，需要另谈。",
+        "官方演示过用两台高配 Mac Studio 在本地跑通，内存门槛高，别默认家里的电脑能跑。它和 10 月 13 日的 Muse Wonder 不是一条线，Wonder 走的是闭源接口。完整评测报告还没发。"
       ],
       "sources": [
         {
@@ -49,9 +49,9 @@
       ],
       "shift": "morning",
       "try_url": "https://huggingface.co/collections/meta-models/muse-spark-open",
-      "access": "权重下载（Muse Model License）或第三方 API（OpenRouter 等）",
-      "integration": "HF / vLLM / SGLang / MLX / OpenRouter 等",
-      "first_step": "若走开放权重：先在 OpenRouter/Fireworks 等托管 API 用同一套长程 coding 任务对照 Spark Open vs 现用闭源；有双 Mac Studio 再试 MLX 本地",
+      "access": "模型权重可以在 Hugging Face、Amazon SageMaker AI、Google Cloud Model Garden 和 Microsoft Foundry 下载。托管接口包括 Baseten、Fireworks、Groq、Modal、Nebius、OpenRouter 和 Together AI。许可是 Muse Model License，在有限商用条款下可以免费使用。",
+      "integration": "推理可以用 SGLang、vLLM、TensorRT-LLM、Transformers、llama.cpp、Unsloth 或 Apple MLX。",
+      "first_step": "先在 OpenRouter 或 Fireworks 这类托管接口上，用同一套长程写代码的题，把 Spark Open 和你现在的模型对打一遍。有两台 Mac Studio，再试本地。",
       "alternatives": [
         "Muse Wonder / Wonder Full（闭源 API）",
         "DeepSeek / Kimi / GLM 等开源前沿",
@@ -60,11 +60,11 @@
       "tool_radar": "试用",
       "so_what": {
         "lens": "赛道",
-        "impact": "美国侧首次出现「近前沿 agentic + 可下权重」选项；OPC 若依赖开源/自托管或要避开闭源配额，选型表必须把 Spark Open 放进同任务对照，而不能只盯 Wonder API 或中系开源",
+        "impact": "美国这边第一次有接近前沿、又能下载权重的智能体模型。如果你依赖开源或自己托管，或者想躲开闭源配额，这周要用同一套任务把 Spark Open 放进对照，不要只看 Wonder 的接口或国内的开源模型。",
         "action": "试用",
-        "window": "本周先做 API 托管对照；本地双机门槛高，勿默认可家用",
+        "window": "这周先用托管接口对照。本地要两台高配电脑，别默认家里能跑。",
         "confidence": "高",
-        "falsifier": "若独立评测显示 Spark Open 在真实长程 coding/agent 上系统性弱于同成本中系开源或托管价不可用，则「美国开源近前沿可用」判断作废",
+        "falsifier": "如果独立评测显示，它在真实的长程写代码和智能体任务上稳定弱于同样成本的开源模型，或者托管接口的价格用不起来，就收回「美国这边的开放权重已经接近前沿，应该放进对照表」。",
         "thesis_id": "T-001"
       }
     },
@@ -75,7 +75,7 @@
       "tag": "工具",
       "lens": "工具",
       "priority": "P1",
-      "title": "Black Forest Labs 发布 FLUX.3 Image Klein（开源权重 + Diffusers 布局控制）",
+      "title": "Black Forest Labs 放出可下载的 FLUX.3 Image Klein",
       "date": "2026-10-16",
       "time": "10-16 00:00",
       "handle": "huggingface",
@@ -85,9 +85,9 @@
       "candidate_id": "cand-20261015-ac63bb8d6ae3",
       "promotion_path": "normal",
       "objective": [
-        "Black Forest Labs 发布 FLUX.3 Image Klein 开放权重；Hugging Face Diffusers 博客（2026-10-15）称 day-one 支持：文生图、多参考图生图，以及 prompt 内 bounding box（边界框）布局控制",
-        "两个开放 checkpoint：`flux-3-image-klein`（时间步蒸馏，默认 16 步、无 CFG）与 `flux-3-image-klein-base`（50 步 + CFG，适合微调）；另有 FP8 / NVFP4 单文件权重",
-        "博客称蒸馏档约 2 秒出 1024²（H100）；文本编码器为 Qwen3-VL；附 LoRA DreamBooth 训练脚本与 Modular Diffusers 管线"
+        "Black Forest Labs 放出 FLUX.3 Image Klein，模型权重可以下载。Hugging Face 在 2026 年 10 月 15 日写道，发布当天就能做文生图、用多张参考图生图，以及在提示词里用边界框控制布局。",
+        "有两份检查点。蒸馏版默认 16 步，不使用分类器无关引导。基础版是 50 步，适合继续微调。另外提供 FP8 和 NVFP4 的单文件权重。",
+        "博客说蒸馏版在 H100 上大约 2 秒可以出一张 1024 像素的图。文本编码器是 Qwen3-VL。仓库里附了微调脚本和管线。"
       ],
       "sources": [
         {
@@ -105,7 +105,7 @@
       "try_url": "https://huggingface.co/blog/flux-3",
       "access": "开放权重 + Diffusers；需较新 GPU 显存（量化可降）",
       "integration": "diffusers ModularPipeline / HF Space",
-      "first_step": "pip install -U diffusers transformers 后按博客跑一条文生图；若做版式控制再试 bbox JSON prompt",
+      "first_step": "先升级 Diffusers 和 Transformers，按博客跑一条文生图。要控制版式时，再试在提示词里加边界框。",
       "alternatives": [
         "FLUX.2 / FLUX.1",
         "SD3 系",
@@ -114,11 +114,11 @@
       "tool_radar": "评估",
       "so_what": {
         "lens": "工具",
-        "impact": "开源图像栈出现带布局控制的新主干；内容/封面生产若自托管，值得进评估队列，但非当日模型选型强制项",
+        "impact": "开源画图多了一条能控制布局的新主干。如果你自己托管图床或封面，值得排进评估。这不是今天必须换掉现用模型的事。",
         "action": "评估",
-        "window": "有图床/封面需求时本周试一条即可",
+        "window": "有图床或封面需求时，这周试一条就够。",
         "confidence": "中",
-        "falsifier": "若实际画质/可控性明显弱于现用闭源图模且显存门槛过高，则「优先评估 FLUX.3」作废"
+        "falsifier": "如果实际画质和可控性明显弱于你现在用的闭源画图模型，而且显存门槛太高，就收回「优先评估 FLUX.3」。"
       }
     }
   ]
