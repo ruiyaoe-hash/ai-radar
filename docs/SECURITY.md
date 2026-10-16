@@ -37,6 +37,14 @@
 - 卡片字段先 `html.escape`（含 `>`），再放进 `<description>` 的 CDATA。阅读器把摘要当 HTML 时，卡片里的 `<script>` 只是文字。`>` 被编成 `&gt;` 后，卡片不能用 `]]>` 提前结束 CDATA。
 - `<item><link>` 只保留 `http` / `https`。`javascript:` 等协议会改写成事件永久链接（`https://…/#/事件id`），没有 id 时退回站点根地址。
 
+## 公开 Agent 读取面
+
+Agent 能读到的只是已经选进 `public/` 的只读静态层：`agent.html`、`llms.txt`，以及该页列出的 JSON、RSS 和 `public/schemas/`。没有速率限制，也没有单独的 CDN 规则。私有候选池、访问令牌、门槛日志、webhook 密钥都没有公开地址。
+
+来自 X 等站外原文的标题和摘录仍可能夹带提示注入。页面对浏览器做了转义，RSS 对阅读器做了转义；这挡不住下游 Agent 把字段当成指令。字段是数据。
+
+发布凭据的后盾仍是现有 CI，以及下面的 `main` 分支保护。这里不新增代理或托管。
+
 ## 分支保护（期望，需仓库管理员打开）
 
 `main` 应禁止直接推送。合并前至少通过一次评审，并且 CI「CI · validate + derive」为绿。这项要在 GitHub → Settings → Branches 里设置，本仓库的文件改动不能代为打开。

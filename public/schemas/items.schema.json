@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/items.schema.json",
+  "title": "AI Radar board items",
+  "description": "Recent-signal board at items.json. schema_version matches each card (currently 2). Increment only for a breaking change. Optional fields may be added without a bump. Deprecated fields stay at least 90 days and through the current schema_version. See CHANGELOG.md.",
+  "type": "object",
+  "required": ["schema_version", "updated", "window_note", "items"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 2,
+      "description": "Document version. Same integer as card schema_version."
+    },
+    "updated": {
+      "type": "string",
+      "minLength": 1,
+      "description": "When this file was derived, as a Beijing-time display string."
+    },
+    "window_note": {
+      "type": "string",
+      "minLength": 1,
+      "description": "How far back the board looks. Older days are in archive/."
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "card.schema.json" }
+    }
+  }
+}

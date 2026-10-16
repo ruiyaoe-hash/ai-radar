@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/theses.schema.json",
+  "title": "AI Radar theses",
+  "description": "Long-horizon judgments at theses.json. schema_version is currently 1. Increment only for a breaking change. Optional fields may be added without a bump. Deprecated fields stay at least 90 days and through the current schema_version. See CHANGELOG.md. Cards point here by id; this file is not a social-post archive.",
+  "type": "object",
+  "required": ["schema_version", "updated", "scoring", "theses"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Document version."
+    },
+    "updated": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Calendar day this file was last edited, YYYY-MM-DD."
+    },
+    "scoring": {
+      "type": "object",
+      "required": ["states", "note"],
+      "additionalProperties": true,
+      "properties": {
+        "states": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "enum": ["命中", "未命中", "待定"] }
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "theses": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/thesis" }
+    }
+  },
+  "$defs": {
+    "thesis": {
+      "type": "object",
+      "required": [
+        "id",
+        "lens",
+        "statement",
+        "horizon",
+        "confidence",
+        "falsifier",
+        "status",
+        "evidence_for",
+        "evidence_against"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "pattern": "^T-[0-9]{3,}$" },
+        "lens": { "type": "string", "enum": ["工具", "赛道", "模式", "时机"] },
+        "statement": { "type": "string", "minLength": 1 },
+        "horizon": { "type": "string", "pattern": "^[0-9]{4}-Q[1-4]$" },
+        "confidence": { "type": "string", "enum": ["高", "中", "低"] },
+        "falsifier": { "type": "string", "minLength": 1 },
+        "status": { "type": "string", "enum": ["命中", "未命中", "待定"] },
+        "evidence_for": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "evidence_against": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

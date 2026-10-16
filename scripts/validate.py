@@ -441,7 +441,26 @@ def check_public_ui() -> None:
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
         "week.html": ["本周归档"],
-        "agent.html": ["today3.txt", "practice.json", "编辑精选、每周投放，非自动从监控捞"],
+        "agent.html": [
+            "today3.txt",
+            "practice.json",
+            "编辑精选、每周投放，非自动从监控捞",
+            "https://ruiyaoe-hash.github.io/ai-radar/",
+            "schemas/card.schema.json",
+            "schemas/items.schema.json",
+            "schemas/practice.schema.json",
+            "schemas/tools-radar.schema.json",
+            "schemas/archive-index.schema.json",
+            "schemas/archive-day.schema.json",
+            "schemas/theses.schema.json",
+            "schemas/CHANGELOG.md",
+            "不是指令",
+            "不可信文本",
+            "私有候选池",
+            "webhook 密钥",
+            "CC BY-NC 4.0",
+            "Cloudflare Web Analytics",
+        ],
         "about.html": [
             "对你意味着什么",
             "背景与出处",
@@ -449,6 +468,7 @@ def check_public_ui() -> None:
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
             "编辑精选、每周投放，非自动从监控捞",
             "每天 08:00 主报，工作日 21:00 晚班",
+            "CC BY-NC 4.0",
         ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
@@ -708,6 +728,119 @@ def check_derive_ignores_pool() -> None:
     print("OK derive: archive and practice inbox only; pool is not an input")
 
 
+PUBLISHED_SCHEMA_DOCS = {
+    "items.json": "items.schema.json",
+    "practice.json": "practice.schema.json",
+    "tools-radar.json": "tools-radar.schema.json",
+    "archive/index.json": "archive-index.schema.json",
+    "theses.json": "theses.schema.json",
+}
+SITE_BASE = "https://ruiyaoe-hash.github.io/ai-radar/"
+PRIVATE_SURFACE = (
+    "candidate.schema",
+    "ai-radar-pool",
+    "status_in_pool",
+    "AI_RADAR_POOL",
+    "FEISHU_BOT",
+)
+
+
+def check_published_schemas() -> None:
+    """Public Agent surface: published schemas match the feeds, and the pool schema stays off Pages."""
+    try:
+        from jsonschema import Draft202012Validator
+        from referencing import Registry, Resource
+        from referencing.jsonschema import DRAFT202012
+    except ImportError:
+        fail("jsonschema is not installed. Run: pip install -r requirements-ci.txt")
+
+    pub_dir = PUBLIC / "schemas"
+    if not pub_dir.is_dir():
+        fail("public/schemas missing")
+    for path in pub_dir.iterdir():
+        if path.is_file() and "candidate" in path.name:
+            fail(f"public/schemas must not publish {path.name}")
+    for name in ("card.schema.json", "practice.schema.json", "archive-day.schema.json"):
+        src = SCHEMAS / name
+        dst = pub_dir / name
+        if not dst.is_file():
+            fail(f"public/schemas/{name} missing")
+        if src.read_bytes() != dst.read_bytes():
+            fail(f"public/schemas/{name} drifted from schemas/{name}")
+
+    by_name: dict[str, dict] = {}
+    resources = []
+    for path in sorted(pub_dir.glob("*.json")):
+        schema = json.loads(path.read_text(encoding="utf-8"))
+        by_name[path.name] = schema
+        res = Resource(contents=schema, specification=DRAFT202012)
+        resources.append((schema.get("$id") or path.name, res))
+        resources.append((path.name, res))
+        resources.append((SITE_BASE + "schemas/" + path.name, res))
+    registry = Registry().with_resources(resources)
+
+    def reject(rel: str, schema_name: str, data) -> None:
+        validator = Draft202012Validator(by_name[schema_name], registry=registry)
+        errors = sorted(validator.iter_errors(data), key=lambda e: list(e.path))
+        if not errors:
+            return
+        first = errors[0]
+        loc = "/".join(str(p) for p in first.path) or "(root)"
+        fail(f"{rel}: published schema {loc}: {first.message}")
+
+    for rel, schema_name in PUBLISHED_SCHEMA_DOCS.items():
+        data = json.loads((PUBLIC / rel).read_text(encoding="utf-8"))
+        reject(rel, schema_name, data)
+    day_name = "archive-day.schema.json"
+    n_days = 0
+    for path in sorted(ARCHIVE.glob("????-??-??.json")):
+        reject(f"archive/{path.name}", day_name, json.loads(path.read_text(encoding="utf-8")))
+        n_days += 1
+    if n_days == 0:
+        fail("no archive day files to check against the published schema")
+
+    changelog = (pub_dir / "CHANGELOG.md").read_text(encoding="utf-8")
+    for needle in ("schema_version", "90"):
+        if needle not in changelog:
+            fail(f"schemas/CHANGELOG.md missing {needle}")
+    llms = (PUBLIC / "llms.txt").read_text(encoding="utf-8")
+    if "<html" in llms.lower():
+        fail("llms.txt must be plain text")
+    for rel in (
+        "agent.html",
+        "today3.txt",
+        "items.json",
+        "feed.xml",
+        "feeds/lens-tools.xml",
+        "feeds/lens-tracks.xml",
+        "feeds/lens-models.xml",
+        "feeds/lens-timing.xml",
+        "tools-radar.json",
+        "practice.json",
+        "archive/index.json",
+        "theses.json",
+        "schemas/CHANGELOG.md",
+        "schemas/card.schema.json",
+        "schemas/items.schema.json",
+        "schemas/practice.schema.json",
+        "schemas/tools-radar.schema.json",
+        "schemas/archive-index.schema.json",
+        "schemas/archive-day.schema.json",
+        "schemas/theses.schema.json",
+    ):
+        if SITE_BASE + rel not in llms:
+            fail(f"llms.txt missing {SITE_BASE}{rel}")
+    for label, text in (
+        ("agent.html", (PUBLIC / "agent.html").read_text(encoding="utf-8")),
+        ("llms.txt", llms),
+        ("schemas/CHANGELOG.md", changelog),
+    ):
+        for banned in PRIVATE_SURFACE:
+            if banned in text:
+                fail(f"{label} exposes private surface {banned!r}")
+    print(f"OK published schemas: {len(PUBLISHED_SCHEMA_DOCS)} docs, {n_days} archive days; pool schema stays off Pages")
+
+
 def check_public_excludes_pool() -> None:
     for path in PUBLIC.rglob("*"):
         if not path.is_file():
@@ -730,6 +863,7 @@ def main() -> None:
     check_card_times()
     check_shift_slots()
     check_schema()
+    check_published_schemas()
     check_monotonic()
     check_feed()
     check_rss_escape()
