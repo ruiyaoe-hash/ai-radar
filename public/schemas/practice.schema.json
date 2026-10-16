@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/practice.schema.json",
+  "title": "AI Radar 博主实操",
+  "type": "object",
+  "required": ["schema_version", "items"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "updated": { "type": ["string", "null"] },
+    "note": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/item" }
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "required": ["id", "kind", "title", "author", "takeaway"],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^prac-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["工具用法", "创意作品", "变现", "Skill / 工作流", "硬件"]
+        },
+        "title": { "type": "string", "minLength": 1 },
+        "author": { "type": "string", "minLength": 1 },
+        "url": { "type": "string" },
+        "time": { "type": "string" },
+        "takeaway": { "type": "string", "minLength": 1 },
+        "steps": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "maxItems": 8
+        },
+        "caution": { "type": "string" },
+        "sample": { "type": "boolean" },
+        "difficulty": {
+          "type": "string",
+          "enum": ["入门", "进阶"],
+          "description": "Learner level (难度). Optional on each card."
+        },
+        "prerequisites": {
+          "type": "array",
+          "description": "Prerequisites (前置条件): skills, accounts, or tools.",
+          "items": { "type": "string", "minLength": 1 },
+          "maxItems": 6
+        },
+        "estimated_time": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "Estimated time (预计耗时). A readable time box, not a timestamp."
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "Verified (已验证): an editor or the owner ran the steps. The share of verified=true cards is a collection metric, not a field on the pool."
+        }
+      }
+    }
+  }
+}

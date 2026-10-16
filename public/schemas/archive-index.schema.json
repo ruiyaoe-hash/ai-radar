@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-index.schema.json",
+  "title": "AI Radar archive index",
+  "description": "Date index at archive/index.json. This document has no schema_version. A day file is archive/YYYY-MM-DD.json and uses archive-day.schema.json (cards carry schema_version). Incompatible shape changes are recorded in CHANGELOG.md. Deprecated fields stay at least 90 days.",
+  "type": "object",
+  "required": ["dates"],
+  "additionalProperties": true,
+  "properties": {
+    "dates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "count"],
+        "additionalProperties": true,
+        "properties": {
+          "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+          "count": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}
