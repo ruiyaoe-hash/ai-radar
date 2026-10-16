@@ -1,6 +1,6 @@
 # 公开字段变更记录
 
-给人看的说明在 [给 Agent 用](https://ruiyaoe-hash.github.io/ai-radar/agent.html)。这里只记已经公开的 feed 形状。
+给人看的说明在 [给 Agent 用](https://ruiyaoe-hash.github.io/ai-radar/agent.html)。这里记字段形状怎么变。
 
 ## 规则
 
