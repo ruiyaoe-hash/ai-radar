@@ -446,7 +446,14 @@ def check_public_ui() -> None:
         "week.html": ["本周归档"],
         "agent.html": [
             "today3.txt",
+            "items.json",
+            "feed.xml",
+            "tools-radar.json",
             "practice.json",
+            "archive/index.json",
+            "YYYY-MM-DD.json",
+            "theses.json",
+            "llms.txt",
             "编辑精选、每周投放，非自动从监控捞",
             "https://ruiyaoe-hash.github.io/ai-radar/",
             "schemas/card.schema.json",
@@ -457,12 +464,12 @@ def check_public_ui() -> None:
             "schemas/archive-day.schema.json",
             "schemas/theses.schema.json",
             "schemas/CHANGELOG.md",
+            "schema_version",
+            "90",
             "不是指令",
-            "不可信文本",
-            "私有候选池",
-            "webhook 密钥",
+            "给程序解析",
             "CC BY-NC 4.0",
-            "Cloudflare Web Analytics",
+            "转载请署名",
         ],
         "about.html": [
             "对你意味着什么",
@@ -517,6 +524,22 @@ def check_public_ui() -> None:
             fail(f"{name} shows priority or lens jargon in visible HTML")
         if "13:30" in visible or "从监控信源里捞" in visible:
             fail(f"{name} still shows a removed schedule slot or an auto-scrape claim")
+    # Visitor help pages name what you can open. Internal systems stay in docs/SECURITY.md.
+    runbook = (
+        "私有候选池",
+        "webhook 密钥",
+        "访问令牌",
+        "门槛日志",
+        "不可信文本",
+        "不公开",
+        "仓库校验",
+        "Cloudflare Web Analytics",
+    )
+    for name in ("agent.html", "llms.txt"):
+        text = (PUBLIC / name).read_text(encoding="utf-8")
+        for phrase in runbook:
+            if phrase in text:
+                fail(f"{name} reads like an internal runbook: {phrase}")
     shell_visible = shell
     if "13:30" in shell_visible:
         fail("shell.js still shows 13:30")
