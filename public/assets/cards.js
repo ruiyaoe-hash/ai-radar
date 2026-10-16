@@ -209,7 +209,7 @@
       return raw.endsWith("\n") ? raw : raw + "\n";
     }
     const { rows } = heroModel(raw, items);
-    const lines = ["AI Radar · 今天先做这 3 件", ""];
+    const lines = ["AI Radar · 今日精选", ""];
     rows.forEach((row, i) => {
       lines.push(`${i + 1}. ${row.title}`);
       if (row.mean) lines.push(`   对你意味着什么：${row.mean}`);
@@ -222,7 +222,7 @@
 
   function renderHero(rows) {
     if (!rows.length) {
-      return "<li>今天的三条还没准备好。</li>";
+      return "<li>今日精选还在准备，稍后再来。</li>";
     }
     return rows.map((row) => `<li><strong>${esc(row.title)}</strong>${
       row.suggest ? `<div class="act">建议：${esc(row.suggest)}</div>` : ""

@@ -13,7 +13,7 @@
 
 ## 数据
 
-- [今天先做这 3 件](https://ruiyaoe-hash.github.io/ai-radar/today3.txt): 纯文本，适合贴进对话
+- [今日精选](https://ruiyaoe-hash.github.io/ai-radar/today3.txt): 从全部信号里筛出的最重要 3 条，时间紧只看这 3 条就够
 - [近期信号](https://ruiyaoe-hash.github.io/ai-radar/items.json): 近几天的卡片，schema_version 2
 - [全部订阅](https://ruiyaoe-hash.github.io/ai-radar/feed.xml): RSS，和近期信号是同一批
 - [试用工具分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml): RSS，只收试用工具
