@@ -1,8 +1,126 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-14 08:04 北京时间",
+  "updated": "2026-10-16 08:03 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261016-meta-muse-spark-open",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "赛道",
+      "priority": "P0",
+      "title": "Meta 开放权重发布 Muse Spark Open（816B/42B MoE，1M 上下文）",
+      "date": "2026-10-16",
+      "time": "10-16 01:08",
+      "handle": "AIatMeta",
+      "url": "https://research.meta.ai/blog/muse-spark-open",
+      "published_at": "2026-10-15T17:08:04Z",
+      "ingested_at": "2026-10-16T00:03:25Z",
+      "candidate_id": "cand-20261016-04c0b2ee0f46",
+      "promotion_path": "normal",
+      "objective": [
+        "Meta / AIatMeta 官方（2026-10-15）：发布 Muse Spark Open 权重，自称迄今最强美国开放权重模型；816B 总参 / 42B 激活 MoE（混合专家），原生多模态（文/图/视/音→文），1M token 上下文；面向长程 coding 与 agentic（代理式）任务",
+        "权重今日可下：Hugging Face、Amazon SageMaker AI、Google Cloud Model Garden、Microsoft Foundry；API 平台：Baseten、Fireworks、Groq、Modal、Nebius、OpenRouter、Together AI；许可为 Muse Model License（有限商用条款下可免费用）",
+        "推理栈：SGLang / vLLM / TensorRT-LLM / Transformers / llama.cpp / Unsloth / Apple MLX；官方称可在两台 M5 Ultra Mac Studio（各至约 512GB 统一内存）上本地跑通",
+        "与 10-13 的 Muse Wonder（闭源 API / Muse Code）不同：本卡是 Spark 的开放权重版；安全侧称额外做了开放权重场景的 post-training，完整评测报告待发"
+      ],
+      "sources": [
+        {
+          "url": "https://research.meta.ai/blog/muse-spark-open",
+          "handle": "Meta",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/AIatMeta/status/2110779754274292212",
+          "handle": "AIatMeta",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/collections/meta-models/muse-spark-open",
+          "handle": "HuggingFace",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/natolambert/status/2110787136924565941",
+          "handle": "natolambert",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://huggingface.co/collections/meta-models/muse-spark-open",
+      "access": "权重下载（Muse Model License）或第三方 API（OpenRouter 等）",
+      "integration": "HF / vLLM / SGLang / MLX / OpenRouter 等",
+      "first_step": "若走开放权重：先在 OpenRouter/Fireworks 等托管 API 用同一套长程 coding 任务对照 Spark Open vs 现用闭源；有双 Mac Studio 再试 MLX 本地",
+      "alternatives": [
+        "Muse Wonder / Wonder Full（闭源 API）",
+        "DeepSeek / Kimi / GLM 等开源前沿",
+        "Gemini 4 Argon / Claude Opus 5.5（闭源）"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "美国侧首次出现「近前沿 agentic + 可下权重」选项；OPC 若依赖开源/自托管或要避开闭源配额，选型表必须把 Spark Open 放进同任务对照，而不能只盯 Wonder API 或中系开源",
+        "action": "试用",
+        "window": "本周先做 API 托管对照；本地双机门槛高，勿默认可家用",
+        "confidence": "高",
+        "falsifier": "若独立评测显示 Spark Open 在真实长程 coding/agent 上系统性弱于同成本中系开源或托管价不可用，则「美国开源近前沿可用」判断作废",
+        "thesis_id": "T-001"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261016-flux3-image-klein",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Black Forest Labs 发布 FLUX.3 Image Klein（开源权重 + Diffusers 布局控制）",
+      "date": "2026-10-16",
+      "time": "10-16 00:00",
+      "handle": "huggingface",
+      "url": "https://huggingface.co/blog/flux-3",
+      "published_at": "2026-10-15T00:00:00Z",
+      "ingested_at": "2026-10-16T00:03:25Z",
+      "candidate_id": "cand-20261015-ac63bb8d6ae3",
+      "promotion_path": "normal",
+      "objective": [
+        "Black Forest Labs 发布 FLUX.3 Image Klein 开放权重；Hugging Face Diffusers 博客（2026-10-15）称 day-one 支持：文生图、多参考图生图，以及 prompt 内 bounding box（边界框）布局控制",
+        "两个开放 checkpoint：`flux-3-image-klein`（时间步蒸馏，默认 16 步、无 CFG）与 `flux-3-image-klein-base`（50 步 + CFG，适合微调）；另有 FP8 / NVFP4 单文件权重",
+        "博客称蒸馏档约 2 秒出 1024²（H100）；文本编码器为 Qwen3-VL；附 LoRA DreamBooth 训练脚本与 Modular Diffusers 管线"
+      ],
+      "sources": [
+        {
+          "url": "https://huggingface.co/blog/flux-3",
+          "handle": "HuggingFace",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/huggingface/status/2110755225107824868",
+          "handle": "huggingface",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://huggingface.co/blog/flux-3",
+      "access": "开放权重 + Diffusers；需较新 GPU 显存（量化可降）",
+      "integration": "diffusers ModularPipeline / HF Space",
+      "first_step": "pip install -U diffusers transformers 后按博客跑一条文生图；若做版式控制再试 bbox JSON prompt",
+      "alternatives": [
+        "FLUX.2 / FLUX.1",
+        "SD3 系",
+        "闭源图像 API"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "开源图像栈出现带布局控制的新主干；内容/封面生产若自托管，值得进评估队列，但非当日模型选型强制项",
+        "action": "评估",
+        "window": "有图床/封面需求时本周试一条即可",
+        "confidence": "中",
+        "falsifier": "若实际画质/可控性明显弱于现用闭源图模且显存门槛过高，则「优先评估 FLUX.3」作废"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261014-fish-drama-3",
