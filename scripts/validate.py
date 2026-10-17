@@ -406,7 +406,7 @@ def check_public_ui() -> None:
     """Chinese-first pages: required labels exist, jargon stays out of visible HTML."""
     required = {
         "index.html": [
-            "今天先做这 3 件",
+            "今日精选",
             "精选",
             "全部",
             "今日必看",
@@ -428,7 +428,7 @@ def check_public_ui() -> None:
             "Skill / 工作流",
             "硬件",
             "还没有可照着做的实操。",
-            "编辑精选、每周投放、非自动从监控捞",
+            "编辑精选、每周投放",
         ],
         "tools-radar.html": ["值得用上", "可以试", "先评估", "先别跟"],
         "subscribe.html": [
@@ -454,7 +454,7 @@ def check_public_ui() -> None:
             "YYYY-MM-DD.json",
             "theses.json",
             "llms.txt",
-            "编辑精选、每周投放，非自动从监控捞",
+            "编辑精选、每周投放",
             "https://ruiyaoe-hash.github.io/ai-radar/",
             "schemas/card.schema.json",
             "schemas/items.schema.json",
@@ -476,7 +476,7 @@ def check_public_ui() -> None:
             "背景与出处",
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
-            "编辑精选、每周投放，非自动从监控捞",
+            "编辑精选、每周投放",
             "每天 08:00 主报，工作日 21:00 晚班",
             "CC BY-NC 4.0",
         ],
