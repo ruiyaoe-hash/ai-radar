@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "一手信源配置。fetch_batch 1 是 Phase 4 首批：T1 实验室 RSS 与 GitHub Releases，由 scripts/ingest_rss.py 写入私有池。fetch_batch 2（TechCrunch / HN / Reddit / trending / arXiv / Product Hunt / funding）本阶段不抓。digest 仍以 X A 级为主。公开仓不存放抓取结果。",
+  "note": "一手信源配置。fetch_batch 1 是 Phase 4 首批：T1 实验室 RSS 与 GitHub Releases，由 scripts/ingest_rss.py 写入私有池。fetch_batch 2 本阶段不抓：TechCrunch / HN / Reddit / trending / arXiv / Product Hunt / funding，以及已登记未抓的厂商与作者源（Google、Meta、NVIDIA、Apple ML、Qwen、LangChain、Together、Cursor、OpenHands Releases、Sam Altman、Interconnects、One Useful Thing）。digest 仍以 X A 级为主。公开仓不存放抓取结果。",
   "shift_assumption": {
     "main": "08:00",
     "evening": "21:00",
@@ -201,10 +201,183 @@
       ],
       "notes": "试用工具。TypeScript 日榜，不是未过滤的 GitHub trending 全语言源。",
       "fetch_batch": 2
+    },
+    {
+      "id": "google-blog-ai",
+      "name": "Google Blog AI",
+      "type": "rss",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/rss/",
+      "role": "primary",
+      "lens_hint": [
+        "工具",
+        "赛道"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "google-developers-blog",
+      "name": "Google Developers Blog",
+      "type": "rss",
+      "url": "https://developers.googleblog.com/feeds/posts/default",
+      "role": "primary",
+      "lens_hint": [
+        "工具"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "meta-engineering",
+      "name": "Meta Engineering",
+      "type": "rss",
+      "url": "https://engineering.fb.com/feed/",
+      "role": "primary",
+      "lens_hint": [
+        "工具",
+        "赛道"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "meta-newsroom",
+      "name": "Meta Newsroom",
+      "type": "rss",
+      "url": "https://about.fb.com/news/feed/",
+      "role": "primary",
+      "lens_hint": [
+        "赛道"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "nvidia-blog",
+      "name": "NVIDIA Blog",
+      "type": "rss",
+      "url": "https://blogs.nvidia.com/feed/",
+      "role": "primary",
+      "lens_hint": [
+        "工具",
+        "赛道"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "nvidia-technical-blog",
+      "name": "NVIDIA Technical Blog",
+      "type": "rss",
+      "url": "https://developer.nvidia.com/blog/feed",
+      "role": "primary",
+      "lens_hint": [
+        "工具"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "apple-ml-research",
+      "name": "Apple Machine Learning Research",
+      "type": "rss",
+      "url": "https://machinelearning.apple.com/rss.xml",
+      "role": "primary",
+      "lens_hint": [
+        "赛道"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "qwen-blog",
+      "name": "Qwen Blog",
+      "type": "rss",
+      "url": "https://qwenlm.github.io/blog/index.xml",
+      "role": "primary",
+      "lens_hint": [
+        "工具",
+        "赛道"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "sam-altman-blog",
+      "name": "Sam Altman Blog",
+      "type": "rss",
+      "url": "https://blog.samaltman.com/posts.atom",
+      "role": "primary",
+      "lens_hint": [
+        "模式",
+        "赛道"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "interconnects",
+      "name": "Nathan Lambert Interconnects",
+      "type": "rss",
+      "url": "https://www.interconnects.ai/feed",
+      "role": "primary",
+      "lens_hint": [
+        "赛道",
+        "模式"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "one-useful-thing",
+      "name": "Ethan Mollick One Useful Thing",
+      "type": "rss",
+      "url": "https://www.oneusefulthing.org/feed",
+      "role": "primary",
+      "lens_hint": [
+        "工具",
+        "模式"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "langchain-blog",
+      "name": "LangChain Blog",
+      "type": "rss",
+      "url": "https://www.langchain.com/blog/rss.xml",
+      "role": "primary",
+      "lens_hint": [
+        "工具"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "together-blog",
+      "name": "Together AI Blog",
+      "type": "rss",
+      "url": "https://www.together.ai/blog/rss.xml",
+      "role": "primary",
+      "lens_hint": [
+        "工具",
+        "赛道"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "cursor-blog",
+      "name": "Cursor Blog",
+      "type": "rss",
+      "url": "https://cursor.com/atom.xml",
+      "role": "primary",
+      "lens_hint": [
+        "工具"
+      ],
+      "fetch_batch": 2
+    },
+    {
+      "id": "openhands-releases",
+      "name": "OpenHands GitHub Releases",
+      "type": "github_releases",
+      "url": "https://github.com/OpenHands/OpenHands/releases.atom",
+      "role": "primary",
+      "lens_hint": [
+        "工具"
+      ],
+      "fetch_batch": 2
     }
   ],
   "fetch_batches": {
     "1": "T1 lab RSS and GitHub Releases. scripts/ingest_rss.py fetches only this batch into the private pool.",
-    "2": "Deferred: TechCrunch, HN, Reddit, trending, arXiv, Product Hunt, funding roundups. Not fetched in this phase."
+    "2": "Deferred: TechCrunch, HN, Reddit, trending, arXiv, Product Hunt, funding roundups, and registered vendor/author feeds. Not fetched in this phase."
   }
 }
