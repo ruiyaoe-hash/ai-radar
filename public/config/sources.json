@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "一手信源配置。fetch_batch 1 是 Phase 4 首批：T1 实验室 RSS 与 GitHub Releases，由 scripts/ingest_rss.py 写入私有池。fetch_batch 2 本阶段不抓：TechCrunch / HN / Reddit / trending / arXiv / Product Hunt / funding，以及已登记未抓的厂商与作者源（Google、Meta、NVIDIA、Apple ML、Qwen、LangChain、Together、Cursor、OpenHands Releases、Sam Altman、Interconnects、One Useful Thing）。digest 仍以 X A 级为主。公开仓不存放抓取结果。",
+  "note": "一手信源配置。fetch_batch 1 由 scripts/ingest_rss.py 抓取写入私有池；加源只改本文件，脚本不再维护 id 白名单（基线六个必须保留）。batch 1 现有 12 个：T1 实验室 RSS 与 GitHub Releases 六个，加 2026-10 扩容的六个（The Verge AI、量子位、Simon Willison、Latent Space、Import AI、GitHub Blog）。fetch_batch 2 本阶段不抓：TechCrunch / HN / Reddit / trending / arXiv / Product Hunt / funding，以及已登记未抓的厂商与作者源（Google、Meta、NVIDIA、Apple ML、Qwen、LangChain、Together、Cursor、OpenHands Releases、Sam Altman、Interconnects、One Useful Thing）。digest 仍以 X A 级为主。公开仓不存放抓取结果。",
   "shift_assumption": {
     "main": "08:00",
     "evening": "21:00",
@@ -374,6 +374,83 @@
         "工具"
       ],
       "fetch_batch": 2
+    },
+    {
+      "id": "theverge-ai",
+      "name": "The Verge AI",
+      "type": "rss",
+      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+      "role": "report",
+      "lens_hint": [
+        "赛道",
+        "时机"
+      ],
+      "notes": "首发快，适合市场信号。媒体二手，gate 不升正式 P0。",
+      "fetch_batch": 1
+    },
+    {
+      "id": "qbitai",
+      "name": "量子位",
+      "type": "rss",
+      "url": "https://www.qbitai.com/feed",
+      "role": "report",
+      "lens_hint": [
+        "工具",
+        "赛道"
+      ],
+      "notes": "中文侧，国内模型厂发布会基本都覆盖。媒体，不得升正式 P0。",
+      "fetch_batch": 1
+    },
+    {
+      "id": "simonwillison",
+      "name": "Simon Willison Weblog",
+      "type": "rss",
+      "url": "https://simonwillison.net/atom/everything/",
+      "role": "analysis",
+      "lens_hint": [
+        "工具",
+        "模式"
+      ],
+      "notes": "工具实操一手体验，直接产 try_url / first_step 素材。",
+      "fetch_batch": 1
+    },
+    {
+      "id": "latent-space",
+      "name": "Latent Space",
+      "type": "rss",
+      "url": "https://www.latent.space/feed",
+      "role": "analysis",
+      "lens_hint": [
+        "模式",
+        "赛道"
+      ],
+      "notes": "agent / infra 深度，适合模式 lens。",
+      "fetch_batch": 1
+    },
+    {
+      "id": "import-ai",
+      "name": "Import AI (Jack Clark)",
+      "type": "rss",
+      "url": "https://importai.substack.com/feed",
+      "role": "analysis",
+      "lens_hint": [
+        "赛道",
+        "模式"
+      ],
+      "notes": "每周一篇，适合长期论点。",
+      "fetch_batch": 1
+    },
+    {
+      "id": "github-blog",
+      "name": "The GitHub Blog",
+      "type": "rss",
+      "url": "https://github.blog/feed/",
+      "role": "primary",
+      "lens_hint": [
+        "工具"
+      ],
+      "notes": "Copilot 与平台级更新，官方一手。",
+      "fetch_batch": 1
     }
   ],
   "fetch_batches": {
