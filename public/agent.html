@@ -20,14 +20,14 @@
       </div>
       <main class="prose">
         <h1>给 Agent 用</h1>
-        <p class="sub">人和程序读同一页。想拿今天先做的三件事、近几天的卡片、订阅或工具，用下面这些固定地址，打开就能读。完整目录在 <a href="https://ruiyaoe-hash.github.io/ai-radar/llms.txt">llms.txt</a>。</p>
+        <p class="sub">这一页是给程序读取 AI Radar 用的索引：把今日精选、近几天的卡片、订阅和工具都列成固定地址，打开就能读。完整目录见 <a href="https://ruiyaoe-hash.github.io/ai-radar/llms.txt">llms.txt</a>。</p>
 
         <h2>固定地址</h2>
         <div class="stack">
           <article class="link-row">
             <div>
-              <strong>今天先做这 3 件</strong>
-              <span>纯文本。贴进对话，或放在早报开头，都可以。</span>
+              <strong>今日精选</strong>
+              <span>从全部信号里筛出的最重要 3 条；时间紧只看这 3 条就够。文件是纯文本，贴进对话或早报开头都可以。</span>
               <code class="endpoint">https://ruiyaoe-hash.github.io/ai-radar/today3.txt</code>
             </div>
             <a href="https://ruiyaoe-hash.github.io/ai-radar/today3.txt">today3.txt</a>
@@ -59,7 +59,7 @@
           <article class="link-row">
             <div>
               <strong>博主实操</strong>
-              <span>编辑精选、每周投放，非自动从监控捞。这周没有新的，列表就是空的。字段说明见 <a href="https://ruiyaoe-hash.github.io/ai-radar/schemas/practice.schema.json">practice.schema.json</a>。</span>
+              <span>编辑精选、每周投放。这周没有新的，列表就是空的。字段说明见 <a href="https://ruiyaoe-hash.github.io/ai-radar/schemas/practice.schema.json">practice.schema.json</a>。</span>
               <code class="endpoint">https://ruiyaoe-hash.github.io/ai-radar/practice.json</code>
             </div>
             <a href="https://ruiyaoe-hash.github.io/ai-radar/practice.json">practice.json</a>
@@ -76,7 +76,7 @@
           <article class="link-row">
             <div>
               <strong>长期判断</strong>
-              <span>跨越多天还成立的看法，不重复放在首页卡片上。字段说明见 <a href="https://ruiyaoe-hash.github.io/ai-radar/schemas/theses.schema.json">theses.schema.json</a>。</span>
+              <span>跨越多天仍然成立的看法，单独放在这里。首页只收当天信号，长期看法见本文件。字段说明见 <a href="https://ruiyaoe-hash.github.io/ai-radar/schemas/theses.schema.json">theses.schema.json</a>。</span>
               <code class="endpoint">https://ruiyaoe-hash.github.io/ai-radar/theses.json</code>
             </div>
             <a href="https://ruiyaoe-hash.github.io/ai-radar/theses.json">theses.json</a>
@@ -87,7 +87,7 @@
         <ul>
           <li>近期信号，以及按日归档里的某一天，现在是第 2 版。博主实操和长期判断是第 1 版。文件里的 schema_version 就是这个数字。</li>
           <li>只有让原来的读取方式失效的改动，才把数字加 1。这包括改字段名、改类型、删掉字段，以及把可选值收紧。只多一个可以不填的字段，数字不变。你可以按现在这些字段来读。</li>
-          <li>可试用工具和日期索引没有这个数字。形状要变，会先写进变更记录。今天先做这 3 件是纯文本，全部订阅是 RSS。读这两份时，不用找 schema_version。</li>
+          <li>可试用工具和日期索引没有这个数字。形状要变，会先写进变更记录。今日精选是纯文本，全部订阅是 RSS，这两份也不用找 schema_version。</li>
           <li>标成不再使用的字段，至少再留 90 天，这期间数字也不变。真要删掉，会先把数字加 1。</li>
           <li>变更记录：<a href="https://ruiyaoe-hash.github.io/ai-radar/schemas/CHANGELOG.md">schemas/CHANGELOG.md</a>。</li>
         </ul>

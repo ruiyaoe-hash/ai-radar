@@ -11,7 +11,7 @@ Writes into public/ only:
   - feed.xml            (main RSS; guid = event id permalink)
   - feeds/lens-*.xml    (per-lens feeds)
   - tools-radar.json    (tools with tool_radar / lens=工具)
-  - today3.txt          (今天先做这 3 件，纯文本，页面叫法)
+  - today3.txt          (今日精选，纯文本，页面叫法)
   - practice.json       (only when public/practice/inbox/*.json has items)
 
 today3 keeps the line labels the homepage parser expects
@@ -313,7 +313,7 @@ def build_today3(board: list[dict]) -> str:
         return (p, s, -(parse_item_time(it).timestamp()))
 
     picked = sorted(day_items, key=score)[:3]
-    lines = [f"AI Radar · 今天先做这 3 件（{today}）", ""]
+    lines = [f"AI Radar · 今日精选（{today}）", ""]
     for i, it in enumerate(picked, 1):
         title = strip_machine_ids(str(it.get("title") or ""))
         lines.append(f"{i}. {title}")

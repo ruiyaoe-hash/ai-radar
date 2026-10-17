@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-page="today">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-p5IL10gf5+Fqib5NT2w02bsKKCzjKAFzfHE+AJti2Ik=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-amH7A632qlj4ld/AoaM5smbFUQk9/a62Q86gKcUSdaQ=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c0e12" />
   <title>今日必看 · AI Radar</title>
@@ -21,12 +21,12 @@
       </div>
       <main>
         <h1>今日必看</h1>
-        <p class="sub">北京时间每天 08:00 主报，工作日 21:00 晚班 · 只留<strong>会影响你下一步决策</strong>的信号，不是新闻堆。 <span id="updated"></span></p>
+        <p class="sub">AI Radar 每天给你当天最值得动手的 AI 信号。北京时间每天 08:00 主报，工作日 21:00 晚班，只留<strong>会影响你下一步决策</strong>的内容。首页「今日精选」从全部信号里挑出最重要的 3 条，时间紧只看这 3 条就够。 <span id="updated"></span></p>
 
         <section class="hero" aria-labelledby="hero-label">
           <div class="hero-head">
-            <div class="label" id="hero-label"><span class="pill"><span class="dot"></span>精选</span> 今天先做这 3 件</div>
-            <button class="btn" type="button" id="copyToday">复制这 3 件</button>
+            <div class="label" id="hero-label"><span class="pill"><span class="dot"></span>精选</span> 今日精选</div>
+            <button class="btn" type="button" id="copyToday">复制今日精选</button>
           </div>
           <ol id="heroList"><li>正在读取…</li></ol>
           <pre id="today3fallback" hidden></pre>
@@ -118,14 +118,14 @@
         btn.textContent = "请手动复制";
       }
       setTimeout(() => {
-        btn.textContent = "复制这 3 件";
+        btn.textContent = "复制今日精选";
         btn.classList.remove("done");
       }, 1800);
     });
 
     load().catch(() => {
       document.getElementById("feed").innerHTML = '<p class="empty">还没有信号。更新之后会显示在这里。</p>';
-      document.getElementById("heroList").innerHTML = "<li>今天的三条还没准备好。</li>";
+      document.getElementById("heroList").innerHTML = "<li>今日精选还在准备，稍后再来。</li>";
     });
   </script>
 </body>
