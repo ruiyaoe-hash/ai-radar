@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16 15:36 北京时间",
+  "updated": "2026-10-18 08:21 北京时间",
   "rings": {
     "采纳": [
       {
@@ -110,6 +110,22 @@
           "Muse Wonder / Wonder Full（闭源 API）",
           "DeepSeek / Kimi / GLM 等开源前沿",
           "Gemini 4 Argon / Claude Opus 5.5（闭源）"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      },
+      {
+        "id": "evt-20261018-deepseek-v41-flash-1017",
+        "title": "DeepSeek 更新 V4.1 Flash，并开放搜索接口",
+        "date": "2026-10-18",
+        "try_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+        "access": "官网、手机应用和 API 都已更新。API 模型名仍是 deepseek-flash，价格不变。权重可以在 Hugging Face 和 ModelScope 下载。搜索和抓取接口标价每 1000 次 0.75 美元。经 DeepSeek Harness、Claude Code、Codex 的服务端工具，2026 年 10 月 31 日 16:00（世界时）前免费。",
+        "integration": "建议 DeepSeek Harness 0.2.1-rc.1 及以上。官方点名适配腾讯 CodeBuddy 和 WorkBuddy。接口兼容 OpenAI 与 Anthropic 的调用格式。",
+        "first_step": "模型名继续写 deepseek-flash。把 DeepSeek Harness 升到 0.2.1-rc.1 或更新，用同一套写代码的题看完成时间和输出长度。要联网时再接搜索接口。",
+        "alternatives": [
+          "上一版 DeepSeek V4.1 Flash",
+          "Gemini 4 Argon",
+          "Muse Spark Open"
         ],
         "status": "confirmed",
         "priority": "P0"
