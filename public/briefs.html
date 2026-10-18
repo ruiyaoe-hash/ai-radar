@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="briefs">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c0e12" />
+  <title>快讯 · AI Radar</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./assets/radar.css" />
+  <link rel="stylesheet" href="./assets/briefs.css" />
+</head>
+<body>
+  <div class="app">
+    <script src="./assets/safe-href.js"></script>
+    <script src="./assets/shell.js"></script>
+    <div class="content">
+      <div class="topbar">
+        <button class="menu-btn" type="button" data-nav-open>菜单</button>
+        <span class="topbar-title">快讯</span>
+      </div>
+      <main>
+        <h1>快讯</h1>
+        <p class="sub">一句话一条，只写事实和链接，不下判断。值得动手的才进<a href="./index.html">今日必看</a>。 <span id="updated"></span></p>
+
+        <div class="filters" id="lensFilters">
+          <span class="row-label">看什么</span>
+          <button class="chip on" type="button" data-lens="all">不限</button>
+          <button class="chip" type="button" data-lens="工具">试用工具</button>
+          <button class="chip" type="button" data-lens="赛道">行业动态</button>
+          <button class="chip" type="button" data-lens="模式">方法模式</button>
+          <button class="chip" type="button" data-lens="时机">时机窗口</button>
+        </div>
+
+        <div id="briefs"><p class="empty">正在读取…</p></div>
+
+        <footer class="site-footer">
+          <p>本页当前为示例数据，用于验证快讯层的形态。接入候选池后由派生脚本生成。</p>
+          <p>内容可能包含未经证实的传闻与第三方帖子，请自行核对。</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script src="./assets/briefs.js"></script>
+</body>
+</html>

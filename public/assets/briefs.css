@@ -1,0 +1,74 @@
+/* 快讯层（L2）。只服务 briefs.html，不改动 radar.css 的既有规则。 */
+
+.brief-count {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: 0 0 6px;
+}
+
+.brief-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.brief {
+  padding: 13px 0 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brief:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.brief-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.brief-meta .lens {
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-radius: 4px;
+  padding: 1px 7px;
+}
+
+.brief h3 {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  font-weight: 640;
+  line-height: 1.45;
+}
+
+.brief h3 a {
+  color: var(--text);
+}
+
+.brief h3 a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.brief p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #c5d0dc;
+}
+
+.brief .origin {
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .brief {
+    padding: 12px 0 13px;
+  }
+  .brief p {
+    font-size: 0.88rem;
+  }
+}

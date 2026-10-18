@@ -1,0 +1,102 @@
+# 快讯层（L2）设计说明
+
+状态：**提案**。本 PR 只加新文件，不改任何现有文件；合并后主报、看板、feed、校验行为都不变。
+
+## 要解决的问题
+
+主报一周 40 条上下，日均 5–7 张卡。这不是产能不够，是单张卡的成本决定的：一张卡要写 objective 2–4 条、sources、so_what、falsifier，工具卡还要四件套。按这个颗粒度，每班只能出 2–6 张。
+
+结果是两头不讨好：当雷达用，覆盖太窄；当简报用，又不够精。中间缺一层「不值得写判断、但该让人知道」的形态。
+
+## 三层颗粒度
+
+| 层 | 形态 | 成本 | 去向 |
+|----|------|------|------|
+| L1 卡 | 现在的卡片，带 so_what 和 falsifier | 高 | 主报、看板、feed |
+| L2 快讯 | 一条事实 + 一个链接，60–100 字，**不写判断** | 低 | `briefs.html` 单独一页 |
+| L3 索引 | 标题 + 来源 + 链接，只列不展开 | 极低 | 周归档附录 |
+
+本 PR 只做 L2 的前端形态，数据是手工示例。
+
+## 数据结构
+
+`public/briefs.json`：
+
+```json
+{
+  "schema_version": 1,
+  "level": "L2",
+  "updated": "2026-10-18 18:30 北京时间",
+  "items": [
+    {
+      "id": "brf-20261016-meta-muse-spark-open",
+      "level": "L2",
+      "date": "2026-10-16",
+      "time": "10-16 01:08",
+      "title": "一句可扫读的事实",
+      "summary": "60–100 字，只写事实，不写判断",
+      "url": "https://example.com/a",
+      "source": "Meta",
+      "lens": "赛道"
+    }
+  ]
+}
+```
+
+字段约束：
+
+- `id`：`brf-YYYYMMDD-slug`，和 L1 的 `evt-` 区分开，避免两套 id 混用
+- `lens`：沿用现有四个枚举，前端直接复用同一组过滤 chip
+- **没有 `so_what`、没有 `priority`、没有 `status`**。L2 不承载判断，所以不需要证伪条件，也不参与 P0 门闩
+- `url` 走现有 `safeHref()` 白名单，渲染时用 DOM API 而不是拼 innerHTML
+
+## 与 L1 的边界
+
+一条信号只能落在一层：进了 L1 就不进 L2，反之亦然。执行方式是 **L2 只从候选池里被 L1 跳过的行生成**，不重复消费已经晋升的 `candidate_id`。这条要写进 `generate_derived.py` 的注释，避免以后两处各写一份。
+
+## 分三步落地
+
+### 第一步（本 PR）
+
+只加 5 个文件：
+
+- `public/briefs.html`
+- `public/assets/briefs.js`
+- `public/assets/briefs.css`
+- `public/briefs.json`（12 条示例，压自近七天归档，不含新事实）
+- `docs/briefs-layer.md`（本文）
+
+零改动现有文件。验证点：CI 的 CSP / beacon / public UI 检查能否容纳第 8 个页面。
+
+**已验证**：本地 `python3 scripts/validate.py` 全绿，`check_csp` 从 7 页变 8 页通过，`check_beacon` 同。新页面不写内联脚本，CSP 里只有 `'self'` 和 Cloudflare beacon，不需要 hash。
+
+### 第二步（下一个 PR，动数据管道）
+
+- `scripts/generate_derived.py` 增加 `briefs.json` 派生：读 `public/archive/` + 池快照里 `status_in_pool=active` 但未被晋升的行
+- `schemas/briefs.schema.json` 新增，`scripts/validate.py` 增加一条 `check_briefs()`
+- 涉及文件：2 改 1 增
+
+### 第三步（再下一个 PR，动展示）
+
+- `public/assets/shell.js` 导航加「快讯」入口（要注意 `check_public_ui` 里的 `nav_order` 断言）
+- `generate_derived.py` 的 `MAX_ITEMS=50` / `WINDOW_DAYS=7` 调整
+- 看板加「今日 / 本周」切换
+
+**为什么窗口调整不在本 PR**：`MAX_ITEMS` 和 `WINDOW_DAYS` 是三个常量，改起来三行，但窗口该多大取决于 L2 落地后的总条目数。现在拍一个数，等 L2 定型还得再改一次，而且改完会立刻改变你现有看板的观感。先定结构，再调参数。
+
+## 回滚
+
+删掉这 5 个文件即可，没有任何现有文件依赖它们。Pages 部署只上传 `public/`，不回滚也不会影响主报。
+
+## 风险
+
+1. **L2 会稀释注意力**。12 条快讯的阅读成本低于 6 张卡，但 40 条就不是了。建议设上限：每班 L2 不超过 20 条，超了按 `source_tier` 和 `lens` 截断。
+2. **示例数据被当真**。页面底部已标注「本页当前为示例数据」，第二步接真实数据时必须删掉这句。
+3. **两套 id 并存**。`brf-` 和 `evt-` 混用时，检索和去重要各自处理。第一步先在文档里把边界写死，第二步再用校验兜住。
+
+## 验收标准
+
+- 合并后 `items.json`、`feed.xml`、`today3.txt` 与合并前逐字节一致
+- `briefs.html` 在 1280px 和 375px 下都不横向滚动
+- 快讯条目渲染不产生任何内联脚本，CSP 不放松
+- 第二步接入真实数据后，L2 覆盖率 ≥ 候选池 active 行的 60%
