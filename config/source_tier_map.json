@@ -40,7 +40,13 @@
     {"match": "hf-trending", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
     {"match": "producthunt-ai", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
     {"match": "gh-trending-python-daily", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
-    {"match": "gh-trending-typescript-daily", "tier_prior": "T3", "role_guess": "report", "gate": "high"}
+    {"match": "gh-trending-typescript-daily", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
+    {"match": "theverge-ai", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
+    {"match": "qbitai", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
+    {"match": "simonwillison", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
+    {"match": "latent-space", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
+    {"match": "import-ai", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
+    {"match": "github-blog", "tier_prior": "T1", "role_guess": "primary", "gate": "low"}
   ],
   "domains": [
     {"domain": "openai.com", "tier_prior": "T1", "role_guess": "primary", "gate": "low"},
@@ -70,6 +76,12 @@
     {"domain": "techcrunch.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
     {"domain": "news.ycombinator.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
     {"domain": "reddit.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
-    {"domain": "producthunt.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"}
+    {"domain": "producthunt.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
+    {"domain": "theverge.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
+    {"domain": "qbitai.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
+    {"domain": "simonwillison.net", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
+    {"domain": "latent.space", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
+    {"domain": "importai.substack.com", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
+    {"domain": "github.blog", "tier_prior": "T1", "role_guess": "primary", "gate": "low"}
   ]
 }
