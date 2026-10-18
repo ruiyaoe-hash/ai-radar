@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Fetch the Phase 4 batch-1 RSS subset into the private candidate pool.
 
-Reads public/config/sources.json and keeps fetch_batch 1 only:
-openai-blog, anthropic-news, deepmind-blog, huggingface-blog,
-gh-releases-openai, gh-releases-anthropic-sdk.
+Reads public/config/sources.json and takes every source marked fetch_batch 1.
+The baseline six (openai-blog, anthropic-news, deepmind-blog, huggingface-blog,
+gh-releases-openai, gh-releases-anthropic-sdk) must stay in batch 1; adding a
+source only needs the flag in sources.json, no code change here.
+Each source is capped at MAX_PER_SOURCE newest entries so a full-archive feed
+cannot flood the pool.
 
 TechCrunch, HN, Reddit, trending, arXiv, Product Hunt, and funding
 roundups are fetch_batch 2. This script refuses --batch 2.
@@ -70,6 +73,7 @@ ROOT = Path(__file__).resolve().parents[1]
 UA = "ai-radar-ingest/1.0 (+https://github.com/ruiyaoe-hash/ai-radar)"
 SNIPPET_CAP = 2000
 TITLE_CAP = 300
+MAX_PER_SOURCE = 10
 BATCH1_IDS = frozenset(
     {
         "openai-blog",
@@ -236,9 +240,11 @@ def select_sources(payload: dict, batch: int = 1) -> list[dict]:
         if not isinstance(src.get("url"), str) or not src["url"]:
             raise IngestError(f"{src.get('id')}: missing url")
         chosen.append(src)
-    found = {src["id"] for src in chosen}
-    if found != BATCH1_IDS:
-        raise IngestError(f"batch 1 ids drifted: {sorted(found)}")
+    if not chosen:
+        raise IngestError("fetch_batch 1 has no rss or github_releases sources")
+    missing = BATCH1_IDS - {src["id"] for src in chosen}
+    if missing:
+        raise IngestError(f"batch 1 lost baseline sources: {sorted(missing)}")
     return chosen
 
 
@@ -259,6 +265,22 @@ def fetch_bytes(url: str, timeout: int = 20, attempts: int = 3) -> bytes:
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
             last = exc
     raise IngestError(f"fetch failed: {last}")
+
+
+def limit_entries(entries: list[dict], max_items: int = MAX_PER_SOURCE) -> list[dict]:
+    """Keep the newest max_items entries of one source.
+
+    Some registered feeds are full archives (openai.com/news/rss.xml returns
+    over a thousand items). Without this cap the first live run would write the
+    whole history into the pool. Feeds are normally newest-first; when every
+    entry carries a timestamp we sort explicitly so the cap is deterministic.
+    Age is not filtered here: annotate_gates owns the 48h deferral rule.
+    """
+    if max_items <= 0 or len(entries) <= max_items:
+        return entries
+    if all(isinstance(entry.get("published_at"), str) for entry in entries):
+        entries = sorted(entries, key=lambda entry: entry["published_at"], reverse=True)
+    return entries[:max_items]
 
 
 def ingest_entries(entries: list[dict], source_id: str, ingested_at: str) -> tuple[list[dict], list[str]]:
@@ -318,6 +340,7 @@ def run_live(sources: list[dict], ingested_at: str, out: Path | None, pool_dir: 
             failures.append(sid)
             print(f"WARN {sid}: {exc}", file=sys.stderr)
             continue
+        entries = limit_entries(entries)
         made, source_gaps = ingest_entries(entries, sid, ingested_at)
         gaps.extend(source_gaps)
         if not made:
@@ -374,8 +397,9 @@ def _self_check_body() -> None:
     sources_path = ROOT / "public" / "config" / "sources.json"
     payload = json.loads(sources_path.read_text(encoding="utf-8"))
     selected = select_sources(payload, 1)
-    if {src["id"] for src in selected} != BATCH1_IDS:
-        raise SystemExit(f"FAIL: batch 1 { [src['id'] for src in selected] }")
+    selected_ids = {src["id"] for src in selected}
+    if not BATCH1_IDS <= selected_ids:
+        raise SystemExit(f"FAIL: batch 1 missing baseline {sorted(BATCH1_IDS - selected_ids)}")
     for src in payload["primary_sources"]:
         if src["id"] in DEFERRED_IDS and src.get("fetch_batch") != 2:
             raise SystemExit(f"FAIL: {src['id']} should stay batch 2")
@@ -388,6 +412,21 @@ def _self_check_body() -> None:
             raise SystemExit(f"FAIL: batch 2 message {exc}")
     else:
         raise SystemExit("FAIL: batch 2 must be refused")
+
+    history = [
+        {
+            "title": f"t{index}",
+            "link": f"https://example.com/{index}",
+            "published_at": f"2026-10-{index:02d}T00:00:00Z",
+            "summary": None,
+        }
+        for index in range(1, 16)
+    ]
+    capped = limit_entries(history)
+    if len(capped) != MAX_PER_SOURCE or capped[0]["published_at"] != "2026-10-15T00:00:00Z":
+        raise SystemExit(f"FAIL: limit_entries kept {len(capped)} newest={capped[0]['published_at']}")
+    if limit_entries(history, 0) != history:
+        raise SystemExit("FAIL: limit_entries max 0 must pass through")
 
     ingested = "2026-10-14T12:00:00Z"
     openai_xml = (ROOT / "testdata" / "rss" / "openai-blog.xml").read_bytes()
