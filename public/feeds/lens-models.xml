@@ -5,7 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看方法模式。</description>
 <language>zh-cn</language>
-<lastBuildDate>Fri, 16 Oct 2026 08:03:44 +0800</lastBuildDate>
+<lastBuildDate>Sun, 18 Oct 2026 08:21:51 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-models.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>[重点关注 · 方法模式 · 模式] Anthropic 自研源控 Scion：日合并从约2500升至3万+后五个月迁出 Git</title>
@@ -48,20 +48,6 @@
 <guid isPermaLink="false">evt-20261012-sophos-daybreak-mdr</guid>
 <pubDate>Mon, 12 Oct 2026 15:00:00 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• OpenAI 客户故事（约 10-09）：Sophos 经 Daybreak 项目把自有威胁情报、响应剧本与模型结合，构建调查 agent（收集上下文/检测/IoC）与 plan–execute–review 环<br/>• 官方口径：使用 agent 的案例平均响应时间从约 38 分钟降至约 89 秒（约 96%）；约 52% 的 MDR 案例在分析师标定边界内由 AI 端到端解决<br/>• 强调人工保留对威胁、例外与决策的监督，而非无人值守替换全部分析师<br/><strong>对你意味着什么</strong> 又一例「AI 跑闭环、人定边界」付费交付：垂直 MDR 用 agent 放大稀缺专家带宽，而不是宣称全自动 SOC<br/>建议：观察 · 1–2 个季度看更多独立口径<br/>有多确定：中<br/>什么情况下当这判断作废：若后续披露显示 89 秒/52% 仅覆盖极窄案例子集且无法迁移，或客户侧出现大规模误处置事故，则此判断作废<br/>来源 OpenAI（一手）<br/>日期 2026-10-12]]></description>
-</item>
-<item>
-<title>[重点关注 · 方法模式 · 观点] Chollet：AI 从「逐 token 补全」转向「即时合成推理链」</title>
-<link>https://x.com/fchollet/status/2108951977904517409</link>
-<guid isPermaLink="false">evt-20261011-chollet-ai-token</guid>
-<pubDate>Sun, 11 Oct 2026 00:05:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 一张图概括 2025–2026 主线：transductive → inductive（on-the-fly reasoning chain synthesis）<br/>• 他称之为 coding agents 能工作的关键故事<br/>来源 fchollet（转述）<br/>日期 2026-10-11]]></description>
-</item>
-<item>
-<title>[重点关注 · 方法模式 · 案例] Uber 法务红线 Agent：从 RAG 失败到 91% 准确率的四次演进</title>
-<link>https://x.com/shao__meng/status/2108835904534290445</link>
-<guid isPermaLink="false">evt-20261010-uber-agent-rag-91</guid>
-<pubDate>Sat, 10 Oct 2026 16:23:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Word 插件交付；AI 只建议、人做决策；真实谈判轨迹驱动「从决策学」<br/>• 四版：朴素 RAG 失败 → 反馈闭环 → 语气分层（律师管 prompt）→ agentic 起草反提案<br/>• 合同审核时间降 20%+；获 2026 ALM Legalweek 年度最具创新力法务部<br/>来源 shao__meng（解读）<br/>日期 2026-10-10]]></description>
 </item>
 </channel>
 </rss>

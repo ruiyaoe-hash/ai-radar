@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-18",
+  "count": 1,
+  "schema_version": 2,
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261018-deepseek-v41-flash-1017",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "DeepSeek 更新 V4.1 Flash，并开放搜索接口",
+      "date": "2026-10-18",
+      "time": "10-17 16:35",
+      "handle": "DeepSeek",
+      "url": "https://api-docs.deepseek.com/zh-cn/updates/",
+      "published_at": "2026-10-17T08:35:54Z",
+      "ingested_at": "2026-10-18T00:21:16Z",
+      "candidate_id": "cand-20261017-a1db93ace3d9",
+      "promotion_path": "normal",
+      "objective": [
+        "DeepSeek 在 2026 年 10 月 17 日把 V4.1 Flash 升级到 DeepSeek-V4.1-Flash-1017。官网、手机应用和接口都已换成这一版。接口里的模型名仍写 deepseek-flash，调用方式和价格都没有变。模型权重可以在 Hugging Face 和 ModelScope 下载到自己的电脑或服务器上使用。",
+        "官方更新日志写，新版把任务运行时间和输出长度都缩短了。不带工具的 HLE，上一版是 36.8，这一版是 42.6。Terminal-Bench 4.0，上一版是 31.2，这一版是 42.3。官方还写，这一版用带自我反馈的强化学习，改进从零做完整项目，例子包括做游戏和三维建模。",
+        "官方建议把 DeepSeek Harness（智能体编排）升到 0.2.1-rc.1 或更新的版本。他们点名做了适配的框架还有腾讯 CodeBuddy 和 WorkBuddy。",
+        "同一天，自研的搜索接口和抓取接口向所有人开放。官方说这套搜索每天处理来自全球的数亿次请求。每个接口的标价是每 1000 次调用 0.75 美元。通过 DeepSeek Harness、Claude Code 和 Codex 里的服务端工具去调用，在 2026 年 10 月 31 日 16:00（世界时）之前对接口用户免费。"
+      ],
+      "sources": [
+        {
+          "url": "https://api-docs.deepseek.com/zh-cn/updates/",
+          "handle": "DeepSeek",
+          "role": "primary"
+        },
+        {
+          "url": "https://api-docs.deepseek.com/news/news261017/",
+          "handle": "DeepSeek",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/deepseek_ai/status/2111375640717033777",
+          "handle": "deepseek_ai",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+          "handle": "HuggingFace",
+          "role": "primary"
+        },
+        {
+          "url": "https://modelscope.cn/models/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+          "handle": "ModelScope",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "access": "官网、手机应用和 API 都已更新。API 模型名仍是 deepseek-flash，价格不变。权重可以在 Hugging Face 和 ModelScope 下载。搜索和抓取接口标价每 1000 次 0.75 美元。经 DeepSeek Harness、Claude Code、Codex 的服务端工具，2026 年 10 月 31 日 16:00（世界时）前免费。",
+      "integration": "建议 DeepSeek Harness 0.2.1-rc.1 及以上。官方点名适配腾讯 CodeBuddy 和 WorkBuddy。接口兼容 OpenAI 与 Anthropic 的调用格式。",
+      "first_step": "模型名继续写 deepseek-flash。把 DeepSeek Harness 升到 0.2.1-rc.1 或更新，用同一套写代码的题看完成时间和输出长度。要联网时再接搜索接口。",
+      "alternatives": [
+        "上一版 DeepSeek V4.1 Flash",
+        "Gemini 4 Argon",
+        "Muse Spark Open"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "这周不用改接口里的模型名。把 DeepSeek Harness 升到 0.2.1-rc.1 或更新，用你手头的写代码题目看完成时间和账单。要给智能体联网时，把搜索和抓取接口接上，赶在免费窗口结束前试一次。",
+        "action": "试用",
+        "window": "这周先升 Harness。搜索接口经上述工具的免费调用到 10 月 31 日 16:00（世界时）。",
+        "confidence": "高",
+        "falsifier": "如果同一套任务上，新版的完成时间或账单并没有好于上一版，或者搜索结果质量达不到能直接用，就收回「这周该升 Harness，并试用搜索接口」。",
+        "thesis_id": "T-001"
+      }
+    }
+  ]
+}
