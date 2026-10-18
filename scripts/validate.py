@@ -482,7 +482,7 @@ def check_public_ui() -> None:
         ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
-    for label in ("今日必看", "博主实操", "本周归档", "可试用工具", "订阅更新", "飞书订阅群", "给 Agent 用", "这是什么", "反馈 / 建议"):
+    for label in ("今日必看", "快讯", "博主实操", "本周归档", "可试用工具", "订阅更新", "飞书订阅群", "给 Agent 用", "这是什么", "反馈 / 建议"):
         if label not in shell:
             fail(f"shell.js missing nav label {label}")
     feedback = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd"
@@ -496,6 +496,15 @@ def check_public_ui() -> None:
     positions = [nav.find(label) for label in nav_order]
     if any(pos < 0 for pos in positions) or positions != sorted(positions):
         fail("shell.js nav order: 飞书订阅群 stays in 订阅; 反馈 / 建议 stays in 说明")
+    reading = shell.split('<div class="nav-sec">订阅</div>', 1)[0]
+    reading_order = ["今日必看", "快讯", "博主实操", "本周归档", "可试用工具"]
+    reading_pos = [reading.find(label) for label in reading_order]
+    if (
+        any(pos < 0 for pos in reading_pos)
+        or reading_pos != sorted(reading_pos)
+        or "./briefs.html" not in reading
+    ):
+        fail("shell.js nav order: 快讯 stays in 阅读, after 今日必看, linking to ./briefs.html")
     for rel in ("assets/shell.js", "subscribe.html"):
         mirror = ROOT / rel
         if not mirror.exists():
