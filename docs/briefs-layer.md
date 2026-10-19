@@ -1,6 +1,6 @@
 # 快讯层（L2）设计说明
 
-状态：**提案**。本 PR 只加新文件，不改任何现有文件；合并后主报、看板、feed、校验行为都不变。
+状态：L2 的页面和示例数据已经在站上。导航入口也已接上，见下方「第三步」。真实数据派生，以及窗口、条数上限，还留在后面的改动里。
 
 ## 要解决的问题
 
@@ -76,17 +76,20 @@
 - `schemas/briefs.schema.json` 新增，`scripts/validate.py` 增加一条 `check_briefs()`
 - 涉及文件：2 改 1 增
 
-### 第三步（再下一个 PR，动展示）
+### 第三步（展示）
 
-- `public/assets/shell.js` 导航加「快讯」入口（要注意 `check_public_ui` 里的 `nav_order` 断言）
+导航入口已经加上。侧栏由 `public/assets/shell.js` 统一写出，「阅读」里「今日必看」下面是「快讯」，链到 `./briefs.html`。打开快讯页时，`briefs.html` 的 `data-page="briefs"` 会让这一项呈当前页，和其他栏目同一套规则。`scripts/validate.py` 的 `check_public_ui` 会确认「快讯」留在「阅读」、排在「今日必看」后面，并且链的是 `./briefs.html`。订阅段的 `nav_order` 仍按原顺序检查「订阅更新、飞书订阅群、给 Agent 用、这是什么、反馈 / 建议」。
+
+窗口和看板切换仍单独做：
+
 - `generate_derived.py` 的 `MAX_ITEMS=50` / `WINDOW_DAYS=7` 调整
 - 看板加「今日 / 本周」切换
 
-**为什么窗口调整不在本 PR**：`MAX_ITEMS` 和 `WINDOW_DAYS` 是三个常量，改起来三行，但窗口该多大取决于 L2 落地后的总条目数。现在拍一个数，等 L2 定型还得再改一次，而且改完会立刻改变你现有看板的观感。先定结构，再调参数。
+**为什么窗口调整另开**：`MAX_ITEMS` 和 `WINDOW_DAYS` 是三个常量，改起来三行，但窗口该多大取决于 L2 落地后的总条目数。现在拍一个数，等 L2 定型还得再改一次，而且改完会立刻改变你现有看板的观感。先定结构，再调参数。
 
 ## 回滚
 
-删掉这 5 个文件即可，没有任何现有文件依赖它们。Pages 部署只上传 `public/`，不回滚也不会影响主报。
+页面本身仍是那 5 个文件。导航入口在 `public/assets/shell.js`，对应检查在 `scripts/validate.py`。要撤掉入口，删掉「快讯」那一行，并去掉 `check_public_ui` 里对「快讯」的检查。只删页面、不改导航，侧栏会指向不存在的地址。Pages 部署只上传 `public/`。
 
 ## 风险
 
