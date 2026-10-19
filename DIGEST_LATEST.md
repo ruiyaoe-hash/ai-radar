@@ -1,4 +1,4 @@
-# AI Radar 主报 · 2026-10-19 08:00 北京时间
+# AI Radar 晚班短报 · 2026-10-19 21:00 北京时间
 
 > 现行班次（Asia/Shanghai）：每天 08:00 主报；周一至周五 21:00 晚班。13:30 午间班已取消。
 
@@ -7,11 +7,11 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html  
 人读层：[表达规范 v0](docs/AIHOT对接与表达规范-v0.md)
 
-睿，主报没有新的「今日必看」。从 10 月 17 日早报到今早这段窗口里，没有会改今天选型的一手新品。本班不写填充卡。DeepSeek V4.1 Flash 1017 仍按昨天主报执行。
+睿，晚班没有新的「今日必看」。中国白天加美东早晨这段窗口里，没有会改今天选型的一手新品。本班不写填充卡。早报板上的 DeepSeek V4.1 Flash 1017、Muse Spark Open、Gemini 4 Argon 仍按原计划执行。
 
-## 本班新增
+## 晚班新增
 
-无。今天的归档文件没有追加主报卡。
+无。今天的归档文件没有追加晚班卡。
 
 ## 今日仍有效
 
@@ -43,32 +43,31 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 
 ## 可关注（未入今日必看）
 
-**Arena 榜：DeepSeek 新版 Flash 在 WebDev 开源模型位次靠前**
+**通义 MAI-UI 开源 OpenGCUA 技术栈（媒体转述）**
 
-**是什么：** 外面精选站转了 Arena（模型对战榜）消息：DeepSeek-V4.1-Flash-20261017 在 Code Arena 的 WebDev 开源模型榜上名次靠前，并点到相对 Kimi 的成本差。
+**是什么：** 邵盟转述：阿里通义 MAI-UI 团队开源了通用计算机使用智能体（computer-use agent）技术栈 OpenGCUA，声称包含 harness（编排层）、跨设备 SDK（软件开发工具包）、原生 macOS 应用、评测轨迹和参考实现。
 
-**要点：** 这是榜单与第三方转述，不是 DeepSeek 新的一手发布。它加固昨天已经上板的 Flash 1017，不单独改你的模型名或 Harness 计划。
+**要点：** 本班窗口里没有通义 / 阿里官方主账号的一手确认帖。按规则，仅媒体转述不能升为正式「今日必看」。若你本周要试 macOS 上的电脑操控智能体，可先收藏开源地址，等官方仓库或博客核对后再动手。
 
-原文（对照用）：https://x.com/arena/status/2111894091168682086
+原文：https://x.com/shao__meng/status/2111999471588679916
 
-**vista8：Magpie 网关与 Qiaomu Publish 实操帖**
+**vista8：网易 LobsterAI《中国办公 Agent 用户行为报告》解读**
 
-**是什么：** 向阳乔木（vista8）写了把 Magpie 网关装到海外 VPS（虚拟专用服务器）上、以及用 Obsidian 插件 Qiaomu Publish 一键发公众号 / X / 小红书的步骤感帖子。
+**是什么：** 向阳乔木（vista8）解读网易 LobsterAI 的办公智能体用户行为报告，提到微信是最大入口、泛编程是最大场景、多数普通用户只用一个模型等结论。
 
-**要点：** 实操车道优先进私有候选池，本班不自动全文上站。要上实操页，等你或编辑审过「能照着做」再晋升。
+**要点：** 这是第三方报告解读，实操 / 背景向。已进私有候选池，等你或编辑审过「能照着做」再考虑是否上实操页；本班不自动全文上站。
 
-Magpie：https://x.com/vista8/status/2111488518577180866  
-Qiaomu Publish：https://x.com/vista8/status/2111312703809822993
+原文：https://x.com/vista8/status/2112029104060948920
 
 ## 附录
 
 <details>
 <summary>本班先不跟（摘几条）</summary>
 
-- Anthropic 把一部分股份划给 Public Benefit Fund（公益受益基金）：公司治理向，不改今天接口或工具选型。
-- Perplexity Decider 上 Vercel AI Gateway：单条产品宣布，缺对照任务与价格细节，先不跟。
-- François Chollet 关于软件工程「全面自动化」的观察：观点帖，不是可执行发布。
-- Bun 下一版 lint、Lex Fridman 访谈中文站：实操或内容向，留池，不进今日必看。
-- 外面精选站还列了 Browser Use 科普、德国法院对 Google AI Overview 担责、RTX Spark 实测等；本班窗口里没有对应厂商一手主帖，或以对方榜单单独入板。
+- Obsidian CEO 开源 Mermaid 渲染库 Pele：工具增量，不改今天模型或主要工作流选型。
+- Matt Pocock 个人 wiki 已成业务基础设施：实操经验分享，留池，不上今日必看。
+- Nathan Lambert 谈写幻灯片 / 长文时仍感觉 AGI 尚远：观点帖，无可执行发布。
+- 外面精选站还列了 AWS TorchNeuron（Trainium 的 PyTorch 后端）和 MiniMax M3.1 Flash；本班配置账号时间线里没有对应厂商一手主帖，不以对方榜单单独入板。
+- 归藏 Next Token 播客、DHH 用 Tailscale 访问 Claude Code 等：内容或轶事向，留池。
 
 </details>
