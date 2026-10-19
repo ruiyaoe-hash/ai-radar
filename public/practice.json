@@ -1,8 +1,33 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-18 08:21 北京时间",
+  "updated": "2026-10-19 10:05 北京时间",
   "note": "编辑精选、每周投放，非自动从监控信源捞取。",
   "items": [
+    {
+      "id": "prac-20261017-vista8-magpie",
+      "kind": "工具用法",
+      "title": "用 Docker 在 VPS 上跑 Magpie，做成多设备共用的私有 AI 网关",
+      "author": "vista8 · 指向 yetone/Magpie",
+      "url": "https://x.com/vista8/status/2111488518577180866",
+      "time": "2026-10-17 16:04",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "一台能跑 Docker 的 Linux VPS 或 NAS",
+        "本机可 SSH 登录该机器",
+        "至少一个厂商 API Key，或可登录的 Codex / Claude 等账号"
+      ],
+      "estimated_time": "约 20 分钟",
+      "verified": false,
+      "takeaway": "把模型供应商和密钥集中放在一台服务器上的 Magpie（私人模型网关）。各台电脑只连同一个网关地址，不必每台机器各自配一遍 Key。",
+      "steps": [
+        "在 VPS 上建目录并改属主：mkdir -p ~/magpie/config && cd ~/magpie && sudo chown -R 65532:65532 ./config（镜像以 uid 65532 写配置）",
+        "按官方 Docker 文档写 docker-compose：镜像 ghcr.io/yetone/magpie:latest；3425 给客户端；3430 只绑 127.0.0.1；设 MAGPIE_WEB_KEY 与 MAGPIE_PUBLIC_URL；command 用 web --addr 0.0.0.0:3430 --no-open",
+        "启动：docker compose up -d。本机开 SSH 隧道 ssh -L 3430:127.0.0.1:3430 user@VPS，浏览器打开 http://127.0.0.1:3430/?k=你的WEB_KEY",
+        "在网页里添加供应商（如 OpenRouter），需要时装社区插件接 TRAE、Workbuddy 等账号模型；再在 Gateway keys 里为每台客户端建一把钥匙",
+        "客户端把 Base URL 指到 http://VPS_IP:3425/v1（Anthropic 兼容端点通常不带 /v1），API Key 填 Gateway Key；用 curl 拉 /v1/models 确认返回 200"
+      ],
+      "caution": "步骤对照 Magpie 官方 Docker 文档与公开部署指南整理，不是原文逐步抄录；verified=false，上站前建议你或编辑实机跑一遍。管理页（3430）不要裸暴露公网；网关（3425）优先走 VPN 或 HTTPS，并靠 Gateway Key 鉴权。池内候选 id：cand-20261018-7fb9920eb095。"
+    },
     {
       "id": "prac-20261014-llm-schema",
       "kind": "工具用法",
