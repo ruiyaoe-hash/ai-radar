@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Derive board artifacts from public/archive (single source of truth).
 
-Reads public/archive and, for the practice lane, public/practice/inbox.
+Reads public/archive, public/practice/inbox, and public/data/atlas.source.json.
 Those are the only inputs. Does not read or write a candidate pool, and does not score.
 Pages output stays the promoted public artifacts.
 
@@ -13,6 +13,9 @@ Writes into public/ only:
   - tools-radar.json    (tools with tool_radar / lens=工具)
   - today3.txt          (今日精选，纯文本，页面叫法)
   - practice.json       (only when public/practice/inbox/*.json has items)
+  - data/kb.json        (atlas.source.json + practice ids → topics, sources, creators)
+  - data/tracks.json, data/topics.json, data/sources.json, data/creators.json
+  - topics/<slug>.html  (one static page per atlas topic)
 
 today3 keeps the line labels the homepage parser expects
 (「对你意味着什么」「建议」). Spoken wording comes from the card.
@@ -422,6 +425,233 @@ def sync_practice_inbox() -> None:
     print(f"  practice.json: {len(items)} items ({len(incoming)} from inbox)")
 
 
+ATLAS_SOURCE = PUBLIC / "data" / "atlas.source.json"
+TOPICS_DIR = PUBLIC / "topics"
+ATLAS_CSP = (
+    "default-src 'self'; "
+    "script-src 'self' https://static.cloudflareinsights.com; "
+    "script-src-attr 'none'; "
+    "style-src 'self'; "
+    "img-src 'self'; "
+    "font-src 'self'; "
+    "connect-src 'self' https://cloudflareinsights.com; "
+    "object-src 'none'; "
+    "base-uri 'none'; "
+    "form-action 'none'; "
+    "frame-src 'none'"
+)
+
+
+def _dump_json(path: Path, payload) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _metric(value):
+    """Integer engagement count. Booleans are not counts."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    return int(value)
+
+
+def _write_topic_pages(topics: list[dict]) -> None:
+    TOPICS_DIR.mkdir(parents=True, exist_ok=True)
+    slugs: list[str] = []
+    for topic in topics:
+        slug = str(topic.get("slug") or "")
+        if not slug:
+            raise SystemExit("atlas topic missing slug")
+        slugs.append(slug)
+        title = html.escape(str(topic.get("name") or slug), quote=True)
+        safe_slug = html.escape(slug, quote=True)
+        page = f"""<!DOCTYPE html>
+<html lang="zh-CN" data-page="atlas" data-root="../" data-slug="{safe_slug}">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="{ATLAS_CSP}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c0e12" />
+  <title>{title} · AI Radar</title>
+  <link rel="icon" href="../assets/logo.png" />
+  <link rel="stylesheet" href="../assets/radar.css" />
+</head>
+<body>
+  <div class="app">
+    <script src="../assets/safe-href.js"></script>
+    <script src="../assets/shell.js"></script>
+    <div class="content">
+      <div class="topbar">
+        <button class="menu-btn" type="button" data-nav-open>菜单</button>
+        <span class="topbar-title">{title}</span>
+      </div>
+      <main class="wide">
+        <div id="topic-root">
+          <p class="empty">正在读取这个主题…</p>
+        </div>
+        <footer class="site-footer">
+          <p>内容摘自公开帖子与编辑整理的实操，版权归原作者所有。点击来源可查看原文。</p>
+          <p>内容可能包含未经证实的传闻与第三方帖子，请自行核对。</p>
+          <p>更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script src="../assets/atlas.js"></script>
+</body>
+</html>
+"""
+        (TOPICS_DIR / f"{slug}.html").write_text(page, encoding="utf-8")
+    for path in TOPICS_DIR.glob("*.html"):
+        if path.stem not in slugs:
+            path.unlink()
+
+
+def sync_atlas() -> None:
+    """Publish the topic atlas from public/data/atlas.source.json.
+
+    Every live practice id must already be a source (origin=practice).
+    Counts, demand signal, creator rank, and topics/<slug>.html are derived.
+    """
+    if not ATLAS_SOURCE.is_file():
+        print("  atlas: no data/atlas.source.json, skip")
+        return
+    try:
+        raw = json.loads(ATLAS_SOURCE.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"atlas.source.json: {exc}") from exc
+    src = strip_raw_post_fields(raw)
+    sources = [item for item in (src.get("sources") or []) if isinstance(item, dict)]
+    seen: set[str] = set()
+    for source in sources:
+        sid = str(source.get("id") or "")
+        if not sid:
+            raise SystemExit("atlas source missing id")
+        if sid in seen:
+            raise SystemExit(f"atlas duplicate source id {sid}")
+        seen.add(sid)
+    practice_ids: list[str] = []
+    practice_path = PUBLIC / "practice.json"
+    if practice_path.is_file():
+        try:
+            doc = json.loads(practice_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise SystemExit(f"practice.json: {exc}") from exc
+        for item in doc.get("items") or []:
+            if isinstance(item, dict) and item.get("id"):
+                practice_ids.append(str(item["id"]))
+    missing = [pid for pid in practice_ids if pid not in seen]
+    if missing:
+        raise SystemExit(
+            "atlas.source.json missing practice ids "
+            f"(map each inbox card onto a topic): {missing}"
+        )
+    topics_in = [item for item in (src.get("topics") or []) if isinstance(item, dict)]
+    slug_set = {str(item.get("slug") or "") for item in topics_in}
+    by_topic: dict[str, list[dict]] = {}
+    for source in sources:
+        topic_slug = str(source.get("topic") or "")
+        if topic_slug not in slug_set:
+            raise SystemExit(f"{source.get('id')} topic {topic_slug} is not a known slug")
+        by_topic.setdefault(topic_slug, []).append(source)
+    topics_out: list[dict] = []
+    for topic in topics_in:
+        slug = str(topic.get("slug") or "")
+        items = by_topic.get(slug, [])
+        authors: list[str] = []
+        for source in items:
+            author = str(source.get("author") or "")
+            if author and author not in authors:
+                authors.append(author)
+        measured = [
+            source for source in items
+            if _metric(source.get("likes")) is not None and _metric(source.get("bookmarks")) is not None
+        ]
+        has_bookmarks = any(_metric(source.get("bookmarks")) is not None for source in items)
+        dates = sorted(str(source.get("date") or "") for source in items if source.get("date"))
+        for step in topic.get("playbook") or []:
+            if not isinstance(step, dict):
+                continue
+            for sid in step.get("sources") or []:
+                if sid not in seen:
+                    raise SystemExit(f"{slug} playbook cites missing source {sid}")
+        enriched = dict(topic)
+        enriched["status"] = "待采集" if not items else "active"
+        enriched["source_count"] = len(items)
+        enriched["creator_count"] = len(authors)
+        enriched["has_bookmarks"] = has_bookmarks
+        if has_bookmarks:
+            enriched["bookmarks"] = sum(_metric(source.get("bookmarks")) or 0 for source in items)
+            enriched["likes"] = sum(_metric(source.get("likes")) or 0 for source in items)
+        else:
+            enriched.pop("bookmarks", None)
+            enriched.pop("likes", None)
+        if measured:
+            like_total = sum(_metric(source.get("likes")) or 0 for source in measured)
+            bookmark_total = sum(_metric(source.get("bookmarks")) or 0 for source in measured)
+            enriched["save_ratio"] = round(bookmark_total / like_total, 2) if like_total else 0
+        else:
+            enriched.pop("save_ratio", None)
+        if dates:
+            enriched["latest"] = dates[-1]
+        else:
+            enriched.pop("latest", None)
+        topics_out.append(enriched)
+
+    known: dict[str, dict] = {}
+    for creator in src.get("creators") or []:
+        if isinstance(creator, dict) and creator.get("handle"):
+            known[str(creator["handle"])] = creator
+    handles: list[str] = []
+    for source in sources:
+        author = str(source.get("author") or "")
+        if author and author not in handles:
+            handles.append(author)
+    creator_rows: list[dict] = []
+    for handle in handles:
+        base = dict(known.get(handle) or {"handle": handle, "name": handle, "focus": ""})
+        posts = [source for source in sources if source.get("author") == handle]
+        topic_ids: list[str] = []
+        for source in posts:
+            topic_slug = str(source.get("topic") or "")
+            if topic_slug and topic_slug not in topic_ids:
+                topic_ids.append(topic_slug)
+        base["source_count"] = len(posts)
+        base["bookmarks"] = sum(_metric(source.get("bookmarks")) or 0 for source in posts)
+        base["bookmark_metric"] = any(_metric(source.get("bookmarks")) is not None for source in posts)
+        base["topics"] = topic_ids
+        if not str(base.get("profile_url") or "").strip():
+            base["profile_url"] = f"https://x.com/{handle}"
+        creator_rows.append(base)
+
+    def _rank(creator: dict):
+        primary = creator["bookmarks"] if creator.get("bookmark_metric") else creator["source_count"]
+        return (-int(primary), -int(creator["source_count"]), str(creator.get("handle") or ""))
+
+    creator_rows.sort(key=_rank)
+    tracks = [item for item in (src.get("tracks") or []) if isinstance(item, dict)]
+    now = datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间")
+    kb = strip_raw_post_fields(
+        {
+            "schema_version": 1,
+            "snapshot": src.get("snapshot") or "2026-10-20",
+            "updated": now,
+            "note": src.get("note") or "",
+            "tracks": tracks,
+            "topics": topics_out,
+            "sources": sources,
+            "creators": creator_rows,
+        }
+    )
+    data = PUBLIC / "data"
+    _dump_json(data / "kb.json", kb)
+    _dump_json(data / "tracks.json", {"schema_version": 1, "updated": now, "tracks": tracks})
+    _dump_json(data / "topics.json", {"schema_version": 1, "updated": now, "topics": topics_out})
+    _dump_json(data / "sources.json", {"schema_version": 1, "updated": now, "sources": sources})
+    _dump_json(data / "creators.json", {"schema_version": 1, "updated": now, "creators": creator_rows})
+    _write_topic_pages(topics_out)
+    print(f"  atlas: {len(topics_out)} topics, {len(sources)} sources, {len(creator_rows)} creators")
+
+
 def main():
     FEEDS.mkdir(parents=True, exist_ok=True)
     all_items = load_all_archive_items()
@@ -468,6 +698,7 @@ def main():
     )
     (PUBLIC / "today3.txt").write_text(build_today3(board), encoding="utf-8")
     sync_practice_inbox()
+    sync_atlas()
 
     print(f"derived: {len(all_items)} archive cards → {len(board)} board items")
     print(f"  items.json, feed.xml, feeds/lens-*.xml, tools-radar.json, today3.txt, archive/index.json")

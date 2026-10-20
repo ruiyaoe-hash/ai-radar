@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-page="today">
+<html lang="zh-CN" data-page="atlas" data-root="./">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-amH7A632qlj4ld/AoaM5smbFUQk9/a62Q86gKcUSdaQ=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c0e12" />
-  <title>今日必看 · AI Radar</title>
+  <title>实战图谱 · AI Radar</title>
   <link rel="icon" href="./assets/logo.png" />
   <link rel="stylesheet" href="./assets/radar.css" />
   <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="./feed.xml" />
@@ -17,116 +17,90 @@
     <div class="content">
       <div class="topbar">
         <button class="menu-btn" type="button" data-nav-open>菜单</button>
-        <span class="topbar-title">今日必看</span>
+        <span class="topbar-title">实战图谱</span>
       </div>
-      <main>
-        <h1>今日必看</h1>
-        <p class="sub">AI Radar 每天给你当天最值得动手的 AI 信号。北京时间每天 08:00 主报，工作日 21:00 晚班，只留<strong>会影响你下一步决策</strong>的内容。首页「今日精选」从全部信号里挑出最重要的 3 条，时间紧只看这 3 条就够。 <span id="updated"></span></p>
+      <main class="wide">
+        <p class="eyebrow">AI 博主实操经验 · 分门别类 · 持续更新</p>
+        <h1>别人用 AI 做成了什么，以及怎么做到的</h1>
+        <p class="sub">AI Radar 把多位博主的动手方法收成可以继续填写的主题手册，每一步都能回到原帖。今日精选仍每天更新，用来看这周哪条工具信号值得动手；手册负责把做法留下来。还没有素材的主题会标成待采集。</p>
+        <div class="stat-row" id="atlas-stats" aria-label="图谱规模"></div>
 
-        <section class="hero" aria-labelledby="hero-label">
+        <label class="search-row" for="atlas-search">搜索主题、工具或博主</label>
+        <input id="atlas-search" type="search" placeholder="例如 ESP32、Skill、Magpie" autocomplete="off" />
+        <div class="filters" id="atlas-suggest"></div>
+        <div id="atlas-results" hidden></div>
+
+        <div id="tracks">
+          <section class="track-block">
+            <div class="track-head"><h2>造物</h2><span>用 AI 做出能摸得着的硬件</span></div>
+            <div class="topic-grid" data-track="make"></div>
+          </section>
+          <section class="track-block">
+            <div class="track-head"><h2>内容创作</h2><span>视频、音乐、播客的 AI 生产线</span></div>
+            <div class="topic-grid" data-track="create"></div>
+          </section>
+          <section class="track-block">
+            <div class="track-head"><h2>开发提效</h2><span>Agent、Skills 与工程化工作流</span></div>
+            <div class="topic-grid" data-track="build"></div>
+          </section>
+          <section class="track-block">
+            <div class="track-head"><h2>知识管理</h2><span>把信息流变成自己的知识库</span></div>
+            <div class="topic-grid" data-track="knowledge"></div>
+          </section>
+          <section class="track-block">
+            <div class="track-head"><h2>商业化</h2><span>AI 项目怎么变成收入</span></div>
+            <div class="topic-grid" data-track="business"></div>
+          </section>
+        </div>
+
+        <section class="hero hero-compact" aria-labelledby="today-label">
           <div class="hero-head">
-            <div class="label" id="hero-label"><span class="pill"><span class="dot"></span>精选</span> 今日精选</div>
-            <button class="btn" type="button" id="copyToday">复制今日精选</button>
+            <div class="label" id="today-label"><span class="pill"><span class="dot"></span>精选</span> 今日精选</div>
+            <a class="btn" href="./today.html">打开今日必看</a>
           </div>
-          <ol id="heroList"><li>正在读取…</li></ol>
-          <pre id="today3fallback" hidden></pre>
+          <p class="sub">这一栏只保留这周会改变你工具选择的信号。完整列表、筛选和复制在今日必看。</p>
+          <ol id="today-compact"><li>正在读取…</li></ol>
         </section>
 
-        <div class="filters" id="bandFilters">
-          <button class="chip on" type="button" data-band="all">全部</button>
-          <button class="chip" type="button" data-band="must">今日必看</button>
-          <button class="chip" type="button" data-band="market">市场信号</button>
-          <button class="chip" type="button" data-band="watch">重点关注</button>
-        </div>
-        <div class="filters" id="lensFilters">
-          <span class="row-label">看什么</span>
-          <button class="chip on" type="button" data-topic="all">不限</button>
-          <button class="chip" type="button" data-topic="工具">试用工具</button>
-          <button class="chip" type="button" data-topic="赛道">行业动态</button>
-          <button class="chip" type="button" data-topic="模式">方法模式</button>
-          <button class="chip" type="button" data-topic="时机">时机窗口</button>
-        </div>
+        <section>
+          <div class="track-head">
+            <h2>最新收录</h2>
+          </div>
+          <div class="latest-grid" id="latest-list"></div>
+          <p class="fine" id="snapshot-note"></p>
+        </section>
 
-        <div id="feed"><p class="empty">正在读取…</p></div>
+        <section id="method">
+          <h2>收录标准</h2>
+          <p class="sub">供给看博主在分享什么，需求看读者在收藏什么。一条要进入手册，至少带上编号步骤、物料清单（BOM）、安装命令，或一个可打开的仓库。</p>
+          <div class="method-grid">
+            <article class="card">
+              <h3>盯人：持续监控博主</h3>
+              <p class="mean">以博主为单位追踪新帖，同时用关键词兜底发现新人，博主榜单本身也是发现渠道。</p>
+            </article>
+            <article class="card">
+              <h3>过滤：只收能照着做的</h3>
+              <p class="mean">必须包含步骤、工具或可复现的项目。课程推销和只有观点的帖子不进入手册。</p>
+            </article>
+            <article class="card">
+              <h3>归类：并入主题手册</h3>
+              <p class="mean">每条分享归入一个主题，并把新方法补进该主题的步骤手册，标注出处。</p>
+            </article>
+            <article class="card">
+              <h3>看需求：收藏率说话</h3>
+              <p class="mean">收藏数 ÷ 点赞数越高，说明越多人想存下来照着做，这是比点赞更真实的需求信号。</p>
+            </article>
+          </div>
+        </section>
+
         <footer class="site-footer">
+          <p>内容摘自公开帖子与编辑整理的实操，版权归原作者所有。点击来源可查看原文。</p>
           <p>内容可能包含未经证实的传闻与第三方帖子，请自行核对。</p>
           <p>更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。</p>
         </footer>
       </main>
     </div>
   </div>
-  <script src="./assets/cards.js"></script>
-  <script>
-    const state = { band: "all", lens: "all", items: [], today3: "", featured: new Set() };
-
-    function render() {
-      const filtered = Radar.applyFilter(state.items, state.band, state.lens);
-      document.getElementById("feed").innerHTML = Radar.renderGroups(filtered, state.featured);
-      Radar.scrollToHash();
-    }
-
-    function renderHero() {
-      const model = Radar.heroModel(state.today3, state.items);
-      state.featured = model.featured;
-      document.getElementById("heroList").innerHTML = Radar.renderHero(model.rows);
-    }
-
-    async function load() {
-      const [itemsRes, todayRes] = await Promise.all([
-        fetch("./items.json?" + Date.now()),
-        fetch("./today3.txt?" + Date.now())
-      ]);
-      if (!itemsRes.ok) throw new Error("items");
-      const data = await itemsRes.json();
-      state.items = Array.isArray(data) ? data : (data.items || []);
-      if (data.updated) document.getElementById("updated").textContent = "最近更新 " + data.updated;
-      if (todayRes.ok) state.today3 = await todayRes.text();
-      renderHero();
-      render();
-    }
-
-    document.getElementById("bandFilters").addEventListener("click", (event) => {
-      const btn = event.target.closest("[data-band]");
-      if (!btn) return;
-      document.querySelectorAll("#bandFilters .chip").forEach((el) => el.classList.remove("on"));
-      btn.classList.add("on");
-      state.band = btn.dataset.band;
-      render();
-    });
-
-    document.getElementById("lensFilters").addEventListener("click", (event) => {
-      const btn = event.target.closest("[data-topic]");
-      if (!btn) return;
-      document.querySelectorAll("#lensFilters .chip").forEach((el) => el.classList.remove("on"));
-      btn.classList.add("on");
-      state.lens = btn.dataset.topic;
-      render();
-    });
-
-    document.getElementById("copyToday").addEventListener("click", async () => {
-      const btn = document.getElementById("copyToday");
-      const text = Radar.copyText(state.today3, state.items);
-      const fallback = document.getElementById("today3fallback");
-      try {
-        await navigator.clipboard.writeText(text);
-        fallback.hidden = true;
-        btn.textContent = "已复制";
-        btn.classList.add("done");
-      } catch (err) {
-        fallback.hidden = false;
-        fallback.textContent = text;
-        btn.textContent = "请手动复制";
-      }
-      setTimeout(() => {
-        btn.textContent = "复制今日精选";
-        btn.classList.remove("done");
-      }, 1800);
-    });
-
-    load().catch(() => {
-      document.getElementById("feed").innerHTML = '<p class="empty">还没有信号。更新之后会显示在这里。</p>';
-      document.getElementById("heroList").innerHTML = "<li>今日精选还在准备，稍后再来。</li>";
-    });
-  </script>
+  <script src="./assets/atlas.js"></script>
 </body>
 </html>

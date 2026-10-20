@@ -22,6 +22,11 @@
 - [时机窗口分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-timing.xml): RSS，只收时机窗口
 - [可试用工具](https://ruiyaoe-hash.github.io/ai-radar/tools-radar.json): 四档：值得用上、可以试、先评估、先别跟
 - [博主实操](https://ruiyaoe-hash.github.io/ai-radar/practice.json): 编辑每周挑好再放上来，schema_version 1
+- [实战图谱](https://ruiyaoe-hash.github.io/ai-radar/data/kb.json): 主题手册、原帖和博主，schema_version 1
+- [图谱方向](https://ruiyaoe-hash.github.io/ai-radar/data/tracks.json): kb.json 里的五个方向
+- [图谱主题](https://ruiyaoe-hash.github.io/ai-radar/data/topics.json): kb.json 里的主题和手册
+- [图谱原帖](https://ruiyaoe-hash.github.io/ai-radar/data/sources.json): kb.json 里的原帖
+- [图谱博主](https://ruiyaoe-hash.github.io/ai-radar/data/creators.json): kb.json 里的博主，按被收藏总数排序
 - [按日归档索引](https://ruiyaoe-hash.github.io/ai-radar/archive/index.json): 先看有哪些天；某一天是 `archive/` 加日期再加 `.json`
 - [长期判断](https://ruiyaoe-hash.github.io/ai-radar/theses.json): 跨越多天的看法，schema_version 1
 
@@ -30,6 +35,7 @@
 - [近期信号](https://ruiyaoe-hash.github.io/ai-radar/schemas/items.schema.json): items.json
 - [单条卡片](https://ruiyaoe-hash.github.io/ai-radar/schemas/card.schema.json): items 与按日归档里的每一条
 - [博主实操](https://ruiyaoe-hash.github.io/ai-radar/schemas/practice.schema.json): practice.json
+- [实战图谱](https://ruiyaoe-hash.github.io/ai-radar/schemas/atlas.schema.json): data/kb.json
 - [可试用工具](https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json): tools-radar.json
 - [归档索引](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-index.schema.json): archive/index.json
 - [单日归档](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-day.schema.json): archive/YYYY-MM-DD.json

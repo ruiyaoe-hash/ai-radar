@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-20 21:41 北京时间",
+  "tracks": [
+    {
+      "id": "make",
+      "name": "造物",
+      "tagline": "用 AI 做出能摸得着的硬件"
+    },
+    {
+      "id": "create",
+      "name": "内容创作",
+      "tagline": "视频、音乐、播客的 AI 生产线"
+    },
+    {
+      "id": "build",
+      "name": "开发提效",
+      "tagline": "Agent、Skills 与工程化工作流"
+    },
+    {
+      "id": "knowledge",
+      "name": "知识管理",
+      "tagline": "把信息流变成自己的知识库"
+    },
+    {
+      "id": "business",
+      "name": "商业化",
+      "tagline": "AI 项目怎么变成收入"
+    }
+  ]
+}

@@ -1,0 +1,546 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-20 21:41 北京时间",
+  "topics": [
+    {
+      "slug": "ai-hardware",
+      "name": "AI 硬件 · ESP32 智能终端",
+      "track": "make",
+      "summary": "用几十到几百元的 ESP32 开发板，配合 Claude Code / Codex，把 AI Agent 装进一个能看、能说、能动的小设备。",
+      "audience": "没有嵌入式基础、想做第一个 AI 实体小玩意的人",
+      "tools": [
+        "ESP32-S3",
+        "小智 AI",
+        "Claude Code",
+        "Codex",
+        "esp-emulator",
+        "Muse Gadgets"
+      ],
+      "playbook": [
+        {
+          "title": "先扫盲，搞清楚硬件黑话",
+          "detail": "开发板、固件、服务端分别是什么，先建立整体地图再动手。",
+          "sources": [
+            "hw-1",
+            "hw-2"
+          ]
+        },
+        {
+          "title": "选购：优先小智 AI 适配的开发板",
+          "detail": "有现成固件包，能省掉大部分驱动适配工作。",
+          "sources": [
+            "hw-3"
+          ]
+        },
+        {
+          "title": "打通本地 Agent",
+          "detail": "Type-C 连电脑，让 Claude Code / Codex 直接读写、烧录设备。",
+          "sources": [
+            "hw-4",
+            "hw-2"
+          ]
+        },
+        {
+          "title": "没硬件也能先仿真",
+          "detail": "用 esp-emulator 仿真点亮，验证想法后再下单原型。",
+          "sources": [
+            "hw-7"
+          ]
+        },
+        {
+          "title": "从玩具升级为 Agent 终端",
+          "detail": "接入 Muse Gadgets 等生态，配置不一致时让 AI 魔改固件。",
+          "sources": [
+            "hw-5",
+            "hw-6"
+          ]
+        },
+        {
+          "title": "抄作业找灵感",
+          "detail": "从 awesome-esp32 清单里挑项目复刻，再做差异化。",
+          "sources": [
+            "hw-8"
+          ]
+        }
+      ],
+      "pitfalls": [
+        "官方 SDK 与手上板子配置可能不一致，需要改固件",
+        "测试验收要人来做，问题描述越具体，AI 迭代越快"
+      ],
+      "status": "active",
+      "source_count": 8,
+      "creator_count": 6,
+      "has_bookmarks": true,
+      "bookmarks": 2219,
+      "likes": 1307,
+      "save_ratio": 1.7,
+      "latest": "2026-10-19"
+    },
+    {
+      "slug": "ai-eda",
+      "name": "AI 电子设计 · PCB 与 CAD",
+      "track": "make",
+      "summary": "让 Agent 通过 MCP 操作 KiCad、嘉立创 EDA、CAD，从需求描述一路走到打样。",
+      "audience": "想做定制硬件、但不会画板的人；硬件工程师提效",
+      "tools": [
+        "KiCad MCP",
+        "EasyEDA Agent",
+        "HeyPCB",
+        "text-to-cad",
+        "嘉立创"
+      ],
+      "playbook": [
+        {
+          "title": "配置 MCP，让 Agent 能操作 EDA",
+          "detail": "先装 KiCad MCP / EasyEDA Agent，做连接测试。",
+          "sources": [
+            "eda-1"
+          ]
+        },
+        {
+          "title": "用自然语言描述需求",
+          "detail": "例如：8×8 彩色像素屏，ESP32-S3 + 64 颗灯珠。",
+          "sources": [
+            "eda-3"
+          ]
+        },
+        {
+          "title": "AI 画原理图、布线、跑 DRC",
+          "detail": "HeyPCB 等工具能一路完成并导出到开源画板软件。",
+          "sources": [
+            "eda-3",
+            "eda-1"
+          ]
+        },
+        {
+          "title": "下单打样与 SMT，再上电测试",
+          "detail": "已有博主完成六层飞控板全流程。",
+          "sources": [
+            "eda-2"
+          ]
+        },
+        {
+          "title": "结构件交给 CAD Agent",
+          "detail": "外壳与机械结构用 text-to-cad 描述生成。",
+          "sources": [
+            "eda-5"
+          ]
+        }
+      ],
+      "pitfalls": [
+        "封装（footprint）可能认错，打样前务必人工核对",
+        "四层、电源、高速板目前仍不建议完全交给 AI"
+      ],
+      "status": "active",
+      "source_count": 5,
+      "creator_count": 4,
+      "has_bookmarks": true,
+      "bookmarks": 1541,
+      "likes": 1612,
+      "save_ratio": 0.96,
+      "latest": "2026-10-19"
+    },
+    {
+      "slug": "ai-video",
+      "name": "AI 视频制作",
+      "track": "create",
+      "summary": "从拆解爆款、做分镜到批量生成，AI 视频正在从「抽卡」走向可控的工业流水线。",
+      "audience": "内容创作者、短视频团队、接视频外包的人",
+      "tools": [
+        "Codex",
+        "Seedance",
+        "MiniMax",
+        "Blender",
+        "ElevenLabs",
+        "OpenMontage",
+        "Hypit"
+      ],
+      "playbook": [
+        {
+          "title": "先拆参考片，再动手",
+          "detail": "把原片拆成分镜、长镜头分段，明确人物与场景对应关系。",
+          "sources": [
+            "vid-3",
+            "vid-2"
+          ]
+        },
+        {
+          "title": "做人物资产卡，保证一致性",
+          "detail": "先固定角色形象，再进入生成环节。",
+          "sources": [
+            "vid-2",
+            "vid-10"
+          ]
+        },
+        {
+          "title": "用预演减少抽卡",
+          "detail": "Blender 低模预演调好动作与运镜，再交给视频模型参考生成。",
+          "sources": [
+            "vid-4"
+          ]
+        },
+        {
+          "title": "口播类不一定要视频大模型",
+          "detail": "口型 + 声音同步方案组合，租显卡就能跑。",
+          "sources": [
+            "vid-5"
+          ]
+        },
+        {
+          "title": "让 Agent 串起整条制片线",
+          "detail": "脚本、分镜、剪辑、合成交给 Codex 或开源 Agent 管线。",
+          "sources": [
+            "vid-1",
+            "vid-8",
+            "vid-9"
+          ]
+        },
+        {
+          "title": "沉淀为团队知识库",
+          "detail": "参考 100 万字开源 AI 视频知识库的组织方式。",
+          "sources": [
+            "vid-7"
+          ]
+        }
+      ],
+      "pitfalls": [
+        "多模型串联时，音画对齐需要专门的时间戳工具",
+        "克隆爆款要注意版权与肖像权"
+      ],
+      "status": "active",
+      "source_count": 10,
+      "creator_count": 10,
+      "has_bookmarks": true,
+      "bookmarks": 3322,
+      "likes": 2502,
+      "save_ratio": 1.33,
+      "latest": "2026-10-20"
+    },
+    {
+      "slug": "ai-music",
+      "name": "AI 音乐制作",
+      "track": "create",
+      "summary": "Suno 等工具的作曲、填词、配乐工作流。",
+      "audience": "独立音乐人、视频配乐需求者",
+      "tools": [
+        "Suno"
+      ],
+      "playbook": [],
+      "pitfalls": [],
+      "status": "待采集",
+      "source_count": 0,
+      "creator_count": 0,
+      "has_bookmarks": false
+    },
+    {
+      "slug": "agent-skills",
+      "name": "Agent Skills 与工作流",
+      "track": "build",
+      "summary": "把个人经验打包成 Skill，再把 Skill 组合成可批量、可定时运行的工作流，是当下讨论量最大的方向。",
+      "audience": "所有在用 Claude Code / Codex / Cursor 的人",
+      "tools": [
+        "Claude Code",
+        "Codex",
+        "Cursor",
+        "CLAUDE.md",
+        "Archify",
+        "llm"
+      ],
+      "playbook": [
+        {
+          "title": "先找现成 Skill",
+          "detail": "从高收藏的 Skill 推荐开始，比如 ELI5、UI 审美、架构图。",
+          "sources": [
+            "sk-4",
+            "sk-5",
+            "sk-6"
+          ]
+        },
+        {
+          "title": "把自己的经验打包成 Skill",
+          "detail": "反复做的事，写成可复用的 Skill。个人技能放在 ~/.claude/skills/，用 description 写清什么时候该用。",
+          "sources": [
+            "sk-1",
+            "prac-20261014-claude-skill"
+          ]
+        },
+        {
+          "title": "治理上下文：分层组织 CLAUDE.md",
+          "detail": "不要把所有规范都塞根目录，避免上下文膨胀。Codex 仓库则写一份短 AGENTS.md，只留怎么构建、怎么测试、什么不要做。",
+          "sources": [
+            "sk-3",
+            "prac-20261014-codex-agents"
+          ]
+        },
+        {
+          "title": "组合 Skill，并行 loop",
+          "detail": "多个 Skill 串成工作流；并行跑多个 loop，人只做验收。",
+          "sources": [
+            "sk-1",
+            "sk-2"
+          ]
+        },
+        {
+          "title": "系统补课",
+          "detail": "按 7 阶段路线从 Agent Loop 学到 eval 与安全。",
+          "sources": [
+            "sk-7"
+          ]
+        },
+        {
+          "title": "先用 llm 命令行跑通，再收成模板",
+          "detail": "对本地文件跑一次说明，把用顺的提示存成模板，需要固定字段时再用 --schema。",
+          "sources": [
+            "prac-20261014-llm-file",
+            "prac-20261014-llm-template",
+            "prac-20261014-llm-schema"
+          ]
+        }
+      ],
+      "pitfalls": [
+        "工作流不必复杂，高赞分享反而强调「没有魔法」",
+        "人仍然要负责最后的 UI/UX 与质量把关",
+        "不要把客户密钥写进 SKILL.md，或写进会同步出去的模板"
+      ],
+      "status": "active",
+      "source_count": 12,
+      "creator_count": 9,
+      "has_bookmarks": true,
+      "bookmarks": 8919,
+      "likes": 6578,
+      "save_ratio": 1.36,
+      "latest": "2026-10-14"
+    },
+    {
+      "slug": "model-gateway",
+      "name": "统一模型网关与路由",
+      "track": "build",
+      "summary": "一个入口路由到多家模型。各台电脑只连同一个网关地址，钥匙集中放在一台服务器上。",
+      "audience": "同时使用多家模型 API 的开发者与团队",
+      "tools": [
+        "Magpie",
+        "Docker",
+        "OpenRouter"
+      ],
+      "playbook": [
+        {
+          "title": "在一台机器上准备配置目录",
+          "detail": "建好 Magpie 的配置目录，并把属主改成镜像使用的 uid 65532。",
+          "sources": [
+            "prac-20261017-vista8-magpie"
+          ]
+        },
+        {
+          "title": "用 Docker Compose 拉起网关和管理页",
+          "detail": "镜像用 ghcr.io/yetone/magpie。3425 给客户端，3430 只绑在本机，并设好管理钥匙和公开地址。",
+          "sources": [
+            "prac-20261017-vista8-magpie"
+          ]
+        },
+        {
+          "title": "用 SSH 隧道打开管理页",
+          "detail": "docker compose up -d 之后，从自己的电脑把 3430 转到本机再打开管理页。",
+          "sources": [
+            "prac-20261017-vista8-magpie"
+          ]
+        },
+        {
+          "title": "添加供应商，给每台设备一把 Gateway Key",
+          "detail": "在管理页里接上 OpenRouter 或其他供应商，再为每台客户端单独发钥匙。",
+          "sources": [
+            "prac-20261017-vista8-magpie"
+          ]
+        },
+        {
+          "title": "客户端只填网关地址",
+          "detail": "Base URL 指向服务器的 3425。用 curl 请求 /v1/models，返回 200 就可以开始用。",
+          "sources": [
+            "prac-20261017-vista8-magpie"
+          ]
+        }
+      ],
+      "pitfalls": [
+        "管理页（3430）不要裸暴露到公网；网关（3425）优先走 VPN 或 HTTPS，并靠 Gateway Key 鉴权",
+        "这套步骤对照官方 Docker 文档整理，上站前还没有实机复核"
+      ],
+      "status": "active",
+      "source_count": 1,
+      "creator_count": 1,
+      "has_bookmarks": false,
+      "latest": "2026-10-17"
+    },
+    {
+      "slug": "automation-orchestration",
+      "name": "自动化编排 · n8n / Dify / Coze",
+      "track": "build",
+      "summary": "用 n8n、Dify、Coze 把模型、表格和通知串成可以反复跑的流程。",
+      "audience": "想把重复的 AI 步骤交给编排工具的人",
+      "tools": [
+        "n8n",
+        "Dify",
+        "Coze"
+      ],
+      "playbook": [],
+      "pitfalls": [],
+      "status": "待采集",
+      "source_count": 0,
+      "creator_count": 0,
+      "has_bookmarks": false
+    },
+    {
+      "slug": "media-to-knowledge",
+      "name": "播客 / 视频整理成知识",
+      "track": "knowledge",
+      "summary": "把播客、YouTube、B 站内容转写、翻译、整理成可反复阅读的个人知识库。",
+      "audience": "信息焦虑、想深度吸收长内容的人",
+      "tools": [
+        "乔木剪藏",
+        "本地 ASR",
+        "小宇宙",
+        "YouTube"
+      ],
+      "playbook": [
+        {
+          "title": "先拿到带时间戳的文字稿",
+          "detail": "无字幕视频和播客也能一键转写，本地 ASR 不花钱。",
+          "sources": [
+            "kn-1"
+          ]
+        },
+        {
+          "title": "AI 出中文初稿",
+          "detail": "英文内容先由 AI 整理翻译。",
+          "sources": [
+            "kn-2"
+          ]
+        },
+        {
+          "title": "亲手审阅修改",
+          "detail": "改过、反复读过的内容才能内化。",
+          "sources": [
+            "kn-2"
+          ]
+        },
+        {
+          "title": "按主题做合集或精选站",
+          "detail": "每天精选一档，或按主题沉淀合集。",
+          "sources": [
+            "kn-3",
+            "kn-2"
+          ]
+        }
+      ],
+      "pitfalls": [
+        "只做 AI 摘要不做二次加工，吸收效果很差"
+      ],
+      "status": "active",
+      "source_count": 3,
+      "creator_count": 3,
+      "has_bookmarks": true,
+      "bookmarks": 1951,
+      "likes": 869,
+      "save_ratio": 2.25,
+      "latest": "2026-10-05"
+    },
+    {
+      "slug": "personal-agent",
+      "name": "个人 Agent 与数据打通",
+      "track": "knowledge",
+      "summary": "让 Agent 读到你的微信、飞书、邮件，共享你的世界上下文，成为真正的私人助理。",
+      "audience": "信息渠道多、想让 AI 替自己处理日常事务的人",
+      "tools": [
+        "Claude Code",
+        "飞书 CLI",
+        "Gmail 插件",
+        "Slack 插件"
+      ],
+      "playbook": [
+        {
+          "title": "先打通数据源",
+          "detail": "微信、企微、飞书、Gmail、Slack 逐个接入。",
+          "sources": [
+            "pa-1"
+          ]
+        },
+        {
+          "title": "多 Agent 分工处理大批内容",
+          "detail": "计划、结构分析、关键词等 Agent 并行，再汇总产出。",
+          "sources": [
+            "pa-2"
+          ]
+        }
+      ],
+      "pitfalls": [
+        "接入私人数据前想清楚权限与隐私边界"
+      ],
+      "status": "active",
+      "source_count": 2,
+      "creator_count": 1,
+      "has_bookmarks": true,
+      "bookmarks": 896,
+      "likes": 559,
+      "save_ratio": 1.6,
+      "latest": "2026-10-17"
+    },
+    {
+      "slug": "ai-side-business",
+      "name": "AI 副业与变现",
+      "track": "business",
+      "summary": "交付服务、卖模板、接视频单。热度很高，收录时要严格甄别，一人公司先从能稳定交付的一件事做起。",
+      "audience": "想用 AI 能力赚第一笔收入的人",
+      "tools": [
+        "闲鱼",
+        "小红书",
+        "Hypit"
+      ],
+      "playbook": [
+        {
+          "title": "选一个自己能交付的服务",
+          "detail": "客户想要结果而不是工具，从能稳定交付的品类开始。",
+          "sources": [
+            "biz-1",
+            "biz-3"
+          ]
+        },
+        {
+          "title": "用工作流压低交付成本",
+          "detail": "把交付过程固化成 Skill 或 Agent 管线。",
+          "sources": [
+            "biz-2",
+            "biz-1"
+          ]
+        }
+      ],
+      "pitfalls": [
+        "收益数字多为博主自述，未经验证",
+        "搬运、克隆类玩法存在版权风险"
+      ],
+      "status": "active",
+      "source_count": 3,
+      "creator_count": 3,
+      "has_bookmarks": true,
+      "bookmarks": 973,
+      "likes": 920,
+      "save_ratio": 1.06,
+      "latest": "2026-09-15"
+    },
+    {
+      "slug": "ai-sites",
+      "name": "用 AI 做站与小产品",
+      "track": "business",
+      "summary": "用 Agent 把一个小站或小产品从页面做到可以给人打开。",
+      "audience": "想用 AI 做出一个可以访问的小产品的人",
+      "tools": [
+        "Cursor",
+        "Claude Code",
+        "Codex"
+      ],
+      "playbook": [],
+      "pitfalls": [],
+      "status": "待采集",
+      "source_count": 0,
+      "creator_count": 0,
+      "has_bookmarks": false
+    }
+  ]
+}
