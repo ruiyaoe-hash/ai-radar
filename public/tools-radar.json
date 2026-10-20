@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18 08:21 北京时间",
+  "updated": "2026-10-20 08:05 北京时间",
   "rings": {
     "采纳": [
       {
@@ -126,6 +126,22 @@
           "上一版 DeepSeek V4.1 Flash",
           "Gemini 4 Argon",
           "Muse Spark Open"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      },
+      {
+        "id": "evt-20261020-meta-muse-glimmer-30b",
+        "title": "Meta 放出 Muse Glimmer 30B，可在消费级显卡上跑本地智能体",
+        "date": "2026-10-20",
+        "try_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+        "access": "模型权重与 GGUF 量化包可在 Hugging Face 下载。许可是 Apache 2.0。4-bit 约 17GB，面向约 24GB 显存的单卡消费级设备。",
+        "integration": "可用 llama.cpp、vLLM 等常见本地推理栈；官方文档含量化和部署说明。",
+        "first_step": "若你这周要试本地智能体，先下 4-bit GGUF，用同一套带工具调用的小任务，对照你现在用的同尺寸开源模型看完成率和速度。",
+        "alternatives": [
+          "Muse Spark Open（更大、内存门槛更高）",
+          "Qwen3.6-27B / Gemma4-31B",
+          "DeepSeek V4.1 Flash 1017（接口向）"
         ],
         "status": "confirmed",
         "priority": "P0"

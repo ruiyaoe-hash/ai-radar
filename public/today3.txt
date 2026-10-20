@@ -1,8 +1,8 @@
-AI Radar · 今日精选（2026-10-18）
+AI Radar · 今日精选（2026-10-20）
 
-1. DeepSeek 更新 V4.1 Flash，并开放搜索接口
-   对你意味着什么：这周不用改接口里的模型名。把 DeepSeek Harness 升到 0.2.1-rc.1 或更新，用你手头的写代码题目看完成时间和账单。要给智能体联网时，把搜索和抓取接口接上，赶在免费窗口结束前试一次。
-   建议：试用 · 这周先升 Harness。搜索接口经上述工具的免费调用到 10 月 31 日 16:00（世界时）。
-   https://api-docs.deepseek.com/zh-cn/updates/
+1. Meta 放出 Muse Glimmer 30B，可在消费级显卡上跑本地智能体
+   对你意味着什么：如果你这周要在自己电脑上跑本地智能体，而不只靠云端接口，把 Muse Glimmer 放进同尺寸对照表。它和已经上板的 Muse Spark Open 不是同一条产品线：Spark 更大、偏托管或高端本机；Glimmer 专门压到消费级单卡。
+   建议：试用 · 这周先用 4-bit 本地包跑一小批带工具调用的任务。
+   https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/
