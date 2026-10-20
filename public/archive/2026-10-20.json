@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-20",
+  "count": 1,
+  "schema_version": 2,
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261020-meta-muse-glimmer-30b",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "Meta 放出 Muse Glimmer 30B，可在消费级显卡上跑本地智能体",
+      "date": "2026-10-20",
+      "time": "10-20 03:33",
+      "handle": "AIatMeta",
+      "url": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+      "published_at": "2026-10-19T19:33:10Z",
+      "ingested_at": "2026-10-20T00:00:00Z",
+      "candidate_id": "cand-20261020-3a3fcee60a1a",
+      "promotion_path": "normal",
+      "objective": [
+        "Meta 在 2026 年 10 月 19 日发布 Muse Glimmer 的技术报告。这是约 300 亿参数、面向本地智能体任务的开放权重模型。模型权重可以下载到自己的电脑或服务器上使用，许可是 Apache 2.0。",
+        "官方目标是在一台 Mac 或带单块消费级显卡的个人电脑上跑通多步推理、工具调用和失败重试。4-bit 量化后语言部分大约 17GB，官方说可以塞进约 24GB 显存的设备。同尺寸对照里，官方点名工具使用和智能体完成度优于 Qwen3.6-27B 与 Gemma4-31B。",
+        "权重在 Hugging Face 的 meta-models/Muse-Glimmer-30B 可下。官方还提供 GGUF 量化包、视觉投影和 DFlash 推测解码草稿模型。推理侧可走 llama.cpp、vLLM 等常见路径。"
+      ],
+      "sources": [
+        {
+          "url": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+          "handle": "Meta",
+          "role": "primary"
+        },
+        {
+          "url": "https://ai.meta.com/research/publications/muse-glimmer-30b-an-on-device-agentic-model/",
+          "handle": "Meta",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/AIatMeta/status/2112265822274302066",
+          "handle": "AIatMeta",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+          "handle": "HuggingFace",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+      "access": "模型权重与 GGUF 量化包可在 Hugging Face 下载。许可是 Apache 2.0。4-bit 约 17GB，面向约 24GB 显存的单卡消费级设备。",
+      "integration": "可用 llama.cpp、vLLM 等常见本地推理栈；官方文档含量化和部署说明。",
+      "first_step": "若你这周要试本地智能体，先下 4-bit GGUF，用同一套带工具调用的小任务，对照你现在用的同尺寸开源模型看完成率和速度。",
+      "alternatives": [
+        "Muse Spark Open（更大、内存门槛更高）",
+        "Qwen3.6-27B / Gemma4-31B",
+        "DeepSeek V4.1 Flash 1017（接口向）"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周要在自己电脑上跑本地智能体，而不只靠云端接口，把 Muse Glimmer 放进同尺寸对照表。它和已经上板的 Muse Spark Open 不是同一条产品线：Spark 更大、偏托管或高端本机；Glimmer 专门压到消费级单卡。",
+        "action": "试用",
+        "window": "这周先用 4-bit 本地包跑一小批带工具调用的任务。",
+        "confidence": "高",
+        "falsifier": "如果同一套本地智能体任务上，它在完成率或速度上稳定弱于同尺寸、同显存预算的 Qwen 或 Gemma，或者 24GB 显存根本跑不起来，就收回「这周该把 Glimmer 放进本地智能体对照」。",
+        "thesis_id": "T-001"
+      }
+    }
+  ]
+}
