@@ -17,7 +17,7 @@
 
 主人每周因 Radar 做出至少 **N=3** 个工具或赛道决策；P0 事后命中率目标先写 **「待校准」**（X）；重大发布首报时差目标 **< Y=6 小时**。N/X/Y 可在 `config.json` → `success_metrics` 调整。
 
-北极星指标：**可行动信号数**（主人 `action`：`tried` / `thesis_updated` / `shared` / `ignored`），每周回看。记录在 `public/owner-actions.json`（或未跟踪的 `owner-actions.local.json`）。
+北极星指标：**可行动信号数**（主人 `action`：`tried` / `thesis_updated` / `shared` / `ignored`），每周回看。记在未跟踪的 `owner-actions.local.json`，或私有池 / 飞书。`public/owner-actions.json` 只是空骨架，随 Pages 发布，不放私人 action。私人主报同样不进仓库正文（`DIGEST_LATEST.md` 仅为占位）。
 
 ## 班次（北京时间）
 

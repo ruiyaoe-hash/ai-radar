@@ -57,6 +57,6 @@ python3 scripts/ops_retract.py --self-check
 
 1. 空跑 `action=pause`，`shift` 用 `08:00`（每天主报）或 `21:00`（工作日晚班）。
 2. Alba 这一班不写新卡、不把本班写成已发布。
-3. 在 `DIGEST_LATEST.md` 用一句话记下原因。
+3. 暂停原因记在飞书或私有池的私人主报里。不要把私人句子写进公开仓的 `DIGEST_LATEST.md`（该文件只是占位）。
 4. 不要改 `state.json`。水位已弃用，见 `TIMELINE.md`。
 5. 需要告诉读者时，人在飞书订阅群发一句。24 小时无新卡的健康检查仍可能响，暂停不会关掉它。

@@ -69,7 +69,7 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 | `public/index.html` | 决策信号 UI（lens / P0-待证 / 今日3条） |
 | `public/tools-radar.html` | 工具雷达 |
 | `public/theses.json` | 长期论点 |
-| `public/owner-actions.json` | 主人 action（注意隐私） |
+| `public/owner-actions.json` | 公开空骨架。私人 action 不进此文件，改记 `owner-actions.local.json` 或飞书 / 私有池 |
 | `public/config/sources.json` | 一手信源清单 |
 | `schemas/` | JSON Schema |
 | `scripts/` | migrate / derive / validate / memo / score / feishu |
@@ -78,7 +78,7 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 
 仓库根的 `state.json` 仍有 `watermark`、`last_run`、`seen_ids`、`last_digest`。这四项停在 **2026-10-12T05:35:03Z**，`last_digest` 仍是 `2026-10-12 13:30 CST main`。
 
-其后的 digest 没有改它：`public/archive/2026-10-13.json`、`public/archive/2026-10-14.json` 和 `DIGEST_LATEST.md`（2026-10-14 08:00）都已发布。`scripts/` 里没有读写这份水位的例程。`scripts/feishu_notify.py` 只用 `.feishu-notify-state.json`，并写明不要碰 `state.json`。
+其后的 digest 没有改它：`public/archive/2026-10-13.json` 和 `public/archive/2026-10-14.json` 已发布。根目录曾有一份主报稿；私人主报正文现已不进公开仓，`DIGEST_LATEST.md` 只保留占位。`scripts/` 里没有读写这份水位的例程。`scripts/feishu_notify.py` 只用 `.feishu-notify-state.json`，并写明不要碰 `state.json`。
 
 **结论：弃。** 文件留着当历史快照，并加了 `contract: deprecated`。它不是去重契约，也不是班次打卡。
 
@@ -112,7 +112,7 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 
 ## 注意
 
-- 人读层按 `docs/AIHOT对接与表达规范-v0.md`（2026-10-16）：主报和 `title` / `objective` / `so_what` 一句一事实，正文不写 `evt-` / `cand-`，跳过清单放附录。决策门闩不改。
+- 人读层按 `docs/AIHOT对接与表达规范-v0.md`（2026-10-16）：公开卡片的 `title` / `objective` / `so_what` 一句一事实，正文不写 `evt-` / `cand-`，跳过清单放附录。决策门闩不改。私人主报（称呼、选型）不要写入仓库；`DIGEST_LATEST.md` 保持占位，留底放飞书或私有池。
 - 客观与 so_what **分栏**；无 falsifier 不写 so_what  
 - 归档按日累积；看板是滑动窗口（约 7 天 / ≤50 条）  
 - 工作流在 `.github/workflows/`。根镜像已退役（`.no-root-mirror`），线上只部署 `public/`

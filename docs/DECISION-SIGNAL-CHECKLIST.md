@@ -33,4 +33,4 @@
 
 ## 人读层
 
-- [x] 主报和卡片人读字段按 [`AIHOT对接与表达规范-v0.md`](./AIHOT对接与表达规范-v0.md)。P0 定义、一手门闩、falsifier、`media_alone` 不放宽。
+- [x] 主报和卡片人读字段按 [`AIHOT对接与表达规范-v0.md`](./AIHOT对接与表达规范-v0.md)。P0 定义、一手门闩、falsifier、`media_alone` 不放宽。私人主报不进公开仓正文。
