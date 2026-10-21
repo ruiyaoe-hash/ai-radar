@@ -35,13 +35,16 @@
     "OpenAI", "AnthropicAI", "GoogleDeepMind", "AIatMeta", "deepseek_ai", "Alibaba_Qwen",
     "MistralAI", "_akhaliq", "huggingface", "ArtificialAnlys", "arcprize", "lmarena_ai",
     "dotey", "shao__meng", "dongxi_nlp", "simonw", "sama", "clementdelangue",
-    "GeminiApp", "MetaNewsroom", "TencentHunyuan", "Hailuo_AI", "AravSrinivas", "arthurmensch"
+    "GeminiApp", "MetaNewsroom", "TencentHunyuan", "Hailuo_AI", "AravSrinivas", "arthurmensch",
+    "dhh", "thomaszhou_", "xiaohuiyuan"
   ],
   "practice_handles": [
     "op7418", "vista8", "lijigang", "bcherny",
-    "trq212", "mattpocockuk", "addyosmani", "ryolu_"
+    "trq212", "mattpocockuk", "addyosmani", "ryolu_",
+    "ammaar", "ameliax111", "Saccc_c"
   ],
-  "practice_handles_note": "实操向 8 个账号（practice-oriented handles）：op7418、vista8、lijigang、bcherny、trq212、mattpocockuk、addyosmani、ryolu_。已从 a_tier 迁出。默认 lane_hint=practice、participation=practice，Phase 3 才强制路由。digest 的 a_tier 只保留决策/情报先验。dotey、simonw、shao__meng 仍在 a_tier，不在这 8 个里。重叠时按内容路由，可以双标。现有归档与 derive 不读这张名单。",
+  "practice_handles_note": "实操向 11 个账号（practice-oriented handles）：op7418、vista8、lijigang、bcherny、trq212、mattpocockuk、addyosmani、ryolu_、ammaar、ameliax111、Saccc_c。新增 ammaar、ameliax111、Saccc_c。前 8 个已从 a_tier 迁出。默认 lane_hint=practice、participation=practice，Phase 3 才强制路由。digest 的 a_tier 只保留决策/情报先验。dotey、simonw、shao__meng 仍在 a_tier，不在这 11 个里。重叠时按内容路由，可以双标。现有归档与 derive 不读这张名单。",
+  "watch_pool_lanes_note": "三车道：practice_handles = 强实操；a_tier 里实验室与官方账号之外的个人 = 强技术 + 商业化情报；之后按 bookmark 与 bookmark÷like 质量动态升降。",
   "pool_traceability_since": "2026-10-15",
   "pool_traceability_note": "北京日历日 >= 此日的新 archive 卡，必须带 candidate_id，或 promotion_path=emergency。能读到池快照时，candidate_id 还须对应 status_in_pool=promoted。2026-10-14 及更早的卡是遗留，不回填。公开 CI 没有私有池时跳过实卡对池，只用 testdata/ 夹具。",
   "primary_sources_config": "public/config/sources.json",
