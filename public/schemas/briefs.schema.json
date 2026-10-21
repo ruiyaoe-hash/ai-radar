@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/briefs.schema.json",
+  "title": "AI Radar L2 briefs",
+  "description": "Public flash items. No so_what, priority, or status. auto_brief rows are produced by scripts/derive_briefs.py from scored candidates. archive_seed rows are excerpts of cards already on the public archive.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "level", "updated", "items"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "level": { "type": "string", "const": "L2" },
+    "updated": { "type": "string", "minLength": 1 },
+    "note": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/brief" }
+    }
+  },
+  "$defs": {
+    "brief": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "level", "date", "time", "title", "summary", "url", "source", "lens"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^brf-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$"
+        },
+        "level": { "type": "string", "const": "L2" },
+        "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+        "time": { "type": "string", "pattern": "^[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "url": { "type": "string", "minLength": 8, "maxLength": 500 },
+        "source": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "lens": { "type": "string", "enum": ["工具", "赛道", "模式", "时机"] },
+        "origin": { "type": "string", "enum": ["archive_seed", "auto_brief"] },
+        "candidate_id": { "type": "string", "pattern": "^cand-[0-9]{8}-[a-f0-9]{12}$" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "origin": { "const": "auto_brief" } },
+            "required": ["origin"]
+          },
+          "then": { "required": ["candidate_id"] }
+        }
+      ]
+    }
+  }
+}

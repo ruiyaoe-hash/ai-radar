@@ -1,6 +1,6 @@
 # 快讯层（L2）设计说明
 
-状态：L2 的页面和示例数据已经在站上。导航入口也已接上，见下方「第三步」。真实数据派生，以及窗口、条数上限，还留在后面的改动里。
+状态：页面和导航已在站上。`public/briefs.json` 里现有条目是 `origin=archive_seed`（摘自已公开归档，不是新事实）。`scripts/derive_briefs.py` 会把打分自动档追加为 `origin=auto_brief`。窗口和条数上限里，自动档每轮最多 20 条；看板窗口仍另说。
 
 ## 要解决的问题
 
@@ -16,7 +16,7 @@
 | L2 快讯 | 一条事实 + 一个链接，60–100 字，**不写判断** | 低 | `briefs.html` 单独一页 |
 | L3 索引 | 标题 + 来源 + 链接，只列不展开 | 极低 | 周归档附录 |
 
-本 PR 只做 L2 的前端形态，数据是手工示例。
+页面形态先落地。数据现在分两档：`archive_seed` 摘自已公开归档；`auto_brief` 由打分自动档派生。实操不从这里自动上站。
 
 ## 数据结构
 
@@ -52,7 +52,7 @@
 
 ## 与 L1 的边界
 
-一条信号只能落在一层：进了 L1 就不进 L2，反之亦然。执行方式是 **L2 只从候选池里被 L1 跳过的行生成**，不重复消费已经晋升的 `candidate_id`。这条要写进 `generate_derived.py` 的注释，避免以后两处各写一份。
+一条信号只能落在一层：URL 已经在公开归档里的，不再进 L2。执行在 `scripts/derive_briefs.py`，不在 `generate_derived.py`（后者继续不读池）。自动档要求高分且有一手；中高分和实操留在私有池审核清单。
 
 ## 分三步落地
 
@@ -70,11 +70,12 @@
 
 **已验证**：本地 `python3 scripts/validate.py` 全绿，`check_csp` 从 7 页变 8 页通过，`check_beacon` 同。新页面不写内联脚本，CSP 里只有 `'self'` 和 Cloudflare beacon，不需要 hash。
 
-### 第二步（下一个 PR，动数据管道）
+### 第二步（打分接通）
 
-- `scripts/generate_derived.py` 增加 `briefs.json` 派生：读 `public/archive/` + 池快照里 `status_in_pool=active` 但未被晋升的行
-- `schemas/briefs.schema.json` 新增，`scripts/validate.py` 增加一条 `check_briefs()`
-- 涉及文件：2 改 1 增
+- `schemas/briefs.schema.json` 与 `scripts/validate.py` 的 `check_briefs()`
+- `scripts/derive_briefs.py` 读私有池里的自动档，写 `public/briefs.json`
+- 原文不进公开字段；`safe_http_url`、提示注入校验、`strip_raw_post_fields`
+- 做法见 `docs/score-and-briefs.md`
 
 ### 第三步（展示）
 

@@ -52,5 +52,18 @@
   "primary_sources_config": "public/config/sources.json",
   "source_tier_map": "config/source_tier_map.json",
   "entity_rules": "config/entity_rules.json",
-  "single_source_of_truth": "public/archive/"
+  "single_source_of_truth": "public/archive/",
+  "score": {
+    "tau_hours": 36,
+    "auto_min": 0.52,
+    "review_min": 0.34,
+    "hit_alpha": 2,
+    "hit_beta": 2,
+    "tier_mix": 0.7,
+    "bookmark_prior": 3,
+    "like_prior": 5,
+    "author_prior_n": 3,
+    "actionability_cap": 0.12,
+    "note": "门槛之后的规则分。value ≈ 信源先验 × exp(-Δt/τ) × 交叉印证 × 互动速度 + 可操作性（上限 actionability_cap）。收藏÷点赞用 (bookmarks+bookmark_prior)/(likes+like_prior)，作者样本少时再向作者先验收缩。丢弃行计入命中率分母。practice 不进自动快讯。未配置 LLM 端点时不访问网络。"
+  }
 }

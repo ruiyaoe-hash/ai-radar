@@ -275,6 +275,62 @@ def extract_text(item: dict) -> str | None:
     return None
 
 
+def _nonneg_int(value) -> int | None:
+    if isinstance(value, bool) or value is None:
+        return None
+    if isinstance(value, int):
+        return value if value >= 0 else None
+    if isinstance(value, float) and value >= 0 and value.is_integer():
+        return int(value)
+    if isinstance(value, str) and value.isdigit():
+        return int(value)
+    return None
+
+
+def _count_from(mapping: dict, *keys: str) -> int | None:
+    for key in keys:
+        if key not in mapping:
+            continue
+        found = _nonneg_int(mapping.get(key))
+        if found is not None:
+            return found
+    return None
+
+
+def extract_engagement(item: dict, captured_at: str | None = None) -> dict | None:
+    """Copy like/bookmark counts when the raw fetch has them. Omit the object otherwise."""
+    bags: list[dict] = []
+    if isinstance(item, dict):
+        bags.append(item)
+        for key in ("public_metrics", "metrics", "organic_metrics"):
+            bag = item.get(key)
+            if isinstance(bag, dict):
+                bags.append(bag)
+        legacy = item.get("legacy")
+        if isinstance(legacy, dict):
+            bags.append(legacy)
+    fields = {
+        "likes": ("like_count", "likes", "favorite_count"),
+        "bookmarks": ("bookmark_count", "bookmarks"),
+        "reposts": ("retweet_count", "repost_count", "reposts"),
+        "replies": ("reply_count", "replies"),
+        "quotes": ("quote_count", "quotes"),
+        "views": ("impression_count", "view_count", "views"),
+    }
+    found: dict = {}
+    for name, keys in fields.items():
+        for bag in bags:
+            count = _count_from(bag, *keys)
+            if count is not None:
+                found[name] = count
+                break
+    if not found:
+        return None
+    if captured_at:
+        found["captured_at"] = captured_at
+    return found
+
+
 def extract_created_at(item: dict) -> str | None:
     for path in (("created_at",), ("legacy", "created_at"), ("tweet", "created_at")):
         parsed = parse_source_timestamp(dig(item, *path))
@@ -380,6 +436,9 @@ def item_to_record(item, ingested_at: str, users: dict[str, str]) -> tuple[dict 
         extract_text(item),
         title,
     )
+    engagement = extract_engagement(item, ingested_at)
+    if engagement:
+        record["engagement"] = engagement
     return record, None
 
 
@@ -572,6 +631,34 @@ def self_check() -> None:
     if legacy_rows[0]["published_at"] != "2026-10-14T04:00:00Z":
         raise SystemExit(f"FAIL: legacy created_at {legacy_rows[0]['published_at']!r}")
 
+    metrics_rows, metrics_gaps = records_from_payload(
+        {
+            "items": [
+                {
+                    "id": "88",
+                    "text": "FIXTURE metrics",
+                    "created_at": "2026-10-14T01:00:00Z",
+                    "username": "examplelab",
+                    "public_metrics": {
+                        "like_count": 10,
+                        "bookmark_count": 4,
+                        "retweet_count": 1,
+                        "reply_count": 0,
+                        "impression_count": 100,
+                    },
+                }
+            ]
+        },
+        ingested,
+    )
+    if metrics_gaps or "engagement" not in metrics_rows[0]:
+        raise SystemExit(f"FAIL: engagement was not copied: {metrics_rows} {metrics_gaps}")
+    engagement = metrics_rows[0]["engagement"]
+    if engagement.get("likes") != 10 or engagement.get("bookmarks") != 4 or engagement.get("views") != 100:
+        raise SystemExit(f"FAIL: engagement counts {engagement}")
+    if any("engagement" in row for row in first):
+        raise SystemExit("FAIL: sample rows without metrics must omit engagement")
+
     gap_rows, gap_msgs = records_from_payload(
         {"items": [{"text": "no identity"}, {"id": "42", "text": "FIXTURE kept"}]},
         ingested,
@@ -639,7 +726,7 @@ def self_check() -> None:
         raise SystemExit("FAIL: jsonschema is not installed. Run: pip install -r requirements-ci.txt")
     schema = json.loads((ROOT / "schemas" / "candidate.schema.json").read_text(encoding="utf-8"))
     validator = Draft202012Validator(schema)
-    for row in first:
+    for row in first + metrics_rows:
         errors = sorted(validator.iter_errors(row), key=lambda err: list(err.path))
         if errors:
             raise SystemExit(f"FAIL: ingest row schema {errors[0].message}")
