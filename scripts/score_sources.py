@@ -7,9 +7,12 @@ Metrics per handle:
   - actions_taken, only from gitignored owner-actions.local.json when that
     file exists. public/owner-actions.json is a published skeleton and is
     never counted. Do not commit a board produced from a local file.
-  - dropped: pool rows with status dropped, one count per candidate id.
-    Pass --pool-dir to include them. Without it the board is archive-only
-    and pool_drops_included is false (survivor bias remains).
+  - dropped: pool rows dropped for an editorial/quality reason (QUALITY_DROPS,
+    same rule as score_pool), one count per candidate id. Decay and duplicate
+    drops are not a verdict on the source. Pass --pool-dir to include them.
+    Without it hit_rate is null: an archive-only rate would only see survivors.
+  - Handles are merged case-insensitively (OpenAI and openai are one source);
+    the first spelling seen is the one published.
   - bookmark_like_ratio: (bookmarks + 3) / (likes + 5) over engagement on
     those pool rows, including discarded posts. Null when no counts exist.
 
@@ -30,9 +33,9 @@ from pathlib import Path
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from score_pool import smoothed_bookmark_like, smoothed_hit_rate
+    from score_pool import QUALITY_DROPS, smoothed_bookmark_like, smoothed_hit_rate
 else:
-    from .score_pool import smoothed_bookmark_like, smoothed_hit_rate
+    from .score_pool import QUALITY_DROPS, smoothed_bookmark_like, smoothed_hit_rate
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -44,7 +47,7 @@ LOCAL_ACTIONS = (
 TZ = timezone(timedelta(hours=8))
 FORMULA = (
     "score = actions*5 + p0*2 + primary*3 + analysis - rumor - corrections*3; "
-    "hit_rate = (cards+2)/(cards+dropped+4); "
+    "hit_rate = (cards+2)/(cards+quality_drops+4), null without the private pool; "
     "bookmark_like_ratio = (bookmarks+3)/(likes+5) when engagement rows are passed, "
     "including discarded posts"
 )
@@ -78,8 +81,21 @@ def _blank() -> dict:
     }
 
 
-def empty_stats():
-    return defaultdict(_blank)
+class Stats(defaultdict):
+    """Per-source counters keyed case-insensitively; remembers the first spelling."""
+
+    def __init__(self) -> None:
+        super().__init__(_blank)
+        self.display: dict[str, str] = {}
+
+    def __getitem__(self, handle: str) -> dict:
+        key = handle.casefold()
+        self.display.setdefault(key, handle)
+        return super().__getitem__(key)
+
+
+def empty_stats() -> Stats:
+    return Stats()
 
 
 def apply_archive(stats, archive: Path) -> dict:
@@ -138,14 +154,16 @@ def apply_pool_rows(stats, rows: list[dict]) -> None:
         handle = ((row.get("source") or {}).get("handle") or "").lstrip("@").strip()
         if not handle or row.get("status_in_pool") != "promoted":
             continue
-        promoted[handle].add(row.get("id"))
+        promoted[handle.casefold()].add(row.get("id"))
     for row in rows:
         handle = ((row.get("source") or {}).get("handle") or "").lstrip("@").strip()
         if not handle:
             continue
+        folded = handle.casefold()
         rid = row.get("id")
-        if row.get("status_in_pool") == "dropped" and rid not in promoted[handle] and rid not in seen_drop[handle]:
-            seen_drop[handle].add(rid)
+        quality = row.get("status_in_pool") == "dropped" and row.get("drop_reason") in QUALITY_DROPS
+        if quality and rid not in promoted[folded] and rid not in seen_drop[folded]:
+            seen_drop[folded].add(rid)
             stats[handle]["dropped"] += 1
         engagement = row.get("engagement") if isinstance(row.get("engagement"), dict) else None
         if not engagement:
@@ -170,7 +188,9 @@ def row_score(st: dict) -> int:
 
 def board_from_stats(stats, pool_drops_included: bool) -> list[dict]:
     board = []
-    for handle, st in stats.items():
+    display = getattr(stats, "display", {})
+    for key, st in stats.items():
+        handle = display.get(key, key)
         samples = st["engagement_samples"]
         ratio = None
         if samples:
@@ -181,7 +201,7 @@ def board_from_stats(stats, pool_drops_included: bool) -> list[dict]:
                 "handle": handle,
                 "score": row_score(st),
                 **public,
-                "hit_rate": round(smoothed_hit_rate(st["cards"], st["dropped"]), 4),
+                "hit_rate": round(smoothed_hit_rate(st["cards"], st["dropped"]), 4) if pool_drops_included else None,
                 "bookmark_like_ratio": ratio,
                 "bookmark_like_samples": samples,
                 "pool_drops_included": pool_drops_included,
@@ -214,7 +234,9 @@ def self_check() -> None:
     stats["fixturelab"]["cards"] = 1
     stats["fixturelab"]["analysis_role"] = 1
     stats["fixturelab"]["confirmed"] = 1
-    clean = board_from_stats(stats, False)[0]["hit_rate"]
+    if board_from_stats(stats, False)[0]["hit_rate"] is not None:
+        raise SystemExit("FAIL: an archive-only board must not publish a survivor hit_rate")
+    clean = board_from_stats(stats, True)[0]["hit_rate"]
     stats["fixturelab"]["dropped"] = 4
     dirty = board_from_stats(stats, True)[0]["hit_rate"]
     if not dirty < clean:
@@ -224,15 +246,15 @@ def self_check() -> None:
         {
             "id": "cand-20261014-ddddddddddd1",
             "status_in_pool": "dropped",
-            "drop_reason": "low_score",
+            "drop_reason": "editor_skip",
             "source": {"handle": "fixturelab"},
             "engagement": {"likes": 10, "bookmarks": 1},
         },
         {
             "id": "cand-20261014-ddddddddddd1",
             "status_in_pool": "dropped",
-            "drop_reason": "duplicate_url",
-            "source": {"handle": "fixturelab"},
+            "drop_reason": "editor_skip",
+            "source": {"handle": "FixtureLab"},
             "engagement": {"likes": 10, "bookmarks": 1},
         },
         {
@@ -269,6 +291,15 @@ def self_check() -> None:
         raise SystemExit("FAIL: board ratio drifted from the smoothed function")
     if by_handle["quietlab"]["pool_drops_included"] is not True:
         raise SystemExit("FAIL: pool flag missing")
+    if "FixtureLab" in by_handle:
+        raise SystemExit("FAIL: handles differing only by case must merge")
+    timing = empty_stats()
+    apply_pool_rows(
+        timing,
+        [{"id": "cand-20261014-ddddddddddd9", "status_in_pool": "dropped", "drop_reason": "low_score", "source": {"handle": "fixturelab"}}],
+    )
+    if timing["fixturelab"]["dropped"] != 0:
+        raise SystemExit("FAIL: a decay drop must not count against the source")
     print("OK score_sources self-check")
 
 
@@ -294,9 +325,13 @@ def main(argv: list[str] | None = None) -> int:
         "pool_drops_included": pool_rows is not None,
         "sources": board,
     }
-    (PUBLIC / "source-scores.json").write_text(
-        json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    target = PUBLIC / "source-scores.json"
+    if target.is_file():
+        previous = json.loads(target.read_text(encoding="utf-8"))
+        if {k: v for k, v in previous.items() if k != "updated"} == {k: v for k, v in out.items() if k != "updated"}:
+            print(f"OK public/source-scores.json 无更新 ({len(board)} handles)")
+            return 0
+    target.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"wrote public/source-scores.json ({len(board)} handles)")
     return 0
 

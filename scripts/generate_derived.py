@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import sys
 import urllib.parse
 from datetime import datetime, timedelta, timezone
@@ -249,6 +250,18 @@ def build_rss(items: list[dict], title: str, description: str, self_url: str) ->
     return "\n".join(parts)
 
 
+STAMP_RE = re.compile(r'^\s*"updated": "[^"]*",?$|<lastBuildDate>[^<]*</lastBuildDate>', re.M)
+
+
+def write_stable(path: Path, text: str, encoding: str = "utf-8") -> None:
+    """Skip the write when only the wall-clock stamp would change, so reruns do not churn git."""
+    if path.is_file():
+        old = path.read_text(encoding=encoding)
+        if old == text or STAMP_RE.sub("", old) == STAMP_RE.sub("", text):
+            return
+    path.write_text(text, encoding=encoding)
+
+
 def write_archive_index(all_items: list[dict]) -> None:
     counts: dict[str, int] = {}
     for it in all_items:
@@ -256,7 +269,7 @@ def write_archive_index(all_items: list[dict]) -> None:
         if d:
             counts[d] = counts.get(d, 0) + 1
     dates = [{"date": d, "count": counts[d]} for d in sorted(counts.keys(), reverse=True)]
-    (ARCHIVE / "index.json").write_text(
+    write_stable((ARCHIVE / "index.json"),
         json.dumps({"dates": dates}, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
@@ -385,7 +398,7 @@ def sync_practice_inbox() -> None:
     dest = PUBLIC / "practice.json"
     if not incoming:
         if not dest.exists():
-            dest.write_text(
+            write_stable(dest,
                 json.dumps(
                     {"schema_version": 1, "updated": None, "items": []},
                     ensure_ascii=False,
@@ -413,7 +426,7 @@ def sync_practice_inbox() -> None:
         by_id[eid] = strip_raw_post_fields(it)
     items = [by_id[eid] for eid in order]
     items.sort(key=lambda it: str(it.get("time") or ""), reverse=True)
-    dest.write_text(
+    write_stable(dest,
         json.dumps(
             {
                 "schema_version": 1,
@@ -449,7 +462,7 @@ ATLAS_CSP = (
 
 def _dump_json(path: Path, payload) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_stable(path, json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def _metric(value):
@@ -738,11 +751,11 @@ def main():
         "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
         "items": board,
     }
-    (PUBLIC / "items.json").write_text(
+    write_stable((PUBLIC / "items.json"),
         json.dumps(items_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
-    (PUBLIC / "feed.xml").write_text(
+    write_stable((PUBLIC / "feed.xml"),
         build_rss(
             board,
             "AI Radar",
@@ -756,7 +769,7 @@ def main():
         lens_items = [it for it in board if it.get("lens") == lens]
         slug = {"工具": "tools", "赛道": "tracks", "模式": "models", "时机": "timing"}[lens]
         label = LENS_LABEL[lens]
-        (FEEDS / f"lens-{slug}.xml").write_text(
+        write_stable((FEEDS / f"lens-{slug}.xml"),
             build_rss(
                 lens_items,
                 f"AI Radar · {label}",
@@ -767,10 +780,10 @@ def main():
         )
 
     radar = build_tools_radar(all_items)
-    (PUBLIC / "tools-radar.json").write_text(
+    write_stable((PUBLIC / "tools-radar.json"),
         json.dumps(radar, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    (PUBLIC / "today3.txt").write_text(build_today3(board), encoding="utf-8")
+    write_stable((PUBLIC / "today3.txt"), build_today3(board), encoding="utf-8")
     sync_practice_inbox()
     sync_atlas()
 

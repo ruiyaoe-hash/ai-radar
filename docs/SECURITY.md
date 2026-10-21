@@ -59,4 +59,17 @@ Agent 能读到的只是已经选进 `public/` 的只读静态层：`agent.html`
 
 Pages 部署只用工作流自带的 `GITHUB_TOKEN`，权限是 `contents: read`、`pages: write`、`id-token: write`。部署前会先跑 `validate.py`，失败就不上传。同一步还会核对 Pages 的 `build_type` 必须是 `workflow`，避免改回从仓库根目录发站。
 
+两个 ingest 工作流会用 `github-actions[bot]` 直接把 `public/briefs.json` 推到 `main`。打开「禁止直接推送」时，要在规则集里给 GitHub Actions 加 bypass，或者只对人类账号生效；否则自动快讯会推送失败（私有池照常更新）。推送前脚本会先跑 `validate.py`，不过就不推。
+
+## 工作流凭据边界
+
+- 所有 `uses:` 锁 commit SHA（`validate.py` 检查），`.github/dependabot.yml` 每周提更新 PR
+- 所有 checkout 都 `persist-credentials: false`。池令牌只在「推私有池」那一步的 env 里，用一次性 http 头推送并 `::add-mask::`；`X_BEARER_TOKEN` 只在抓取那一步
+- `run:` 里不内联 `${{ }}`，用户输入（`workflow_dispatch` 的 `inputs`）经 `env:` 传入
+- 私有池检出在公开仓目录之外（`site/` 与 `pool/` 并列），脚本拒绝把池写进公开仓
+
+## 第三方摘录
+
+`public/data/kb.json` 的 `sources[].excerpt` 是图谱里引用的社交帖摘要。允许的前提：每条不超过 80 字，必须带作者和原帖 http(s) 链接，不得命中指令句规则。超过就改写成自己的话，不要贴原文。`validate.py` 会检查这三条。快讯（`briefs.json`）只取第一句且不超过 100 字，feed 里的 HTML 在入池和派生两处都会去掉。
+
 不要把个人访问令牌、飞书 webhook 或私有池令牌写进 git，也不要放进 `public/`。飞书 webhook 和池令牌只放在 Actions secrets。池令牌只用于私有池仓库的 Contents 读写，不能拿来推这个公开仓。公开 CI 的 `permissions.contents` 保持 `read`。

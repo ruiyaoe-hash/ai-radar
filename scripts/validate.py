@@ -32,6 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 ARCHIVE = PUBLIC / "archive"
 SCHEMAS = ROOT / "schemas"
+KB_EXCERPT_MAX = 80
 
 LENSES = {"工具", "赛道", "模式", "时机"}
 LENS_FEEDS = {
@@ -434,6 +435,22 @@ def check_atlas() -> None:
     topics = {item.get("slug"): item for item in kb.get("topics") or []}
     sources = kb.get("sources") or []
     by_id = {item.get("id"): item for item in sources}
+    # Excerpts of third-party posts are allowed as short, attributed quotes only (docs/SECURITY.md).
+    try:
+        from generate_derived import safe_http_url as _safe_url
+        from prompt_guard import find_instruction_override as _override
+    except ImportError:
+        from scripts.generate_derived import safe_http_url as _safe_url
+        from scripts.prompt_guard import find_instruction_override as _override
+    for item in sources:
+        excerpt = str(item.get("excerpt") or "")
+        if len(excerpt) > KB_EXCERPT_MAX:
+            fail(f"data/kb.json {item.get('id')}: excerpt {len(excerpt)} chars > {KB_EXCERPT_MAX}; summarise, do not paste the post")
+        if excerpt and (not item.get("author") or not _safe_url(str(item.get("url") or ""))):
+            fail(f"data/kb.json {item.get('id')}: an excerpt needs its author and an http(s) link to the original")
+        rule = _override(excerpt) or _override(str(item.get("title") or ""))
+        if rule:
+            fail(f"data/kb.json {item.get('id')}: excerpt/title matches {rule}")
     practice = json.loads((PUBLIC / "practice.json").read_text(encoding="utf-8"))
     for item in practice.get("items") or []:
         sid = item.get("id")

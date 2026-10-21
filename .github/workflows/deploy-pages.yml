@@ -5,6 +5,10 @@ name: Deploy Pages · public/
 on:
   push:
     branches: [main]
+  # today3 / the 7-day board / the weekly memo are windowed on the Beijing date, so
+  # rebuild once a day even when nothing was pushed. 16:10 UTC = 00:10 Beijing.
+  schedule:
+    - cron: "10 16 * * *"
   workflow_dispatch:
 
 permissions:
