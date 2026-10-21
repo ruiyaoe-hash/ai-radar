@@ -30,7 +30,7 @@ from pathlib import Path
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from annotate_gates import evidence_links, options_from_repo, read_pool, url_is_primary, write_pool
+    from annotate_gates import evidence_links, options_from_repo, pool_window_start, read_pool, url_is_primary, write_pool
     from card_times import utc_now_iso
     from generate_derived import safe_http_url
     from ingest_x import (
@@ -45,7 +45,7 @@ if __package__ in {None, ""}:
     from score_pool import is_official_row, is_practice_row
     from shift_ingest_x_to_pool import assert_shift_pool_dir
 else:
-    from .annotate_gates import evidence_links, options_from_repo, read_pool, url_is_primary, write_pool
+    from .annotate_gates import evidence_links, options_from_repo, pool_window_start, read_pool, url_is_primary, write_pool
     from .card_times import utc_now_iso
     from .generate_derived import safe_http_url
     from .ingest_x import (
@@ -374,11 +374,11 @@ def _load_existing(path: Path) -> dict:
     return data
 
 
-def _rows_from_path(path: Path) -> tuple[list[dict], list | None, Path | None]:
+def _rows_from_path(path: Path, since=None) -> tuple[list[dict], list | None, Path | None]:
     if path.name == "candidates" or (path / "candidates").is_dir():
         pool = path if (path / "candidates").is_dir() else path.parent
         assert_shift_pool_dir(pool)
-        pairs = read_pool(pool)
+        pairs = read_pool(pool, since)
         return [row for _day, row in pairs], pairs, pool
     rows = []
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -727,7 +727,7 @@ def main(argv: list[str] | None = None) -> int:
         as_of = parse_utc(args.as_of) if args.as_of else parse_utc(utc_now_iso())
         options = options_from_repo(as_of)
         if args.pool_dir:
-            rows, pairs, pool = _rows_from_path(Path(args.pool_dir))
+            rows, pairs, pool = _rows_from_path(Path(args.pool_dir), pool_window_start(as_of, RETAIN_DAYS))
         else:
             rows, pairs, pool = _rows_from_path(Path(args.input))
         updated = as_of.astimezone(SHANGHAI).strftime("%Y-%m-%d %H:%M 北京时间")

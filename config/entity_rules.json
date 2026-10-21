@@ -39,6 +39,42 @@
       "cluster_alone": true
     },
     {
+      "id": "deepseek-version",
+      "kind": "model",
+      "pattern": "\\bdeepseek[- ]?(?:v|r)\\d+(?:\\.\\d+)?\\b",
+      "cluster_alone": true
+    },
+    {
+      "id": "qwen-version",
+      "kind": "model",
+      "pattern": "\\bqwen\\d+(?:\\.\\d+)?(?:-[a-z0-9]+)?\\b",
+      "cluster_alone": true
+    },
+    {
+      "id": "kimi-version",
+      "kind": "model",
+      "pattern": "\\bkimi[- ]?k\\d+(?:\\.\\d+)?\\b",
+      "cluster_alone": true
+    },
+    {
+      "id": "glm-version",
+      "kind": "model",
+      "pattern": "\\bglm-\\d+(?:\\.\\d+)?v?\\b",
+      "cluster_alone": true
+    },
+    {
+      "id": "llama-version",
+      "kind": "model",
+      "pattern": "\\bllama[- ]?\\d+(?:\\.\\d+)?\\b",
+      "cluster_alone": true
+    },
+    {
+      "id": "doubao-version",
+      "kind": "model",
+      "pattern": "(?:\\bdoubao|豆包)[- ]?\\d+(?:\\.\\d+)?",
+      "cluster_alone": true
+    },
+    {
       "id": "fixtureloose-name",
       "kind": "product",
       "pattern": "FixtureLoose-Name",

@@ -25,7 +25,7 @@ from pathlib import Path
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from annotate_gates import options_from_repo, read_pool, run_paths
+    from annotate_gates import options_from_repo, pool_window_start, read_pool, run_paths
     from card_times import utc_now_iso
     from ingest_x import (
         IngestError,
@@ -36,7 +36,7 @@ if __package__ in {None, ""}:
         run_ingest,
     )
 else:
-    from .annotate_gates import options_from_repo, read_pool, run_paths
+    from .annotate_gates import options_from_repo, pool_window_start, read_pool, run_paths
     from .card_times import utc_now_iso
     from .ingest_x import (
         IngestError,
@@ -68,7 +68,7 @@ def annotate_pending(pool_dir: Path, as_of: str | None) -> int:
     """Same path as `annotate_gates.py --pool-dir … --only-pending`."""
     clock = parse_utc(as_of) if as_of else parse_utc(utc_now_iso())
     options = options_from_repo(clock, only_pending=True)
-    pairs = read_pool(pool_dir)
+    pairs = read_pool(pool_dir, pool_window_start(clock, options.no_new_info_days))
     records = [row for _path, row in pairs]
     if not records:
         print("无更新")
