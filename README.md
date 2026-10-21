@@ -2,7 +2,8 @@
 
 把「情报时间线」升级为可行动、可证伪的决策信号。
 
-- 看板：https://ruiyaoe-hash.github.io/ai-radar/
+- 首页：https://ruiyaoe-hash.github.io/ai-radar/
+- 今日必看：https://ruiyaoe-hash.github.io/ai-radar/today.html
 - RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 - 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html
 - 卡片规范：[`CARD_SPEC.md`](./CARD_SPEC.md)
@@ -11,6 +12,7 @@
 - 全量规格：[`docs/DECISION-SIGNAL-FULL-SPEC.md`](./docs/DECISION-SIGNAL-FULL-SPEC.md)
 - 验收清单：[`docs/DECISION-SIGNAL-CHECKLIST.md`](./docs/DECISION-SIGNAL-CHECKLIST.md)
 - 飞书：[`docs/FEISHU.md`](./docs/FEISHU.md)
+- 变更记录：[`CHANGELOG.md`](./CHANGELOG.md)
 - 候选池契约：[`docs/candidate-pool.md`](./docs/candidate-pool.md)（正文在私有仓 `ai-radar-pool`；公开仓只有 schema / 枚举 / 文档）
 
 ## 成功是什么样子
@@ -43,6 +45,49 @@
 
 `data/` 三份副本已删除。根目录 `README.md` 是项目说明，**不会**被镜像脚本覆盖。
 
+## 站点结构
+
+顶栏三组导航由 `public/assets/shell.js` 统一写出，`scripts/validate.py` 锁住分组和顺序。
+
+| 分组 | 页面 |
+|------|------|
+| 首页 | `index.html`：宣言、三个入口（实时读取今日精选、快讯、图谱、随笔）、更正入口 |
+| 信号 Signals | `today.html` 今日必看、`briefs.html` 快讯、`week.html` 本周归档、`tools-radar.html` 可试用工具 |
+| 造物 Creations | `atlas.html` 实战图谱（含 `#method` 收录标准）、`topics/*.html`、`practice.html` 博主实操、`creators.html` 博主库 |
+| 共鸣 Resonance | `blog/` 随笔、`subscribe.html` 订阅、飞书订阅群、`agent.html` 给 Agent 用、`about.html`、反馈问卷 |
+
+左上角的小圆点是信号灯：`briefs.json` 或 `items.json` 的 `updated` 在 6 小时内就呼吸，否则熄成灰点。
+
+视觉沿用 code-and-zen：暖黑底 `#0F1110`、米白字 `#E9E6DF`、唯一强调色琥珀 `#FFB35C`，正文单栏 800px，比较型页面 1080px。系统开了「减少动态效果」时，呼吸、打字机和淡入全部停下。
+
+### 随笔
+
+源文件放 `content/posts/YYYY-MM-DD-slug.md`，开头是 front matter：
+
+```text
+---
+title: 标题
+title_en: English title（可选）
+date: 2026-10-21
+summary: 一两句摘要，列表页和首页会用
+tags: 方法, 筛选（可选）
+draft: true（可选；为 true 时不发布）
+---
+```
+
+`python3 scripts/generate_derived.py` 会调用 `scripts/build_blog.py`，写出 `public/blog/index.html`、`public/blog/<slug>.html` 和 `public/blog/posts.json`。只支持一小撮 Markdown：`##`/`###` 标题、段落、列表、引用、代码块、分隔线、行内代码、加粗、链接。正文一律转义，原样写的 HTML 会显示成文字；链接只放行 http(s) 和站内相对路径。`validate.py` 会检查页面和源文件是否一致。
+
+### 字体
+
+标题用得意黑（Smiley Sans，OFL-1.1），英文用 Space Grotesk（OFL-1.1），都托管在 `public/assets/fonts/`，CSP 仍是 `font-src 'self'`。得意黑按 OFL 的保留字体名条款改名为 “Radar Display” 后子集化：第 0 块是站内实际用到的字，其余按码位分块，浏览器用 `unicode-range` 按需取。新增大量文案或随笔后重跑：
+
+```bash
+pip install fonttools brotli
+python3 scripts/build_fonts.py --source /path/to/SmileySans-Oblique.ttf
+```
+
+许可证全文在 `public/assets/fonts/LICENSE-OFL-*.txt`。
+
 ## Pages
 
 Pages Source 已是 **GitHub Actions**（API：`build_type=workflow`）。  
@@ -68,7 +113,7 @@ python3 scripts/generate_weekly_memo.py
 python3 scripts/feishu_notify.py      # 无 webhook 时 dry-run
 ```
 
-本地预览：`python3 -m http.server 8080 --directory public`。
+本地预览：`python3 -m http.server 47391 --directory public`，打开 http://127.0.0.1:47391/ 。
 
 ## CI
 
