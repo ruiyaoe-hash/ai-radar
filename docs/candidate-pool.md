@@ -98,11 +98,11 @@ python3 scripts/ingest_x.py --pool-dir ../ai-radar-pool < fetch.json
 
 ## `practice_handles`（实操账号）
 
-11 个账号放在 `config.json` → `practice_handles`。其中 8 个已从 `a_tier` 迁出，后来补上 `ammaar`、`ameliax111`、`Saccc_c`：
+16 个账号放在 `config.json` → `practice_handles`。其中 8 个已从 `a_tier` 迁出，后来补上 `ammaar`、`ameliax111`、`Saccc_c`，再补上 `AlchainHust`、`RealYDT`、`GeekCatX`、`bozhou_ai`、`0xlangeai`：
 
-`op7418`、`vista8`、`lijigang`、`bcherny`、`trq212`、`mattpocockuk`、`addyosmani`、`ryolu_`、`ammaar`、`ameliax111`、`Saccc_c`
+`op7418`、`vista8`、`lijigang`、`bcherny`、`trq212`、`mattpocockuk`、`addyosmani`、`ryolu_`、`ammaar`、`ameliax111`、`Saccc_c`、`AlchainHust`、`RealYDT`、`GeekCatX`、`bozhou_ai`、`0xlangeai`
 
-`a_tier` 继续只做决策和情报的信任先验。`dotey`、`simonw`、`shao__meng` 留在 `a_tier`，并补上 `dhh`、`thomaszhou_`、`xiaohuiyuan`。班次仍是每天 08:00 和工作日 21:00。derive 不读这张名单，所以已发布的 digest 不变。默认 `lane_hint=practice`、`participation=practice` 要到 Phase 3 的路由才强制；ingest 不替 Alba 填这两个字段。
+`a_tier` 继续只做决策和情报的信任先验。`dotey`、`simonw`、`shao__meng` 留在 `a_tier`，并补上 `dhh`、`thomaszhou_`、`xiaohuiyuan`，再在末尾补上 `pauliusztin_`、`swyx`、`levelsio`、`marclou`。班次仍是每天 08:00 和工作日 21:00。derive 不读这张名单，所以已发布的 digest 不变。默认 `lane_hint=practice`、`participation=practice` 要到 Phase 3 的路由才强制；ingest 不替 Alba 填这两个字段。
 
 公开实操卡的学习者字段在 `schemas/practice.schema.json`：`difficulty`（难度）、`prerequisites`（前置条件）、`estimated_time`（预计耗时）、`verified`（已验证）。已验证占比是集合指标，不是池字段。
 
@@ -157,7 +157,7 @@ python3 scripts/annotate_gates.py --pool-dir ../ai-radar-pool --only-pending
 | 档 | 例子 | 门槛 |
 |----|------|------|
 | T1 / `primary` / `a_tier` | OpenAI、Anthropic、DeepMind、Hugging Face 博客，以及 `/openai/`、`/anthropics/` 的 GitHub Releases | 低。空摘要也可以 PASS。不是入库硬门 |
-| `practice` | `practice_handles` 那 11 个账号 | 低。只写 `tier_prior=practice`。车道要到 Phase 3 才强制 |
+| `practice` | `practice_handles` 那 16 个账号 | 低。只写 `tier_prior=practice`。车道要到 Phase 3 才强制 |
 | T3 / `report` | TechCrunch、HN、Reddit | 高。预筛仍放行；正式 P0 被媒体 alone 挡住 |
 | 不在表里 | 任意其它 handle 或域名 | 不排除。像 AI 就 PASS，正文为空才 UNKNOWN |
 
