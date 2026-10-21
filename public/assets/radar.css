@@ -119,6 +119,22 @@ a:hover { color: var(--accent-2); text-decoration: underline; text-underline-off
 .ember-dot.live { animation: ember 3s ease-in-out infinite; opacity: 1; }
 .ember-dot.idle { background: var(--faint); box-shadow: none; opacity: 1; }
 
+/* Header brand lamp. shell.js adds is-live / is-idle from the newest
+   briefs.json / items.json "updated" (Beijing). Unknown stays gray. */
+.brand .ember-dot,
+.brand .ember-dot.is-idle {
+  background: var(--faint);
+  box-shadow: none;
+  opacity: 1;
+  animation: none;
+}
+.brand .ember-dot.is-live {
+  background: var(--accent);
+  opacity: 1;
+  box-shadow: 0 0 8px var(--accent);
+  animation: brand-breathe 3.2s ease-in-out infinite;
+}
+
 .main-nav { flex: 1; display: flex; justify-content: center; }
 .nav-groups { display: flex; gap: var(--space-xs); list-style: none; margin: 0; padding: 0; }
 .nav-group { position: relative; }
@@ -692,6 +708,16 @@ a.featured-item:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(2
   0%, 100% { opacity: 0.6; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.05); }
 }
+@keyframes brand-breathe {
+  0%, 100% {
+    opacity: 0.45;
+    box-shadow: 0 0 3px rgba(255, 179, 92, 0.28);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--accent), 0 0 18px rgba(255, 179, 92, 0.72);
+  }
+}
 @keyframes breathe {
   0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
   50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
@@ -788,5 +814,11 @@ a.featured-item:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(2
     scroll-behavior: auto !important;
   }
   .ember-dot.live, .reading-lamp { animation: none; }
+  .brand .ember-dot.is-live {
+    animation: none;
+    opacity: 1;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
   .home-hero h1, .slogan-a { opacity: 1; }
 }

@@ -144,8 +144,10 @@
   });
   window.RadarShell = { open: () => setSheet(true), close: closeAll };
 
-  // 信号灯：快讯或看板最近 6 小时内更新过就呼吸，否则熄灭成灰点。
-  const LIVE_HOURS = 6;
+  // 信号灯只看两份公开数据的顶层 updated（「YYYY-MM-DD HH:mm 北京时间」）：
+  // briefs.json（快讯）与 items.json（看板）。取较新的一个。
+  // 距现在不超过 6 小时 → is-live（琥珀色呼吸）；更久，或读不到时间 → is-idle（静止灰点）。
+  const LIVE_MS = 6 * 60 * 60 * 1000;
   function parseUpdated(text) {
     const m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/.exec(String(text || ""));
     if (!m) return 0;
@@ -160,8 +162,9 @@
       .catch(() => 0);
     Promise.all([read("briefs.json"), read("items.json")]).then((stamps) => {
       const latest = Math.max(...stamps);
-      const live = latest > 0 && Date.now() - latest < LIVE_HOURS * 3600 * 1000;
-      dot.classList.add(live ? "live" : "idle");
+      const live = latest > 0 && Date.now() - latest <= LIVE_MS;
+      dot.classList.remove("is-live", "is-idle", "live", "idle");
+      dot.classList.add(live ? "is-live" : "is-idle");
       const at = latest > 0
         ? new Date(latest).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false, month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })
         : "";
