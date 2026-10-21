@@ -2,7 +2,7 @@
 
 日期：2026-10-16（北京时间）  
 读者：Alba（主报 / digest 人读层）  
-活样例：[`DIGEST_LATEST.md`](../DIGEST_LATEST.md)（Muse Spark Open、Gemini 4 Argon）
+活样例：本文件下文「样例（Muse Spark Open）」。私人主报不进公开仓；根目录 [`DIGEST_LATEST.md`](../DIGEST_LATEST.md) 只是占位。
 
 本文件只规定**怎么读、怎么说**。不改决策门闩，也不在本仓做 AIHOT 镜像。
 
@@ -22,7 +22,7 @@
 | 层 | 放哪里 | 可以有什么 |
 |----|--------|------------|
 | 机器层 | 归档 JSON、看板字段、RSS guid | `evt-` / `cand-`、`status`、`priority`、`sources`、班次、入库时间、ingest 统计 |
-| 人读层 | `DIGEST_LATEST.md`；卡片的 `title`、`objective`、`so_what` 里给人看的句子 | 完整口语。不贴卡号，不贴候选池编号，不贴抓取统计 |
+| 人读层 | 飞书或私有池里的主报；卡片的 `title`、`objective`、`so_what` 里给人看的句子 | 完整口语。不贴卡号，不贴候选池编号，不贴抓取统计。私人选型不进公开仓正文 |
 
 `id`、`candidate_id`、枚举、来源角色留在 JSON。人读句子里不要出现它们。
 
@@ -77,7 +77,7 @@
 
 原文：https://research.meta.ai/blog/muse-spark-open
 
-当日主报见 [`DIGEST_LATEST.md`](../DIGEST_LATEST.md)。
+当日私人主报不进公开仓，只在飞书或私有池。`DIGEST_LATEST.md` 只保留占位，不要往里写称呼或选型。
 
 ## 对接（只读，不做镜像）
 

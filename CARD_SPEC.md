@@ -87,7 +87,7 @@
 
 ## 主人 action（私用）
 
-不要写进公开卡片正文；记在 `public/owner-actions.json`（或未跟踪的 `owner-actions.local.json`）：`tried` \| `thesis_updated` \| `shared` \| `ignored`。隐私说明见该文件。
+不要写进公开卡片正文，也不要写进会随 Pages 发布的 `public/owner-actions.json`（该文件是空骨架，`actions` 保持为空）。记在未跟踪的 `owner-actions.local.json`，或私有池 / 飞书：`tried` \| `thesis_updated` \| `shared` \| `ignored`。
 
 ## 客观摘要 vs 判断
 
@@ -97,7 +97,7 @@
 
 ## 人读层
 
-`id`、`candidate_id`、`status`、`priority`、`sources`、班次和入库时间留在 JSON。给人看的 `title`、`objective`、`so_what.impact`、`so_what.falsifier`，以及 `DIGEST_LATEST.md`，按 [`docs/AIHOT对接与表达规范-v0.md`](docs/AIHOT对接与表达规范-v0.md) 写。
+`id`、`candidate_id`、`status`、`priority`、`sources`、班次和入库时间留在 JSON。给人看的 `title`、`objective`、`so_what.impact`、`so_what.falsifier` 按 [`docs/AIHOT对接与表达规范-v0.md`](docs/AIHOT对接与表达规范-v0.md) 写。私人主报不进公开仓；`DIGEST_LATEST.md` 只是占位。
 
 - 一句一事实，用完整的口语句。不要写「权重能下」这种压缩，写成「模型权重可以下载到自己的电脑或服务器上使用」。
 - 英文专名每张卡每种术语最多括注一次。

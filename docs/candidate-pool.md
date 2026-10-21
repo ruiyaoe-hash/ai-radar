@@ -117,14 +117,14 @@ Alba 在全量入池之后跑 `scripts/annotate_gates.py`。脚本读候选行�
 | 规则 | 默认行为 | `drop_reason` / `status_in_pool` |
 |------|----------|----------------------------------|
 | URL 规范化 | 去掉 tracking query，统一成 https | 同一 `id` 或同一 `url_norm` → `dropped` + `duplicate_url` |
-| 同源短窗 | 默认 30 分钟。同一 channel+handle，且没有新外链、正文也没有至少 3 个新词 | `dropped` + `duplicate_event`。短窗里如果带来新外链，留下 |
+| 同源短窗 | 默认 30 分钟。同一 channel+handle，且没有新外链、正文新 token 也不到 3 个。中文按字符 bigram，英文和数字仍按词 | `dropped` + `duplicate_event`。短窗里如果带来新外链，留下 |
 | 时效 | 发表时间早于 `--as-of` 超过 48 小时（可配） | **默认 `deferred`，`drop_reason` 仍是 null**。`--stale-policy drop` 才是 `stale_old` |
 | RSS 回填 | `channel=rss` 且发表日的北京日历日早于 `--as-of` | `deferred`，notes 写 `rss_backfill_not_today`。这不是 `stale_old`，也不占今日 |
 | 无可信时间 | 没有 `published_at` | **默认 `prefilter=UNKNOWN` 且 `pending`，不静默跳过**。`--no-time-policy drop` 才是 `no_reliable_time` |
 | 预筛三态 | 宽召回。只有明显非 AI（例如天气、菜谱、球赛，且没有模型词）才 BLOCK | `BLOCK` → `dropped` + `prefilter_block`。材料够且像 AI，或低门槛源，为 `PASS` |
 | 信任先验 | `config.json` 的 `a_tier` / `practice_handles`，加上 `config/source_tier_map.json` | 写入 `tier_prior` 和能对上的 `role_guess`。不在表里**不**硬排除 |
 | 媒体 alone | `role=report` 且候选 URL 和外链都不是 primary / 官方 | 默认留 `active`，notes 写明不能升正式 P0。notes 里有 `attempt_formal_p0` 才 `dropped` + `media_alone` |
-| 无新进展 | 同簇 7 日内没有新外链，正文新词也不到 3 个 | `dropped` + `no_new_info`（这是真丢） |
+| 无新进展 | 同簇 7 日内没有新外链，正文新 token 也不到 3 个（中文 bigram，英文按词） | `dropped` + `no_new_info`（这是真丢） |
 | 安全 | 只收 http(s)，沿用 `generate_derived.safe_http_url` | 其它协议 → `dropped` + `prefilter_block` |
 
 `deferred` 和 `rerouted` 仍然不是 `drop_reason`。脚本不写 `wrong_lane`、`quota`、`quota_defer`。
@@ -146,7 +146,7 @@ python3 scripts/annotate_gates.py --pool-dir ../ai-radar-pool --only-pending
 
 1. **共享外链**。规范化之后相同就同簇。文章自己的 URL 算簇键；X 的 status 链接不算，因为每条帖子都唯一。两条没有 title 的帖子只要指向同一篇实验笔记，就会得到同一个 `cluster_id`。
 2. **实体规则表** `config/entity_rules.json`。CVE、`ExampleModel-9` 这类 `cluster_alone=true` 的命中本身成簇。`cluster_alone=false`（例如 `FixtureLoose-Name`）必须再叠加标题相似才合并。
-3. **标题相似**只作为第 2 步的附加条件。没有 title 就跳过，不报错。两条只有标题相像、没有共同外链也没有实体命中的行，簇 id 不同。
+3. **标题相似**只作为第 2 步的附加条件。没有 title 就跳过，不报错。两条只有标题相像、没有共同外链也没有实体命中的行，簇 id 不同。标题 token 与正文相同：中文字符 bigram，英文和数字仍按词。近似的中文标题不会因为少一个标点就变成零相似。
 
 `cluster_id` 形如 `clu-` 加 12 位十六进制，由本簇最小的外链、否则最小的实体键、否则最小的候选 `id` 哈希得到。同簇里已经有 `promoted` 或 `archive_id` 时，其它还没丢的行 notes 写 `correction_path`，指向那张公开卡。本阶段不写新卡，也不改原卡。
 

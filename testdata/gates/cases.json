@@ -567,6 +567,82 @@
           "role_guess": "primary"
         }
       }
+    },
+    {
+      "name": "cjk-near-duplicate-same-source",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000020",
+          "url": "https://x.com/qwennotes/status/910020",
+          "channel": "x",
+          "handle": "qwennotes",
+          "title": "通义千问发布新模型支持百万上下文并开放权重下载",
+          "published_at": "2026-10-14T10:00:00Z",
+          "snippet": "通义千问发布新模型支持百万上下文并开放权重下载供开发者本地试用"
+        },
+        {
+          "id": "cand-20261014-000000000021",
+          "url": "https://x.com/qwennotes/status/910021",
+          "channel": "x",
+          "handle": "qwennotes",
+          "title": "通义千问发布新模型，支持百万上下文，并开放权重下载",
+          "published_at": "2026-10-14T10:08:00Z",
+          "snippet": "通义千问发布新模型，支持百万上下文，并开放权重下载，供开发者本地试用"
+        },
+        {
+          "id": "cand-20261014-000000000022",
+          "url": "https://x.com/qwennotes/status/910022",
+          "channel": "x",
+          "handle": "qwennotes",
+          "title": "OpenAI 推出实时语音接口面向电话智能体",
+          "published_at": "2026-10-14T10:16:00Z",
+          "snippet": "OpenAI 推出实时语音接口，面向电话智能体，强调低延迟对话和开发者接入文档"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000020": {"status_in_pool": "active", "drop_reason": null},
+        "cand-20261014-000000000021": {"status_in_pool": "dropped", "drop_reason": "duplicate_event"},
+        "cand-20261014-000000000022": {"status_in_pool": "active", "drop_reason": null}
+      }
+    },
+    {
+      "name": "cjk-title-bigram-cluster",
+      "rows": [
+        {
+          "id": "cand-20261014-000000000023",
+          "url": "https://example.com/fixture-qwen-title-a",
+          "channel": "web",
+          "handle": "reader_one",
+          "title": "通义千问发布新模型支持百万上下文并开放权重",
+          "published_at": "2026-10-14T07:00:00Z",
+          "snippet": "FIXTURE FixtureLoose-Name"
+        },
+        {
+          "id": "cand-20261014-000000000024",
+          "url": "https://example.net/fixture-qwen-title-b",
+          "channel": "web",
+          "handle": "reader_two",
+          "title": "通义千问发布新模型，支持百万上下文，并开放权重",
+          "published_at": "2026-10-14T08:00:00Z",
+          "snippet": "FIXTURE FixtureLoose-Name"
+        },
+        {
+          "id": "cand-20261014-000000000025",
+          "url": "https://example.org/fixture-qwen-title-c",
+          "channel": "web",
+          "handle": "reader_three",
+          "title": "周末番茄炒蛋的火候和调味记录",
+          "published_at": "2026-10-14T09:00:00Z",
+          "snippet": "FIXTURE FixtureLoose-Name"
+        }
+      ],
+      "expect": {
+        "cand-20261014-000000000023": {"status_in_pool": "active", "drop_reason": null},
+        "cand-20261014-000000000024": {"status_in_pool": "dropped", "drop_reason": "no_new_info"},
+        "cand-20261014-000000000025": {"status_in_pool": "active", "drop_reason": null}
+      },
+      "same_cluster": [["cand-20261014-000000000023", "cand-20261014-000000000024"]],
+      "different_cluster": [["cand-20261014-000000000023", "cand-20261014-000000000025"]]
     }
   ]
 }
