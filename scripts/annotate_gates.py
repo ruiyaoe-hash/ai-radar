@@ -21,7 +21,7 @@ Defaults, on purpose:
     contain attempt_formal_p0.
   - a handle or domain missing from the tier map is not hard-excluded.
 
-Promoted, rerouted, and editor_skip rows keep their status. cluster_id is
+Promoted, rerouted, editor_skip, and low_score rows keep their status. cluster_id is
 filled when it was empty. Same-cluster rows that are already promoted get a
 correction_path note on the other rows. This phase does not write a new card.
 
@@ -425,7 +425,7 @@ def compose_notes(original: str, bits: list[str]) -> str:
 def is_locked(row: dict, only_pending: bool) -> bool:
     if row.get("status_in_pool") in {"promoted", "rerouted"}:
         return True
-    if row.get("drop_reason") == "editor_skip":
+    if row.get("drop_reason") in {"editor_skip", "low_score"}:
         return True
     if only_pending and not (row.get("status_in_pool") == "pending" and row.get("prefilter") is None):
         return True
@@ -1071,6 +1071,22 @@ def self_check() -> None:
     kept_skip = annotate_records([skipped], options)[0]
     if kept_skip["drop_reason"] != "editor_skip" or kept_skip["notes"] != "editor said skip":
         raise SystemExit("FAIL editor_skip must stay a true drop and keep its note")
+    low_scored = _expand_fixture_row(
+        {
+            "id": "cand-20261014-0000000000ae",
+            "url": "https://x.com/karpathy/status/45",
+            "snippet": "FIXTURE agents",
+            "published_at": "2026-10-14T10:00:00Z",
+            "handle": "karpathy",
+            "status_in_pool": "dropped",
+            "drop_reason": "low_score",
+            "prefilter": "PASS",
+            "notes": "score:low_score value=0.1000",
+        }
+    )
+    kept_low = annotate_records([low_scored], options)[0]
+    if kept_low["drop_reason"] != "low_score" or kept_low["notes"] != "score:low_score value=0.1000":
+        raise SystemExit("FAIL low_score must stay a true drop and keep its trace")
     rerouted = _expand_fixture_row(
         {
             "id": "cand-20261014-0000000000ad",

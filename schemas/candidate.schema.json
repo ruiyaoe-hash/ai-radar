@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/candidate.schema.json",
   "title": "AI Radar candidate pool record",
-  "description": "Contract for one row in the private ai-radar-pool JSONL. The public repo keeps this schema only. Do not commit pool JSONL, third-party full text, scores, or drop dumps here. status_in_pool is circulation (池内状态). drop_reason is a true drop (真丢弃) only: pending, wrong_lane, quota, and quota_defer are not drop reasons. no_new_info is a true drop. Scores and rankers are out of scope for this schema.",
+  "description": "Contract for one row in the private ai-radar-pool JSONL. The public repo keeps this schema only. Do not commit pool JSONL, third-party full text, or drop dumps here. status_in_pool is circulation (池内状态). drop_reason is a true drop (真丢弃) only: pending, wrong_lane, quota, and quota_defer are not drop reasons. no_new_info and low_score are true drops. Optional score is the post-gate rules score from scripts/score_pool.py. It is not a public ranker and is not a publish condition by itself.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -101,10 +101,85 @@
             "no_new_info",
             "practice_not_steps",
             "hot_signal_only",
-            "editor_skip"
+            "editor_skip",
+            "low_score"
           ]
         }
       ]
+    },
+    "engagement": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional counts copied at ingest from the raw fetch (public_metrics or like/bookmark fields). Not a judgment. Absent when the fetch had no counts. RSS rows usually omit this.",
+      "properties": {
+        "likes": { "type": "integer", "minimum": 0 },
+        "bookmarks": { "type": "integer", "minimum": 0 },
+        "reposts": { "type": "integer", "minimum": 0 },
+        "replies": { "type": "integer", "minimum": 0 },
+        "quotes": { "type": "integer", "minimum": 0 },
+        "views": { "type": "integer", "minimum": 0 },
+        "captured_at": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?(?:Z|\\+00:00)$"
+        }
+      }
+    },
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Rules score written after annotate gates. value is prior × decay × corroboration × velocity, plus a capped actionability term, then clamped to [0, 1]. practice never uses band auto_brief. llm stays null unless a future adapter is configured; this repo does not call a hosted model.",
+      "required": ["value", "band", "band_reason", "primary_source", "method", "components", "llm"],
+      "properties": {
+        "value": { "type": "number", "minimum": 0, "maximum": 1 },
+        "band": { "type": "string", "enum": ["auto_brief", "review", "drop"] },
+        "band_reason": {
+          "type": "string",
+          "enum": [
+            "auto_primary",
+            "review_score",
+            "review_practice",
+            "review_no_primary",
+            "review_deferred",
+            "drop_low_score"
+          ]
+        },
+        "primary_source": { "type": "boolean" },
+        "method": { "type": "string", "enum": ["rules", "llm"] },
+        "components": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["prior", "decay", "corroboration", "velocity", "actionability"],
+          "properties": {
+            "prior": { "type": "number" },
+            "decay": { "type": "number" },
+            "corroboration": { "type": "number" },
+            "velocity": { "type": "number" },
+            "actionability": { "type": "number" }
+          }
+        },
+        "llm": {
+          "description": "Reserved structured judge. Rules scoring writes null. If AI_RADAR_SCORE_LLM_URL is set, the current adapter writes skipped_reason and does not POST the row.",
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["skipped_reason"],
+              "properties": {
+                "model": { "type": "string" },
+                "actionability": { "type": "number" },
+                "label": { "type": "string" },
+                "skipped_reason": { "type": "string" }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "brief_id": {
+      "type": "string",
+      "pattern": "^brf-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$",
+      "description": "Public L2 brief id after derive_briefs publishes this row. Absent until then. Not an L1 archive id."
     },
     "archive_id": {
       "anyOf": [
@@ -147,7 +222,8 @@
               "no_new_info",
               "practice_not_steps",
               "hot_signal_only",
-              "editor_skip"
+              "editor_skip",
+              "low_score"
             ]
           }
         }
@@ -176,7 +252,7 @@
     },
     {
       "if": {
-        "properties": { "drop_reason": { "const": "editor_skip" } },
+        "properties": { "drop_reason": { "enum": ["editor_skip", "low_score"] } },
         "required": ["drop_reason"]
       },
       "then": {

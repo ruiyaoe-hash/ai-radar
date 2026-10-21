@@ -905,6 +905,7 @@ PUBLISHED_SCHEMA_DOCS = {
     "tools-radar.json": "tools-radar.schema.json",
     "archive/index.json": "archive-index.schema.json",
     "theses.json": "theses.schema.json",
+    "briefs.json": "briefs.schema.json",
 }
 SITE_BASE = "https://ruiyaoe-hash.github.io/ai-radar/"
 PRIVATE_SURFACE = (
@@ -931,7 +932,13 @@ def check_published_schemas() -> None:
     for path in pub_dir.iterdir():
         if path.is_file() and "candidate" in path.name:
             fail(f"public/schemas must not publish {path.name}")
-    for name in ("card.schema.json", "practice.schema.json", "archive-day.schema.json", "atlas.schema.json"):
+    for name in (
+        "card.schema.json",
+        "practice.schema.json",
+        "archive-day.schema.json",
+        "atlas.schema.json",
+        "briefs.schema.json",
+    ):
         src = SCHEMAS / name
         dst = pub_dir / name
         if not dst.is_file():
@@ -1069,6 +1076,69 @@ def check_prompt_injection() -> None:
     print("OK prompt injection: fixtures, edited public prose, no raw post fields")
 
 
+def check_briefs() -> None:
+    """L2 briefs stay factual: schema, safe URLs, no raw post keys, no instruction text."""
+    try:
+        from jsonschema import Draft202012Validator
+    except ImportError:
+        fail("jsonschema is not installed. Run: pip install -r requirements-ci.txt")
+    schema = json.loads((SCHEMAS / "briefs.schema.json").read_text(encoding="utf-8"))
+    data = json.loads((PUBLIC / "briefs.json").read_text(encoding="utf-8"))
+    validator = Draft202012Validator(schema)
+    errors = sorted(validator.iter_errors(data), key=lambda err: list(err.path))
+    if errors:
+        first = errors[0]
+        loc = "/".join(str(part) for part in first.path) or "(root)"
+        fail(f"briefs.json schema {loc}: {first.message}")
+    try:
+        from generate_derived import safe_http_url
+        from prompt_guard import find_instruction_override, raw_post_key_paths
+    except ImportError:
+        from scripts.generate_derived import safe_http_url
+        from scripts.prompt_guard import find_instruction_override, raw_post_key_paths
+    raw = raw_post_key_paths(data)
+    if raw:
+        fail(f"briefs.json has raw post keys: {raw}")
+    for item in data.get("items") or []:
+        for field in ("title", "summary", "source"):
+            rule = find_instruction_override(str(item.get(field) or ""))
+            if rule:
+                fail(f"briefs.json {item.get('id')} {field} matches {rule}")
+        if not safe_http_url(item.get("url") or ""):
+            fail(f"briefs.json {item.get('id')} url is not http(s)")
+        for banned in ("so_what", "priority", "status", "snippet"):
+            if banned in item:
+                fail(f"briefs.json {item.get('id')} must not carry {banned}")
+    page = (PUBLIC / "briefs.html").read_text(encoding="utf-8")
+    if "本页当前为示例数据" in page:
+        fail("briefs.html still describes the page as sample data")
+    if "自动档" not in page:
+        fail("briefs.html should say the auto band supplies briefs")
+    derive = (ROOT / "scripts" / "derive_briefs.py").read_text(encoding="utf-8")
+    for needle in ("safe_http_url", "find_instruction_override", "strip_raw_post_fields", "practice"):
+        if needle not in derive:
+            fail(f"derive_briefs.py must mention {needle}")
+    if ' / "practice"' not in derive and "public/practice" not in derive:
+        fail("derive_briefs.py must refuse the practice inbox path")
+    print(f"OK briefs: {len(data.get('items') or [])} items, schema, safe url, no raw post")
+
+
+def check_pool_workflows() -> None:
+    """RSS and X ingest rebase before push. X live fetch stays behind a secret name."""
+    rss = (ROOT / ".github" / "workflows" / "ingest-rss-pool.yml").read_text(encoding="utf-8")
+    watch = (ROOT / ".github" / "workflows" / "ingest-x-pool.yml").read_text(encoding="utf-8")
+    for label, text in (("rss", rss), ("x", watch)):
+        if "workflow_dispatch" not in text or "pool_git_push.sh" not in text:
+            fail(f"{label} workflow must keep workflow_dispatch and pool_git_push.sh")
+        if "score_pool.py" not in text or "derive_briefs.py" not in text:
+            fail(f"{label} workflow must score and derive briefs")
+    if "X_BEARER_TOKEN" not in watch or "shift_ingest_x_to_pool.py" not in watch:
+        fail("X workflow must name X_BEARER_TOKEN and keep the hand-feed ingest")
+    if "AI_RADAR_POOL_TOKEN" not in rss:
+        fail("RSS workflow must keep AI_RADAR_POOL_TOKEN")
+    print("OK pool workflows: dispatch, rebase push, score, briefs")
+
+
 def check_public_excludes_pool() -> None:
     for path in PUBLIC.rglob("*"):
         if not path.is_file():
@@ -1122,6 +1192,22 @@ def main() -> None:
         from scripts.ingest_rss import self_check as check_rss
     check_gates()
     check_rss()
+    try:
+        from score_pool import self_check as check_score_pool
+        from derive_briefs import self_check as check_derive_briefs
+        from fetch_x_watch import self_check as check_fetch_x
+        from score_sources import self_check as check_score_sources
+    except ImportError:
+        from scripts.score_pool import self_check as check_score_pool
+        from scripts.derive_briefs import self_check as check_derive_briefs
+        from scripts.fetch_x_watch import self_check as check_fetch_x
+        from scripts.score_sources import self_check as check_score_sources
+    check_score_pool()
+    check_derive_briefs()
+    check_fetch_x()
+    check_score_sources()
+    check_briefs()
+    check_pool_workflows()
     check_pool_trace()
     live_report()
     check_public_ui()

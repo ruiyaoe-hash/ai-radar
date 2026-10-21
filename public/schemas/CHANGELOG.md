@@ -19,8 +19,13 @@
 | `theses.json` | 1 | [theses.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/theses.schema.json) |
 | `tools-radar.json` | （无） | [tools-radar.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json) |
 | `archive/index.json` | （无） | [archive-index.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-index.schema.json) |
+| `briefs.json` | 1 | [briefs.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/briefs.schema.json) |
 
 `today3.txt` 是纯文本。`feed.xml` 和订阅分册是 RSS 2.0。这两类没有 JSON Schema。
+
+## 2026-10-21
+
+`briefs.json` 补上公开 schema，`schema_version` 仍是 1。条目增加可选字段 `origin`（`archive_seed` 或 `auto_brief`）和 `candidate_id`（只在自动档上必填）。没有改名、改类型或删除已有字段。
 
 ## 2026-10-20
 

@@ -1,0 +1,104 @@
+# Watch-list X posts → private pool. Public pull-request CI does not run this file.
+# Schedule is UTC 00:00 daily and 13:00 Mon–Fri = 08:00 daily and 21:00 weekdays
+# Asia/Shanghai. GitHub's schedule can lag; workflow_dispatch is the reliable
+# entry. A Cloudflare Workers Cron (not deployed here) or any HTTPS client can
+# POST that dispatch. See docs/score-and-briefs.md.
+# Secrets, both optional until configured:
+#   AI_RADAR_POOL_TOKEN  fine-grained PAT, Contents read/write on ai-radar-pool only
+#   X_BEARER_TOKEN       X API bearer. Absent → skip live fetch; hand-feed still works
+# GITHUB_TOKEN only pushes public/briefs.json. Never commit the raw fetch or pool JSONL.
+name: Ingest X watch into private pool
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+    - cron: "0 13 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "live 需要 X_BEARER_TOKEN；skip 只确认骨架，不抓取"
+        type: choice
+        options:
+          - live
+          - skip
+        default: live
+
+permissions:
+  contents: write
+
+jobs:
+  ingest-x-pool:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public scripts
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check tokens
+        id: gate
+        env:
+          AI_RADAR_POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: |
+          if [ "${{ github.event.inputs.mode }}" = "skip" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "mode=skip：不抓取，不写池。"
+            exit 0
+          fi
+          if [ -z "${AI_RADAR_POOL_TOKEN}" ]; then
+            echo "::warning::AI_RADAR_POOL_TOKEN 未配置。不写私有池。"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ -z "${X_BEARER_TOKEN}" ]; then
+            echo "::warning::X_BEARER_TOKEN 未配置。定时抓取未打开。手灌仍走 scripts/shift_ingest_x_to_pool.py --fetch。见 docs/x-pool-ingest.md"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout private pool
+        if: steps.gate.outputs.skip != 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ruiyaoe-hash/ai-radar-pool
+          token: ${{ secrets.AI_RADAR_POOL_TOKEN }}
+          path: pool
+          persist-credentials: true
+
+      - name: Fetch, ingest, annotate, score, derive briefs
+        if: steps.gate.outputs.skip != 'true'
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: |
+          python3 scripts/fetch_x_watch.py --out /tmp/x-fetch.json
+          set +e
+          python3 scripts/shift_ingest_x_to_pool.py --fetch /tmp/x-fetch.json --pool-dir pool
+          code=$?
+          set -e
+          rm -f /tmp/x-fetch.json
+          if [ "$code" -eq 1 ]; then
+            echo "FAIL: X ingest failed"
+            exit 1
+          fi
+          python3 scripts/score_pool.py --pool-dir pool --write-review
+          python3 scripts/derive_briefs.py --pool-dir pool --briefs public/briefs.json
+
+      - name: Push private pool only
+        if: steps.gate.outputs.skip != 'true'
+        working-directory: pool
+        env:
+          COMMIT_MESSAGE: "ingest: X watch candidates"
+        run: bash "$GITHUB_WORKSPACE/scripts/pool_git_push.sh" candidates review
+
+      - name: Push public briefs
+        if: steps.gate.outputs.skip != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: bash scripts/public_briefs_push.sh

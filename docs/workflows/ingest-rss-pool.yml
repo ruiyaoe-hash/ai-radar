@@ -1,8 +1,12 @@
 # Batch-1 lab RSS → private pool only. Public CI does not run this file.
 # Cron is UTC: 00:30, 06:30, 12:30 = 08:30, 14:30, 20:30 Asia/Shanghai (3×/day).
+# GitHub's schedule can lag. An external cron (Cloudflare Workers Cron or any
+# HTTPS client) may POST workflow_dispatch instead. This repo does not deploy
+# that Worker. See docs/score-and-briefs.md.
 # Secret AI_RADAR_POOL_TOKEN: fine-grained PAT, Contents read/write on
 # ruiyaoe-hash/ai-radar-pool only. Do not grant it write access to public ai-radar.
-# Missing secret: warn and exit 0. Never push pool JSONL to the public repo.
+# GITHUB_TOKEN below only pushes public/briefs.json. Missing pool secret: warn and exit 0.
+# Never push pool JSONL to the public repo.
 name: Ingest RSS into private pool
 
 on:
@@ -11,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   ingest-rss-pool:
@@ -48,7 +52,7 @@ jobs:
           path: pool
           persist-credentials: true
 
-      - name: Ingest batch 1 and annotate new rows
+      - name: Ingest batch 1, annotate, score, derive briefs
         if: steps.token.outputs.skip != 'true'
         run: |
           set +e
@@ -61,18 +65,19 @@ jobs:
           fi
           # Exit 2 means some items had no link (FETCH_GAP). Rows that parsed are still on disk.
           python3 scripts/annotate_gates.py --pool-dir pool --only-pending
+          python3 scripts/score_pool.py --pool-dir pool --write-review
+          python3 scripts/derive_briefs.py --pool-dir pool --briefs public/briefs.json
 
       - name: Push private pool only
         if: steps.token.outputs.skip != 'true'
         working-directory: pool
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add candidates
-          if git diff --cached --quiet; then
-            echo "无更新"
-          else
-            git commit -m "ingest: RSS batch1 candidates"
-            git push origin HEAD
-          fi
+        env:
+          COMMIT_MESSAGE: "ingest: RSS batch1 candidates"
+        run: bash "$GITHUB_WORKSPACE/scripts/pool_git_push.sh" candidates review
+
+      - name: Push public briefs
+        if: steps.token.outputs.skip != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: bash scripts/public_briefs_push.sh
