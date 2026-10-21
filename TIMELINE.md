@@ -100,7 +100,7 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 
 ## 博主实操
 
-这一栏是编辑精选、每周投放，**非自动从监控捞**。实操向 11 个账号在 `config.json` 的 `practice_handles`，**不要**再用 digest 的 `a_tier` 假装已经覆盖。这 11 个是：`op7418`、`vista8`、`lijigang`、`bcherny`、`trq212`、`mattpocockuk`、`addyosmani`、`ryolu_`、`ammaar`、`ameliax111`、`Saccc_c`。
+这一栏是编辑精选、每周投放，**非自动从监控捞**。实操向 16 个账号在 `config.json` 的 `practice_handles`，**不要**再用 digest 的 `a_tier` 假装已经覆盖。这 16 个是：`op7418`、`vista8`、`lijigang`、`bcherny`、`trq212`、`mattpocockuk`、`addyosmani`、`ryolu_`、`ammaar`、`ameliax111`、`Saccc_c`、`AlchainHust`、`RealYDT`、`GeekCatX`、`bozhou_ai`、`0xlangeai`。
 
 1. 人工写 `prac-*` JSON，放进 `public/practice/inbox/`
 2. `python3 scripts/generate_derived.py` 才会写入 `public/practice.json`

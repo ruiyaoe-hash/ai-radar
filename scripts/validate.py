@@ -863,6 +863,11 @@ PRACTICE_HANDLES = [
     "ammaar",
     "ameliax111",
     "Saccc_c",
+    "AlchainHust",
+    "RealYDT",
+    "GeekCatX",
+    "bozhou_ai",
+    "0xlangeai",
 ]
 
 
@@ -870,7 +875,7 @@ def check_practice_handles() -> None:
     """Practice accounts live on practice_handles, not inside a_tier."""
     cfg = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
     if cfg.get("practice_handles") != PRACTICE_HANDLES:
-        fail(f"practice_handles must be the 11 practice accounts, got {cfg.get('practice_handles')!r}")
+        fail(f"practice_handles must be the 16 practice accounts, got {cfg.get('practice_handles')!r}")
     overlap = sorted(set(PRACTICE_HANDLES) & set(cfg.get("a_tier") or []))
     if overlap:
         fail(f"practice_handles still listed in a_tier: {overlap}")
@@ -879,10 +884,13 @@ def check_practice_handles() -> None:
     blob = json.dumps(cfg, ensure_ascii=False)
     if "已并入 a_tier" in blob:
         fail("config still claims practice handles are covered by a_tier")
-    for keep in ("dotey", "simonw", "shao__meng", "OpenAI", "dhh", "thomaszhou_", "xiaohuiyuan"):
+    for keep in (
+        "dotey", "simonw", "shao__meng", "OpenAI", "dhh", "thomaszhou_", "xiaohuiyuan",
+        "pauliusztin_", "swyx", "levelsio", "marclou",
+    ):
         if keep not in (cfg.get("a_tier") or []):
             fail(f"a_tier lost decision/intel handle {keep}")
-    print("OK practice_handles: 11 accounts stay out of a_tier; digests unchanged")
+    print("OK practice_handles: 16 accounts stay out of a_tier; digests unchanged")
 
 
 def check_derive_ignores_pool() -> None:
