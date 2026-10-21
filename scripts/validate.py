@@ -1200,6 +1200,8 @@ def check_briefs() -> None:
             rule = find_instruction_override(str(item.get(field) or ""))
             if rule:
                 fail(f"briefs.json {item.get('id')} {field} matches {rule}")
+            if re.search(r"</?[A-Za-z][^<>]*>|&(lt|gt|amp|quot|#\d+);", str(item.get(field) or "")):
+                fail(f"briefs.json {item.get('id')} {field} carries feed HTML")
         if not safe_http_url(item.get("url") or ""):
             fail(f"briefs.json {item.get('id')} url is not http(s)")
         for banned in ("so_what", "priority", "status", "snippet"):
@@ -1232,7 +1234,28 @@ def check_pool_workflows() -> None:
         fail("X workflow must name X_BEARER_TOKEN and keep the hand-feed ingest")
     if "AI_RADAR_POOL_TOKEN" not in rss:
         fail("RSS workflow must keep AI_RADAR_POOL_TOKEN")
-    print("OK pool workflows: dispatch, rebase push, score, briefs")
+    for label, text in (("rss", rss), ("x", watch)):
+        for needle in ("group: pool-writer", "cancel-in-progress: false", "public_briefs_push.sh", "gh workflow run deploy-pages.yml"):
+            if needle not in text:
+                fail(f"{label} workflow must carry {needle}")
+        if "persist-credentials: true" in text:
+            fail(f"{label} workflow must not persist a token into .git/config")
+    if watch.count("X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}") != 1:
+        fail("X_BEARER_TOKEN must be in exactly one step env (the fetch)")
+    workflows = sorted((ROOT / ".github" / "workflows").glob("*.yml"))
+    for path in workflows:
+        text = path.read_text(encoding="utf-8")
+        copy = ROOT / "docs" / "workflows" / path.name
+        if not copy.is_file() or copy.read_text(encoding="utf-8") != text:
+            fail(f"docs/workflows/{path.name} drifted from .github/workflows")
+        for match in re.finditer(r"uses:\s*([\w./-]+)@(\S+)", text):
+            if not re.fullmatch(r"[0-9a-f]{40}", match.group(2)):
+                fail(f"{path.name}: {match.group(1)} must be pinned to a commit SHA, not {match.group(2)}")
+        for block in re.finditer(r"run: \|\n((?:[ ]{10,}.*\n|\s*\n)+)|run: (.+)", text):
+            body = block.group(1) or block.group(2) or ""
+            if "${{" in body:
+                fail(f"{path.name}: pass expressions through env:, not inline in run:")
+    print(f"OK pool workflows: dispatch, rebase push, score, briefs; {len(workflows)} workflows pinned and mirrored")
 
 
 def check_public_excludes_pool() -> None:

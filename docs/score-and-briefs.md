@@ -104,9 +104,29 @@ python3 scripts/derive_briefs.py --pool-dir ../ai-radar-pool --briefs public/bri
 | 定时 | `.github/workflows/ingest-x-pool.yml`。密钥 `X_BEARER_TOKEN` 和 `AI_RADAR_POOL_TOKEN` 都在，才真正抓取并入池。缺任一密钥就警告后成功退出，公开 CI 不受影响 |
 | 只看名单 | `python3 scripts/fetch_x_watch.py --dry-list` |
 
-抓取脚本把 X API v2 的用户时间线收成 `ingest_x` 已经认识的 JSON（含 `public_metrics`）。令牌不入库、不打印。原始抓取文件不要提交。
+抓取脚本把 X API v2 的用户时间线收成 `ingest_x` 已经认识的 JSON（含 `public_metrics`）。令牌不入库、不打印。原始抓取文件写在 `$RUNNER_TEMP`，入池后删掉，不要提交。
 
-工作流在推私有池之前跑 `scripts/pool_git_push.sh`：`git pull --rebase` 失败会重试，避免和 RSS 工作流同时写 `candidates/`。公开仓这次只可能多一个 `public/briefs.json` 提交，用的是仓库自己的 `GITHUB_TOKEN`，不是池令牌。
+- 用户 id 用 `users/by?usernames=` 一次查 100 个，查到的缓存在私有池 `state/x-since.json`，下次不再查
+- 每个账号记 `since_id`，只拉上次之后的新帖
+- 429 时按 `retry-after` / `x-rate-limit-reset` 等一次（最多 90 秒）；再被限流或要等更久，本轮停止请求，已抓到的照常入池
+- 退出码：0 全部成功，2 部分账号失败（已抓到的入池，工作流最后标红提醒），1 一条都没拿到
+
+X 帖不会进自动档（`review_not_official`），所以 X 工作流通常只改私有池和审核清单。
+
+## 工作流怎么写池、怎么上线
+
+RSS 和 X 两个工作流共用 `concurrency: pool-writer`（`cancel-in-progress: false`），排队执行，不会互相 rebase 对方写了一半的 `candidates/`。
+
+| 步骤 | 做什么 |
+|------|--------|
+| 检出 | 公开仓检出到 `site/`，私有池检出到旁边的 `pool/`。池必须在公开仓目录之外（`assert_shift_pool_dir`）。两个检出都 `persist-credentials: false` |
+| 推池 | `scripts/pool_git_push.sh`。池令牌只在这一步的 env 里，用一次性 http 头推送，日志里打码。rebase 冲突说明有人手改了同一个文件：直接失败，不覆盖 |
+| 推快讯 | `scripts/public_briefs_push.sh`。先跑 `validate.py`（只查公开输出，不做归档↔池的溯源比对），过了才提交 `public/briefs.json`。与远端冲突时以远端为底重新派生一次再推 |
+| 上线 | `GITHUB_TOKEN` 推的提交不会触发 `on: push`，所以快讯真有变化时，工作流用 `gh workflow run deploy-pages.yml` 显式触发部署（需要 `actions: write`） |
+
+所有 `uses:` 都锁在 commit SHA 上，`validate.py` 会检查；`.github/dependabot.yml` 每周提更新。`run:` 里不直接写 `${{ }}`，一律经 `env:` 传。`X_BEARER_TOKEN` 只出现在抓取那一步。
+
+以后想再收紧：可以把 `GITHUB_TOKEN` 推快讯换成只装在本仓、只有 Contents 写权限的 GitHub App 令牌（`actions/create-github-app-token`），它推的提交能直接触发 `on: push`，也就不需要显式触发部署。
 
 ## 定时不准时
 

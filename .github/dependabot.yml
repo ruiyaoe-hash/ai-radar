@@ -1,0 +1,15 @@
+# Actions are pinned to commit SHAs (validate.py enforces it). Dependabot keeps the
+# SHAs and the "# vX.Y.Z" comments current; review each PR before merging.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: monthly

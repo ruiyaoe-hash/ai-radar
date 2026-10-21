@@ -15,7 +15,9 @@ Phase 4 只做第一批。公开仓提供脚本和信源表；候选 JSONL 只�
 
 定时是 UTC `30 0,6,12 * * *`，也就是北京时间 08:30、14:30、20:30，一天三次。另有 `workflow_dispatch`。GitHub 的 schedule 可能迟到；外部 cron 调 `workflow_dispatch` 的办法见 `docs/score-and-briefs.md`。这个工作流**不**在 pull request 上跑，所以公开 CI 不依赖私有仓，也不访问外网 feed。
 
-推送私有池前用 `scripts/pool_git_push.sh` 做 `git pull --rebase` 并重试，免得和 X 关注池工作流同时写 `candidates/`。公开仓这边若自动档有变化，只用 `GITHUB_TOKEN` 提交 `public/briefs.json`。池令牌仍然不能写公开仓。
+和 X 关注池工作流共用 `concurrency: pool-writer`，排队写池。推送私有池用 `scripts/pool_git_push.sh`（fetch + rebase，网络失败重试，冲突直接失败不覆盖）。公开仓这边若自动档有变化，先过 `validate.py`，再只用 `GITHUB_TOKEN` 提交 `public/briefs.json`，然后显式触发 Pages 部署。池令牌仍然不能写公开仓。细节见 `docs/score-and-briefs.md`「工作流怎么写池、怎么上线」。
+
+feed 正文里的 HTML（GitHub Releases、多数博客的 summary）入池时就去掉标签，只留文字；派生快讯时再清一遍。只有版本号的 release 标题会补上仓库名，同一仓库一轮只发最新一条。
 
 feed 没有新条目时，日志写「无更新」。某一个源抓取失败会警告并继续；全部源都失败才让这一步变红。每个源一轮最多入库 `MAX_PER_SOURCE`（当前 10）条最新条目，防止全量存档型 feed 一次灌满池子。
 
@@ -23,7 +25,7 @@ feed 没有新条目时，日志写「无更新」。某一个源抓取失败会
 
 名字：**`AI_RADAR_POOL_TOKEN`**
 
-加在公开仓 `ruiyaoe-hash/ai-radar` 的 Settings → Secrets and variables → Actions。工作流只用它去检出并推送私有仓。公开仓这边的 job 权限是 `contents: read`，第一步 checkout 还关了 `persist-credentials`，避免这枚令牌碰到公开仓的 git remote。
+加在公开仓 `ruiyaoe-hash/ai-radar` 的 Settings → Secrets and variables → Actions。工作流只用它去检出并推送私有仓。两个 checkout 都关了 `persist-credentials`，令牌不写进任何 `.git/config`，只在推池那一步的 env 里出现。job 的 `contents: write` / `actions: write` 是给仓库自己的 `GITHUB_TOKEN` 推 `public/briefs.json` 和触发部署用的，和池令牌无关。
 
 ### 建令牌
 
