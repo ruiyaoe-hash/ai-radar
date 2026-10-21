@@ -79,7 +79,11 @@ else:
 ROOT = Path(__file__).resolve().parents[1]
 ROLES = {"primary", "analysis", "report"}
 URL_RE = re.compile(r"https?://[^\s<>\"')\]]+", re.I)
-TOKEN_RE = re.compile(r"[a-z0-9]{2,}|[\u4e00-\u9fff]{2,}")
+# Words for ASCII. CJK is character bigrams inside each run, not the whole run:
+# a comma used to turn one near-copy into several brand-new "words", and a
+# one-character title edit made Jaccard zero.
+ASCII_TOKEN_RE = re.compile(r"[a-z0-9]{2,}")
+CJK_RUN_RE = re.compile(r"[\u4e00-\u9fff]+")
 AI_RE = re.compile(
     r"\b(?:ai|llm|llms|gpt|chatgpt|claude|gemini|openai|anthropic|huggingface|"
     r"transformer|neural|agents?|machine learning)\b|模型|大模型|智能体",
@@ -247,16 +251,29 @@ def cluster_links(row: dict) -> set[str]:
     return links
 
 
+def text_tokens(text: str) -> set[str]:
+    """ASCII words plus CJK character bigrams. Single CJK characters are not tokens."""
+    if not text:
+        return set()
+    lowered = text.lower()
+    tokens = set(ASCII_TOKEN_RE.findall(lowered))
+    for run in CJK_RUN_RE.findall(lowered):
+        if len(run) < 2:
+            continue
+        tokens.update(run[i : i + 2] for i in range(len(run) - 1))
+    return tokens
+
+
 def content_tokens(row: dict) -> set[str]:
     blob = " ".join(part for part in (row.get("title"), row.get("snippet")) if isinstance(part, str))
-    blob = URL_RE.sub(" ", blob).lower()
-    return set(TOKEN_RE.findall(blob))
+    blob = URL_RE.sub(" ", blob)
+    return text_tokens(blob)
 
 
 def title_tokens(title: object) -> set[str]:
     if not isinstance(title, str) or not title.strip():
         return set()
-    return set(TOKEN_RE.findall(title.lower()))
+    return text_tokens(title)
 
 
 def jaccard(left: set[str], right: set[str]) -> float:
@@ -891,8 +908,10 @@ def self_check() -> None:
         raise SystemExit("FAIL: TechCrunch must stay a high-gate report source")
     if _expected_gate(options.handles["openai-blog"]) != "low":
         raise SystemExit("FAIL: OpenAI blog must stay a low-gate primary source")
-    if "karpathy" not in options.a_tier or "op7418" not in options.practice_handles:
+    if not options.a_tier or not options.practice_handles:
         raise SystemExit("FAIL: config handle lists were not loaded")
+    if options.a_tier & options.practice_handles:
+        raise SystemExit("FAIL: practice_handles overlap a_tier")
     gh = lookup_domain("https://github.com/openai/openai-python/releases/tag/v9", options.domains)
     if not gh or gh.get("role_guess") != "primary":
         raise SystemExit(f"FAIL: GitHub OpenAI releases should be primary, got {gh}")

@@ -403,7 +403,11 @@ def check_practice() -> None:
 
 
 def check_atlas() -> None:
-    """Topic atlas: published kb matches the schema, practice cards stay mapped, pages exist."""
+    """Topic atlas: schema, derived splits, practice ids mapped, topic pages exist.
+
+    Topic status, track membership, and which card a playbook cites are content.
+    They are not frozen here.
+    """
     kb_path = PUBLIC / "data" / "kb.json"
     if not kb_path.is_file():
         fail("missing public/data/kb.json (run generate_derived.py)")
@@ -427,29 +431,9 @@ def check_atlas() -> None:
         doc = json.loads((PUBLIC / "data" / name).read_text(encoding="utf-8"))
         if doc.get(key) != kb.get(key):
             fail(f"data/{name} drifted from kb.json {key}")
-    tracks = [item.get("id") for item in kb.get("tracks") or []]
-    if tracks != ["make", "create", "build", "knowledge", "business"]:
-        fail(f"atlas tracks must stay make/create/build/knowledge/business, got {tracks}")
     topics = {item.get("slug"): item for item in kb.get("topics") or []}
-    for slug in ("ai-music", "automation-orchestration", "ai-sites"):
-        topic = topics.get(slug) or {}
-        if topic.get("status") != "待采集" or topic.get("source_count") != 0:
-            fail(f"{slug} must stay 待采集 with zero sources")
-    gateway = topics.get("model-gateway") or {}
-    if gateway.get("status") != "active":
-        fail("model-gateway must be active once Magpie is mapped")
-    if len(gateway.get("playbook") or []) < 3:
-        fail("model-gateway playbook needs at least 3 steps")
-    if not any(
-        "prac-20261017-vista8-magpie" in (step.get("sources") or [])
-        for step in gateway.get("playbook") or []
-    ):
-        fail("model-gateway playbook must cite the Magpie practice card")
     sources = kb.get("sources") or []
     by_id = {item.get("id"): item for item in sources}
-    magpie = by_id.get("prac-20261017-vista8-magpie") or {}
-    if magpie.get("topic") != "model-gateway" or magpie.get("origin") != "practice":
-        fail("Magpie practice card must be a model-gateway source with origin=practice")
     practice = json.loads((PUBLIC / "practice.json").read_text(encoding="utf-8"))
     for item in practice.get("items") or []:
         sid = item.get("id")
@@ -466,12 +450,13 @@ def check_atlas() -> None:
     if handles != ordered:
         fail("atlas creators must be sorted by bookmarks when present, else source count")
     hardware = topics.get("ai-hardware") or {}
-    hw_sources = [item for item in sources if item.get("topic") == "ai-hardware"]
-    likes = sum(int(item["likes"]) for item in hw_sources)
-    bookmarks = sum(int(item["bookmarks"]) for item in hw_sources)
-    expect = round(bookmarks / likes, 2) if likes else 0
-    if hardware.get("save_ratio") != expect or hardware.get("source_count") != len(hw_sources):
-        fail(f"ai-hardware stats drifted: save_ratio {hardware.get('save_ratio')} != {expect}")
+    if hardware:
+        hw_sources = [item for item in sources if item.get("topic") == "ai-hardware"]
+        likes = sum(int(item["likes"]) for item in hw_sources)
+        bookmarks = sum(int(item["bookmarks"]) for item in hw_sources)
+        expect = round(bookmarks / likes, 2) if likes else 0
+        if hardware.get("save_ratio") != expect or hardware.get("source_count") != len(hw_sources):
+            fail(f"ai-hardware stats drifted: save_ratio {hardware.get('save_ratio')} != {expect}")
     for slug, topic in topics.items():
         path = PUBLIC / "topics" / f"{slug}.html"
         if not path.is_file():
@@ -851,46 +836,58 @@ def check_safe_href() -> None:
     print(proc.stdout.strip())
 
 
-PRACTICE_HANDLES = [
-    "op7418",
-    "vista8",
-    "lijigang",
-    "bcherny",
-    "trq212",
-    "mattpocockuk",
-    "addyosmani",
-    "ryolu_",
-    "ammaar",
-    "ameliax111",
-    "Saccc_c",
-    "AlchainHust",
-    "RealYDT",
-    "GeekCatX",
-    "bozhou_ai",
-    "0xlangeai",
-]
+def _string_list(value, label: str) -> list[str]:
+    if value is None:
+        return []
+    if not isinstance(value, list):
+        fail(f"{label} must be a list")
+    out = []
+    for item in value:
+        if not isinstance(item, str) or not item.strip():
+            fail(f"{label} entries must be non-empty strings")
+        out.append(item.strip())
+    folded = [item.casefold() for item in out]
+    if len(folded) != len(set(folded)):
+        fail(f"{label} has duplicate entries")
+    return out
 
 
 def check_practice_handles() -> None:
-    """Practice accounts live on practice_handles, not inside a_tier."""
+    """Watch lists are string lists. Membership is config, not a frozen roster."""
     cfg = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
-    if cfg.get("practice_handles") != PRACTICE_HANDLES:
-        fail(f"practice_handles must be the 16 practice accounts, got {cfg.get('practice_handles')!r}")
-    overlap = sorted(set(PRACTICE_HANDLES) & set(cfg.get("a_tier") or []))
+    practice = _string_list(cfg.get("practice_handles"), "practice_handles")
+    a_tier = _string_list(cfg.get("a_tier"), "a_tier")
+    overlap = sorted({item.casefold() for item in practice} & {item.casefold() for item in a_tier})
     if overlap:
         fail(f"practice_handles still listed in a_tier: {overlap}")
-    if cfg.get("digests") != ["08:00", "21:00"]:
-        fail("digests must stay 08:00 and 21:00")
-    blob = json.dumps(cfg, ensure_ascii=False)
-    if "已并入 a_tier" in blob:
-        fail("config still claims practice handles are covered by a_tier")
-    for keep in (
-        "dotey", "simonw", "shao__meng", "OpenAI", "dhh", "thomaszhou_", "xiaohuiyuan",
-        "pauliusztin_", "swyx", "levelsio", "marclou",
-    ):
-        if keep not in (cfg.get("a_tier") or []):
-            fail(f"a_tier lost decision/intel handle {keep}")
-    print("OK practice_handles: 16 accounts stay out of a_tier; digests unchanged")
+    digests = cfg.get("digests")
+    if digests is not None:
+        if not isinstance(digests, list):
+            fail("digests must be a list")
+        for slot in digests:
+            if not isinstance(slot, str) or not re.fullmatch(r"(?:[01][0-9]|2[0-3]):[0-5][0-9]", slot):
+                fail(f"digests entries must be HH:MM, got {slot!r}")
+    print("OK practice_handles: string lists, disjoint from a_tier")
+
+
+def check_private_surface() -> None:
+    """Published files must not carry the private digest or live owner actions."""
+    actions_path = PUBLIC / "owner-actions.json"
+    if actions_path.is_file():
+        data = json.loads(actions_path.read_text(encoding="utf-8"))
+        if data.get("example_only") is not True:
+            fail("public/owner-actions.json must set example_only true")
+        if data.get("actions") not in ([], None):
+            fail("public/owner-actions.json must not publish action rows; use owner-actions.local.json")
+    digest_path = ROOT / "DIGEST_LATEST.md"
+    if not digest_path.is_file():
+        fail("DIGEST_LATEST.md missing; keep the public skeleton")
+    digest = digest_path.read_text(encoding="utf-8")
+    if "不是私人实时主报" not in digest:
+        fail("DIGEST_LATEST.md must stay a public skeleton, not a private digest")
+    if "主人，" in digest:
+        fail("DIGEST_LATEST.md must not address a private digest")
+    print("OK private surface: digest skeleton, empty public owner-actions")
 
 
 def check_derive_ignores_pool() -> None:
@@ -1102,6 +1099,7 @@ def main() -> None:
     check_practice()
     check_atlas()
     check_practice_handles()
+    check_private_surface()
     check_derive_ignores_pool()
     check_public_excludes_pool()
     try:

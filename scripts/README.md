@@ -12,7 +12,7 @@
 | `ingest_rss.py` | Batch-1 lab RSS / GitHub Releases → the same pending rows (`channel=rss`). Live fetch stays out of public CI |
 | `annotate_gates.py` | L0 gates + L2 `cluster_id`. Writes judgment fields back. Does not promote |
 | `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |
-| `score_sources.py` | Source scoreboard → `public/source-scores.json` |
+| `score_sources.py` | Source scoreboard → `public/source-scores.json`。不读公开骨架里的 action；只有本机 `owner-actions.local.json` 会计入，且不要把那次结果提交 |
 | `feishu_notify.py` | Formal P0 + 24h health (needs `FEISHU_BOT_WEBHOOK`; state in `.feishu-notify-state.json`) |
 | `ops_retract.py` | Dry-run retract/pause lookup. Does not edit archive, git, or Feishu. See `docs/runbook-retract.md` |
 | `sync_root_pages.py` | Interim mirror public/ → repo root for legacy Pages. Skips README.md. Stops when `.no-root-mirror` exists |

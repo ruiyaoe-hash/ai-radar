@@ -111,7 +111,7 @@ AI Radar 是面向 AI OPC / 从业者的**按日归档情报时间线**：从精
 
 | 班次 | 北京时间 | 产出 |
 |------|----------|------|
-| 主报 | 08:00，每天 | 卡片 + `DIGEST_LATEST.md` 风格摘要 + push。覆盖美西上一工作日收盘窗口 |
+| 主报 | 08:00，每天 | 卡片 + 飞书/私有池里的主报。公开仓的 `DIGEST_LATEST.md` 只是占位，不放私人选型。覆盖美西上一工作日收盘窗口 |
 | 晚班 | 21:00，周一至周五 | 短报。覆盖中国白天 + 美东早晨 |
 | （已取消） | 13:30 | 不再作为主报 |
 | （暂缓） | 05:30 | 静默班，直到飞书出站 webhook 可用 |
@@ -244,7 +244,7 @@ ai-radar/
 ├── TIMELINE.md               # 例程步骤（给 Alba）
 ├── config.json               # timezone · digests · a_tier
 ├── state.json                # watermark · last_run · seen_ids（运行态）
-├── DIGEST_LATEST.md          # 最近一次 digest 人类可读摘要
+├── DIGEST_LATEST.md          # 公开占位。私人主报不进本仓正文
 ├── SAMPLE_DIGEST.md          # 样例早报
 ├── generate_feed.py          # RSS + 根目录镜像
 ├── .nojekyll
