@@ -176,6 +176,29 @@
         }
       }
     },
+    "atlas_suggestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Topic suggestion from scripts/suggest_atlas_topics.py. Advisory only. verified mirrors a public practice card when one exists; it does not publish a handbook. apply is never an automatic write. reason must not copy snippet or steps.",
+      "required": ["topic", "reason", "verified", "apply", "lane"],
+      "properties": {
+        "topic": {
+          "anyOf": [
+            { "type": "null" },
+            { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+          ]
+        },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "verified": { "type": "boolean" },
+        "apply": { "type": "string", "enum": ["held", "blocked_unverified", "no_topic"] },
+        "lane": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "matched_on": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "type": "string", "maxLength": 80 }
+        }
+      }
+    },
     "brief_id": {
       "type": "string",
       "pattern": "^brf-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$",

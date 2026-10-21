@@ -60,7 +60,7 @@ value = clamp(
 - `hit_rate`：`(cards+2)/(cards+dropped+4)`。不传 `--pool-dir` 时 `dropped=0`，`pool_drops_included=false`，这是只有公开卡的幸存者视图
 - `bookmark_like_ratio`：有互动计数才算 `(bookmarks+3)/(likes+5)`，丢弃帖的计数算进去。没有计数就是 `null`
 
-`config.json` 里「按 bookmark 与 bookmark÷like 升降」指的是这个比值会进入候选 `velocity`，以及信源榜上的 `bookmark_like_ratio`。本包不自动改 `a_tier` / `practice_handles` 名单，也不滚动图谱手册里的收藏快照。
+`config.json` 里「按 bookmark 与 bookmark÷like 升降」指的是这个比值会进入候选 `velocity`，以及信源榜上的 `bookmark_like_ratio`。名单仍不自动改 `a_tier` / `practice_handles`。图谱上的收藏滚动在 [`atlas-live.md`](./atlas-live.md)，用的是同一套 `(bookmarks+3)/(likes+5)`，样本少时向先验收缩。
 
 ```bash
 python3 scripts/score_sources.py --self-check

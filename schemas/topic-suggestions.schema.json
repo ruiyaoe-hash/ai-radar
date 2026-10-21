@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/topic-suggestions.schema.json",
+  "title": "实操主题建议",
+  "description": "Suggested atlas topic for each public practice card. Advisory. apply=held still needs a human confirm file. Unverified cards stay blocked_unverified and must not be written into the handbook. No steps, no pool snippet. schema_version 1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "note", "items"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "generated_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "note": { "type": "string", "minLength": 1, "maxLength": 300 },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/item" }
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "topic", "reason", "verified", "apply", "lane"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(prac|cand)-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$"
+        },
+        "topic": {
+          "anyOf": [
+            { "type": "null" },
+            { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+          ]
+        },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "verified": { "type": "boolean" },
+        "apply": { "type": "string", "enum": ["held", "blocked_unverified", "no_topic"] },
+        "lane": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "matched_on": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "type": "string", "maxLength": 80 }
+        }
+      }
+    }
+  }
+}

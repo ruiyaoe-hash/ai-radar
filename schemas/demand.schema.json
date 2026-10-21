@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/demand.schema.json",
+  "title": "实战图谱需求信号滚动",
+  "description": "Latest bookmark/like observations used to derive topic save_ratio. Counts only: no post text, no pool rows, no watchlist edits. schema_version 1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "refreshed_at",
+    "refreshed_label",
+    "bookmark_prior",
+    "like_prior",
+    "author_prior_n",
+    "formula",
+    "inputs",
+    "pool_counts",
+    "watchlist",
+    "sources"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "refreshed_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "refreshed_label": { "type": "string", "minLength": 8, "maxLength": 48 },
+    "bookmark_prior": { "type": "number", "minimum": 0 },
+    "like_prior": { "type": "number", "exclusiveMinimum": 0 },
+    "author_prior_n": { "type": "number", "exclusiveMinimum": 0 },
+    "formula": { "type": "string", "minLength": 8, "maxLength": 200 },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "enum": ["atlas", "archive", "pool", "demand"] }
+    },
+    "pool_counts": { "type": "boolean" },
+    "watchlist": { "type": "string", "const": "unchanged" },
+    "sources": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/source" }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["likes", "bookmarks", "observed_at", "from"],
+      "properties": {
+        "likes": { "type": "integer", "minimum": 0 },
+        "bookmarks": { "type": "integer", "minimum": 0 },
+        "views": { "type": "integer", "minimum": 0 },
+        "observed_at": { "type": "string", "minLength": 8, "maxLength": 40 },
+        "from": { "type": "string", "enum": ["atlas", "archive", "pool", "demand"] }
+      }
+    }
+  }
+}

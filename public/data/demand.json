@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "refreshed_at": "2026-10-21T04:12:54Z",
+  "refreshed_label": "2026-10-21 12:12 北京时间",
+  "bookmark_prior": 3,
+  "like_prior": 5,
+  "author_prior_n": 3,
+  "formula": "(bookmarks+3)/(likes+5)，再按样本数向先验收缩",
+  "inputs": [
+    "atlas",
+    "archive"
+  ],
+  "pool_counts": false,
+  "watchlist": "unchanged",
+  "sources": {
+    "hw-1": {
+      "likes": 405,
+      "bookmarks": 975,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 163326
+    },
+    "hw-2": {
+      "likes": 221,
+      "bookmarks": 321,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 43230
+    },
+    "hw-3": {
+      "likes": 94,
+      "bookmarks": 157,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 13991
+    },
+    "hw-4": {
+      "likes": 75,
+      "bookmarks": 105,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 8144
+    },
+    "hw-5": {
+      "likes": 92,
+      "bookmarks": 134,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 10129
+    },
+    "hw-6": {
+      "likes": 126,
+      "bookmarks": 148,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 48873
+    },
+    "hw-7": {
+      "likes": 81,
+      "bookmarks": 65,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 5980
+    },
+    "hw-8": {
+      "likes": 213,
+      "bookmarks": 314,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 43026
+    },
+    "eda-1": {
+      "likes": 717,
+      "bookmarks": 790,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 34717
+    },
+    "eda-2": {
+      "likes": 295,
+      "bookmarks": 201,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 11603
+    },
+    "eda-3": {
+      "likes": 430,
+      "bookmarks": 389,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 20128
+    },
+    "eda-4": {
+      "likes": 86,
+      "bookmarks": 73,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 18908
+    },
+    "eda-5": {
+      "likes": 84,
+      "bookmarks": 88,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 4879
+    },
+    "vid-1": {
+      "likes": 172,
+      "bookmarks": 227,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 30164
+    },
+    "vid-2": {
+      "likes": 253,
+      "bookmarks": 300,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 34958
+    },
+    "vid-3": {
+      "likes": 380,
+      "bookmarks": 448,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 50986
+    },
+    "vid-4": {
+      "likes": 234,
+      "bookmarks": 288,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 17784
+    },
+    "vid-5": {
+      "likes": 359,
+      "bookmarks": 258,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 150007
+    },
+    "vid-6": {
+      "likes": 158,
+      "bookmarks": 104,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 47555
+    },
+    "vid-7": {
+      "likes": 440,
+      "bookmarks": 1065,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 61803
+    },
+    "vid-8": {
+      "likes": 110,
+      "bookmarks": 88,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 5879
+    },
+    "vid-9": {
+      "likes": 158,
+      "bookmarks": 198,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 12109
+    },
+    "vid-10": {
+      "likes": 238,
+      "bookmarks": 346,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 18953
+    },
+    "sk-1": {
+      "likes": 1324,
+      "bookmarks": 1885,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 99313
+    },
+    "sk-2": {
+      "likes": 2988,
+      "bookmarks": 3938,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 448914
+    },
+    "sk-3": {
+      "likes": 378,
+      "bookmarks": 437,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 29540
+    },
+    "sk-4": {
+      "likes": 635,
+      "bookmarks": 965,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 93131
+    },
+    "sk-5": {
+      "likes": 347,
+      "bookmarks": 414,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 28922
+    },
+    "sk-6": {
+      "likes": 561,
+      "bookmarks": 750,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 48624
+    },
+    "sk-7": {
+      "likes": 345,
+      "bookmarks": 530,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 19602
+    },
+    "kn-1": {
+      "likes": 120,
+      "bookmarks": 179,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 19955
+    },
+    "kn-2": {
+      "likes": 646,
+      "bookmarks": 1595,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 271504
+    },
+    "kn-3": {
+      "likes": 103,
+      "bookmarks": 177,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 23297
+    },
+    "pa-1": {
+      "likes": 434,
+      "bookmarks": 791,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 43526
+    },
+    "pa-2": {
+      "likes": 125,
+      "bookmarks": 105,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 42860
+    },
+    "biz-1": {
+      "likes": 221,
+      "bookmarks": 225,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 15111
+    },
+    "biz-2": {
+      "likes": 372,
+      "bookmarks": 435,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 76574
+    },
+    "biz-3": {
+      "likes": 327,
+      "bookmarks": 313,
+      "observed_at": "2026-10-20",
+      "from": "atlas",
+      "views": 28291
+    }
+  }
+}

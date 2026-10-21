@@ -22,7 +22,9 @@
 - [时机窗口分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-timing.xml): RSS，只收时机窗口
 - [可试用工具](https://ruiyaoe-hash.github.io/ai-radar/tools-radar.json): 四档：值得用上、可以试、先评估、先别跟
 - [博主实操](https://ruiyaoe-hash.github.io/ai-radar/practice.json): 编辑每周挑好再放上来，schema_version 1
-- [实战图谱](https://ruiyaoe-hash.github.io/ai-radar/data/kb.json): 主题手册、原帖和博主，schema_version 1
+- [实战图谱](https://ruiyaoe-hash.github.io/ai-radar/data/kb.json): 主题手册、原帖和博主，schema_version 1。需求信号的最近滚动时间在 demand_refreshed_at
+- [需求信号滚动](https://ruiyaoe-hash.github.io/ai-radar/data/demand.json): 最近一次平滑收藏比所用的计数和时间戳。名单不因这个比值自动升降
+- [主题建议](https://ruiyaoe-hash.github.io/ai-radar/data/topic-suggestions.json): 每条公开实操建议归入的主题。未验证不会写入手册
 - [图谱方向](https://ruiyaoe-hash.github.io/ai-radar/data/tracks.json): kb.json 里的五个方向
 - [图谱主题](https://ruiyaoe-hash.github.io/ai-radar/data/topics.json): kb.json 里的主题和手册
 - [图谱原帖](https://ruiyaoe-hash.github.io/ai-radar/data/sources.json): kb.json 里的原帖
@@ -36,6 +38,8 @@
 - [单条卡片](https://ruiyaoe-hash.github.io/ai-radar/schemas/card.schema.json): items 与按日归档里的每一条
 - [博主实操](https://ruiyaoe-hash.github.io/ai-radar/schemas/practice.schema.json): practice.json
 - [实战图谱](https://ruiyaoe-hash.github.io/ai-radar/schemas/atlas.schema.json): data/kb.json
+- [需求信号](https://ruiyaoe-hash.github.io/ai-radar/schemas/demand.schema.json): data/demand.json
+- [主题建议](https://ruiyaoe-hash.github.io/ai-radar/schemas/topic-suggestions.schema.json): data/topic-suggestions.json
 - [可试用工具](https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json): tools-radar.json
 - [归档索引](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-index.schema.json): archive/index.json
 - [单日归档](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-day.schema.json): archive/YYYY-MM-DD.json

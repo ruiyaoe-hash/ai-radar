@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "snapshot": "2026-10-20",
-  "updated": "2026-10-20 21:41 北京时间",
-  "note": "五个方向下的主题手册。origin 为 prototype-snapshot 的原帖来自 2026-10-20 原型采样，收藏和点赞是该快照里的数字。origin 为 practice 的条目来自本站 practice.json。没有素材的主题状态是待采集。",
+  "updated": "2026-10-21 12:12 北京时间",
+  "note": "五个方向下的主题手册。origin 为 prototype-snapshot 的原帖来自 2026-10-20 原型采样，源文件里的收藏和点赞是那次采样。公开页的需求信号以 data/demand.json 最近一次滚动为准，没有更新的计数时仍用这些数字，但比值按平滑公式重算。origin 为 practice 的条目来自本站 practice.json。没有素材的主题状态是待采集。verified 不是 true 的实操不能当成完备课程。",
   "tracks": [
     {
       "id": "make",
@@ -102,7 +102,11 @@
       "has_bookmarks": true,
       "bookmarks": 2219,
       "likes": 1307,
-      "save_ratio": 1.7,
+      "save_ratio": 1.2177,
+      "demand_samples": 8,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-19"
     },
     {
@@ -166,7 +170,11 @@
       "has_bookmarks": true,
       "bookmarks": 1541,
       "likes": 1612,
-      "save_ratio": 0.96,
+      "save_ratio": 0.7921,
+      "demand_samples": 5,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-19"
     },
     {
@@ -242,7 +250,11 @@
       "has_bookmarks": true,
       "bookmarks": 3322,
       "likes": 2502,
-      "save_ratio": 1.33,
+      "save_ratio": 1.069,
+      "demand_samples": 10,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-20"
     },
     {
@@ -259,7 +271,11 @@
       "status": "待采集",
       "source_count": 0,
       "creator_count": 0,
-      "has_bookmarks": false
+      "has_bookmarks": false,
+      "demand_samples": 0,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间"
     },
     {
       "slug": "agent-skills",
@@ -337,7 +353,11 @@
       "has_bookmarks": true,
       "bookmarks": 8919,
       "likes": 6578,
-      "save_ratio": 1.36,
+      "save_ratio": 1.1237,
+      "demand_samples": 7,
+      "unverified_practice": 0,
+      "verified_practice": 5,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-14"
     },
     {
@@ -396,6 +416,10 @@
       "source_count": 1,
       "creator_count": 1,
       "has_bookmarks": false,
+      "demand_samples": 0,
+      "unverified_practice": 1,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-17"
     },
     {
@@ -414,7 +438,11 @@
       "status": "待采集",
       "source_count": 0,
       "creator_count": 0,
-      "has_bookmarks": false
+      "has_bookmarks": false,
+      "demand_samples": 0,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间"
     },
     {
       "slug": "media-to-knowledge",
@@ -468,7 +496,11 @@
       "has_bookmarks": true,
       "bookmarks": 1951,
       "likes": 869,
-      "save_ratio": 2.25,
+      "save_ratio": 1.2296,
+      "demand_samples": 3,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-05"
     },
     {
@@ -508,7 +540,11 @@
       "has_bookmarks": true,
       "bookmarks": 896,
       "likes": 559,
-      "save_ratio": 1.6,
+      "save_ratio": 0.8879,
+      "demand_samples": 2,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-17"
     },
     {
@@ -550,7 +586,11 @@
       "has_bookmarks": true,
       "bookmarks": 973,
       "likes": 920,
-      "save_ratio": 1.06,
+      "save_ratio": 0.8204,
+      "demand_samples": 3,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-09-15"
     },
     {
@@ -569,7 +609,11 @@
       "status": "待采集",
       "source_count": 0,
       "creator_count": 0,
-      "has_bookmarks": false
+      "has_bookmarks": false,
+      "demand_samples": 0,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间"
     }
   ],
   "sources": [
@@ -585,7 +629,9 @@
       "likes": 405,
       "bookmarks": 975,
       "views": 163326,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "hw-2",
@@ -599,7 +645,9 @@
       "likes": 221,
       "bookmarks": 321,
       "views": 43230,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "hw-3",
@@ -613,7 +661,9 @@
       "likes": 94,
       "bookmarks": 157,
       "views": 13991,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "hw-4",
@@ -627,7 +677,9 @@
       "likes": 75,
       "bookmarks": 105,
       "views": 8144,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "hw-5",
@@ -641,7 +693,9 @@
       "likes": 92,
       "bookmarks": 134,
       "views": 10129,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "hw-6",
@@ -655,7 +709,9 @@
       "likes": 126,
       "bookmarks": 148,
       "views": 48873,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "hw-7",
@@ -669,7 +725,9 @@
       "likes": 81,
       "bookmarks": 65,
       "views": 5980,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "hw-8",
@@ -683,7 +741,9 @@
       "likes": 213,
       "bookmarks": 314,
       "views": 43026,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "eda-1",
@@ -697,7 +757,9 @@
       "likes": 717,
       "bookmarks": 790,
       "views": 34717,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "eda-2",
@@ -711,7 +773,9 @@
       "likes": 295,
       "bookmarks": 201,
       "views": 11603,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "eda-3",
@@ -725,7 +789,9 @@
       "likes": 430,
       "bookmarks": 389,
       "views": 20128,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "eda-4",
@@ -739,7 +805,9 @@
       "likes": 86,
       "bookmarks": 73,
       "views": 18908,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "eda-5",
@@ -753,7 +821,9 @@
       "likes": 84,
       "bookmarks": 88,
       "views": 4879,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-1",
@@ -767,7 +837,9 @@
       "likes": 172,
       "bookmarks": 227,
       "views": 30164,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-2",
@@ -781,7 +853,9 @@
       "likes": 253,
       "bookmarks": 300,
       "views": 34958,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-3",
@@ -795,7 +869,9 @@
       "likes": 380,
       "bookmarks": 448,
       "views": 50986,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-4",
@@ -809,7 +885,9 @@
       "likes": 234,
       "bookmarks": 288,
       "views": 17784,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-5",
@@ -823,7 +901,9 @@
       "likes": 359,
       "bookmarks": 258,
       "views": 150007,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-6",
@@ -837,7 +917,9 @@
       "likes": 158,
       "bookmarks": 104,
       "views": 47555,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-7",
@@ -851,7 +933,9 @@
       "likes": 440,
       "bookmarks": 1065,
       "views": 61803,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-8",
@@ -865,7 +949,9 @@
       "likes": 110,
       "bookmarks": 88,
       "views": 5879,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-9",
@@ -879,7 +965,9 @@
       "likes": 158,
       "bookmarks": 198,
       "views": 12109,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "vid-10",
@@ -893,7 +981,9 @@
       "likes": 238,
       "bookmarks": 346,
       "views": 18953,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "sk-1",
@@ -907,7 +997,9 @@
       "likes": 1324,
       "bookmarks": 1885,
       "views": 99313,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "sk-2",
@@ -921,7 +1013,9 @@
       "likes": 2988,
       "bookmarks": 3938,
       "views": 448914,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "sk-3",
@@ -935,7 +1029,9 @@
       "likes": 378,
       "bookmarks": 437,
       "views": 29540,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "sk-4",
@@ -949,7 +1045,9 @@
       "likes": 635,
       "bookmarks": 965,
       "views": 93131,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "sk-5",
@@ -963,7 +1061,9 @@
       "likes": 347,
       "bookmarks": 414,
       "views": 28922,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "sk-6",
@@ -977,7 +1077,9 @@
       "likes": 561,
       "bookmarks": 750,
       "views": 48624,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "sk-7",
@@ -991,7 +1093,9 @@
       "likes": 345,
       "bookmarks": 530,
       "views": 19602,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "kn-1",
@@ -1005,7 +1109,9 @@
       "likes": 120,
       "bookmarks": 179,
       "views": 19955,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "kn-2",
@@ -1019,7 +1125,9 @@
       "likes": 646,
       "bookmarks": 1595,
       "views": 271504,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "kn-3",
@@ -1033,7 +1141,9 @@
       "likes": 103,
       "bookmarks": 177,
       "views": 23297,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "pa-1",
@@ -1047,7 +1157,9 @@
       "likes": 434,
       "bookmarks": 791,
       "views": 43526,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "pa-2",
@@ -1061,7 +1173,9 @@
       "likes": 125,
       "bookmarks": 105,
       "views": 42860,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "biz-1",
@@ -1075,7 +1189,9 @@
       "likes": 221,
       "bookmarks": 225,
       "views": 15111,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "biz-2",
@@ -1089,7 +1205,9 @@
       "likes": 372,
       "bookmarks": 435,
       "views": 76574,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "biz-3",
@@ -1103,7 +1221,9 @@
       "likes": 327,
       "bookmarks": 313,
       "views": 28291,
-      "origin": "prototype-snapshot"
+      "origin": "prototype-snapshot",
+      "demand_from": "atlas",
+      "demand_observed_at": "2026-10-20"
     },
     {
       "id": "prac-20261017-vista8-magpie",
@@ -1114,7 +1234,8 @@
       "title": "用 Docker 在 VPS 上跑 Magpie，做成多设备共用的私有 AI 网关",
       "excerpt": "把模型供应商和密钥集中放在一台服务器上的 Magpie。各台电脑只连同一个网关地址，不必每台机器各自配一遍 Key。",
       "date": "2026-10-17",
-      "origin": "practice"
+      "origin": "practice",
+      "verified": false
     },
     {
       "id": "prac-20261014-claude-skill",
@@ -1125,7 +1246,8 @@
       "title": "把每周重复粘贴的说明收成一条 Claude Skill",
       "excerpt": "重复粘贴的交付步骤收成个人 Skill 后，正文只在用到时加载，也可以用斜杠命令直接调用。",
       "date": "2026-10-14",
-      "origin": "practice"
+      "origin": "practice",
+      "verified": true
     },
     {
       "id": "prac-20261014-codex-agents",
@@ -1136,7 +1258,8 @@
       "title": "给 Codex 写一份短 AGENTS.md，避免每个仓库重复叮嘱",
       "excerpt": "把怎么构建、怎么测试、什么不要做写成短文件。Codex 开工前会读它。",
       "date": "2026-10-14",
-      "origin": "practice"
+      "origin": "practice",
+      "verified": true
     },
     {
       "id": "prac-20261014-llm-file",
@@ -1147,7 +1270,8 @@
       "title": "用 llm 命令对本地文件跑一次说明，不必先做应用",
       "excerpt": "先用命令行把文件送进模型，确认提示词有用，再决定要不要做成产品。",
       "date": "2026-10-14",
-      "origin": "practice"
+      "origin": "practice",
+      "verified": true
     },
     {
       "id": "prac-20261014-llm-template",
@@ -1158,7 +1282,8 @@
       "title": "把常用模型和提示存成 llm 模板，接单时一条命令复用",
       "excerpt": "提示词试顺之后存成模板。下次用 llm -t 喂材料，不必从聊天记录里翻。",
       "date": "2026-10-14",
-      "origin": "practice"
+      "origin": "practice",
+      "verified": true
     },
     {
       "id": "prac-20261014-llm-schema",
@@ -1169,7 +1294,8 @@
       "title": "用 llm --schema 把一段材料收成固定字段，再决定要不要做产品",
       "excerpt": "接单前先证明这段乱文字能稳定变成你要的字段。命令行过关，再写进脚本或后台。",
       "date": "2026-10-14",
-      "origin": "practice"
+      "origin": "practice",
+      "verified": true
     }
   ],
   "creators": [
@@ -1638,5 +1764,8 @@
         "agent-skills"
       ]
     }
-  ]
+  ],
+  "demand_refreshed_at": "2026-10-21 12:12 北京时间",
+  "demand_refreshed_at_utc": "2026-10-21T04:12:54Z",
+  "demand_formula": "(bookmarks+3)/(likes+5)，再按样本数向先验收缩"
 }
