@@ -449,14 +449,66 @@ def check_atlas() -> None:
     ordered = [item.get("handle") for item in sorted(creators, key=rank)]
     if handles != ordered:
         fail("atlas creators must be sorted by bookmarks when present, else source count")
-    hardware = topics.get("ai-hardware") or {}
-    if hardware:
-        hw_sources = [item for item in sources if item.get("topic") == "ai-hardware"]
-        likes = sum(int(item["likes"]) for item in hw_sources)
-        bookmarks = sum(int(item["bookmarks"]) for item in hw_sources)
-        expect = round(bookmarks / likes, 2) if likes else 0
-        if hardware.get("save_ratio") != expect or hardware.get("source_count") != len(hw_sources):
-            fail(f"ai-hardware stats drifted: save_ratio {hardware.get('save_ratio')} != {expect}")
+    try:
+        from refresh_demand import topic_save_ratio
+        from score_pool import load_score_config
+    except ImportError:
+        from scripts.refresh_demand import topic_save_ratio
+        from scripts.score_pool import load_score_config
+    score_cfg = load_score_config(ROOT)
+    demand_path = PUBLIC / "data" / "demand.json"
+    if not demand_path.is_file():
+        fail("missing public/data/demand.json (run scripts/refresh_demand.py)")
+    demand = json.loads(demand_path.read_text(encoding="utf-8"))
+    if demand.get("watchlist") != "unchanged":
+        fail("demand.json must keep watchlist unchanged")
+    if kb.get("demand_refreshed_at") != demand.get("refreshed_label"):
+        fail("kb demand_refreshed_at drifted from demand.json")
+    if kb.get("demand_refreshed_at_utc") != demand.get("refreshed_at"):
+        fail("kb demand_refreshed_at_utc drifted from demand.json")
+    rolled = demand.get("sources") or {}
+    if not isinstance(rolled, dict):
+        fail("demand.json sources must be an object")
+    for sid, extra in rolled.items():
+        if sid not in by_id:
+            fail(f"demand.json source {sid} is not in the atlas")
+        if not isinstance(extra, dict):
+            fail(f"demand.json source {sid} must be an object")
+        if by_id[sid].get("likes") != extra.get("likes") or by_id[sid].get("bookmarks") != extra.get("bookmarks"):
+            fail(f"{sid} counts drifted from the demand roll")
+    for item in practice.get("items") or []:
+        sid = item.get("id")
+        if by_id.get(sid, {}).get("verified") is not (item.get("verified") is True):
+            fail(f"{sid} verified drifted from practice.json")
+    for slug, topic in topics.items():
+        items = [item for item in sources if item.get("topic") == slug]
+        if topic.get("source_count") != len(items):
+            fail(f"{slug} source_count drifted")
+        samples = []
+        for item in items:
+            likes = item.get("likes")
+            bookmarks = item.get("bookmarks")
+            if isinstance(likes, int) and isinstance(bookmarks, int) and not isinstance(likes, bool) and not isinstance(bookmarks, bool):
+                samples.append((bookmarks, likes))
+        expect = topic_save_ratio(
+            samples,
+            score_cfg.bookmark_prior,
+            score_cfg.like_prior,
+            score_cfg.author_prior_n,
+        )
+        if expect is None:
+            if "save_ratio" in topic:
+                fail(f"{slug} save_ratio set without samples")
+        elif topic.get("save_ratio") != expect:
+            fail(f"{slug} save_ratio {topic.get('save_ratio')} != {expect}")
+        if topic.get("demand_samples") != len(samples):
+            fail(f"{slug} demand_samples drifted")
+        unverified = sum(1 for item in items if item.get("origin") == "practice" and item.get("verified") is not True)
+        verified_n = sum(1 for item in items if item.get("origin") == "practice" and item.get("verified") is True)
+        if topic.get("unverified_practice") != unverified or topic.get("verified_practice") != verified_n:
+            fail(f"{slug} verified counts drifted")
+        if topic.get("demand_refreshed_at") != demand.get("refreshed_label"):
+            fail(f"{slug} demand timestamp drifted")
     for slug, topic in topics.items():
         path = PUBLIC / "topics" / f"{slug}.html"
         if not path.is_file():
@@ -890,12 +942,48 @@ def check_private_surface() -> None:
     print("OK private surface: digest skeleton, empty public owner-actions")
 
 
+def check_topic_suggestions() -> None:
+    """Public suggestions cover practice cards and never look published."""
+    path = PUBLIC / "data" / "topic-suggestions.json"
+    if not path.is_file():
+        fail("missing public/data/topic-suggestions.json (run scripts/suggest_atlas_topics.py)")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    raw = path.read_text(encoding="utf-8")
+    for banned in ("status_in_pool", "snippet", "\"steps\""):
+        if banned in raw:
+            fail(f"topic-suggestions.json contains {banned}")
+    practice = json.loads((PUBLIC / "practice.json").read_text(encoding="utf-8"))
+    atlas = json.loads((PUBLIC / "data" / "atlas.source.json").read_text(encoding="utf-8"))
+    slugs = {item.get("slug") for item in atlas.get("topics") or []}
+    expected = {item.get("id") for item in practice.get("items") or [] if item.get("id")}
+    seen: list[str] = []
+    for item in data.get("items") or []:
+        item_id = str(item.get("id") or "")
+        seen.append(item_id)
+        if not item_id.startswith("prac-"):
+            fail(f"public topic suggestion {item_id} is outside the practice lane")
+        if item.get("verified") is not True and item.get("apply") == "held":
+            fail(f"{item_id} is unverified but marked held")
+        if item.get("verified") is True and item.get("topic") and item.get("apply") != "held":
+            fail(f"{item_id} verified suggestion must stay held until a person confirms")
+        if item.get("apply") == "no_topic" and item.get("topic") is not None:
+            fail(f"{item_id} no_topic still names a topic")
+        if item.get("topic") is not None and item.get("topic") not in slugs:
+            fail(f"{item_id} topic {item.get('topic')} is not in the atlas")
+        for key in ("steps", "snippet", "notes", "status_in_pool"):
+            if key in item:
+                fail(f"{item_id} suggestion carries {key}")
+    if set(seen) != expected or len(seen) != len(set(seen)):
+        fail("topic suggestions must list each public practice card once")
+    print(f"OK topic suggestions: {len(seen)} practice cards, none applied")
+
+
 def check_derive_ignores_pool() -> None:
     src = (ROOT / "scripts" / "generate_derived.py").read_text(encoding="utf-8")
     for banned in ("ai-radar-pool", "status_in_pool", "ingest_x", "candidates/"):
         if banned in src:
             fail(f"generate_derived.py must not reference {banned}")
-    print("OK derive: archive and practice inbox only; pool is not an input")
+    print("OK derive: archive, practice inbox, and public demand overlay; pool is not an input")
 
 
 PUBLISHED_SCHEMA_DOCS = {
@@ -906,6 +994,8 @@ PUBLISHED_SCHEMA_DOCS = {
     "archive/index.json": "archive-index.schema.json",
     "theses.json": "theses.schema.json",
     "briefs.json": "briefs.schema.json",
+    "data/demand.json": "demand.schema.json",
+    "data/topic-suggestions.json": "topic-suggestions.schema.json",
 }
 SITE_BASE = "https://ruiyaoe-hash.github.io/ai-radar/"
 PRIVATE_SURFACE = (
@@ -938,6 +1028,8 @@ def check_published_schemas() -> None:
         "archive-day.schema.json",
         "atlas.schema.json",
         "briefs.schema.json",
+        "demand.schema.json",
+        "topic-suggestions.schema.json",
     ):
         src = SCHEMAS / name
         dst = pub_dir / name
@@ -996,11 +1088,15 @@ def check_published_schemas() -> None:
         "tools-radar.json",
         "practice.json",
         "data/kb.json",
+        "data/demand.json",
+        "data/topic-suggestions.json",
         "data/tracks.json",
         "data/topics.json",
         "data/sources.json",
         "data/creators.json",
         "schemas/atlas.schema.json",
+        "schemas/demand.schema.json",
+        "schemas/topic-suggestions.schema.json",
         "archive/index.json",
         "theses.json",
         "schemas/CHANGELOG.md",
@@ -1206,6 +1302,15 @@ def main() -> None:
     check_derive_briefs()
     check_fetch_x()
     check_score_sources()
+    try:
+        from suggest_atlas_topics import self_check as check_suggest_topics
+        from refresh_demand import self_check as check_refresh_demand
+    except ImportError:
+        from scripts.suggest_atlas_topics import self_check as check_suggest_topics
+        from scripts.refresh_demand import self_check as check_refresh_demand
+    check_suggest_topics()
+    check_refresh_demand()
+    check_topic_suggestions()
     check_briefs()
     check_pool_workflows()
     check_pool_trace()

@@ -27,6 +27,10 @@
 
 `briefs.json` 补上公开 schema，`schema_version` 仍是 1。条目增加可选字段 `origin`（`archive_seed` 或 `auto_brief`）和 `candidate_id`（只在自动档上必填）。没有改名、改类型或删除已有字段。
 
+同一天 `data/kb.json` 仍是第 1 版。新增可选字段：`demand_refreshed_at`、`demand_refreshed_at_utc`、`demand_formula`；主题上的 `demand_samples`、`demand_refreshed_at`、`unverified_practice`、`verified_practice`；来源上的 `verified`、`demand_from`、`demand_observed_at`。`save_ratio` 改为平滑收藏比，类型仍是数。没有改名或删除。
+
+新文件 `data/demand.json`（需求信号滚动）和 `data/topic-suggestions.json`（实操主题建议），`schema_version` 都是 1。字段说明见 `demand.schema.json`、`topic-suggestions.schema.json`。
+
 ## 2026-10-20
 
 新增 `data/kb.json`（实战图谱），`schema_version` 为 1。同一份内容拆成 `data/tracks.json`、`data/topics.json`、`data/sources.json`、`data/creators.json`。主题页在 `topics/<slug>.html`。这是新文件，没有改已有 feed 的字段名或类型。`practice.json` 仍是第 1 版；每条实操的 id 会在图谱 sources 里出现，并带上 `origin=practice`。

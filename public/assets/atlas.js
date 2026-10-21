@@ -53,7 +53,9 @@
 
   function demandTag(topic) {
     if (topic.status === "待采集" || typeof topic.save_ratio !== "number") return "";
-    return `<span class="tag demand" title="收藏数 ÷ 点赞数。越高，说明越多人想存下来照着做。">需求信号 ${esc(topic.save_ratio.toFixed(2))}</span>`;
+    const when = topic.demand_refreshed_at ? "最近滚动 " + topic.demand_refreshed_at + "。" : "";
+    const title = "平滑收藏比，样本少时向先验收缩。" + when + "不是原始收藏÷点赞，也不升降关注名单。";
+    return `<span class="tag demand" title="${esc(title)}">需求信号 ${esc(Number(topic.save_ratio).toFixed(2))}</span>`;
   }
 
   function topicCard(topic) {
@@ -70,6 +72,7 @@
   function sourceCard(source, topic, showTopic) {
     const bits = [`<span class="tag prac">${esc(source.type || "实操")}</span>`];
     if (source.date) bits.push(`<span>${esc(source.date)}</span>`);
+    if (source.origin === "practice" && source.verified === false) bits.push(`<span class="tag pending">未实机验证</span>`);
     if (typeof source.bookmarks === "number") bits.push(`<span>收藏 ${esc(formatNumber(source.bookmarks))}</span>`);
     if (typeof source.likes === "number") bits.push(`<span>点赞 ${esc(formatNumber(source.likes))}</span>`);
     const open = extLink(source.url, "打开原文");
@@ -192,7 +195,8 @@
     renderTracks(kb, "");
     const note = document.getElementById("snapshot-note");
     if (note) {
-      note.textContent = "数据快照 " + (kb.snapshot || "") + "。原型采样的收藏和点赞来自这一天；本站实操在有收藏和点赞时才计入需求信号。";
+      const when = kb.demand_refreshed_at || kb.updated || "";
+      note.textContent = "需求信号滚动于 " + when + "。这是平滑后的收藏比，样本少时向先验收缩；没有更新的互动数时沿用图谱源里的计数。关注名单不按这个数自动升降。";
     }
     const latestHost = document.getElementById("latest-list");
     if (latestHost) {
@@ -211,7 +215,11 @@
       stats.push(`<span><b>${esc(topic.source_count)}</b> 条实操</span>`);
       stats.push(`<span><b>${esc(topic.creator_count || 0)}</b> 位博主贡献</span>`);
       if (topic.has_bookmarks) stats.push(`<span>累计收藏 <b>${esc(formatNumber(topic.bookmarks || 0))}</b></span>`);
-      if (typeof topic.save_ratio === "number") stats.push(`<span>需求信号 <b>${esc(topic.save_ratio.toFixed(2))}</b></span>`);
+      if (typeof topic.save_ratio === "number") {
+        const samples = topic.demand_samples ? " · " + topic.demand_samples + " 条样本" : "";
+        stats.push(`<span>需求信号 <b>${esc(Number(topic.save_ratio).toFixed(2))}</b>${esc(samples)}</span>`);
+      }
+      if (topic.demand_refreshed_at) stats.push(`<span>滚动于 ${esc(topic.demand_refreshed_at)}</span>`);
       if (topic.latest) stats.push(`<span>最近更新 ${esc(topic.latest)}</span>`);
     }
     return `<p class="back"><a href="${local("index.html")}">全部主题</a></p>
@@ -277,6 +285,7 @@
           <section>
             <h2>实操手册</h2>
             <p class="sub">由多位博主的分享合并而成。角标跳到下面的原帖，编号对应该主题素材的原始顺序。</p>
+            ${(topic.unverified_practice || 0) > 0 ? `<p class="sub">这里有 ${esc(topic.unverified_practice)} 条尚未实机验证的实操，手册还不是完备课程。</p>` : ""}
             <ol class="steps">${steps}</ol>
             ${pitfalls}
           </section>

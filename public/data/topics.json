@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-20 21:41 北京时间",
+  "updated": "2026-10-21 12:12 北京时间",
   "topics": [
     {
       "slug": "ai-hardware",
@@ -73,7 +73,11 @@
       "has_bookmarks": true,
       "bookmarks": 2219,
       "likes": 1307,
-      "save_ratio": 1.7,
+      "save_ratio": 1.2177,
+      "demand_samples": 8,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-19"
     },
     {
@@ -137,7 +141,11 @@
       "has_bookmarks": true,
       "bookmarks": 1541,
       "likes": 1612,
-      "save_ratio": 0.96,
+      "save_ratio": 0.7921,
+      "demand_samples": 5,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-19"
     },
     {
@@ -213,7 +221,11 @@
       "has_bookmarks": true,
       "bookmarks": 3322,
       "likes": 2502,
-      "save_ratio": 1.33,
+      "save_ratio": 1.069,
+      "demand_samples": 10,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-20"
     },
     {
@@ -230,7 +242,11 @@
       "status": "待采集",
       "source_count": 0,
       "creator_count": 0,
-      "has_bookmarks": false
+      "has_bookmarks": false,
+      "demand_samples": 0,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间"
     },
     {
       "slug": "agent-skills",
@@ -308,7 +324,11 @@
       "has_bookmarks": true,
       "bookmarks": 8919,
       "likes": 6578,
-      "save_ratio": 1.36,
+      "save_ratio": 1.1237,
+      "demand_samples": 7,
+      "unverified_practice": 0,
+      "verified_practice": 5,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-14"
     },
     {
@@ -367,6 +387,10 @@
       "source_count": 1,
       "creator_count": 1,
       "has_bookmarks": false,
+      "demand_samples": 0,
+      "unverified_practice": 1,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-17"
     },
     {
@@ -385,7 +409,11 @@
       "status": "待采集",
       "source_count": 0,
       "creator_count": 0,
-      "has_bookmarks": false
+      "has_bookmarks": false,
+      "demand_samples": 0,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间"
     },
     {
       "slug": "media-to-knowledge",
@@ -439,7 +467,11 @@
       "has_bookmarks": true,
       "bookmarks": 1951,
       "likes": 869,
-      "save_ratio": 2.25,
+      "save_ratio": 1.2296,
+      "demand_samples": 3,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-05"
     },
     {
@@ -479,7 +511,11 @@
       "has_bookmarks": true,
       "bookmarks": 896,
       "likes": 559,
-      "save_ratio": 1.6,
+      "save_ratio": 0.8879,
+      "demand_samples": 2,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-10-17"
     },
     {
@@ -521,7 +557,11 @@
       "has_bookmarks": true,
       "bookmarks": 973,
       "likes": 920,
-      "save_ratio": 1.06,
+      "save_ratio": 0.8204,
+      "demand_samples": 3,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间",
       "latest": "2026-09-15"
     },
     {
@@ -540,7 +580,11 @@
       "status": "待采集",
       "source_count": 0,
       "creator_count": 0,
-      "has_bookmarks": false
+      "has_bookmarks": false,
+      "demand_samples": 0,
+      "unverified_practice": 0,
+      "verified_practice": 0,
+      "demand_refreshed_at": "2026-10-21 12:12 北京时间"
     }
   ]
 }

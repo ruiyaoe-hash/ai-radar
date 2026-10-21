@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-10-20",
-  "note": "五个方向下的主题手册。origin 为 prototype-snapshot 的原帖来自 2026-10-20 原型采样，收藏和点赞是该快照里的数字。origin 为 practice 的条目来自本站 practice.json。没有素材的主题状态是待采集。",
+  "note": "五个方向下的主题手册。origin 为 prototype-snapshot 的原帖来自 2026-10-20 原型采样，源文件里的收藏和点赞是那次采样。公开页的需求信号以 data/demand.json 最近一次滚动为准，没有更新的计数时仍用这些数字，但比值按平滑公式重算。origin 为 practice 的条目来自本站 practice.json。没有素材的主题状态是待采集。verified 不是 true 的实操不能当成完备课程。",
   "tracks": [
     {"id": "make", "name": "造物", "tagline": "用 AI 做出能摸得着的硬件"},
     {"id": "create", "name": "内容创作", "tagline": "视频、音乐、播客的 AI 生产线"},

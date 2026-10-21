@@ -107,6 +107,8 @@ python3 scripts/ingest_x.py --pool-dir ../ai-radar-pool < fetch.json
 
 公开实操卡的学习者字段在 `schemas/practice.schema.json`：`difficulty`（难度）、`prerequisites`（前置条件）、`estimated_time`（预计耗时）、`verified`（已验证）。已验证占比是集合指标，不是池字段。
 
+主题建议不在这里晋升。`scripts/suggest_atlas_topics.py` 从 `practice_handles`、`tier_prior=practice`、`lane_hint` / `participation=practice`，以及 `score.band_reason=review_practice` 里认实操候选，对照 `atlas.source.json` 的工具名写出建议主题。私有池只多一份 `suggestions/atlas-topics.jsonl` 和行上的 `atlas_suggestion`，不抄正文，不进快讯。`verified` 不是 true 时不能写入手册。步骤见 [`atlas-live.md`](./atlas-live.md)。
+
 ## L0 门槛（annotate gates）
 
 Alba 在全量入池之后跑 `scripts/annotate_gates.py`。脚本读候选行（JSONL 或列表），把判断写回私有池，不新建公开卡，也不打分。

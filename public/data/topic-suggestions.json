@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-21T04:13:30Z",
+  "note": "建议清单。held 还要人工确认；blocked_unverified 不能写手册；no_topic 要人指定主题。这里不是上站。",
+  "items": [
+    {
+      "id": "prac-20261014-claude-skill",
+      "topic": "agent-skills",
+      "reason": "已在图谱归入 agent-skills（Agent Skills 与工作流）。工具名同时对上 agent-skills、ai-hardware 等 4 个主题，未确认前不改归属。verified=true。确认后才改手册，脚本不粘贴步骤。",
+      "verified": true,
+      "apply": "held",
+      "lane": "public_practice",
+      "matched_on": [
+        "atlas:agent-skills"
+      ]
+    },
+    {
+      "id": "prac-20261014-codex-agents",
+      "topic": "agent-skills",
+      "reason": "已在图谱归入 agent-skills（Agent Skills 与工作流）。工具名同时对上 agent-skills、ai-hardware 等 4 个主题，未确认前不改归属。verified=true。确认后才改手册，脚本不粘贴步骤。",
+      "verified": true,
+      "apply": "held",
+      "lane": "public_practice",
+      "matched_on": [
+        "atlas:agent-skills"
+      ]
+    },
+    {
+      "id": "prac-20261014-llm-file",
+      "topic": "agent-skills",
+      "reason": "已在图谱归入 agent-skills（Agent Skills 与工作流）。工具名 llm 也对上同一主题。verified=true。确认后才改手册，脚本不粘贴步骤。",
+      "verified": true,
+      "apply": "held",
+      "lane": "public_practice",
+      "matched_on": [
+        "atlas:agent-skills",
+        "tool:llm"
+      ]
+    },
+    {
+      "id": "prac-20261014-llm-schema",
+      "topic": "agent-skills",
+      "reason": "已在图谱归入 agent-skills（Agent Skills 与工作流）。工具名 llm 也对上同一主题。verified=true。确认后才改手册，脚本不粘贴步骤。",
+      "verified": true,
+      "apply": "held",
+      "lane": "public_practice",
+      "matched_on": [
+        "atlas:agent-skills",
+        "tool:llm"
+      ]
+    },
+    {
+      "id": "prac-20261014-llm-template",
+      "topic": "agent-skills",
+      "reason": "已在图谱归入 agent-skills（Agent Skills 与工作流）。工具名 llm 也对上同一主题。verified=true。确认后才改手册，脚本不粘贴步骤。",
+      "verified": true,
+      "apply": "held",
+      "lane": "public_practice",
+      "matched_on": [
+        "atlas:agent-skills",
+        "tool:llm"
+      ]
+    },
+    {
+      "id": "prac-20261017-vista8-magpie",
+      "topic": "model-gateway",
+      "reason": "已在图谱归入 model-gateway（统一模型网关与路由）。工具名 Magpie 也对上同一主题。verified=false，不能当作已上站的完备课程，也不会写入手册。",
+      "verified": false,
+      "apply": "blocked_unverified",
+      "lane": "public_practice",
+      "matched_on": [
+        "atlas:model-gateway",
+        "tool:Magpie"
+      ]
+    }
+  ]
+}

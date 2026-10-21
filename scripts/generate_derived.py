@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Derive board artifacts from public/archive (single source of truth).
 
-Reads public/archive, public/practice/inbox, and public/data/atlas.source.json.
-Those are the only inputs. Does not read or write a candidate pool, and does not score.
+Reads public/archive, public/practice/inbox, public/data/atlas.source.json,
+and public/data/demand.json when that roll file exists. Does not read or write
+a candidate pool, and does not score.
 Pages output stays the promoted public artifacts.
 
 L2 briefs are filled by scripts/derive_briefs.py, not here. One URL is not both an
@@ -510,11 +511,45 @@ def _write_topic_pages(topics: list[dict]) -> None:
             path.unlink()
 
 
+def _load_demand() -> dict | None:
+    path = PUBLIC / "data" / "demand.json"
+    if not path.is_file():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"demand.json: {exc}") from exc
+    if not isinstance(data, dict):
+        raise SystemExit("demand.json: expected an object")
+    return data
+
+
+def _overlay_demand(source: dict, rolled: dict) -> dict:
+    extra = rolled.get(str(source.get("id") or ""))
+    if not isinstance(extra, dict):
+        return source
+    out = dict(source)
+    for key in ("likes", "bookmarks", "views"):
+        value = extra.get(key)
+        if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+            continue
+        out[key] = value
+    origin = extra.get("from")
+    if origin in {"atlas", "archive", "pool", "demand"}:
+        out["demand_from"] = origin
+    observed = extra.get("observed_at")
+    if isinstance(observed, str) and observed:
+        out["demand_observed_at"] = observed
+    return out
+
+
 def sync_atlas() -> None:
     """Publish the topic atlas from public/data/atlas.source.json.
 
     Every live practice id must already be a source (origin=practice).
-    Counts, demand signal, creator rank, and topics/<slug>.html are derived.
+    Counts, the smoothed demand signal, creator rank, and topics/<slug>.html
+    are derived. data/demand.json overlays newer bookmark/like counts.
+    verified on a practice source is copied from practice.json, not invented.
     """
     if not ATLAS_SOURCE.is_file():
         print("  atlas: no data/atlas.source.json, skip")
@@ -534,6 +569,7 @@ def sync_atlas() -> None:
             raise SystemExit(f"atlas duplicate source id {sid}")
         seen.add(sid)
     practice_ids: list[str] = []
+    verified_by_id: dict[str, bool] = {}
     practice_path = PUBLIC / "practice.json"
     if practice_path.is_file():
         try:
@@ -543,12 +579,26 @@ def sync_atlas() -> None:
         for item in doc.get("items") or []:
             if isinstance(item, dict) and item.get("id"):
                 practice_ids.append(str(item["id"]))
+                verified_by_id[str(item["id"])] = item.get("verified") is True
     missing = [pid for pid in practice_ids if pid not in seen]
     if missing:
         raise SystemExit(
             "atlas.source.json missing practice ids "
             f"(map each inbox card onto a topic): {missing}"
         )
+    demand = _load_demand()
+    rolled = (demand or {}).get("sources") if isinstance((demand or {}).get("sources"), dict) else {}
+    sources = [_overlay_demand(source, rolled) for source in sources]
+    for source in sources:
+        if source.get("origin") == "practice":
+            source["verified"] = verified_by_id.get(str(source.get("id") or ""), False)
+    refreshed_label = str((demand or {}).get("refreshed_label") or "")
+    refreshed_utc = str((demand or {}).get("refreshed_at") or "")
+    formula = str((demand or {}).get("formula") or "")
+    from refresh_demand import topic_save_ratio
+    from score_pool import load_score_config
+
+    score_cfg = load_score_config(ROOT)
     topics_in = [item for item in (src.get("topics") or []) if isinstance(item, dict)]
     slug_set = {str(item.get("slug") or "") for item in topics_in}
     by_topic: dict[str, list[dict]] = {}
@@ -589,12 +639,29 @@ def sync_atlas() -> None:
         else:
             enriched.pop("bookmarks", None)
             enriched.pop("likes", None)
-        if measured:
-            like_total = sum(_metric(source.get("likes")) or 0 for source in measured)
-            bookmark_total = sum(_metric(source.get("bookmarks")) or 0 for source in measured)
-            enriched["save_ratio"] = round(bookmark_total / like_total, 2) if like_total else 0
-        else:
+        samples = [
+            (_metric(source.get("bookmarks")) or 0, _metric(source.get("likes")) or 0)
+            for source in measured
+        ]
+        ratio = topic_save_ratio(
+            samples,
+            score_cfg.bookmark_prior,
+            score_cfg.like_prior,
+            score_cfg.author_prior_n,
+        )
+        if ratio is None:
             enriched.pop("save_ratio", None)
+        else:
+            enriched["save_ratio"] = ratio
+        enriched["demand_samples"] = len(samples)
+        enriched["unverified_practice"] = sum(
+            1 for source in items if source.get("origin") == "practice" and source.get("verified") is not True
+        )
+        enriched["verified_practice"] = sum(
+            1 for source in items if source.get("origin") == "practice" and source.get("verified") is True
+        )
+        if refreshed_label:
+            enriched["demand_refreshed_at"] = refreshed_label
         if dates:
             enriched["latest"] = dates[-1]
         else:
@@ -634,18 +701,21 @@ def sync_atlas() -> None:
     creator_rows.sort(key=_rank)
     tracks = [item for item in (src.get("tracks") or []) if isinstance(item, dict)]
     now = datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间")
-    kb = strip_raw_post_fields(
-        {
-            "schema_version": 1,
-            "snapshot": src.get("snapshot") or "2026-10-20",
-            "updated": now,
-            "note": src.get("note") or "",
-            "tracks": tracks,
-            "topics": topics_out,
-            "sources": sources,
-            "creators": creator_rows,
-        }
-    )
+    payload = {
+        "schema_version": 1,
+        "snapshot": src.get("snapshot") or "2026-10-20",
+        "updated": now,
+        "note": src.get("note") or "",
+        "tracks": tracks,
+        "topics": topics_out,
+        "sources": sources,
+        "creators": creator_rows,
+    }
+    if refreshed_label:
+        payload["demand_refreshed_at"] = refreshed_label
+        payload["demand_refreshed_at_utc"] = refreshed_utc
+        payload["demand_formula"] = formula
+    kb = strip_raw_post_fields(payload)
     data = PUBLIC / "data"
     _dump_json(data / "kb.json", kb)
     _dump_json(data / "tracks.json", {"schema_version": 1, "updated": now, "tracks": tracks})

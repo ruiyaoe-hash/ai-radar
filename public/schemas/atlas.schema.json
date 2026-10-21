@@ -11,6 +11,21 @@
     "snapshot": { "type": "string", "minLength": 8, "maxLength": 32 },
     "updated": { "type": ["string", "null"], "maxLength": 48 },
     "note": { "type": "string", "maxLength": 500 },
+    "demand_refreshed_at": {
+      "type": "string",
+      "maxLength": 48,
+      "description": "Beijing label of the latest demand roll (最近一次需求信号滚动). Not a frozen snapshot date."
+    },
+    "demand_refreshed_at_utc": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "UTC timestamp of the same roll, copied from data/demand.json."
+    },
+    "demand_formula": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Human-readable smoothed bookmark÷like formula used for save_ratio."
+    },
     "tracks": {
       "type": "array",
       "minItems": 5,
@@ -82,7 +97,19 @@
         "creator_count": { "type": "integer", "minimum": 0 },
         "bookmarks": { "type": "integer", "minimum": 0 },
         "likes": { "type": "integer", "minimum": 0 },
-        "save_ratio": { "type": "number", "minimum": 0 },
+        "save_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Smoothed bookmark÷like: each source is (bookmarks+α)/(likes+β), then the mean shrinks toward α/β by author_prior_n. α, β, and author_prior_n come from config.json score. Not a raw snapshot ratio."
+        },
+        "demand_samples": { "type": "integer", "minimum": 0 },
+        "demand_refreshed_at": { "type": "string", "maxLength": 48 },
+        "unverified_practice": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Practice-origin sources whose public card is not verified. The handbook is not a finished course while this is above zero."
+        },
+        "verified_practice": { "type": "integer", "minimum": 0 },
         "latest": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
         "has_bookmarks": { "type": "boolean" }
       }
@@ -103,7 +130,13 @@
         "likes": { "type": "integer", "minimum": 0 },
         "bookmarks": { "type": "integer", "minimum": 0 },
         "views": { "type": "integer", "minimum": 0 },
-        "origin": { "type": "string", "enum": ["prototype-snapshot", "practice"] }
+        "origin": { "type": "string", "enum": ["prototype-snapshot", "practice"] },
+        "verified": {
+          "type": "boolean",
+          "description": "Copied from the public practice card when origin is practice. False means the steps were not run by an editor. Handbook prose is not implied."
+        },
+        "demand_from": { "type": "string", "enum": ["atlas", "archive", "pool", "demand"] },
+        "demand_observed_at": { "type": "string", "maxLength": 40 }
       }
     },
     "creator": {
