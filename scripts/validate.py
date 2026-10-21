@@ -402,10 +402,114 @@ def check_practice() -> None:
     )
 
 
+def check_atlas() -> None:
+    """Topic atlas: published kb matches the schema, practice cards stay mapped, pages exist."""
+    kb_path = PUBLIC / "data" / "kb.json"
+    if not kb_path.is_file():
+        fail("missing public/data/kb.json (run generate_derived.py)")
+    kb = json.loads(kb_path.read_text(encoding="utf-8"))
+    try:
+        from jsonschema import Draft202012Validator
+    except ImportError:
+        fail("jsonschema is not installed. Run: pip install -r requirements-ci.txt")
+    schema = json.loads((PUBLIC / "schemas" / "atlas.schema.json").read_text(encoding="utf-8"))
+    errors = sorted(Draft202012Validator(schema).iter_errors(kb), key=lambda e: list(e.path))
+    if errors:
+        first = errors[0]
+        loc = "/".join(str(p) for p in first.path) or "(root)"
+        fail(f"data/kb.json: schema {loc}: {first.message}")
+    for name, key in (
+        ("tracks.json", "tracks"),
+        ("topics.json", "topics"),
+        ("sources.json", "sources"),
+        ("creators.json", "creators"),
+    ):
+        doc = json.loads((PUBLIC / "data" / name).read_text(encoding="utf-8"))
+        if doc.get(key) != kb.get(key):
+            fail(f"data/{name} drifted from kb.json {key}")
+    tracks = [item.get("id") for item in kb.get("tracks") or []]
+    if tracks != ["make", "create", "build", "knowledge", "business"]:
+        fail(f"atlas tracks must stay make/create/build/knowledge/business, got {tracks}")
+    topics = {item.get("slug"): item for item in kb.get("topics") or []}
+    for slug in ("ai-music", "automation-orchestration", "ai-sites"):
+        topic = topics.get(slug) or {}
+        if topic.get("status") != "待采集" or topic.get("source_count") != 0:
+            fail(f"{slug} must stay 待采集 with zero sources")
+    gateway = topics.get("model-gateway") or {}
+    if gateway.get("status") != "active":
+        fail("model-gateway must be active once Magpie is mapped")
+    if len(gateway.get("playbook") or []) < 3:
+        fail("model-gateway playbook needs at least 3 steps")
+    if not any(
+        "prac-20261017-vista8-magpie" in (step.get("sources") or [])
+        for step in gateway.get("playbook") or []
+    ):
+        fail("model-gateway playbook must cite the Magpie practice card")
+    sources = kb.get("sources") or []
+    by_id = {item.get("id"): item for item in sources}
+    magpie = by_id.get("prac-20261017-vista8-magpie") or {}
+    if magpie.get("topic") != "model-gateway" or magpie.get("origin") != "practice":
+        fail("Magpie practice card must be a model-gateway source with origin=practice")
+    practice = json.loads((PUBLIC / "practice.json").read_text(encoding="utf-8"))
+    for item in practice.get("items") or []:
+        sid = item.get("id")
+        if sid not in by_id or by_id[sid].get("origin") != "practice":
+            fail(f"practice id {sid} missing from atlas sources")
+    creators = kb.get("creators") or []
+
+    def rank(creator: dict):
+        primary = creator["bookmarks"] if creator.get("bookmark_metric") else creator["source_count"]
+        return (-int(primary), -int(creator["source_count"]), str(creator.get("handle") or ""))
+
+    handles = [item.get("handle") for item in creators]
+    ordered = [item.get("handle") for item in sorted(creators, key=rank)]
+    if handles != ordered:
+        fail("atlas creators must be sorted by bookmarks when present, else source count")
+    hardware = topics.get("ai-hardware") or {}
+    hw_sources = [item for item in sources if item.get("topic") == "ai-hardware"]
+    likes = sum(int(item["likes"]) for item in hw_sources)
+    bookmarks = sum(int(item["bookmarks"]) for item in hw_sources)
+    expect = round(bookmarks / likes, 2) if likes else 0
+    if hardware.get("save_ratio") != expect or hardware.get("source_count") != len(hw_sources):
+        fail(f"ai-hardware stats drifted: save_ratio {hardware.get('save_ratio')} != {expect}")
+    for slug, topic in topics.items():
+        path = PUBLIC / "topics" / f"{slug}.html"
+        if not path.is_file():
+            fail(f"missing topics/{slug}.html")
+            continue
+        raw = path.read_text(encoding="utf-8")
+        if f'data-slug="{slug}"' not in raw or topic.get("name") not in raw:
+            fail(f"topics/{slug}.html missing slug or title")
+        if 'src="../assets/atlas.js"' not in raw or 'src="../assets/shell.js"' not in raw:
+            fail(f"topics/{slug}.html must load shell.js and atlas.js")
+    print(f"OK atlas: {len(topics)} topics, {len(sources)} sources")
+
+
 def check_public_ui() -> None:
     """Chinese-first pages: required labels exist, jargon stays out of visible HTML."""
     required = {
         "index.html": [
+            "实战图谱",
+            "今日精选",
+            "打开今日必看",
+            "./today.html",
+            "待采集",
+            "造物",
+            "内容创作",
+            "开发提效",
+            "知识管理",
+            "商业化",
+            "收录标准",
+            "编号步骤",
+            "盯人：持续监控博主",
+            "过滤：只收能照着做的",
+            "归类：并入主题手册",
+            "看需求：收藏率说话",
+            'id="method"',
+            "未经证实的传闻与第三方帖子",
+            '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
+        ],
+        "today.html": [
             "今日精选",
             "精选",
             "全部",
@@ -420,6 +524,10 @@ def check_public_ui() -> None:
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
             "每天 08:00 主报，工作日 21:00 晚班",
+        ],
+        "creators.html": [
+            "博主库",
+            "被收藏",
         ],
         "practice.html": [
             "工具用法",
@@ -450,6 +558,8 @@ def check_public_ui() -> None:
             "feed.xml",
             "tools-radar.json",
             "practice.json",
+            "data/kb.json",
+            "schemas/atlas.schema.json",
             "archive/index.json",
             "YYYY-MM-DD.json",
             "theses.json",
@@ -482,7 +592,7 @@ def check_public_ui() -> None:
         ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
-    for label in ("今日必看", "快讯", "博主实操", "本周归档", "可试用工具", "订阅更新", "飞书订阅群", "给 Agent 用", "这是什么", "反馈 / 建议"):
+    for label in ("实战图谱", "今日必看", "快讯", "博主库", "博主实操", "本周归档", "可试用工具", "订阅更新", "飞书订阅群", "给 Agent 用", "收录标准", "这是什么", "反馈 / 建议"):
         if label not in shell:
             fail(f"shell.js missing nav label {label}")
     feedback = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd"
@@ -497,14 +607,16 @@ def check_public_ui() -> None:
     if any(pos < 0 for pos in positions) or positions != sorted(positions):
         fail("shell.js nav order: 飞书订阅群 stays in 订阅; 反馈 / 建议 stays in 说明")
     reading = shell.split('<div class="nav-sec">订阅</div>', 1)[0]
-    reading_order = ["今日必看", "快讯", "博主实操", "本周归档", "可试用工具"]
+    reading_order = ["实战图谱", "今日必看", "快讯", "博主库", "博主实操", "本周归档", "可试用工具"]
     reading_pos = [reading.find(label) for label in reading_order]
     if (
         any(pos < 0 for pos in reading_pos)
         or reading_pos != sorted(reading_pos)
-        or "./briefs.html" not in reading
+        or 'item("briefs.html"' not in reading
+        or 'item("index.html"' not in reading
+        or 'item("today.html"' not in reading
     ):
-        fail("shell.js nav order: 快讯 stays in 阅读, after 今日必看, linking to ./briefs.html")
+        fail("shell.js nav order: 实战图谱 first, 今日必看 next, 快讯 stays in 阅读 and links to briefs.html")
     for rel in ("assets/shell.js", "subscribe.html"):
         mirror = ROOT / rel
         if not mirror.exists():
@@ -657,8 +769,20 @@ def expected_csp(hashes: list[str]) -> str:
     )
 
 
+def iter_public_html() -> list[Path]:
+    pages = list(PUBLIC.glob("*.html"))
+    topics = PUBLIC / "topics"
+    if topics.is_dir():
+        pages.extend(topics.glob("*.html"))
+    return sorted(pages)
+
+
+def loads_shell(raw: str) -> bool:
+    return 'src="./assets/shell.js"' in raw or 'src="../assets/shell.js"' in raw
+
+
 def check_csp() -> None:
-    pages = sorted(PUBLIC.glob("*.html"))
+    pages = iter_public_html()
     if not pages:
         fail("no public HTML pages")
     for path in pages:
@@ -686,11 +810,11 @@ def check_beacon() -> None:
         fail("shell.js must include the Cloudflare Web Analytics snippet with the exact token")
     if "installCfBeacon" not in shell or "DOMContentLoaded" not in shell:
         fail("shell.js must install the beacon on DOMContentLoaded, before </body>")
-    pages = sorted(PUBLIC.glob("*.html"))
+    pages = iter_public_html()
     for path in pages:
         raw = path.read_text(encoding="utf-8")
-        if 'src="./assets/shell.js"' not in raw:
-            fail(f"{path.name}: must load ./assets/shell.js so the analytics beacon is injected")
+        if not loads_shell(raw):
+            fail(f"{path.relative_to(PUBLIC)}: must load shell.js so the analytics beacon is injected")
     print(f"OK beacon: exact snippet via shell.js on {len(pages)} html pages")
 
 
@@ -706,6 +830,9 @@ def check_safe_href() -> None:
         fail("cards.js still puts a raw card url through esc() into markup")
     if "safeHref(" not in shell:
         fail("shell.js must filter nav hrefs with safeHref")
+    atlas = PUBLIC / "assets" / "atlas.js"
+    if not atlas.is_file() or "safeHref(" not in atlas.read_text(encoding="utf-8"):
+        fail("atlas.js must filter links with safeHref")
     for name in ("practice.html", "tools-radar.html", "subscribe.html"):
         raw = (PUBLIC / name).read_text(encoding="utf-8")
         if "safeHref(" not in raw:
@@ -766,6 +893,7 @@ def check_derive_ignores_pool() -> None:
 PUBLISHED_SCHEMA_DOCS = {
     "items.json": "items.schema.json",
     "practice.json": "practice.schema.json",
+    "data/kb.json": "atlas.schema.json",
     "tools-radar.json": "tools-radar.schema.json",
     "archive/index.json": "archive-index.schema.json",
     "theses.json": "theses.schema.json",
@@ -795,7 +923,7 @@ def check_published_schemas() -> None:
     for path in pub_dir.iterdir():
         if path.is_file() and "candidate" in path.name:
             fail(f"public/schemas must not publish {path.name}")
-    for name in ("card.schema.json", "practice.schema.json", "archive-day.schema.json"):
+    for name in ("card.schema.json", "practice.schema.json", "archive-day.schema.json", "atlas.schema.json"):
         src = SCHEMAS / name
         dst = pub_dir / name
         if not dst.is_file():
@@ -852,6 +980,12 @@ def check_published_schemas() -> None:
         "feeds/lens-timing.xml",
         "tools-radar.json",
         "practice.json",
+        "data/kb.json",
+        "data/tracks.json",
+        "data/topics.json",
+        "data/sources.json",
+        "data/creators.json",
+        "schemas/atlas.schema.json",
         "archive/index.json",
         "theses.json",
         "schemas/CHANGELOG.md",
@@ -955,6 +1089,7 @@ def main() -> None:
     check_feed()
     check_rss_escape()
     check_practice()
+    check_atlas()
     check_practice_handles()
     check_derive_ignores_pool()
     check_public_excludes_pool()

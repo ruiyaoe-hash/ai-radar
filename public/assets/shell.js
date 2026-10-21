@@ -1,10 +1,14 @@
 (function () {
   const page = document.documentElement.getAttribute("data-page") || "";
+  const rootAttr = document.documentElement.getAttribute("data-root") || "./";
+  const root = rootAttr.endsWith("/") ? rootAttr : rootAttr + "/";
   const icons = {
     bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>',
     list: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>',
     file: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>',
     grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+    map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>',
+    people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
     rss: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>',
     agent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M19 8v4M17 10h4"/></svg>',
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>',
@@ -18,7 +22,8 @@
   const FEISHU_GROUP = "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83";
 
   function item(href, id, label, icon, external) {
-    const safe = typeof window.safeHref === "function" ? window.safeHref(href) : "";
+    const full = external ? href : root + href;
+    const safe = typeof window.safeHref === "function" ? window.safeHref(full) : "";
     if (!safe) return "";
     const hrefAttr = safe.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
     const active = !external && page === id ? " active" : "";
@@ -39,7 +44,7 @@
   document.write(`<aside class="nav" id="site-nav">
     <div class="brand">
       <div class="brand-row">
-        <img class="bn-logo" src="./assets/logo.png" alt="" width="40" height="40" />
+        <img class="bn-logo" src="${root}assets/logo.png" alt="" width="40" height="40" />
         <div class="wm" aria-label="AI Radar">
           <span class="wm-ai">AI</span>
           <span class="wm-radar">RADAR</span>
@@ -48,17 +53,20 @@
       </div>
     </div>
     <div class="nav-sec">阅读</div>
-    ${item("./index.html", "today", "今日必看", "bolt")}
-    ${item("./briefs.html", "briefs", "快讯", "news")}
-    ${item("./practice.html", "practice", "博主实操", "list")}
-    ${item("./week.html", "week", "本周归档", "file")}
-    ${item("./tools-radar.html", "tools", "可试用工具", "grid")}
+    ${item("index.html", "atlas", "实战图谱", "map")}
+    ${item("today.html", "today", "今日必看", "bolt")}
+    ${item("briefs.html", "briefs", "快讯", "news")}
+    ${item("creators.html", "creators", "博主库", "people")}
+    ${item("practice.html", "practice", "博主实操", "list")}
+    ${item("week.html", "week", "本周归档", "file")}
+    ${item("tools-radar.html", "tools", "可试用工具", "grid")}
     <div class="nav-sec">订阅</div>
-    ${item("./subscribe.html", "subscribe", "订阅更新", "rss")}
+    ${item("subscribe.html", "subscribe", "订阅更新", "rss")}
     ${item(FEISHU_GROUP, "feishu", "飞书订阅群", "rss", true)}
-    ${item("./agent.html", "agent", "给 Agent 用", "agent")}
+    ${item("agent.html", "agent", "给 Agent 用", "agent")}
     <div class="nav-sec">说明</div>
-    ${item("./about.html", "about", "这是什么", "info")}
+    ${item("index.html#method", "method", "收录标准", "info")}
+    ${item("about.html", "about", "这是什么", "info")}
     ${item(FEEDBACK_FORM, "feedback", "反馈 / 建议", "msg", true)}
   </aside>
   <div class="nav-backdrop" id="nav-backdrop"></div>`);

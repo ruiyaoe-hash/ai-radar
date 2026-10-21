@@ -15,11 +15,16 @@
 | `items.json` 与其中的卡片 | 2 | [items.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/items.schema.json)、[card.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/card.schema.json) |
 | `archive/YYYY-MM-DD.json` | 2 | [archive-day.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-day.schema.json) |
 | `practice.json` | 1 | [practice.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/practice.schema.json) |
+| `data/kb.json` | 1 | [atlas.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/atlas.schema.json) |
 | `theses.json` | 1 | [theses.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/theses.schema.json) |
 | `tools-radar.json` | （无） | [tools-radar.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json) |
 | `archive/index.json` | （无） | [archive-index.schema.json](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-index.schema.json) |
 
 `today3.txt` 是纯文本。`feed.xml` 和订阅分册是 RSS 2.0。这两类没有 JSON Schema。
+
+## 2026-10-20
+
+新增 `data/kb.json`（实战图谱），`schema_version` 为 1。同一份内容拆成 `data/tracks.json`、`data/topics.json`、`data/sources.json`、`data/creators.json`。主题页在 `topics/<slug>.html`。这是新文件，没有改已有 feed 的字段名或类型。`practice.json` 仍是第 1 版；每条实操的 id 会在图谱 sources 里出现，并带上 `origin=practice`。
 
 ## 2026-10-16
 

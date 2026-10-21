@@ -266,6 +266,28 @@ def _practice_items(payload) -> list[dict]:
     return []
 
 
+def _walk_strings(value, field: str, out: list[tuple[str, str]]) -> None:
+    if isinstance(value, str) and value.strip():
+        out.append((field, value))
+    elif isinstance(value, list):
+        for index, item in enumerate(value):
+            _walk_strings(item, f"{field}[{index}]", out)
+    elif isinstance(value, dict):
+        for key, item in value.items():
+            if key in {"url", "profile_url", "id", "slug", "handle", "origin", "status", "date", "snapshot", "updated"}:
+                continue
+            child = f"{field}.{key}" if field else str(key)
+            _walk_strings(item, child, out)
+
+
+def atlas_prose(payload) -> list[tuple[str, str]]:
+    """Edited atlas copy. URLs and ids are not prose."""
+    out: list[tuple[str, str]] = []
+    if isinstance(payload, dict):
+        _walk_strings(payload, "", out)
+    return out
+
+
 def iter_public_prose(public: Path):
     """Yield (where, field, text) for agent-facing public prose."""
     archive = public / "archive"
@@ -287,6 +309,14 @@ def iter_public_prose(public: Path):
             where = f"items.json:{card.get('id')}"
             for field, text in card_prose(card):
                 yield where, field, text
+
+    data_dir = public / "data"
+    if data_dir.is_dir():
+        for path in sorted(data_dir.glob("*.json")):
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            rel = path.relative_to(public)
+            for field, text in atlas_prose(payload):
+                yield f"{rel}", field, text
 
     practice_files = [public / "practice.json", public / "practice.sample.json"]
     inbox = public / "practice" / "inbox"
