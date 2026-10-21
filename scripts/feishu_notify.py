@@ -77,7 +77,7 @@ def main():
                 status=it.get("status"),
                 url=it.get("url") or SITE,
                 eid=it.get("id"),
-                site=SITE,
+                site=SITE + "today.html",
             )
         )
 

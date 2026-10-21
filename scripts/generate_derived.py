@@ -21,6 +21,7 @@ Writes into public/ only:
   - data/kb.json        (atlas.source.json + practice ids → topics, sources, creators)
   - data/tracks.json, data/topics.json, data/sources.json, data/creators.json
   - topics/<slug>.html  (one static page per atlas topic)
+  - blog/               (content/posts/*.md via scripts/build_blog.py)
 
 today3 keeps the line labels the homepage parser expects
 (「对你意味着什么」「建议」). Spoken wording comes from the card.
@@ -43,10 +44,12 @@ from pathlib import Path
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from build_blog import build as build_blog
     from card_times import parse_source_timestamp
     from human_layer import strip_machine_ids
     from prompt_guard import strip_raw_post_fields
 else:
+    from .build_blog import build as build_blog
     from .card_times import parse_source_timestamp
     from .human_layer import strip_machine_ids
     from .prompt_guard import strip_raw_post_fields
@@ -356,7 +359,7 @@ def build_today3(board: list[dict]) -> str:
         if it.get("url"):
             lines.append(f"   {it['url']}")
         lines.append("")
-    lines.append(f"看板 {SITE}")
+    lines.append(f"看板 {SITE}today.html")
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -488,7 +491,7 @@ def _write_topic_pages(topics: list[dict]) -> None:
   <meta charset="utf-8" />
   <meta http-equiv="Content-Security-Policy" content="{ATLAS_CSP}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0c0e12" />
+  <meta name="theme-color" content="#0F1110" />
   <title>{title} · AI Radar</title>
   <link rel="icon" href="../assets/logo.png" />
   <link rel="stylesheet" href="../assets/radar.css" />
@@ -498,11 +501,7 @@ def _write_topic_pages(topics: list[dict]) -> None:
     <script src="../assets/safe-href.js"></script>
     <script src="../assets/shell.js"></script>
     <div class="content">
-      <div class="topbar">
-        <button class="menu-btn" type="button" data-nav-open>菜单</button>
-        <span class="topbar-title">{title}</span>
-      </div>
-      <main class="wide">
+      <main id="main" class="wide">
         <div id="topic-root">
           <p class="empty">正在读取这个主题…</p>
         </div>
@@ -786,9 +785,11 @@ def main():
     write_stable((PUBLIC / "today3.txt"), build_today3(board), encoding="utf-8")
     sync_practice_inbox()
     sync_atlas()
+    posts = build_blog()
 
     print(f"derived: {len(all_items)} archive cards → {len(board)} board items")
     print(f"  items.json, feed.xml, feeds/lens-*.xml, tools-radar.json, today3.txt, archive/index.json")
+    print(f"  blog: {len(posts)} posts → blog/index.html, blog/<slug>.html, blog/posts.json")
 
 
 if __name__ == "__main__":

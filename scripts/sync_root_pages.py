@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 MARKER = ROOT / ".no-root-mirror"
 FILES = [
-    "index.html", "items.json", "feed.xml", "tools-radar.html", "tools-radar.json",
+    "index.html", "atlas.html", "items.json", "feed.xml", "tools-radar.html", "tools-radar.json",
     "today3.txt", "theses.json", "source-scores.json", "owner-actions.json", ".nojekyll",
     "practice.html", "week.html", "subscribe.html", "agent.html", "about.html",
     "practice.json", "practice.sample.json",

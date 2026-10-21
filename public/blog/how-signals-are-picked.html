@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="blog" data-root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0F1110" />
+  <meta name="description" content="每天进来几百条，留下来的只有几条。这篇讲清楚中间那几道筛子：哪些是脚本自动做的，哪些必须有人看过才放行。" />
+  <title>一条消息怎样才能上 AI Radar · AI Radar</title>
+  <link rel="icon" href="../assets/logo.png" />
+  <link rel="stylesheet" href="../assets/radar.css" />
+  <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="../feed.xml" />
+</head>
+<body>
+  <div class="app">
+    <script src="../assets/safe-href.js"></script>
+    <script src="../assets/shell.js"></script>
+    <div class="content">
+      <main id="main">
+        <article>
+          <header class="post-head">
+            <p class="eyebrow"><a href="./">随笔 · Notes</a></p>
+            <h1>一条消息怎样才能上 AI Radar<span class="en">How a story earns its place</span></h1>
+            <p class="post-meta"><time datetime="2026-10-21">2026-10-21</time><span>约 2 分钟</span><span class="tag prac">方法</span><span class="tag prac">筛选</span></p>
+          </header>
+          <div class="prose">
+<p>每天从官方博客、GitHub 发布页和一批长期跟踪的作者那里进来几百条消息。真正出现在「今日必看」里的，通常只有几条。中间那段路，这里说清楚。</p>
+<h2>第一道：先把明显不该看的挡掉</h2>
+<p>进来的每一条都先过一遍门槛。重复的、太旧的、只有情绪没有事实的、课程推销，在这一步就停下。中文报道常常把同一件事换个说法再发一遍，所以去重不只看链接，还看正文里有没有<strong>新的东西</strong>：出现了一个以前没见过的模型名、版本号，算新；只是换了措辞，不算。</p>
+<h2>第二道：给剩下的打分</h2>
+<p>分数是规则算的，不是让模型凭感觉打。几个因素相乘：</p>
+<ul><li><strong>信源先验</strong>：这个来源过去被采用的比例。只有编辑明确否决的才算「没中」，过期、重复不怪信源。</li><li><strong>时间衰减</strong>：大约一天半，分数就掉到原来的三分之一多一点。</li><li><strong>交叉印证</strong>：几个互不相关的来源同时在说，且其中有一手链接，分数会更高。</li><li><strong>可操作性</strong>：带步骤、命令或可以打开的仓库，额外加一点，但有上限，不让教程帖挤掉真正的大事。</li></ul>
+<h2>第三道：自动发，还是等人看</h2>
+<p>分数够高、而且<strong>这一条本身</strong>就来自官方 RSS 的，会自动写成一句话快讯，出现在<a href="../briefs.html">快讯</a>页。社交平台上的帖子不管分多高，哪怕是实验室自己的账号，都不会自动发布，必须有人看过。爆料经常和官方消息挤在同一簇里，借着别人的印证拿高分，这正是最需要人眼的地方。</p>
+<p>自动发出去的快讯会保留七天。编辑事后否决了，它会被撤下；已经发过的编号不会被复用，订阅的人不会看到同一条消息换个身份再出现一次。</p>
+<h2>最后一道：值不值得你动手</h2>
+<p>快讯只陈述事实。要进「今日必看」，还得回答一个问题：<strong>这件事会不会改变你这周的下一步？</strong>会的，写清楚对你意味着什么、建议怎么做、什么情况下这个判断作废。不会的，就留在快讯里，知道就好。</p>
+<blockquote><p>宁可少一条，也不要多一条让你分心的。</p></blockquote>
+<h2>你能帮上什么</h2>
+<p>如果你发现哪条判断错了、链接失效，或者某个值得盯的作者我们没收，请通过页面底部的「反馈 / 建议」告诉我们。被采纳的更正会直接写回卡片，并标出改了什么。</p>
+          </div>
+        </article>
+        <nav class="post-nav" aria-label="上一篇与下一篇"><a href="./code-and-zen.html">← 代码与禅：这个站为什么长这样</a><a href="./">全部随笔</a></nav>
+        <footer class="site-footer">
+          <p class="motto">给迷途者的代码，给觉醒者的诗。<span class="en">Code for the lost, poetry for the awake.</span></p>
+          <p>随笔是编者个人观点，不是信号，也不构成投资或采购建议。</p>
+          <p>更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。</p>
+          <p>内容以 CC BY-NC 4.0 发布，转载请署名并链回原文。</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
