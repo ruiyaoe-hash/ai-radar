@@ -16,7 +16,7 @@ value = clamp(
 
 | 分量 | 含义 |
 |------|------|
-| `prior` | `tier_mix` × 档位权重 + (1−tier_mix) × 平滑命中率。档位来自 `tier_prior` / `role_guess`（T1、a_tier 高，T3 低，名单外 0.48）。命中率 = `(promoted条数 + hit_alpha) / (promoted + dropped + hit_alpha + hit_beta)`。**丢弃行在分母里**。还没决定的 `active` 不进分子也不进分母 |
+| `prior` | `tier_mix` × 档位权重 + (1−tier_mix) × 平滑命中率。档位来自 `tier_prior` / `role_guess`（T1、a_tier 高，T3 低，名单外 0.48）。命中率 = `(命中 + hit_alpha) / (命中 + 否决 + hit_alpha + hit_beta)`。命中 = `promoted` 或已带 `brief_id`。否决只算编辑/质量类原因（`editor_skip`、`prefilter_block`、`not_opc_action`、`rumor_no_upgrade`、`media_alone`、`practice_not_steps`、`hot_signal_only`）。`low_score`（衰减）、`duplicate_*`、`no_new_info`、`stale_old` 说明的是时机，不是信源好坏，**不进分母**。还没决定的 `active` 不进分子也不进分母 |
 | `decay` | 发表时间到 `--as-of` 的小时数。没有 `published_at` 时固定 0.55，不用入库时间假装很新 |
 | `corroboration` | 同簇里 `prefilter=PASS` 的独立 handle（或无 handle 时的 URL）数，每多一个 +0.08，最多三个；簇内有一手/官方链接再 +0.16。底是 0.72，上限 1 |
 | `velocity` | 没有收藏/点赞计数时为 1（RSS 不因此吃亏）。有计数时，`(bookmarks+bookmark_prior)/(likes+like_prior)` 和每小时收藏速度都按该作者在池里的样本归一，样本少时向先验收缩（`author_prior_n`）。丢弃行的计数也进基线 |
@@ -24,13 +24,17 @@ value = clamp(
 
 默认常数在 `config.json` 的 `score`。当前 τ=36 小时，自动档 ≥ 0.52，人工档 ≥ 0.34。
 
+只重打 `score_window_days`（默认 3）天内入库的行，旧池文件不会每轮被改写。已经带 `brief_id` 的行是一次发布决定，不再重打分，也不会因为衰减被丢成 `low_score`。互动计数是负数、非数字或 NaN 时按 0 读；`published_at` 比 `--as-of` 晚一小时以上时当作时间不可信（decay 0.55）。
+
 ## 三档
 
 | `score.band` | `band_reason` | 池内 |
 |--------------|---------------|------|
-| `auto_brief` | `auto_primary` | 仍是 `active`。高分、簇内有一手，且不是实操车道。`scripts/derive_briefs.py` 可以写成公开快讯 |
-| `review` | `review_score` / `review_practice` / `review_no_primary` / `review_deferred` | 保持 `active` 或 `deferred`。`--write-review` 把清单写到私有池 `review/YYYY-MM-DD.md` |
+| `auto_brief` | `auto_primary` | 仍是 `active`。高分、**行本身**是 RSS 一手官方源（`score.official_source=true`），且不是实操车道。`scripts/derive_briefs.py` 可以写成公开快讯 |
+| `review` | `review_score` / `review_practice` / `review_no_primary` / `review_not_official` / `review_deferred` | 保持 `active` 或 `deferred`。`--write-review` 把清单写到私有池 `review/YYYY-MM-DD.md` |
 | `drop` | `drop_low_score` | `status_in_pool=dropped`，`drop_reason=low_score`，`notes` 里留 `score:low_score value=…`。schema 要求这条 notes 非空 |
+
+`review_not_official`：簇里有一手链接，但这一行自己不是 RSS 官方源。典型是 X 上的爆料帖和官方帖进了同一簇，或实验室自己的 X 账号。它们靠簇内印证拿到高分，但不会自动发布，必须人看。schema 用 `if band=auto_brief then official_source=true` 锁住这一条。
 
 实操（`practice_handles`、`tier_prior=practice`、`lane_hint` 或 `participation=practice`）即使分高也是 `review_practice`，不会自动进快讯，也不会写 `public/practice/`。Magpie 这条车道仍然要人核过，`verified` 不由脚本改。
 
@@ -78,7 +82,11 @@ python3 scripts/score_sources.py --pool-dir ../ai-radar-pool
 - 去掉原始帖字段；`find_instruction_override` 命中的整条丢弃，不改写后硬发
 - `url` 必须过 `safe_http_url`；页面仍用 `safeHref` + `textContent`
 - URL 已经在 `public/archive/` 里的不上快讯（一条信号只占一层）
-- 每轮最多 20 条自动档
+- 每轮最多 20 条自动档；页面上最多保留 60 条
+- 只投射 `official_source=true` 且行本身是 RSS 一手的行，X 帖即使被标了 `auto_brief` 也不上
+- 已发的自动快讯保留 7 天（北京日历日），之后分数衰减、掉出自动档也不会立刻从页面消失；超过 7 天自动下架
+- 已发快讯的池行被人改成 `dropped`（比如 `editor_skip`），下一轮派生就撤下，这是人工否决权
+- `brief_id` 一旦写上不再删除
 - 不写 practice inbox
 
 ```bash

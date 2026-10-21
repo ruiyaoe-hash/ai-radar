@@ -13,6 +13,9 @@ Instruction-shaped text is dropped instead of published.
   python3 scripts/derive_briefs.py --pool-dir ../ai-radar-pool --briefs public/briefs.json
 
 Existing items whose origin is not auto_brief are kept (archive seeds).
+Published auto briefs stay for RETAIN_DAYS even after their score decays, so a
+brief does not vanish from the page a few hours after it went up. Only rows whose
+own source is official on an RSS feed are projected; X posts never auto-publish.
 """
 from __future__ import annotations
 
@@ -38,7 +41,7 @@ if __package__ in {None, ""}:
         parse_utc,
     )
     from prompt_guard import find_instruction_override, strip_raw_post_fields
-    from score_pool import is_practice_row
+    from score_pool import is_official_row, is_practice_row
     from shift_ingest_x_to_pool import assert_shift_pool_dir
 else:
     from .annotate_gates import evidence_links, options_from_repo, read_pool, url_is_primary, write_pool
@@ -53,7 +56,7 @@ else:
         parse_utc,
     )
     from .prompt_guard import find_instruction_override, strip_raw_post_fields
-    from .score_pool import is_practice_row
+    from .score_pool import is_official_row, is_practice_row
     from .shift_ingest_x_to_pool import assert_shift_pool_dir
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -61,6 +64,8 @@ PUBLIC_BRIEFS = ROOT / "public" / "briefs.json"
 ARCHIVE = ROOT / "public" / "archive"
 LENSES = ("工具", "赛道", "模式", "时机")
 MAX_AUTO = 20
+MAX_KEPT_AUTO = 60
+RETAIN_DAYS = 7
 SUMMARY_CHARS = 100
 TITLE_CHARS = 80
 
@@ -189,6 +194,8 @@ def project_brief(row: dict, options) -> dict | None:
         return None
     if is_practice_row(row, options.practice_handles):
         return None
+    if not score.get("official_source") or not is_official_row(row):
+        return None
     facts = fact_lines(row)
     url = choose_url(row, options)
     if not facts or not url:
@@ -224,23 +231,52 @@ def _signature(items: list[dict]) -> str:
     return json.dumps(items, ensure_ascii=False, sort_keys=True)
 
 
-def merge_briefs(existing: dict, auto_items: list[dict], updated: str) -> dict:
+def _retained(item: dict, now: datetime | None) -> bool:
+    if now is None:
+        return True
+    try:
+        day = datetime.strptime(str(item.get("date") or ""), "%Y-%m-%d").replace(tzinfo=SHANGHAI)
+    except ValueError:
+        return False
+    return (now.astimezone(SHANGHAI) - day).days <= RETAIN_DAYS
+
+
+def merge_briefs(
+    existing: dict,
+    auto_items: list[dict],
+    updated: str,
+    now: datetime | None = None,
+    withdrawn: set[str] | None = None,
+) -> dict:
+    withdrawn = withdrawn or set()
     kept = []
+    previous_auto = []
     for item in existing.get("items") or []:
-        if isinstance(item, dict) and item.get("origin") != "auto_brief":
+        if not isinstance(item, dict):
+            continue
+        if item.get("origin") != "auto_brief":
             kept.append(item)
+        elif item.get("candidate_id") in withdrawn:
+            continue
+        elif _retained(item, now):
+            previous_auto.append(item)
     seen = set()
     for item in kept:
         url = item.get("url")
         if isinstance(url, str) and safe_http_url(url):
             seen.add(normalize_url(url))
     fresh = []
-    for item in auto_items:
+    by_id = {item["id"]: item for item in auto_items}
+    merged_auto = [by_id.pop(item.get("id"), item) for item in previous_auto] + list(by_id.values())
+    merged_auto.sort(key=lambda item: (str(item.get("date") or ""), str(item.get("time") or ""), str(item.get("id"))), reverse=True)
+    for item in merged_auto:
         url = normalize_url(item["url"])
         if url in seen:
             continue
         seen.add(url)
         fresh.append(item)
+        if len(fresh) >= MAX_KEPT_AUTO:
+            break
     document = {
         "schema_version": 1,
         "level": "L2",
@@ -269,7 +305,14 @@ def derive(
     existing: dict,
     archive: set[str],
     updated: str,
+    now: datetime | None = None,
 ) -> tuple[dict, list[dict]]:
+    # A published row is never rescored, so a dropped row with brief_id was an editor's call.
+    withdrawn = {
+        str(row.get("id"))
+        for row in rows
+        if row.get("brief_id") and row.get("status_in_pool") == "dropped"
+    }
     ranked = []
     for row in rows:
         item = project_brief(row, options)
@@ -284,11 +327,9 @@ def derive(
     published = {part[2]["candidate_id"]: part[2]["id"] for part in ranked[:MAX_AUTO]}
     for row in rows:
         cid = row.get("id")
-        if cid in published:
+        if cid in published and not row.get("brief_id"):
             row["brief_id"] = published[cid]
-        elif (row.get("score") or {}).get("band") == "auto_brief" and "brief_id" in row:
-            row.pop("brief_id", None)
-    return merge_briefs(existing, auto_items, updated), rows
+    return merge_briefs(existing, auto_items, updated, now, withdrawn), rows
 
 
 def _load_existing(path: Path) -> dict:
@@ -334,6 +375,9 @@ def self_check() -> None:
             "band": band,
             "band_reason": reason,
             "primary_source": band == "auto_brief",
+            "official_source": band == "auto_brief"
+            and (row.get("source") or {}).get("channel") == "rss"
+            and (row.get("source") or {}).get("role_guess") == "primary",
             "method": "rules",
             "components": {
                 "prior": 0.8,
@@ -497,7 +541,7 @@ def self_check() -> None:
         ],
     }
     rows = [clean, injected, practice, low, duplicate]
-    document, written = derive(rows, options, existing, archive_urls(), updated)
+    document, written = derive(rows, options, existing, archive_urls(), updated, as_of)
     ids = [item["id"] for item in document["items"]]
     if ids != ["brf-20261014-seed-fixture", "brf-20261014-ccc000000001"]:
         raise SystemExit(f"FAIL: brief ids {ids}")
@@ -521,9 +565,45 @@ def self_check() -> None:
     if any(row.get("brief_id") for row in written[1:]):
         raise SystemExit("FAIL: non-published rows received brief_id")
 
-    again_doc, _again_rows = derive(json.loads(json.dumps(written)), options, document, archive_urls(), updated)
+    again_doc, _again_rows = derive(json.loads(json.dumps(written)), options, document, archive_urls(), updated, as_of)
     if render_briefs(again_doc) != body:
         raise SystemExit("FAIL: derive_briefs is not stable")
+
+    rumor = json.loads(json.dumps(clean))
+    rumor["id"] = "cand-20261014-ccc000000006"
+    rumor["url"] = rumor["url_norm"] = "https://x.com/leaker/status/88001"
+    rumor["source"] = {"channel": "x", "handle": "leaker", "role_guess": None}
+    rumor["score"]["official_source"] = True
+    lab_x = json.loads(json.dumps(clean))
+    lab_x["id"] = "cand-20261014-ccc000000007"
+    lab_x["url"] = lab_x["url_norm"] = "https://x.com/OpenAI/status/88002"
+    lab_x["source"] = {"channel": "x", "handle": "OpenAI", "role_guess": "primary"}
+    unflagged = json.loads(json.dumps(clean))
+    unflagged["id"] = "cand-20261014-ccc000000008"
+    unflagged["url"] = unflagged["url_norm"] = "https://openai.com/blog/fixture-unflagged"
+    unflagged["score"].pop("official_source")
+    for row in (rumor, lab_x, unflagged):
+        if project_brief(row, options) is not None:
+            raise SystemExit(f"FAIL: non-official row {row['id']} became an auto brief")
+
+    later = parse_utc("2026-10-17T12:00:00Z")
+    decayed = json.loads(json.dumps(written))
+    decayed[0]["score"]["band"] = "review"
+    kept_doc, kept_rows = derive(decayed, options, document, archive_urls(), "2026-10-17 20:00 北京时间", later)
+    if [item["id"] for item in kept_doc["items"]] != ids:
+        raise SystemExit(f"FAIL: published brief vanished inside the retain window {kept_doc['items']}")
+    if kept_rows[0].get("brief_id") != auto["id"]:
+        raise SystemExit("FAIL: brief_id was removed from a published row")
+    expired_doc, _ = derive(decayed, options, document, archive_urls(), "2026-10-22 20:00 北京时间", parse_utc("2026-10-22T12:00:00Z"))
+    if [item["id"] for item in expired_doc["items"]] != ["brf-20261014-seed-fixture"]:
+        raise SystemExit(f"FAIL: brief outlived RETAIN_DAYS {expired_doc['items']}")
+    vetoed = json.loads(json.dumps(written))
+    vetoed[0]["status_in_pool"] = "dropped"
+    vetoed[0]["drop_reason"] = "editor_skip"
+    vetoed[0]["score"]["band"] = "drop"
+    veto_doc, _ = derive(vetoed, options, document, archive_urls(), "2026-10-15 20:00 北京时间", later)
+    if [item["id"] for item in veto_doc["items"]] != ["brf-20261014-seed-fixture"]:
+        raise SystemExit(f"FAIL: editor drop did not withdraw the brief {veto_doc['items']}")
 
     with tempfile.TemporaryDirectory() as tmp:
         pool = Path(tmp) / "ai-radar-pool"
@@ -597,7 +677,7 @@ def main(argv: list[str] | None = None) -> int:
         else:
             rows, pairs, pool = _rows_from_path(Path(args.input))
         updated = as_of.astimezone(SHANGHAI).strftime("%Y-%m-%d %H:%M 北京时间")
-        document, rows = derive(rows, options, _load_existing(target), archive_urls(), updated)
+        document, rows = derive(rows, options, _load_existing(target), archive_urls(), updated, as_of)
         rendered = render_briefs(document)
         previous = target.read_text(encoding="utf-8") if target.is_file() else ""
         if rendered != previous:

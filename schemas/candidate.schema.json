@@ -127,8 +127,10 @@
     "score": {
       "type": "object",
       "additionalProperties": false,
-      "description": "Rules score written after annotate gates. value is prior × decay × corroboration × velocity, plus a capped actionability term, then clamped to [0, 1]. practice never uses band auto_brief. llm stays null unless a future adapter is configured; this repo does not call a hosted model.",
+      "description": "Rules score written after annotate gates. value is prior × decay × corroboration × velocity, plus a capped actionability term, then clamped to [0, 1]. practice never uses band auto_brief, and auto_brief requires official_source: the row itself is a primary source on an RSS feed. X posts and cluster neighbours of a primary link go to review. llm stays null unless a future adapter is configured; this repo does not call a hosted model.",
       "required": ["value", "band", "band_reason", "primary_source", "method", "components", "llm"],
+      "if": { "properties": { "band": { "const": "auto_brief" } }, "required": ["band"] },
+      "then": { "properties": { "official_source": { "const": true } }, "required": ["official_source"] },
       "properties": {
         "value": { "type": "number", "minimum": 0, "maximum": 1 },
         "band": { "type": "string", "enum": ["auto_brief", "review", "drop"] },
@@ -139,11 +141,13 @@
             "review_score",
             "review_practice",
             "review_no_primary",
+            "review_not_official",
             "review_deferred",
             "drop_low_score"
           ]
         },
         "primary_source": { "type": "boolean" },
+        "official_source": { "type": "boolean" },
         "method": { "type": "string", "enum": ["rules", "llm"] },
         "components": {
           "type": "object",
