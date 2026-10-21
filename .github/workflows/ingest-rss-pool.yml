@@ -5,8 +5,12 @@
 # that Worker. See docs/score-and-briefs.md.
 # Secret AI_RADAR_POOL_TOKEN: fine-grained PAT, Contents read/write on
 # ruiyaoe-hash/ai-radar-pool only. Do not grant it write access to public ai-radar.
-# GITHUB_TOKEN below only pushes public/briefs.json. Missing pool secret: warn and exit 0.
+# It is only handed to the push step; the checkout does not persist it.
+# GITHUB_TOKEN below only pushes public/briefs.json and dispatches the Pages deploy
+# (a GITHUB_TOKEN push does not trigger on: push). Missing pool secret: warn and exit 0.
 # Never push pool JSONL to the public repo.
+# Shares concurrency group pool-writer with ingest-x-pool.yml so the two never
+# rebase onto each other's half-written candidates/.
 name: Ingest RSS into private pool
 
 on:
@@ -16,17 +20,27 @@ on:
 
 permissions:
   contents: write
+  actions: write
+
+concurrency:
+  group: pool-writer
+  cancel-in-progress: false
 
 jobs:
   ingest-rss-pool:
     runs-on: ubuntu-latest
+    # The pool must sit beside the public checkout, not inside it (assert_shift_pool_dir).
+    defaults:
+      run:
+        working-directory: site
     steps:
       - name: Checkout public scripts
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
+          path: site
           persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
@@ -43,20 +57,24 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Install JSON Schema validator
+        if: steps.token.outputs.skip != 'true'
+        run: pip install -r requirements-ci.txt
+
       - name: Checkout private pool
         if: steps.token.outputs.skip != 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: ruiyaoe-hash/ai-radar-pool
           token: ${{ secrets.AI_RADAR_POOL_TOKEN }}
           path: pool
-          persist-credentials: true
+          persist-credentials: false
 
       - name: Ingest batch 1, annotate, score, derive briefs
         if: steps.token.outputs.skip != 'true'
         run: |
           set +e
-          python3 scripts/ingest_rss.py --pool-dir pool --sources public/config/sources.json
+          python3 scripts/ingest_rss.py --pool-dir ../pool --sources public/config/sources.json
           code=$?
           set -e
           if [ "$code" -eq 1 ]; then
@@ -64,20 +82,30 @@ jobs:
             exit 1
           fi
           # Exit 2 means some items had no link (FETCH_GAP). Rows that parsed are still on disk.
-          python3 scripts/annotate_gates.py --pool-dir pool --only-pending
-          python3 scripts/score_pool.py --pool-dir pool --write-review
-          python3 scripts/derive_briefs.py --pool-dir pool --briefs public/briefs.json
+          python3 scripts/annotate_gates.py --pool-dir ../pool --only-pending
+          python3 scripts/score_pool.py --pool-dir ../pool --write-review
+          python3 scripts/derive_briefs.py --pool-dir ../pool --briefs public/briefs.json
 
       - name: Push private pool only
         if: steps.token.outputs.skip != 'true'
         working-directory: pool
         env:
           COMMIT_MESSAGE: "ingest: RSS batch1 candidates"
-        run: bash "$GITHUB_WORKSPACE/scripts/pool_git_push.sh" candidates review
+          POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}
+        run: bash "$GITHUB_WORKSPACE/site/scripts/pool_git_push.sh" candidates review
 
-      - name: Push public briefs
+      - name: Validate and push public briefs
+        id: briefs
         if: steps.token.outputs.skip != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          POOL_DIR: ../pool
         run: bash scripts/public_briefs_push.sh
+
+      - name: Deploy Pages with the new briefs
+        if: steps.briefs.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REF: ${{ github.ref_name }}
+        run: gh workflow run deploy-pages.yml --repo "${GITHUB_REPOSITORY}" --ref "${REF}"

@@ -8,13 +8,17 @@ score ≈ prior(tier, smoothed hit rate)
       + actionability (capped rule heuristic)
 
 Bands written onto the row:
-  auto_brief  high score and a primary/official link, and not a practice lane
-  review      mid/high, practice, deferred, or high but no primary link
+  auto_brief  high score, the row itself comes from an official source on an
+              AUTO_CHANNELS feed (not X, not a cluster neighbour), and not practice
+  review      mid/high, practice, deferred, cluster-only primary, or no primary
   drop        low score → status dropped, drop_reason low_score, notes keep the trace
 
-Already-dropped gate rows stay dropped and keep their reason. They still
-count in the hit-rate denominator and in the author engagement baseline.
-editor_skip, promoted, and rerouted rows are left untouched.
+Hit rate counts promoted rows and published briefs as hits. Only editorial or
+quality drops (QUALITY_DROPS) are misses; decay, duplicates, and timing are not
+a verdict on the source. Rows that already carry brief_id are a decision and
+are not rescored. editor_skip, promoted, and rerouted rows are left untouched.
+Only rows ingested within score_window_days are rescored, so older pool files
+are not rewritten on every run.
 
 Rules scoring does not call a network. AI_RADAR_SCORE_LLM_URL only fills
 score.llm.skipped_reason; there is no hosted adapter in this repo.
@@ -103,6 +107,16 @@ TIER_WEIGHT = {
 }
 ROLE_WEIGHT = {"primary": 0.95, "analysis": 0.72, "report": 0.42}
 UNKNOWN_TIER = 0.48
+AUTO_CHANNELS = frozenset({"rss"})
+QUALITY_DROPS = frozenset({
+    "editor_skip",
+    "prefilter_block",
+    "not_opc_action",
+    "rumor_no_upgrade",
+    "media_alone",
+    "practice_not_steps",
+    "hot_signal_only",
+})
 
 
 @dataclass
@@ -117,6 +131,7 @@ class ScoreConfig:
     like_prior: float = 5.0
     author_prior_n: float = 3.0
     actionability_cap: float = 0.12
+    score_window_days: float = 3.0
 
     def validate(self) -> None:
         if self.tau_hours <= 0:
@@ -127,10 +142,12 @@ class ScoreConfig:
             raise IngestError("score hit prior must be ≥ 0")
         if not 0 < self.tier_mix < 1:
             raise IngestError("score.tier_mix must be between 0 and 1")
-        if self.bookmark_prior < 0 or self.like_prior <= 0 or self.author_prior_n <= 0:
+        if self.bookmark_prior <= 0 or self.like_prior <= 0 or self.author_prior_n <= 0:
             raise IngestError("score bookmark/like prior is invalid")
         if self.actionability_cap < 0 or self.actionability_cap > 0.5:
             raise IngestError("score.actionability_cap must be in [0, 0.5]")
+        if self.score_window_days <= 0:
+            raise IngestError("score.score_window_days must be > 0")
 
 
 def load_score_config(root: Path | None = None) -> ScoreConfig:
@@ -196,12 +213,22 @@ def row_is_primary(row: dict, options) -> bool:
     return has_primary_ref(row, options)
 
 
+def is_official_row(row: dict) -> bool:
+    """The row itself is an official feed. Cluster neighbours and X posts do not qualify."""
+    source = row.get("source") or {}
+    return source.get("role_guess") == "primary" and source.get("channel") in AUTO_CHANNELS
+
+
 def _pass_row(row: dict) -> bool:
     return row.get("prefilter") == "PASS"
 
 
 def decision_counts(rows: list[dict]) -> tuple[dict[str, int], dict[str, int]]:
-    """Promoted ids are hits. Dropped ids are misses. The same id counts once."""
+    """Promoted rows and published briefs are hits. Editorial or quality drops are misses.
+
+    low_score (decay), duplicate_*, no_new_info, stale_old, and missing clocks say
+    nothing about the source, so they stay out of the denominator. The same id counts once.
+    """
     hits: dict[str, set[str]] = defaultdict(set)
     drops: dict[str, set[str]] = defaultdict(set)
     for row in rows:
@@ -210,15 +237,26 @@ def decision_counts(rows: list[dict]) -> tuple[dict[str, int], dict[str, int]]:
             continue
         rid = str(row.get("id") or "")
         status = row.get("status_in_pool")
-        if status == "promoted":
+        if status == "promoted" or row.get("brief_id"):
             hits[handle].add(rid)
             drops[handle].discard(rid)
-        elif status == "dropped" and rid not in hits[handle]:
+        elif status == "dropped" and row.get("drop_reason") in QUALITY_DROPS and rid not in hits[handle]:
             drops[handle].add(rid)
     return (
         {handle: len(ids) for handle, ids in hits.items()},
         {handle: len(ids) for handle, ids in drops.items()},
     )
+
+
+def _count(value) -> float:
+    """Engagement counts from a fetch. Negative, non-numeric, or missing values read as 0."""
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return 0.0
+    if math.isnan(number) or number < 0:
+        return 0.0
+    return number
 
 
 def engagement_ratio(row: dict, cfg: ScoreConfig) -> float | None:
@@ -228,8 +266,8 @@ def engagement_ratio(row: dict, cfg: ScoreConfig) -> float | None:
     if "likes" not in engagement and "bookmarks" not in engagement:
         return None
     return smoothed_bookmark_like(
-        float(engagement.get("bookmarks") or 0),
-        float(engagement.get("likes") or 0),
+        _count(engagement.get("bookmarks")),
+        _count(engagement.get("likes")),
         cfg.bookmark_prior,
         cfg.like_prior,
     )
@@ -241,11 +279,12 @@ def engagement_rate(row: dict, age_hours: float, cfg: ScoreConfig) -> float | No
         return None
     if "likes" not in engagement and "bookmarks" not in engagement:
         return None
-    bookmarks = float(engagement.get("bookmarks") or 0)
+    bookmarks = _count(engagement.get("bookmarks"))
     return (bookmarks + cfg.bookmark_prior) / (max(age_hours, 0.0) + 1.0)
 
 
 def age_hours(row: dict, as_of: datetime) -> float | None:
+    """Hours since publish. A clock more than an hour in the future is unreliable, not fresh."""
     raw = row.get("published_at")
     if not isinstance(raw, str) or not raw:
         return None
@@ -253,7 +292,10 @@ def age_hours(row: dict, as_of: datetime) -> float | None:
         published = parse_utc(raw)
     except IngestError:
         return None
-    return max(0.0, (as_of - published).total_seconds() / 3600.0)
+    hours = (as_of - published).total_seconds() / 3600.0
+    if hours < -1.0:
+        return None
+    return max(0.0, hours)
 
 
 def tier_base(row: dict) -> float:
@@ -317,6 +359,7 @@ def band_of(
     practice: bool,
     status: str,
     cfg: ScoreConfig,
+    official: bool = False,
 ) -> tuple[str, str]:
     if value < cfg.review_min:
         return "drop", "drop_low_score"
@@ -326,6 +369,8 @@ def band_of(
         return "review", "review_deferred"
     if not primary:
         return "review", "review_no_primary"
+    if not official:
+        return "review", "review_not_official"
     if value >= cfg.auto_min and status == "active":
         return "auto_brief", "auto_primary"
     if value >= cfg.review_min:
@@ -336,11 +381,25 @@ def band_of(
 def scorable(row: dict) -> bool:
     if row.get("status_in_pool") in {"promoted", "rerouted", "dropped", "pending"}:
         return False
+    if row.get("brief_id"):
+        return False
     if row.get("drop_reason") in {"editor_skip", "low_score"}:
         return False
     if row.get("prefilter") != "PASS":
         return False
     return row.get("status_in_pool") in {"active", "deferred"}
+
+
+def in_score_window(row: dict, as_of: datetime, days: float) -> bool:
+    """Rows ingested long ago keep their last score instead of being rewritten every run."""
+    raw = row.get("ingested_at")
+    if not isinstance(raw, str) or not raw:
+        return True
+    try:
+        ingested = parse_utc(raw)
+    except IngestError:
+        return True
+    return (as_of - ingested).total_seconds() <= days * 86400.0
 
 
 def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) -> list[dict]:
@@ -371,7 +430,7 @@ def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) 
     prior_rate = cfg.bookmark_prior / 7.0
     llm = llm_slot()
     for row, age in zip(copied, ages):
-        if not scorable(row):
+        if not scorable(row) or not in_score_window(row, as_of, cfg.score_window_days):
             continue
         handle = handle_of(row)
         hit = smoothed_hit_rate(
@@ -404,12 +463,14 @@ def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) 
         value = _r4(min(1.0, max(0.0, prior * decay * corroboration * velocity + act)))
         practice = is_practice_row(row, options.practice_handles)
         status = str(row.get("status_in_pool") or "")
-        band, reason = band_of(value, primary, practice, status, cfg)
+        official = is_official_row(row)
+        band, reason = band_of(value, primary, practice, status, cfg, official)
         row["score"] = {
             "value": value,
             "band": band,
             "band_reason": reason,
             "primary_source": bool(primary),
+            "official_source": bool(official),
             "method": "rules",
             "components": {
                 "prior": prior,
@@ -847,7 +908,81 @@ def self_check() -> None:
     if not noisy_prior < clean_prior:
         raise SystemExit(f"FAIL: discarded posts did not lower prior {noisy_prior} vs {clean_prior}")
 
-    for row in first:
+    rumor = _fixture(
+        id="cand-20261014-cccccccccc01",
+        url="https://x.com/rando/status/1",
+        channel="x",
+        handle="rando",
+        snippet="FIXTURE GPT-5.5 is out and secretly worse, trust me https://openai.com/blog/fixture-score-pair",
+        cluster_id="clu-scorepair0001",
+        engagement={"likes": 50, "bookmarks": 200, "captured_at": "2026-10-14T11:00:00Z"},
+    )
+    lab_x = _fixture(
+        id="cand-20261014-cccccccccc02",
+        url="https://x.com/OpenAI/status/2",
+        channel="x",
+        handle="OpenAI",
+        role_guess="primary",
+        tier_prior="T1",
+        title="FIXTURE model release on X",
+        snippet="FIXTURE model release on X.",
+        cluster_id="clu-scorelabx0001",
+    )
+    neighbours = {
+        row["id"]: row
+        for row in score_records([pair_primary, rumor, lab_x], options, cfg, as_of)
+    }
+    if neighbours[pair_primary["id"]]["score"]["band"] != "auto_brief":
+        raise SystemExit("FAIL: the official RSS row should still reach auto_brief")
+    for rid in (rumor["id"], lab_x["id"]):
+        got = neighbours[rid]["score"]
+        if got["band"] == "auto_brief" or got["band_reason"] not in {"review_not_official", "review_score"}:
+            raise SystemExit(f"FAIL: {rid} must not auto-publish: {got['band']}/{got['band_reason']}")
+        if got["official_source"]:
+            raise SystemExit(f"FAIL: {rid} is not an official RSS row")
+
+    timing_drops = [
+        _fixture(
+            id=f"cand-20261014-dddddddddd0{n}",
+            url=f"https://openai.com/blog/fixture-timing-{n}",
+            handle="openai-blog",
+            role_guess="primary",
+            tier_prior="T1",
+            status="dropped",
+            drop_reason=reason,
+            notes="machine",
+            cluster_id=f"clu-scoretiming{n:02d}",
+        )
+        for n, reason in enumerate(("low_score", "duplicate_url", "no_new_info", "stale_old"), start=1)
+    ]
+    alone_prior = score_records([fresh], options, cfg, as_of)[0]["score"]["components"]["prior"]
+    timed = next(row for row in score_records([fresh] + timing_drops, options, cfg, as_of) if row["id"] == fresh["id"])
+    if timed["score"]["components"]["prior"] != alone_prior:
+        raise SystemExit("FAIL: decay and duplicate drops must not lower the source prior")
+    briefed = dict(fresh, id="cand-20261014-eeeeeeeeee01", brief_id="brf-20261014-eeeeeeeeee01", cluster_id="clu-scorebrief001")
+    boosted = next(row for row in score_records([fresh, briefed], options, cfg, as_of) if row["id"] == fresh["id"])
+    if not boosted["score"]["components"]["prior"] > alone_prior:
+        raise SystemExit("FAIL: a published brief must count as a hit")
+    late = parse_utc("2026-10-20T12:00:00Z")
+    kept_brief = next(row for row in score_records([briefed], options, cfg, late))
+    if "score" in kept_brief or kept_brief["status_in_pool"] != "active":
+        raise SystemExit("FAIL: a published brief must not be rescored or dropped by decay")
+    future = dict(plain, id="cand-20261014-eeeeeeeeee02", published_at="2026-10-20T00:00:00Z", cluster_id="clu-scorefuture01")
+    if score_records([future], options, cfg, as_of)[0]["score"]["components"]["decay"] != 0.55:
+        raise SystemExit("FAIL: a future clock must read as unreliable, not fresh")
+    odd = dict(viral, id="cand-20261014-eeeeeeeeee03", engagement={"likes": -5, "bookmarks": "abc"})
+    score_records([viral, odd], options, cfg, as_of)
+    old_row = dict(fresh, id="cand-20261001-eeeeeeeeee04", ingested_at="2026-10-01T00:00:00Z", cluster_id="clu-scoreold00001")
+    if "score" in score_records([old_row], options, cfg, as_of)[0]:
+        raise SystemExit("FAIL: rows outside score_window_days must keep their last score")
+    try:
+        ScoreConfig(bookmark_prior=0).validate()
+    except IngestError:
+        pass
+    else:
+        raise SystemExit("FAIL: bookmark_prior=0 must be rejected")
+
+    for row in first + list(neighbours.values()):
         errors = sorted(validator.iter_errors(row), key=lambda err: list(err.path))
         if errors:
             loc = "/".join(str(part) for part in errors[0].path) or "(root)"

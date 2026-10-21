@@ -2,100 +2,173 @@
   const page = document.documentElement.getAttribute("data-page") || "";
   const rootAttr = document.documentElement.getAttribute("data-root") || "./";
   const root = rootAttr.endsWith("/") ? rootAttr : rootAttr + "/";
-  const icons = {
-    bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>',
-    list: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>',
-    file: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>',
-    grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
-    map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>',
-    people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-    rss: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>',
-    agent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M19 8v4M17 10h4"/></svg>',
-    info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>',
-    msg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 6h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9l-4 3v-3H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"/></svg>',
-    news: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M16 9.5a3.5 3.5 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/></svg>'
-  };
 
   // 整站反馈问卷（匿名填写）。不是单卡投票，也不是飞书订阅群。
   const FEEDBACK_FORM = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd";
   // 飞书订阅群邀请。给人的零后端订阅路径，不是反馈问卷。
   const FEISHU_GROUP = "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83";
 
-  function item(href, id, label, icon, external) {
-    const full = external ? href : root + href;
-    const safe = typeof window.safeHref === "function" ? window.safeHref(full) : "";
-    if (!safe) return "";
-    const hrefAttr = safe.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
-    const active = !external && page === id ? " active" : "";
-    const current = !external && page === id ? ' aria-current="page"' : "";
-    const blank = external ? ' target="_blank" rel="noopener noreferrer"' : "";
-    return `<a class="${active.trim()}" href="${hrefAttr}"${current}${blank}><span class="ico" aria-hidden="true">${icons[icon]}</span>${label}</a>`;
+  function esc(text) {
+    return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 
-  const spec = `<svg class="wm-spec" viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true">
-    <polyline fill="none" stroke="#2dd4bf" stroke-width="1.2" stroke-linejoin="round"
-      points="0,10 6,10 8,3 10,12 12,7 14,11 16,2 18,9 20,10 28,10 30,4 32,13 34,6 36,10 44,10 46,8 48,2 50,12 52,5 54,10 62,10 64,3 66,11 68,7 70,10 78,10 80,6 82,12 84,4 86,9 88,10 96,10 98,5 100,13 102,7 104,10 112,10 114,8 116,3 118,11 120,10"/>
-    <line x1="0" y1="0" x2="0" y2="14" stroke="#5eead4" stroke-width="1" opacity=".85">
-      <animate attributeName="x1" values="0;120;0" dur="2.8s" repeatCount="indefinite"/>
-      <animate attributeName="x2" values="0;120;0" dur="2.8s" repeatCount="indefinite"/>
-    </line>
-  </svg>`;
+  function link(href, external) {
+    const full = external ? href : root + href;
+    return typeof window.safeHref === "function" ? window.safeHref(full) : "";
+  }
 
-  document.write(`<aside class="nav" id="site-nav">
-    <div class="brand">
-      <div class="brand-row">
-        <img class="bn-logo" src="${root}assets/logo.png" alt="" width="40" height="40" />
-        <div class="wm" aria-label="AI Radar">
-          <span class="wm-ai">AI</span>
-          <span class="wm-radar">RADAR</span>
-          ${spec}
-        </div>
+  function item(href, id, label, hint, external) {
+    const safe = link(href, external);
+    if (!safe) return "";
+    const on = !external && page === id;
+    const cls = [on ? "active" : "", external ? "ext" : ""].filter(Boolean).join(" ");
+    const current = on ? ' aria-current="page"' : "";
+    const blank = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<li><a class="${cls}" href="${esc(safe)}"${current}${blank}>${label}<small>${hint}</small></a></li>`;
+  }
+
+  const groups = [
+    {
+      id: "signals", zh: "信号", en: "Signals",
+      pages: ["today", "briefs", "week", "tools"],
+      items: [
+        item("today.html", "today", "今日必看", "当天最值得动手的信号"),
+        item("briefs.html", "briefs", "快讯", "官方发布的短讯，自动更新"),
+        item("week.html", "week", "本周归档", "按天翻看最近七天"),
+        item("tools-radar.html", "tools", "可试用工具", "值得用上、可以试、先别跟")
+      ]
+    },
+    {
+      id: "creations", zh: "造物", en: "Creations",
+      pages: ["atlas", "practice", "creators", "topic"],
+      items: [
+        item("atlas.html", "atlas", "实战图谱", "按场景整理的做法手册"),
+        item("practice.html", "practice", "博主实操", "能照着做的教程与工作流"),
+        item("creators.html", "creators", "博主库", "持续盯着的实操作者")
+      ]
+    },
+    {
+      id: "resonance", zh: "共鸣", en: "Resonance",
+      pages: ["blog", "subscribe", "agent", "about"],
+      items: [
+        item("blog/", "blog", "随笔", "编者的长一点的想法"),
+        item("subscribe.html", "subscribe", "订阅更新", "RSS 与按类订阅"),
+        item(FEISHU_GROUP, "feishu", "飞书订阅群", "每天推送到群里", true),
+        item("agent.html", "agent", "给 Agent 用", "机器可读的数据入口"),
+        item("atlas.html#method", "method", "收录标准", "什么能进站、什么不收"),
+        item("about.html", "about", "这是什么", "站点定位与更正方式"),
+        item(FEEDBACK_FORM, "feedback", "反馈 / 建议", "匿名问卷", true)
+      ]
+    }
+  ];
+
+  const navHtml = groups.map((group) => {
+    const current = group.pages.includes(page) ? " current" : "";
+    return `<li class="nav-group${current}" data-group="${group.id}">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-${group.id}">${group.zh}<span class="en">${group.en}</span><span class="chev" aria-hidden="true"></span></button>
+        <ul class="nav-menu" id="menu-${group.id}">${group.items.join("")}</ul>
+      </li>`;
+  }).join("");
+
+  const home = esc(link("index.html") || "./");
+  const subscribe = esc(link("subscribe.html") || "./");
+
+  const bar = `<a class="skip-link" href="#main">跳到正文</a>
+  <header class="ember-top-bar">
+    <div class="bar-inner">
+      <a class="brand" href="${home}" aria-label="AI Radar 首页">
+        <span class="ember-dot" id="radar-live" title="信号灯：最近 6 小时有更新时会呼吸" aria-hidden="true"></span>
+        <span class="brand-name">AI Radar<span class="en">信号雷达</span></span>
+      </a>
+      <nav class="main-nav" id="site-nav" aria-label="主导航">
+        <ul class="nav-groups">${navHtml}</ul>
+      </nav>
+      <div class="bar-actions">
+        <a class="btn btn-minimal btn-sub" href="${subscribe}">订阅</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="打开导航"><span class="bars" aria-hidden="true"></span></button>
       </div>
     </div>
-    <div class="nav-sec">阅读</div>
-    ${item("index.html", "atlas", "实战图谱", "map")}
-    ${item("today.html", "today", "今日必看", "bolt")}
-    ${item("briefs.html", "briefs", "快讯", "news")}
-    ${item("creators.html", "creators", "博主库", "people")}
-    ${item("practice.html", "practice", "博主实操", "list")}
-    ${item("week.html", "week", "本周归档", "file")}
-    ${item("tools-radar.html", "tools", "可试用工具", "grid")}
-    <div class="nav-sec">订阅</div>
-    ${item("subscribe.html", "subscribe", "订阅更新", "rss")}
-    ${item(FEISHU_GROUP, "feishu", "飞书订阅群", "rss", true)}
-    ${item("agent.html", "agent", "给 Agent 用", "agent")}
-    <div class="nav-sec">说明</div>
-    ${item("index.html#method", "method", "收录标准", "info")}
-    ${item("about.html", "about", "这是什么", "info")}
-    ${item(FEEDBACK_FORM, "feedback", "反馈 / 建议", "msg", true)}
-  </aside>
-  <div class="nav-backdrop" id="nav-backdrop"></div>`);
+  </header>`;
 
-  function nav() { return document.getElementById("site-nav"); }
-  function closeNav() {
-    const el = nav();
-    if (el) el.classList.remove("open");
-    const backdrop = document.getElementById("nav-backdrop");
-    if (backdrop) backdrop.classList.remove("show");
+  const self = document.currentScript;
+  if (self) self.insertAdjacentHTML("beforebegin", bar);
+
+  const nav = document.getElementById("site-nav");
+  const menuBtn = document.querySelector(".menu-btn");
+
+  function closeGroups(except) {
+    document.querySelectorAll(".nav-group.open").forEach((el) => {
+      if (el === except) return;
+      el.classList.remove("open");
+      const trigger = el.querySelector(".nav-trigger");
+      if (trigger) trigger.setAttribute("aria-expanded", "false");
+    });
   }
-  function openNav() {
-    const el = nav();
-    if (el) el.classList.add("open");
-    const backdrop = document.getElementById("nav-backdrop");
-    if (backdrop) backdrop.classList.add("show");
+  function setSheet(open) {
+    if (!nav || !menuBtn) return;
+    nav.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    menuBtn.setAttribute("aria-label", open ? "关闭导航" : "打开导航");
+    document.body.classList.toggle("nav-locked", open);
   }
+  function closeAll() {
+    closeGroups(null);
+    setSheet(false);
+  }
+
   document.addEventListener("click", (event) => {
-    if (event.target.closest("[data-nav-open]")) {
-      event.preventDefault();
-      openNav();
+    const trigger = event.target.closest(".nav-trigger");
+    if (trigger) {
+      const group = trigger.closest(".nav-group");
+      const open = !group.classList.contains("open");
+      closeGroups(group);
+      group.classList.toggle("open", open);
+      trigger.setAttribute("aria-expanded", open ? "true" : "false");
       return;
     }
-    if (event.target.id === "nav-backdrop") closeNav();
+    if (event.target.closest(".menu-btn")) {
+      setSheet(!nav.classList.contains("open"));
+      return;
+    }
+    if (event.target.closest(".nav-menu a")) {
+      closeAll();
+      return;
+    }
+    if (!event.target.closest(".nav-group")) closeGroups(null);
   });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeNav();
+    if (event.key !== "Escape") return;
+    const hadOpen = document.querySelector(".nav-group.open, .main-nav.open");
+    closeAll();
+    if (hadOpen && menuBtn && window.getComputedStyle(menuBtn).display !== "none") menuBtn.focus();
   });
-  window.RadarShell = { open: openNav, close: closeNav };
+  window.RadarShell = { open: () => setSheet(true), close: closeAll };
+
+  // 信号灯：快讯或看板最近 6 小时内更新过就呼吸，否则熄灭成灰点。
+  const LIVE_HOURS = 6;
+  function parseUpdated(text) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/.exec(String(text || ""));
+    if (!m) return 0;
+    return Date.parse(`${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:00+08:00`) || 0;
+  }
+  function checkLive() {
+    const dot = document.getElementById("radar-live");
+    if (!dot || typeof fetch !== "function") return;
+    const read = (name) => fetch(root + name, { cache: "no-cache" })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => parseUpdated(data && data.updated))
+      .catch(() => 0);
+    Promise.all([read("briefs.json"), read("items.json")]).then((stamps) => {
+      const latest = Math.max(...stamps);
+      const live = latest > 0 && Date.now() - latest < LIVE_HOURS * 3600 * 1000;
+      dot.classList.add(live ? "live" : "idle");
+      const at = latest > 0
+        ? new Date(latest).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false, month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })
+        : "";
+      if (at) dot.title = live ? `最近更新 ${at}（北京时间）` : `上次更新 ${at}（北京时间），信号灯暂歇`;
+      document.dispatchEvent(new CustomEvent("radar:live", { detail: { live, at } }));
+    });
+  }
 
   // Cloudflare Web Analytics。token 必须与这段片段一致，不要改。
   // 在 DOMContentLoaded 时追加到 body 末尾，这样每个加载 shell 的页面都会在 </body> 前带上 beacon。
@@ -114,9 +187,13 @@
     }
     document.body.appendChild(script);
   }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", installCfBeacon);
-  } else {
+  function onReady() {
     installCfBeacon();
+    checkLive();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", onReady);
+  } else {
+    onReady();
   }
 })();

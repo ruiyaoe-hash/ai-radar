@@ -5,4 +5,4 @@ AI Radar · 今日精选（2026-10-20）
    建议：试用 · 这周先用 4-bit 本地包跑一小批带工具调用的任务。
    https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model
 
-看板 https://ruiyaoe-hash.github.io/ai-radar/
+看板 https://ruiyaoe-hash.github.io/ai-radar/today.html

@@ -31,6 +31,7 @@
 - [图谱博主](https://ruiyaoe-hash.github.io/ai-radar/data/creators.json): kb.json 里的博主，按被收藏总数排序
 - [按日归档索引](https://ruiyaoe-hash.github.io/ai-radar/archive/index.json): 先看有哪些天；某一天是 `archive/` 加日期再加 `.json`
 - [长期判断](https://ruiyaoe-hash.github.io/ai-radar/theses.json): 跨越多天的看法，schema_version 1
+- [随笔列表](https://ruiyaoe-hash.github.io/ai-radar/blog/posts.json): 编者随笔的标题、日期、摘要和地址。是观点，不是信号
 
 ## 字段结构
 

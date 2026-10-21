@@ -96,6 +96,7 @@ DEFERRED_IDS = frozenset(
     }
 )
 WHITESPACE = re.compile(r"\s+")
+TAG_RE = re.compile(r"<[^<>]*>")
 
 
 def local(tag: object) -> str:
@@ -105,8 +106,9 @@ def local(tag: object) -> str:
 
 
 def plain_text(value: str) -> str:
-    text = WHITESPACE.sub(" ", html.unescape(value or "")).strip()
-    return text
+    """Feeds (GitHub Releases, many blogs) put escaped HTML in summary; keep the words only."""
+    text = TAG_RE.sub(" ", html.unescape(value or ""))
+    return WHITESPACE.sub(" ", html.unescape(text)).strip()
 
 
 def element_plain(el: ET.Element) -> str:
@@ -574,12 +576,26 @@ def _self_check_body() -> None:
         "persist-credentials: false",
         "pool_git_push.sh",
         "candidates review",
+        "group: pool-writer",
+        "cancel-in-progress: false",
+        "path: site",
+        "--pool-dir ../pool",
+        "POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}",
+        "public_briefs_push.sh",
+        "gh workflow run deploy-pages.yml",
     ):
         if needle not in workflow:
             raise SystemExit(f"FAIL: workflow missing {needle}")
+    if "persist-credentials: true" in workflow:
+        raise SystemExit("FAIL: no checkout may persist a token into .git/config")
+    if re.search(r"uses:\s*[\w./-]+@(?![0-9a-f]{40}\b)", workflow):
+        raise SystemExit("FAIL: every action must be pinned to a commit SHA")
     push = (ROOT / "scripts" / "pool_git_push.sh").read_text(encoding="utf-8")
-    if "pull --rebase" not in push or "无更新" not in push or "git add --" not in push:
-        raise SystemExit("FAIL: pool_git_push.sh must rebase, log 无更新, and add explicit paths")
+    if "rebase" not in push or "无更新" not in push or "git add --" not in push or "add-mask" not in push:
+        raise SystemExit("FAIL: pool_git_push.sh must rebase, log 无更新, add explicit paths, and mask the header")
+    briefs_push = (ROOT / "scripts" / "public_briefs_push.sh").read_text(encoding="utf-8")
+    if "scripts/validate.py" not in briefs_push or "pushed=" not in briefs_push or "add-mask" not in briefs_push:
+        raise SystemExit("FAIL: public_briefs_push.sh must validate first, report pushed=, and mask the header")
     if "pull_request:" in workflow:
         raise SystemExit("FAIL: RSS ingest must not run on pull_request")
     if "cron:" not in workflow:

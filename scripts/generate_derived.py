@@ -21,6 +21,7 @@ Writes into public/ only:
   - data/kb.json        (atlas.source.json + practice ids → topics, sources, creators)
   - data/tracks.json, data/topics.json, data/sources.json, data/creators.json
   - topics/<slug>.html  (one static page per atlas topic)
+  - blog/               (content/posts/*.md via scripts/build_blog.py)
 
 today3 keeps the line labels the homepage parser expects
 (「对你意味着什么」「建议」). Spoken wording comes from the card.
@@ -34,6 +35,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import sys
 import urllib.parse
 from datetime import datetime, timedelta, timezone
@@ -42,10 +44,12 @@ from pathlib import Path
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from build_blog import build as build_blog
     from card_times import parse_source_timestamp
     from human_layer import strip_machine_ids
     from prompt_guard import strip_raw_post_fields
 else:
+    from .build_blog import build as build_blog
     from .card_times import parse_source_timestamp
     from .human_layer import strip_machine_ids
     from .prompt_guard import strip_raw_post_fields
@@ -249,6 +253,18 @@ def build_rss(items: list[dict], title: str, description: str, self_url: str) ->
     return "\n".join(parts)
 
 
+STAMP_RE = re.compile(r'^\s*"updated": "[^"]*",?$|<lastBuildDate>[^<]*</lastBuildDate>', re.M)
+
+
+def write_stable(path: Path, text: str, encoding: str = "utf-8") -> None:
+    """Skip the write when only the wall-clock stamp would change, so reruns do not churn git."""
+    if path.is_file():
+        old = path.read_text(encoding=encoding)
+        if old == text or STAMP_RE.sub("", old) == STAMP_RE.sub("", text):
+            return
+    path.write_text(text, encoding=encoding)
+
+
 def write_archive_index(all_items: list[dict]) -> None:
     counts: dict[str, int] = {}
     for it in all_items:
@@ -256,7 +272,7 @@ def write_archive_index(all_items: list[dict]) -> None:
         if d:
             counts[d] = counts.get(d, 0) + 1
     dates = [{"date": d, "count": counts[d]} for d in sorted(counts.keys(), reverse=True)]
-    (ARCHIVE / "index.json").write_text(
+    write_stable((ARCHIVE / "index.json"),
         json.dumps({"dates": dates}, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
@@ -343,7 +359,7 @@ def build_today3(board: list[dict]) -> str:
         if it.get("url"):
             lines.append(f"   {it['url']}")
         lines.append("")
-    lines.append(f"看板 {SITE}")
+    lines.append(f"看板 {SITE}today.html")
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -385,7 +401,7 @@ def sync_practice_inbox() -> None:
     dest = PUBLIC / "practice.json"
     if not incoming:
         if not dest.exists():
-            dest.write_text(
+            write_stable(dest,
                 json.dumps(
                     {"schema_version": 1, "updated": None, "items": []},
                     ensure_ascii=False,
@@ -413,7 +429,7 @@ def sync_practice_inbox() -> None:
         by_id[eid] = strip_raw_post_fields(it)
     items = [by_id[eid] for eid in order]
     items.sort(key=lambda it: str(it.get("time") or ""), reverse=True)
-    dest.write_text(
+    write_stable(dest,
         json.dumps(
             {
                 "schema_version": 1,
@@ -449,7 +465,7 @@ ATLAS_CSP = (
 
 def _dump_json(path: Path, payload) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_stable(path, json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def _metric(value):
@@ -475,7 +491,7 @@ def _write_topic_pages(topics: list[dict]) -> None:
   <meta charset="utf-8" />
   <meta http-equiv="Content-Security-Policy" content="{ATLAS_CSP}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0c0e12" />
+  <meta name="theme-color" content="#0F1110" />
   <title>{title} · AI Radar</title>
   <link rel="icon" href="../assets/logo.png" />
   <link rel="stylesheet" href="../assets/radar.css" />
@@ -485,11 +501,7 @@ def _write_topic_pages(topics: list[dict]) -> None:
     <script src="../assets/safe-href.js"></script>
     <script src="../assets/shell.js"></script>
     <div class="content">
-      <div class="topbar">
-        <button class="menu-btn" type="button" data-nav-open>菜单</button>
-        <span class="topbar-title">{title}</span>
-      </div>
-      <main class="wide">
+      <main id="main" class="wide">
         <div id="topic-root">
           <p class="empty">正在读取这个主题…</p>
         </div>
@@ -738,11 +750,11 @@ def main():
         "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
         "items": board,
     }
-    (PUBLIC / "items.json").write_text(
+    write_stable((PUBLIC / "items.json"),
         json.dumps(items_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
-    (PUBLIC / "feed.xml").write_text(
+    write_stable((PUBLIC / "feed.xml"),
         build_rss(
             board,
             "AI Radar",
@@ -756,7 +768,7 @@ def main():
         lens_items = [it for it in board if it.get("lens") == lens]
         slug = {"工具": "tools", "赛道": "tracks", "模式": "models", "时机": "timing"}[lens]
         label = LENS_LABEL[lens]
-        (FEEDS / f"lens-{slug}.xml").write_text(
+        write_stable((FEEDS / f"lens-{slug}.xml"),
             build_rss(
                 lens_items,
                 f"AI Radar · {label}",
@@ -767,15 +779,17 @@ def main():
         )
 
     radar = build_tools_radar(all_items)
-    (PUBLIC / "tools-radar.json").write_text(
+    write_stable((PUBLIC / "tools-radar.json"),
         json.dumps(radar, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    (PUBLIC / "today3.txt").write_text(build_today3(board), encoding="utf-8")
+    write_stable((PUBLIC / "today3.txt"), build_today3(board), encoding="utf-8")
     sync_practice_inbox()
     sync_atlas()
+    posts = build_blog()
 
     print(f"derived: {len(all_items)} archive cards → {len(board)} board items")
     print(f"  items.json, feed.xml, feeds/lens-*.xml, tools-radar.json, today3.txt, archive/index.json")
+    print(f"  blog: {len(posts)} posts → blog/index.html, blog/<slug>.html, blog/posts.json")
 
 
 if __name__ == "__main__":

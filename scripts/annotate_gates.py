@@ -45,7 +45,7 @@ import sys
 import urllib.parse
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 if __package__ in {None, ""}:
@@ -105,6 +105,7 @@ class GateOptions:
     same_source_window_minutes: int = 30
     no_new_info_days: int = 7
     novel_token_min: int = 3
+    novel_ratio_min: float = 0.2
     title_threshold: float = 0.72
     title_similarity: bool = True
     only_pending: bool = False
@@ -283,18 +284,41 @@ def jaccard(left: set[str], right: set[str]) -> float:
     return len(left & right) / len(left | right)
 
 
-def is_substantive(row: dict, anchors: list[dict], min_novel: int) -> bool:
-    """True when row adds an outbound link or enough new tokens vs anchors."""
+def named_entities(row: dict, rules: list[dict]) -> set[str]:
+    return {key for key, is_alone in entity_matches(row, rules) if is_alone}
+
+
+def is_substantive(
+    row: dict,
+    anchors: list[dict],
+    min_novel: int,
+    rules: list[dict] | None = None,
+    min_ratio: float = 0.0,
+) -> bool:
+    """True when row adds an outbound link, names a new model/product, or adds enough new text.
+
+    CJK bigrams make a long rephrased repost look novel by raw count, so the new
+    tokens must also be min_ratio of the row's tokens.
+    """
     if not anchors:
         return True
     old_links: set[str] = set()
     old_tokens: set[str] = set()
+    old_entities: set[str] = set()
     for anchor in anchors:
         old_links |= evidence_links(anchor)
         old_tokens |= content_tokens(anchor)
+        if rules:
+            old_entities |= named_entities(anchor, rules)
     if evidence_links(row) - old_links:
         return True
-    return len(content_tokens(row) - old_tokens) >= min_novel
+    if rules and named_entities(row, rules) - old_entities:
+        return True
+    tokens = content_tokens(row)
+    novel = len(tokens - old_tokens)
+    if novel < min_novel:
+        return False
+    return not tokens or novel / len(tokens) >= min_ratio
 
 
 def row_clock(value) -> datetime | None:
@@ -602,7 +626,9 @@ def annotate_records(records: list[dict], options: GateOptions) -> list[dict]:
         key = source_key(row)
         if clock and key:
             window_rows = [item for when, src, item in anchors if src == key and abs(clock - when) <= window]
-            if window_rows and not is_substantive(row, window_rows, options.novel_token_min):
+            if window_rows and not is_substantive(
+                row, window_rows, options.novel_token_min, options.entity_rules, options.novel_ratio_min
+            ):
                 _set_decision(
                     row,
                     "dropped",
@@ -721,7 +747,9 @@ def _apply_no_new_info(rows: list[dict], locked: list[bool], options: GateOption
                 kept.append((row, clock))
                 continue
             in_window = [anchor for anchor, when in kept if when is not None and abs(clock - when) <= limit]
-            if in_window and not is_substantive(row, in_window, options.novel_token_min):
+            if in_window and not is_substantive(
+                row, in_window, options.novel_token_min, options.entity_rules, options.novel_ratio_min
+            ):
                 row["status_in_pool"] = "dropped"
                 row["drop_reason"] = "no_new_info"
                 bit = "gate: no_new_info"
@@ -787,7 +815,16 @@ def load_records(raw: str) -> list[dict]:
     return rows
 
 
-def read_pool(pool_dir: Path) -> list[tuple[Path, dict]]:
+POOL_WINDOW_SLACK_DAYS = 2
+
+
+def pool_window_start(as_of: datetime, days: int) -> date:
+    """First Shanghai day file a windowed reader needs (no_new_info lookback plus slack)."""
+    return as_of.astimezone(SHANGHAI).date() - timedelta(days=days + POOL_WINDOW_SLACK_DAYS)
+
+
+def read_pool(pool_dir: Path, since: date | None = None) -> list[tuple[Path, dict]]:
+    """All day files, or only those named on/after `since`. Priors need the full history."""
     assert_not_public(pool_dir)
     folder = pool_dir / "candidates"
     if not folder.is_dir():
@@ -795,6 +832,13 @@ def read_pool(pool_dir: Path) -> list[tuple[Path, dict]]:
     pairs: list[tuple[Path, dict]] = []
     for path in sorted(folder.glob("*.jsonl")):
         assert_not_public(path)
+        if since is not None:
+            try:
+                day = date.fromisoformat(path.stem)
+            except ValueError:
+                day = None
+            if day is not None and day < since:
+                continue
         for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
             if not line.strip():
                 continue
@@ -1131,6 +1175,25 @@ def self_check() -> None:
         write_pool(pool, pairs, again)
         if day.read_bytes() != before:
             raise SystemExit("FAIL: --only-pending rewrote a row that was already annotated")
+        old_day = pool / "candidates" / "2026-09-01.jsonl"
+        old_day.write_text(day.read_text(encoding="utf-8"), encoding="utf-8")
+        windowed = read_pool(pool, pool_window_start(as_of, options.no_new_info_days))
+        if {path.name for path, _row in windowed} != {day.name} or len(read_pool(pool)) != 2:
+            raise SystemExit("FAIL: windowed pool read should skip day files older than the lookback")
+
+    base_text = "国内大模型厂商今天发布新版本，官方称推理能力和代码能力都有明显提升，并同步开放接口"
+    anchor = {"title": "DeepSeek-V4 发布", "snippet": base_text}
+    other_vendor = {"title": "Qwen3.5 发布", "snippet": base_text}
+    if not is_substantive(other_vendor, [anchor], options.novel_token_min, options.entity_rules, options.novel_ratio_min):
+        raise SystemExit("FAIL: a different model name in the same boilerplate must not be no_new_info")
+    same_model = {"title": "DeepSeek-V4 发布", "snippet": base_text + "，详情见官网"}
+    if is_substantive(same_model, [anchor], options.novel_token_min, options.entity_rules, options.novel_ratio_min):
+        raise SystemExit("FAIL: a rephrased repost of the same model should be no_new_info")
+    if not is_substantive(same_model, [anchor], options.novel_token_min):
+        raise SystemExit("FAIL: fixture should only be caught by the ratio rule")
+    for name in ("DeepSeek-V4", "Qwen3.5", "Kimi K2", "GLM-4.6", "Llama 4", "Doubao-1.5"):
+        if not named_entities({"title": name, "snippet": ""}, options.entity_rules):
+            raise SystemExit(f"FAIL: entity rules do not name {name}")
     print("OK annotate_gates self-check")
 
 
@@ -1158,6 +1221,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Skip rows that already have a prefilter or a non-pending status.",
     )
+    parser.add_argument(
+        "--all-days",
+        action="store_true",
+        help="With --pool-dir, read every day file. Default: only the last no-new-info-days + 2 days.",
+    )
     parser.add_argument("--self-check", action="store_true")
     args = parser.parse_args(argv)
     if args.self_check:
@@ -1181,7 +1249,8 @@ def main(argv: list[str] | None = None) -> int:
         pool_dir = Path(args.pool_dir) if args.pool_dir else None
         pool_pairs = None
         if pool_dir is not None:
-            pool_pairs = read_pool(pool_dir)
+            since = None if args.all_days else pool_window_start(as_of, options.no_new_info_days)
+            pool_pairs = read_pool(pool_dir, since)
             records = [row for _path, row in pool_pairs]
         elif args.input:
             records = load_records(Path(args.input).read_text(encoding="utf-8"))

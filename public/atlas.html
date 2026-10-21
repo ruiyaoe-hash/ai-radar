@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="atlas" data-root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0F1110" />
+  <title>实战图谱 · AI Radar</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./assets/radar.css" />
+  <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="./feed.xml" />
+</head>
+<body>
+  <div class="app">
+    <script src="./assets/safe-href.js"></script>
+    <script src="./assets/shell.js"></script>
+    <div class="content">
+      <main id="main" class="wide">
+        <p class="eyebrow">AI 博主实操经验 · 分门别类 · 持续更新</p>
+        <h1>别人用 AI 做成了什么，以及怎么做到的</h1>
+        <p class="sub">AI Radar 把多位博主的动手方法收成可以继续填写的主题手册，每一步都能回到原帖。今日精选仍每天更新，用来看这周哪条工具信号值得动手；手册负责把做法留下来。还没有素材的主题会标成待采集。</p>
+        <div class="stat-row" id="atlas-stats" aria-label="图谱规模"></div>
+
+        <label class="search-row" for="atlas-search">搜索主题、工具或博主</label>
+        <input id="atlas-search" type="search" placeholder="例如 ESP32、Skill、Magpie" autocomplete="off" />
+        <div class="filters" id="atlas-suggest"></div>
+        <div id="atlas-results" hidden></div>
+
+        <div id="tracks">
+          <section class="track-block">
+            <div class="track-head"><h2>造物</h2><span>用 AI 做出能摸得着的硬件</span></div>
+            <div class="topic-grid" data-track="make"></div>
+          </section>
+          <section class="track-block">
+            <div class="track-head"><h2>内容创作</h2><span>视频、音乐、播客的 AI 生产线</span></div>
+            <div class="topic-grid" data-track="create"></div>
+          </section>
+          <section class="track-block">
+            <div class="track-head"><h2>开发提效</h2><span>Agent、Skills 与工程化工作流</span></div>
+            <div class="topic-grid" data-track="build"></div>
+          </section>
+          <section class="track-block">
+            <div class="track-head"><h2>知识管理</h2><span>把信息流变成自己的知识库</span></div>
+            <div class="topic-grid" data-track="knowledge"></div>
+          </section>
+          <section class="track-block">
+            <div class="track-head"><h2>商业化</h2><span>AI 项目怎么变成收入</span></div>
+            <div class="topic-grid" data-track="business"></div>
+          </section>
+        </div>
+
+        <section class="hero hero-compact" aria-labelledby="today-label">
+          <div class="hero-head">
+            <div class="label" id="today-label"><span class="pill"><span class="dot"></span>精选</span> 今日精选</div>
+            <a class="btn" href="./today.html">打开今日必看</a>
+          </div>
+          <p class="sub">这一栏只保留这周会改变你工具选择的信号。完整列表、筛选和复制在今日必看。</p>
+          <ol id="today-compact"><li>正在读取…</li></ol>
+        </section>
+
+        <section>
+          <div class="track-head">
+            <h2>最新收录</h2>
+          </div>
+          <div class="latest-grid" id="latest-list"></div>
+          <p class="fine" id="snapshot-note"></p>
+        </section>
+
+        <section id="method">
+          <h2>收录标准</h2>
+          <p class="sub">供给看博主在分享什么，需求看读者在收藏什么。一条要进入手册，至少带上编号步骤、物料清单（BOM）、安装命令，或一个可打开的仓库。</p>
+          <div class="method-grid">
+            <article class="card">
+              <h3>盯人：持续监控博主</h3>
+              <p class="mean">以博主为单位追踪新帖，同时用关键词兜底发现新人，博主榜单本身也是发现渠道。</p>
+            </article>
+            <article class="card">
+              <h3>过滤：只收能照着做的</h3>
+              <p class="mean">必须包含步骤、工具或可复现的项目。课程推销和只有观点的帖子不进入手册。</p>
+            </article>
+            <article class="card">
+              <h3>归类：并入主题手册</h3>
+              <p class="mean">每条分享归入一个主题，并把新方法补进该主题的步骤手册，标注出处。</p>
+            </article>
+            <article class="card">
+              <h3>看需求：收藏率说话</h3>
+              <p class="mean">收藏比按 (收藏+3)/(点赞+5) 平滑，样本少时向先验收缩。页面上的数是最近一次滚动，不是某一天冻住的裸除法。关注名单不按这个比值自动升降。</p>
+            </article>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <p>内容摘自公开帖子与编辑整理的实操，版权归原作者所有。点击来源可查看原文。</p>
+          <p>内容可能包含未经证实的传闻与第三方帖子，请自行核对。</p>
+          <p>更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script src="./assets/atlas.js"></script>
+</body>
+</html>

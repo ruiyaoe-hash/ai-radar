@@ -6,7 +6,11 @@
 # Secrets, both optional until configured:
 #   AI_RADAR_POOL_TOKEN  fine-grained PAT, Contents read/write on ai-radar-pool only
 #   X_BEARER_TOKEN       X API bearer. Absent → skip live fetch; hand-feed still works
-# GITHUB_TOKEN only pushes public/briefs.json. Never commit the raw fetch or pool JSONL.
+# Each secret is only in the env of the step that needs it.
+# GITHUB_TOKEN only pushes public/briefs.json and dispatches the Pages deploy.
+# Never commit the raw fetch or pool JSONL.
+# X posts never reach auto_brief (score_pool review_not_official), so a run here
+# usually changes only the private pool and the review list.
 name: Ingest X watch into private pool
 
 on:
@@ -25,80 +29,125 @@ on:
 
 permissions:
   contents: write
+  actions: write
+
+concurrency:
+  group: pool-writer
+  cancel-in-progress: false
 
 jobs:
   ingest-x-pool:
     runs-on: ubuntu-latest
+    # The pool must sit beside the public checkout, not inside it (assert_shift_pool_dir).
+    defaults:
+      run:
+        working-directory: site
     steps:
       - name: Checkout public scripts
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
+          path: site
           persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
       - name: Check tokens
         id: gate
         env:
-          AI_RADAR_POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          MODE: ${{ github.event.inputs.mode }}
+          HAS_POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN != '' }}
+          HAS_X_TOKEN: ${{ secrets.X_BEARER_TOKEN != '' }}
         run: |
-          if [ "${{ github.event.inputs.mode }}" = "skip" ]; then
+          if [ "${MODE}" = "skip" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             echo "mode=skip：不抓取，不写池。"
             exit 0
           fi
-          if [ -z "${AI_RADAR_POOL_TOKEN}" ]; then
+          if [ "${HAS_POOL_TOKEN}" != "true" ]; then
             echo "::warning::AI_RADAR_POOL_TOKEN 未配置。不写私有池。"
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          if [ -z "${X_BEARER_TOKEN}" ]; then
+          if [ "${HAS_X_TOKEN}" != "true" ]; then
             echo "::warning::X_BEARER_TOKEN 未配置。定时抓取未打开。手灌仍走 scripts/shift_ingest_x_to_pool.py --fetch。见 docs/x-pool-ingest.md"
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
+      - name: Install JSON Schema validator
+        if: steps.gate.outputs.skip != 'true'
+        run: pip install -r requirements-ci.txt
+
       - name: Checkout private pool
         if: steps.gate.outputs.skip != 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: ruiyaoe-hash/ai-radar-pool
           token: ${{ secrets.AI_RADAR_POOL_TOKEN }}
           path: pool
-          persist-credentials: true
+          persist-credentials: false
 
-      - name: Fetch, ingest, annotate, score, derive briefs
+      - name: Fetch X watch list
+        id: fetch
         if: steps.gate.outputs.skip != 'true'
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: |
-          python3 scripts/fetch_x_watch.py --out /tmp/x-fetch.json
           set +e
-          python3 scripts/shift_ingest_x_to_pool.py --fetch /tmp/x-fetch.json --pool-dir pool
+          python3 scripts/fetch_x_watch.py --out "${RUNNER_TEMP}/x-fetch.json" --state ../pool/state/x-since.json
           code=$?
           set -e
-          rm -f /tmp/x-fetch.json
+          # 2 = some accounts failed or were rate limited; what came back is still ingested.
+          if [ "$code" -ne 0 ] && [ "$code" -ne 2 ]; then
+            echo "FAIL: X fetch exit ${code}"
+            exit 1
+          fi
+          echo "partial=$([ "$code" -eq 2 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - name: Ingest, score, derive briefs
+        if: steps.gate.outputs.skip != 'true'
+        run: |
+          set +e
+          python3 scripts/shift_ingest_x_to_pool.py --fetch "${RUNNER_TEMP}/x-fetch.json" --pool-dir ../pool
+          code=$?
+          set -e
+          rm -f "${RUNNER_TEMP}/x-fetch.json"
           if [ "$code" -eq 1 ]; then
             echo "FAIL: X ingest failed"
             exit 1
           fi
-          python3 scripts/score_pool.py --pool-dir pool --write-review
-          python3 scripts/derive_briefs.py --pool-dir pool --briefs public/briefs.json
+          python3 scripts/score_pool.py --pool-dir ../pool --write-review
+          python3 scripts/derive_briefs.py --pool-dir ../pool --briefs public/briefs.json
 
       - name: Push private pool only
         if: steps.gate.outputs.skip != 'true'
         working-directory: pool
         env:
           COMMIT_MESSAGE: "ingest: X watch candidates"
-        run: bash "$GITHUB_WORKSPACE/scripts/pool_git_push.sh" candidates review
+          POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}
+        run: bash "$GITHUB_WORKSPACE/site/scripts/pool_git_push.sh" candidates review state
 
-      - name: Push public briefs
+      - name: Validate and push public briefs
+        id: briefs
         if: steps.gate.outputs.skip != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          POOL_DIR: ../pool
         run: bash scripts/public_briefs_push.sh
+
+      - name: Deploy Pages with the new briefs
+        if: steps.briefs.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REF: ${{ github.ref_name }}
+        run: gh workflow run deploy-pages.yml --repo "${GITHUB_REPOSITORY}" --ref "${REF}"
+
+      - name: Flag a partial fetch
+        if: steps.fetch.outputs.partial == 'true'
+        run: |
+          echo "::error::部分账号抓取失败或被限流。已抓到的已入池；看上面 fetch_x_watch 的日志。"
+          exit 1

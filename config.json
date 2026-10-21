@@ -64,6 +64,7 @@
     "like_prior": 5,
     "author_prior_n": 3,
     "actionability_cap": 0.12,
-    "note": "门槛之后的规则分。value ≈ 信源先验 × exp(-Δt/τ) × 交叉印证 × 互动速度 + 可操作性（上限 actionability_cap）。收藏÷点赞用 (bookmarks+bookmark_prior)/(likes+like_prior)，作者样本少时再向作者先验收缩。丢弃行计入命中率分母。practice 不进自动快讯。未配置 LLM 端点时不访问网络。"
+    "score_window_days": 3,
+    "note": "门槛之后的规则分。value ≈ 信源先验 × exp(-Δt/τ) × 交叉印证 × 互动速度 + 可操作性（上限 actionability_cap）。收藏÷点赞用 (bookmarks+bookmark_prior)/(likes+like_prior)，作者样本少时再向作者先验收缩。命中 = promoted 或已发快讯（brief_id）；只有编辑否决类丢弃（editor_skip、rumor_no_upgrade 等）进分母，衰减、重复、过期不算。自动档只给行本身是 RSS 一手官方源的，X 帖和簇内邻居一律进人工档。已发快讯不再重打分。只重打 score_window_days 天内入库的行。practice 不进自动快讯。未配置 LLM 端点时不访问网络。"
   }
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="blog" data-root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0F1110" />
+  <meta name="description" content="暗色暖底、一盏会呼吸的小灯、只有一栏的正文。改版背后的几个取舍：读得下去，比看起来热闹更重要。" />
+  <title>代码与禅：这个站为什么长这样 · AI Radar</title>
+  <link rel="icon" href="../assets/logo.png" />
+  <link rel="stylesheet" href="../assets/radar.css" />
+  <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="../feed.xml" />
+</head>
+<body>
+  <div class="app">
+    <script src="../assets/safe-href.js"></script>
+    <script src="../assets/shell.js"></script>
+    <div class="content">
+      <main id="main">
+        <article>
+          <header class="post-head">
+            <p class="eyebrow"><a href="./">随笔 · Notes</a></p>
+            <h1>代码与禅：这个站为什么长这样<span class="en">Code and Zen</span></h1>
+            <p class="post-meta"><time datetime="2026-10-21">2026-10-21</time><span>约 2 分钟</span><span class="tag prac">设计</span><span class="tag prac">改版</span></p>
+          </header>
+          <div class="prose">
+<p>这次改版，把信号雷达和一个写了很久却没上线的博客合在了一起。信息架构沿用雷达，气质借自那个博客。合起来只想做到一件事：<strong>让人愿意读完</strong>。</p>
+<h2>颜色：像夜里开着一盏台灯</h2>
+<p>底色不是纯黑，是带一点绿的深灰；文字不是纯白，是有点发暖的米色。长时间看屏幕，纯黑配纯白太刺眼。唯一的强调色是琥珀，用在「今日必看」的标签、链接和那盏灯上。一页里琥珀越少，它出现的地方就越该看。</p>
+<p>状态也跟着颜色走：</p>
+<ul><li><strong>今日必看</strong>：实心琥珀，最醒目。</li><li><strong>已证实 / 重点关注</strong>：细线框，跟正文同色。</li><li><strong>传闻 / 待证实</strong>：灰色虚线框，提醒你先别当真。</li></ul>
+<h2>那盏会呼吸的灯</h2>
+<p>左上角的小圆点不只是装饰。最近六小时内快讯或看板有更新，它会慢慢呼吸；超过六小时没动静，它就熄成一个灰点。不用看时间戳，一眼就知道雷达还在不在转。</p>
+<h2>字体：自己托管，不向外请求</h2>
+<p>标题用的是得意黑，英文用 Space Grotesk，正文交给系统自带的中文字体。字体文件放在站里，按需分块加载：常用的一千多个字先到，生僻字用到时再取。这样做有两个原因。一是页面的安全策略只允许从本站加载资源，第三方字体服务进不来；二是不想让你每打开一页，都顺带告诉别人一次你在看什么。</p>
+<h2>版式：一栏，八百像素</h2>
+<p>正文最宽八百像素，大约每行三四十个汉字，眼睛不用左右来回找行首。工具雷达、博主库这类需要横向比较的页面放宽到一千零八十。侧栏去掉了，导航收进顶栏三个分组：</p>
+<ul><li><strong>信号</strong>：今天发生了什么，值不值得动手。</li><li><strong>造物</strong>：别人用 AI 做成了什么，怎么做到的。</li><li><strong>共鸣</strong>：订阅、给程序用的数据入口，还有这里的随笔。</li></ul>
+<h2>给不想看动画的人</h2>
+<p>如果你在系统里关掉了动态效果，呼吸灯、打字机和淡入都会停下，内容一次性完整显示。动画是为了让页面有温度，不该成为阅读的门槛。</p>
+<hr />
+<p>雷达负责告诉你外面发生了什么，随笔负责说说我们怎么看。都不长，写完才发。</p>
+          </div>
+        </article>
+        <nav class="post-nav" aria-label="上一篇与下一篇"><span></span><a href="./how-signals-are-picked.html">一条消息怎样才能上 AI Radar →</a></nav>
+        <footer class="site-footer">
+          <p class="motto">给迷途者的代码，给觉醒者的诗。<span class="en">Code for the lost, poetry for the awake.</span></p>
+          <p>随笔是编者个人观点，不是信号，也不构成投资或采购建议。</p>
+          <p>更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。</p>
+          <p>内容以 CC BY-NC 4.0 发布，转载请署名并链回原文。</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

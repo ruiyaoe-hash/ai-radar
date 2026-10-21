@@ -222,7 +222,7 @@
       if (topic.demand_refreshed_at) stats.push(`<span>滚动于 ${esc(topic.demand_refreshed_at)}</span>`);
       if (topic.latest) stats.push(`<span>最近更新 ${esc(topic.latest)}</span>`);
     }
-    return `<p class="back"><a href="${local("index.html")}">全部主题</a></p>
+    return `<p class="back"><a href="${local("atlas.html")}">全部主题</a></p>
       <header class="topic-head">
         <p class="eyebrow">${esc(track ? track.name : "")}</p>
         <h1>${esc(topic.name || "")}</h1>
@@ -245,7 +245,7 @@
     if (!host) return;
     const topic = (kb.topics || []).find((item) => item.slug === slug);
     if (!topic) {
-      host.innerHTML = `<p class="empty">这个地址还没有对应的主题。回到<a href="${local("index.html")}">实战图谱</a>看看现有主题。</p>`;
+      host.innerHTML = `<p class="empty">这个地址还没有对应的主题。回到<a href="${local("atlas.html")}">实战图谱</a>看看现有主题。</p>`;
       return;
     }
     const track = (kb.tracks || []).find((item) => item.id === topic.track);

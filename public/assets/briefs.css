@@ -41,7 +41,7 @@
 .brief h3 {
   margin: 0 0 4px;
   font-size: 0.98rem;
-  font-weight: 640;
+  font-weight: 600;
   line-height: 1.45;
 }
 
@@ -57,7 +57,7 @@
 .brief p {
   margin: 0;
   font-size: 0.9rem;
-  color: #c5d0dc;
+  color: var(--text-soft);
 }
 
 .brief .origin {
