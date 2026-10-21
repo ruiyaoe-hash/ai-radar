@@ -5,6 +5,10 @@ Reads public/archive, public/practice/inbox, and public/data/atlas.source.json.
 Those are the only inputs. Does not read or write a candidate pool, and does not score.
 Pages output stays the promoted public artifacts.
 
+L2 briefs are filled by scripts/derive_briefs.py, not here. One URL is not both an
+archive card and a brief. The auto lane never writes the practice inbox; verified
+practice stays manual.
+
 Writes into public/ only:
   - items.json          (rolling window)
   - archive/index.json

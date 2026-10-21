@@ -570,13 +570,16 @@ def _self_check_body() -> None:
         "AI_RADAR_POOL_TOKEN",
         "ruiyaoe-hash/ai-radar-pool",
         "workflow_dispatch",
-        "无更新",
         "--only-pending",
         "persist-credentials: false",
-        "git add candidates",
+        "pool_git_push.sh",
+        "candidates review",
     ):
         if needle not in workflow:
             raise SystemExit(f"FAIL: workflow missing {needle}")
+    push = (ROOT / "scripts" / "pool_git_push.sh").read_text(encoding="utf-8")
+    if "pull --rebase" not in push or "无更新" not in push or "git add --" not in push:
+        raise SystemExit("FAIL: pool_git_push.sh must rebase, log 无更新, and add explicit paths")
     if "pull_request:" in workflow:
         raise SystemExit("FAIL: RSS ingest must not run on pull_request")
     if "cron:" not in workflow:

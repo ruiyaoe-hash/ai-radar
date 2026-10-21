@@ -11,7 +11,7 @@ Phase 1/2 的班次操作。原始 X 抓取先全量入池（ingest all），再
 | 早班 | 每天 08:00 | 当班 Alba |
 | 晚班 | 工作日 21:00 | 当班 Alba |
 
-公开 CI、`.github/workflows/ingest-rss-pool.yml`、derive、Pages、飞书都不抓 X。本仓没有 X API 客户端。Alba 用自己已经在用的办法把这一班的帖子存成一份 JSON，再跑下面的脚本。
+公开 PR 的 CI 不抓 X。定时抓取在 `.github/workflows/ingest-x-pool.yml`：只有 Actions 密钥 `X_BEARER_TOKEN` 和 `AI_RADAR_POOL_TOKEN` 都在才请求 X API。缺密钥时工作流警告后成功退出。手灌 JSON 的路径保持不变，见下文。密钥就位后的打开方式和三档打分见 `docs/score-and-briefs.md`。
 
 抓取文件只留在本机。不要提交到公开仓 `ai-radar`，也不要提交进私有池。
 
@@ -104,7 +104,7 @@ python3 scripts/shift_ingest_x_to_pool.py \
 脚本只做两件事，都调用现成模块，不另写一套入池规则：
 
 1. `ingest_x`：全量入池。`status_in_pool=pending`，判断字段为空。已有的 `id` 不覆盖。
-2. `annotate_gates --only-pending`：只处理仍为 `pending` 且 `prefilter` 为空的行。不晋升，不打分，不写公开卡。
+2. `annotate_gates --only-pending`：只处理仍为 `pending` 且 `prefilter` 为空的行。不晋升，不打分，不写公开卡。打分是下一条命令，不在这个包装脚本里，避免重跑时改写已经标过的行。
 
 可选参数都是 ISO-8601 UTC：
 
@@ -148,6 +148,14 @@ python3 scripts/annotate_gates.py --pool-dir ../ai-radar-pool --only-pending
 ```
 
 `ingest_x` 自己在有 `FETCH_GAP` 时也是退出码 2。包装脚本遇到这种情况仍会接着跑门槛，再把 2 交还给调用方。
+
+门槛之后再打分（仍不晋升、不写公开卡）：
+
+```bash
+python3 scripts/score_pool.py --pool-dir ../ai-radar-pool --as-of 2026-10-14T12:00:00Z --write-review
+```
+
+`--write-review` 把中高分和实操写进私有池 `review/YYYY-MM-DD.md`。低分留在池里，`drop_reason=low_score`。没有 LLM 密钥时这一步只跑规则分。
 
 自检不访问网络，只用 `testdata/x-fetch/sample.json` 里的虚构句子：
 
@@ -207,13 +215,14 @@ git -c "http.extraheader=AUTHORIZATION: bearer ${AI_RADAR_POOL_TOKEN}" push orig
 
 `config.json` 的 `pool_traceability_since` 现为 `2026-10-15`。北京日历日达到这一天的新归档卡，上面两条必须占一条。2026-10-14 及更早的卡不回填，也不要改已经发出的 digest。
 
-`dropped` 不能晋升。`deferred` 是延后，不是丢弃，留给后面的班次。编辑否决用 `editor_skip`，并且 `notes` 不能空。`pending`、`wrong_lane`、`quota`、`quota_defer` 都不是 `drop_reason`。
+`dropped` 不能晋升。`low_score` 也是真丢，notes 不能空。`deferred` 是延后，不是丢弃，留给后面的班次。编辑否决用 `editor_skip`，并且 `notes` 不能空。`pending`、`wrong_lane`、`quota`、`quota_defer` 都不是 `drop_reason`。
 
 derive 只读公开归档和 practice inbox。Pages 只发布 `public/`。池 JSONL、弃稿和第三方全文都不进公开仓。
 
 ## 不在这一班做的事
 
-- 不在公开 CI 里抓 X，也不改 RSS 入池工作流
+- 不在公开 PR 的 CI 里抓 X。定时工作流见 `docs/score-and-briefs.md`；没配 `X_BEARER_TOKEN` 时它不请求 X
+- 不把原始抓取 JSON、池 JSONL 或审核清单提交进公开仓
 - 不改飞书、derive、Pages
 - 不把真实帖子写进 `testdata/`
 - RSS 第一批仍走原来的定时工作流，和这条 X 班次共用同一个私有池、同一枚 `AI_RADAR_POOL_TOKEN`
