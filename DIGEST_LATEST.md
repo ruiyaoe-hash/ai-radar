@@ -1,4 +1,4 @@
-# AI Radar 晚班短报 · 2026-10-20 21:00 北京时间
+# AI Radar 主报 · 2026-10-21 08:00 北京时间
 
 > 现行班次（Asia/Shanghai）：每天 08:00 主报；周一至周五 21:00 晚班。13:30 午间班已取消。
 
@@ -7,15 +7,15 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html  
 人读层：[表达规范 v0](docs/AIHOT对接与表达规范-v0.md)
 
-睿，晚班没有新的「今日必看」。中国白天加美东早晨这段窗口里，有一手官方开源（DeepSeek DeepInfer），但目标硬件是数据中心卡，不改你今天的本地智能体与接口选型。本班不写填充卡。早报板上的 Muse Glimmer 30B、DeepSeek V4.1 Flash 1017、Muse Spark Open、Gemini 4 Argon 仍按原计划执行。
+睿，主报没有新的「今日必看」。从昨晚 21:00 到今早这段窗口里，有一手官方发声（Mistral 语音套件、Perplexity 本机版），但都不改你今天本地智能体与主接口选型。本班不写填充卡。板上的 Muse Glimmer 30B、DeepSeek V4.1 Flash 1017、Muse Spark Open、Gemini 4 Argon 仍按原计划执行。
 
-## 晚班新增
+## 本班新增
 
-无。今天的归档文件没有追加晚班卡。
+无。今天的归档文件没有追加主报卡。
 
 ## 今日仍有效
 
-**Meta 放出 Muse Glimmer 30B，可在消费级显卡上跑本地智能体**（本早主报已上板）
+**Meta 放出 Muse Glimmer 30B，可在消费级显卡上跑本地智能体**（10-20 早报已上板）
 
 **是什么：** Meta 发布约 300 亿参数、面向本地智能体任务的开放权重模型 Muse Glimmer（缪斯微光）。模型权重可以下载到自己的电脑或服务器上使用。许可是 Apache 2.0。4-bit 量化后语言部分大约 17GB，官方说可以塞进约 24GB 显存的设备。
 
@@ -54,43 +54,48 @@ RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 
 ## 可关注（未入今日必看）
 
-**DeepSeek 开源 DeepInfer（深度推理）生产推理框架**
+**Mistral 发布 Voxtral 3 语音套件与语音智能体接口**
 
-**是什么：** DeepSeek 官方账号宣布把线上支撑 DeepSeek-V4.1-Flash 的内部推理框架 DeepInfer 开源，许可是 Apache 2.0。同线程还开源了 deepseek-recipe（与官方接口对齐的编解码组件）。仓库地址：https://github.com/deepseek-ai/DeepInfer 。官方说明本次聚焦离线推理，栈基于 vLLM（开源推理服务），并借鉴 SGLang 与 TensorRT-LLM。公开资料写明目标硬件主要是 NVIDIA SM100 与华为 Ascend 950 一类数据中心加速器，不是消费级笔记本显卡。
+**是什么：** Mistral 官方账号宣布 Voxtral 3：一套语音转写与语音合成模型，并配上语音智能体接口（voice agents API）。转写侧强调多语种、说话人分离和「说完再答」的回合检测；合成侧强调多语种表达力，并可通过标签控制情绪与语速。CEO Arthur Mensch 同步说，语音模型最好部署在推理模型附近。
 
-**要点：** 这是一手官方帖，可信度够。但它改的是「自建生产级推理栈怎么跑」，不是「你今天选哪个聊天模型或本地智能体权重」。你这周的动作仍是早报那条：升 Harness、试用搜索接口、本地单卡优先试 Glimmer。只有当你要在机房或云上自建 DeepSeek 服务端时，再把 DeepInfer 放进对照。
+**要点：** 这是一手官方发布，可信度够。Artificial Analysis（人工分析榜）随后把转写成绩摆进榜单前列，合成速度也标得很快。但它主攻的是「你要不要换一套语音进线」，不是「今天本地写代码智能体选哪套权重」。你这周动作仍是板上那四条；只有当你这周就要做语音助手或电话类智能体时，再把 Voxtral 3 放进对照。
 
-原文：https://x.com/deepseek_ai/status/2112476496283775135  
-仓库：https://github.com/deepseek-ai/DeepInfer
+原文：https://x.com/MistralAI/status/2112574615318876178
 
-**vista8：内容发布工作流（飞书 → 博客 → 公众号 / X）**
+**Perplexity Computer 可在 Mac 上完全本机跑**
 
-**是什么：** 向阳乔木（vista8）分享一套内容发布链路：飞书写稿与点评，用 Skill（技能包）检查格式后发自己的博客，再从博客一键进公众号草稿箱；发 X 则用 Chrome 插件同步博客列表后选择发送。
+**是什么：** Perplexity CEO Aravind Srinivas 宣布，Perplexity Computer 现在可以在 Mac 上完全本机运行，不走云端推理，也可以断网用。
 
-**要点：** 步骤感清楚，属实操车道。已进私有候选池。要上实操页，等你或编辑审过「能照着做」并写进 practice inbox（实操收件箱）再晋升；本班不自动全文上站。
+**要点：** 一手产品宣布。它和你板上的 Glimmer「自备权重跑本地智能体」不是同一条线：这边是厂商封装好的本机产品。你没有在用 Perplexity Computer 当主栈时，不必为它改今天选型；若你本来就在试它的 Mac 客户端，可以按官方说明打开本机模式看一眼隐私与离线可用性。
 
-原文：https://x.com/vista8/status/2112436033690480918
+原文：https://x.com/AravSrinivas/status/2112583333825950207
 
-**vista8：用 Codex 填 GEO 大会报备表**
+**op7418：用 AI 改电视启动器界面（实操候选）**
 
-**是什么：** 向阳乔木把营业执照、身份证、样例 PDF 放进一个文件夹，用提示词让 Codex（编程智能体）填深圳 GEO 大会审批报备资料，约十分钟完成。
+**是什么：** 歸藏（op7418）参考两个流行项目，给自己做了一套电视启动器：只展示常用应用，并加了壁纸轮播；项目与参考链接写在帖里。
 
-**要点：** 实操向小例子，已进私有候选池。不单独改模型选型；审过后再考虑是否上实操页。
+**要点：** 步骤感够，属实操车道，已进私有候选池。本班不自动全文上站。要上实操页，等你或编辑审过「能照着做」再晋升。
 
-原文：https://x.com/vista8/status/2112449926336749923
+原文：https://x.com/op7418/status/2112574142562304491
+
+**shao__meng：Flatkey 统一网关接多模态（实操候选）**
+
+**是什么：** 邵萌（shao__meng）介绍 Flatkey：一个 Key（密钥）接入大量官方模型与工具接口，费用打进一份账单，并强调 CLI（命令行）接入适合给 Codex / Claude Code 挂图片、视频、音频模型。
+
+**要点：** 实操向产品介绍，已进私有候选池。是否换网关要你自己审价格与稳定性；本班不上实操页。
+
+原文：https://x.com/shao__meng/status/2112688351795138907
 
 ## 附录
 
 <details>
 <summary>本班先不跟（摘几条）</summary>
 
-- Artificial Analysis 上 Ming-3.0-tts 语音榜位次：评测机构信号，配置时间线里没有蚂蚁 / Ant Group 一手主帖，不以榜单单独升正式「今日必看」。
-- Notion Business / Enterprise 的 AI 改为按月积分（11 月 2 日切换）：产品计费变更，不改你默认模型与本地智能体选型。
-- Nathan Lambert 评论 DeepSeek 开源与联邦禁用的时机：观点帖，无可执行发布。
-- Hugging Face 转发 Muse Spark 教程：转发，早报已有 Spark / Glimmer 正卡，不另开。
-- Hailuo / MiniMax H3 社区成片与表情帖：产品宣传，不改选型。
-- 邵盟转述斯坦福 CME 295、MIT harness 课、Meta Thin Orchestrator、Viggle JST-2 等：学习与转述向，留池。
-- 归藏播客上榜、李继刚协作观感帖：内容 / 观点向，留池。
-- 外面精选站还列了 llm-d 1.0（Kubernetes 原生分布式推理）等；本班不以对方榜单或未进配置时间线的二手单独入板。
+- Jim Fan 开源 Flora 机器人视觉数据引擎：一手开源，赛道偏机器人数据管线，不改你今天 OPC 主栈。
+- OpenAI 收购 Orchestra Bio：生命科学运营软件，与你的本地智能体选型无关。
+- Anthropic 蝎毒素蛋白设计科学博客：探索性实验，不是可试用工具发布。
+- Simon Willison 用 Claude 做浏览器 RTS 游戏：演示帖，不是选型信号。
+- ChatGPT「锁定聊天」、dotey 转述类产品更新：功能向，不单独改模型名或 Harness 计划。
+- 外面精选站还列了 Modal Sticky Sessions、TorchTPU、Databricks MemCurrent 等；本班配置账号窗口里没有对应厂商一手主帖，或与你当前栈距离远，先不跟。
 
 </details>
