@@ -20,6 +20,7 @@ own source is official on an RSS feed are projected; X posts never auto-publish.
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
@@ -77,6 +78,8 @@ MODE_RE = re.compile(r"工作流|步骤|workflow|how to|教程", re.I)
 TIMING_RE = re.compile(r"融资|收购|财报|涨价|降价|破产|截止日期", re.I)
 SENTENCE_RE = re.compile(r"(?<=[。！？!?])\s*|\n+")
 URL_RE = re.compile(r"https?://[^\s<>\"')\]]+", re.I)
+TAG_RE = re.compile(r"<[^<>]*>")
+VERSION_RE = re.compile(r"^v?\d+(\.\d+){1,3}([-.+][0-9A-Za-z.]+)?$")
 
 
 def assert_briefs_target(path: Path) -> None:
@@ -115,11 +118,28 @@ def first_sentence(text: str) -> str:
     return _clip(parts[0] if parts else stripped, SUMMARY_CHARS)
 
 
+def plain(text: str) -> str:
+    """Feed HTML (GitHub Releases, blogs) becomes words. The page renders text, never markup."""
+    text = TAG_RE.sub(" ", html.unescape(text or ""))
+    return re.sub(r"\s+", " ", html.unescape(text)).strip()
+
+
+def release_repo(url: str) -> str | None:
+    parts = urllib.parse.urlsplit(url or "")
+    segments = [part for part in parts.path.split("/") if part]
+    if parts.hostname == "github.com" and len(segments) >= 3 and segments[2] == "releases":
+        return f"{segments[0]}/{segments[1]}"
+    return None
+
+
 def fact_lines(row: dict) -> tuple[str, str] | None:
-    raw_title = row.get("title") if isinstance(row.get("title"), str) else ""
-    raw_snippet = row.get("snippet") if isinstance(row.get("snippet"), str) else ""
+    raw_title = plain(row.get("title") if isinstance(row.get("title"), str) else "")
+    raw_snippet = plain(row.get("snippet") if isinstance(row.get("snippet"), str) else "")
     if find_instruction_override(raw_title) or find_instruction_override(raw_snippet):
         return None
+    repo = release_repo(str(row.get("url_norm") or row.get("url") or ""))
+    if repo and VERSION_RE.match(raw_title):
+        raw_title = f"{repo.split('/', 1)[1]} {raw_title}"
     sentence = first_sentence(raw_snippet) or first_sentence(raw_title)
     title = _clip(URL_RE.sub(" ", raw_title), TITLE_CHARS) if raw_title.strip() else sentence
     title = re.sub(r"\s+", " ", title).strip()
@@ -271,9 +291,11 @@ def merge_briefs(
     merged_auto.sort(key=lambda item: (str(item.get("date") or ""), str(item.get("time") or ""), str(item.get("id"))), reverse=True)
     for item in merged_auto:
         url = normalize_url(item["url"])
-        if url in seen:
+        repo = release_repo(url)
+        key = f"release:{repo}" if repo else url
+        if url in seen or key in seen:
             continue
-        seen.add(url)
+        seen.update({url, key})
         fresh.append(item)
         if len(fresh) >= MAX_KEPT_AUTO:
             break
@@ -323,8 +345,19 @@ def derive(
         value = float((row.get("score") or {}).get("value") or 0)
         ranked.append((value, str(row.get("id")), item, row))
     ranked.sort(key=lambda part: (-part[0], part[1]))
-    auto_items = [part[2] for part in ranked[:MAX_AUTO]]
-    published = {part[2]["candidate_id"]: part[2]["id"] for part in ranked[:MAX_AUTO]}
+    picked = []
+    repos: set[str] = set()
+    for part in ranked:
+        repo = release_repo(part[2]["url"])
+        if repo:
+            if repo in repos:
+                continue
+            repos.add(repo)
+        picked.append(part)
+        if len(picked) >= MAX_AUTO:
+            break
+    auto_items = [part[2] for part in picked]
+    published = {part[2]["candidate_id"]: part[2]["id"] for part in picked}
     for row in rows:
         cid = row.get("id")
         if cid in published and not row.get("brief_id"):
@@ -585,6 +618,27 @@ def self_check() -> None:
     for row in (rumor, lab_x, unflagged):
         if project_brief(row, options) is not None:
             raise SystemExit(f"FAIL: non-official row {row['id']} became an auto brief")
+
+    releases = []
+    for n, (tag, minute) in enumerate((("v1.17.0", "30"), ("v1.16.0", "10")), start=1):
+        rel = json.loads(json.dumps(clean))
+        rel.pop("brief_id", None)
+        rel["id"] = f"cand-20261014-ccc00000010{n}"
+        rel["url"] = rel["url_norm"] = f"https://github.com/anthropics/anthropic-sdk-python/releases/tag/{tag}"
+        rel["title"] = tag
+        rel["snippet"] = "&lt;h3&gt;Features&lt;/h3&gt; <ul> <li><strong>api:</strong> add org webhook endpoints</li></ul>"
+        rel["published_at"] = f"2026-10-14T10:{minute}:00Z"
+        rel["source"] = {"channel": "rss", "handle": "gh-releases-anthropic-sdk", "role_guess": "primary"}
+        rel["cluster_id"] = f"clu-derive00010{n}"
+        releases.append(rel)
+    rel_doc, rel_rows = derive(releases, options, {"items": []}, set(), updated, as_of)
+    rel_items = [item for item in rel_doc["items"] if item.get("origin") == "auto_brief"]
+    if len(rel_items) != 1 or rel_items[0]["title"] != "anthropic-sdk-python v1.17.0":
+        raise SystemExit(f"FAIL: one release per repo with a named title {rel_items}")
+    if "<" in rel_items[0]["summary"] or "&lt;" in rel_items[0]["summary"]:
+        raise SystemExit(f"FAIL: feed HTML reached a brief summary {rel_items[0]['summary']}")
+    if rel_rows[1].get("brief_id"):
+        raise SystemExit("FAIL: the older release got a brief_id it was never published under")
 
     later = parse_utc("2026-10-17T12:00:00Z")
     decayed = json.loads(json.dumps(written))
