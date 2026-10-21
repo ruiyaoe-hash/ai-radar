@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-page="practice">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-htOIP5WTNcA5D5DFmfy6ygodfiUvG9MsCIK/bwRGKhE=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yf0e1+v3fQlbHCvTUfAl4YiwOSwqt8knU58iOTOaqcI=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c0e12" />
   <title>博主实操 · AI Radar</title>
@@ -20,7 +20,7 @@
       </div>
       <main>
         <h1>博主实操</h1>
-        <p class="sub">本页收录编辑精选、每周投放的实操，只收<strong>可照着做</strong>的用法、创意、变现和工作流。每条都写清步骤和开始前要准备什么。</p>
+        <p class="sub">本页收录编辑精选、每周投放的实操，只收<strong>可照着做</strong>的用法、创意、变现和工作流。每条都写清步骤和开始前要准备什么。同一条也会进入<a href="./index.html">实战图谱</a>里对应的主题手册。</p>
         <div class="filters" id="kindFilters">
           <button class="chip on" type="button" data-kind="all">全部</button>
           <button class="chip" type="button" data-kind="工具用法">工具用法</button>
@@ -48,6 +48,16 @@
       return bits.map((bit) => `<span>${bit}</span>`).join('<span>·</span>');
     }
 
+    const topicsBySource = {};
+
+    function topicLink(it) {
+      const hit = topicsBySource[it.id];
+      if (!hit) return "";
+      const href = Radar.safeHref("./topics/" + hit.slug + ".html");
+      if (!href) return "";
+      return `<p class="mean"><b>收入主题：</b><a href="${Radar.esc(href)}">${Radar.esc(hit.name)}</a></p>`;
+    }
+
     function renderPractice(it) {
       const steps = Array.isArray(it.steps) ? it.steps.filter(Boolean) : [];
       const needs = Array.isArray(it.prerequisites) ? it.prerequisites.filter(Boolean) : [];
@@ -70,6 +80,7 @@
         </div>
         <h3>${Radar.esc(it.title || "")}</h3>
         ${it.takeaway ? `<p class="mean"><b>可借鉴点：</b>${Radar.esc(it.takeaway)}</p>` : ""}
+        ${topicLink(it)}
         ${before}
         ${details}
       </article>`;
@@ -106,10 +117,23 @@
       const sample = new URLSearchParams(location.search).get("sample") === "1";
       const url = sample ? "./practice.sample.json" : "./practice.json";
       try {
-        const res = await fetch(url + "?" + Date.now());
+        const [res, kbRes] = await Promise.all([
+          fetch(url + "?" + Date.now()),
+          fetch("./data/kb.json?" + Date.now())
+        ]);
         if (!res.ok) throw new Error("practice");
         const data = await res.json();
         state.items = data.items || [];
+        if (kbRes.ok) {
+          const kb = await kbRes.json();
+          const names = {};
+          (kb.topics || []).forEach((topic) => { names[topic.slug] = topic.name; });
+          (kb.sources || []).forEach((source) => {
+            if (source.origin === "practice" && names[source.topic]) {
+              topicsBySource[source.id] = { slug: source.topic, name: names[source.topic] };
+            }
+          });
+        }
         render();
         if (sample && state.items.length) {
           const note = document.createElement("p");

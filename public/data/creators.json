@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-20 21:41 北京时间",
+  "creators": [
+    {
+      "handle": "yetone",
+      "name": "yetone",
+      "followers": 96933,
+      "focus": "Claude Code 工程实践",
+      "source_count": 1,
+      "bookmarks": 3938,
+      "bookmark_metric": true,
+      "topics": [
+        "agent-skills"
+      ],
+      "profile_url": "https://x.com/yetone"
+    },
+    {
+      "handle": "aiwarts",
+      "name": "卡尔的AI沃茨",
+      "followers": 24679,
+      "focus": "Skills 组合成工作流",
+      "source_count": 1,
+      "bookmarks": 1885,
+      "bookmark_metric": true,
+      "topics": [
+        "agent-skills"
+      ],
+      "profile_url": "https://x.com/aiwarts"
+    },
+    {
+      "handle": "longhaiqwe123",
+      "name": "龙海",
+      "followers": 4481,
+      "focus": "严肃听播客工作流",
+      "source_count": 1,
+      "bookmarks": 1595,
+      "bookmark_metric": true,
+      "topics": [
+        "media-to-knowledge"
+      ],
+      "profile_url": "https://x.com/longhaiqwe123"
+    },
+    {
+      "handle": "xitang_ai",
+      "name": "西堂AI创业笔记",
+      "followers": 1011,
+      "focus": "AI 视频开源知识库",
+      "source_count": 1,
+      "bookmarks": 1065,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/xitang_ai"
+    },
+    {
+      "handle": "GoGoFly23",
+      "name": "GoFly",
+      "followers": 3014,
+      "focus": "AI 设计 PCB 全流程",
+      "source_count": 2,
+      "bookmarks": 991,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-eda"
+      ],
+      "profile_url": "https://x.com/GoGoFly23"
+    },
+    {
+      "handle": "noahduck283",
+      "name": "诺鸭船长3",
+      "followers": 24475,
+      "focus": "AI 硬件科普",
+      "source_count": 1,
+      "bookmarks": 975,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-hardware"
+      ],
+      "profile_url": "https://x.com/noahduck283"
+    },
+    {
+      "handle": "MaxForAI",
+      "name": "Max For AI",
+      "followers": 43505,
+      "focus": "Claude Code Skills",
+      "source_count": 1,
+      "bookmarks": 965,
+      "bookmark_metric": true,
+      "topics": [
+        "agent-skills"
+      ],
+      "profile_url": "https://x.com/MaxForAI"
+    },
+    {
+      "handle": "gengdaJ",
+      "name": "逸尘",
+      "followers": 61391,
+      "focus": "个人 Agent、数据打通",
+      "source_count": 2,
+      "bookmarks": 896,
+      "bookmark_metric": true,
+      "topics": [
+        "personal-agent"
+      ],
+      "profile_url": "https://x.com/gengdaJ"
+    },
+    {
+      "handle": "AYi_AInotes",
+      "name": "AYi",
+      "followers": 74641,
+      "focus": "AI 编程、Skills",
+      "source_count": 2,
+      "bookmarks": 851,
+      "bookmark_metric": true,
+      "topics": [
+        "agent-skills"
+      ],
+      "profile_url": "https://x.com/AYi_AInotes"
+    },
+    {
+      "handle": "Delroy715",
+      "name": "码农暖爸",
+      "followers": 4361,
+      "focus": "Agent Skill 推荐",
+      "source_count": 1,
+      "bookmarks": 750,
+      "bookmark_metric": true,
+      "topics": [
+        "agent-skills"
+      ],
+      "profile_url": "https://x.com/Delroy715"
+    },
+    {
+      "handle": "snwiki238337",
+      "name": "南晚Nanwan",
+      "followers": 1180,
+      "focus": "Agent 工程学习路线",
+      "source_count": 1,
+      "bookmarks": 530,
+      "bookmark_metric": true,
+      "topics": [
+        "agent-skills"
+      ],
+      "profile_url": "https://x.com/snwiki238337"
+    },
+    {
+      "handle": "cgnot996",
+      "name": "铁柱AGI",
+      "followers": 8028,
+      "focus": "ESP32 生态调研",
+      "source_count": 2,
+      "bookmarks": 469,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-hardware"
+      ],
+      "profile_url": "https://x.com/cgnot996"
+    },
+    {
+      "handle": "joshesye",
+      "name": "行者AI视频",
+      "followers": 25395,
+      "focus": "AI 视频工作流拆解",
+      "source_count": 1,
+      "bookmarks": 448,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/joshesye"
+    },
+    {
+      "handle": "yaohui12138",
+      "name": "超级个体｜柿子",
+      "followers": 25765,
+      "focus": "AI 视频接单",
+      "source_count": 1,
+      "bookmarks": 435,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-side-business"
+      ],
+      "profile_url": "https://x.com/yaohui12138"
+    },
+    {
+      "handle": "yupi996",
+      "name": "程序员鱼皮",
+      "followers": 34349,
+      "focus": "AI 编程、硬件工具",
+      "source_count": 1,
+      "bookmarks": 389,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-eda"
+      ],
+      "profile_url": "https://x.com/yupi996"
+    },
+    {
+      "handle": "Pluvio9yte",
+      "name": "雪踏乌云",
+      "followers": 49706,
+      "focus": "多模型内容管线",
+      "source_count": 1,
+      "bookmarks": 346,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/Pluvio9yte"
+    },
+    {
+      "handle": "wlzh",
+      "name": "M.",
+      "followers": 16227,
+      "focus": "开源项目推荐",
+      "source_count": 1,
+      "bookmarks": 314,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-hardware"
+      ],
+      "profile_url": "https://x.com/wlzh"
+    },
+    {
+      "handle": "DZhao63405",
+      "name": "朝朝（AI创业版）",
+      "followers": 1905,
+      "focus": "AI 创业路径",
+      "source_count": 1,
+      "bookmarks": 313,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-side-business"
+      ],
+      "profile_url": "https://x.com/DZhao63405"
+    },
+    {
+      "handle": "garylau_ai",
+      "name": "Claude最严厉的父亲",
+      "followers": 3064,
+      "focus": "AI 视频复刻",
+      "source_count": 1,
+      "bookmarks": 300,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/garylau_ai"
+    },
+    {
+      "handle": "xingor_dev",
+      "name": "行歌",
+      "followers": 546,
+      "focus": "Blender 预演 + 视频生成",
+      "source_count": 1,
+      "bookmarks": 288,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/xingor_dev"
+    },
+    {
+      "handle": "justhalfbit",
+      "name": "半格 / HalfBit",
+      "followers": 2606,
+      "focus": "ESP32 打通 Claude Code",
+      "source_count": 2,
+      "bookmarks": 262,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-hardware"
+      ],
+      "profile_url": "https://x.com/justhalfbit"
+    },
+    {
+      "handle": "yanxi067",
+      "name": "言溪 Yanxi",
+      "followers": 1872,
+      "focus": "口型同步爆款视频",
+      "source_count": 1,
+      "bookmarks": 258,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/yanxi067"
+    },
+    {
+      "handle": "tychozzz",
+      "name": "Nico投资有道",
+      "followers": 94639,
+      "focus": "Codex 剪辑工作流",
+      "source_count": 1,
+      "bookmarks": 227,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/tychozzz"
+    },
+    {
+      "handle": "shanyanggm",
+      "name": "山羊赚钱笔记",
+      "followers": 23156,
+      "focus": "AI 副业服务",
+      "source_count": 1,
+      "bookmarks": 225,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-side-business"
+      ],
+      "profile_url": "https://x.com/shanyanggm"
+    },
+    {
+      "handle": "AISuperDomain",
+      "name": "AI超元域",
+      "followers": 5287,
+      "focus": "视频 Agent 开源项目",
+      "source_count": 1,
+      "bookmarks": 198,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/AISuperDomain"
+    },
+    {
+      "handle": "vista8",
+      "name": "向阳乔木",
+      "followers": 132457,
+      "focus": "AI 工具产品、知识管理",
+      "source_count": 2,
+      "bookmarks": 179,
+      "bookmark_metric": true,
+      "topics": [
+        "media-to-knowledge",
+        "model-gateway"
+      ],
+      "profile_url": "https://x.com/vista8"
+    },
+    {
+      "handle": "Jackywine",
+      "name": "Jackywine",
+      "followers": 48682,
+      "focus": "AI 产品发现",
+      "source_count": 1,
+      "bookmarks": 177,
+      "bookmark_metric": true,
+      "topics": [
+        "media-to-knowledge"
+      ],
+      "profile_url": "https://x.com/Jackywine"
+    },
+    {
+      "handle": "xiaomovps",
+      "name": "小墨同学",
+      "followers": 14880,
+      "focus": "ESP32 / 小智二次开发",
+      "source_count": 1,
+      "bookmarks": 134,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-hardware"
+      ],
+      "profile_url": "https://x.com/xiaomovps"
+    },
+    {
+      "handle": "KishenArt",
+      "name": "KishenArt",
+      "followers": 2410,
+      "focus": "AIGC 短片",
+      "source_count": 1,
+      "bookmarks": 104,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/KishenArt"
+    },
+    {
+      "handle": "369Serena",
+      "name": "Serena 木瓜",
+      "followers": 16762,
+      "focus": "Agent + CAD",
+      "source_count": 1,
+      "bookmarks": 88,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-eda"
+      ],
+      "profile_url": "https://x.com/369Serena"
+    },
+    {
+      "handle": "youyuy88",
+      "name": "youyuy88",
+      "focus": "视频 Agent 开源项目",
+      "source_count": 1,
+      "bookmarks": 88,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-video"
+      ],
+      "profile_url": "https://x.com/youyuy88"
+    },
+    {
+      "handle": "Peter05704721",
+      "name": "Peter",
+      "followers": 1659,
+      "focus": "Codex + KiCad 实测",
+      "source_count": 1,
+      "bookmarks": 73,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-eda"
+      ],
+      "profile_url": "https://x.com/Peter05704721"
+    },
+    {
+      "handle": "LotusDecoder",
+      "name": "LotusDecoder",
+      "followers": 8724,
+      "focus": "零基础硬件原型",
+      "source_count": 1,
+      "bookmarks": 65,
+      "bookmark_metric": true,
+      "topics": [
+        "ai-hardware"
+      ],
+      "profile_url": "https://x.com/LotusDecoder"
+    },
+    {
+      "handle": "simonw",
+      "name": "Simon Willison",
+      "focus": "命令行 llm：文件、模板与 schema",
+      "profile_url": "https://llm.datasette.io/en/stable/",
+      "source_count": 3,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "agent-skills"
+      ]
+    },
+    {
+      "handle": "anthropic",
+      "name": "Anthropic",
+      "focus": "Claude Skill 文档",
+      "profile_url": "https://code.claude.com/docs/en/skills",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "agent-skills"
+      ]
+    },
+    {
+      "handle": "openai",
+      "name": "OpenAI",
+      "focus": "Codex 的 AGENTS.md 说明",
+      "profile_url": "https://developers.openai.com/codex/guides/agents-md",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "agent-skills"
+      ]
+    }
+  ]
+}

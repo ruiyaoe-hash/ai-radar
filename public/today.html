@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page="today">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-amH7A632qlj4ld/AoaM5smbFUQk9/a62Q86gKcUSdaQ=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c0e12" />
+  <title>今日必看 · AI Radar</title>
+  <link rel="icon" href="./assets/logo.png" />
+  <link rel="stylesheet" href="./assets/radar.css" />
+  <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="./feed.xml" />
+</head>
+<body>
+  <div class="app">
+    <script src="./assets/safe-href.js"></script>
+    <script src="./assets/shell.js"></script>
+    <div class="content">
+      <div class="topbar">
+        <button class="menu-btn" type="button" data-nav-open>菜单</button>
+        <span class="topbar-title">今日必看</span>
+      </div>
+      <main>
+        <h1>今日必看</h1>
+        <p class="sub">AI Radar 每天给你当天最值得动手的 AI 信号。北京时间每天 08:00 主报，工作日 21:00 晚班，只留<strong>会影响你下一步决策</strong>的内容。本页「今日精选」从全部信号里挑出最重要的 3 条，时间紧只看这 3 条就够。做法手册在<a href="./index.html">实战图谱</a>。 <span id="updated"></span></p>
+
+        <section class="hero" aria-labelledby="hero-label">
+          <div class="hero-head">
+            <div class="label" id="hero-label"><span class="pill"><span class="dot"></span>精选</span> 今日精选</div>
+            <button class="btn" type="button" id="copyToday">复制今日精选</button>
+          </div>
+          <ol id="heroList"><li>正在读取…</li></ol>
+          <pre id="today3fallback" hidden></pre>
+        </section>
+
+        <div class="filters" id="bandFilters">
+          <button class="chip on" type="button" data-band="all">全部</button>
+          <button class="chip" type="button" data-band="must">今日必看</button>
+          <button class="chip" type="button" data-band="market">市场信号</button>
+          <button class="chip" type="button" data-band="watch">重点关注</button>
+        </div>
+        <div class="filters" id="lensFilters">
+          <span class="row-label">看什么</span>
+          <button class="chip on" type="button" data-topic="all">不限</button>
+          <button class="chip" type="button" data-topic="工具">试用工具</button>
+          <button class="chip" type="button" data-topic="赛道">行业动态</button>
+          <button class="chip" type="button" data-topic="模式">方法模式</button>
+          <button class="chip" type="button" data-topic="时机">时机窗口</button>
+        </div>
+
+        <div id="feed"><p class="empty">正在读取…</p></div>
+        <footer class="site-footer">
+          <p>内容可能包含未经证实的传闻与第三方帖子，请自行核对。</p>
+          <p>更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script src="./assets/cards.js"></script>
+  <script>
+    const state = { band: "all", lens: "all", items: [], today3: "", featured: new Set() };
+
+    function render() {
+      const filtered = Radar.applyFilter(state.items, state.band, state.lens);
+      document.getElementById("feed").innerHTML = Radar.renderGroups(filtered, state.featured);
+      Radar.scrollToHash();
+    }
+
+    function renderHero() {
+      const model = Radar.heroModel(state.today3, state.items);
+      state.featured = model.featured;
+      document.getElementById("heroList").innerHTML = Radar.renderHero(model.rows);
+    }
+
+    async function load() {
+      const [itemsRes, todayRes] = await Promise.all([
+        fetch("./items.json?" + Date.now()),
+        fetch("./today3.txt?" + Date.now())
+      ]);
+      if (!itemsRes.ok) throw new Error("items");
+      const data = await itemsRes.json();
+      state.items = Array.isArray(data) ? data : (data.items || []);
+      if (data.updated) document.getElementById("updated").textContent = "最近更新 " + data.updated;
+      if (todayRes.ok) state.today3 = await todayRes.text();
+      renderHero();
+      render();
+    }
+
+    document.getElementById("bandFilters").addEventListener("click", (event) => {
+      const btn = event.target.closest("[data-band]");
+      if (!btn) return;
+      document.querySelectorAll("#bandFilters .chip").forEach((el) => el.classList.remove("on"));
+      btn.classList.add("on");
+      state.band = btn.dataset.band;
+      render();
+    });
+
+    document.getElementById("lensFilters").addEventListener("click", (event) => {
+      const btn = event.target.closest("[data-topic]");
+      if (!btn) return;
+      document.querySelectorAll("#lensFilters .chip").forEach((el) => el.classList.remove("on"));
+      btn.classList.add("on");
+      state.lens = btn.dataset.topic;
+      render();
+    });
+
+    document.getElementById("copyToday").addEventListener("click", async () => {
+      const btn = document.getElementById("copyToday");
+      const text = Radar.copyText(state.today3, state.items);
+      const fallback = document.getElementById("today3fallback");
+      try {
+        await navigator.clipboard.writeText(text);
+        fallback.hidden = true;
+        btn.textContent = "已复制";
+        btn.classList.add("done");
+      } catch (err) {
+        fallback.hidden = false;
+        fallback.textContent = text;
+        btn.textContent = "请手动复制";
+      }
+      setTimeout(() => {
+        btn.textContent = "复制今日精选";
+        btn.classList.remove("done");
+      }, 1800);
+    });
+
+    load().catch(() => {
+      document.getElementById("feed").innerHTML = '<p class="empty">还没有信号。更新之后会显示在这里。</p>';
+      document.getElementById("heroList").innerHTML = "<li>今日精选还在准备，稍后再来。</li>";
+    });
+  </script>
+</body>
+</html>

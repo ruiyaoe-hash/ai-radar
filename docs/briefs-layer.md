@@ -78,7 +78,7 @@
 
 ### 第三步（展示）
 
-导航入口已经加上。侧栏由 `public/assets/shell.js` 统一写出，「阅读」里「今日必看」下面是「快讯」，链到 `./briefs.html`。打开快讯页时，`briefs.html` 的 `data-page="briefs"` 会让这一项呈当前页，和其他栏目同一套规则。`scripts/validate.py` 的 `check_public_ui` 会确认「快讯」留在「阅读」、排在「今日必看」后面，并且链的是 `./briefs.html`。订阅段的 `nav_order` 仍按原顺序检查「订阅更新、飞书订阅群、给 Agent 用、这是什么、反馈 / 建议」。
+导航入口已经加上。侧栏由 `public/assets/shell.js` 统一写出。「阅读」第一项是「实战图谱」（`index.html`），后面是「今日必看」（`today.html`），再下面是「快讯」，链到 `briefs.html`。打开快讯页时，`briefs.html` 的 `data-page="briefs"` 会让这一项呈当前页。`scripts/validate.py` 的 `check_public_ui` 会确认「快讯」留在「阅读」、排在「今日必看」后面，并且链的是 `briefs.html`。订阅段的 `nav_order` 仍按原顺序检查「订阅更新、飞书订阅群、给 Agent 用、这是什么、反馈 / 建议」。
 
 窗口和看板切换仍单独做：
 
