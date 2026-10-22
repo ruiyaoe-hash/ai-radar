@@ -1,8 +1,137 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-20 08:05 北京时间",
+  "updated": "2026-10-22 10:09 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261022-anthropic-claude-duet",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "Anthropic 放出 Claude Duet 研究预览（主动找你的助理）",
+      "date": "2026-10-22",
+      "time": "10-22 03:09",
+      "handle": "claudeai",
+      "url": "https://claude.com/product/claude-duet",
+      "published_at": "2026-10-21T19:09:35Z",
+      "ingested_at": "2026-10-22T02:08:48Z",
+      "candidate_id": "cand-20261022-e9f1eb0054c0",
+      "promotion_path": "normal",
+      "objective": [
+        "Anthropic 在北京时间 2026 年 10 月 22 日凌晨开放 Claude Duet 的研究预览（research preview，给一部分用户提前试用）。这是一款会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已经交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并能接入 6000 多个 connector（连接器）和 plugin（插件）。",
+        "官方产品页写明，这一轮候补面向美国的 Claude Pro 和 Max 订阅用户。研究预览和 Claude 共用现有套餐的用量额度，预览资格本身不加收一笔费用。后台巡检也会计入额度，做财务模型或幻灯片这类大任务更费。Team 和 Enterprise 的名额要等后续开放。它是独立应用，有 iOS 和 Android，电脑上在 claude.ai 打开，并沿用你 Claude 账号里的记忆、技能和已连接的应用。",
+        "发消息、付款这类敏感动作，Duet 会先把将要执行的步骤摆给你看，等你点头再做。官方同时写明，它可能读错一段往来，把事情的缓急判偏，两次巡检之间新到的消息也可能漏过。排队时先写下同一批收件箱和跟进任务，开放后用这批任务看它能否在你离开时把步骤做完。"
+      ],
+      "sources": [
+        {
+          "url": "https://claude.com/product/claude-duet",
+          "handle": "claudeai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/claudeai/status/2112984664256241837",
+          "handle": "claudeai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/addyosmani/status/2113015448203862255",
+          "handle": "addyosmani",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2112995995017421133",
+          "handle": "dotey",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://claude.com/product/claude-duet",
+      "access": "研究预览，需候补。美国区 Claude Pro 与 Max 可以排队。用量计入现有套餐，预览资格不加收。Team 与 Enterprise 的名额要等后续开放。客户端有 iOS、Android，电脑上在 claude.ai。",
+      "integration": "沿用 Claude 账号里的记忆、技能和已连接应用。官方称可接 6000 多个 connector（连接器）和 plugin（插件），底层是 Opus 5.5。",
+      "first_step": "打开产品页加入候补（美国区 Claude Pro 或 Max）。排队时写好同一批收件箱和跟进任务，开放后对照你现在的助手复测。其他地区先保存产品页和这批任务，等区域扩大后用同一套任务测一次。",
+      "alternatives": [
+        "现有的 Claude 对话（打开聊天后才开始干活）",
+        "把同一批收件箱任务留给现在的助手跟进"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。其他地区先把这批任务写下来，等开放区域扩大后再测。",
+        "action": "试用",
+        "window": "美国区 Pro/Max 这周排队，开放后用同一批任务复测。",
+        "confidence": "高",
+        "falsifier": "如果候补名单长期不放出名额，或开放范围一直停在美国区 Pro 与 Max，或者它只会发提醒、没有把你交代的收件箱和跟进任务往前做完，就收回「这周该去排队，并用同一批任务复测」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261022-php2shell-openai-disclosure",
+      "status": "confirmed",
+      "tag": "安全",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "OpenAI 协调披露 PHP 引擎高危远程执行（PHP2Shell），并放出自查 skill",
+      "date": "2026-10-22",
+      "time": "10-21 22:04",
+      "handle": "OpenAI",
+      "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/",
+      "published_at": "2026-10-21T14:04:23Z",
+      "ingested_at": "2026-10-22T02:08:48Z",
+      "candidate_id": "cand-20261021-dc6e32e733d2",
+      "promotion_path": "normal",
+      "objective": [
+        "PHP 官方在 2026 年 10 月 21 日发布安全公告：引擎里有两处登录前即可触发的远程代码执行（pre-auth RCE，未登录就能在服务器上跑代码），编号 CVE-2026-109618 和 CVE-2026-109619。修复版本是 8.5.12、8.4.27、8.3.36 和 8.2.35。受影响的是处理网页请求的 PHP 进程，包括 PHP-FPM 和 Apache mod_php。要升级的是 PHP 引擎。站点程序换了新版之后，只要进程里的 PHP 仍停在对应修复版之前，这两处漏洞还在。",
+        "OpenAI 在 Patch the Planet（为关键开源软件协调补丁的项目）里写，Calif 用 GPT-5.6 Sol（OpenAI 的一款模型）发现其中一处严重缺陷，Wiz 也独立报告了这两处漏洞。PHP 维护者主导修复和发布，OpenAI、Wiz、Cloudflare 等参与研究和公开前的协调。同一天 OpenAI 放出 Codex skill（Codex 里可调用的检查步骤）php2shell-checker，用来核对站点正在运行的 PHP 版本，再对照官方和托管商的说明决定升到哪一版。",
+        "同一轮公开窗口里，还要留意 Node.js 的 Brotli 解码远程执行（CVE-2026-111497），以及 eMudhra 中间证书私钥泄露后的信任库更新。今天先处理 PHP：网站或服务器在跑 PHP 的，把引擎升到上面的修复版，或用 php2shell-checker 核对正在运行的版本。"
+      ],
+      "sources": [
+        {
+          "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/",
+          "handle": "OpenAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.php.net/archive/2026.php#2026-10-21-5",
+          "handle": "PHP",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/openai/php2shell-checker",
+          "handle": "OpenAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/openai/status/2112945805686604033",
+          "handle": "OpenAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/OpenAI/status/2112907856018309586",
+          "handle": "OpenAI",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/openai/php2shell-checker",
+      "access": "修复包在 php.net，各 Linux 发行版也可能已提供回移植包。检查工具在 GitHub 仓库 openai/php2shell-checker，用 Codex 打开后按步骤核对。PHP 8.1 及更早版本向发行版要回移植，或升到仍在维护的分支。",
+      "integration": "Codex skill，用来核对正在运行的 PHP 版本。补丁打在 PHP 引擎上，升级后重启 PHP 进程。",
+      "first_step": "在服务器上执行 php -v，或让 Codex 打开 openai/php2shell-checker 带你核对。版本低于对应修复版时，今天升到 8.5.12、8.4.27、8.3.36 或 8.2.35，然后重启 PHP 进程。",
+      "alternatives": [
+        "向托管商或 Linux 发行版要已包含修复的 PHP 包",
+        "php.net 公告里的临时配置缓解（完整修复仍是升级引擎）"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你的网站或服务器在跑 PHP，今天就把引擎升到 8.5.12、8.4.27、8.3.36 或 8.2.35，升完重启 PHP 进程。也可以先用 OpenAI 的 php2shell-checker 核对正在运行的版本。技术栈里没有 PHP 的，记下这组版本号即可。",
+        "action": "今天升级",
+        "window": "今天升到修复版并重启 PHP 进程。",
+        "confidence": "高",
+        "falsifier": "如果站点和技术栈里没有 PHP，或者 php -v 与检查工具都显示版本已经达到 8.5.12、8.4.27、8.3.36 或 8.2.35 里对应的修复版，就收回「今天要先打这组 PHP 补丁」。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261020-meta-muse-glimmer-30b",
@@ -253,334 +382,6 @@
         "window": "有图床或封面需求时，这周试一条就够。",
         "confidence": "中",
         "falsifier": "如果实际画质和可控性明显弱于你现在用的闭源画图模型，而且显存门槛太高，就收回「优先评估 FLUX.3」。"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261014-fish-drama-3",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "Fish Audio Drama 3：开放权重表情 TTS，AA 发音稳健榜第一",
-      "date": "2026-10-14",
-      "time": "10-14 02:55",
-      "handle": "FishAudio",
-      "url": "https://fish.audio/blog/fish-audio-drama-3/",
-      "published_at": "2026-10-13T18:55:12Z",
-      "ingested_at": "2026-10-14T00:03:53Z",
-      "objective": [
-        "Fish Audio 官方：发布 Drama 3（及 preview），面向自然语言导演、多角色对白、克隆与流式；权重在 Hugging Face（fishaudio/drama-3），推理可用 SGLang Omni",
-        "Artificial Analysis（10-13）：Drama 3 Preview 为开放权重 TTS 榜首；Pronunciation Robustness 总体 93.2% 领先 Eleven v4；Provider Voice Arena Elo 约 1243（#10，较 S2.1 Pro 升约 101 点）",
-        "许可：Fish Audio Community License v1.0——年营收低于约 50 万美元可商用自托管；更高或对外提供 TTS/克隆服务需另购许可；禁止未经同意克隆真人声音；自托管约需 ≥48GB NVIDIA GPU（FP8）"
-      ],
-      "sources": [
-        {
-          "url": "https://fish.audio/blog/fish-audio-drama-3/",
-          "handle": "FishAudio",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/ArtificialAnlys/status/2110081938140582085",
-          "handle": "ArtificialAnlys",
-          "role": "analysis"
-        },
-        {
-          "url": "https://huggingface.co/fishaudio/drama-3",
-          "handle": "HuggingFace",
-          "role": "primary"
-        }
-      ],
-      "shift": "morning",
-      "try_url": "https://fish.audio/",
-      "access": "API（model: drama-3 / drama-3-preview）或 HF 自托管；商用看营收门槛",
-      "integration": "Fish Audio TTS API / SGLang Omni / Hugging Face Space",
-      "first_step": "用 API 跑 3 条难发音样本（数字/专名/代码）对照 Eleven/现用 TTS",
-      "alternatives": [
-        "ElevenLabs v4",
-        "Speechify Simba",
-        "Cartesia Sonic"
-      ],
-      "tool_radar": "评估",
-      "so_what": {
-        "lens": "工具",
-        "impact": "开放权重 TTS 质量追上闭源头部，OPC 做播客/口播/agent 语音可先用 API 验证，营收低时再评估自托管降本",
-        "action": "评估",
-        "window": "本周可 API 盲听对照，不必急着自托管",
-        "confidence": "中",
-        "falsifier": "若中文/多角色实测明显差于 Eleven，或许可/克隆合规卡住交付，则「默认换 Drama 3」判断作废"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261014-liquid-lfm25",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "Liquid LFM2.5-24B-A2B：2B 激活的端侧推理 agent 开源权重",
-      "date": "2026-10-14",
-      "time": "10-14 01:05",
-      "handle": "LiquidAI",
-      "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
-      "published_at": "2026-10-13T17:05:48Z",
-      "ingested_at": "2026-10-14T00:03:53Z",
-      "objective": [
-        "Liquid AI / HF 博文（10-13）：发布 LFM2.5-24B-A2B（及 Base），24B 总参、每 token 约 2B 激活，面向端侧私有 agent；上下文扩至 131K；推理前强制出链",
-        "自测：LiveClaw 48.09 高于 Qwen3.6-35B-A3B 的 38.19；工具/指令跟随多项领先或持平；知识与 SWE 仍弱于更大模型；自称 M5 Max 约 184 tok/s，单卡 B300 高并发可达约 21K output tok/s",
-        "日一支持 llama.cpp / MLX / vLLM / SGLang / ONNX；示例可挂 Hermes/OpenClaw/Pi 等 harness；权重 Hugging Face 开放"
-      ],
-      "sources": [
-        {
-          "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
-          "handle": "HuggingFace",
-          "role": "primary"
-        },
-        {
-          "url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
-          "handle": "LiquidAI",
-          "role": "primary"
-        }
-      ],
-      "shift": "morning",
-      "try_url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
-      "access": "开源权重；需本地/云 GPU 或高端 Apple Silicon",
-      "integration": "llama.cpp / MLX / vLLM / SGLang + OpenAI-compatible harness",
-      "first_step": "若有本地算力：用 llama.cpp 或 MLX 起服务，把 Hermes 或现有 agent 指到本地端点跑一轮工具调用",
-      "alternatives": [
-        "Qwen3.6-35B-A3B",
-        "Gemma-4 MoE",
-        "云端小模型 API"
-      ],
-      "tool_radar": "评估",
-      "so_what": {
-        "lens": "工具",
-        "impact": "端侧「常驻 agent」在速度/隐私上更可谈；OPC 若做本地助手可列入候选，知识任务仍需检索或外挂大模型",
-        "action": "评估",
-        "window": "有本地 GPU/M 系列再试；否则只跟踪",
-        "confidence": "中",
-        "falsifier": "若独立复现工具调用失败率高，或端侧内存/速度达不到「可常驻」，则「默认本地 agent 底座」判断作废"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261014-play-personal-apps",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "Google Play「个人库」：AI Studio 手搓安卓 App 可私装，无需开发者账号",
-      "date": "2026-10-14",
-      "time": "10-14 01:00",
-      "handle": "GooglePlay",
-      "url": "https://blog.google/products-and-platforms/platforms/google-play/google-play-updates-october-2026/",
-      "published_at": "2026-10-13T17:00:00Z",
-      "ingested_at": "2026-10-14T00:03:53Z",
-      "objective": [
-        "Google Play 官方更新（10-13）：可用 Google AI Studio vibe-code 安卓应用，经 Play 装到自己设备的 Personal Library；默认私有、不进公开目录与搜索",
-        "只需普通 Google 账号，无需开发者账号；仍须遵守 Play 政策；先在美国等部分市场向 18+ 用户滚动开放；后续计划小范围分享与迁移到正式上架",
-        "TechCrunch/Ars：动机是规避「个人工具必须公开上架」摩擦；公开迁移仍走信任与安全审核"
-      ],
-      "sources": [
-        {
-          "url": "https://blog.google/products-and-platforms/platforms/google-play/google-play-updates-october-2026/",
-          "handle": "GooglePlay",
-          "role": "primary"
-        },
-        {
-          "url": "https://techcrunch.com/2026/10/13/google-play-now-supports-private-vibe-coded-apps-built-just-for-you/",
-          "handle": "TechCrunch",
-          "role": "analysis"
-        },
-        {
-          "url": "https://x.com/dotey/status/2110106922322120937",
-          "handle": "dotey",
-          "role": "report"
-        }
-      ],
-      "shift": "morning",
-      "try_url": "https://aistudio.google.com/",
-      "access": "美国等部分市场、18+、普通 Google 账号；中国区可用性未在官方稿确认",
-      "integration": "Google AI Studio → Google Play Personal Library",
-      "first_step": "若账号在开放市场：用 AI Studio 做一个单用途工具 App，装到自己手机验证流程",
-      "alternatives": [
-        "PWA / 网页版",
-        "TestFlight 类分发",
-        "侧载 APK"
-      ],
-      "tool_radar": "评估",
-      "so_what": {
-        "lens": "工具",
-        "impact": "「为自己做安卓小工具」分发摩擦下降；对 OPC 是验证个人/小圈分发路径，不是立刻做公开商店生意——且需确认账号市场是否开放",
-        "action": "评估",
-        "window": "有美区账号本周可试；否则只记模式",
-        "confidence": "中",
-        "falsifier": "若个人库长期不到中国常用账号、或政策把实用工具挡死，则「可落地个人安卓工具」判断作废"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261014-anthropic-scion",
-      "status": "confirmed",
-      "tag": "模式",
-      "lens": "模式",
-      "priority": "P1",
-      "title": "Anthropic 自研源控 Scion：日合并从约2500升至3万+后五个月迁出 Git",
-      "date": "2026-10-14",
-      "time": "10-14 00:36",
-      "handle": "Anthropic",
-      "url": "https://www.anthropic.com/engineering/redesigning-source-control",
-      "published_at": "2026-10-13T16:36:41Z",
-      "ingested_at": "2026-10-14T00:03:53Z",
-      "objective": [
-        "Anthropic 工程博文（10-13）：因 agent 写码导致日合并从约 2500 增至逾 30000，Git 式假设成为瓶颈；自研服务端中心源控 Scion，五个月内完成 monorepo 迁移",
-        "同期交付 Antique（代码评审）、代码搜索、源控 IAM 等；7 人小团队；原则：客户端多为在线 agent/CI，稀疏检出、服务端提交与可查询 API，而非人人完整离线 clone",
-        "负荷量级：主分支历史近 100GB、压缩工作副本逾 25GB、CI 日检出约 2500 万次量级；强调 Claude 既制造了规模问题也加速了重建"
-      ],
-      "sources": [
-        {
-          "url": "https://www.anthropic.com/engineering/redesigning-source-control",
-          "handle": "Anthropic",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/AnthropicAI/status/2110047081414987957",
-          "handle": "AnthropicAI",
-          "role": "primary"
-        },
-        {
-          "url": "https://www.theregister.com/devops/2026/10/13/anthropic-reinvents-source-control-as-claude-floods-the-world-with-code/5302943",
-          "handle": "TheRegister",
-          "role": "report"
-        }
-      ],
-      "shift": "morning",
-      "so_what": {
-        "lens": "模式",
-        "impact": "agent 规模会先打穿「为人设计的开发者基础设施」；OPC 不必自建 Scion，但应默认假设 GitHub/CI/评审会成瓶颈，优先稀疏工作区、任务队列与可机读仓库 API",
-        "action": "观察",
-        "window": "读完博文原则即可，无短期采购动作",
-        "confidence": "中",
-        "falsifier": "若后续披露 Scion 仅限内部、外部生态仍以 Git 稳跑同等 agent 吞吐，则「必须换源控」判断作废"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261014-aa-decision-index",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "Artificial Analysis Decision Index v1.0：给「决策模型」立独立评测轴",
-      "date": "2026-10-14",
-      "time": "10-14 00:34",
-      "handle": "ArtificialAnlys",
-      "url": "https://artificialanalysis.ai/articles/artificial-analysis-decision-index",
-      "published_at": "2026-10-13T16:34:39Z",
-      "ingested_at": "2026-10-14T00:03:53Z",
-      "objective": [
-        "Artificial Analysis（10-13）：发布 Decision Index v1.0，评测返回结构化选项+概率的决策模型；四项等权：AA-Omniscience-Decision、HLE-MultiChoice、When2Call、WildGuardTest",
-        "发布时 Jev 1.13 以 58 分领先；称决策模型在分类/工具调用上可接近语言模型，但知识与推理明显落后，且校准偏乐观；另强调相对 LLM 的速度与成本优势",
-        "与昨夜 ScaleDown CDM×LangChain 信号同向：长程 agent 应用把「路由/分类/是否调工具」从大模型拆出"
-      ],
-      "sources": [
-        {
-          "url": "https://artificialanalysis.ai/articles/artificial-analysis-decision-index",
-          "handle": "ArtificialAnlys",
-          "role": "primary"
-        },
-        {
-          "url": "https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index",
-          "handle": "ArtificialAnlys",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/ArtificialAnlys/status/2110046568669904987",
-          "handle": "ArtificialAnlys",
-          "role": "primary"
-        }
-      ],
-      "shift": "morning",
-      "try_url": "https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index",
-      "access": "公开榜单与方法论文章",
-      "integration": "选型参考；可对接 ScaleDown/Jev 等决策 API",
-      "first_step": "对照榜单挑一个决策模型，替换现有 agent 里的「是否调工具/分类」步骤做 A/B",
-      "alternatives": [
-        "ScaleDown CDM",
-        "自建分类小模型",
-        "继续用小参数 LLM"
-      ],
-      "tool_radar": "评估",
-      "so_what": {
-        "lens": "工具",
-        "impact": "决策模型从营销名词变成可横比品类；OPC 做 agent 时应把「便宜决策层」与「贵生成层」分开选型，用 Index 而非厂商自宣",
-        "action": "评估",
-        "window": "与 ScaleDown 试用同一周做",
-        "confidence": "中",
-        "falsifier": "若真实业务任务上决策模型错误代价高于省下的钱，或榜单与线上差距过大，则「默认拆决策层」判断作废"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261014-gemini-4-argon",
-      "status": "confirmed",
-      "tag": "发布",
-      "lens": "赛道",
-      "priority": "P0",
-      "title": "Google 向全球开放 Gemini 4 Argon",
-      "date": "2026-10-14",
-      "time": "10-14 00:00",
-      "handle": "Google",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "published_at": "2026-10-13T16:00:00Z",
-      "ingested_at": "2026-10-14T00:03:53Z",
-      "objective": [
-        "Google 在 2026 年 10 月 13 日向全球开放 Gemini 4 Argon。开发者和企业可以通过 Gemini 接口使用。",
-        "Google AI Ultra 可以用 Antigravity。Pro 和 Ultra 可以用 Gemini 应用，也可以用搜索里的 AI 模式。它面向写代码、金融、法律、网络安全和科研这类长程工作。输入和输出上限都是 1M token。",
-        "现在的导入价是每百万 token 输入 2 美元、输出 10 美元。缓存过的输入大约便宜 95%。2026 年 11 月 30 日之后升到输入 4 美元、输出 20 美元。",
-        "Artificial Analysis 称它的智力指数和 GPT-6 Astra 持平。折扣期内，单次任务成本大约是 Astra 的 60%。公司内部说，Antigravity 里智能体提交量大约升了 35%，回滚大约少了三分之一。DeepMind 同一天发了安全和机器人配套说明。机器人演示里，只看视频就能教 Apptronik Apollo 连投 7 袋玉米。"
-      ],
-      "sources": [
-        {
-          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-          "handle": "Google",
-          "role": "primary"
-        },
-        {
-          "url": "https://deepmind.google/blog/introducing-gemini-4-argon/",
-          "handle": "GoogleDeepMind",
-          "role": "primary"
-        },
-        {
-          "url": "https://artificialanalysis.ai/models/gemini-4-argon",
-          "handle": "ArtificialAnlys",
-          "role": "analysis"
-        },
-        {
-          "url": "https://www.theverge.com/ai-artificial-intelligence/1009862/google-releases-gemini-4-argon",
-          "handle": "TheVerge",
-          "role": "report"
-        }
-      ],
-      "shift": "morning",
-      "try_url": "https://aistudio.google.com/",
-      "access": "开发者和企业走 Gemini 付费接口。Antigravity 需要 Google AI Ultra。应用和搜索需要 Pro 或 Ultra。",
-      "integration": "Gemini API / AI Studio / Antigravity / Android Studio",
-      "first_step": "用同一套长程写代码或智能体任务，把 Argon 的导入价和你现在用的 Sol、Opus 或 Wonder 对打一遍，看完成率和账单。",
-      "alternatives": [
-        "GPT-6 Astra / Sol",
-        "Claude Opus 5.5 / Fable",
-        "Meta Muse Wonder"
-      ],
-      "tool_radar": "试用",
-      "so_what": {
-        "lens": "赛道",
-        "impact": "Google 又提供了公开的前沿模型接口，而且眼下的导入价明显更低。选模型时，尤其是长上下文和用智能体写代码，这周要把 Argon 放进同一套任务里对照。",
-        "action": "试用",
-        "window": "导入价维持到 11 月 30 日。这周对照最划算。",
-        "confidence": "高",
-        "falsifier": "如果独立评测显示，Argon 在真实长程任务上稳定差于同样价位的 Sol 或 Opus，或者接口的配额和延迟用不起来，就收回「可以默认放进对照表」。",
-        "thesis_id": "T-001"
       }
     }
   ]

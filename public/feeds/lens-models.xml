@@ -5,14 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看方法模式。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 20 Oct 2026 08:05:08 +0800</lastBuildDate>
+<lastBuildDate>Thu, 22 Oct 2026 10:09:53 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-models.xml" rel="self" type="application/rss+xml"/>
-<item>
-<title>[重点关注 · 方法模式 · 模式] Anthropic 自研源控 Scion：日合并从约2500升至3万+后五个月迁出 Git</title>
-<link>https://www.anthropic.com/engineering/redesigning-source-control</link>
-<guid isPermaLink="false">evt-20261014-anthropic-scion</guid>
-<pubDate>Wed, 14 Oct 2026 00:36:41 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Anthropic 工程博文（10-13）：因 agent 写码导致日合并从约 2500 增至逾 30000，Git 式假设成为瓶颈；自研服务端中心源控 Scion，五个月内完成 monorepo 迁移<br/>• 同期交付 Antique（代码评审）、代码搜索、源控 IAM 等；7 人小团队；原则：客户端多为在线 agent/CI，稀疏检出、服务端提交与可查询 API，而非人人完整离线 clone<br/>• 负荷量级：主分支历史近 100GB、压缩工作副本逾 25GB、CI 日检出约 2500 万次量级；强调 Claude 既制造了规模问题也加速了重建<br/><strong>对你意味着什么</strong> agent 规模会先打穿「为人设计的开发者基础设施」；OPC 不必自建 Scion，但应默认假设 GitHub/CI/评审会成瓶颈，优先稀疏工作区、任务队列与可机读仓库 API<br/>建议：观察 · 读完博文原则即可，无短期采购动作<br/>有多确定：中<br/>什么情况下当这判断作废：若后续披露 Scion 仅限内部、外部生态仍以 Git 稳跑同等 agent 吞吐，则「必须换源控」判断作废<br/>来源 Anthropic（一手）, AnthropicAI（一手）, TheRegister（转述）<br/>日期 2026-10-14]]></description>
-</item>
 </channel>
 </rss>

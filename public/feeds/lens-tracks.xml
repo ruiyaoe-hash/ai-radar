@@ -5,7 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看行业动态。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 20 Oct 2026 08:05:08 +0800</lastBuildDate>
+<lastBuildDate>Thu, 22 Oct 2026 10:09:53 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>[今日必看 · 行业动态 · 发布] Meta 放出可下载的 Muse Spark Open</title>
@@ -13,13 +13,6 @@
 <guid isPermaLink="false">evt-20261016-meta-muse-spark-open</guid>
 <pubDate>Fri, 16 Oct 2026 01:08:04 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Meta 在 2026 年 10 月 15 日放出 Muse Spark Open。模型权重可以下载到自己的电脑或服务器上使用。官方称这是目前最强的美国开放权重模型。<br/>• 总参数 816B，每个词大约激活 42B，结构是混合专家。上下文最长 1M token。它能读文字、图片、音频和视频，再输出文字，主打长程写代码和智能体任务。<br/>• 权重可以在 Hugging Face 下载，也可以走 OpenRouter 这类托管接口。许可在有限商用条款下可以免费使用。大厂商如果要卖接口，需要另谈。<br/>• 官方演示过用两台高配 Mac Studio 在本地跑通，内存门槛高，别默认家里的电脑能跑。它和 10 月 13 日的 Muse Wonder 不是一条线，Wonder 走的是闭源接口。完整评测报告还没发。<br/><strong>对你意味着什么</strong> 美国这边第一次有接近前沿、又能下载权重的智能体模型。如果你依赖开源或自己托管，或者想躲开闭源配额，这周要用同一套任务把 Spark Open 放进对照，不要只看 Wonder 的接口或国内的开源模型。<br/>建议：试用 · 这周先用托管接口对照。本地要两台高配电脑，别默认家里能跑。<br/>有多确定：高<br/>什么情况下当这判断作废：如果独立评测显示，它在真实的长程写代码和智能体任务上稳定弱于同样成本的开源模型，或者托管接口的价格用不起来，就收回「美国这边的开放权重已经接近前沿，应该放进对照表」。<br/>来源 Meta（一手）, AIatMeta（一手）, HuggingFace（一手）, natolambert（解读）<br/>日期 2026-10-16]]></description>
-</item>
-<item>
-<title>[今日必看 · 行业动态 · 发布] Google 向全球开放 Gemini 4 Argon</title>
-<link>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/</link>
-<guid isPermaLink="false">evt-20261014-gemini-4-argon</guid>
-<pubDate>Wed, 14 Oct 2026 00:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Google 在 2026 年 10 月 13 日向全球开放 Gemini 4 Argon。开发者和企业可以通过 Gemini 接口使用。<br/>• Google AI Ultra 可以用 Antigravity。Pro 和 Ultra 可以用 Gemini 应用，也可以用搜索里的 AI 模式。它面向写代码、金融、法律、网络安全和科研这类长程工作。输入和输出上限都是 1M token。<br/>• 现在的导入价是每百万 token 输入 2 美元、输出 10 美元。缓存过的输入大约便宜 95%。2026 年 11 月 30 日之后升到输入 4 美元、输出 20 美元。<br/>• Artificial Analysis 称它的智力指数和 GPT-6 Astra 持平。折扣期内，单次任务成本大约是 Astra 的 60%。公司内部说，Antigravity 里智能体提交量大约升了 35%，回滚大约少了三分之一。DeepMind 同一天发了安全和机器人配套说明。机器人演示里，只看视频就能教 Apptronik Apollo 连投 7 袋玉米。<br/><strong>对你意味着什么</strong> Google 又提供了公开的前沿模型接口，而且眼下的导入价明显更低。选模型时，尤其是长上下文和用智能体写代码，这周要把 Argon 放进同一套任务里对照。<br/>建议：试用 · 导入价维持到 11 月 30 日。这周对照最划算。<br/>有多确定：高<br/>什么情况下当这判断作废：如果独立评测显示，Argon 在真实长程任务上稳定差于同样价位的 Sol 或 Opus，或者接口的配额和延迟用不起来，就收回「可以默认放进对照表」。<br/>来源 Google（一手）, GoogleDeepMind（一手）, ArtificialAnlys（解读）, TheVerge（转述）<br/>日期 2026-10-14]]></description>
 </item>
 </channel>
 </rss>

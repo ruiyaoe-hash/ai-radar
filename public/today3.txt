@@ -1,8 +1,13 @@
-AI Radar · 今日精选（2026-10-20）
+AI Radar · 今日精选（2026-10-22）
 
-1. Meta 放出 Muse Glimmer 30B，可在消费级显卡上跑本地智能体
-   对你意味着什么：如果你这周要在自己电脑上跑本地智能体，而不只靠云端接口，把 Muse Glimmer 放进同尺寸对照表。它和已经上板的 Muse Spark Open 不是同一条产品线：Spark 更大、偏托管或高端本机；Glimmer 专门压到消费级单卡。
-   建议：试用 · 这周先用 4-bit 本地包跑一小批带工具调用的任务。
-   https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model
+1. Anthropic 放出 Claude Duet 研究预览（主动找你的助理）
+   对你意味着什么：Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。其他地区先把这批任务写下来，等开放区域扩大后再测。
+   建议：试用 · 美国区 Pro/Max 这周排队，开放后用同一批任务复测。
+   https://claude.com/product/claude-duet
+
+2. OpenAI 协调披露 PHP 引擎高危远程执行（PHP2Shell），并放出自查 skill
+   对你意味着什么：如果你的网站或服务器在跑 PHP，今天就把引擎升到 8.5.12、8.4.27、8.3.36 或 8.2.35，升完重启 PHP 进程。也可以先用 OpenAI 的 php2shell-checker 核对正在运行的版本。技术栈里没有 PHP 的，记下这组版本号即可。
+   建议：今天升级 · 今天升到修复版并重启 PHP 进程。
+   https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html

@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-22",
+  "count": 2,
+  "schema_version": 2,
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261022-anthropic-claude-duet",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "Anthropic 放出 Claude Duet 研究预览（主动找你的助理）",
+      "date": "2026-10-22",
+      "time": "10-22 03:09",
+      "handle": "claudeai",
+      "url": "https://claude.com/product/claude-duet",
+      "published_at": "2026-10-21T19:09:35Z",
+      "ingested_at": "2026-10-22T02:08:48Z",
+      "candidate_id": "cand-20261022-e9f1eb0054c0",
+      "promotion_path": "normal",
+      "objective": [
+        "Anthropic 在北京时间 2026 年 10 月 22 日凌晨开放 Claude Duet 的研究预览（research preview，给一部分用户提前试用）。这是一款会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已经交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并能接入 6000 多个 connector（连接器）和 plugin（插件）。",
+        "官方产品页写明，这一轮候补面向美国的 Claude Pro 和 Max 订阅用户。研究预览和 Claude 共用现有套餐的用量额度，预览资格本身不加收一笔费用。后台巡检也会计入额度，做财务模型或幻灯片这类大任务更费。Team 和 Enterprise 的名额要等后续开放。它是独立应用，有 iOS 和 Android，电脑上在 claude.ai 打开，并沿用你 Claude 账号里的记忆、技能和已连接的应用。",
+        "发消息、付款这类敏感动作，Duet 会先把将要执行的步骤摆给你看，等你点头再做。官方同时写明，它可能读错一段往来，把事情的缓急判偏，两次巡检之间新到的消息也可能漏过。排队时先写下同一批收件箱和跟进任务，开放后用这批任务看它能否在你离开时把步骤做完。"
+      ],
+      "sources": [
+        {
+          "url": "https://claude.com/product/claude-duet",
+          "handle": "claudeai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/claudeai/status/2112984664256241837",
+          "handle": "claudeai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/addyosmani/status/2113015448203862255",
+          "handle": "addyosmani",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2112995995017421133",
+          "handle": "dotey",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://claude.com/product/claude-duet",
+      "access": "研究预览，需候补。美国区 Claude Pro 与 Max 可以排队。用量计入现有套餐，预览资格不加收。Team 与 Enterprise 的名额要等后续开放。客户端有 iOS、Android，电脑上在 claude.ai。",
+      "integration": "沿用 Claude 账号里的记忆、技能和已连接应用。官方称可接 6000 多个 connector（连接器）和 plugin（插件），底层是 Opus 5.5。",
+      "first_step": "打开产品页加入候补（美国区 Claude Pro 或 Max）。排队时写好同一批收件箱和跟进任务，开放后对照你现在的助手复测。其他地区先保存产品页和这批任务，等区域扩大后用同一套任务测一次。",
+      "alternatives": [
+        "现有的 Claude 对话（打开聊天后才开始干活）",
+        "把同一批收件箱任务留给现在的助手跟进"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。其他地区先把这批任务写下来，等开放区域扩大后再测。",
+        "action": "试用",
+        "window": "美国区 Pro/Max 这周排队，开放后用同一批任务复测。",
+        "confidence": "高",
+        "falsifier": "如果候补名单长期不放出名额，或开放范围一直停在美国区 Pro 与 Max，或者它只会发提醒、没有把你交代的收件箱和跟进任务往前做完，就收回「这周该去排队，并用同一批任务复测」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261022-php2shell-openai-disclosure",
+      "status": "confirmed",
+      "tag": "安全",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "OpenAI 协调披露 PHP 引擎高危远程执行（PHP2Shell），并放出自查 skill",
+      "date": "2026-10-22",
+      "time": "10-21 22:04",
+      "handle": "OpenAI",
+      "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/",
+      "published_at": "2026-10-21T14:04:23Z",
+      "ingested_at": "2026-10-22T02:08:48Z",
+      "candidate_id": "cand-20261021-dc6e32e733d2",
+      "promotion_path": "normal",
+      "objective": [
+        "PHP 官方在 2026 年 10 月 21 日发布安全公告：引擎里有两处登录前即可触发的远程代码执行（pre-auth RCE，未登录就能在服务器上跑代码），编号 CVE-2026-109618 和 CVE-2026-109619。修复版本是 8.5.12、8.4.27、8.3.36 和 8.2.35。受影响的是处理网页请求的 PHP 进程，包括 PHP-FPM 和 Apache mod_php。要升级的是 PHP 引擎。站点程序换了新版之后，只要进程里的 PHP 仍停在对应修复版之前，这两处漏洞还在。",
+        "OpenAI 在 Patch the Planet（为关键开源软件协调补丁的项目）里写，Calif 用 GPT-5.6 Sol（OpenAI 的一款模型）发现其中一处严重缺陷，Wiz 也独立报告了这两处漏洞。PHP 维护者主导修复和发布，OpenAI、Wiz、Cloudflare 等参与研究和公开前的协调。同一天 OpenAI 放出 Codex skill（Codex 里可调用的检查步骤）php2shell-checker，用来核对站点正在运行的 PHP 版本，再对照官方和托管商的说明决定升到哪一版。",
+        "同一轮公开窗口里，还要留意 Node.js 的 Brotli 解码远程执行（CVE-2026-111497），以及 eMudhra 中间证书私钥泄露后的信任库更新。今天先处理 PHP：网站或服务器在跑 PHP 的，把引擎升到上面的修复版，或用 php2shell-checker 核对正在运行的版本。"
+      ],
+      "sources": [
+        {
+          "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/",
+          "handle": "OpenAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.php.net/archive/2026.php#2026-10-21-5",
+          "handle": "PHP",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/openai/php2shell-checker",
+          "handle": "OpenAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/openai/status/2112945805686604033",
+          "handle": "OpenAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/OpenAI/status/2112907856018309586",
+          "handle": "OpenAI",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/openai/php2shell-checker",
+      "access": "修复包在 php.net，各 Linux 发行版也可能已提供回移植包。检查工具在 GitHub 仓库 openai/php2shell-checker，用 Codex 打开后按步骤核对。PHP 8.1 及更早版本向发行版要回移植，或升到仍在维护的分支。",
+      "integration": "Codex skill，用来核对正在运行的 PHP 版本。补丁打在 PHP 引擎上，升级后重启 PHP 进程。",
+      "first_step": "在服务器上执行 php -v，或让 Codex 打开 openai/php2shell-checker 带你核对。版本低于对应修复版时，今天升到 8.5.12、8.4.27、8.3.36 或 8.2.35，然后重启 PHP 进程。",
+      "alternatives": [
+        "向托管商或 Linux 发行版要已包含修复的 PHP 包",
+        "php.net 公告里的临时配置缓解（完整修复仍是升级引擎）"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你的网站或服务器在跑 PHP，今天就把引擎升到 8.5.12、8.4.27、8.3.36 或 8.2.35，升完重启 PHP 进程。也可以先用 OpenAI 的 php2shell-checker 核对正在运行的版本。技术栈里没有 PHP 的，记下这组版本号即可。",
+        "action": "今天升级",
+        "window": "今天升到修复版并重启 PHP 进程。",
+        "confidence": "高",
+        "falsifier": "如果站点和技术栈里没有 PHP，或者 php -v 与检查工具都显示版本已经达到 8.5.12、8.4.27、8.3.36 或 8.2.35 里对应的修复版，就收回「今天要先打这组 PHP 补丁」。"
+      }
+    }
+  ]
+}
