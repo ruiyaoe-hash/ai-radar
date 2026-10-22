@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "一手信源配置。fetch_batch 1 由 scripts/ingest_rss.py 抓取写入私有池；加源只改本文件，脚本不再维护 id 白名单（基线六个必须保留）。batch 1 现有 17 个：T1 实验室 RSS 与 GitHub Releases 六个，2026-10 扩容六个（The Verge AI、量子位、Simon Willison、Latent Space、Import AI、GitHub Blog），以及 newsletter 一等体裁五个（Interconnects、One Useful Thing 从 batch 2 晋升，另加 Next Token Weekly、Ben's Bites、AlphaSignal）。newsletter 与分析博客同属普通 RSS，role 为 analysis，不当实验室一手。fetch_batch 2 本阶段不抓：TechCrunch / HN / Reddit / trending / arXiv / Product Hunt / funding，以及已登记未抓的厂商与作者源（Google、Meta、NVIDIA、Apple ML、Qwen、LangChain、Together、Cursor、OpenHands Releases、Sam Altman）。digest 仍以 X A 级为主。公开仓不存放抓取结果。",
+  "note": "一手信源配置。fetch_batch 1 由 scripts/ingest_rss.py 抓取写入私有池；加源只改本文件，脚本不再维护 id 白名单（基线六个必须保留）。batch 1 现有 16 个：T1 实验室 RSS 与 GitHub Releases 六个，2026-10 扩容五个（The Verge AI、量子位、Simon Willison、Import AI、GitHub Blog），以及 newsletter 一等体裁五个（Interconnects、One Useful Thing 从 batch 2 晋升，另加 Next Token Weekly、Ben's Bites、AlphaSignal）。newsletter 与分析博客同属普通 RSS，role 为 analysis，不当实验室一手。fetch_batch 2 本阶段不抓：TechCrunch / HN / Reddit / trending / arXiv / Product Hunt / funding，以及已登记未抓的厂商与作者源（Google、Meta、NVIDIA、Apple ML、Qwen、LangChain、Together、Cursor、OpenHands Releases、Sam Altman）。Latent Space 只留名单备注，不自动抓取。digest 仍以 X A 级为主。公开仓不存放抓取结果。",
   "shift_assumption": {
     "main": "08:00",
     "evening": "21:00",
@@ -426,8 +426,8 @@
         "模式",
         "赛道"
       ],
-      "notes": "agent / infra 深度，适合模式 lens。",
-      "fetch_batch": 1
+      "notes": "不自动抓取；名单备注保留；AINews 多为二手聚合、长文偏深技术/B端，仅人工偶发参考。No auto-fetch; roster note only. AINews is mostly second-hand aggregation; long posts skew deep-tech/B2B. Occasional manual reference only.",
+      "fetch_batch": 2
     },
     {
       "id": "import-ai",
@@ -496,6 +496,6 @@
   ],
   "fetch_batches": {
     "1": "T1 lab RSS, GitHub Releases, and newsletters (ordinary RSS, including analysis digests). scripts/ingest_rss.py fetches only this batch into the private pool.",
-    "2": "Deferred: TechCrunch, HN, Reddit, trending, arXiv, Product Hunt, funding roundups, and registered vendor/author feeds. Not fetched in this phase."
+    "2": "Deferred: TechCrunch, HN, Reddit, trending, arXiv, Product Hunt, funding roundups, registered vendor/author feeds, and Latent Space (roster note only, no auto-fetch). Not fetched in this phase."
   }
 }

@@ -44,7 +44,7 @@
     {"match": "theverge-ai", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
     {"match": "qbitai", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
     {"match": "simonwillison", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
-    {"match": "latent-space", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
+    {"match": "latent-space", "tier_prior": "T3", "role_guess": "analysis", "gate": "high", "notes": "名单备注，不自动抓取。Roster only; not an open T2 auto-ingest prior."},
     {"match": "import-ai", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
     {"match": "github-blog", "tier_prior": "T1", "role_guess": "primary", "gate": "low"}
   ],
@@ -80,7 +80,7 @@
     {"domain": "theverge.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
     {"domain": "qbitai.com", "tier_prior": "T3", "role_guess": "report", "gate": "high"},
     {"domain": "simonwillison.net", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
-    {"domain": "latent.space", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
+    {"domain": "latent.space", "tier_prior": "T3", "role_guess": "analysis", "gate": "high", "notes": "名单备注，不自动抓取。Roster only; not an open T2 auto-ingest prior."},
     {"domain": "importai.substack.com", "tier_prior": "T2", "role_guess": "analysis", "gate": "open"},
     {"domain": "github.blog", "tier_prior": "T1", "role_guess": "primary", "gate": "low"}
   ]
