@@ -8,8 +8,8 @@ Phase 4 只做第一批。公开仓提供脚本和信源表；候选 JSONL 只�
 
 | 批 | 行为 |
 |----|------|
-| **1** | `scripts/ingest_rss.py` 会拉 `fetch_batch: 1` 的全部源，当前 17 个。基线六个：`openai-blog`、`anthropic-news`、`deepmind-blog`、`huggingface-blog`、`gh-releases-openai`、`gh-releases-anthropic-sdk`；2026-10 扩容六个：`theverge-ai`、`qbitai`、`simonwillison`、`latent-space`、`import-ai`、`github-blog`。newsletter 是一等 RSS 体裁，同批还有 `interconnects`、`one-useful-thing`（自 batch 2 晋升）、`nexttoken-weekly`、`bens-bites`、`alphasignal`。加源只改 `sources.json`，脚本不再维护 id 白名单 |
-| **2** | 本阶段不拉。TechCrunch、HN、Reddit、Hugging Face trending、GitHub trending、arXiv、Product Hunt、融资汇总。`--batch 2` 直接拒绝 |
+| **1** | `scripts/ingest_rss.py` 会拉 `fetch_batch: 1` 的全部源，当前 16 个。基线六个：`openai-blog`、`anthropic-news`、`deepmind-blog`、`huggingface-blog`、`gh-releases-openai`、`gh-releases-anthropic-sdk`；2026-10 扩容五个：`theverge-ai`、`qbitai`、`simonwillison`、`import-ai`、`github-blog`。newsletter 是一等 RSS 体裁，同批还有 `interconnects`、`one-useful-thing`（自 batch 2 晋升）、`nexttoken-weekly`、`bens-bites`、`alphasignal`。加源只改 `sources.json`，脚本不再维护 id 白名单 |
+| **2** | 本阶段不拉。TechCrunch、HN、Reddit、Hugging Face trending、GitHub trending、arXiv、Product Hunt、融资汇总，以及只留名单的 `latent-space`（不自动抓取）。`--batch 2` 直接拒绝 |
 
 Newsletter 与实验室博客、作者博客一样走普通 RSS，不单开抓取通道。分析向周报 `role` 为 `analysis`，不当实验室一手。
 
