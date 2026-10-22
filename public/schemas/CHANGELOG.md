@@ -23,6 +23,19 @@
 
 `today3.txt` 是纯文本。`feed.xml` 和订阅分册是 RSS 2.0。这两类没有 JSON Schema。
 
+## 2026-10-22
+
+卡片和快讯增加可选对象 `card_copy`。`schema_version` 不变：卡片仍是 2，快讯仍是 1。没有改名、改类型或删除已有字段。已经公开的 JSON 不带这个对象，仍然合法。页面不在这次改。
+
+四个字段都是给卡片扫读的，不是算法分数：
+
+- `watch_reason`：为什么值得看。短句，不允许数字。
+- `evidence_label`：`官方原始信息`、`多源确认`、`尚待核实`。
+- `suggested_action`：`立即试用`、`持续观察`、`暂缓`。
+- `high_priority_review`：要优先审。不是归档卡上的 `priority`（P0 / P1），也不是自动发布。
+
+快讯上收窄：证据只能是 `官方原始信息`，动作只能是 `持续观察`，`high_priority_review` 必须是 false。自动档不把强制 P0 投进来。
+
 ## 2026-10-21
 
 `briefs.json` 补上公开 schema，`schema_version` 仍是 1。条目增加可选字段 `origin`（`archive_seed` 或 `auto_brief`）和 `candidate_id`（只在自动档上必填）。没有改名、改类型或删除已有字段。

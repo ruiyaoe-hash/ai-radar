@@ -5,7 +5,9 @@ L1 archive cards stay on scripts/generate_derived.py. This script is the only
 L2 writer. A URL already on an archive card is not repeated as a brief.
 Practice lanes stay on the human review list (Magpie: verified stays manual).
 
-Public fields are title, summary, url, source, lens. Raw post keys are stripped.
+Public fields are title, summary, url, source, lens, and a fixed card_copy
+for the auto band (official source, keep watching, not a review flag).
+Raw post keys are stripped. Forced P0 is not projected.
 The summary is the first sentence, capped at 100 characters, not the full post.
 Instruction-shaped text is dropped instead of published.
 
@@ -41,6 +43,7 @@ if __package__ in {None, ""}:
         normalize_url,
         parse_utc,
     )
+    from card_copy import public_auto_copy, refuses_auto_publish
     from prompt_guard import find_instruction_override, strip_raw_post_fields
     from score_pool import is_official_row, is_practice_row
     from shift_ingest_x_to_pool import assert_shift_pool_dir
@@ -56,6 +59,7 @@ else:
         normalize_url,
         parse_utc,
     )
+    from .card_copy import public_auto_copy, refuses_auto_publish
     from .prompt_guard import find_instruction_override, strip_raw_post_fields
     from .score_pool import is_official_row, is_practice_row
     from .shift_ingest_x_to_pool import assert_shift_pool_dir
@@ -207,6 +211,8 @@ def archive_urls() -> set[str]:
 
 
 def project_brief(row: dict, options) -> dict | None:
+    if refuses_auto_publish(row):
+        return None
     score = row.get("score") or {}
     if score.get("band") != "auto_brief":
         return None
@@ -237,6 +243,7 @@ def project_brief(row: dict, options) -> dict | None:
         "lens": lens_of(" ".join((title, summary, url))),
         "origin": "auto_brief",
         "candidate_id": row["id"],
+        "card_copy": public_auto_copy(),
     }
     if item["lens"] not in LENSES:
         return None
@@ -244,6 +251,9 @@ def project_brief(row: dict, options) -> dict | None:
     for key in ("title", "summary", "source", "url"):
         if find_instruction_override(str(cleaned.get(key) or "")):
             return None
+    reason = str((cleaned.get("card_copy") or {}).get("watch_reason") or "")
+    if find_instruction_override(reason):
+        return None
     return cleaned
 
 
@@ -588,6 +598,17 @@ def self_check() -> None:
     auto = document["items"][1]
     if auto.get("origin") != "auto_brief" or auto.get("candidate_id") != clean["id"]:
         raise SystemExit(f"FAIL: auto brief shape {auto}")
+    auto_copy = auto.get("card_copy") or {}
+    if (
+        auto_copy.get("evidence_label") != "官方原始信息"
+        or auto_copy.get("suggested_action") != "持续观察"
+        or auto_copy.get("high_priority_review") is not False
+        or any(ch.isdigit() for ch in str(auto_copy.get("watch_reason") or ""))
+    ):
+        raise SystemExit(f"FAIL: auto brief copy {auto_copy}")
+    for banned in ("score", "force_p0", "priority", "so_what", "snippet", "value"):
+        if banned in auto:
+            raise SystemExit(f"FAIL: auto brief carried {banned}")
     if not safe_http_url(auto["url"]):
         raise SystemExit("FAIL: brief url failed safe_http_url")
     errors = sorted(validator.iter_errors(document), key=lambda err: list(err.path))
@@ -618,6 +639,29 @@ def self_check() -> None:
     for row in (rumor, lab_x, unflagged):
         if project_brief(row, options) is not None:
             raise SystemExit(f"FAIL: non-official row {row['id']} became an auto brief")
+    forced = json.loads(json.dumps(clean))
+    forced.pop("brief_id", None)
+    forced["id"] = "cand-20261014-ccc000000009"
+    forced["url"] = forced["url_norm"] = "https://openai.com/blog/fixture-p0-not-a-brief"
+    forced["score"]["band"] = "auto_brief"
+    forced["score"]["band_reason"] = "review_p0"
+    forced["score"]["official_source"] = True
+    forced["force_p0"] = {"active": True, "kinds": ["frontier_launch"], "default_action": "promote"}
+    forced["card_copy"] = {
+        "watch_reason": "前沿实验室放出了新产品线或研究预览，值得先盯着。",
+        "evidence_label": "尚待核实",
+        "suggested_action": "立即试用",
+        "high_priority_review": True,
+    }
+    if project_brief(forced, options) is not None:
+        raise SystemExit("FAIL: review_p0 must not become an auto brief")
+    flagged = json.loads(json.dumps(clean))
+    flagged.pop("brief_id", None)
+    flagged["id"] = "cand-20261014-ccc00000000a"
+    flagged["url"] = flagged["url_norm"] = "https://openai.com/blog/fixture-flag-not-a-brief"
+    flagged["card_copy"] = {"high_priority_review": True}
+    if project_brief(flagged, options) is not None:
+        raise SystemExit("FAIL: high_priority_review must not become an auto brief")
 
     releases = []
     for n, (tag, minute) in enumerate((("v1.17.0", "30"), ("v1.16.0", "10")), start=1):
