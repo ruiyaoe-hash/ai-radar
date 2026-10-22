@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20 08:05 北京时间",
+  "updated": "2026-10-22 10:09 北京时间",
   "rings": {
     "采纳": [
       {
@@ -142,6 +142,36 @@
           "Muse Spark Open（更大、内存门槛更高）",
           "Qwen3.6-27B / Gemma4-31B",
           "DeepSeek V4.1 Flash 1017（接口向）"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      },
+      {
+        "id": "evt-20261022-anthropic-claude-duet",
+        "title": "Anthropic 放出 Claude Duet 研究预览（主动找你的助理）",
+        "date": "2026-10-22",
+        "try_url": "https://claude.com/product/claude-duet",
+        "access": "研究预览，需候补。美国区 Claude Pro 与 Max 可以排队。用量计入现有套餐，预览资格不加收。Team 与 Enterprise 的名额要等后续开放。客户端有 iOS、Android，电脑上在 claude.ai。",
+        "integration": "沿用 Claude 账号里的记忆、技能和已连接应用。官方称可接 6000 多个 connector（连接器）和 plugin（插件），底层是 Opus 5.5。",
+        "first_step": "打开产品页加入候补（美国区 Claude Pro 或 Max）。排队时写好同一批收件箱和跟进任务，开放后对照你现在的助手复测。其他地区先保存产品页和这批任务，等区域扩大后用同一套任务测一次。",
+        "alternatives": [
+          "现有的 Claude 对话（打开聊天后才开始干活）",
+          "把同一批收件箱任务留给现在的助手跟进"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      },
+      {
+        "id": "evt-20261022-php2shell-openai-disclosure",
+        "title": "OpenAI 协调披露 PHP 引擎高危远程执行（PHP2Shell），并放出自查 skill",
+        "date": "2026-10-22",
+        "try_url": "https://github.com/openai/php2shell-checker",
+        "access": "修复包在 php.net，各 Linux 发行版也可能已提供回移植包。检查工具在 GitHub 仓库 openai/php2shell-checker，用 Codex 打开后按步骤核对。PHP 8.1 及更早版本向发行版要回移植，或升到仍在维护的分支。",
+        "integration": "Codex skill，用来核对正在运行的 PHP 版本。补丁打在 PHP 引擎上，升级后重启 PHP 进程。",
+        "first_step": "在服务器上执行 php -v，或让 Codex 打开 openai/php2shell-checker 带你核对。版本低于对应修复版时，今天升到 8.5.12、8.4.27、8.3.36 或 8.2.35，然后重启 PHP 进程。",
+        "alternatives": [
+          "向托管商或 Linux 发行版要已包含修复的 PHP 包",
+          "php.net 公告里的临时配置缓解（完整修复仍是升级引擎）"
         ],
         "status": "confirmed",
         "priority": "P0"
