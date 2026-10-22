@@ -621,7 +621,7 @@ def self_check() -> None:
         or any(ch.isdigit() for ch in duet["watch_reason"])
     ):
         raise SystemExit(f"FAIL: duet card copy {duet['suggested_action']} {duet['watch_reason']}")
-    if vuln["suggested_action"] != "立即试用" or vuln["high_priority_review"] != "yes":
+    if vuln["suggested_action"] != "立即行动" or vuln["high_priority_review"] != "yes":
         raise SystemExit(f"FAIL: vuln card copy {vuln['suggested_action']}")
     if (
         ordinary["evidence_label"] != "官方原始信息"

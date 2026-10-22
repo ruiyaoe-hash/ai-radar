@@ -360,7 +360,7 @@
         },
         "suggested_action": {
           "type": "string",
-          "enum": ["立即试用", "持续观察", "暂缓"]
+          "enum": ["立即行动", "持续观察", "暂缓"]
         },
         "high_priority_review": { "type": "boolean" }
       }

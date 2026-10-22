@@ -1421,10 +1421,10 @@ def self_check() -> None:
                 copy.get("suggested_action") != "持续观察" or copy.get("evidence_label") != "尚待核实"
             ):
                 raise SystemExit(f"FAIL {case['name']}: preview must stay a watch, got {copy}")
-            if case["name"] == "php2shell-upgrade" and copy.get("suggested_action") != "立即试用":
+            if case["name"] == "php2shell-upgrade" and copy.get("suggested_action") != "立即行动":
                 raise SystemExit(f"FAIL {case['name']}: upgrade copy {copy}")
             if case["name"] == "two-a-tier-same-day" and (
-                copy.get("suggested_action") != "立即试用" or copy.get("evidence_label") != "多源确认"
+                copy.get("suggested_action") != "立即行动" or copy.get("evidence_label") != "多源确认"
             ):
                 raise SystemExit(f"FAIL {case['name']}: tool-choice copy {copy}")
 

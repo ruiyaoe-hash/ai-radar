@@ -650,7 +650,7 @@ def self_check() -> None:
     forced["card_copy"] = {
         "watch_reason": "前沿实验室放出了新产品线或研究预览，值得先盯着。",
         "evidence_label": "尚待核实",
-        "suggested_action": "立即试用",
+        "suggested_action": "立即行动",
         "high_priority_review": True,
     }
     if project_brief(forced, options) is not None:

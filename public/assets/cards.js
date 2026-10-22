@@ -117,10 +117,10 @@
       return { bucket: "暂缓", line: windowText || "这周先保持现有做法，等后续消息再决定。" };
     }
     if (ring === "采纳") {
-      return { bucket: "立即试用", line: first || windowText || "值得采用。用一次你自己的任务，确认它能不能留下。" };
+      return { bucket: "立即行动", line: first || windowText || "值得采用。用一次你自己的任务，确认它能不能留下。" };
     }
     if (ring === "试用" || action === "试用" || /试用/.test(action)) {
-      return { bucket: "立即试用", line: first || windowText || "这周用一次真实任务试一下。" };
+      return { bucket: "立即行动", line: first || windowText || "这周用一次真实任务试一下。" };
     }
     if (ring === "评估" || /评估/.test(action)) {
       return { bucket: "持续观察", line: windowText || first || "先看成本和边界，再决定要不要试。" };

@@ -27,7 +27,7 @@ else:
     from .ingest_x import IngestError
 
 EVIDENCE_LABELS = ("官方原始信息", "多源确认", "尚待核实")
-SUGGESTED_ACTIONS = ("立即试用", "持续观察", "暂缓")
+SUGGESTED_ACTIONS = ("立即行动", "持续观察", "暂缓")
 
 OFFICIAL_REASON = "官方源发布了新说明。"
 MULTI_REASON = "不止一个独立来源提到这件事，仍等人核对。"
@@ -115,7 +115,7 @@ def build_card_copy(
         if default == "skip":
             action = "暂缓"
         elif "runtime_vuln" in kinds or (names_tool and default == "promote"):
-            action = "立即试用"
+            action = "立即行动"
         else:
             action = "持续观察"
         if "runtime_vuln" in kinds:
@@ -195,7 +195,7 @@ def self_check() -> None:
         band_reason="review_p0",
         edition="eligible",
     )
-    if fixed["suggested_action"] != "立即试用" or "8" in fixed["watch_reason"]:
+    if fixed["suggested_action"] != "立即行动" or "8" in fixed["watch_reason"]:
         raise SystemExit(f"FAIL: vuln copy {fixed}")
     if not refuses_auto_publish({"force_p0": {"active": True}, "score": {"band": "auto_brief"}}):
         raise SystemExit("FAIL: active force_p0 must refuse auto publish")
