@@ -7,7 +7,9 @@
 #   AI_RADAR_POOL_TOKEN  fine-grained PAT, Contents read/write on ai-radar-pool only
 #   X_BEARER_TOKEN       X API bearer. Absent → skip live fetch; hand-feed still works
 # Each secret is only in the env of the step that needs it.
-# GITHUB_TOKEN only pushes public/briefs.json and dispatches the Pages deploy.
+# GITHUB_TOKEN only pushes the rolling briefs branch (chore/auto-briefs)
+# and opens or updates its pull request. It does not push main.
+# Pages: deploy-pages.yml still runs on push to main, after that PR is merged.
 # Never commit the raw fetch or pool JSONL.
 # X posts never reach auto_brief (score_pool review_not_official), so a run here
 # usually changes only the private pool and the review list.
@@ -29,7 +31,7 @@ on:
 
 permissions:
   contents: write
-  actions: write
+  pull-requests: write
 
 concurrency:
   group: pool-writer
@@ -130,7 +132,7 @@ jobs:
           POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}
         run: bash "$GITHUB_WORKSPACE/site/scripts/pool_git_push.sh" candidates review state
 
-      - name: Validate and push public briefs
+      - name: Validate and open briefs pull request
         id: briefs
         if: steps.gate.outputs.skip != 'true'
         env:
@@ -138,13 +140,6 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           POOL_DIR: ../pool
         run: bash scripts/public_briefs_push.sh
-
-      - name: Deploy Pages with the new briefs
-        if: steps.briefs.outputs.pushed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REF: ${{ github.ref_name }}
-        run: gh workflow run deploy-pages.yml --repo "${GITHUB_REPOSITORY}" --ref "${REF}"
 
       - name: Flag a partial fetch
         if: steps.fetch.outputs.partial == 'true'

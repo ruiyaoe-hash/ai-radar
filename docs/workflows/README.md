@@ -11,4 +11,4 @@ Edit `.github/workflows/` first, then copy here.
 
 `ingest-x-pool.yml` 是 X 关注池定时抓取。`X_BEARER_TOKEN` 没配时不请求 X，手灌路径仍可用。手册：`docs/x-pool-ingest.md`。
 
-两个 ingest 工作流共用 `concurrency: pool-writer`，推快讯前跑 `validate.py`，推送成功后显式触发 `deploy-pages.yml`。所有 `uses:` 锁 commit SHA，`validate.py` 会检查本目录与 `.github/workflows/` 逐字一致。
+两个 ingest 工作流共用 `concurrency: pool-writer`，推快讯前跑 `validate.py`。快讯经滚动 PR `chore/auto-briefs` 进入 `main`，Pages 在合并后由 `deploy-pages.yml` 部署。所有 `uses:` 锁 commit SHA，`validate.py` 会检查本目录与 `.github/workflows/` 逐字一致。
