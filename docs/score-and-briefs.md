@@ -2,7 +2,7 @@
 
 门槛和聚簇之后、L1 晋升之前。脚本是 `scripts/score_pool.py`。不调用云端模型。没有 `AI_RADAR_SCORE_LLM_URL` 时 `score.llm` 为 `null`，`method` 为 `rules`。把这个环境变量设上，也只写入 `skipped_reason=adapter_not_configured`，不会把正文 POST 出去。
 
-生产分档仍是 v1（对照臂，control）。v2（多维实验分）默认只影子写入 `score.v2`，不改 `band`，也不因此多发快讯。要换成 v2 当档，把 `config.json` 的 `score.active_scorer` 改成 `v2`，或单次运行加 `--scorer v2`。Rui 没改之前，默认保持 v1。对照怎么跑见 [`score-ab-backtest.md`](./score-ab-backtest.md)。
+生产分档仍是 v1（对照臂，control）。v2（多维实验分）默认只影子写入 `score.v2`，不改 `band`，也不因此多发快讯。要换成 v2 当档，把 `config.json` 的 `score.active_scorer` 改成 `v2`，或单次运行加 `--scorer v2`。Rui 没改之前，默认保持 v1。对照怎么跑见 [`score-ab-backtest.md`](./score-ab-backtest.md)。给人看的主路径是聊天里逐条选 A 或 B，清单在 `testdata/backtest/labeling-chat-pack.md`。
 
 ## 分
 

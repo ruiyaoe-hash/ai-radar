@@ -16,7 +16,7 @@
 | `score_pool_v2.py` | Experimental multi-axis score. Rules fallback is mandatory. Called from `score_pool.py` |
 | `force_p0.py` | Forced P0 matcher (frontier launch, runtime vuln with an upgrade, same-day a_tier pair). Does not publish |
 | `card_copy.py` | Card wording next to the score: why watch, evidence label, suggested action, high-priority review flag. No raw scores. Auto briefs only get the official-source sentence |
-| `backtest_score_ab.py` | Compare v1 and v2 on a JSONL sample and, with labels, compute recall / precision stubs |
+| `backtest_score_ab.py` | Compare v1 and v2. Chat pack is the labeling path (A or B per item). CSV remains for batch export |
 | `derive_briefs.py` | `auto_brief` rows → `public/briefs.json`. Strips raw posts, checks instruction text, skips archive URLs and practice |
 | `ingest_rss.py` | Batch-1 lab RSS / GitHub Releases → the same pending rows (`channel=rss`). Live fetch stays out of public CI |
 | `annotate_gates.py` | L0 gates + L2 `cluster_id`. Writes judgment fields back. Does not promote. Leaves `low_score` and `editor_skip` in place |

@@ -29,20 +29,50 @@ cat ../ai-radar-pool/candidates/2026-10-21.jsonl \
 
 行里本来就有 `snippet`。对照表不抄正文，只留 cid、URL 和账号。导出文件留在本机。
 
-没有私有池时，用仓库里的虚构样本：
+没有私有池时，聊天用的虚构样本已经在仓库里。CI 跑的是 `python3 scripts/backtest_score_ab.py --self-check`，不读私有池。
+
+## Rui 怎么标
+
+主路径是聊天，不是表。Alba 把短例子一条条推给 Rui。Rui 每条只选 A 或 B：A 是现在的 v1 决定，B 是实验的 v2 决定。两边一样时回「相同」。攒够之后，Alba 用回执汇总偏好。
+
+可直接粘贴的清单是 [`testdata/backtest/labeling-chat-pack.md`](../testdata/backtest/labeling-chat-pack.md)。里面 31 条虚构例子，编号从 1 到 31。研究预览那条，以及带升级版本的运行时漏洞，都在里面，而且标成优先审。清单不写分数，也不抄原文。每条是一句「发生了什么」，然后左右各四个字：档、优先、动作、证据。
+
+私有池上要重新出一份时：
 
 ```bash
 python3 scripts/backtest_score_ab.py \
-  --input testdata/backtest/sample.jsonl \
+  --input /tmp/pool-sample.jsonl \
   --as-of 2026-10-22T12:00:00Z \
   --out-dir /tmp/ai-radar-ab
 ```
 
-CI 跑的是 `python3 scripts/backtest_score_ab.py --self-check`，不读私有池。
+`--out-dir` 里会有 `labeling-chat-pack.md`。行上如果带了 `ab_line`，那一句会变成「发生了什么」；这个字段不进打分。没有 `ab_line` 时，那一行会写「这条没有单独的一句说明。」
 
-## Rui 怎么标
+回执是纯文本，一行一条：
 
-先生成空表（列已经对齐）：
+```text
+1 相同
+19 B
+29 A
+31 A
+```
+
+也可以是两列表 `n,choice`。然后：
+
+```bash
+python3 scripts/backtest_score_ab.py \
+  --pack \
+  --picks /tmp/picks.txt \
+  --out-dir /tmp/ai-radar-ab
+```
+
+`--pack` 用仓库里那 31 条。汇总写到 `picks-metrics.md`。只有两边不同、而且回了 A 或 B 的条目才算偏好。回「相同」表示接受两边共同的决定，不记成某一边赢。一条都还没分出胜负时，偏好是空的，不会写成 0。
+
+仓库里的小样本 `testdata/backtest/sample.jsonl` 仍给自检用，六行就够看强制 P0 和误抬进自动档。
+
+## 批量时的多列表
+
+要一次导出很多列时，仍可用 CSV。Rui 的主路径仍是上面的 A 或 B。
 
 ```bash
 python3 scripts/backtest_score_ab.py \
@@ -77,8 +107,10 @@ python3 scripts/backtest_score_ab.py \
 
 `/tmp/ai-radar-ab/` 里会有：
 
-- `comparison.csv` / `comparison.md`：cid、URL、账号、v1 的分和档、v2 的五个维度、P、把握、档、内容类型、P0 标记、卡片文案（证据标签、建议动作、是否优先审、为什么值得看）、两边档是否不一致。文案列是给人看的字，不是另一套分
-- `metrics.md` / `metrics.json`：下面这些数。没贴标签时不写这两个文件
+- `labeling-chat-pack.md`：给聊天粘贴的编号清单。每次 `--out-dir` 都会写。行上的 `ab_line` 变成「发生了什么」；没有这句时，清单里会标明这行没有单独说明
+- `comparison.csv` / `comparison.md`：批量用。cid、URL、账号、v1 的分和档、v2 的五个维度、P、把握、档、内容类型、P0 标记、卡片文案，以及聊天里那行 A/B 对照。文案列是给人看的字
+- `picks-metrics.md` / `picks-metrics.json`：有 `--picks` 才写。这是聊天回执的汇总
+- `metrics.md` / `metrics.json`：贴了多列表标签才写。没贴就不写
 
 `--as-of` 用你导出那天的时钟，衰减才和当时接近。
 
@@ -98,7 +130,9 @@ python3 scripts/backtest_score_ab.py \
 
 分母是 0 时，率是空的，不会写成 0。样本里的普通官方说明被故意标成「不重要」，用来确认「误抬进自动档」这格能算出来。那不是生产上的新政策。
 
-看不一致那一列：v1 丢掉、v2 留下，或反过来。强制 P0 两边都应是人工档。若 v2 的自动档比 v1 更多，先不要把 `active_scorer` 改成 v2。
+聊天汇总里看 `a_prefer_rate` 和 `b_prefer_rate`：在两边真有差别的条目上，Rui 更常选哪一边。强制 P0 在这套权重下两边经常相同，那些条回「相同」就行，表示接受「优先审、不自动发」。
+
+多列表上仍可看不一致那一列：v1 丢掉、v2 留下，或反过来。强制 P0 两边都应是人工档。若 v2 的自动档比 v1 更多，先不要把 `active_scorer` 改成 v2。
 
 ## 仍旧成立的限制
 
