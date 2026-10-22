@@ -8,8 +8,10 @@ Phase 4 只做第一批。公开仓提供脚本和信源表；候选 JSONL 只�
 
 | 批 | 行为 |
 |----|------|
-| **1** | `scripts/ingest_rss.py` 会拉 `fetch_batch: 1` 的全部源。基线六个：`openai-blog`、`anthropic-news`、`deepmind-blog`、`huggingface-blog`、`gh-releases-openai`、`gh-releases-anthropic-sdk`；2026-10 扩容六个：`theverge-ai`、`qbitai`、`simonwillison`、`latent-space`、`import-ai`、`github-blog`。加源只改 `sources.json`，脚本不再维护 id 白名单 |
+| **1** | `scripts/ingest_rss.py` 会拉 `fetch_batch: 1` 的全部源，当前 17 个。基线六个：`openai-blog`、`anthropic-news`、`deepmind-blog`、`huggingface-blog`、`gh-releases-openai`、`gh-releases-anthropic-sdk`；2026-10 扩容六个：`theverge-ai`、`qbitai`、`simonwillison`、`latent-space`、`import-ai`、`github-blog`。newsletter 是一等 RSS 体裁，同批还有 `interconnects`、`one-useful-thing`（自 batch 2 晋升）、`nexttoken-weekly`、`bens-bites`、`alphasignal`。加源只改 `sources.json`，脚本不再维护 id 白名单 |
 | **2** | 本阶段不拉。TechCrunch、HN、Reddit、Hugging Face trending、GitHub trending、arXiv、Product Hunt、融资汇总。`--batch 2` 直接拒绝 |
+
+Newsletter 与实验室博客、作者博客一样走普通 RSS，不单开抓取通道。分析向周报 `role` 为 `analysis`，不当实验室一手。
 
 行和 `ingest_x` 同一套 schema：`channel=rss`，`status_in_pool=pending`，判断字段为空。工作流接着跑 `annotate_gates.py --only-pending`，再跑 `score_pool.py`（规则分，低分落 `low_score`）和 `derive_briefs.py`（只把自动档写成公开快讯）。不写公开 archive，不改 L1 的 derive，不自动晋升，不写 practice inbox。
 
