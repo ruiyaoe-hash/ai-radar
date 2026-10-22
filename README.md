@@ -3,7 +3,7 @@
 把「情报时间线」升级为可行动、可证伪的决策信号。
 
 - 首页：https://ruiyaoe-hash.github.io/ai-radar/
-- 今日必看：https://ruiyaoe-hash.github.io/ai-radar/today.html
+- 今日重点：https://ruiyaoe-hash.github.io/ai-radar/today.html
 - RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 - 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html
 - 卡片规范：[`CARD_SPEC.md`](./CARD_SPEC.md)
@@ -47,14 +47,17 @@
 
 ## 站点结构
 
-顶栏三组导航由 `public/assets/shell.js` 统一写出，`scripts/validate.py` 锁住分组和顺序。
+顶栏由 `public/assets/shell.js` 统一写出，`scripts/validate.py` 锁住顺序。五个任务入口用访客听得懂的名字；「订阅更新」在右侧，不和内容入口并列。品牌词「信号 / 造物 / 共鸣」留在随笔和视觉里。
 
-| 分组 | 页面 |
+| 入口 | 页面 |
 |------|------|
-| 首页 | `index.html`：宣言、三个入口（实时读取今日精选、快讯、图谱、随笔）、更正入口 |
-| 信号 Signals | `today.html` 今日必看、`briefs.html` 快讯、`week.html` 本周归档、`tools-radar.html` 可试用工具 |
-| 造物 Creations | `atlas.html` 实战图谱（含 `#method` 收录标准）、`topics/*.html`、`practice.html` 博主实操、`creators.html` 博主库 |
-| 共鸣 Resonance | `blog/` 随笔、`subscribe.html` 订阅、飞书订阅群、`agent.html` 给 Agent 用、`about.html`、反馈问卷 |
+| 首页 | `index.html`：每日决策简报。顺序是今日精选、工具与产品、最近的重要变化、把发现变成能力 |
+| 今日重点 | `today.html`：当天最该拍板的几条，含今日精选。完整时间流不在这一页 |
+| 最新动态 | `briefs.html`：按时间合并按日归档和事实短讯。`week.html` 跳到这里 |
+| 工具决策 | `tools-radar.html`：值得采用 / 可以试用 / 需要评估 / 暂缓跟进 |
+| 实战手册 | `atlas.html` 主题手册 + 做法预览；`practice.html` 做法全文；`topics/*.html`；`creators.html` 博主库在「更多」 |
+| 专题观察 | `observe.html`：长期看法和随笔。`blog/` 仍是随笔正文 |
+| 订阅更新 | `subscribe.html`，顶栏右侧动作。`agent.html`、`feed.xml`、`llms.txt` 地址不变 |
 
 左上角的小圆点是信号灯：`briefs.json` 或 `items.json` 的 `updated` 在 6 小时内就呼吸，否则熄成灰点。
 

@@ -5,8 +5,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0F1110" />
-  <meta name="description" content="AI Radar 每天替你看完 AI 圈，只留会改变你下一步的信号，附实战图谱与编者随笔。" />
-  <title>AI Radar · 会改变你下一步的 AI 信号</title>
+  <meta name="description" content="AI Radar 每日决策简报：今天什么值得关注，什么值得试，以及怎么把信息收成能复用的方法。" />
+  <title>今天，什么值得关注？ · AI Radar</title>
   <link rel="icon" href="./assets/logo.png" />
   <link rel="stylesheet" href="./assets/radar.css" />
   <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="./feed.xml" />
@@ -17,91 +17,67 @@
     <script src="./assets/shell.js"></script>
     <div class="content">
       <main id="main" class="home-main">
-        <section class="home-hero" aria-labelledby="home-title">
+        <section class="home-hero briefing" aria-labelledby="home-title">
           <div class="reading-lamp" aria-hidden="true"></div>
           <div class="inner">
-            <h1 id="home-title">AI Radar<span class="en">Decision signals, daily</span></h1>
-            <p class="slogan-a">每天替你看完 AI 圈，只留会改变你下一步的那几条。<span class="en">We read the noise so you can act on the signal.</span></p>
-            <p class="slogan-b" aria-label="给迷途者的代码，给觉醒者的诗。"><span class="typing" id="typing" aria-hidden="true">给迷途者的代码，给觉醒者的诗。</span><span class="en" aria-hidden="true">Code for the lost, poetry for the awake.</span></p>
+            <p class="eyebrow">AI RADAR · DAILY BRIEFING</p>
+            <h1 id="home-title">今天，什么值得关注？<span class="en">AI 信号雷达</span></h1>
+            <p class="slogan-a">AI Radar 帮你看三件事：什么值得盯，什么值得试，以及怎么把一条信息收成下次还能用的方法。<span class="en">Discover the change, judge it, act, then keep the method.</span></p>
             <div class="cta-row">
-              <a class="btn btn-primary" href="./today.html">打开今日必看</a>
-              <a class="btn btn-minimal" href="./atlas.html">翻翻实战图谱</a>
+              <a class="btn btn-primary" href="./today.html">看今日重点</a>
+              <a class="btn btn-minimal" href="./briefs.html">看最新动态</a>
             </div>
-            <p class="live-note" id="live-note"><span class="ember-dot" id="home-live" aria-hidden="true"></span><span id="live-text">北京时间每天 08:00 主报，工作日 21:00 晚班</span></p>
+            <p class="live-note" id="live-note"><span class="ember-dot" id="home-live" aria-hidden="true"></span><span id="live-text">每条判断都链回原文。北京时间每天 08:00 主报，工作日 21:00 晚班。</span></p>
           </div>
         </section>
 
-        <section class="home-section manifesto" aria-label="我们怎么做">
+        <section class="home-section" aria-labelledby="picks-title">
           <div class="wrap">
-            <p>不追热点，只问一件事：它会不会改变你这周的下一步。<span class="en">Not what's trending. What changes your next move.</span></p>
-            <p>每条都能回到原帖，判断写明在什么情况下作废。<span class="en">Every call links its source and says when it stops being true.</span></p>
-            <p>机器先筛，人来拍板；传闻永远标成传闻。<span class="en">Scripts sift, editors decide, rumors stay labeled.</span></p>
+            <h2 id="picks-title">今日精选</h2>
+            <p class="section-lead">今天优先级最高的几条放在这里。时间紧，看完这一组再决定要不要往下翻。</p>
+            <div id="home-today"><p class="empty">正在读取今日精选…</p></div>
+            <p class="panel-links"><a class="btn btn-minimal" href="./today.html">打开今日重点</a></p>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="tools-title">
+          <div class="wrap">
+            <h2 id="tools-title">工具与产品</h2>
+            <p class="section-lead">按你现在该怎么对待来分：值得采用、可以试用、需要评估、暂缓跟进。</p>
+            <div class="home-buckets" id="home-tools"><p class="empty">正在读取工具…</p></div>
+            <p class="panel-links"><a class="btn btn-minimal" href="./tools-radar.html">打开工具决策</a></p>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="changes-title">
+          <div class="wrap">
+            <h2 id="changes-title">最近的重要变化</h2>
+            <p class="section-lead">按时间排开的最近几条。今天要拍板的在上面，这里是更完整的变化。</p>
+            <div id="home-changes"><p class="empty">正在读取最近的变化…</p></div>
+            <p class="panel-links"><a class="btn btn-minimal" href="./briefs.html">打开最新动态</a></p>
+          </div>
+        </section>
+
+        <section class="home-section" aria-labelledby="methods-title">
+          <div class="wrap">
+            <h2 id="methods-title">把发现变成能力</h2>
+            <p class="section-lead">能照着做的步骤和主题手册放在一起。下次遇到同类问题，可以直接翻出来用。</p>
+            <div id="home-methods"><p class="empty">正在读取实战手册…</p></div>
+            <p class="panel-links"><a class="btn btn-minimal" href="./atlas.html">打开实战手册</a></p>
           </div>
         </section>
 
         <section class="home-section" aria-labelledby="doors-title">
           <div class="wrap">
-            <p class="eyebrow">三个入口 · Three doors</p>
-            <h2 id="doors-title">从哪里开始</h2>
-
-            <div class="accordion">
-              <div class="accordion-item">
-                <button class="accordion-header" type="button" id="door-signals-h" aria-expanded="true" aria-controls="door-signals">
-                  <span class="title">信号<span class="en">Signals</span></span>
-                  <span class="hint">今天发生了什么，值不值得动手</span>
-                  <span class="plus" aria-hidden="true"></span>
-                </button>
-                <div class="accordion-panel" id="door-signals" role="region" aria-labelledby="door-signals-h">
-                  <div class="mini-stats" id="signal-stats"></div>
-                  <h3 class="featured-title">今日精选</h3>
-                  <ul class="featured-list" id="home-today"><li class="empty">正在读取今日精选…</li></ul>
-                  <h3 class="featured-title">最新快讯</h3>
-                  <ul class="featured-list" id="home-briefs"><li class="empty">正在读取快讯…</li></ul>
-                  <div class="panel-links">
-                    <a class="chip" href="./today.html">今日必看</a>
-                    <a class="chip" href="./briefs.html">快讯</a>
-                    <a class="chip" href="./week.html">本周归档</a>
-                    <a class="chip" href="./tools-radar.html">可试用工具</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <button class="accordion-header" type="button" id="door-creations-h" aria-expanded="false" aria-controls="door-creations">
-                  <span class="title">造物<span class="en">Creations</span></span>
-                  <span class="hint">别人用 AI 做成了什么，以及怎么做到的</span>
-                  <span class="plus" aria-hidden="true"></span>
-                </button>
-                <div class="accordion-panel" id="door-creations" role="region" aria-labelledby="door-creations-h" hidden>
-                  <div class="mini-stats" id="atlas-mini"></div>
-                  <h3 class="featured-title">收藏最多的主题手册</h3>
-                  <ul class="featured-list" id="home-topics"><li class="empty">正在读取实战图谱…</li></ul>
-                  <div class="panel-links">
-                    <a class="chip" href="./atlas.html">实战图谱</a>
-                    <a class="chip" href="./practice.html">博主实操</a>
-                    <a class="chip" href="./creators.html">博主库</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <button class="accordion-header" type="button" id="door-resonance-h" aria-expanded="false" aria-controls="door-resonance">
-                  <span class="title">共鸣<span class="en">Resonance</span></span>
-                  <span class="hint">随笔、订阅，以及给程序用的数据</span>
-                  <span class="plus" aria-hidden="true"></span>
-                </button>
-                <div class="accordion-panel" id="door-resonance" role="region" aria-labelledby="door-resonance-h" hidden>
-                  <h3 class="featured-title">最近的随笔</h3>
-                  <ul class="featured-list" id="home-posts"><li class="empty">正在读取随笔…</li></ul>
-                  <div class="panel-links">
-                    <a class="chip" href="./blog/">全部随笔</a>
-                    <a class="chip" href="./subscribe.html">订阅更新</a>
-                    <a class="chip" href="./agent.html">给 Agent 用</a>
-                    <a class="chip" href="./about.html">这是什么</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h2 id="doors-title">接着去哪里</h2>
+            <p class="section-lead">五个入口按你要做的事来分。订阅更新在页面右上角。</p>
+            <nav class="door-row" aria-label="五个入口">
+              <a href="./today.html"><strong>今日重点</strong><span>今天这几条最该拍板</span></a>
+              <a href="./briefs.html"><strong>最新动态</strong><span>按时间看最近的变化</span></a>
+              <a href="./tools-radar.html"><strong>工具决策</strong><span>值得采用、可以试用、需要评估、暂缓跟进</span></a>
+              <a href="./atlas.html"><strong>实战手册</strong><span>把发现收成能照着做的方法</span></a>
+              <a href="./observe.html"><strong>专题观察</strong><span>跟得更久的判断和随笔</span></a>
+            </nav>
 
             <div class="patch">
               <h3>发现哪条说错了？</h3>

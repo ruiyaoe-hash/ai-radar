@@ -51,11 +51,8 @@
     return (kb.sources || []).filter((source) => source.topic === topicSlug);
   }
 
-  function demandTag(topic) {
-    if (topic.status === "待采集" || typeof topic.save_ratio !== "number") return "";
-    const when = topic.demand_refreshed_at ? "最近滚动 " + topic.demand_refreshed_at + "。" : "";
-    const title = "平滑收藏比，样本少时向先验收缩。" + when + "不是原始收藏÷点赞，也不升降关注名单。";
-    return `<span class="tag demand" title="${esc(title)}">需求信号 ${esc(Number(topic.save_ratio).toFixed(2))}</span>`;
+  function demandTag() {
+    return "";
   }
 
   function topicCard(topic) {
@@ -174,29 +171,13 @@
     input.addEventListener("input", () => renderTracks(kb, input.value));
   }
 
-  function loadToday() {
-    const host = document.getElementById("today-compact");
-    if (!host) return;
-    fetch(asset("today3.txt?") + Date.now()).then((res) => {
-      if (!res.ok) throw new Error("today");
-      return res.text();
-    }).then((text) => {
-      const lines = text.split("\n").map((line) => line.trim()).filter((line) => /^\d+\.\s/.test(line)).slice(0, 3);
-      host.innerHTML = lines.length
-        ? lines.map((line) => `<li>${esc(line.replace(/^\d+\.\s*/, ""))}</li>`).join("")
-        : "<li>今日精选还在准备，稍后再来。</li>";
-    }).catch(() => {
-      host.innerHTML = "<li>今日精选还在准备，稍后再来。</li>";
-    });
-  }
-
   function renderHome(kb) {
     renderStats(kb);
     renderTracks(kb, "");
     const note = document.getElementById("snapshot-note");
     if (note) {
       const when = kb.demand_refreshed_at || kb.updated || "";
-      note.textContent = "需求信号滚动于 " + when + "。这是平滑后的收藏比，样本少时向先验收缩；没有更新的互动数时沿用图谱源里的计数。关注名单不按这个数自动升降。";
+      note.textContent = "收藏计数更新于 " + when + "。样本少的时候，页面上的数会保守一些。关注名单不按这个数自动升降。";
     }
     const latestHost = document.getElementById("latest-list");
     if (latestHost) {
@@ -205,7 +186,29 @@
       latestHost.innerHTML = latest.map((source) => sourceCard(source, topics[source.topic], true)).join("");
     }
     bindSearch(kb);
-    loadToday();
+    loadPracticePreview();
+  }
+
+  function loadPracticePreview() {
+    const host = document.getElementById("practice-preview");
+    if (!host) return;
+    fetch(asset("practice.json?") + Date.now()).then((res) => {
+      if (!res.ok) throw new Error("practice");
+      return res.json();
+    }).then((data) => {
+      const items = (data.items || []).slice(0, 3);
+      host.innerHTML = items.length
+        ? items.map((item) => {
+          const href = hrefOf(asset("practice.html#" + encodeURIComponent(item.id || "")));
+          const title = href
+            ? `<a href="${esc(href)}">${esc(item.title || "")}</a>`
+            : esc(item.title || "");
+          return `<article class="card"><div class="meta"><span class="tag prac">${esc(item.kind || "做法")}</span></div><h3>${title}</h3>${item.takeaway ? `<p class="mean">${esc(item.takeaway)}</p>` : ""}</article>`;
+        }).join("")
+        : '<p class="empty">还没有可照着做的做法。主题手册先列在下面。</p>';
+    }).catch(() => {
+      host.innerHTML = '<p class="empty">做法暂时读不到，可以直接打开<a href="' + local("practice.html") + '">做法条目</a>。</p>';
+    });
   }
 
   function topicHeader(topic, track) {
@@ -215,11 +218,7 @@
       stats.push(`<span><b>${esc(topic.source_count)}</b> 条实操</span>`);
       stats.push(`<span><b>${esc(topic.creator_count || 0)}</b> 位博主贡献</span>`);
       if (topic.has_bookmarks) stats.push(`<span>累计收藏 <b>${esc(formatNumber(topic.bookmarks || 0))}</b></span>`);
-      if (typeof topic.save_ratio === "number") {
-        const samples = topic.demand_samples ? " · " + topic.demand_samples + " 条样本" : "";
-        stats.push(`<span>需求信号 <b>${esc(Number(topic.save_ratio).toFixed(2))}</b>${esc(samples)}</span>`);
-      }
-      if (topic.demand_refreshed_at) stats.push(`<span>滚动于 ${esc(topic.demand_refreshed_at)}</span>`);
+      if (topic.demand_refreshed_at) stats.push(`<span>收藏计数更新于 ${esc(topic.demand_refreshed_at)}</span>`);
       if (topic.latest) stats.push(`<span>最近更新 ${esc(topic.latest)}</span>`);
     }
     return `<p class="back"><a href="${local("atlas.html")}">全部主题</a></p>

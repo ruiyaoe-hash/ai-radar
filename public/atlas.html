@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0F1110" />
-  <title>实战图谱 · AI Radar</title>
+  <title>实战手册 · AI Radar</title>
   <link rel="icon" href="./assets/logo.png" />
   <link rel="stylesheet" href="./assets/radar.css" />
   <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="./feed.xml" />
@@ -16,10 +16,18 @@
     <script src="./assets/shell.js"></script>
     <div class="content">
       <main id="main" class="wide">
-        <p class="eyebrow">AI 博主实操经验 · 分门别类 · 持续更新</p>
-        <h1>别人用 AI 做成了什么，以及怎么做到的</h1>
-        <p class="sub">AI Radar 把多位博主的动手方法收成可以继续填写的主题手册，每一步都能回到原帖。今日精选仍每天更新，用来看这周哪条工具信号值得动手；手册负责把做法留下来。还没有素材的主题会标成待采集。</p>
-        <div class="stat-row" id="atlas-stats" aria-label="图谱规模"></div>
+        <p class="eyebrow">实战手册 · Playbooks</p>
+        <h1>把发现变成能复用的方法</h1>
+        <p class="sub">主题手册按方向收着，每一步都能回到原帖。能照着做的步骤在这一页开头，全文在<a href="./practice.html">做法条目</a>，作者索引在<a href="./creators.html">博主库</a>。今天该拍板的几条在<a href="./today.html">今日重点</a>。还没有素材的主题会标成待采集。</p>
+        <div class="stat-row" id="atlas-stats" aria-label="手册规模"></div>
+
+        <section id="practice-preview-wrap">
+          <div class="track-head">
+            <h2>能照着做的做法</h2>
+            <a href="./practice.html">全部做法</a>
+          </div>
+          <div class="latest-grid" id="practice-preview"><p class="empty">正在读取做法…</p></div>
+        </section>
 
         <label class="search-row" for="atlas-search">搜索主题、工具或博主</label>
         <input id="atlas-search" type="search" placeholder="例如 ESP32、Skill、Magpie" autocomplete="off" />
@@ -27,6 +35,7 @@
         <div id="atlas-results" hidden></div>
 
         <div id="tracks">
+          <div class="track-head"><h2>实战图谱</h2><span>按方向找主题手册</span></div>
           <section class="track-block">
             <div class="track-head"><h2>造物</h2><span>用 AI 做出能摸得着的硬件</span></div>
             <div class="topic-grid" data-track="make"></div>
@@ -48,15 +57,6 @@
             <div class="topic-grid" data-track="business"></div>
           </section>
         </div>
-
-        <section class="hero hero-compact" aria-labelledby="today-label">
-          <div class="hero-head">
-            <div class="label" id="today-label"><span class="pill"><span class="dot"></span>精选</span> 今日精选</div>
-            <a class="btn" href="./today.html">打开今日必看</a>
-          </div>
-          <p class="sub">这一栏只保留这周会改变你工具选择的信号。完整列表、筛选和复制在今日必看。</p>
-          <ol id="today-compact"><li>正在读取…</li></ol>
-        </section>
 
         <section>
           <div class="track-head">
@@ -84,7 +84,7 @@
             </article>
             <article class="card">
               <h3>看需求：收藏率说话</h3>
-              <p class="mean">收藏比按 (收藏+3)/(点赞+5) 平滑，样本少时向先验收缩。页面上的数是最近一次滚动，不是某一天冻住的裸除法。关注名单不按这个比值自动升降。</p>
+              <p class="mean">收藏比看的是读者有没有把这篇留下来。样本少的时候，页面上的数会保守一些，并且取最近一次滚动。关注名单不按这个数自动升降。</p>
             </article>
           </div>
         </section>

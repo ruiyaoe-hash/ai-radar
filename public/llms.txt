@@ -20,9 +20,9 @@
 - [行业动态分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml): RSS，只收行业动态
 - [方法模式分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-models.xml): RSS，只收方法模式
 - [时机窗口分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-timing.xml): RSS，只收时机窗口
-- [可试用工具](https://ruiyaoe-hash.github.io/ai-radar/tools-radar.json): 四档：值得用上、可以试、先评估、先别跟
+- [工具决策](https://ruiyaoe-hash.github.io/ai-radar/tools-radar.json): 四档：值得采用、可以试用、需要评估、暂缓跟进
 - [博主实操](https://ruiyaoe-hash.github.io/ai-radar/practice.json): 编辑每周挑好再放上来，schema_version 1
-- [实战图谱](https://ruiyaoe-hash.github.io/ai-radar/data/kb.json): 主题手册、原帖和博主，schema_version 1。需求信号的最近滚动时间在 demand_refreshed_at
+- [实战手册](https://ruiyaoe-hash.github.io/ai-radar/data/kb.json): 主题手册、原帖和博主，schema_version 1。需求信号的最近滚动时间在 demand_refreshed_at
 - [需求信号滚动](https://ruiyaoe-hash.github.io/ai-radar/data/demand.json): 最近一次平滑收藏比所用的计数和时间戳。名单不因这个比值自动升降
 - [主题建议](https://ruiyaoe-hash.github.io/ai-radar/data/topic-suggestions.json): 每条公开实操建议归入的主题。未验证不会写入手册
 - [图谱方向](https://ruiyaoe-hash.github.io/ai-radar/data/tracks.json): kb.json 里的五个方向
