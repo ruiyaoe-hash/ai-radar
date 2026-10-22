@@ -1,6 +1,6 @@
 {
   "date": "2026-10-22",
-  "count": 2,
+  "count": 4,
   "schema_version": 2,
   "items": [
     {
@@ -17,7 +17,7 @@
       "url": "https://claude.com/product/claude-duet",
       "published_at": "2026-10-21T19:09:35Z",
       "ingested_at": "2026-10-22T02:08:48Z",
-      "candidate_id": "cand-20261022-e9f1eb0054c0",
+      "candidate_id": "cand-20261022-6fc43125f1db",
       "promotion_path": "normal",
       "objective": [
         "Anthropic 在北京时间 2026 年 10 月 22 日凌晨开放 Claude Duet 的研究预览（research preview，给一部分用户提前试用）。这是一款会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已经交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并能接入 6000 多个 connector（连接器）和 plugin（插件）。",
@@ -130,6 +130,130 @@
         "window": "今天升到修复版并重启 PHP 进程。",
         "confidence": "高",
         "falsifier": "如果站点和技术栈里没有 PHP，或者 php -v 与检查工具都显示版本已经达到 8.5.12、8.4.27、8.3.36 或 8.2.35 里对应的修复版，就收回「今天要先打这组 PHP 补丁」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261022-nodejs-october-security-releases",
+      "status": "confirmed",
+      "tag": "安全",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "Node.js 安全更新：Brotli 解码高危可远程执行，请升到 22.23.4 / 24.22.1 / 26.12.1",
+      "date": "2026-10-22",
+      "time": "10-22 08:38",
+      "handle": "nodejs",
+      "url": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases",
+      "published_at": "2026-10-21T22:39:27Z",
+      "ingested_at": "2026-10-22T13:05:00Z",
+      "candidate_id": "cand-20261022-4b3810da17b0",
+      "promotion_path": "normal",
+      "objective": [
+        "Node.js 项目在 2026 年 10 月 21 日发布安全更新，覆盖仍在维护的 22.x、24.x、26.x。修复版是 v22.23.4、v24.22.1、v26.12.1。其中最高危之一是 Brotli 解码器越界写入（CVE-2026-111497，高危）：处理攻击者可控的 Brotli 数据时，可能导致内存泄露或远程代码执行（RCE，远程在机器上跑代码）。",
+        "同批还修了多处高危：dns.resolve 遇 NUL 截断域名（CVE-2026-105482），以及若干 TLS 证书主机名核对可被绕过的问题（含全角数字 IP、非规范 IP 写法）。另外更新了内置的 c-ares、OpenSSL、SQLite、undici，并把 eMudhra 那 8 枚出问题的中间证书加入黑名单。",
+        "20.x 与 25.x 已停止维护，这次没有补丁。还在用它们的，只能迁到 22、24 或 26 后再打补丁。自建容器镜像、CI 跑手、本机工具链和托管运行时之外的 Node 进程，都要对照版本号升级并重启进程。"
+      ],
+      "sources": [
+        {
+          "url": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases",
+          "handle": "nodejs",
+          "role": "primary"
+        },
+        {
+          "url": "https://nodejs.org/en/blog/release/v22.23.4",
+          "handle": "nodejs",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/nodejs/status/2113037478286221570",
+          "handle": "nodejs",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2113067412979433847",
+          "handle": "dotey",
+          "role": "analysis"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases",
+      "access": "补丁在 nodejs.org 安全公告与对应版本发布说明。包管理器、容器基础镜像和托管平台可能已提供回移植；自建镜像要自己换版本并重建。",
+      "integration": "升级的是 Node.js 运行时本身。升完后重启所有仍跑旧二进制的进程；钉死版本的 Docker 镜像和打包成可执行文件的应用要重建。",
+      "first_step": "在机器上执行 node -v。若低于 v22.23.4、v24.22.1 或 v26.12.1 里你所在分支的修复版，今天升到对应修复版并重启进程；停维的 20.x/25.x 先迁到 22/24/26 再打补丁。",
+      "alternatives": [
+        "向托管平台确认其托管 Node 运行时是否已滚到修复版",
+        "重建并滚动替换钉死旧 Node 版本的容器镜像"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你本机、服务器、CI 或容器里还在跑 Node.js，今天核对 node -v，把 22/24/26 升到 v22.23.4、v24.22.1 或 v26.12.1，并重启进程；停维的 20/25 先迁分支。不跑 Node 的，记下这组版本号即可。",
+        "action": "今天升级",
+        "window": "今天升到修复版并重启 Node 进程。",
+        "confidence": "高",
+        "falsifier": "如果环境里没有 Node.js，或者 node -v 已显示达到 v22.23.4、v24.22.1 或 v26.12.1 里对应分支的修复版，就收回「今天要先打这组 Node 安全更新」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261022-gitlab-cve-2026-110264",
+      "status": "confirmed",
+      "tag": "安全",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "GitLab 满分未授权远程执行（CVE-2026-110264）：自建实例升到 19.5.1 等修复版",
+      "date": "2026-10-22",
+      "time": "10-22 04:57",
+      "handle": "gitlab",
+      "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/",
+      "published_at": "2026-10-21T18:57:00Z",
+      "ingested_at": "2026-10-22T13:05:00Z",
+      "candidate_id": "cand-20261022-7e1f42c2ee57",
+      "promotion_path": "normal",
+      "objective": [
+        "GitLab 在 2026 年 10 月 21 日发布关键补丁，修复 CVE-2026-110264：正则表达式编译器整数溢出，在某些条件下可让未登录攻击者在服务器上执行任意代码，CVSS 满分 10.0。受影响范围从 7.0 起的自建 Community/Enterprise，一直到各 19.x 未打补丁的版本；10 月 12 日刚打过补丁的版本也仍中招。",
+        "修复版：19.5.1、19.4.3、19.3.6、19.2.9、19.1.9、19.0.10，以及回移植的 18.11.13。GitLab.com 与已打补丁的 GitLab Dedicated 租户不用再动手；要升级的是自建实例。官方未提供可靠的临时缓解，升级是确定有效的做法。",
+        "这是约六周内第三个满分级漏洞。更老版本不能一步跳到最新，需按官方 upgrade path 工具经过中间站。19.4.3 与 19.3.6 升级会改数据库，单机可能短时停机。"
+      ],
+      "sources": [
+        {
+          "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/",
+          "handle": "gitlab",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-110264",
+          "handle": "cve",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2113011845267116172",
+          "handle": "dotey",
+          "role": "analysis"
+        },
+        {
+          "url": "https://thehackernews.com/2026/10/critical-gitlab-flaw-cvss-100-could.html",
+          "handle": "thehackernews",
+          "role": "report"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/",
+      "access": "补丁说明在 GitLab Docs。自建 CE/EE 按当前小版本升到对应修复版；很老的版本用官方 upgrade path 工具算出中间站。GitLab.com 与已修复的 Dedicated 无需操作。",
+      "integration": "升级的是自建 GitLab 实例。升完按官方说明重启相关服务；需要改库的版本预留维护窗口。",
+      "first_step": "确认你是否自建 GitLab。若是，对照公告升到 19.5.1 / 19.4.3 / 19.3.6 / 19.2.9 / 19.1.9 / 19.0.10 或 18.11.13 中与你分支对应的修复版；版本很老时先用 upgrade path 工具排路径。",
+      "alternatives": [
+        "仅使用 GitLab.com 或已确认打过补丁的 Dedicated（官方称已修复）",
+        "按官方检测规则翻日志，排查是否已有试探攻击"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你公司或个人自建了 GitLab，今天按公告把实例升到对应修复版；代码、密钥和流水线都在这台机器上，未授权远程执行不能拖。只用 GitLab.com 或已打补丁 Dedicated 的，记下 CVE 编号即可。",
+        "action": "今天升级",
+        "window": "今天把自建实例升到修复版。",
+        "confidence": "高",
+        "falsifier": "如果没有任何自建 GitLab（只用 GitLab.com 或已确认修复的 Dedicated），或实例版本已达到公告中对应修复版，就收回「今天要先打这组 GitLab 补丁」。"
       }
     }
   ]

@@ -1,13 +1,18 @@
 AI Radar · 今日精选（2026-10-22）
 
-1. Anthropic 放出 Claude Duet 研究预览（主动找你的助理）
+1. Node.js 安全更新：Brotli 解码高危可远程执行，请升到 22.23.4 / 24.22.1 / 26.12.1
+   对你意味着什么：如果你本机、服务器、CI 或容器里还在跑 Node.js，今天核对 node -v，把 22/24/26 升到 v22.23.4、v24.22.1 或 v26.12.1，并重启进程；停维的 20/25 先迁分支。不跑 Node 的，记下这组版本号即可。
+   建议：今天升级 · 今天升到修复版并重启 Node 进程。
+   https://nodejs.org/en/blog/vulnerability/october-2026-security-releases
+
+2. Anthropic 放出 Claude Duet 研究预览（主动找你的助理）
    对你意味着什么：Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。其他地区先把这批任务写下来，等开放区域扩大后再测。
    建议：试用 · 美国区 Pro/Max 这周排队，开放后用同一批任务复测。
    https://claude.com/product/claude-duet
 
-2. OpenAI 协调披露 PHP 引擎高危远程执行（PHP2Shell），并放出自查 skill
-   对你意味着什么：如果你的网站或服务器在跑 PHP，今天就把引擎升到 8.5.12、8.4.27、8.3.36 或 8.2.35，升完重启 PHP 进程。也可以先用 OpenAI 的 php2shell-checker 核对正在运行的版本。技术栈里没有 PHP 的，记下这组版本号即可。
-   建议：今天升级 · 今天升到修复版并重启 PHP 进程。
-   https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/
+3. GitLab 满分未授权远程执行（CVE-2026-110264）：自建实例升到 19.5.1 等修复版
+   对你意味着什么：如果你公司或个人自建了 GitLab，今天按公告把实例升到对应修复版；代码、密钥和流水线都在这台机器上，未授权远程执行不能拖。只用 GitLab.com 或已打补丁 Dedicated 的，记下 CVE 编号即可。
+   建议：今天升级 · 今天把自建实例升到修复版。
+   https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html
