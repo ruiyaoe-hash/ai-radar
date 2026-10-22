@@ -1,0 +1,19 @@
+{
+  "schema": "ai-radar.pool-p0-hook",
+  "version": 1,
+  "date": "2026-10-22",
+  "source": "code",
+  "note": "fixture",
+  "items": [
+    {
+      "id": "cand-20261022-a11ce0000001",
+      "url": "https://example.com/fixture-duet",
+      "handle": "someone",
+      "kinds": ["frontier_launch"],
+      "triggers": ["research_preview"],
+      "default_action": "promote",
+      "tool_choice": true,
+      "bypassed": ["edition_date", "low_score"]
+    }
+  ]
+}

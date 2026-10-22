@@ -6,8 +6,10 @@
 # Secret AI_RADAR_POOL_TOKEN: fine-grained PAT, Contents read/write on
 # ruiyaoe-hash/ai-radar-pool only. Do not grant it write access to public ai-radar.
 # It is only handed to the push step; the checkout does not persist it.
-# GITHUB_TOKEN below only pushes public/briefs.json and dispatches the Pages deploy
-# (a GITHUB_TOKEN push does not trigger on: push). Missing pool secret: warn and exit 0.
+# GITHUB_TOKEN below only pushes the rolling briefs branch (chore/auto-briefs)
+# and opens or updates its pull request. It does not push main.
+# Pages: deploy-pages.yml still runs on push to main, after that PR is merged.
+# Missing pool secret: warn and exit 0.
 # Never push pool JSONL to the public repo.
 # Shares concurrency group pool-writer with ingest-x-pool.yml so the two never
 # rebase onto each other's half-written candidates/.
@@ -20,7 +22,7 @@ on:
 
 permissions:
   contents: write
-  actions: write
+  pull-requests: write
 
 concurrency:
   group: pool-writer
@@ -94,7 +96,7 @@ jobs:
           POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}
         run: bash "$GITHUB_WORKSPACE/site/scripts/pool_git_push.sh" candidates review
 
-      - name: Validate and push public briefs
+      - name: Validate and open briefs pull request
         id: briefs
         if: steps.token.outputs.skip != 'true'
         env:
@@ -102,10 +104,3 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           POOL_DIR: ../pool
         run: bash scripts/public_briefs_push.sh
-
-      - name: Deploy Pages with the new briefs
-        if: steps.briefs.outputs.pushed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REF: ${{ github.ref_name }}
-        run: gh workflow run deploy-pages.yml --repo "${GITHUB_REPOSITORY}" --ref "${REF}"

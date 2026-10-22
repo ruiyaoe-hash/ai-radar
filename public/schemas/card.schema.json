@@ -149,6 +149,33 @@
       "enum": ["normal", "emergency"],
       "description": "normal = promoted from a pool record. emergency = written onto the archive without a pool row. Omit on legacy cards."
     },
+    "card_copy": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional display copy. Not the archive priority (P0/P1) and not a raw score. high_priority_review is a review flag a person may copy onto a card after promotion. The pipeline does not auto-publish a row that has this flag set.",
+      "required": ["watch_reason", "evidence_label", "suggested_action", "high_priority_review"],
+      "properties": {
+        "watch_reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[^0-9]*$",
+          "description": "Why it is worth watching. No digits, so a score or a version cannot be pasted in."
+        },
+        "evidence_label": {
+          "type": "string",
+          "enum": ["官方原始信息", "多源确认", "尚待核实"]
+        },
+        "suggested_action": {
+          "type": "string",
+          "enum": ["立即试用", "持续观察", "暂缓"]
+        },
+        "high_priority_review": {
+          "type": "boolean",
+          "description": "True only after a person decides a Forced P0 card should say so. Not an auto-publish signal."
+        }
+      }
+    },
     "shift": {
       "type": "string",
       "enum": ["morning", "midday", "evening", "other"],

@@ -48,6 +48,7 @@
 - `id`：`brf-YYYYMMDD-slug`，和 L1 的 `evt-` 区分开，避免两套 id 混用
 - `lens`：沿用现有四个枚举，前端直接复用同一组过滤 chip
 - **没有 `so_what`、没有 `priority`、没有 `status`**。L2 不承载判断，所以不需要证伪条件，也不参与 P0 门闩
+- 自动档可以多一个可选 `card_copy`。证据固定是「官方原始信息」，动作固定是「持续观察」，`high_priority_review` 固定为 false。短句里没有数字。强制 P0 不投进快讯。五个任务页由另一份改动来排，这里不改 `briefs.html`
 - `url` 走现有 `safeHref()` 白名单，渲染时用 DOM API 而不是拼 innerHTML
 
 ## 与 L1 的边界

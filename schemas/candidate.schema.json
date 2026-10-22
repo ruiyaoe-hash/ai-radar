@@ -127,7 +127,7 @@
     "score": {
       "type": "object",
       "additionalProperties": false,
-      "description": "Rules score written after annotate gates. value is prior × decay × corroboration × velocity, plus a capped actionability term, then clamped to [0, 1]. practice never uses band auto_brief, and auto_brief requires official_source: the row itself is a primary source on an RSS feed. X posts and cluster neighbours of a primary link go to review. llm stays null unless a future adapter is configured; this repo does not call a hosted model.",
+      "description": "Rules score written after annotate gates. value is the v1 control: prior × decay × corroboration × velocity, plus a capped actionability term, then clamped to [0, 1]. source_reliability, evidence_grade, and content_value are stored separately so a high tier_prior cannot hide a report role. Optional v2 is the shadow multi-axis score; band stays on v1 unless config score.active_scorer is v2. practice never uses band auto_brief, and auto_brief requires official_source: the row itself is a primary source on an RSS feed. X posts and cluster neighbours of a primary link go to review. Forced P0 uses band_reason review_p0 and does not auto-publish. llm stays null unless a future adapter is configured; this repo does not call a hosted model.",
       "required": ["value", "band", "band_reason", "primary_source", "method", "components", "llm"],
       "if": { "properties": { "band": { "const": "auto_brief" } }, "required": ["band"] },
       "then": { "properties": { "official_source": { "const": true } }, "required": ["official_source"] },
@@ -143,12 +143,41 @@
             "review_no_primary",
             "review_not_official",
             "review_deferred",
+            "review_p0",
             "drop_low_score"
           ]
         },
         "primary_source": { "type": "boolean" },
         "official_source": { "type": "boolean" },
         "method": { "type": "string", "enum": ["rules", "llm"] },
+        "scorer": {
+          "type": "string",
+          "enum": ["v1", "v2"],
+          "description": "Which scorer set band. Default production is v1. v2 may still be stored in shadow."
+        },
+        "source_reliability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Account or org prior only (tier weight blended with editor hit rate). Does not absorb role_guess."
+        },
+        "evidence_grade": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "primary / analysis / report grade. A report stays low even when tier_prior is T1."
+        },
+        "content_value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "v1 ranking value. Same number as value. Not a user-value label."
+        },
+        "edition_eligibility": {
+          "type": "string",
+          "enum": ["eligible", "held_edition", "stale_window"],
+          "description": "Today's edition slot. held_edition is a defer, not a low-value drop. stale_window means the publish clock is older than the gate window while the row is still active."
+        },
         "components": {
           "type": "object",
           "additionalProperties": false,
@@ -158,7 +187,15 @@
             "decay": { "type": "number" },
             "corroboration": { "type": "number" },
             "velocity": { "type": "number" },
-            "actionability": { "type": "number" }
+            "actionability": { "type": "number" },
+            "spread": {
+              "type": "number",
+              "description": "Distinct accounts that mentioned the cluster, including homologous reprints. Reach, not independent evidence."
+            },
+            "independent_evidence": {
+              "type": "number",
+              "description": "Distinct primary or official URLs among rows that were not dropped as duplicates or no_new_info. Reprints do not add."
+            }
           }
         },
         "llm": {
@@ -177,6 +214,60 @@
               }
             }
           ]
+        },
+        "v2": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Shadow multi-axis score. p is the experimental blend. confidence is a separate gate. Ignored for band while scorer is v1.",
+          "required": ["p", "confidence", "band", "band_reason", "content_type", "dimensions", "weights", "method", "llm"],
+          "properties": {
+            "p": { "type": "number", "minimum": 0, "maximum": 1 },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+            "band": { "type": "string", "enum": ["auto_brief", "review", "drop"] },
+            "band_reason": { "type": "string" },
+            "content_type": {
+              "type": "string",
+              "enum": ["vuln", "product_launch", "tutorial", "analysis", "default"]
+            },
+            "dimensions": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["importance", "novelty", "relevance", "actionability", "freshness"],
+              "properties": {
+                "importance": { "type": "number", "minimum": 0, "maximum": 1 },
+                "novelty": { "type": "number", "minimum": 0, "maximum": 1 },
+                "relevance": { "type": "number", "minimum": 0, "maximum": 1 },
+                "actionability": { "type": "number", "minimum": 0, "maximum": 1 },
+                "freshness": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            },
+            "weights": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["importance", "novelty", "relevance", "actionability", "freshness"],
+              "properties": {
+                "importance": { "type": "number" },
+                "novelty": { "type": "number" },
+                "relevance": { "type": "number" },
+                "actionability": { "type": "number" },
+                "freshness": { "type": "number" }
+              }
+            },
+            "method": { "type": "string", "enum": ["rules", "llm"] },
+            "llm": {
+              "anyOf": [
+                { "type": "null" },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["skipped_reason"],
+                  "properties": {
+                    "skipped_reason": { "type": "string" }
+                  }
+                }
+              ]
+            }
+          }
         }
       }
     },
@@ -222,6 +313,57 @@
       "type": ["string", "null"],
       "enum": ["normal", "emergency", null],
       "description": "normal = left the pool through promotion. emergency is a card-side exception and is not a pool status."
+    },
+    "force_p0": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Forced P0 (强制今日必看通道) written by scripts/force_p0.py. Review queue only. Does not publish the archive or 今日必看. source=code means the pipeline, not an Alba routine, is the authority.",
+      "required": ["active", "kinds", "triggers", "default_action", "tool_choice", "bypassed", "source"],
+      "properties": {
+        "active": { "type": "boolean" },
+        "kinds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["frontier_launch", "runtime_vuln", "multi_a_tier"]
+          }
+        },
+        "triggers": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 40 }
+        },
+        "default_action": { "type": "string", "enum": ["promote", "skip"] },
+        "tool_choice": { "type": "boolean" },
+        "bypassed": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 40 }
+        },
+        "source": { "type": "string", "const": "code" }
+      }
+    },
+    "card_copy": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Words for a card. Not a score. watch_reason is a fixed sentence with no digits and no post body. evidence_label and suggested_action are the public labels. high_priority_review means Forced P0 is waiting for a person; it does not publish the archive or a brief.",
+      "required": ["watch_reason", "evidence_label", "suggested_action", "high_priority_review"],
+      "properties": {
+        "watch_reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[^0-9]*$"
+        },
+        "evidence_label": {
+          "type": "string",
+          "enum": ["官方原始信息", "多源确认", "尚待核实"]
+        },
+        "suggested_action": {
+          "type": "string",
+          "enum": ["立即试用", "持续观察", "暂缓"]
+        },
+        "high_priority_review": { "type": "boolean" }
+      }
     },
     "notes": { "type": "string" }
   },

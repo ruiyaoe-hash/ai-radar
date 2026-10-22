@@ -59,7 +59,7 @@ Agent 能读到的只是已经选进 `public/` 的只读静态层：`agent.html`
 
 Pages 部署只用工作流自带的 `GITHUB_TOKEN`，权限是 `contents: read`、`pages: write`、`id-token: write`。部署前会先跑 `validate.py`，失败就不上传。同一步还会核对 Pages 的 `build_type` 必须是 `workflow`，避免改回从仓库根目录发站。
 
-两个 ingest 工作流会用 `github-actions[bot]` 直接把 `public/briefs.json` 推到 `main`。打开「禁止直接推送」时，要在规则集里给 GitHub Actions 加 bypass，或者只对人类账号生效；否则自动快讯会推送失败（私有池照常更新）。推送前脚本会先跑 `validate.py`，不过就不推。
+两个 ingest 工作流不再把 `public/briefs.json` 直推 `main`。它们把快讯放到滚动分支 `chore/auto-briefs` 并打开一个 PR。`main` 保持禁止直接推送、禁止 force push，合并前要通过 `validate-and-derive`。不要为了自动快讯给 GitHub Actions 加 bypass。推分支前脚本会先跑 `validate.py`，不过就不开 PR。Pages 在这个 PR 合并进 `main` 之后，由现有的 `deploy-pages.yml` 部署。
 
 ## 工作流凭据边界
 

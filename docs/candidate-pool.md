@@ -13,7 +13,7 @@ Phase 1 定契约和全量入池。Phase 2 把 L0 门槛和 L2 聚簇写成可�
 | ingest all | `scripts/ingest_x.py`；RSS 用 `scripts/ingest_rss.py` | 稳定 `id`、规范化 URL、`status_in_pool=pending`。判断字段全部为空 |
 | annotate gates | Alba 跑 `scripts/annotate_gates.py` | `prefilter`（PASS / BLOCK / UNKNOWN）、`status_in_pool`、真丢时的 `drop_reason`、`tier_prior`、能对上的 `source.role_guess` |
 | cluster | 同一次脚本里的 L2 | `cluster_id`。标题相似不是唯一键 |
-| score | `scripts/score_pool.py` | `score.value` / `band` / `components`。低分是 `dropped` + `low_score`（notes 留痕）。高分且有一手才可能进 L2 快讯。L1 仍不由分数单独发出 |
+| score | `scripts/score_pool.py` | v1 的 `score.value` / `band` / `components`，并影子写入 v2。低分且仍是 `active` 才是 `dropped` + `low_score`。`deferred` 不会被改写成低价值。强制 P0 在低分和「今天这期先不上」之前进入 `review_p0`，不写公开归档。高分且行本身是 RSS 一手才可能进 L2 快讯。行上另有 `card_copy`（为什么值得看、证据标签、建议动作、优先审标记），短句里没有分数。L1 仍不由分数单独发出。对照见 [`score-ab-backtest.md`](./score-ab-backtest.md) |
 | promote | Alba | 公开仓 `public/archive/` 或 practice inbox；池内改为 `promoted`，并写 `archive_id` |
 
 机器门槛和聚簇由脚本写回。打分由 `scripts/score_pool.py` 在这之后写回。Alba 不手写 JSONL 骨架，也不手填这批门槛字段。L1 晋升、`editor_skip`（编辑否决）、车道仍由 Alba 写。自动档只派生 L2 快讯（`scripts/derive_briefs.py`），不写 practice inbox。`scripts/generate_derived.py` 仍只读公开归档和 practice inbox，不读池。Pages 仍只发布 `public/`。字段和三档见 `docs/score-and-briefs.md`。
@@ -73,7 +73,7 @@ python3 scripts/ingest_x.py --pool-dir ../ai-radar-pool < fetch.json
 | `practice_not_steps` | 不像能照着做，步骤不够 |
 | `hot_signal_only` | 只作讨论证据，不上决策板 |
 | `editor_skip` | 编辑否决。`notes` 不能空。占比持续偏高要复盘门槛 |
-| `low_score` | 打分低于人工档。`notes` 不能空，里面有 `score:low_score` 和各分量。不是编辑否决 |
+| `low_score` | 打分低于人工档，且行当时是 `active`。`notes` 不能空，里面有 `score:low_score` 和各分量。不是编辑否决，也不是「今天这期先不上」 |
 
 这些**不是** `drop_reason`：`pending`、`wrong_lane`、`quota`、`quota_defer`。
 
@@ -121,7 +121,7 @@ Alba 在全量入池之后跑 `scripts/annotate_gates.py`。脚本读候选行�
 |------|----------|----------------------------------|
 | URL 规范化 | 去掉 tracking query，统一成 https | 同一 `id` 或同一 `url_norm` → `dropped` + `duplicate_url` |
 | 同源短窗 | 默认 30 分钟。同一 channel+handle，且没有新外链、正文新 token 也不到 3 个。中文按字符 bigram，英文和数字仍按词 | `dropped` + `duplicate_event`。短窗里如果带来新外链，留下 |
-| 时效 | 发表时间早于 `--as-of` 超过 48 小时（可配） | **默认 `deferred`，`drop_reason` 仍是 null**。`--stale-policy drop` 才是 `stale_old` |
+| 时效 | 发表时间早于 `--as-of` 超过 48 小时（可配） | **默认 `deferred`，`drop_reason` 仍是 null**。`--stale-policy drop` 才是 `stale_old`。强制 P0（`scripts/force_p0.py`）绕过这两条，留在 `active` 等人审，仍不写公开卡 |
 | RSS 回填 | `channel=rss` 且发表日的北京日历日早于 `--as-of` | `deferred`，notes 写 `rss_backfill_not_today`。这不是 `stale_old`，也不占今日 |
 | 无可信时间 | 没有 `published_at` | **默认 `prefilter=UNKNOWN` 且 `pending`，不静默跳过**。`--no-time-policy drop` 才是 `no_reliable_time` |
 | 预筛三态 | 宽召回。只有明显非 AI（例如天气、菜谱、球赛，且没有模型词）才 BLOCK | `BLOCK` → `dropped` + `prefilter_block`。材料够且像 AI，或低门槛源，为 `PASS` |
@@ -240,9 +240,10 @@ The public contract is `schemas/candidate.schema.json` in `ruiyaoe-hash/ai-radar
    It fills `prefilter`, `status_in_pool`, true-drop `drop_reason`, `tier_prior`,
    `source.role_guess`, and `cluster_id`. It does not promote.
 5. Then run `scripts/score_pool.py --pool-dir "$PWD" --write-review` from the public repo.
-   It fills `score` and, for a low rules score, `dropped` + `low_score` with a note.
+   It fills `score` and, for a low rules score on an active row, `dropped` + `low_score` with a note.
+   Deferred rows stay deferred. Forced P0 becomes `review_p0` and `review/p0-YYYY-MM-DD.json`.
    It does not promote and does not call a hosted model. The review list stays in
-   this private repo under `review/`.
+   this private repo under `review/`. v2 is shadowed; the band stays v1 until `active_scorer` is flipped.
 6. Alba then fills what the script does not: `lane_hint`, `participation`,
    `editor_skip` (with a note), and on promotion `archive_id` plus
    `promotion_path=normal`. Do not hand-edit `id`.

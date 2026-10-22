@@ -1,0 +1,7 @@
+cid,url,important,duplicate,low_value,actionable,evidence_sufficient,should_p0,event_at,notes
+cand-20261022-b0b000000001,https://x.com/someone/status/77001,,,,,,,
+cand-20261022-b0b000000002,https://example.com/fixture-php2shell,,,,,,,
+cand-20261022-b0b000000003,https://openai.com/blog/fixture-ab-ordinary,,,,,,,
+cand-20261022-b0b000000004,https://techcrunch.com/2026/10/22/fixture-ab-solo,,,,,,,
+cand-20261022-b0b000000005,https://www.theverge.com/2026/10/22/fixture-ab-reprint,,,,,,,
+cand-20261022-b0b000000006,https://example.com/fixture-ab-held,,,,,,,
