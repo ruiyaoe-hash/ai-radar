@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0F1110" />
-  <title>快讯 · AI Radar</title>
+  <title>最新动态 · AI Radar</title>
   <link rel="icon" href="./assets/logo.png" />
   <link rel="stylesheet" href="./assets/radar.css" />
   <link rel="stylesheet" href="./assets/briefs.css" />
@@ -16,27 +16,42 @@
     <script src="./assets/shell.js"></script>
     <div class="content">
       <main id="main">
-        <h1>快讯</h1>
-        <p class="sub">一句话一条，只写事实和链接，不下判断。值得动手的才进<a href="./today.html">今日必看</a>。做法留在<a href="./atlas.html">实战图谱</a>。 <span id="updated"></span></p>
+        <h1>最新动态</h1>
+        <p class="sub">这里按时间把最近的变化排开。已经写成判断的事件用完整卡片；只有事实的短讯会标明。今天最该拍板的几条在<a href="./today.html">今日重点</a>。做法留在<a href="./atlas.html">实战手册</a>。类型按用途分。证据筛的是已经写成判断的事件；事实短讯还没标注证据状态，选「不限」时会和事件排在一起。 <span id="updated"></span></p>
 
+        <div class="filters" id="spanFilters">
+          <span class="row-label">时间</span>
+          <button class="chip" type="button" data-span="3">近 3 天</button>
+          <button class="chip on" type="button" data-span="7">近 7 天</button>
+          <button class="chip" type="button" data-span="all">全部</button>
+        </div>
         <div class="filters" id="lensFilters">
-          <span class="row-label">看什么</span>
-          <button class="chip on" type="button" data-lens="all">不限</button>
-          <button class="chip" type="button" data-lens="工具">试用工具</button>
-          <button class="chip" type="button" data-lens="赛道">行业动态</button>
-          <button class="chip" type="button" data-lens="模式">方法模式</button>
-          <button class="chip" type="button" data-lens="时机">时机窗口</button>
+          <span class="row-label">类型</span>
+          <button class="chip on" type="button" data-type="all">不限</button>
+          <button class="chip" type="button" data-type="工具">试用工具</button>
+          <button class="chip" type="button" data-type="赛道">行业动态</button>
+          <button class="chip" type="button" data-type="模式">方法模式</button>
+          <button class="chip" type="button" data-type="时机">时机窗口</button>
+        </div>
+        <div class="filters" id="evidenceFilters">
+          <span class="row-label">证据</span>
+          <button class="chip on" type="button" data-evidence="all">不限</button>
+          <button class="chip" type="button" data-evidence="official">官方原始信息</button>
+          <button class="chip" type="button" data-evidence="multi">多源确认</button>
+          <button class="chip" type="button" data-evidence="pending">尚待核实</button>
         </div>
 
-        <div id="briefs"><p class="empty">正在读取…</p></div>
+        <h2 id="archive">事件流</h2>
+        <div id="stream"><p class="empty">正在读取…</p></div>
 
         <footer class="site-footer">
-          <p>已有条目摘自公开归档。打分自动档会追加一手快讯，只留事实和链接。实操仍由人工核过再上图谱。</p>
+          <p>已有条目摘自公开归档。打分自动档会把一手事实补进这条时间流，只留事实和链接。实操仍由人工核过再上手册。</p>
           <p>内容可能包含未经证实的传闻与第三方帖子，请自行核对。</p>
         </footer>
       </main>
     </div>
   </div>
+  <script src="./assets/cards.js"></script>
   <script src="./assets/briefs.js"></script>
 </body>
 </html>

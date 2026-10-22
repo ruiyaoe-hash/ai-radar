@@ -79,7 +79,7 @@
 
 ### 第三步（展示）
 
-导航入口已经加上。顶栏由 `public/assets/shell.js` 统一写出，分「信号 / 造物 / 共鸣」三组。「快讯」在「信号」组，排在「今日必看」后面，链到 `briefs.html`。打开快讯页时，`briefs.html` 的 `data-page="briefs"` 会让这一项和「信号」组呈当前页。`scripts/validate.py` 的 `check_public_ui` 逐组检查顺序：信号是「今日必看、快讯、本周归档、可试用工具」，造物是「实战图谱、博主实操、博主库」，共鸣是「随笔、订阅更新、飞书订阅群、给 Agent 用、收录标准、这是什么、反馈 / 建议」。
+导航已经改成任务名。顶栏由 `public/assets/shell.js` 写出五个入口：今日重点（`today.html`）、最新动态（`briefs.html`，`data-page="briefs"`）、工具决策、实战手册、专题观察。订阅更新在右侧。`week.html` 跳到 `briefs.html#archive`。次要入口（博主库、做法条目、随笔、飞书订阅群、给 Agent 用、收录标准、这是什么、反馈）收在「更多」。`scripts/validate.py` 的 `check_public_ui` 锁住这个顺序。
 
 窗口和看板切换仍单独做：
 

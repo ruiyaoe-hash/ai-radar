@@ -2,10 +2,10 @@
 <html lang="zh-CN" data-page="today">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-amH7A632qlj4ld/AoaM5smbFUQk9/a62Q86gKcUSdaQ=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-PTMMgWC91Laav4ZKT3czYdf5duQVWlzZkqmyAJfIvhg=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0F1110" />
-  <title>今日必看 · AI Radar</title>
+  <title>今日重点 · AI Radar</title>
   <link rel="icon" href="./assets/logo.png" />
   <link rel="stylesheet" href="./assets/radar.css" />
   <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="./feed.xml" />
@@ -16,8 +16,8 @@
     <script src="./assets/shell.js"></script>
     <div class="content">
       <main id="main">
-        <h1>今日必看</h1>
-        <p class="sub">AI Radar 每天给你当天最值得动手的 AI 信号。北京时间每天 08:00 主报，工作日 21:00 晚班，只留<strong>会影响你下一步决策</strong>的内容。本页「今日精选」从全部信号里挑出最重要的 3 条，时间紧只看这 3 条就够。做法手册在<a href="./atlas.html">实战图谱</a>。 <span id="updated"></span></p>
+        <h1>今日重点</h1>
+        <p class="sub">今天最该拍板的几条放在这一页。时间紧，看完「今日精选」就可以离开。更早的变化按时间排在<a href="./briefs.html">最新动态</a>。做法留在<a href="./atlas.html">实战手册</a>。标成优先看的，是今天最该拍板的；标成尚待核实的，影响可能很大，原文还没核完，仍然放在这里。北京时间每天 08:00 主报，工作日 21:00 晚班。 <span id="updated"></span></p>
 
         <section class="hero" aria-labelledby="hero-label">
           <div class="hero-head">
@@ -27,21 +27,6 @@
           <ol id="heroList"><li>正在读取…</li></ol>
           <pre id="today3fallback" hidden></pre>
         </section>
-
-        <div class="filters" id="bandFilters">
-          <button class="chip on" type="button" data-band="all">全部</button>
-          <button class="chip" type="button" data-band="must">今日必看</button>
-          <button class="chip" type="button" data-band="market">市场信号</button>
-          <button class="chip" type="button" data-band="watch">重点关注</button>
-        </div>
-        <div class="filters" id="lensFilters">
-          <span class="row-label">看什么</span>
-          <button class="chip on" type="button" data-topic="all">不限</button>
-          <button class="chip" type="button" data-topic="工具">试用工具</button>
-          <button class="chip" type="button" data-topic="赛道">行业动态</button>
-          <button class="chip" type="button" data-topic="模式">方法模式</button>
-          <button class="chip" type="button" data-topic="时机">时机窗口</button>
-        </div>
 
         <div id="feed"><p class="empty">正在读取…</p></div>
         <footer class="site-footer">
@@ -53,12 +38,21 @@
   </div>
   <script src="./assets/cards.js"></script>
   <script>
-    const state = { band: "all", lens: "all", items: [], today3: "", featured: new Set() };
+    const state = { items: [], today3: "", featured: new Set() };
 
-    function render() {
-      const filtered = Radar.applyFilter(state.items, state.band, state.lens);
-      document.getElementById("feed").innerHTML = Radar.renderGroups(filtered, state.featured);
-      Radar.scrollToHash();
+    function latestDate(items) {
+      return items.reduce((max, it) => (it.date && it.date > max ? it.date : max), "");
+    }
+
+    function renderRest() {
+      const day = latestDate(state.items);
+      const rest = state.items.filter((it) => it.date === day && (Radar.bandOf(it) === "must" || Radar.bandOf(it) === "market") && !(it.id && state.featured.has(it.id)));
+      const host = document.getElementById("feed");
+      if (!rest.length) {
+        host.innerHTML = '<p class="empty">今天精选之外，没有更多需要拍板的条目。更早的变化在<a href="./briefs.html">最新动态</a>。</p>';
+        return;
+      }
+      host.innerHTML = `<h2>今天其余的重点</h2><p class="sub">${Radar.esc(Radar.formatDay(day))}里，精选没有盖住、但仍然该看的几条。</p>` + rest.map((it) => Radar.renderCard(it, state.featured)).join("");
     }
 
     function renderHero() {
@@ -78,26 +72,9 @@
       if (data.updated) document.getElementById("updated").textContent = "最近更新 " + data.updated;
       if (todayRes.ok) state.today3 = await todayRes.text();
       renderHero();
-      render();
+      renderRest();
+      Radar.scrollToHash();
     }
-
-    document.getElementById("bandFilters").addEventListener("click", (event) => {
-      const btn = event.target.closest("[data-band]");
-      if (!btn) return;
-      document.querySelectorAll("#bandFilters .chip").forEach((el) => el.classList.remove("on"));
-      btn.classList.add("on");
-      state.band = btn.dataset.band;
-      render();
-    });
-
-    document.getElementById("lensFilters").addEventListener("click", (event) => {
-      const btn = event.target.closest("[data-topic]");
-      if (!btn) return;
-      document.querySelectorAll("#lensFilters .chip").forEach((el) => el.classList.remove("on"));
-      btn.classList.add("on");
-      state.lens = btn.dataset.topic;
-      render();
-    });
 
     document.getElementById("copyToday").addEventListener("click", async () => {
       const btn = document.getElementById("copyToday");
@@ -120,7 +97,7 @@
     });
 
     load().catch(() => {
-      document.getElementById("feed").innerHTML = '<p class="empty">还没有信号。更新之后会显示在这里。</p>';
+      document.getElementById("feed").innerHTML = '<p class="empty">今天的重点还没准备好。可以先打开<a href="./briefs.html">最新动态</a>。</p>';
       document.getElementById("heroList").innerHTML = "<li>今日精选还在准备，稍后再来。</li>";
     });
   </script>

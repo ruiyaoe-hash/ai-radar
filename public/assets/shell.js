@@ -27,48 +27,45 @@
     return `<li><a class="${cls}" href="${esc(safe)}"${current}${blank}>${label}<small>${hint}</small></a></li>`;
   }
 
-  const groups = [
-    {
-      id: "signals", zh: "信号", en: "Signals",
-      pages: ["today", "briefs", "week", "tools"],
-      items: [
-        item("today.html", "today", "今日必看", "当天最值得动手的信号"),
-        item("briefs.html", "briefs", "快讯", "官方发布的短讯，自动更新"),
-        item("week.html", "week", "本周归档", "按天翻看最近七天"),
-        item("tools-radar.html", "tools", "可试用工具", "值得用上、可以试、先别跟")
-      ]
-    },
-    {
-      id: "creations", zh: "造物", en: "Creations",
-      pages: ["atlas", "practice", "creators", "topic"],
-      items: [
-        item("atlas.html", "atlas", "实战图谱", "按场景整理的做法手册"),
-        item("practice.html", "practice", "博主实操", "能照着做的教程与工作流"),
-        item("creators.html", "creators", "博主库", "持续盯着的实操作者")
-      ]
-    },
-    {
-      id: "resonance", zh: "共鸣", en: "Resonance",
-      pages: ["blog", "subscribe", "agent", "about"],
-      items: [
-        item("blog/", "blog", "随笔", "编者的长一点的想法"),
-        item("subscribe.html", "subscribe", "订阅更新", "RSS 与按类订阅"),
-        item(FEISHU_GROUP, "feishu", "飞书订阅群", "每天推送到群里", true),
-        item("agent.html", "agent", "给 Agent 用", "机器可读的数据入口"),
-        item("atlas.html#method", "method", "收录标准", "什么能进站、什么不收"),
-        item("about.html", "about", "这是什么", "站点定位与更正方式"),
-        item(FEEDBACK_FORM, "feedback", "反馈 / 建议", "匿名问卷", true)
-      ]
-    }
+  // 主导航用任务名。品牌词「信号 / 造物 / 共鸣」留在随笔和视觉里，不放进这一排。
+  const primary = [
+    { href: "today.html", id: "today", label: "今日重点", hint: "今天这几条最该拍板", pages: ["today"] },
+    { href: "briefs.html", id: "briefs", label: "最新动态", hint: "按时间看最近的变化", pages: ["briefs", "week"] },
+    { href: "tools-radar.html", id: "tools", label: "工具决策", hint: "值得采用、可以试用、需要评估、暂缓跟进", pages: ["tools"] },
+    { href: "atlas.html", id: "atlas", label: "实战手册", hint: "把发现收成能照着做的方法", pages: ["atlas", "practice", "topic"] },
+    { href: "observe.html", id: "observe", label: "专题观察", hint: "跟得更久的判断和随笔", pages: ["observe", "blog"] }
   ];
 
-  const navHtml = groups.map((group) => {
-    const current = group.pages.includes(page) ? " current" : "";
-    return `<li class="nav-group${current}" data-group="${group.id}">
-        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-${group.id}">${group.zh}<span class="en">${group.en}</span><span class="chev" aria-hidden="true"></span></button>
-        <ul class="nav-menu" id="menu-${group.id}">${group.items.join("")}</ul>
+  function directLink(entry) {
+    const safe = link(entry.href, false);
+    if (!safe) return "";
+    const on = entry.pages.indexOf(page) !== -1;
+    const current = on ? ' aria-current="page"' : "";
+    return `<li class="nav-slot${on ? " current" : ""}"><a class="nav-direct nav-trigger${on ? " current" : ""}" href="${esc(safe)}"${current} title="${esc(entry.hint)}">${entry.label}<small>${entry.hint}</small></a></li>`;
+  }
+
+  const more = {
+    id: "more",
+    zh: "更多",
+    en: "More",
+    pages: ["creators", "agent", "about"],
+    items: [
+      item("creators.html", "creators", "博主库", "实战手册里的作者索引"),
+      item("practice.html", "practice", "做法条目", "能照着做的步骤全文"),
+      item("blog/", "blog", "随笔", "编者写完才发的笔记"),
+      item(FEISHU_GROUP, "feishu", "飞书订阅群", "每天推送到群里", true),
+      item("agent.html", "agent", "给 Agent 用", "机器可读的数据入口"),
+      item("atlas.html#method", "method", "收录标准", "什么能进主题手册"),
+      item("about.html", "about", "这是什么", "站点定位与更正方式"),
+      item(FEEDBACK_FORM, "feedback", "反馈 / 建议", "匿名问卷", true)
+    ]
+  };
+
+  const moreOn = more.pages.indexOf(page) !== -1;
+  const navHtml = primary.map(directLink).join("") + `<li class="nav-group${moreOn ? " current" : ""}" data-group="${more.id}">
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-${more.id}">${more.zh}<span class="en">${more.en}</span><span class="chev" aria-hidden="true"></span></button>
+        <ul class="nav-menu" id="menu-${more.id}">${more.items.join("")}</ul>
       </li>`;
-  }).join("");
 
   const home = esc(link("index.html") || "./");
   const subscribe = esc(link("subscribe.html") || "./");
@@ -84,7 +81,7 @@
         <ul class="nav-groups">${navHtml}</ul>
       </nav>
       <div class="bar-actions">
-        <a class="btn btn-minimal btn-sub" href="${subscribe}">订阅</a>
+        <a class="btn btn-minimal btn-sub${page === "subscribe" ? " current" : ""}" href="${subscribe}"${page === "subscribe" ? ' aria-current="page"' : ""}>订阅更新</a>
         <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="打开导航"><span class="bars" aria-hidden="true"></span></button>
       </div>
     </div>
@@ -130,7 +127,7 @@
       setSheet(!nav.classList.contains("open"));
       return;
     }
-    if (event.target.closest(".nav-menu a")) {
+    if (event.target.closest(".nav-menu a, a.nav-direct")) {
       closeAll();
       return;
     }

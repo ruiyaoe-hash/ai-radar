@@ -2,10 +2,10 @@
 <html lang="zh-CN" data-page="tools">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-IOKTMj2PwDVQ60yH8bhcQvfXZPfT0arSeKPqq+PtA94=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GKsW4xnhMpmc/+Uw1aP3XzG8f5bdtswYcmXIDVf+4Fg=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0F1110" />
-  <title>可试用工具 · AI Radar</title>
+  <title>工具决策 · AI Radar</title>
   <link rel="icon" href="./assets/logo.png" />
   <link rel="stylesheet" href="./assets/radar.css" />
 </head>
@@ -15,8 +15,8 @@
     <script src="./assets/shell.js"></script>
     <div class="content">
       <main id="main">
-        <h1>可试用工具</h1>
-        <p class="sub">按你现在该怎么对待来分，不按热度排。 <span id="updated"></span></p>
+        <h1>工具决策</h1>
+        <p class="sub">按你现在该怎么对待来分：值得采用、可以试用、需要评估、暂缓跟进。能对上的发布会链到最新动态，能对上的做法会链到实战手册里的条目。 <span id="updated"></span></p>
         <div class="tool-grid" id="grid"><p class="empty">正在读取…</p></div>
         <p class="fine">点进去用一次真实任务，再决定留不留。</p>
       </main>
@@ -25,17 +25,43 @@
   <script src="./assets/cards.js"></script>
   <script>
     const rings = [
-      ["采纳", "值得用上", "现在就可以放进你的流程。", ""],
-      ["试用", "可以试", "本周用一次真实任务摸清楚。", ""],
-      ["评估", "先评估", "先看成本和边界，不必马上用。", "assess"],
-      ["暂缓", "先别跟", "先观察，不据此改做法。", "hold"]
+      ["采纳", "值得采用", "现在就可以放进你的流程。", ""],
+      ["试用", "可以试用", "这周用一次真实任务摸清楚。", ""],
+      ["评估", "需要评估", "先看成本和边界，再决定要不要试。", "assess"],
+      ["暂缓", "暂缓跟进", "先观察，这周不必因此改做法。", "hold"]
     ];
+    const genericHost = { "github.com": 1, "x.com": 1, "twitter.com": 1, "t.co": 1, "youtube.com": 1, "youtu.be": 1 };
 
-    fetch("./tools-radar.json?" + Date.now())
-      .then((res) => res.json())
-      .then((data) => {
+    function hostOf(url) {
+      try {
+        return new URL(url).hostname.replace(/^www\./, "").toLowerCase();
+      } catch (err) {
+        return "";
+      }
+    }
+
+    Promise.all([
+      fetch("./tools-radar.json?" + Date.now()).then((res) => res.json()),
+      fetch("./practice.json?" + Date.now()).then((res) => (res.ok ? res.json() : { items: [] })).catch(() => ({ items: [] }))
+    ])
+      .then(([data, practice]) => {
         if (data.updated) document.getElementById("updated").textContent = "最近更新 " + data.updated;
         const groups = data.rings || {};
+        const practices = practice.items || [];
+        function relatedPractice(tool) {
+          const raw = String(tool.try_url || tool.url || "").replace(/\/+$/, "");
+          const exact = practices.find((item) => String(item.url || "").replace(/\/+$/, "") === raw);
+          const host = hostOf(raw);
+          const hit = exact || ((!host || genericHost[host]) ? null : practices.find((item) => hostOf(item.url) === host));
+          if (!hit) return "";
+          const href = Radar.safeHref("./practice.html#" + encodeURIComponent(hit.id || ""));
+          return href ? `<a href="${Radar.esc(href)}">相关做法</a>` : "";
+        }
+        function relatedRelease(tool) {
+          if (!tool.id) return "";
+          const href = Radar.safeHref("./briefs.html#" + encodeURIComponent(tool.id));
+          return href ? `<a href="${Radar.esc(href)}">相关发布</a>` : "";
+        }
         document.getElementById("grid").innerHTML = rings.map(([key, title, hint, dot]) => {
           const list = groups[key] || [];
           const body = list.length
@@ -46,7 +72,9 @@
                   : Radar.esc(it.title);
                 const bits = [it.access, it.integration].filter(Boolean).map(Radar.esc);
                 const step = it.first_step ? `<div>第一步：${Radar.esc(it.first_step)}</div>` : "";
-                return `<div class="tool-item"><div>${titleHtml}</div><div class="meta">${bits.join(" · ")}${step}</div></div>`;
+                const links = [relatedRelease(it), relatedPractice(it)].filter(Boolean).join(" · ");
+                const related = links ? `<div>${links}</div>` : "";
+                return `<div class="tool-item"><div>${titleHtml}</div><div class="meta">${bits.join(" · ")}${step}${related}</div></div>`;
               }).join("")
             : '<p class="empty">这一档还没有。</p>';
           return `<section class="card ring"><h2><span class="ring-dot ${dot}"></span>${title}</h2><p class="hint">${hint}</p>${body}</section>`;

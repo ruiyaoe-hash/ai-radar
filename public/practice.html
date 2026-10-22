@@ -2,10 +2,10 @@
 <html lang="zh-CN" data-page="practice">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-yf0e1+v3fQlbHCvTUfAl4YiwOSwqt8knU58iOTOaqcI=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-W2GHfTab+/0bh2KYlEV2PTYeViwGk1eFwJLCWDgyiZk=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0F1110" />
-  <title>博主实操 · AI Radar</title>
+  <title>做法条目 · 实战手册 · AI Radar</title>
   <link rel="icon" href="./assets/logo.png" />
   <link rel="stylesheet" href="./assets/radar.css" />
 </head>
@@ -15,8 +15,8 @@
     <script src="./assets/shell.js"></script>
     <div class="content">
       <main id="main">
-        <h1>博主实操</h1>
-        <p class="sub">本页收录编辑精选、每周投放的实操，只收<strong>可照着做</strong>的用法、创意、变现和工作流。每条都写清步骤和开始前要准备什么。同一条也会进入<a href="./atlas.html">实战图谱</a>里对应的主题手册。</p>
+        <h1>做法条目</h1>
+        <p class="sub">这一页是<a href="./atlas.html">实战手册</a>里的做法全文。本页收录编辑精选、每周投放的实操，每条都写清步骤和开始前要准备什么，收的是可照着做的用法、创意、变现和工作流。同一条也会进入对应的主题手册。作者索引在<a href="./creators.html">博主库</a>。</p>
         <div class="filters" id="kindFilters">
           <button class="chip on" type="button" data-kind="all">全部</button>
           <button class="chip" type="button" data-kind="工具用法">工具用法</button>
@@ -69,7 +69,7 @@
       const before = needs.length
         ? `<p class="mean"><b>开始前：</b>${Radar.esc(needs.join("；"))}</p>`
         : "";
-      return `<article class="card">
+      return `<article class="card" id="${Radar.esc(it.id || "")}">
         <div class="meta">
           <span class="tag prac">${Radar.esc(it.kind || "实操")}</span>
           ${practiceFacts(it)}

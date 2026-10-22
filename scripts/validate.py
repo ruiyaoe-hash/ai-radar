@@ -130,7 +130,7 @@ def validate_card(it: dict, path: str, card_validator) -> None:
             continue
         if not isinstance(val, str) or not UTC_STAMP.match(val):
             fail(f"{path}: {key} must be ISO-8601 UTC, got {val!r}")
-    # rumor may stay priority P0; the board renders that as 市场信号, never as 今日必看.
+    # rumor may stay priority P0; the board renders that as 尚待核实, never as 优先看.
 
 
 def check_schema() -> int:
@@ -543,15 +543,24 @@ def check_public_ui() -> None:
     """Chinese-first pages: required labels exist, jargon stays out of visible HTML."""
     required = {
         "index.html": [
-            "打开今日必看",
+            "今天，什么值得关注？",
+            "看今日重点",
             "./today.html",
+            "./briefs.html",
+            "./tools-radar.html",
             "./atlas.html",
-            "./blog/",
-            "信号",
-            "造物",
-            "共鸣",
+            "./observe.html",
+            "今日精选",
+            "工具与产品",
+            "最近的重要变化",
+            "把发现变成能力",
+            "今日重点",
+            "最新动态",
+            "工具决策",
+            "实战手册",
+            "专题观察",
+            "值得采用",
             "给迷途者的代码，给觉醒者的诗。",
-            'id="typing"',
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
@@ -560,10 +569,12 @@ def check_public_ui() -> None:
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
         "atlas.html": [
+            "实战手册",
             "实战图谱",
-            "今日精选",
-            "打开今日必看",
+            "今日重点",
             "./today.html",
+            "做法条目",
+            "博主库",
             "待采集",
             "造物",
             "内容创作",
@@ -581,17 +592,13 @@ def check_public_ui() -> None:
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
         "today.html": [
+            "今日重点",
             "今日精选",
             "精选",
-            "全部",
-            "今日必看",
-            "市场信号",
-            "重点关注",
-            "不限",
-            "试用工具",
-            "行业动态",
-            "方法模式",
-            "时机窗口",
+            "最新动态",
+            "./briefs.html",
+            "优先看",
+            "尚待核实",
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
             "每天 08:00 主报，工作日 21:00 晚班",
@@ -609,7 +616,7 @@ def check_public_ui() -> None:
             "还没有可照着做的实操。",
             "编辑精选、每周投放",
         ],
-        "tools-radar.html": ["值得用上", "可以试", "先评估", "先别跟"],
+        "tools-radar.html": ["工具决策", "值得采用", "可以试用", "需要评估", "暂缓跟进", "相关发布", "相关做法"],
         "subscribe.html": [
             "./feed.xml",
             "试用工具",
@@ -622,7 +629,9 @@ def check_public_ui() -> None:
             "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
-        "week.html": ["本周归档"],
+        "week.html": ["本周归档", "最新动态", "./briefs.html#archive"],
+        "briefs.html": ["最新动态", "今日重点", "近 3 天", "近 7 天", "官方原始信息", "多源确认", "尚待核实"],
+        "observe.html": ["专题观察", "随笔", "还在跟踪的看法", "今日重点", "最新动态"],
         "agent.html": [
             "today3.txt",
             "items.json",
@@ -653,8 +662,16 @@ def check_public_ui() -> None:
             "转载请署名",
         ],
         "about.html": [
-            "对你意味着什么",
+            "每日决策简报",
+            "今日重点",
+            "最新动态",
+            "工具决策",
+            "实战手册",
+            "专题观察",
+            "对我有什么影响",
+            "证据状态",
             "背景与出处",
+            "尚待核实",
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
             "编辑精选、每周投放",
@@ -663,7 +680,7 @@ def check_public_ui() -> None:
         ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
-    for label in ("信号", "造物", "共鸣", "实战图谱", "今日必看", "快讯", "博主库", "博主实操", "本周归档", "可试用工具", "随笔", "订阅更新", "飞书订阅群", "给 Agent 用", "收录标准", "这是什么", "反馈 / 建议"):
+    for label in ("今日重点", "最新动态", "工具决策", "实战手册", "专题观察", "订阅更新", "博主库", "做法条目", "随笔", "飞书订阅群", "给 Agent 用", "收录标准", "这是什么", "反馈 / 建议"):
         if label not in shell:
             fail(f"shell.js missing nav label {label}")
     feedback = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd"
@@ -672,23 +689,44 @@ def check_public_ui() -> None:
     invite = "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83"
     if invite not in shell:
         fail("shell.js missing Feishu subscribe-group invite")
-    # Top bar groups: 信号 → 造物 → 共鸣. Each group keeps its own pages in this order.
-    marks = ['id: "signals"', 'id: "creations"', 'id: "resonance"', "const navHtml"]
-    cuts = [shell.find(m) for m in marks]
-    if any(c < 0 for c in cuts) or cuts != sorted(cuts):
-        fail("shell.js nav groups must be signals, creations, resonance in that order")
-    segments = {
-        "信号": (shell[cuts[0]:cuts[1]], ["今日必看", "快讯", "本周归档", "可试用工具"],
-                 ['item("today.html"', 'item("briefs.html"', 'item("week.html"', 'item("tools-radar.html"']),
-        "造物": (shell[cuts[1]:cuts[2]], ["实战图谱", "博主实操", "博主库"],
-                 ['item("atlas.html"', 'item("practice.html"', 'item("creators.html"']),
-        "共鸣": (shell[cuts[2]:cuts[3]], ["随笔", "订阅更新", "飞书订阅群", "给 Agent 用", "收录标准", "这是什么", "反馈 / 建议"],
-                 ['item("blog/"', 'item("subscribe.html"', "item(FEISHU_GROUP", 'item("agent.html"', 'item("atlas.html#method"', 'item("about.html"', "item(FEEDBACK_FORM"]),
-    }
-    for group, (segment, labels, calls) in segments.items():
-        pos = [segment.find(label) for label in labels]
-        if any(p < 0 for p in pos) or pos != sorted(pos) or any(call not in segment for call in calls):
-            fail(f"shell.js nav group {group} must list {' / '.join(labels)} in order")
+    # Primary nav is five task doors, then 订阅更新 as the right-side action.
+    # Secondary links live under 更多. Old 信号 / 造物 / 共鸣 groups are not the nav.
+    primary = ["今日重点", "最新动态", "工具决策", "实战手册", "专题观察"]
+    cursor = 0
+    for label in primary:
+        pos = shell.find(label, cursor)
+        if pos < 0:
+            fail(f"shell.js primary nav missing {label}")
+        cursor = pos + len(label)
+    calls = [
+        'href: "today.html"',
+        'href: "briefs.html"',
+        'href: "tools-radar.html"',
+        'href: "atlas.html"',
+        'href: "observe.html"',
+    ]
+    call_at = [shell.find(call) for call in calls]
+    if any(pos < 0 for pos in call_at) or call_at != sorted(call_at):
+        fail("shell.js primary links must be today, briefs, tools, atlas, observe in that order")
+    more_at = shell.find('id: "more"')
+    subscribe_at = shell.find("订阅更新")
+    if more_at < 0 or subscribe_at < more_at or more_at < call_at[-1]:
+        fail("shell.js must keep 更多 after the five doors and 订阅更新 as the action")
+    more_labels = ["博主库", "做法条目", "随笔", "飞书订阅群", "给 Agent 用", "收录标准", "这是什么", "反馈 / 建议"]
+    more_calls = [
+        'item("creators.html"',
+        'item("practice.html"',
+        'item("blog/"',
+        "item(FEISHU_GROUP",
+        'item("agent.html"',
+        'item("atlas.html#method"',
+        'item("about.html"',
+        "item(FEEDBACK_FORM",
+    ]
+    segment = shell[more_at:subscribe_at]
+    pos = [segment.find(label) for label in more_labels]
+    if any(p < 0 for p in pos) or pos != sorted(pos) or any(call not in segment for call in more_calls):
+        fail("shell.js 更多 must list 博主库 / 做法条目 / 随笔 / 飞书订阅群 / 给 Agent 用 / 收录标准 / 这是什么 / 反馈 / 建议")
     for rel in ("assets/shell.js", "subscribe.html"):
         mirror = ROOT / rel
         if not mirror.exists():
@@ -699,9 +737,14 @@ def check_public_ui() -> None:
     if "AIHOT" in shell:
         fail("shell.js must not add another wordmark besides AI Radar")
     cards = (PUBLIC / "assets" / "cards.js").read_text(encoding="utf-8")
-    for label in ("对你意味着什么", "背景与出处", "什么情况下当这判断作废"):
+    for label in ("发生了什么", "为什么值得看", "对我有什么影响", "建议行动", "证据状态", "背景与出处", "什么情况下当这判断作废"):
         if label not in cards:
             fail(f"cards.js missing {label}")
+    if "so_what.confidence" in cards or ".confidence" in cards:
+        fail("cards.js must not render confidence or a raw score")
+    atlas_js = (PUBLIC / "assets" / "atlas.js").read_text(encoding="utf-8")
+    if "先验" in atlas_js or "toFixed(2)" in atlas_js or "save_ratio" in atlas_js:
+        fail("atlas.js must not print ratio scores or a prior formula")
     forbidden = ("P0-待证", "so_what", "falsifier", "AIHOT", "Tech Radar", "全部 lens")
     for name, needles in required.items():
         raw = (PUBLIC / name).read_text(encoding="utf-8")
@@ -715,6 +758,8 @@ def check_public_ui() -> None:
                 fail(f"{name} shows jargon {word}")
         if re.search(r"\bP0\b|\bP1\b|\blens\b", visible):
             fail(f"{name} shows priority or lens jargon in visible HTML")
+        if "先验" in visible or re.search(r"需求信号\s*\d", visible):
+            fail(f"{name} shows a ratio score or a prior formula")
         if "13:30" in visible or "从监控信源里捞" in visible:
             fail(f"{name} still shows a removed schedule slot or an auto-scrape claim")
     # Visitor help pages name what you can open. Internal systems stay in docs/SECURITY.md.

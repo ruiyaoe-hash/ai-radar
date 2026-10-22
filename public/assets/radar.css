@@ -81,13 +81,13 @@ a:hover { color: var(--accent-2); text-decoration: underline; text-underline-off
   border-bottom: 1px solid var(--border);
 }
 .bar-inner {
-  max-width: var(--container);
+  max-width: 1440px;
   height: 100%;
   margin: 0 auto;
   padding: 0 var(--space-md);
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 .brand {
   display: inline-flex;
@@ -739,7 +739,14 @@ a.featured-item:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(2
   .method-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
 }
 
-@media (max-width: 899px) {
+a.nav-direct { text-decoration: none; white-space: nowrap; padding-left: 10px; padding-right: 10px; font-size: 1rem; }
+.nav-groups { flex-wrap: nowrap; }
+a.nav-direct small { display: none; }
+a.nav-direct.current,
+.nav-slot.current > a.nav-direct { color: var(--accent); background: rgba(233, 230, 223, 0.05); }
+.btn-sub.current { color: var(--accent); border-color: rgba(255, 179, 92, 0.45); }
+
+@media (max-width: 1179px) {
   .menu-btn { display: inline-flex; }
   .bar-inner { justify-content: space-between; }
   .main-nav {
@@ -756,6 +763,18 @@ a.featured-item:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(2
   .main-nav.open { display: block; animation: fadeIn 0.2s ease; }
   .nav-groups { flex-direction: column; gap: var(--space-lg); max-width: 520px; margin: 0 auto; }
   .nav-trigger { pointer-events: none; padding: 0 0 var(--space-xs); min-height: 0; font-size: 1.3rem; background: none !important; }
+  a.nav-direct.nav-trigger {
+    pointer-events: auto;
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1.3rem;
+  }
+  a.nav-direct small { display: block; color: var(--muted); font-size: 0.78rem; line-height: 1.45; margin-top: 2px; font-family: var(--font-body); }
   .nav-trigger .chev { display: none; }
   .nav-menu {
     position: static;
@@ -772,7 +791,6 @@ a.featured-item:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(2
   }
   .nav-menu a { padding: 12px 4px; border-bottom: 1px solid var(--border); border-radius: 0; }
   body.nav-locked { overflow: hidden; }
-  .bar-actions .btn-sub { display: none; }
 }
 
 @media (max-width: 860px) {
@@ -821,4 +839,41 @@ a.featured-item:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(2
     box-shadow: 0 0 8px var(--accent);
   }
   .home-hero h1, .slogan-a { opacity: 1; }
+}
+
+/* Daily briefing home: shorter hero, task doors, same amber lamp. */
+.home-hero.briefing {
+  min-height: 0;
+  align-items: flex-start;
+  text-align: left;
+  padding: var(--space-2xl) var(--space-md) var(--space-lg);
+}
+.home-hero.briefing .inner { margin: 0 auto; }
+.home-hero.briefing h1 { font-size: 2.6rem; }
+.home-hero.briefing .slogan-a { margin-left: 0; margin-right: 0; }
+.home-hero.briefing .cta-row { justify-content: flex-start; }
+.section-lead { color: var(--text-soft); margin: -8px 0 var(--space-md); }
+.door-row { display: grid; gap: var(--space-sm); margin: 0 0 var(--space-lg); }
+.door-row a {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: inherit;
+  background: var(--panel);
+}
+.door-row a:hover { border-color: var(--accent); text-decoration: none; box-shadow: 0 0 15px rgba(255, 179, 92, 0.1); }
+.door-row strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; }
+.door-row span { color: var(--muted); font-size: 0.88rem; }
+.home-buckets { display: grid; gap: var(--space-sm); }
+.home-buckets .ring { margin: 0; }
+@media (min-width: 800px) {
+  .door-row { grid-template-columns: 1fr 1fr; }
+  .home-hero.briefing h1 { font-size: 3rem; }
+}
+@media (max-width: 599px) {
+  .home-hero.briefing { padding: var(--space-xl) var(--space-sm) var(--space-md); text-align: left; }
+  .home-hero.briefing h1 { font-size: 2rem; }
+  .home-hero.briefing .cta-row { align-items: stretch; }
+  .home-hero.briefing .cta-row .btn { width: 100%; max-width: none; }
 }
