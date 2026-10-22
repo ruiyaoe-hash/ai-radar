@@ -175,6 +175,10 @@ AI Radar 是面向 AI OPC / 从业者的**按日归档情报时间线**：从精
 
 ## 6. 端到端架构
 
+2026-10-22 起，强制 P0（Forced P0，必须先给人看的通道）以 `scripts/force_p0.py` 为准，例程只是再看一眼。它把行送进审核队列，不自动写公开归档或今日必看。打分的生产档仍是 v1；v2 先影子记录。说明在 [`score-and-briefs.md`](./score-and-briefs.md)，对照回测在 [`score-ab-backtest.md`](./score-ab-backtest.md)。下面的图仍是给人看的总览，班次和 Pages 没有改。
+
+
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  A 级 X 账号（config.a_tier）                                      │

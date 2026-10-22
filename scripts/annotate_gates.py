@@ -14,8 +14,9 @@ Defaults, on purpose:
     --no-time-policy drop is the only path to drop_reason no_reliable_time.
   - age > 48h → status deferred, drop_reason null (not today's slot).
     --stale-policy drop is the only path to drop_reason stale_old.
+    Forced P0 (scripts/force_p0.py) bypasses both and stays active for review.
   - RSS whose Shanghai publish date is before --as-of → deferred
-    (rss backfill is not today). That is not stale_old.
+    (rss backfill is not today). That is not stale_old. Forced P0 bypasses it.
   - role=report with no primary/official link → stays active, with a note that
     formal P0 is blocked. drop_reason media_alone only when the input notes
     contain attempt_formal_p0.
@@ -51,6 +52,7 @@ from pathlib import Path
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from card_times import parse_source_timestamp
+    from force_p0 import assign_p0, match_row_p0
     from generate_derived import safe_http_url
     from ingest_x import (
         SHANGHAI,
@@ -64,6 +66,7 @@ if __package__ in {None, ""}:
     )
 else:
     from .card_times import parse_source_timestamp
+    from .force_p0 import assign_p0, match_row_p0
     from .generate_derived import safe_http_url
     from .ingest_x import (
         SHANGHAI,
@@ -597,6 +600,7 @@ def annotate_records(records: list[dict], options: GateOptions) -> list[dict]:
         prefilter = prefilter_of(row, gate)
         attempt_p0 = "attempt_formal_p0" in original_notes
         rid = row.get("id")
+        p0_hit = match_row_p0(row)
 
         if canon is None or prefilter == "BLOCK":
             _set_decision(
@@ -672,7 +676,18 @@ def annotate_records(records: list[dict], options: GateOptions) -> list[dict]:
         channel = (row.get("source") or {}).get("channel")
         if channel == "rss":
             backfill = clock.astimezone(SHANGHAI).date() < options.as_of.astimezone(SHANGHAI).date()
-        if stale and options.stale_policy == "drop":
+        if (stale or backfill) and p0_hit is not None:
+            # Edition date must not hide a Forced P0. Still not an archive write.
+            _set_decision(
+                row,
+                "active",
+                None,
+                prefilter,
+                original_notes,
+                ["gate: force_p0 " + ",".join(p0_hit["kinds"])],
+            )
+            assign_p0(row, p0_hit, ["edition_date"])
+        elif stale and options.stale_policy == "drop":
             _set_decision(row, "dropped", "stale_old", prefilter, original_notes, ["gate: stale_old"])
         elif stale or backfill:
             reasons = []
@@ -688,7 +703,7 @@ def annotate_records(records: list[dict], options: GateOptions) -> list[dict]:
                 original_notes,
                 ["gate: deferred " + " ".join(reasons)],
             )
-        elif is_media_alone(row, options) and attempt_p0:
+        elif is_media_alone(row, options) and attempt_p0 and p0_hit is None:
             _set_decision(
                 row,
                 "dropped",
@@ -698,16 +713,19 @@ def annotate_records(records: list[dict], options: GateOptions) -> list[dict]:
                 ["gate: media_alone drop (attempt_formal_p0)"],
             )
         elif is_media_alone(row, options):
-            _set_decision(
-                row,
-                "active",
-                None,
-                prefilter,
-                original_notes,
-                ["gate: media_alone blocks formal P0 (P0-待证 or P1)"],
-            )
+            bits = ["gate: media_alone blocks formal P0 (P0-待证 or P1)"]
+            if p0_hit is not None:
+                bits.insert(0, "gate: force_p0 " + ",".join(p0_hit["kinds"]))
+            _set_decision(row, "active", None, prefilter, original_notes, bits)
+            if p0_hit is not None:
+                assign_p0(row, p0_hit, ["media_alone"])
         else:
-            _set_decision(row, "active", None, prefilter, original_notes, [])
+            bits = []
+            if p0_hit is not None:
+                bits.append("gate: force_p0 " + ",".join(p0_hit["kinds"]))
+            _set_decision(row, "active", None, prefilter, original_notes, bits)
+            if p0_hit is not None:
+                assign_p0(row, p0_hit, [])
 
         if isinstance(rid, str):
             seen_ids.setdefault(rid, idx)
@@ -1028,6 +1046,30 @@ def self_check() -> None:
     dropped = annotate_records([stale_src], options_from_repo(as_of, stale_policy="drop"))[0]
     if dropped["status_in_pool"] != "dropped" or dropped["drop_reason"] != "stale_old":
         raise SystemExit(f"FAIL stale-policy drop: {dropped['status_in_pool']} {dropped['drop_reason']}")
+    duet_stale = _expand_fixture_row(
+        {
+            "id": "cand-20261010-a11ce0000001",
+            "url": "https://x.com/someone/status/77001",
+            "snippet": "FIXTURE Claude Duet research preview. Pro and Max can join the waitlist.",
+            "title": "FIXTURE Claude Duet research preview",
+            "published_at": "2026-10-10T00:00:00Z",
+            "handle": "someone",
+            "channel": "x",
+            "role_guess": "report",
+        }
+    )
+    kept_p0 = annotate_records([duet_stale], options_from_repo(as_of, stale_policy="drop"))[0]
+    if kept_p0["status_in_pool"] != "active" or kept_p0["drop_reason"] is not None:
+        raise SystemExit(
+            f"FAIL forced P0 must bypass stale drop: {kept_p0['status_in_pool']} {kept_p0['drop_reason']}"
+        )
+    if "frontier_launch" not in (kept_p0.get("force_p0") or {}).get("kinds", []):
+        raise SystemExit(f"FAIL forced P0 kinds missing: {kept_p0.get('force_p0')}")
+    if "edition_date" not in (kept_p0.get("force_p0") or {}).get("bypassed", []):
+        raise SystemExit("FAIL forced P0 should record the edition bypass")
+    kept_defer = annotate_records([duet_stale], options)[0]
+    if kept_defer["status_in_pool"] != "active":
+        raise SystemExit(f"FAIL forced P0 must bypass edition defer: {kept_defer['status_in_pool']}")
     timed = annotate_records(
         [
             _expand_fixture_row(

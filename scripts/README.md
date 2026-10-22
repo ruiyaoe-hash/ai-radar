@@ -12,7 +12,10 @@
 | `ingest_x.py` | Raw X fetch JSON → candidate JSONL (all items, stable cid). Judgment fields stay empty |
 | `shift_ingest_x_to_pool.py` | Alba shift: `ingest_x` then `annotate_gates --only-pending` into a private `--pool-dir`. No X fetch, no promote. Score is the next command |
 | `fetch_x_watch.py` | `practice_handles` + `a_tier` → raw fetch JSON when `X_BEARER_TOKEN` is set. Missing token exits 0 and leaves the hand-feed path |
-| `score_pool.py` | After gates: rules score, three bands, `low_score` trace. No network LLM. Optional `review/YYYY-MM-DD.md` |
+| `score_pool.py` | After gates: v1 rules score (production band), shadow v2, `low_score` trace. Forced P0 stays in review. No network LLM. Optional `review/YYYY-MM-DD.md` and `review/p0-YYYY-MM-DD.json` |
+| `score_pool_v2.py` | Experimental multi-axis score. Rules fallback is mandatory. Called from `score_pool.py` |
+| `force_p0.py` | Forced P0 matcher (frontier launch, runtime vuln with an upgrade, same-day a_tier pair). Does not publish |
+| `backtest_score_ab.py` | Compare v1 and v2 on a JSONL sample and, with labels, compute recall / precision stubs |
 | `derive_briefs.py` | `auto_brief` rows → `public/briefs.json`. Strips raw posts, checks instruction text, skips archive URLs and practice |
 | `ingest_rss.py` | Batch-1 lab RSS / GitHub Releases → the same pending rows (`channel=rss`). Live fetch stays out of public CI |
 | `annotate_gates.py` | L0 gates + L2 `cluster_id`. Writes judgment fields back. Does not promote. Leaves `low_score` and `editor_skip` in place |

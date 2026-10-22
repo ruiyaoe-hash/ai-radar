@@ -2,6 +2,8 @@
 
 门槛和聚簇之后、L1 晋升之前。脚本是 `scripts/score_pool.py`。不调用云端模型。没有 `AI_RADAR_SCORE_LLM_URL` 时 `score.llm` 为 `null`，`method` 为 `rules`。把这个环境变量设上，也只写入 `skipped_reason=adapter_not_configured`，不会把正文 POST 出去。
 
+生产分档仍是 v1（对照臂，control）。v2（多维实验分）默认只影子写入 `score.v2`，不改 `band`，也不因此多发快讯。要换成 v2 当档，把 `config.json` 的 `score.active_scorer` 改成 `v2`，或单次运行加 `--scorer v2`。Rui 没改之前，默认保持 v1。对照怎么跑见 [`score-ab-backtest.md`](./score-ab-backtest.md)。
+
 ## 分
 
 写在候选行的 `score` 上（私有池，不进公开仓）：
@@ -16,9 +18,9 @@ value = clamp(
 
 | 分量 | 含义 |
 |------|------|
-| `prior` | `tier_mix` × 档位权重 + (1−tier_mix) × 平滑命中率。档位来自 `tier_prior` / `role_guess`（T1、a_tier 高，T3 低，名单外 0.48）。命中率 = `(命中 + hit_alpha) / (命中 + 否决 + hit_alpha + hit_beta)`。命中 = `promoted` 或已带 `brief_id`。否决只算编辑/质量类原因（`editor_skip`、`prefilter_block`、`not_opc_action`、`rumor_no_upgrade`、`media_alone`、`practice_not_steps`、`hot_signal_only`）。`low_score`（衰减）、`duplicate_*`、`no_new_info`、`stale_old` 说明的是时机，不是信源好坏，**不进分母**。还没决定的 `active` 不进分子也不进分母 |
+| `prior` | v1 对照臂仍用旧混合：`tier_mix` × `max(档位, role)` + (1−tier_mix) × 平滑命中率。这个数还会把高 `tier_prior` 和二手 `report` 揉在一起，所以**不要**把它当成证据等级。拆开的三个数写在下面。命中率 = `(命中 + hit_alpha) / (命中 + 否决 + hit_alpha + hit_beta)`。命中只算编辑晋升的 `promoted`。单纯自动快讯（`brief_id`，机器发的 L2）**不算**用户价值正反馈。否决只算编辑/质量类原因（`editor_skip`、`prefilter_block`、`not_opc_action`、`rumor_no_upgrade`、`media_alone`、`practice_not_steps`、`hot_signal_only`）。`low_score`、`duplicate_*`、`no_new_info`、`stale_old` 不进分母。还没决定的 `active` 不进分子也不进分母 |
 | `decay` | 发表时间到 `--as-of` 的小时数。没有 `published_at` 时固定 0.55，不用入库时间假装很新 |
-| `corroboration` | 同簇里 `prefilter=PASS` 的独立 handle（或无 handle 时的 URL）数，每多一个 +0.08，最多三个；簇内有一手/官方链接再 +0.16。底是 0.72，上限 1 |
+| `corroboration` | 独立证据，不是转载次数。同簇里已因 `duplicate_url`、`duplicate_event`、`no_new_info` 丢掉的行**不算**独立身份。有一手或官方 URL 时，按不同的一手 URL 计数（同源转载共用一个 URL，不加分）；没有一手 URL 时，才退回数独立账号。每多一个 +0.08，最多三个；簇内有一手再 +0.16。底是 0.72，上限 1。另两个数只记录、不乘进 v1：`spread`（传播面，说过这件事的账号，含转载）和 `independent_evidence`（独立一手 URL 的个数） |
 | `velocity` | 没有收藏/点赞计数时为 1（RSS 不因此吃亏）。有计数时，`(bookmarks+bookmark_prior)/(likes+like_prior)` 和每小时收藏速度都按该作者在池里的样本归一，样本少时向先验收缩（`author_prior_n`）。丢弃行的计数也进基线 |
 | `actionability` | 规则：步骤词、命令行、GitHub/GitLab 仓库链接。上限 `actionability_cap`。不是模型判分 |
 
@@ -31,16 +33,81 @@ value = clamp(
 | `score.band` | `band_reason` | 池内 |
 |--------------|---------------|------|
 | `auto_brief` | `auto_primary` | 仍是 `active`。高分、**行本身**是 RSS 一手官方源（`score.official_source=true`），且不是实操车道。`scripts/derive_briefs.py` 可以写成公开快讯 |
-| `review` | `review_score` / `review_practice` / `review_no_primary` / `review_not_official` / `review_deferred` | 保持 `active` 或 `deferred`。`--write-review` 把清单写到私有池 `review/YYYY-MM-DD.md` |
-| `drop` | `drop_low_score` | `status_in_pool=dropped`，`drop_reason=low_score`，`notes` 里留 `score:low_score value=…`。schema 要求这条 notes 非空 |
+| `review` | `review_score` / `review_practice` / `review_no_primary` / `review_not_official` / `review_deferred` / `review_p0` | 保持 `active`，或仍是 `deferred`（今日档先不上）。`--write-review` 把清单写到私有池 `review/YYYY-MM-DD.md`。`review_p0` 排在最前 |
+| `drop` | `drop_low_score` | 只发生在仍是 `active` 的低分。`status_in_pool=dropped`，`drop_reason=low_score`，`notes` 里留 `score:low_score value=…`。schema 要求这条 notes 非空。已经 `deferred` 的行**不会**被改写成 `low_score` |
 
 `review_not_official`：簇里有一手链接，但这一行自己不是 RSS 官方源。典型是 X 上的爆料帖和官方帖进了同一簇，或实验室自己的 X 账号。它们靠簇内印证拿到高分，但不会自动发布，必须人看。schema 用 `if band=auto_brief then official_source=true` 锁住这一条。
 
 实操（`practice_handles`、`tier_prior=practice`、`lane_hint` 或 `participation=practice`）即使分高也是 `review_practice`，不会自动进快讯，也不会写 `public/practice/`。Magpie 这条车道仍然要人核过，`verified` 不由脚本改。
 
-已经是 `editor_skip`、`promoted`、`rerouted`，或其它 `dropped` 的行不改状态、不覆盖原因。`low_score` 再跑 `annotate_gates` 也不会被抬回去。要重看，人先把原因改掉。
+已经是 `editor_skip`、`promoted`、`rerouted`，或其它 `dropped` 的行不改状态、不覆盖原因。`low_score` 再跑 `annotate_gates` 也不会被抬回去。要重看，人先把原因改掉。例外只有强制 P0：窗口内、`drop_reason` 为 `low_score` 或 `stale_old`、而且规则对上的行，会被抬回 `active` 并标 `review_p0`。编辑否决不在此列。
 
 `pending` / `wrong_lane` / `quota` / `quota_defer` 仍然不是 `drop_reason`。
+
+这三件事不要写成同一个原因：
+
+| 发生了什么 | 留在哪 | 不是 |
+|------------|--------|------|
+| 今天这期先不上（超过时效窗，或 RSS 回填不是今天） | `deferred`，`drop_reason` 仍是 null，`score.edition_eligibility=held_edition`，分档 `review_deferred` | 不是低价值，也不是重复 |
+| 重复（同一 URL、同一短窗、或同簇没有新信息） | `duplicate_url` / `duplicate_event` / `no_new_info` | 不是「这篇不行」，也不拿去充独立证据 |
+| 价值分不够 | 仅 `active` 行可成 `low_score` | 不是「过了今天的档期」 |
+
+`edition_eligibility` 还有 `eligible`（可以进今天这期）和 `stale_window`（发表时钟已经老于门槛窗，但行仍是 active）。v1 的时间衰减仍用一个 τ=36 小时。按类型分开的时间只在 v2 的新鲜度里。
+
+## 三个分开的数
+
+v1 的 `components.prior` 是对照臂，仍可能让高档位盖住二手角色。判断时看这三个字段：
+
+| 字段 | 含义 |
+|------|------|
+| `source_reliability`（信源可靠度） | 只看账号或机构先验：档位权重和编辑命中率。不掺 `role_guess` |
+| `evidence_grade`（证据等级） | `primary` 0.95，`analysis` 0.72，`report` 0.42，角色空着是 0.5。T1 的二手报道等级仍是 0.42 |
+| `content_value`（内容价值） | 等于 v1 的 `value`，是排序分，不是读者打分 |
+
+## 强制 P0（Forced P0）
+
+代码在 `scripts/force_p0.py`，由门槛和打分调用。例程仍可以再看一眼，但准绳是这段代码，不是 Alba 的口头清单。命中之后：
+
+- 分档是 `review`，原因 `review_p0`，行上写 `force_p0`（`source=code`）
+- 排进审核清单最前，并写私有池 `review/p0-YYYY-MM-DD.json`（没有正文）
+- 发生在普通低分丢弃和「今天这期先不上」之前。`bypassed` 里会记下 `low_score` 或 `edition_date`
+- **不**写公开归档，**不**写今日必看，**不**进自动快讯。要上公开卡仍是人开 PR
+- 飞书默认仍只推已经由人写进归档的正式 P0。把 `AI_RADAR_P0_HOOK` 指到上面的 JSON，才会多打印或发送一条「待人审」。不设这个变量时，飞书行为与以前相同
+
+三条规则（2026-10-22 漏报之后写死）：
+
+1. **frontier_launch**：前沿实验室的新智能体、新产品线或新模型家族。包括研究预览（research preview），以及 Pro / Max 可以排队的候补（waitlist）。普通的发布说明、没有这些字样的，不会被抬成 P0。
+2. **runtime_vuln**：厂商的远程代码执行（RCE）、未授权接管，或大规模运行时漏洞，并且写明了要升到的版本。不是 AI 技术栈也算，这是给访客的卫生提醒。只说「有洞」但没有版本号的，不强制。
+3. **multi_a_tier**：同一个北京日历日、同一个簇里，至少两个 `a_tier` 账号，而且 v1 本来就会进人工档。必须摆出来让人明确晋升或跳过。文本像会改变这周的工具选择时，`default_action=promote`；否则建议 `skip`，但行仍留在队列里，直到人写成 `editor_skip` 或晋升。
+
+回归夹具在 `testdata/p0/cases.json`：Claude Duet 研究预览，以及带升级版本的 PHP2Shell 一类运行时漏洞。
+
+## v2 多维分（实验，不是最优）
+
+`scripts/score_pool_v2.py`。五个 0–1 的维度，权重在 `config.json` 的 `score.v2`，加起来为 1：
+
+```text
+P = 0.30×importance + 0.25×novelty + 0.20×relevance + 0.15×actionability + 0.10×freshness
+```
+
+| 维度 | 现在怎么估（规则，不是模型） |
+|------|------------------------------|
+| importance（重要度） | 信源可靠度。前沿发布或带版本的运行时漏洞至少 0.86 |
+| novelty（新颖度） | 转载把传播面抬高、却没有新的一手 URL 时下调 |
+| relevance（相关度） | 产品发布和实操高一些。非 AI 的漏洞仍给访客卫生分 |
+| actionability（可行动性） | 步骤、命令、仓库链接，外加「有版本可升」或「这周能换工具」 |
+| freshness（新鲜度） | `exp(-年龄 / τ)`。τ 按类型：漏洞 18 小时，产品发布 30，教程 96，分析 72，其余 36。没有发表时间仍是 0.55 |
+
+`confidence`（独立把握）单独做门，不掺进 P。二手且没有一手 URL 时封顶 0.4。强制 P0 同时绕过 P 的门槛和把握门槛，但仍然不能自动发布。
+
+规则分永远会填上这些维度。云端模型只留了批处理 JSON 的形状（`llm_batch_stub`）：只有 id 和 URL，不 POST 正文。CI 不需要网络模型。本地若以后传入覆盖数字，缺的维度仍用规则值。
+
+## 仍旧成立的限制
+
+- RSS 的 batch 2（TechCrunch、HN、Reddit、trending 等）本阶段不抓，`--batch 2` 会拒绝。
+- X 免费轨：Actions 没配 `X_BEARER_TOKEN` 时抓取软跳过，公开 CI 不因此失败。
+- 自动快讯仍只锁官方 RSS 一手行。X 不自动写成快讯。
+- 公开仓和私有池仍分开。今日必看和已核验的实操仍要人开 PR。Pages 仍是静态站。
 
 ## 校准怎么写回
 
@@ -148,6 +215,9 @@ RSS 把文件名换成 `ingest-rss-pool.yml`，body 只要 `{"ref":"main"}`。`m
 
 ```bash
 python3 scripts/score_pool.py --self-check
+python3 scripts/score_pool_v2.py --self-check
+python3 scripts/force_p0.py --self-check
+python3 scripts/backtest_score_ab.py --self-check
 python3 scripts/derive_briefs.py --self-check
 python3 scripts/fetch_x_watch.py --self-check
 python3 scripts/score_sources.py --self-check

@@ -1,0 +1,7 @@
+cid,url,important,duplicate,low_value,actionable,evidence_sufficient,should_p0,event_at,notes
+cand-20261022-b0b000000001,https://x.com/someone/status/77001,1,0,0,1,0,1,2026-10-18T02:00:00Z,synthetic duet-class
+cand-20261022-b0b000000002,https://example.com/fixture-php2shell,1,0,0,1,1,1,2026-10-19T00:00:00Z,synthetic vuln-class
+cand-20261022-b0b000000003,https://openai.com/blog/fixture-ab-ordinary,0,0,1,0,1,0,2026-10-22T09:00:00Z,ordinary official note
+cand-20261022-b0b000000004,https://techcrunch.com/2026/10/22/fixture-ab-solo,0,0,1,0,0,0,,second-hand solo
+cand-20261022-b0b000000005,https://www.theverge.com/2026/10/22/fixture-ab-reprint,0,1,1,0,0,0,,homologous reprint
+cand-20261022-b0b000000006,https://example.com/fixture-ab-held,0,0,0,0,0,0,2026-10-01T00:00:00Z,edition hold is not low value

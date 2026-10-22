@@ -1,24 +1,34 @@
 #!/usr/bin/env python3
 """Score candidate rows after annotate gates and before promotion.
 
-score ≈ prior(tier, smoothed hit rate)
-      × exp(-age_hours / τ)
-      × corroboration(independent sources, primary link)
-      × velocity(bookmark/like vs author baseline)
-      + actionability (capped rule heuristic)
+v1 (control), still the production band unless config score.active_scorer is v2:
+
+  value ≈ prior(tier, smoothed editor hit rate)
+        × exp(-age_hours / τ)
+        × corroboration(independent evidence, not reprint drops)
+        × velocity(bookmark/like vs author baseline)
+        + actionability (capped rule heuristic)
+
+v2 is written under score.v2 when score.shadow_v2 is true. It does not change
+band while active_scorer stays v1.
 
 Bands written onto the row:
-  auto_brief  high score, the row itself comes from an official source on an
-              AUTO_CHANNELS feed (not X, not a cluster neighbour), and not practice
-  review      mid/high, practice, deferred, cluster-only primary, or no primary
-  drop        low score → status dropped, drop_reason low_score, notes keep the trace
+  auto_brief  high v1 score, the row itself comes from an official source on an
+              AUTO_CHANNELS feed (not X, not a cluster neighbour), and not practice.
+              Forced P0 never uses this band.
+  review      mid/high, practice, deferred, cluster-only primary, no primary,
+              or review_p0 (forced P0, human queue, no archive write)
+  drop        low score on an active row → status dropped, drop_reason low_score.
+              A deferred row is an edition hold and is not rewritten into low_score.
 
-Hit rate counts promoted rows and published briefs as hits. Only editorial or
-quality drops (QUALITY_DROPS) are misses; decay, duplicates, and timing are not
-a verdict on the source. Rows that already carry brief_id are a decision and
-are not rescored. editor_skip, promoted, and rerouted rows are left untouched.
-Only rows ingested within score_window_days are rescored, so older pool files
-are not rewritten on every run.
+Hit rate counts editor promotions (status promoted) only. A plain auto_brief
+(brief_id with no promotion) is not user-value feedback. Only editorial or
+quality drops (QUALITY_DROPS) are misses. Reprint drops do not count as
+independent evidence. Rows that already carry brief_id are a publish decision
+and are not rescored. editor_skip, promoted, and rerouted rows are left
+untouched. Only rows ingested within score_window_days are rescored, except
+that a low_score or stale_old row inside the window can be lifted when Forced
+P0 matches.
 
 Rules scoring does not call a network. AI_RADAR_SCORE_LLM_URL only fills
 score.llm.skipped_reason; there is no hosted adapter in this repo.
@@ -46,12 +56,23 @@ from pathlib import Path
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from annotate_gates import (
+        canonical_url,
         evidence_links,
         has_primary_ref,
         options_from_repo,
         read_pool,
+        url_is_primary,
         write_pool,
     )
+    from force_p0 import (
+        REPRINT_DROP_REASONS,
+        assign_p0,
+        hook_document,
+        match_multi_a_tier,
+        match_row_p0,
+        merge_p0,
+    )
+    from score_pool_v2 import resolve_v2_config, score_v2
     from card_times import utc_now_iso
     from ingest_x import (
         IngestError,
@@ -64,12 +85,23 @@ if __package__ in {None, ""}:
     from shift_ingest_x_to_pool import assert_shift_pool_dir
 else:
     from .annotate_gates import (
+        canonical_url,
         evidence_links,
         has_primary_ref,
         options_from_repo,
         read_pool,
+        url_is_primary,
         write_pool,
     )
+    from .force_p0 import (
+        REPRINT_DROP_REASONS,
+        assign_p0,
+        hook_document,
+        match_multi_a_tier,
+        match_row_p0,
+        merge_p0,
+    )
+    from .score_pool_v2 import resolve_v2_config, score_v2
     from .card_times import utc_now_iso
     from .ingest_x import (
         IngestError,
@@ -132,6 +164,9 @@ class ScoreConfig:
     author_prior_n: float = 3.0
     actionability_cap: float = 0.12
     score_window_days: float = 3.0
+    active_scorer: str = "v1"
+    shadow_v2: bool = True
+    v2: dict | None = None
 
     def validate(self) -> None:
         if self.tau_hours <= 0:
@@ -148,6 +183,11 @@ class ScoreConfig:
             raise IngestError("score.actionability_cap must be in [0, 0.5]")
         if self.score_window_days <= 0:
             raise IngestError("score.score_window_days must be > 0")
+        if self.active_scorer not in {"v1", "v2"}:
+            raise IngestError("score.active_scorer must be v1 or v2")
+        if not isinstance(self.shadow_v2, bool):
+            raise IngestError("score.shadow_v2 must be a boolean")
+        self.v2 = resolve_v2_config(self.v2 if isinstance(self.v2, dict) else None)
 
 
 def load_score_config(root: Path | None = None) -> ScoreConfig:
@@ -224,10 +264,12 @@ def _pass_row(row: dict) -> bool:
 
 
 def decision_counts(rows: list[dict]) -> tuple[dict[str, int], dict[str, int]]:
-    """Promoted rows and published briefs are hits. Editorial or quality drops are misses.
+    """Editor promotions are hits. A plain auto_brief publish is not.
 
-    low_score (decay), duplicate_*, no_new_info, stale_old, and missing clocks say
-    nothing about the source, so they stay out of the denominator. The same id counts once.
+    brief_id means the machine published an L2 brief. That is not an explicit
+    editor outcome, so it does not raise the account's hit rate. Editorial or
+    quality drops (QUALITY_DROPS) are misses. low_score, duplicate_*, no_new_info,
+    stale_old, and missing clocks stay out of the denominator. The same id counts once.
     """
     hits: dict[str, set[str]] = defaultdict(set)
     drops: dict[str, set[str]] = defaultdict(set)
@@ -237,7 +279,7 @@ def decision_counts(rows: list[dict]) -> tuple[dict[str, int], dict[str, int]]:
             continue
         rid = str(row.get("id") or "")
         status = row.get("status_in_pool")
-        if status == "promoted" or row.get("brief_id"):
+        if status == "promoted":
             hits[handle].add(rid)
             drops[handle].discard(rid)
         elif status == "dropped" and row.get("drop_reason") in QUALITY_DROPS and rid not in hits[handle]:
@@ -361,12 +403,13 @@ def band_of(
     cfg: ScoreConfig,
     official: bool = False,
 ) -> tuple[str, str]:
+    # Edition hold is not a value judgment. Do not collapse deferred into low_score.
+    if status == "deferred":
+        return "review", "review_deferred"
     if value < cfg.review_min:
         return "drop", "drop_low_score"
     if practice:
         return "review", "review_practice"
-    if status == "deferred":
-        return "review", "review_deferred"
     if not primary:
         return "review", "review_no_primary"
     if not official:
@@ -390,6 +433,102 @@ def scorable(row: dict) -> bool:
     return row.get("status_in_pool") in {"active", "deferred"}
 
 
+def counts_spread(row: dict) -> bool:
+    """Reach: accounts that passed the gate, including homologous reprints."""
+    if row.get("prefilter") != "PASS":
+        return False
+    if row.get("status_in_pool") == "dropped" and row.get("drop_reason") in QUALITY_DROPS:
+        return False
+    return True
+
+
+def counts_independent(row: dict) -> bool:
+    """Independent witnesses. Reprint drops and quality drops do not count."""
+    if not counts_spread(row):
+        return False
+    if row.get("status_in_pool") == "dropped" and row.get("drop_reason") in REPRINT_DROP_REASONS:
+        return False
+    return True
+
+
+def primary_urls(row: dict, options) -> set[str]:
+    found: set[str] = set()
+    own = canonical_url(row.get("url_norm") or row.get("url"))
+    if own and url_is_primary(own, options):
+        found.add(own)
+    for link in evidence_links(row):
+        if url_is_primary(link, options):
+            found.add(link)
+    return found
+
+
+def corroboration_value(independent_sources: int, evidence_n: int, primary: bool) -> float:
+    """Boost from distinct primary URLs when we have them, else from independent accounts.
+
+    Homologous reprints that share one official URL do not add extras.
+    """
+    if evidence_n > 0:
+        extras = min(3, max(0, evidence_n - 1))
+    else:
+        extras = min(3, max(0, independent_sources - 1))
+    return _r4(min(1.0, 0.72 + extras * 0.08 + (0.16 if primary else 0.0)))
+
+
+def source_reliability_of(row: dict, hit: float, cfg: ScoreConfig) -> float:
+    """Tier prior blended with editor hit rate. role_guess is not mixed in."""
+    tier = row.get("tier_prior")
+    tier_w = TIER_WEIGHT.get(tier, UNKNOWN_TIER) if isinstance(tier, str) else UNKNOWN_TIER
+    return _r4(cfg.tier_mix * tier_w + (1.0 - cfg.tier_mix) * hit)
+
+
+def evidence_grade_of(row: dict) -> float:
+    role = (row.get("source") or {}).get("role_guess")
+    if isinstance(role, str) and role in ROLE_WEIGHT:
+        return ROLE_WEIGHT[role]
+    return 0.5
+
+
+def edition_eligibility_of(row: dict, as_of: datetime, stale_hours: float) -> str:
+    notes = str(row.get("notes") or "")
+    if (
+        row.get("status_in_pool") == "deferred"
+        or "rss_backfill_not_today" in notes
+        or "stale_window" in notes
+        or "edition_date" in notes
+    ):
+        return "held_edition"
+    age = age_hours(row, as_of)
+    if age is not None and age > stale_hours:
+        return "stale_window"
+    return "eligible"
+
+
+def shanghai_day_of(row: dict) -> str | None:
+    for key in ("published_at", "ingested_at"):
+        raw = row.get(key)
+        if isinstance(raw, str) and raw:
+            try:
+                return shanghai_file_day(raw)
+            except IngestError:
+                continue
+    return None
+
+
+def score_eligible(row: dict, as_of: datetime, cfg: ScoreConfig) -> bool:
+    if not in_score_window(row, as_of, cfg.score_window_days):
+        return False
+    if scorable(row):
+        return True
+    if (
+        row.get("status_in_pool") == "dropped"
+        and row.get("drop_reason") in {"low_score", "stale_old"}
+        and row.get("prefilter") == "PASS"
+        and match_row_p0(row)
+    ):
+        return True
+    return False
+
+
 def in_score_window(row: dict, as_of: datetime, days: float) -> bool:
     """Rows ingested long ago keep their last score instead of being rewritten every run."""
     raw = row.get("ingested_at")
@@ -407,17 +546,24 @@ def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) 
     cfg.validate()
     copied = [json.loads(dumps_record(row)) for row in rows]
     hits, drops = decision_counts(copied)
-    identities: dict[str, set[str]] = defaultdict(set)
     primary_cluster: set[str] = set()
+    spread_ids: dict[str, set[str]] = defaultdict(set)
+    independent_ids: dict[str, set[str]] = defaultdict(set)
+    evidence_urls: dict[str, set[str]] = defaultdict(set)
     ratios: dict[str, list[float]] = defaultdict(list)
     rates: dict[str, list[float]] = defaultdict(list)
     ages = [age_hours(row, as_of) for row in copied]
     for row, age in zip(copied, ages):
+        key = cluster_key(row)
+        if counts_spread(row):
+            spread_ids[key].add(source_identity(row))
+        if counts_independent(row):
+            independent_ids[key].add(source_identity(row))
+            evidence_urls[key].update(primary_urls(row, options))
+            if row_is_primary(row, options):
+                primary_cluster.add(key)
         if not _pass_row(row):
             continue
-        identities[cluster_key(row)].add(source_identity(row))
-        if row_is_primary(row, options):
-            primary_cluster.add(cluster_key(row))
         handle = handle_of(row)
         ratio = engagement_ratio(row, cfg)
         if handle and ratio is not None:
@@ -429,8 +575,11 @@ def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) 
     global_ratio = cfg.bookmark_prior / cfg.like_prior
     prior_rate = cfg.bookmark_prior / 7.0
     llm = llm_slot()
+    v2cfg = cfg.v2 if isinstance(cfg.v2, dict) else resolve_v2_config(None)
+    stale_hours = float(getattr(options, "stale_hours", 48.0) or 48.0)
+    pending: list[tuple[dict, dict]] = []
     for row, age in zip(copied, ages):
-        if not scorable(row) or not in_score_window(row, as_of, cfg.score_window_days):
+        if not score_eligible(row, as_of, cfg):
             continue
         handle = handle_of(row)
         hit = smoothed_hit_rate(
@@ -441,11 +590,16 @@ def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) 
         )
         base = tier_base(row)
         prior = _r4(cfg.tier_mix * base + (1.0 - cfg.tier_mix) * hit)
+        reliability = source_reliability_of(row, hit, cfg)
+        grade = _r4(evidence_grade_of(row))
         decay = _r4(decay_of(row, as_of, cfg.tau_hours))
-        members = identities.get(cluster_key(row), {source_identity(row)})
-        extras = min(3, max(0, len(members) - 1))
-        primary = cluster_key(row) in primary_cluster or row_is_primary(row, options)
-        corroboration = _r4(min(1.0, 0.72 + extras * 0.08 + (0.16 if primary else 0.0)))
+        key = cluster_key(row)
+        members = set(independent_ids.get(key, set()))
+        members.add(source_identity(row))
+        evidence_n = len(evidence_urls.get(key, set()))
+        spread_n = len(spread_ids.get(key) or {source_identity(row)})
+        primary = key in primary_cluster or row_is_primary(row, options)
+        corroboration = corroboration_value(len(members), evidence_n, primary)
         velocity = 1.0
         if handle and handle in ratios and engagement_ratio(row, cfg) is not None:
             baseline_ratio = (sum(ratios[handle]) + global_ratio * cfg.author_prior_n) / (
@@ -464,23 +618,113 @@ def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) 
         practice = is_practice_row(row, options.practice_handles)
         status = str(row.get("status_in_pool") or "")
         official = is_official_row(row)
-        band, reason = band_of(value, primary, practice, status, cfg, official)
+        would_band, would_reason = band_of(value, primary, practice, status, cfg, official)
+        pending.append(
+            (
+                row,
+                {
+                    "prior": prior,
+                    "reliability": reliability,
+                    "grade": grade,
+                    "decay": decay,
+                    "corroboration": corroboration,
+                    "velocity": velocity,
+                    "act": act,
+                    "value": value,
+                    "practice": practice,
+                    "official": official,
+                    "primary": primary,
+                    "would_band": would_band,
+                    "would_reason": would_reason,
+                    "edition": edition_eligibility_of(row, as_of, stale_hours),
+                    "age": age,
+                    "evidence_n": evidence_n,
+                    "spread_n": spread_n,
+                    "independent_n": len(members),
+                },
+            )
+        )
+
+    would_be = {str(row.get("id")): (meta["would_band"], meta["would_reason"]) for row, meta in pending}
+    multi = match_multi_a_tier(copied, would_be, set(getattr(options, "a_tier", set()) or set()), shanghai_day_of)
+    for row, meta in pending:
+        spec = merge_p0(match_row_p0(row), multi.get(str(row.get("id"))))
+        band, reason = meta["would_band"], meta["would_reason"]
+        scorer_name = "v1"
+        forced = spec is not None
+        if forced:
+            bypassed: list[str] = []
+            if meta["value"] < cfg.review_min:
+                bypassed.append("low_score")
+            if str(row.get("status_in_pool") or "") == "deferred" or meta["edition"] == "held_edition":
+                bypassed.append("edition_date")
+            if row.get("drop_reason") in {"low_score", "stale_old"}:
+                bypassed.append(str(row.get("drop_reason")))
+            assign_p0(row, spec, bypassed)
+            band, reason = "review", "review_p0"
+            if row.get("status_in_pool") == "dropped" and row.get("drop_reason") in {"low_score", "stale_old"}:
+                row["status_in_pool"] = "active"
+                row["drop_reason"] = None
+                row["archive_id"] = None
+                row["promotion_path"] = None
+            elif row.get("status_in_pool") == "deferred":
+                row["status_in_pool"] = "active"
+                row["drop_reason"] = None
+        v2 = None
+        if cfg.shadow_v2 or cfg.active_scorer == "v2" or forced:
+            v2 = score_v2(
+                row,
+                age_hours=meta["age"],
+                source_reliability=meta["reliability"],
+                evidence_grade=meta["grade"],
+                independent_sources=meta["independent_n"],
+                evidence_n=meta["evidence_n"],
+                spread_n=meta["spread_n"],
+                primary=meta["primary"],
+                official=meta["official"],
+                practice=meta["practice"],
+                actionability_raw=meta["act"],
+                actionability_cap=cfg.actionability_cap,
+                status=str(row.get("status_in_pool") or ""),
+                cfg=v2cfg,
+                forced=forced,
+            )
+            if llm and v2 is not None:
+                v2["llm"] = {"skipped_reason": llm.get("skipped_reason") or "adapter_not_configured"}
+            if cfg.active_scorer == "v2" and not forced and v2 is not None:
+                band, reason = v2["band"], v2["band_reason"]
+                scorer_name = "v2"
+        value = meta["value"]
+        prior = meta["prior"]
+        decay = meta["decay"]
+        corroboration = meta["corroboration"]
+        velocity = meta["velocity"]
+        act = meta["act"]
         row["score"] = {
             "value": value,
             "band": band,
             "band_reason": reason,
-            "primary_source": bool(primary),
-            "official_source": bool(official),
+            "primary_source": bool(meta["primary"]),
+            "official_source": bool(meta["official"]),
             "method": "rules",
+            "scorer": scorer_name,
+            "source_reliability": meta["reliability"],
+            "evidence_grade": meta["grade"],
+            "content_value": value,
+            "edition_eligibility": meta["edition"],
             "components": {
                 "prior": prior,
                 "decay": decay,
                 "corroboration": corroboration,
                 "velocity": velocity,
                 "actionability": act,
+                "spread": meta["spread_n"],
+                "independent_evidence": meta["evidence_n"],
             },
             "llm": llm,
         }
+        if v2 is not None:
+            row["score"]["v2"] = v2
         if band == "drop":
             trace = (
                 f"score:low_score value={value:.4f} prior={prior:.4f} decay={decay:.4f} "
@@ -505,17 +749,26 @@ def review_markdown(rows: list[dict], as_of: datetime) -> str:
         if row.get("status_in_pool") == "dropped":
             continue
         queued.append(row)
-    queued.sort(key=lambda row: (-(row.get("score") or {}).get("value", 0), str(row.get("id"))))
+    def _queue_key(row: dict) -> tuple:
+        spec = row.get("force_p0") or {}
+        p0 = 1 if spec.get("active") else 0
+        promote = 1 if spec.get("default_action") == "promote" else 0
+        return (-p0, -promote, -(row.get("score") or {}).get("value", 0), str(row.get("id")))
+
+    queued.sort(key=_queue_key)
     lines = [
         f"# 审核清单 {day}",
         "",
-        "机器低分已是 `dropped` + `low_score`，不在本清单。实操只出现在这里，不写入 practice inbox。",
+        "机器低分已是 `dropped` + `low_score`，不在本清单。延后（deferred，今日档先不上）也不是低价值，原因仍是 `review_deferred`。",
+        "带 `review_p0` 的行是强制 P0（Forced P0）。代码是准绳，例程可以再看一眼。它们排在最前，只等人决定晋升或跳过，脚本不写公开归档，也不写今日必看。",
+        "实操只出现在这里，不写入 practice inbox。",
         "通过并上 L1：池行改为 `promoted`，`archive_id` 指向公开卡，公开卡写同一个 `candidate_id`。",
         "否决：`drop_reason=editor_skip`，并且 `notes` 不能空。`annotate_gates` 和 `score_pool` 都不再改这一行。",
         "私人 action（tried / ignored）写未跟踪的 `owner-actions.local.json`，或飞书。不要写入公开 `public/owner-actions.json`。",
+        "同目录的 `p0-日期.json` 是通知钩子，没有正文。飞书仍只推已经由人写进归档的正式 P0。",
         "",
-        "| cid | band | value | handle | lane | primary | url |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| cid | band | value | handle | lane | primary | p0 | default | url |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for row in queued:
         score = row["score"]
@@ -524,19 +777,23 @@ def review_markdown(rows: list[dict], as_of: datetime) -> str:
             lane = "practice"
         else:
             lane = row.get("lane_hint") or "digest"
+        spec = row.get("force_p0") or {}
+        kinds = ",".join(spec.get("kinds") or []) if spec.get("active") else ""
         lines.append(
-            "| {cid} | {band} | {value:.4f} | {handle} | {lane} | {primary} | {url} |".format(
+            "| {cid} | {band} | {value:.4f} | {handle} | {lane} | {primary} | {p0} | {default} | {url} |".format(
                 cid=row.get("id"),
                 band=score.get("band_reason"),
                 value=float(score.get("value") or 0),
                 handle=handle,
                 lane=lane,
                 primary="yes" if score.get("primary_source") else "no",
+                p0=kinds,
+                default=spec.get("default_action") or "",
                 url=row.get("url_norm") or row.get("url") or "",
             )
         )
     if not queued:
-        lines.append("|  |  |  |  |  |  |  |")
+        lines.append("|  |  |  |  |  |  |  |  |  |")
     lines.append("")
     return "\n".join(lines)
 
@@ -548,6 +805,12 @@ def write_review(pool_dir: Path, rows: list[dict], as_of: datetime) -> Path:
     assert_not_public(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(review_markdown(rows, as_of), encoding="utf-8")
+    hook_path = pool_dir / "review" / f"p0-{day}.json"
+    assert_not_public(hook_path)
+    hook_path.write_text(
+        json.dumps(hook_document(rows, day), ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     return path
 
 
@@ -855,6 +1118,10 @@ def self_check() -> None:
     pair_c = by_id[pair_report["id"]]["score"]["components"]["corroboration"]
     if not pair_c > solo_c:
         raise SystemExit(f"FAIL: cluster primary should raise corroboration {pair_c} vs {solo_c}")
+    if by_id[fresh["id"]]["score"].get("scorer") != "v1" or "v2" not in by_id[fresh["id"]]["score"]:
+        raise SystemExit("FAIL: production default must keep v1 band and shadow v2")
+    if by_id[fresh["id"]]["score"]["v2"]["method"] != "rules":
+        raise SystemExit("FAIL: v2 must stay on the rules path")
     if not by_id[viral["id"]]["score"]["components"]["velocity"] > by_id[quiet["id"]]["score"]["components"]["velocity"]:
         raise SystemExit("FAIL: bookmark velocity did not rank the faster post higher")
     if not by_id[steps["id"]]["score"]["components"]["actionability"] > by_id[plain["id"]]["score"]["components"]["actionability"]:
@@ -960,9 +1227,22 @@ def self_check() -> None:
     if timed["score"]["components"]["prior"] != alone_prior:
         raise SystemExit("FAIL: decay and duplicate drops must not lower the source prior")
     briefed = dict(fresh, id="cand-20261014-eeeeeeeeee01", brief_id="brf-20261014-eeeeeeeeee01", cluster_id="clu-scorebrief001")
-    boosted = next(row for row in score_records([fresh, briefed], options, cfg, as_of) if row["id"] == fresh["id"])
-    if not boosted["score"]["components"]["prior"] > alone_prior:
-        raise SystemExit("FAIL: a published brief must count as a hit")
+    with_brief = next(row for row in score_records([fresh, briefed], options, cfg, as_of) if row["id"] == fresh["id"])
+    if with_brief["score"]["components"]["prior"] != alone_prior:
+        raise SystemExit(
+            "FAIL: a published auto_brief must not raise source prior "
+            f"({with_brief['score']['components']['prior']} vs {alone_prior})"
+        )
+    promoted_hit = dict(fresh)
+    promoted_hit["id"] = "cand-20261014-eeeeeeeeee05"
+    promoted_hit["status_in_pool"] = "promoted"
+    promoted_hit["archive_id"] = "evt-20261014-fixture-hit"
+    promoted_hit["promotion_path"] = "normal"
+    promoted_hit["notes"] = "editor promoted"
+    promoted_hit["cluster_id"] = "clu-scorehit0001"
+    with_promote = next(row for row in score_records([fresh, promoted_hit], options, cfg, as_of) if row["id"] == fresh["id"])
+    if not with_promote["score"]["components"]["prior"] > alone_prior:
+        raise SystemExit("FAIL: an editor promotion must raise source prior")
     late = parse_utc("2026-10-20T12:00:00Z")
     kept_brief = next(row for row in score_records([briefed], options, cfg, late))
     if "score" in kept_brief or kept_brief["status_in_pool"] != "active":
@@ -982,7 +1262,152 @@ def self_check() -> None:
     else:
         raise SystemExit("FAIL: bookmark_prior=0 must be rejected")
 
-    for row in first + list(neighbours.values()):
+    solo_alone = score_records([solo], options, cfg, as_of)[0]
+    reprint = _fixture(
+        id="cand-20261014-ffffffffffff",
+        url="https://www.theverge.com/2026/10/14/fixture-reprint",
+        handle="theverge-ai",
+        role_guess="report",
+        tier_prior="T3",
+        status="dropped",
+        drop_reason="no_new_info",
+        notes="gate: no_new_info",
+        snippet="FIXTURE model rumor from one desk. reprint",
+        cluster_id=solo["cluster_id"],
+    )
+    solo_re = next(row for row in score_records([solo, reprint], options, cfg, as_of) if row["id"] == solo["id"])
+    if solo_re["score"]["components"]["corroboration"] != solo_alone["score"]["components"]["corroboration"]:
+        raise SystemExit("FAIL: no_new_info reprint must not raise corroboration")
+    if solo_re["score"]["components"]["independent_evidence"] != solo_alone["score"]["components"]["independent_evidence"]:
+        raise SystemExit("FAIL: reprint must not raise independent evidence")
+    if not solo_re["score"]["components"]["spread"] > solo_alone["score"]["components"]["spread"]:
+        raise SystemExit(
+            "FAIL: reprint should still count as spread "
+            f"{solo_re['score']['components']['spread']} vs {solo_alone['score']['components']['spread']}"
+        )
+    cite_a = _fixture(
+        id="cand-20261014-eeeeeeeeee11",
+        url="https://techcrunch.com/2026/10/14/fixture-cite-a",
+        handle="techcrunch-ai",
+        role_guess="report",
+        tier_prior="T3",
+        snippet="FIXTURE recap of https://openai.com/blog/fixture-same-primary",
+        cluster_id="clu-scorecite0001",
+    )
+    cite_b = _fixture(
+        id="cand-20261014-eeeeeeeeee12",
+        url="https://www.theverge.com/2026/10/14/fixture-cite-b",
+        handle="theverge-ai",
+        role_guess="report",
+        tier_prior="T3",
+        snippet="FIXTURE same recap of https://openai.com/blog/fixture-same-primary",
+        cluster_id="clu-scorecite0001",
+    )
+    cited = {row["id"]: row for row in score_records([cite_a, cite_b], options, cfg, as_of)}
+    if cited[cite_a["id"]]["score"]["components"]["independent_evidence"] != 1:
+        raise SystemExit(
+            "FAIL: homologous reprints must share one evidence URL, got "
+            f"{cited[cite_a['id']]['score']['components']['independent_evidence']}"
+        )
+    masked = _fixture(
+        id="cand-20261014-eeeeeeeeee13",
+        url="https://x.com/OpenAI/status/77",
+        channel="x",
+        handle="OpenAI",
+        role_guess="report",
+        tier_prior="T1",
+        snippet="FIXTURE second-hand recap without a primary link.",
+        cluster_id="clu-scoremask0001",
+    )
+    masked_row = score_records([masked], options, cfg, as_of)[0]
+    if masked_row["score"]["evidence_grade"] != ROLE_WEIGHT["report"]:
+        raise SystemExit(f"FAIL: report evidence grade masked: {masked_row['score']['evidence_grade']}")
+    if not masked_row["score"]["source_reliability"] > masked_row["score"]["evidence_grade"]:
+        raise SystemExit("FAIL: source reliability should stay the account prior, separate from evidence grade")
+    if masked_row["score"]["v2"]["confidence"] > 0.48:
+        raise SystemExit(f"FAIL: second-hand report confidence must stay capped: {masked_row['score']['v2']['confidence']}")
+    if masked_row["score"]["band"] == "auto_brief":
+        raise SystemExit("FAIL: a report role must not auto-publish")
+
+    held_low = _fixture(
+        id="cand-20261014-111111111101",
+        url="https://example.com/fixture-held-low",
+        channel="web",
+        handle="randomperson",
+        published_at="2026-10-01T00:00:00Z",
+        status="deferred",
+        snippet="FIXTURE old note held for the next edition.",
+        cluster_id="clu-scoreheldlow1",
+        notes="gate: deferred stale_window>48h",
+    )
+    held_row = score_records([held_low], options, cfg, as_of)[0]
+    if held_row["status_in_pool"] != "deferred" or held_row["drop_reason"] is not None:
+        raise SystemExit(f"FAIL: edition hold became {held_row['status_in_pool']} {held_row['drop_reason']}")
+    if held_row["score"]["band_reason"] != "review_deferred" or held_row["score"]["edition_eligibility"] != "held_edition":
+        raise SystemExit(
+            f"FAIL: edition hold reason {held_row['score']['band_reason']} {held_row['score'].get('edition_eligibility')}"
+        )
+    if held_row["score"]["value"] >= cfg.review_min:
+        raise SystemExit("FAIL: held-low fixture was not actually below the review threshold")
+
+    p0_payload = json.loads((ROOT / "testdata" / "p0" / "cases.json").read_text(encoding="utf-8"))
+    p0_as_of = parse_utc(p0_payload["as_of"])
+    p0_rows = []
+    for case in p0_payload["cases"]:
+        raw_rows = case.get("rows") or [case["row"]]
+        scored_case = {row["id"]: row for row in score_records(raw_rows, options, cfg, p0_as_of)}
+        p0_rows.extend(scored_case.values())
+        for raw in raw_rows:
+            got = scored_case[raw["id"]]
+            score = got.get("score") or {}
+            if score.get("band") != "review" or score.get("band_reason") != "review_p0":
+                raise SystemExit(
+                    f"FAIL {case['name']} {raw['id']} band {score.get('band')}/{score.get('band_reason')} "
+                    f"value={score.get('value')}"
+                )
+            if score.get("band") == "auto_brief" or got.get("status_in_pool") != "active":
+                raise SystemExit(
+                    f"FAIL {case['name']}: P0 must stay active for review, got {got.get('status_in_pool')}"
+                )
+            kinds = (got.get("force_p0") or {}).get("kinds") or []
+            for kind in case.get("expect_kinds") or []:
+                if kind not in kinds:
+                    raise SystemExit(f"FAIL {case['name']}: missing kind {kind} in {kinds}")
+            expect_default = case.get("expect_default")
+            if expect_default and (got.get("force_p0") or {}).get("default_action") != expect_default:
+                raise SystemExit(
+                    f"FAIL {case['name']}: default {(got.get('force_p0') or {}).get('default_action')} != {expect_default}"
+                )
+            if "low_score" not in ((got.get("force_p0") or {}).get("bypassed") or []):
+                if score.get("value", 1) < cfg.review_min:
+                    raise SystemExit(f"FAIL {case['name']}: low score was not bypassed")
+
+    lone = _fixture(
+        id="cand-20261022-aaaaaaaaaa21",
+        url="https://x.com/karpathy/status/88001",
+        channel="x",
+        handle="karpathy",
+        tier_prior="a_tier",
+        published_at="2026-10-22T09:00:00Z",
+        ingested_at="2026-10-22T09:30:00Z",
+        snippet="FIXTURE a single a_tier note about a paper.",
+        cluster_id="clu-scorelonea01",
+    )
+    lone["ingested_at"] = "2026-10-22T09:30:00Z"
+    lone_row = score_records([lone], options, cfg, p0_as_of)[0]
+    if lone_row["score"]["band_reason"] == "review_p0" or lone_row.get("force_p0"):
+        raise SystemExit("FAIL: one a_tier account must not force P0")
+
+    if cfg.active_scorer != "v1" or cfg.shadow_v2 is not True:
+        raise SystemExit("FAIL: config default must stay v1 with v2 in shadow")
+    flipped = ScoreConfig(**{**cfg.__dict__})
+    flipped.active_scorer = "v2"
+    flipped.validate()
+    flipped_p0 = score_records([p0_payload["cases"][0]["row"]], options, flipped, p0_as_of)[0]
+    if flipped_p0["score"]["band_reason"] != "review_p0" or flipped_p0["score"]["band"] == "auto_brief":
+        raise SystemExit("FAIL: v2 scorer must still keep Forced P0 in review")
+
+    for row in first + list(neighbours.values()) + [solo_re, masked_row, held_row, lone_row] + p0_rows:
         errors = sorted(validator.iter_errors(row), key=lambda err: list(err.path))
         if errors:
             loc = "/".join(str(part) for part in errors[0].path) or "(root)"
@@ -1091,6 +1516,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--pool-dir", help="Private pool root. Rewrites candidates/*.jsonl in place.")
     parser.add_argument("--as-of", help="ISO-8601 UTC clock for decay. Default: now.")
     parser.add_argument("--write-review", action="store_true", help="Write review/YYYY-MM-DD.md inside --pool-dir.")
+    parser.add_argument("--scorer", choices=["v1", "v2"], help="Override config active_scorer for this run.")
     parser.add_argument("--self-check", action="store_true")
     args = parser.parse_args(argv)
     if args.self_check:
@@ -1102,6 +1528,9 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("pass --out and/or --pool-dir")
     try:
         cfg = load_score_config(ROOT)
+        if args.scorer:
+            cfg.active_scorer = args.scorer
+            cfg.validate()
         as_of = parse_utc(args.as_of) if args.as_of else parse_utc(utc_now_iso())
         options = options_from_repo(as_of)
         pool_dir = Path(args.pool_dir) if args.pool_dir else None
