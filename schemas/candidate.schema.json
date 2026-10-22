@@ -342,6 +342,29 @@
         "source": { "type": "string", "const": "code" }
       }
     },
+    "card_copy": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Words for a card. Not a score. watch_reason is a fixed sentence with no digits and no post body. evidence_label and suggested_action are the public labels. high_priority_review means Forced P0 is waiting for a person; it does not publish the archive or a brief.",
+      "required": ["watch_reason", "evidence_label", "suggested_action", "high_priority_review"],
+      "properties": {
+        "watch_reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[^0-9]*$"
+        },
+        "evidence_label": {
+          "type": "string",
+          "enum": ["官方原始信息", "多源确认", "尚待核实"]
+        },
+        "suggested_action": {
+          "type": "string",
+          "enum": ["立即试用", "持续观察", "暂缓"]
+        },
+        "high_priority_review": { "type": "boolean" }
+      }
+    },
     "notes": { "type": "string" }
   },
   "allOf": [

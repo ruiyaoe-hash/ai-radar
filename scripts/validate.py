@@ -1267,9 +1267,12 @@ def check_briefs() -> None:
                 fail(f"briefs.json {item.get('id')} {field} carries feed HTML")
         if not safe_http_url(item.get("url") or ""):
             fail(f"briefs.json {item.get('id')} url is not http(s)")
-        for banned in ("so_what", "priority", "status", "snippet"):
+        for banned in ("so_what", "priority", "status", "snippet", "score", "force_p0", "components", "value"):
             if banned in item:
                 fail(f"briefs.json {item.get('id')} must not carry {banned}")
+        copy = item.get("card_copy")
+        if isinstance(copy, dict) and copy.get("high_priority_review"):
+            fail(f"briefs.json {item.get('id')} must not carry a high-priority review flag")
     page = (PUBLIC / "briefs.html").read_text(encoding="utf-8")
     if "本页当前为示例数据" in page:
         fail("briefs.html still describes the page as sample data")
@@ -1387,15 +1390,18 @@ def main() -> None:
     check_score_pool()
     try:
         from force_p0 import self_check as check_force_p0
+        from card_copy import self_check as check_card_copy
         from score_pool_v2 import self_check as check_score_v2
         from backtest_score_ab import self_check as check_backtest
         from feishu_notify import self_check as check_feishu
     except ImportError:
         from scripts.force_p0 import self_check as check_force_p0
+        from scripts.card_copy import self_check as check_card_copy
         from scripts.score_pool_v2 import self_check as check_score_v2
         from scripts.backtest_score_ab import self_check as check_backtest
         from scripts.feishu_notify import self_check as check_feishu
     check_force_p0()
+    check_card_copy()
     check_score_v2()
     check_backtest()
     check_feishu()

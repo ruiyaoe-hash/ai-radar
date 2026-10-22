@@ -77,7 +77,7 @@ python3 scripts/backtest_score_ab.py \
 
 `/tmp/ai-radar-ab/` 里会有：
 
-- `comparison.csv` / `comparison.md`：cid、URL、账号、v1 的分和档、v2 的五个维度、P、把握、档、内容类型、P0 标记、两边档是否不一致
+- `comparison.csv` / `comparison.md`：cid、URL、账号、v1 的分和档、v2 的五个维度、P、把握、档、内容类型、P0 标记、卡片文案（证据标签、建议动作、是否优先审、为什么值得看）、两边档是否不一致。文案列是给人看的字，不是另一套分
 - `metrics.md` / `metrics.json`：下面这些数。没贴标签时不写这两个文件
 
 `--as-of` 用你导出那天的时钟，衰减才和当时接近。
@@ -104,5 +104,5 @@ python3 scripts/backtest_score_ab.py \
 
 - RSS batch 2 仍不抓。
 - X 没配 bearer（`X_BEARER_TOKEN`）时，Actions 抓取软跳过。
-- 自动快讯仍只来自官方 RSS 一手行。
+- 自动快讯仍只来自官方 RSS 一手行。优先审的行不进自动档。
 - 公开仓和私有池仍分开。今日必看和已核验实操仍要人开 PR。

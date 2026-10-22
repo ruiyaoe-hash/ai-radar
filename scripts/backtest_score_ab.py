@@ -56,6 +56,10 @@ COLUMNS = [
     "force_p0",
     "p0_kinds",
     "p0_default",
+    "evidence_label",
+    "suggested_action",
+    "high_priority_review",
+    "watch_reason",
     "disagreement",
 ]
 LABEL_FIELDS = [
@@ -120,6 +124,7 @@ def compare_rows(rows: list[dict], as_of: str | None = None) -> list[dict]:
         v2 = score.get("v2") or {}
         dims = v2.get("dimensions") or {}
         spec = row.get("force_p0") or {}
+        copy = row.get("card_copy") if isinstance(row.get("card_copy"), dict) else {}
         v1_band = score.get("band") or ""
         v2_band = v2.get("band") or ""
         handle = (row.get("source") or {}).get("handle") or ""
@@ -144,6 +149,10 @@ def compare_rows(rows: list[dict], as_of: str | None = None) -> list[dict]:
                 "force_p0": "yes" if spec.get("active") else "no",
                 "p0_kinds": ",".join(spec.get("kinds") or []),
                 "p0_default": spec.get("default_action") or "",
+                "evidence_label": copy.get("evidence_label") or "",
+                "suggested_action": copy.get("suggested_action") or "",
+                "high_priority_review": "yes" if copy.get("high_priority_review") else "no",
+                "watch_reason": copy.get("watch_reason") or "",
                 "disagreement": "yes" if v1_band and v2_band and v1_band != v2_band else "no",
                 "_published_at": row.get("published_at"),
                 "_ingested_at": row.get("ingested_at"),
@@ -362,6 +371,22 @@ def self_check() -> None:
         raise SystemExit(f"FAIL: duet-class row was not forced P0: {duet}")
     if duet["v1_band"] == "auto_brief":
         raise SystemExit("FAIL: duet-class row must not auto-publish")
+    if (
+        duet["high_priority_review"] != "yes"
+        or duet["suggested_action"] != "持续观察"
+        or any(ch.isdigit() for ch in duet["watch_reason"])
+    ):
+        raise SystemExit(f"FAIL: duet card copy {duet['suggested_action']} {duet['watch_reason']}")
+    if vuln["suggested_action"] != "立即试用" or vuln["high_priority_review"] != "yes":
+        raise SystemExit(f"FAIL: vuln card copy {vuln['suggested_action']}")
+    if (
+        ordinary["evidence_label"] != "官方原始信息"
+        or ordinary["suggested_action"] != "持续观察"
+        or ordinary["high_priority_review"] != "no"
+    ):
+        raise SystemExit(f"FAIL: ordinary card copy {ordinary['evidence_label']} {ordinary['suggested_action']}")
+    if held["suggested_action"] != "暂缓" or held["high_priority_review"] != "no":
+        raise SystemExit(f"FAIL: held card copy {held['suggested_action']}")
     if vuln["force_p0"] != "yes" or "runtime_vuln" not in vuln["p0_kinds"] or vuln["v1_band"] != "review":
         raise SystemExit(f"FAIL: vuln-class row was not forced P0: {vuln}")
     if ordinary["v1_band"] != "auto_brief" or ordinary["force_p0"] == "yes":

@@ -15,6 +15,7 @@
 | `score_pool.py` | After gates: v1 rules score (production band), shadow v2, `low_score` trace. Forced P0 stays in review. No network LLM. Optional `review/YYYY-MM-DD.md` and `review/p0-YYYY-MM-DD.json` |
 | `score_pool_v2.py` | Experimental multi-axis score. Rules fallback is mandatory. Called from `score_pool.py` |
 | `force_p0.py` | Forced P0 matcher (frontier launch, runtime vuln with an upgrade, same-day a_tier pair). Does not publish |
+| `card_copy.py` | Card wording next to the score: why watch, evidence label, suggested action, high-priority review flag. No raw scores. Auto briefs only get the official-source sentence |
 | `backtest_score_ab.py` | Compare v1 and v2 on a JSONL sample and, with labels, compute recall / precision stubs |
 | `derive_briefs.py` | `auto_brief` rows → `public/briefs.json`. Strips raw posts, checks instruction text, skips archive URLs and practice |
 | `ingest_rss.py` | Batch-1 lab RSS / GitHub Releases → the same pending rows (`channel=rss`). Live fetch stays out of public CI |

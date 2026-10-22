@@ -32,6 +32,8 @@ P0 matches.
 
 Rules scoring does not call a network. AI_RADAR_SCORE_LLM_URL only fills
 score.llm.skipped_reason; there is no hosted adapter in this repo.
+card_copy sits beside score: a short reason, an evidence label, a suggested
+action, and a high-priority review flag. The sentences do not contain scores.
 
   python3 scripts/score_pool.py --self-check
   python3 scripts/score_pool.py --pool-dir ../ai-radar-pool --write-review
@@ -64,6 +66,7 @@ if __package__ in {None, ""}:
         url_is_primary,
         write_pool,
     )
+    from card_copy import build_card_copy
     from force_p0 import (
         REPRINT_DROP_REASONS,
         assign_p0,
@@ -93,6 +96,7 @@ else:
         url_is_primary,
         write_pool,
     )
+    from .card_copy import build_card_copy
     from .force_p0 import (
         REPRINT_DROP_REASONS,
         assign_p0,
@@ -725,6 +729,14 @@ def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) 
         }
         if v2 is not None:
             row["score"]["v2"] = v2
+        row["card_copy"] = build_card_copy(
+            row,
+            official=bool(meta["official"]),
+            independent_n=meta["independent_n"],
+            band=band,
+            band_reason=reason,
+            edition=meta["edition"],
+        )
         if band == "drop":
             trace = (
                 f"score:low_score value={value:.4f} prior={prior:.4f} decay={decay:.4f} "
@@ -761,14 +773,15 @@ def review_markdown(rows: list[dict], as_of: datetime) -> str:
         "",
         "机器低分已是 `dropped` + `low_score`，不在本清单。延后（deferred，今日档先不上）也不是低价值，原因仍是 `review_deferred`。",
         "带 `review_p0` 的行是强制 P0（Forced P0）。代码是准绳，例程可以再看一眼。它们排在最前，只等人决定晋升或跳过，脚本不写公开归档，也不写今日必看。",
+        "同一行的 `card_copy` 是给卡片用的短句：为什么值得看、证据标签、建议动作。短句里没有分数。`high_priority_review` 只表示优先审，不是已经公开。",
         "实操只出现在这里，不写入 practice inbox。",
         "通过并上 L1：池行改为 `promoted`，`archive_id` 指向公开卡，公开卡写同一个 `candidate_id`。",
         "否决：`drop_reason=editor_skip`，并且 `notes` 不能空。`annotate_gates` 和 `score_pool` 都不再改这一行。",
         "私人 action（tried / ignored）写未跟踪的 `owner-actions.local.json`，或飞书。不要写入公开 `public/owner-actions.json`。",
         "同目录的 `p0-日期.json` 是通知钩子，没有正文。飞书仍只推已经由人写进归档的正式 P0。",
         "",
-        "| cid | band | value | handle | lane | primary | p0 | default | url |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| cid | band | value | handle | lane | primary | p0 | default | 证据 | 动作 | url |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for row in queued:
         score = row["score"]
@@ -778,9 +791,10 @@ def review_markdown(rows: list[dict], as_of: datetime) -> str:
         else:
             lane = row.get("lane_hint") or "digest"
         spec = row.get("force_p0") or {}
+        copy = row.get("card_copy") or {}
         kinds = ",".join(spec.get("kinds") or []) if spec.get("active") else ""
         lines.append(
-            "| {cid} | {band} | {value:.4f} | {handle} | {lane} | {primary} | {p0} | {default} | {url} |".format(
+            "| {cid} | {band} | {value:.4f} | {handle} | {lane} | {primary} | {p0} | {default} | {evidence} | {action} | {url} |".format(
                 cid=row.get("id"),
                 band=score.get("band_reason"),
                 value=float(score.get("value") or 0),
@@ -789,11 +803,13 @@ def review_markdown(rows: list[dict], as_of: datetime) -> str:
                 primary="yes" if score.get("primary_source") else "no",
                 p0=kinds,
                 default=spec.get("default_action") or "",
+                evidence=copy.get("evidence_label") or "",
+                action=copy.get("suggested_action") or "",
                 url=row.get("url_norm") or row.get("url") or "",
             )
         )
     if not queued:
-        lines.append("|  |  |  |  |  |  |  |  |  |")
+        lines.append("|  |  |  |  |  |  |  |  |  |  |  |")
     lines.append("")
     return "\n".join(lines)
 
@@ -1093,6 +1109,15 @@ def self_check() -> None:
     primary_row = need(fresh["id"], "auto_brief", "auto_primary")
     if primary_row["status_in_pool"] != "active" or primary_row["drop_reason"] is not None:
         raise SystemExit("FAIL: auto_brief must stay active")
+    primary_copy = primary_row.get("card_copy") or {}
+    if (
+        primary_copy.get("evidence_label") != "官方原始信息"
+        or primary_copy.get("suggested_action") != "持续观察"
+        or primary_copy.get("high_priority_review")
+        or primary_copy.get("watch_reason") != "官方源发布了新说明。"
+        or "card_copy" in (primary_row.get("score") or {})
+    ):
+        raise SystemExit(f"FAIL: official auto card copy {primary_copy}")
     practice_row = need(practice["id"], "review", "review_practice")
     if practice_row["status_in_pool"] != "active":
         raise SystemExit("FAIL: practice review must stay active")
@@ -1110,6 +1135,13 @@ def self_check() -> None:
     held = need(deferred["id"], "review", "review_deferred")
     if held["status_in_pool"] != "deferred" or held["drop_reason"] is not None:
         raise SystemExit("FAIL: deferred row must not become an auto brief or a drop when it still clears review")
+    held_copy = held.get("card_copy") or {}
+    if (
+        held_copy.get("suggested_action") != "暂缓"
+        or held_copy.get("high_priority_review")
+        or held_copy.get("evidence_label") != "官方原始信息"
+    ):
+        raise SystemExit(f"FAIL: edition hold copy {held_copy}")
     need(no_primary["id"], "review", "review_no_primary")
     kept_blocked = by_id[blocked["id"]]
     if "score" in kept_blocked or kept_blocked["drop_reason"] != "prefilter_block":
@@ -1381,6 +1413,20 @@ def self_check() -> None:
             if "low_score" not in ((got.get("force_p0") or {}).get("bypassed") or []):
                 if score.get("value", 1) < cfg.review_min:
                     raise SystemExit(f"FAIL {case['name']}: low score was not bypassed")
+            copy = got.get("card_copy") or {}
+            reason_text = str(copy.get("watch_reason") or "")
+            if not copy.get("high_priority_review") or any(ch.isdigit() for ch in reason_text):
+                raise SystemExit(f"FAIL {case['name']}: card copy {copy}")
+            if case["name"] == "claude-duet-research-preview" and (
+                copy.get("suggested_action") != "持续观察" or copy.get("evidence_label") != "尚待核实"
+            ):
+                raise SystemExit(f"FAIL {case['name']}: preview must stay a watch, got {copy}")
+            if case["name"] == "php2shell-upgrade" and copy.get("suggested_action") != "立即试用":
+                raise SystemExit(f"FAIL {case['name']}: upgrade copy {copy}")
+            if case["name"] == "two-a-tier-same-day" and (
+                copy.get("suggested_action") != "立即试用" or copy.get("evidence_label") != "多源确认"
+            ):
+                raise SystemExit(f"FAIL {case['name']}: tool-choice copy {copy}")
 
     lone = _fixture(
         id="cand-20261022-aaaaaaaaaa21",

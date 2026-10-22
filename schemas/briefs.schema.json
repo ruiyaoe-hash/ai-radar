@@ -35,7 +35,24 @@
         "source": { "type": "string", "minLength": 1, "maxLength": 80 },
         "lens": { "type": "string", "enum": ["工具", "赛道", "模式", "时机"] },
         "origin": { "type": "string", "enum": ["archive_seed", "auto_brief"] },
-        "candidate_id": { "type": "string", "pattern": "^cand-[0-9]{8}-[a-f0-9]{12}$" }
+        "candidate_id": { "type": "string", "pattern": "^cand-[0-9]{8}-[a-f0-9]{12}$" },
+        "card_copy": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Optional flash copy. Auto briefs only: official source, keep watching, and high_priority_review false. No scores. A Forced P0 row is not projected into this file.",
+          "required": ["watch_reason", "evidence_label", "suggested_action", "high_priority_review"],
+          "properties": {
+            "watch_reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80,
+              "pattern": "^[^0-9]*$"
+            },
+            "evidence_label": { "type": "string", "const": "官方原始信息" },
+            "suggested_action": { "type": "string", "const": "持续观察" },
+            "high_priority_review": { "type": "boolean", "const": false }
+          }
+        }
       },
       "allOf": [
         {
