@@ -207,12 +207,14 @@ RSS 和 X 两个工作流共用 `concurrency: pool-writer`（`cancel-in-progress
 |------|--------|
 | 检出 | 公开仓检出到 `site/`，私有池检出到旁边的 `pool/`。池必须在公开仓目录之外（`assert_shift_pool_dir`）。两个检出都 `persist-credentials: false` |
 | 推池 | `scripts/pool_git_push.sh`。池令牌只在这一步的 env 里，用一次性 http 头推送，日志里打码。rebase 冲突说明有人手改了同一个文件：直接失败，不覆盖 |
-| 推快讯 | `scripts/public_briefs_push.sh`。先跑 `validate.py`（只查公开输出，不做归档↔池的溯源比对），过了才提交 `public/briefs.json`。与远端冲突时以远端为底重新派生一次再推 |
-| 上线 | `GITHUB_TOKEN` 推的提交不会触发 `on: push`，所以快讯真有变化时，工作流用 `gh workflow run deploy-pages.yml` 显式触发部署（需要 `actions: write`） |
+| 推快讯 | `scripts/public_briefs_push.sh`。先跑 `validate.py`（只查公开输出，不做归档↔池的溯源比对）。过了才把 `public/briefs.json` 提交到滚动分支 `chore/auto-briefs`：从当前 `main` 尖端重建，这次提交只含这一份文件，再 `git push --force-with-lease`。`gh pr create` / `gh pr edit` 维持一个指向 `main` 的 PR。不推 `main`。若 `main` 上的 `briefs.json` 在本轮派生之后变过，且有 `POOL_DIR`，就以新的 `main` 为底重新派生再提交 |
+| 上线 | 合并之后才上线。`deploy-pages.yml` 监听推送到 `main`，人把滚动 PR 合并后才会部署。ingest 不再调用 `gh workflow run deploy-pages.yml`。用 `GITHUB_TOKEN` 打开的 PR，`validate-and-derive` 可能先停在 Approve workflows，有写权限的人点一次才会跑；变绿后再合并 |
 
 所有 `uses:` 都锁在 commit SHA 上，`validate.py` 会检查；`.github/dependabot.yml` 每周提更新。`run:` 里不直接写 `${{ }}`，一律经 `env:` 传。`X_BEARER_TOKEN` 只出现在抓取那一步。
 
-以后想再收紧：可以把 `GITHUB_TOKEN` 推快讯换成只装在本仓、只有 Contents 写权限的 GitHub App 令牌（`actions/create-github-app-token`），它推的提交能直接触发 `on: push`，也就不需要显式触发部署。
+仓库需要允许 GitHub Actions 创建 PR（Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests）。这不是分支保护的 bypass。`main` 仍然禁止直接推送，也禁止为了快讯给 Actions 加 bypass。
+
+若不想每次在手机上点 Approve workflows：用只装在本仓的 GitHub App 令牌（`actions/create-github-app-token`）代替 `GITHUB_TOKEN` 去推 `chore/auto-briefs` 并开同一个滚动 PR。App 触发的 `pull_request` 会直接跑 `validate-and-derive`。快讯仍然不要直推 `main`。
 
 ## 定时不准时
 

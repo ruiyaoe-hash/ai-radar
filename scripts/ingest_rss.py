@@ -582,10 +582,12 @@ def _self_check_body() -> None:
         "--pool-dir ../pool",
         "POOL_TOKEN: ${{ secrets.AI_RADAR_POOL_TOKEN }}",
         "public_briefs_push.sh",
-        "gh workflow run deploy-pages.yml",
+        "pull-requests: write",
     ):
         if needle not in workflow:
             raise SystemExit(f"FAIL: workflow missing {needle}")
+    if "gh workflow run deploy-pages.yml" in workflow:
+        raise SystemExit("FAIL: RSS ingest must not dispatch deploy-pages; Pages runs after the briefs PR merges")
     if "persist-credentials: true" in workflow:
         raise SystemExit("FAIL: no checkout may persist a token into .git/config")
     if re.search(r"uses:\s*[\w./-]+@(?![0-9a-f]{40}\b)", workflow):
@@ -596,6 +598,20 @@ def _self_check_body() -> None:
     briefs_push = (ROOT / "scripts" / "public_briefs_push.sh").read_text(encoding="utf-8")
     if "scripts/validate.py" not in briefs_push or "pushed=" not in briefs_push or "add-mask" not in briefs_push:
         raise SystemExit("FAIL: public_briefs_push.sh must validate first, report pushed=, and mask the header")
+    for needle in (
+        "gh pr create",
+        "gh pr edit",
+        "--force-with-lease",
+        "chore/auto-briefs",
+        "pr_url=",
+        "pr_number=",
+        "refusing to publish briefs onto",
+        "refs/heads/${BRANCH}",
+    ):
+        if needle not in briefs_push:
+            raise SystemExit(f"FAIL: public_briefs_push.sh missing {needle}")
+    if "HEAD:main" in briefs_push or "HEAD:${branch}" in briefs_push or "gh workflow run deploy-pages" in briefs_push:
+        raise SystemExit("FAIL: public_briefs_push.sh must not push main or dispatch Pages")
     if "pull_request:" in workflow:
         raise SystemExit("FAIL: RSS ingest must not run on pull_request")
     if "cron:" not in workflow:
