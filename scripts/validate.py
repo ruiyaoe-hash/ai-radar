@@ -1298,9 +1298,16 @@ def check_pool_workflows() -> None:
     if "AI_RADAR_POOL_TOKEN" not in rss:
         fail("RSS workflow must keep AI_RADAR_POOL_TOKEN")
     for label, text in (("rss", rss), ("x", watch)):
-        for needle in ("group: pool-writer", "cancel-in-progress: false", "public_briefs_push.sh", "gh workflow run deploy-pages.yml"):
+        for needle in (
+            "group: pool-writer",
+            "cancel-in-progress: false",
+            "public_briefs_push.sh",
+            "pull-requests: write",
+        ):
             if needle not in text:
                 fail(f"{label} workflow must carry {needle}")
+        if "gh workflow run deploy-pages.yml" in text:
+            fail(f"{label} workflow must not dispatch deploy-pages before the briefs PR merges")
         if "persist-credentials: true" in text:
             fail(f"{label} workflow must not persist a token into .git/config")
     if watch.count("X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}") != 1:
