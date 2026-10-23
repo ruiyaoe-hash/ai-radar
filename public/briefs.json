@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-18 18:30 北京时间",
+  "updated": "2026-10-23 13:05 北京时间",
   "note": "origin=archive_seed 的条目摘自已经公开的归档，不是新事实。origin=auto_brief 由 scripts/derive_briefs.py 从打分自动档写入。实操不从这条管道进站。",
   "items": [
     {
@@ -147,6 +147,234 @@
       "source": "财经",
       "lens": "时机",
       "origin": "archive_seed"
+    },
+    {
+      "id": "brf-20261023-51c9dd5fd5c2",
+      "level": "L2",
+      "date": "2026-10-23",
+      "time": "10-23 06:24",
+      "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
+      "summary": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
+      "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
+      "source": "huggingface-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261023-51c9dd5fd5c2",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261023-6a4f42571d7f",
+      "level": "L2",
+      "date": "2026-10-23",
+      "time": "10-23 01:21",
+      "title": "How bug bounty sharpens one researcher’s security skills",
+      "summary": "As Cybersecurity Awareness Month continues, the GitHub Bug Bounty team spotlights @r31n, diving into…",
+      "url": "https://github.blog/security/how-bug-bounty-sharpens-one-researchers-security-skills",
+      "source": "github-blog",
+      "lens": "赛道",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261023-6a4f42571d7f",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261023-aec2cbf8823d",
+      "level": "L2",
+      "date": "2026-10-23",
+      "time": "10-23 00:11",
+      "title": "OlmoEarth v1.3: State-of-the-art embeddings for the whole planet",
+      "summary": "OlmoEarth v1.3: State-of-the-art embeddings for the whole planet",
+      "url": "https://huggingface.co/blog/allenai/olmoearth-v1-3",
+      "source": "huggingface-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261023-aec2cbf8823d",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261022-35f9bb7b55ce",
+      "level": "L2",
+      "date": "2026-10-22",
+      "time": "10-22 15:51",
+      "title": "Ensemble forecasting with IBM Granite time-series models",
+      "summary": "Ensemble forecasting with IBM Granite time-series models",
+      "url": "https://huggingface.co/blog/ibm-research/granite-timeseries-ensemble-r1",
+      "source": "huggingface-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261022-35f9bb7b55ce",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261022-e7b835728f42",
+      "level": "L2",
+      "date": "2026-10-22",
+      "time": "10-22 11:32",
+      "title": "openai-python v3.36.1",
+      "summary": "3.36.1 (2026-10-22) Bug Fixes api: honor per-call WebSocket query settings ( #4138 ) ( d40a5e1 ) exa…",
+      "url": "https://github.com/openai/openai-python/releases/tag/v3.36.1",
+      "source": "gh-releases-openai",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261022-e7b835728f42",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261022-141c037ccfde",
+      "level": "L2",
+      "date": "2026-10-22",
+      "time": "10-22 06:00",
+      "title": "anthropic-sdk-python v2.1.0",
+      "summary": "Features api: add enforcement status, actions and filter to user profiles",
+      "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v2.1.0",
+      "source": "gh-releases-anthropic-sdk",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261022-141c037ccfde",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261022-26bfbc380acb",
+      "level": "L2",
+      "date": "2026-10-22",
+      "time": "10-22 05:00",
+      "title": "Broad access through consistent standards",
+      "summary": "How OpenAI works with distribution partners to uphold consistent safeguards, support responsible acc…",
+      "url": "https://openai.com/index/broad-access-through-consistent-standards",
+      "source": "openai-blog",
+      "lens": "赛道",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261022-26bfbc380acb",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261022-6ede4f73bcea",
+      "level": "L2",
+      "date": "2026-10-22",
+      "time": "10-22 02:26",
+      "title": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Dat…",
+      "summary": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Requi…",
+      "url": "https://huggingface.co/blog/nvidia/kumo-relational",
+      "source": "huggingface-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261022-6ede4f73bcea",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261022-babc6dc52769",
+      "level": "L2",
+      "date": "2026-10-22",
+      "time": "10-22 01:35",
+      "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Ap…",
+      "summary": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
+      "url": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+      "source": "huggingface-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261022-babc6dc52769",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261022-a9bd71de052f",
+      "level": "L2",
+      "date": "2026-10-22",
+      "time": "10-22 00:04",
+      "title": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
+      "summary": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
+      "url": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
+      "source": "huggingface-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261022-a9bd71de052f",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261022-76c720a455a2",
+      "level": "L2",
+      "date": "2026-10-22",
+      "time": "10-22 00:00",
+      "title": "The bridge to agent-scale Git infrastructure",
+      "summary": "We moved a copy of 99.99999% of GitHub's repositories to Azure. Here's how per-reference quorums wil…",
+      "url": "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure",
+      "source": "github-blog",
+      "lens": "赛道",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261022-76c720a455a2",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261021-2d9435d5289c",
+      "level": "L2",
+      "date": "2026-10-21",
+      "time": "10-21 18:59",
+      "title": "Announcing SimReady Central: An Open Library of Simulation-Ready 3D Assets for R…",
+      "summary": "Announcing SimReady Central: An Open Library of Simulation-Ready 3D Assets for Robotics and AI Facto…",
+      "url": "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
+      "source": "huggingface-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261021-2d9435d5289c",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
     }
   ]
 }
