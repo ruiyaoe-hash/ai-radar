@@ -124,7 +124,7 @@ python3 scripts/feishu_notify.py      # 无 webhook 时 dry-run
 |--------|------|
 | `.github/workflows/ci.yml` | 派生后校验：JSON Schema、归档日期/条数/事件 id 只增不减、`feed.xml` 良构且条数 = `items.json`、lens feed 条数一致、公开文本里的明显指令句 |
 | `.github/workflows/deploy-pages.yml` | 只上传 `public/`。Pages Source 已是 GitHub Actions |
-| `.github/workflows/feishu-and-health.yml` | 正式 P0 与 24h 无新卡。Secret 名 `FEISHU_BOT_WEBHOOK`，不入库 |
+| `.github/workflows/feishu-and-health.yml` | 正式 P0、公开站内容更新短提醒，以及 24h 无新卡。Secret 名 `FEISHU_BOT_WEBHOOK`，不入库 |
 | `.github/workflows/ingest-rss-pool.yml` | 每天 3 次把 T1 实验室 RSS 写入私有池。Secret 名 `AI_RADAR_POOL_TOKEN`。没配密钥时软失败，不参加公开 CI |
 
 `docs/workflows/` 是这些工作流的审阅副本。RSS 密钥和轮换见 [`docs/rss-pool-ingest.md`](./docs/rss-pool-ingest.md)。

@@ -35,13 +35,27 @@ https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-38
 （`docs/workflows/` 里是同一份副本，方便在没有 workflow 权限时审阅。）
 
 - 推送 **正式 P0**（`priority=P0` 且 `status` 为 `confirmed` 或 `multi_source`），**不推** P0-待证（rumor）
+- **公开站更新**：`main` 上一次推送改到访客会读到的内容时，另发一条短提醒。定时健康检查和手动触发不发这条。同一 commit SHA 只发一次
 - **24h 无新卡** 健康告警；同一告警至少间隔 20 小时，避免每 6 小时重复刷屏
-- 已推送的事件 id 写在 Actions cache（`.feishu-notify-state.json`），不写进 `state.json` 水位
-- 未配置 secret 时脚本 dry-run，**不会**把 id 标成已发送，CI 不失败
+- 已推送的事件 id 和站点更新 SHA 写在 Actions cache（`.feishu-notify-state.json`），不写进 `state.json` 水位
+- 未配置 secret 时脚本 dry-run，**不会**把 id 或 SHA 标成已发送，CI 不失败
+
+会触发站点短提醒的路径：`public/archive/**`、`public/briefs.json`、`public/items.json`、`public/today3.txt`、`public/practice.json`、`public/practice/inbox/**`、`public/tools-radar.json`、`public/theses.json`、`public/feed.xml`、`public/feeds/**`、`public/data/**`、`public/topics/**`、`public/blog/**`、`content/posts/**`。页面、样式、schema、抓取配置、周报草稿和信源分不在这份名单里。
+
+样例：
+
+```
+【AI Radar】公开站刚更新，去看看：https://ruiyaoe-hash.github.io/ai-radar/
+改动：归档 1 天、快讯；新卡 3、新快讯 1
+```
+
+能读到上一提交时才写「新卡 / 新快讯」。读不到就不猜数字，只留第一行和改动面。
 
 ## 本地试跑
 
 ```bash
 export FEISHU_BOT_WEBHOOK='https://open.feishu.cn/open-apis/bot/v2/hook/...'
 python3 scripts/feishu_notify.py
+# 带上当前提交的 SHA，会多打出一条站点提醒：
+FEISHU_SITE_SHA="$(git rev-parse HEAD)" python3 scripts/feishu_notify.py
 ```
