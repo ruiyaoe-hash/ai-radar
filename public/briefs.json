@@ -1,9 +1,47 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-23 18:22 北京时间",
+  "updated": "2026-10-24 01:18 北京时间",
   "note": "origin=archive_seed 的条目摘自已经公开的归档，不是新事实。origin=auto_brief 由 scripts/derive_briefs.py 从打分自动档写入。实操不从这条管道进站。",
   "items": [
+    {
+      "id": "brf-20261024-de27875ea339",
+      "level": "L2",
+      "date": "2026-10-24",
+      "time": "10-24 01:00",
+      "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
+      "summary": "Learn how OpenAI scaled Habitat with reliable multi-tenancy, global caching, and Azure Cosmos DB to…",
+      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+      "source": "openai-blog",
+      "lens": "赛道",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261024-de27875ea339",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "id": "brf-20261024-58dba56773eb",
+      "level": "L2",
+      "date": "2026-10-24",
+      "time": "10-24 00:15",
+      "title": "LitPivot: Developing research ideas through dynamic contextualization within the…",
+      "summary": "LitPivot: Developing research ideas through dynamic contextualization within the literature landscap…",
+      "url": "https://huggingface.co/blog/allenai/litpivot",
+      "source": "huggingface-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261024-58dba56773eb",
+      "card_copy": {
+        "watch_reason": "官方源发布了新说明。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
     {
       "id": "brf-20261023-65cac60e53e2",
       "level": "L2",
