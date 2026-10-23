@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-12",
+  "updated": "2026-10-23",
   "scoring": {
     "states": [
       "命中",
@@ -9,109 +9,5 @@
     ],
     "note": "到期对 thesis 打分；卡片通过 so_what.thesis_id 挂证据"
   },
-  "theses": [
-    {
-      "id": "T-001",
-      "lens": "工具",
-      "statement": "模型无关的 multi-agent harness 会成为 OPC 默认编排层，开源 harness 的分发渠道决定采用速度。",
-      "horizon": "2026-Q4",
-      "confidence": "中",
-      "falsifier": "若到 Q4 末主流 coding agent 仍强绑定单一模型且开源 harness 无实质生产案例，则论点作废",
-      "status": "待定",
-      "evidence_for": [
-        "evt-20261011-jiuwenswarm-harness"
-      ],
-      "evidence_against": []
-    },
-    {
-      "id": "T-002",
-      "lens": "赛道",
-      "statement": "RL-as-scaling（环境多样性 × grader 质量）将成为开源追上闭源的主叙事，成本数字会公开化。",
-      "horizon": "2027-Q1",
-      "confidence": "中",
-      "falsifier": "若主要开源实验室在 2 个季度内停止加大 RL/grader 投入并回归纯预训练扩参，则论点作废",
-      "status": "待定",
-      "evidence_for": [
-        "evt-20261010-mimo-v2-6-260-rl",
-        "evt-20261012-deepseek-12b-tencent-catl"
-      ],
-      "evidence_against": []
-    },
-    {
-      "id": "T-003",
-      "lens": "模式",
-      "statement": "「AI 建议、人拍板」的人机协作交付（插件/工作流内嵌）比全自动替换岗位更快产生付费。",
-      "horizon": "2026-Q4",
-      "confidence": "高",
-      "falsifier": "若出现可复核的全自动垂直 agent 在无人工审批下稳定超过人机协作产品的付费转化，则论点作废",
-      "status": "待定",
-      "evidence_for": [
-        "evt-20261012-anthropic-evals-offline",
-        "evt-20261012-sophos-daybreak-mdr",
-        "evt-20261012-manus-500m-post-meta",
-        "evt-20261012-nadella-emergency-brake"
-      ],
-      "evidence_against": []
-    },
-    {
-      "id": "T-004",
-      "lens": "赛道",
-      "statement": "卖卡巨头会持续通过股权/并购布局开源模型与 infra，而不只做算力销售。",
-      "horizon": "2026-Q4",
-      "confidence": "中",
-      "falsifier": "若未来两个季度无新的大厂模型股权投资或相关并购推进，则论点作废",
-      "status": "待定",
-      "evidence_for": [
-        "evt-20261011-reflection-ai-beam",
-        "evt-20261012-amazon-decart-talks"
-      ],
-      "evidence_against": []
-    },
-    {
-      "id": "T-005",
-      "lens": "工具",
-      "statement": "逆向/理解闭源 Web 与客户端的 agent skill（MCP）会成为个人开发者复刻产品功能的常规手段。",
-      "horizon": "2026-Q4",
-      "confidence": "中",
-      "falsifier": "若主要 agent IDE 拒绝或无法稳定接入逆向类 MCP，或合规压力使公开项目停更，则论点作废",
-      "status": "待定",
-      "evidence_for": [
-        "evt-20261010-rea-claude-code-codex-cursor"
-      ],
-      "evidence_against": []
-    },
-    {
-      "id": "T-006",
-      "lens": "时机",
-      "statement": "设计/文档类 artifact 会从独立产品收敛回主对话界面，独立站点窗口正在关闭。",
-      "horizon": "2027-Q1",
-      "confidence": "中",
-      "falsifier": "若头部厂商继续加码独立设计站并扩大市场份额，则论点作废",
-      "status": "待定",
-      "evidence_for": [],
-      "evidence_against": []
-    },
-    {
-      "id": "T-007",
-      "lens": "模式",
-      "statement": "即时合成推理链（inductive）会替代逐 token 补全成为 coding agent 的默认能力故事。",
-      "horizon": "2027-Q1",
-      "confidence": "中",
-      "falsifier": "若 2027 初主流 coding 基准仍由非推理链模型主导且 agent 产品回退到纯补全 UX，则论点作废",
-      "status": "待定",
-      "evidence_for": [],
-      "evidence_against": []
-    },
-    {
-      "id": "T-008",
-      "lens": "工具",
-      "statement": "非 PyTorch 默认栈（JAX/TPU + 高层库）的后训练实验路径会再出现至少 1 个有影响力的开源入口。",
-      "horizon": "2027-Q1",
-      "confidence": "低",
-      "falsifier": "若到 horizon 仍无可用的非 PT 后训练开源栈被社区复现采用，则论点作废",
-      "status": "待定",
-      "evidence_for": [],
-      "evidence_against": []
-    }
-  ]
+  "theses": []
 }

@@ -584,7 +584,15 @@ def self_check() -> None:
         ],
     }
     rows = [clean, injected, practice, low, duplicate]
-    document, written = derive(rows, options, existing, archive_urls(), updated, as_of)
+    # The duplicate fixture must look already published. Do not read public/archive:
+    # that tree is empty after the 2026-10-23 slate reset, and a self-check must not
+    # depend on whichever cards happen to be live.
+    occupied = {
+        normalize_url(
+            "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/"
+        )
+    }
+    document, written = derive(rows, options, existing, occupied, updated, as_of)
     ids = [item["id"] for item in document["items"]]
     if ids != ["brf-20261014-seed-fixture", "brf-20261014-ccc000000001"]:
         raise SystemExit(f"FAIL: brief ids {ids}")
@@ -619,7 +627,7 @@ def self_check() -> None:
     if any(row.get("brief_id") for row in written[1:]):
         raise SystemExit("FAIL: non-published rows received brief_id")
 
-    again_doc, _again_rows = derive(json.loads(json.dumps(written)), options, document, archive_urls(), updated, as_of)
+    again_doc, _again_rows = derive(json.loads(json.dumps(written)), options, document, occupied, updated, as_of)
     if render_briefs(again_doc) != body:
         raise SystemExit("FAIL: derive_briefs is not stable")
 
@@ -687,19 +695,19 @@ def self_check() -> None:
     later = parse_utc("2026-10-17T12:00:00Z")
     decayed = json.loads(json.dumps(written))
     decayed[0]["score"]["band"] = "review"
-    kept_doc, kept_rows = derive(decayed, options, document, archive_urls(), "2026-10-17 20:00 北京时间", later)
+    kept_doc, kept_rows = derive(decayed, options, document, occupied, "2026-10-17 20:00 北京时间", later)
     if [item["id"] for item in kept_doc["items"]] != ids:
         raise SystemExit(f"FAIL: published brief vanished inside the retain window {kept_doc['items']}")
     if kept_rows[0].get("brief_id") != auto["id"]:
         raise SystemExit("FAIL: brief_id was removed from a published row")
-    expired_doc, _ = derive(decayed, options, document, archive_urls(), "2026-10-22 20:00 北京时间", parse_utc("2026-10-22T12:00:00Z"))
+    expired_doc, _ = derive(decayed, options, document, occupied, "2026-10-22 20:00 北京时间", parse_utc("2026-10-22T12:00:00Z"))
     if [item["id"] for item in expired_doc["items"]] != ["brf-20261014-seed-fixture"]:
         raise SystemExit(f"FAIL: brief outlived RETAIN_DAYS {expired_doc['items']}")
     vetoed = json.loads(json.dumps(written))
     vetoed[0]["status_in_pool"] = "dropped"
     vetoed[0]["drop_reason"] = "editor_skip"
     vetoed[0]["score"]["band"] = "drop"
-    veto_doc, _ = derive(vetoed, options, document, archive_urls(), "2026-10-15 20:00 北京时间", later)
+    veto_doc, _ = derive(vetoed, options, document, occupied, "2026-10-15 20:00 北京时间", later)
     if [item["id"] for item in veto_doc["items"]] != ["brf-20261014-seed-fixture"]:
         raise SystemExit(f"FAIL: editor drop did not withdraw the brief {veto_doc['items']}")
 
@@ -710,7 +718,17 @@ def self_check() -> None:
 
         merge_pool(pool, rows, "2026-10-14T11:00:00Z")
         briefs.write_text(render_briefs(existing), encoding="utf-8")
-        code = main(["--pool-dir", str(pool), "--briefs", str(briefs), "--as-of", "2026-10-14T12:00:00Z"])
+        cli = [
+            "--pool-dir",
+            str(pool),
+            "--briefs",
+            str(briefs),
+            "--as-of",
+            "2026-10-14T12:00:00Z",
+            "--occupy-url",
+            "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+        ]
+        code = main(cli)
         if code != 0:
             raise SystemExit(f"FAIL: derive CLI exit {code}")
         loaded = json.loads(briefs.read_text(encoding="utf-8"))
@@ -718,7 +736,7 @@ def self_check() -> None:
             raise SystemExit(f"FAIL: CLI briefs {[item['id'] for item in loaded['items']]}")
         before = briefs.read_bytes()
         pool_before = (pool / "candidates" / "2026-10-14.jsonl").read_bytes()
-        again = main(["--pool-dir", str(pool), "--briefs", str(briefs), "--as-of", "2026-10-14T12:00:00Z"])
+        again = main(cli)
         if again != 0 or briefs.read_bytes() != before or (pool / "candidates" / "2026-10-14.jsonl").read_bytes() != pool_before:
             raise SystemExit("FAIL: second derive rewrote a stable pair")
         import io
@@ -756,6 +774,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--input", help="Scored JSONL. Not combined with --pool-dir.")
     parser.add_argument("--briefs", help="briefs.json path. Inside public/, only public/briefs.json is allowed.")
     parser.add_argument("--as-of", help="ISO-8601 UTC stamp used when the item list changes. Default: now.")
+    parser.add_argument(
+        "--occupy-url",
+        action="append",
+        default=[],
+        help="Extra URL already treated as on the archive. The self-check uses this so dedup does not depend on live cards.",
+    )
     parser.add_argument("--self-check", action="store_true")
     args = parser.parse_args(argv)
     if args.self_check:
@@ -775,7 +799,9 @@ def main(argv: list[str] | None = None) -> int:
         else:
             rows, pairs, pool = _rows_from_path(Path(args.input))
         updated = as_of.astimezone(SHANGHAI).strftime("%Y-%m-%d %H:%M 北京时间")
-        document, rows = derive(rows, options, _load_existing(target), archive_urls(), updated, as_of)
+        occupied = set(archive_urls())
+        occupied.update(normalize_url(url) for url in args.occupy_url if normalize_url(url))
+        document, rows = derive(rows, options, _load_existing(target), occupied, updated, as_of)
         rendered = render_briefs(document)
         previous = target.read_text(encoding="utf-8") if target.is_file() else ""
         if rendered != previous:

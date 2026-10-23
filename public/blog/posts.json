@@ -1,33 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-21",
+  "updated": "",
   "note": "编者随笔。观点不是信号；源文件在 content/posts/。",
-  "posts": [
-    {
-      "slug": "how-signals-are-picked",
-      "title": "一条消息怎样才能上 AI Radar",
-      "title_en": "How a story earns its place",
-      "date": "2026-10-21",
-      "summary": "每天进来几百条，留下来的只有几条。这篇讲清楚中间那几道筛子：哪些是脚本自动做的，哪些必须有人看过才放行。",
-      "tags": [
-        "方法",
-        "筛选"
-      ],
-      "minutes": 2,
-      "url": "https://ruiyaoe-hash.github.io/ai-radar/blog/how-signals-are-picked.html"
-    },
-    {
-      "slug": "code-and-zen",
-      "title": "代码与禅：这个站为什么长这样",
-      "title_en": "Code and Zen",
-      "date": "2026-10-21",
-      "summary": "暗色暖底、一盏会呼吸的小灯、只有一栏的正文。改版背后的几个取舍：读得下去，比看起来热闹更重要。",
-      "tags": [
-        "设计",
-        "改版"
-      ],
-      "minutes": 2,
-      "url": "https://ruiyaoe-hash.github.io/ai-radar/blog/code-and-zen.html"
-    }
-  ]
+  "posts": []
 }
