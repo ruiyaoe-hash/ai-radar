@@ -1,8 +1,117 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-22 21:11 北京时间",
+  "updated": "2026-10-23 12:00 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261023-claude-auto-mode-default",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式",
+      "date": "2026-10-23",
+      "time": "10-23 04:04",
+      "handle": "claudeai",
+      "url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
+      "published_at": "2026-10-22T20:04:24Z",
+      "ingested_at": "2026-10-23T00:10:00Z",
+      "candidate_id": "cand-20261023-7f31c4dda252",
+      "promotion_path": "normal",
+      "objective": [
+        "Anthropic 在 2026 年 10 月 22 日更新说明：从下周起，多数 Claude 应用（网页、桌面、手机）上，Pro、Max、Team 套餐的新会话将默认进入自动模式（auto mode）。不再逐步弹窗让你点同意，而是由自动检查放行安全动作、拦住高风险动作；可随时切回手动。企业版管理员会在其组织默认改成自动模式之前收到邮件。",
+        "官方文章写，受控试验里 1053 名付费测试者人工只拦下约 13.6% 的危险命令，自动模式拦下约 89%。人工对权限提示的同意率约 97%。连续三次被拦或单会话累计二十次被拦时，会退回手动审批。Enterprise、Claude API 以及云上托管通道目前仍以自愿开启为主，计划约一个月内再扩。",
+        "若你本周用 Claude 网页、桌面或手机做带工具调用的长任务，先确认默认权限模式；需要逐步确认时，会话里切回手动，或让管理员用 managed settings 钉死 defaultMode / disableAutoMode。高风险改生产环境时，官方仍建议自己再看一遍动作。"
+      ],
+      "sources": [
+        {
+          "url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
+          "handle": "claudeai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/claudeai/status/2113360845409583307",
+          "handle": "claudeai",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
+      "access": "Pro、Max、Team：下周起多数 Claude 应用的新会话默认自动模式；已钉死其他默认的可能收到一次性提示。Enterprise 与 API/云托管通道暂仍自愿开启。客户端内可切换模式。",
+      "integration": "权限模式写在 Claude 应用与 Claude Code 设置里。管理员可用 managed settings 的 defaultMode 或 disableAutoMode。自动模式分类器按工具调用计少量额外 token；Pro/Max/Team 的 Claude Code 用户官方写明不再收这笔分类器费用。",
+      "first_step": "打开 Claude 网页、桌面或手机，看当前默认权限模式。若下周不想默认自动跑工具，现在切到手动并钉死；Team 管理员先核对 managed settings。",
+      "alternatives": [
+        "继续手动审批每一步",
+        "Enterprise / API 通道暂保持自愿开启，等管理员通知后再改"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。",
+        "action": "评估",
+        "window": "下周默认生效前，先设好个人或组织的权限默认。",
+        "confidence": "高",
+        "falsifier": "如果默认滚动被推迟、你的套餐或客户端不在「多数 Claude 应用」范围内，或你已钉死且不会被改写的手动默认，就收回「这周必须先改权限默认」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261023-openai-decisions-api-ga",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口",
+      "date": "2026-10-23",
+      "time": "10-23 03:00",
+      "handle": "OpenAI",
+      "url": "https://openai.com/index/decisions-api",
+      "published_at": "2026-10-22T19:00:00Z",
+      "ingested_at": "2026-10-23T00:10:00Z",
+      "candidate_id": "cand-20261022-5b11ed122be0",
+      "promotion_path": "normal",
+      "objective": [
+        "OpenAI 在 2026 年 10 月 22 日宣布 Decisions API（决策接口）结束公开测试、正式可用。它跑在 GPT-6 Luna 上，专门回答有边界的问题：给应用和智能体做分类、路由或下一步动作选择。官方写它可比同一模型走 Responses API 快约 10 倍，适合热路径上的近实时判断。",
+        "相对公开测试版，正式版新增原生 GPT-Live（实时语音）集成、复用上下文的提示缓存、美国与欧盟推理驻留，并支持原生 JSON 输入、在单题说明里带图片，以及每请求最多 400 道题（测试版上限的两倍）。计费只收输入：非缓存约每百万输入 token 0.10 美元，缓存输入约 0.01 美元；不收输出 token 费。",
+        "官方开发者文档写明走 POST /v1/decisions，当前模型是 gpt-6-luna。答案类型有三种：predicate（条件成立概率）、choice（从你给定选项里选一个）、score（按量表打分）。Box、Datadog、Ramp、Sierra、Speak 等客户案例写的是毫秒级路由、风险打分和成本归因。若你的产品里反复做有限答案的判断，这周用同一批真实样例在 Decisions Playground 或接口里对打现有 Responses/聊天路径。"
+      ],
+      "sources": [
+        {
+          "url": "https://openai.com/index/decisions-api",
+          "handle": "OpenAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/guides/decisions",
+          "handle": "OpenAI",
+          "role": "primary"
+        },
+        {
+          "url": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+          "handle": "TechCrunch",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://developers.openai.com/api/docs/guides/decisions",
+      "access": "正式可用。文档与计费见 OpenAI 开发者站 Decisions 指南与定价页。走 API 密钥调用 POST /v1/decisions，模型 gpt-6-luna。Playground 可先用自有文本或图片试跑。",
+      "integration": "独立 Decisions 端点，不是完整聊天回复。可嵌进应用编排、智能体路由，以及 GPT-Live 会话触发器。美国与欧盟驻留、符合条件的零数据保留见官方数据控制说明。",
+      "first_step": "挑一条产品里反复出现、答案集合有限的判断（分类、路由或是否继续）。在 Decisions Playground 或按开发者指南发第一条请求，用同一批真实样例对照现在的 Responses/聊天路径看延迟和费用。",
+      "alternatives": [
+        "继续用 Responses API / 聊天模型做同题（更慢、通常更贵）",
+        "自建或第三方 decision / System-1 小模型（需自行对齐延迟与准确率）"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。",
+        "action": "试用",
+        "window": "这周用同一批样例对打；正式可用后即可接生产。",
+        "confidence": "高",
+        "falsifier": "如果在你的真实样例上，Decisions API 的准确率明显低于现有路径，或延迟/费用没有可感知的改善，就收回「这周必须放进对照表」。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261022-nodejs-october-security-releases",
@@ -388,124 +497,6 @@
         "confidence": "高",
         "falsifier": "如果同一套任务上，新版的完成时间或账单并没有好于上一版，或者搜索结果质量达不到能直接用，就收回「这周该升 Harness，并试用搜索接口」。",
         "thesis_id": "T-001"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261016-meta-muse-spark-open",
-      "status": "confirmed",
-      "tag": "发布",
-      "lens": "赛道",
-      "priority": "P0",
-      "title": "Meta 放出可下载的 Muse Spark Open",
-      "date": "2026-10-16",
-      "time": "10-16 01:08",
-      "handle": "AIatMeta",
-      "url": "https://research.meta.ai/blog/muse-spark-open",
-      "published_at": "2026-10-15T17:08:04Z",
-      "ingested_at": "2026-10-16T00:03:25Z",
-      "candidate_id": "cand-20261016-04c0b2ee0f46",
-      "promotion_path": "normal",
-      "objective": [
-        "Meta 在 2026 年 10 月 15 日放出 Muse Spark Open。模型权重可以下载到自己的电脑或服务器上使用。官方称这是目前最强的美国开放权重模型。",
-        "总参数 816B，每个词大约激活 42B，结构是混合专家。上下文最长 1M token。它能读文字、图片、音频和视频，再输出文字，主打长程写代码和智能体任务。",
-        "权重可以在 Hugging Face 下载，也可以走 OpenRouter 这类托管接口。许可在有限商用条款下可以免费使用。大厂商如果要卖接口，需要另谈。",
-        "官方演示过用两台高配 Mac Studio 在本地跑通，内存门槛高，别默认家里的电脑能跑。它和 10 月 13 日的 Muse Wonder 不是一条线，Wonder 走的是闭源接口。完整评测报告还没发。"
-      ],
-      "sources": [
-        {
-          "url": "https://research.meta.ai/blog/muse-spark-open",
-          "handle": "Meta",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/AIatMeta/status/2110779754274292212",
-          "handle": "AIatMeta",
-          "role": "primary"
-        },
-        {
-          "url": "https://huggingface.co/collections/meta-models/muse-spark-open",
-          "handle": "HuggingFace",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/natolambert/status/2110787136924565941",
-          "handle": "natolambert",
-          "role": "analysis"
-        }
-      ],
-      "shift": "morning",
-      "try_url": "https://huggingface.co/collections/meta-models/muse-spark-open",
-      "access": "模型权重可以在 Hugging Face、Amazon SageMaker AI、Google Cloud Model Garden 和 Microsoft Foundry 下载。托管接口包括 Baseten、Fireworks、Groq、Modal、Nebius、OpenRouter 和 Together AI。许可是 Muse Model License，在有限商用条款下可以免费使用。",
-      "integration": "推理可以用 SGLang、vLLM、TensorRT-LLM、Transformers、llama.cpp、Unsloth 或 Apple MLX。",
-      "first_step": "先在 OpenRouter 或 Fireworks 这类托管接口上，用同一套长程写代码的题，把 Spark Open 和你现在的模型对打一遍。有两台 Mac Studio，再试本地。",
-      "alternatives": [
-        "Muse Wonder / Wonder Full（闭源 API）",
-        "DeepSeek / Kimi / GLM 等开源前沿",
-        "Gemini 4 Argon / Claude Opus 5.5（闭源）"
-      ],
-      "tool_radar": "试用",
-      "so_what": {
-        "lens": "赛道",
-        "impact": "美国这边第一次有接近前沿、又能下载权重的智能体模型。如果你依赖开源或自己托管，或者想躲开闭源配额，这周要用同一套任务把 Spark Open 放进对照，不要只看 Wonder 的接口或国内的开源模型。",
-        "action": "试用",
-        "window": "这周先用托管接口对照。本地要两台高配电脑，别默认家里能跑。",
-        "confidence": "高",
-        "falsifier": "如果独立评测显示，它在真实的长程写代码和智能体任务上稳定弱于同样成本的开源模型，或者托管接口的价格用不起来，就收回「美国这边的开放权重已经接近前沿，应该放进对照表」。",
-        "thesis_id": "T-001"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261016-flux3-image-klein",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "Black Forest Labs 放出可下载的 FLUX.3 Image Klein",
-      "date": "2026-10-16",
-      "time": "10-16 00:00",
-      "handle": "huggingface",
-      "url": "https://huggingface.co/blog/flux-3",
-      "published_at": "2026-10-15T00:00:00Z",
-      "ingested_at": "2026-10-16T00:03:25Z",
-      "candidate_id": "cand-20261015-ac63bb8d6ae3",
-      "promotion_path": "normal",
-      "objective": [
-        "Black Forest Labs 放出 FLUX.3 Image Klein，模型权重可以下载。Hugging Face 在 2026 年 10 月 15 日写道，发布当天就能做文生图、用多张参考图生图，以及在提示词里用边界框控制布局。",
-        "有两份检查点。蒸馏版默认 16 步，不使用分类器无关引导。基础版是 50 步，适合继续微调。另外提供 FP8 和 NVFP4 的单文件权重。",
-        "博客说蒸馏版在 H100 上大约 2 秒可以出一张 1024 像素的图。文本编码器是 Qwen3-VL。仓库里附了微调脚本和管线。"
-      ],
-      "sources": [
-        {
-          "url": "https://huggingface.co/blog/flux-3",
-          "handle": "HuggingFace",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/huggingface/status/2110755225107824868",
-          "handle": "huggingface",
-          "role": "report"
-        }
-      ],
-      "shift": "morning",
-      "try_url": "https://huggingface.co/blog/flux-3",
-      "access": "开放权重 + Diffusers；需较新 GPU 显存（量化可降）",
-      "integration": "diffusers ModularPipeline / HF Space",
-      "first_step": "先升级 Diffusers 和 Transformers，按博客跑一条文生图。要控制版式时，再试在提示词里加边界框。",
-      "alternatives": [
-        "FLUX.2 / FLUX.1",
-        "SD3 系",
-        "闭源图像 API"
-      ],
-      "tool_radar": "评估",
-      "so_what": {
-        "lens": "工具",
-        "impact": "开源画图多了一条能控制布局的新主干。如果你自己托管图床或封面，值得排进评估。这不是今天必须换掉现用模型的事。",
-        "action": "评估",
-        "window": "有图床或封面需求时，这周试一条就够。",
-        "confidence": "中",
-        "falsifier": "如果实际画质和可控性明显弱于你现在用的闭源画图模型，而且显存门槛太高，就收回「优先评估 FLUX.3」。"
       }
     }
   ]
