@@ -1,3 +1,18 @@
 AI Radar · 今日精选（2026-10-23）
 
+1. Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式
+   对你意味着什么：如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。
+   建议：立即行动 · 下周默认生效前，先设好个人或组织的权限默认。
+   https://claude.com/resources/articles/auto-mode-default-in-claude-code
+
+2. OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口
+   对你意味着什么：如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。
+   建议：立即行动 · 这周用同一批样例对打；正式可用后即可接生产。
+   https://openai.com/index/decisions-api
+
+3. Anthropic 放出 Claude Duet 研究预览：会主动找你的助理
+   对你意味着什么：Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。
+   建议：立即行动 · 美国区 Pro/Max 这周排队，开放后用同一批任务复测。
+   https://claude.com/product/claude-duet
+
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html

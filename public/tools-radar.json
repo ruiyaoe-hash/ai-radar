@@ -1,9 +1,86 @@
 {
-  "updated": "2026-10-23 17:01 北京时间",
+  "updated": "2026-10-23 21:13 北京时间",
   "rings": {
     "采纳": [],
-    "试用": [],
-    "评估": [],
+    "试用": [
+      {
+        "id": "evt-20261023-openai-decisions-api-ga",
+        "title": "OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口",
+        "date": "2026-10-23",
+        "try_url": "https://developers.openai.com/api/docs/guides/decisions",
+        "access": "正式可用。文档与计费见 OpenAI 开发者站 Decisions 指南与定价页。走 API 密钥调用 POST /v1/decisions，模型 gpt-6-luna。Playground 可先用自有文本或图片试跑。",
+        "integration": "独立 Decisions 端点，不是完整聊天回复。可嵌进应用编排、智能体路由，以及 GPT-Live 会话触发器。美国与欧盟驻留、符合条件的零数据保留见官方数据控制说明。",
+        "first_step": "挑一条产品里反复出现、答案集合有限的判断（分类、路由或是否继续）。在 Decisions Playground 或按开发者指南发第一条请求，用同一批真实样例对照现在的 Responses/聊天路径看延迟和费用。",
+        "alternatives": [
+          "继续用 Responses API / 聊天模型做同题（更慢、通常更贵）",
+          "自建或第三方 decision / System-1 小模型（需自行对齐延迟与准确率）"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      },
+      {
+        "id": "evt-20261023-anthropic-claude-duet",
+        "title": "Anthropic 放出 Claude Duet 研究预览：会主动找你的助理",
+        "date": "2026-10-23",
+        "try_url": "https://claude.com/product/claude-duet",
+        "access": "研究预览，需候补。美国区 Claude Pro 与 Max 可以排队。用量计入现有套餐，预览资格不加收。Team 与 Enterprise 的名额要等后续开放。客户端有 iOS、Android，电脑上在 claude.ai。",
+        "integration": "沿用 Claude 账号里的记忆、技能和已连接应用。官方称可接六千多个 connector（连接器）和 plugin（插件），底层是 Opus 5.5。",
+        "first_step": "打开产品页加入候补（美国区 Claude Pro 或 Max）。排队时写好同一批收件箱和跟进任务，开放后对照你现在的助手复测。其他地区先保存产品页和这批任务，等区域扩大后用同一套任务测一次。",
+        "alternatives": [
+          "现有的 Claude 对话（打开聊天后才开始干活）",
+          "把同一批收件箱任务留给现在的助手跟进"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      },
+      {
+        "id": "evt-20261023-minimax-design-mcp",
+        "title": "MiniMax Design MCP 上线：在 Codex 等智能体里直接做设计并回同步画布",
+        "date": "2026-10-23",
+        "try_url": "https://x.com/Hailuo_AI/status/2113518150440595501",
+        "access": "需 MiniMax Design 与支持 MCP 的智能体（官方示例含 Codex）。按官方线程更新客户端并连接 External Agent。",
+        "integration": "经 MCP 把 Design 能力挂进智能体会话；产物回写 Design Canvas。",
+        "first_step": "更新 MiniMax Design 到最新版，在头像旁连接 External Agent，用一条真实设计任务在 Codex（或其他已接 MCP 的客户端）里跑通并核对画布是否自动同步。",
+        "alternatives": [
+          "继续在独立设计工具里出图，再手工贴回智能体会话",
+          "其他厂商的设计类 MCP / 插件"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
+      },
+      {
+        "id": "evt-20261023-perplexity-decider-mac",
+        "title": "Perplexity Decider for Mac：本机跑开权决策小模型，无需 API 密钥",
+        "date": "2026-10-23",
+        "try_url": "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
+        "access": "Mac 本机应用 Decider for Mac；文档写明可本机跑模型并在本地环回地址调用，无需云端 API 密钥。",
+        "integration": "菜单栏应用 + 本机 Decisions 风格接口。可与云端 Decisions API 做同题对照。",
+        "first_step": "打开官方 Decider for Mac 文档安装应用，用同一批「有限答案」样例在本机跑一遍，再对照你现有的云端决策或聊天路径。",
+        "alternatives": [
+          "OpenAI Decisions API（云端、正式可用）",
+          "继续用通用聊天模型做同题分类/路由"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
+      }
+    ],
+    "评估": [
+      {
+        "id": "evt-20261023-claude-auto-mode-default",
+        "title": "Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式",
+        "date": "2026-10-23",
+        "try_url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
+        "access": "Pro、Max、Team：下周起多数 Claude 应用的新会话默认自动模式；已钉死其他默认的可能收到一次性提示。Enterprise 与 API/云托管通道暂仍自愿开启。客户端内可切换模式。",
+        "integration": "权限模式写在 Claude 应用与 Claude Code 设置里。管理员可用 managed settings 的 defaultMode 或 disableAutoMode。自动模式分类器按工具调用计少量额外 token；Pro/Max/Team 的 Claude Code 用户官方写明不再收这笔分类器费用。",
+        "first_step": "打开 Claude 网页、桌面或手机，看当前默认权限模式。若下周不想默认自动跑工具，现在切到手动并钉死；Team 管理员先核对 managed settings。",
+        "alternatives": [
+          "继续手动审批每一步",
+          "Enterprise / API 通道暂保持自愿开启，等管理员通知后再改"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      }
+    ],
     "暂缓": []
   },
   "note": "按你现在该怎么对待来分：值得采用、可以试用、需要评估、暂缓跟进。不按热度排。"
