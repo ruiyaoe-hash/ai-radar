@@ -1,15 +1,31 @@
-# Formal P0 push + 24h silence alert. Secret name: FEISHU_BOT_WEBHOOK (unset = dry-run, job stays green).
-name: Feishu P0 + 24h health
+# Formal P0, one site-update ping per qualifying main push, and 24h silence alert.
+# Secret name: FEISHU_BOT_WEBHOOK (unset = dry-run, job stays green).
+name: Feishu P0 + site update + 24h health
 
 on:
   schedule:
-    # every 6 hours
+    # every 6 hours. Health only — this trigger does not set FEISHU_SITE_SHA.
     - cron: "0 */6 * * *"
   workflow_dispatch:
   push:
     branches: [main]
     paths:
+      # Visitor-facing content. Deploy rebuilds derived pages from these trees.
+      # HTML/CSS/JS, schemas, ingest config, memos, and source scores do not ping.
       - "public/archive/**"
+      - "public/briefs.json"
+      - "public/items.json"
+      - "public/today3.txt"
+      - "public/practice.json"
+      - "public/practice/inbox/**"
+      - "public/tools-radar.json"
+      - "public/theses.json"
+      - "public/feed.xml"
+      - "public/feeds/**"
+      - "public/data/**"
+      - "public/topics/**"
+      - "public/blog/**"
+      - "content/posts/**"
 
 permissions:
   contents: read
@@ -20,6 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # Full history only on push, so new-card counts can see github.event.before.
+          # '0' must be a string: the expression language treats a bare 0 as falsy.
+          fetch-depth: ${{ github.event_name == 'push' && '0' || '1' }}
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
@@ -32,10 +52,12 @@ jobs:
           restore-keys: |
             feishu-notify-
 
-      - name: Notify formal P0 + health check
+      - name: Notify site update, formal P0, and health
         env:
           FEISHU_BOT_WEBHOOK: ${{ secrets.FEISHU_BOT_WEBHOOK }}
           FEISHU_STATE_PATH: .feishu-notify-state.json
+          FEISHU_SITE_SHA: ${{ github.event_name == 'push' && github.sha || '' }}
+          FEISHU_SITE_BEFORE: ${{ github.event_name == 'push' && github.event.before || '' }}
         run: python3 scripts/feishu_notify.py
 
       - name: Save notify state

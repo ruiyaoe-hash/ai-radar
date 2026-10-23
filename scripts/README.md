@@ -22,7 +22,7 @@
 | `annotate_gates.py` | L0 gates + L2 `cluster_id`. Writes judgment fields back. Does not promote. Leaves `low_score` and `editor_skip` in place |
 | `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |
 | `score_sources.py` | Source scoreboard → `public/source-scores.json`。整数分公式不变。`--pool-dir` 才把丢弃行和收藏÷点赞算进去，那次结果不要提交。公开骨架里的 action 不读 |
-| `feishu_notify.py` | Formal P0 + 24h health (needs `FEISHU_BOT_WEBHOOK`; state in `.feishu-notify-state.json`) |
+| `feishu_notify.py` | Formal P0、公开站更新短提醒、24h health（`FEISHU_BOT_WEBHOOK`；state in `.feishu-notify-state.json`） |
 | `ops_retract.py` | Dry-run retract/pause lookup. Does not edit archive, git, or Feishu. See `docs/runbook-retract.md` |
 | `sync_root_pages.py` | Interim mirror public/ → repo root for legacy Pages. Skips README.md. Stops when `.no-root-mirror` exists |
 | `retire_root_mirrors.py` | Delete root mirrors after Pages source is GitHub Actions |
