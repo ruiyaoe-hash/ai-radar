@@ -31,7 +31,7 @@
 
 - `watch_reason`：为什么值得看。短句，不允许数字。
 - `evidence_label`：`官方原始信息`、`多源确认`、`尚待核实`。
-- `suggested_action`：`立即试用`、`持续观察`、`暂缓`。
+- `suggested_action`：`立即行动`、`持续观察`、`暂缓`。默认动作叫「立即行动」，升级、打补丁、试用工具都用这一句。同一天草稿里曾写成「立即试用」，公开 JSON 没有用过那个值，卡片 `schema_version` 仍是 2。
 - `high_priority_review`：要优先审。不是归档卡上的 `priority`（P0 / P1），也不是自动发布。
 
 快讯上收窄：证据只能是 `官方原始信息`，动作只能是 `持续观察`，`high_priority_review` 必须是 false。自动档不把强制 P0 投进来。
