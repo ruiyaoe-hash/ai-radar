@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>AI Radar · 试用工具</title>
+<link>https://ruiyaoe-hash.github.io/ai-radar/</link>
+<description>只看试用工具。</description>
+<language>zh-cn</language>
+<lastBuildDate>Fri, 23 Oct 2026 12:00:50 +0800</lastBuildDate>
+<atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[今日必看 · 试用工具 · 发布] Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式</title>
+<link>https://claude.com/resources/articles/auto-mode-default-in-claude-code</link>
+<guid isPermaLink="false">evt-20261023-claude-auto-mode-default</guid>
+<pubDate>Fri, 23 Oct 2026 04:04:24 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 在 2026 年 10 月 22 日更新说明：从下周起，多数 Claude 应用（网页、桌面、手机）上，Pro、Max、Team 套餐的新会话将默认进入自动模式（auto mode）。不再逐步弹窗让你点同意，而是由自动检查放行安全动作、拦住高风险动作；可随时切回手动。企业版管理员会在其组织默认改成自动模式之前收到邮件。<br/>• 官方文章写，受控试验里 1053 名付费测试者人工只拦下约 13.6% 的危险命令，自动模式拦下约 89%。人工对权限提示的同意率约 97%。连续三次被拦或单会话累计二十次被拦时，会退回手动审批。Enterprise、Claude API 以及云上托管通道目前仍以自愿开启为主，计划约一个月内再扩。<br/>• 若你本周用 Claude 网页、桌面或手机做带工具调用的长任务，先确认默认权限模式；需要逐步确认时，会话里切回手动，或让管理员用 managed settings 钉死 defaultMode / disableAutoMode。高风险改生产环境时，官方仍建议自己再看一遍动作。<br/><strong>对你意味着什么</strong> 如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。<br/>建议：评估 · 下周默认生效前，先设好个人或组织的权限默认。<br/>有多确定：高<br/>什么情况下当这判断作废：如果默认滚动被推迟、你的套餐或客户端不在「多数 Claude 应用」范围内，或你已钉死且不会被改写的手动默认，就收回「这周必须先改权限默认」。<br/>来源 claudeai（一手）, claudeai（一手）<br/>日期 2026-10-23]]></description>
+</item>
+<item>
+<title>[今日必看 · 试用工具 · 发布] OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口</title>
+<link>https://openai.com/index/decisions-api</link>
+<guid isPermaLink="false">evt-20261023-openai-decisions-api-ga</guid>
+<pubDate>Fri, 23 Oct 2026 03:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• OpenAI 在 2026 年 10 月 22 日宣布 Decisions API（决策接口）结束公开测试、正式可用。它跑在 GPT-6 Luna 上，专门回答有边界的问题：给应用和智能体做分类、路由或下一步动作选择。官方写它可比同一模型走 Responses API 快约 10 倍，适合热路径上的近实时判断。<br/>• 相对公开测试版，正式版新增原生 GPT-Live（实时语音）集成、复用上下文的提示缓存、美国与欧盟推理驻留，并支持原生 JSON 输入、在单题说明里带图片，以及每请求最多 400 道题（测试版上限的两倍）。计费只收输入：非缓存约每百万输入 token 0.10 美元，缓存输入约 0.01 美元；不收输出 token 费。<br/>• 官方开发者文档写明走 POST /v1/decisions，当前模型是 gpt-6-luna。答案类型有三种：predicate（条件成立概率）、choice（从你给定选项里选一个）、score（按量表打分）。Box、Datadog、Ramp、Sierra、Speak 等客户案例写的是毫秒级路由、风险打分和成本归因。若你的产品里反复做有限答案的判断，这周用同一批真实样例在 Decisions Playground 或接口里对打现有 Responses/聊天路径。<br/><strong>对你意味着什么</strong> 如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。<br/>建议：试用 · 这周用同一批样例对打；正式可用后即可接生产。<br/>有多确定：高<br/>什么情况下当这判断作废：如果在你的真实样例上，Decisions API 的准确率明显低于现有路径，或延迟/费用没有可感知的改善，就收回「这周必须放进对照表」。<br/>来源 OpenAI（一手）, OpenAI（一手）, TechCrunch（转述）<br/>日期 2026-10-23]]></description>
+</item>
+<item>
+<title>[今日必看 · 试用工具 · 安全] Node.js 安全更新：Brotli 解码高危可远程执行，请升到 22.23.4 / 24.22.1 / 26.12.1</title>
+<link>https://nodejs.org/en/blog/vulnerability/october-2026-security-releases</link>
+<guid isPermaLink="false">evt-20261022-nodejs-october-security-releases</guid>
+<pubDate>Thu, 22 Oct 2026 06:39:27 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Node.js 项目在 2026 年 10 月 21 日发布安全更新，覆盖仍在维护的 22.x、24.x、26.x。修复版是 v22.23.4、v24.22.1、v26.12.1。其中最高危之一是 Brotli 解码器越界写入（CVE-2026-111497，高危）：处理攻击者可控的 Brotli 数据时，可能导致内存泄露或远程代码执行（RCE，远程在机器上跑代码）。<br/>• 同批还修了多处高危：dns.resolve 遇 NUL 截断域名（CVE-2026-105482），以及若干 TLS 证书主机名核对可被绕过的问题（含全角数字 IP、非规范 IP 写法）。另外更新了内置的 c-ares、OpenSSL、SQLite、undici，并把 eMudhra 那 8 枚出问题的中间证书加入黑名单。<br/>• 20.x 与 25.x 已停止维护，这次没有补丁。还在用它们的，只能迁到 22、24 或 26 后再打补丁。自建容器镜像、CI 跑手、本机工具链和托管运行时之外的 Node 进程，都要对照版本号升级并重启进程。<br/><strong>对你意味着什么</strong> 如果你本机、服务器、CI 或容器里还在跑 Node.js，今天核对 node -v，把 22/24/26 升到 v22.23.4、v24.22.1 或 v26.12.1，并重启进程；停维的 20/25 先迁分支。不跑 Node 的，记下这组版本号即可。<br/>建议：今天升级 · 今天升到修复版并重启 Node 进程。<br/>有多确定：高<br/>什么情况下当这判断作废：如果环境里没有 Node.js，或者 node -v 已显示达到 v22.23.4、v24.22.1 或 v26.12.1 里对应分支的修复版，就收回「今天要先打这组 Node 安全更新」。<br/>来源 nodejs（一手）, nodejs（一手）, nodejs（一手）, dotey（解读）<br/>日期 2026-10-22]]></description>
+</item>
+<item>
+<title>[今日必看 · 试用工具 · 发布] Anthropic 放出 Claude Duet 研究预览（主动找你的助理）</title>
+<link>https://claude.com/product/claude-duet</link>
+<guid isPermaLink="false">evt-20261022-anthropic-claude-duet</guid>
+<pubDate>Thu, 22 Oct 2026 03:09:35 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 在北京时间 2026 年 10 月 22 日凌晨开放 Claude Duet 的研究预览（research preview，给一部分用户提前试用）。这是一款会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已经交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并能接入 6000 多个 connector（连接器）和 plugin（插件）。<br/>• 官方产品页写明，这一轮候补面向美国的 Claude Pro 和 Max 订阅用户。研究预览和 Claude 共用现有套餐的用量额度，预览资格本身不加收一笔费用。后台巡检也会计入额度，做财务模型或幻灯片这类大任务更费。Team 和 Enterprise 的名额要等后续开放。它是独立应用，有 iOS 和 Android，电脑上在 claude.ai 打开，并沿用你 Claude 账号里的记忆、技能和已连接的应用。<br/>• 发消息、付款这类敏感动作，Duet 会先把将要执行的步骤摆给你看，等你点头再做。官方同时写明，它可能读错一段往来，把事情的缓急判偏，两次巡检之间新到的消息也可能漏过。排队时先写下同一批收件箱和跟进任务，开放后用这批任务看它能否在你离开时把步骤做完。<br/><strong>对你意味着什么</strong> Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。其他地区先把这批任务写下来，等开放区域扩大后再测。<br/>建议：试用 · 美国区 Pro/Max 这周排队，开放后用同一批任务复测。<br/>有多确定：高<br/>什么情况下当这判断作废：如果候补名单长期不放出名额，或开放范围一直停在美国区 Pro 与 Max，或者它只会发提醒、没有把你交代的收件箱和跟进任务往前做完，就收回「这周该去排队，并用同一批任务复测」。<br/>来源 claudeai（一手）, claudeai（一手）, addyosmani（一手）, dotey（解读）<br/>日期 2026-10-22]]></description>
+</item>
+<item>
+<title>[今日必看 · 试用工具 · 安全] GitLab 满分未授权远程执行（CVE-2026-110264）：自建实例升到 19.5.1 等修复版</title>
+<link>https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/</link>
+<guid isPermaLink="false">evt-20261022-gitlab-cve-2026-110264</guid>
+<pubDate>Thu, 22 Oct 2026 02:57:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• GitLab 在 2026 年 10 月 21 日发布关键补丁，修复 CVE-2026-110264：正则表达式编译器整数溢出，在某些条件下可让未登录攻击者在服务器上执行任意代码，CVSS 满分 10.0。受影响范围从 7.0 起的自建 Community/Enterprise，一直到各 19.x 未打补丁的版本；10 月 12 日刚打过补丁的版本也仍中招。<br/>• 修复版：19.5.1、19.4.3、19.3.6、19.2.9、19.1.9、19.0.10，以及回移植的 18.11.13。GitLab.com 与已打补丁的 GitLab Dedicated 租户不用再动手；要升级的是自建实例。官方未提供可靠的临时缓解，升级是确定有效的做法。<br/>• 这是约六周内第三个满分级漏洞。更老版本不能一步跳到最新，需按官方 upgrade path 工具经过中间站。19.4.3 与 19.3.6 升级会改数据库，单机可能短时停机。<br/><strong>对你意味着什么</strong> 如果你公司或个人自建了 GitLab，今天按公告把实例升到对应修复版；代码、密钥和流水线都在这台机器上，未授权远程执行不能拖。只用 GitLab.com 或已打补丁 Dedicated 的，记下 CVE 编号即可。<br/>建议：今天升级 · 今天把自建实例升到修复版。<br/>有多确定：高<br/>什么情况下当这判断作废：如果没有任何自建 GitLab（只用 GitLab.com 或已确认修复的 Dedicated），或实例版本已达到公告中对应修复版，就收回「今天要先打这组 GitLab 补丁」。<br/>来源 gitlab（一手）, cve（一手）, dotey（解读）, thehackernews（转述）<br/>日期 2026-10-22]]></description>
+</item>
+<item>
+<title>[今日必看 · 试用工具 · 安全] OpenAI 协调披露 PHP 引擎高危远程执行（PHP2Shell），并放出自查 skill</title>
+<link>https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/</link>
+<guid isPermaLink="false">evt-20261022-php2shell-openai-disclosure</guid>
+<pubDate>Wed, 21 Oct 2026 22:04:23 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• PHP 官方在 2026 年 10 月 21 日发布安全公告：引擎里有两处登录前即可触发的远程代码执行（pre-auth RCE，未登录就能在服务器上跑代码），编号 CVE-2026-109618 和 CVE-2026-109619。修复版本是 8.5.12、8.4.27、8.3.36 和 8.2.35。受影响的是处理网页请求的 PHP 进程，包括 PHP-FPM 和 Apache mod_php。要升级的是 PHP 引擎。站点程序换了新版之后，只要进程里的 PHP 仍停在对应修复版之前，这两处漏洞还在。<br/>• OpenAI 在 Patch the Planet（为关键开源软件协调补丁的项目）里写，Calif 用 GPT-5.6 Sol（OpenAI 的一款模型）发现其中一处严重缺陷，Wiz 也独立报告了这两处漏洞。PHP 维护者主导修复和发布，OpenAI、Wiz、Cloudflare 等参与研究和公开前的协调。同一天 OpenAI 放出 Codex skill（Codex 里可调用的检查步骤）php2shell-checker，用来核对站点正在运行的 PHP 版本，再对照官方和托管商的说明决定升到哪一版。<br/>• 同一轮公开窗口里，还要留意 Node.js 的 Brotli 解码远程执行（CVE-2026-111497），以及 eMudhra 中间证书私钥泄露后的信任库更新。今天先处理 PHP：网站或服务器在跑 PHP 的，把引擎升到上面的修复版，或用 php2shell-checker 核对正在运行的版本。<br/><strong>对你意味着什么</strong> 如果你的网站或服务器在跑 PHP，今天就把引擎升到 8.5.12、8.4.27、8.3.36 或 8.2.35，升完重启 PHP 进程。也可以先用 OpenAI 的 php2shell-checker 核对正在运行的版本。技术栈里没有 PHP 的，记下这组版本号即可。<br/>建议：今天升级 · 今天升到修复版并重启 PHP 进程。<br/>有多确定：高<br/>什么情况下当这判断作废：如果站点和技术栈里没有 PHP，或者 php -v 与检查工具都显示版本已经达到 8.5.12、8.4.27、8.3.36 或 8.2.35 里对应的修复版，就收回「今天要先打这组 PHP 补丁」。<br/>来源 OpenAI（一手）, PHP（一手）, OpenAI（一手）, OpenAI（一手）, OpenAI（一手）<br/>日期 2026-10-22]]></description>
+</item>
+<item>
+<title>[今日必看 · 试用工具 · 发布] Meta 放出 Muse Glimmer 30B，可在消费级显卡上跑本地智能体</title>
+<link>https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model</link>
+<guid isPermaLink="false">evt-20261020-meta-muse-glimmer-30b</guid>
+<pubDate>Tue, 20 Oct 2026 03:33:10 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Meta 在 2026 年 10 月 19 日发布 Muse Glimmer 的技术报告。这是约 300 亿参数、面向本地智能体任务的开放权重模型。模型权重可以下载到自己的电脑或服务器上使用，许可是 Apache 2.0。<br/>• 官方目标是在一台 Mac 或带单块消费级显卡的个人电脑上跑通多步推理、工具调用和失败重试。4-bit 量化后语言部分大约 17GB，官方说可以塞进约 24GB 显存的设备。同尺寸对照里，官方点名工具使用和智能体完成度优于 Qwen3.6-27B 与 Gemma4-31B。<br/>• 权重在 Hugging Face 的 meta-models/Muse-Glimmer-30B 可下。官方还提供 GGUF 量化包、视觉投影和 DFlash 推测解码草稿模型。推理侧可走 llama.cpp、vLLM 等常见路径。<br/><strong>对你意味着什么</strong> 如果你这周要在自己电脑上跑本地智能体，而不只靠云端接口，把 Muse Glimmer 放进同尺寸对照表。它和已经上板的 Muse Spark Open 不是同一条产品线：Spark 更大、偏托管或高端本机；Glimmer 专门压到消费级单卡。<br/>建议：试用 · 这周先用 4-bit 本地包跑一小批带工具调用的任务。<br/>有多确定：高<br/>什么情况下当这判断作废：如果同一套本地智能体任务上，它在完成率或速度上稳定弱于同尺寸、同显存预算的 Qwen 或 Gemma，或者 24GB 显存根本跑不起来，就收回「这周该把 Glimmer 放进本地智能体对照」。<br/>来源 Meta（一手）, Meta（一手）, AIatMeta（一手）, HuggingFace（一手）<br/>日期 2026-10-20]]></description>
+</item>
+<item>
+<title>[今日必看 · 试用工具 · 发布] DeepSeek 更新 V4.1 Flash，并开放搜索接口</title>
+<link>https://api-docs.deepseek.com/zh-cn/updates/</link>
+<guid isPermaLink="false">evt-20261018-deepseek-v41-flash-1017</guid>
+<pubDate>Sat, 17 Oct 2026 16:35:54 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• DeepSeek 在 2026 年 10 月 17 日把 V4.1 Flash 升级到 DeepSeek-V4.1-Flash-1017。官网、手机应用和接口都已换成这一版。接口里的模型名仍写 deepseek-flash，调用方式和价格都没有变。模型权重可以在 Hugging Face 和 ModelScope 下载到自己的电脑或服务器上使用。<br/>• 官方更新日志写，新版把任务运行时间和输出长度都缩短了。不带工具的 HLE，上一版是 36.8，这一版是 42.6。Terminal-Bench 4.0，上一版是 31.2，这一版是 42.3。官方还写，这一版用带自我反馈的强化学习，改进从零做完整项目，例子包括做游戏和三维建模。<br/>• 官方建议把 DeepSeek Harness（智能体编排）升到 0.2.1-rc.1 或更新的版本。他们点名做了适配的框架还有腾讯 CodeBuddy 和 WorkBuddy。<br/>• 同一天，自研的搜索接口和抓取接口向所有人开放。官方说这套搜索每天处理来自全球的数亿次请求。每个接口的标价是每 1000 次调用 0.75 美元。通过 DeepSeek Harness、Claude Code 和 Codex 里的服务端工具去调用，在 2026 年 10 月 31 日 16:00（世界时）之前对接口用户免费。<br/><strong>对你意味着什么</strong> 这周不用改接口里的模型名。把 DeepSeek Harness 升到 0.2.1-rc.1 或更新，用你手头的写代码题目看完成时间和账单。要给智能体联网时，把搜索和抓取接口接上，赶在免费窗口结束前试一次。<br/>建议：试用 · 这周先升 Harness。搜索接口经上述工具的免费调用到 10 月 31 日 16:00（世界时）。<br/>有多确定：高<br/>什么情况下当这判断作废：如果同一套任务上，新版的完成时间或账单并没有好于上一版，或者搜索结果质量达不到能直接用，就收回「这周该升 Harness，并试用搜索接口」。<br/>来源 DeepSeek（一手）, DeepSeek（一手）, deepseek_ai（一手）, HuggingFace（一手）, ModelScope（一手）<br/>日期 2026-10-18]]></description>
+</item>
+</channel>
+</rss>

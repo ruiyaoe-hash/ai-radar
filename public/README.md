@@ -1,5 +1,7 @@
 # public/ — GitHub Pages 根目录
 
+公开内容已于 2026-10-23 清空，原文在 `retained/pre-auto-reset-2026-10-23/`；此后由全自动班次重新填充。
+
 - **写入源**：`archive/YYYY-MM-DD.json`（Alba append-only）
 - **派生**：`items.json`、`feed.xml`、`feeds/`、`tools-radar.json`、`today3.txt`、`source-scores.json`、`memos/`（由 `scripts/generate_derived.py` / CI）
 - **`owner-actions.json`**：公开空骨架。私人 action 不写在这里，Pages 上不应出现主人的实时动作

@@ -106,31 +106,48 @@ def run(action: str, card_id: str, reason: str, shift: str, quiet: bool = False)
     return 0
 
 
-def self_check() -> int:
-    sample = ""
+def _first_event_id() -> str:
     for path in sorted(ARCHIVE.glob("????-??-??.json")):
         for it in _load(path).get("items") or []:
             eid = str(it.get("id") or "")
             if eid.startswith("evt-"):
-                sample = eid
-                break
-        if sample:
-            break
+                return eid
+    return ""
+
+
+def self_check() -> int:
+    sample = _first_event_id()
+    planted: Path | None = None
     if not sample:
-        print("FAIL ops: archive 里没有 evt- 卡可探测")
-        return 1
-    checks = (
-        ("known retract", run("retract", sample, "self-check", "", quiet=True), 0),
-        ("missing retract", run("retract", "evt-20261014-missing-card", "self-check", "", quiet=True), 1),
-        ("pause", run("pause", "", "self-check skip", "21:00", quiet=True), 0),
-        ("pause without reason", run("pause", "", "", "21:00", quiet=True), 2),
-        ("retract without id", run("retract", "", "self-check", "", quiet=True), 2),
-        ("removed midday", run("pause", "", "self-check", "13:30", quiet=True), 2),
-    )
-    for label, got, expect in checks:
-        if got != expect:
-            print(f"FAIL ops self-check {label}: got {got}, expect {expect}")
-            return 1
+        # Public archive may be empty after a slate reset. Plant a throwaway day
+        # so retract-of-a-known-id still has something to find, then delete it.
+        sample = "evt-20990101-ops-self-check"
+        planted = ARCHIVE / "2099-01-01.json"
+        ARCHIVE.mkdir(parents=True, exist_ok=True)
+        planted.write_text(
+            json.dumps(
+                {"date": "2099-01-01", "count": 1, "items": [{"id": sample}]},
+                ensure_ascii=False,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+    try:
+        checks = (
+            ("known retract", run("retract", sample, "self-check", "", quiet=True), 0),
+            ("missing retract", run("retract", "evt-20261014-missing-card", "self-check", "", quiet=True), 1),
+            ("pause", run("pause", "", "self-check skip", "21:00", quiet=True), 0),
+            ("pause without reason", run("pause", "", "", "21:00", quiet=True), 2),
+            ("retract without id", run("retract", "", "self-check", "", quiet=True), 2),
+            ("removed midday", run("pause", "", "self-check", "13:30", quiet=True), 2),
+        )
+        for label, got, expect in checks:
+            if got != expect:
+                print(f"FAIL ops self-check {label}: got {got}, expect {expect}")
+                return 1
+    finally:
+        if planted is not None:
+            planted.unlink(missing_ok=True)
     print("OK ops retract/pause dry-run")
     return 0
 
