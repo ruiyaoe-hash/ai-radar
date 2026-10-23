@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22 15:27 北京时间",
+  "updated": "2026-10-22 21:10 北京时间",
   "rings": {
     "采纳": [
       {
@@ -358,6 +358,36 @@
         ],
         "status": "confirmed",
         "priority": "P1"
+      },
+      {
+        "id": "evt-20261022-nodejs-october-security-releases",
+        "title": "Node.js 安全更新：Brotli 解码高危可远程执行，请升到 22.23.4 / 24.22.1 / 26.12.1",
+        "date": "2026-10-22",
+        "try_url": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases",
+        "access": "补丁在 nodejs.org 安全公告与对应版本发布说明。包管理器、容器基础镜像和托管平台可能已提供回移植；自建镜像要自己换版本并重建。",
+        "integration": "升级的是 Node.js 运行时本身。升完后重启所有仍跑旧二进制的进程；钉死版本的 Docker 镜像和打包成可执行文件的应用要重建。",
+        "first_step": "在机器上执行 node -v。若低于 v22.23.4、v24.22.1 或 v26.12.1 里你所在分支的修复版，今天升到对应修复版并重启进程；停维的 20.x/25.x 先迁到 22/24/26 再打补丁。",
+        "alternatives": [
+          "向托管平台确认其托管 Node 运行时是否已滚到修复版",
+          "重建并滚动替换钉死旧 Node 版本的容器镜像"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      },
+      {
+        "id": "evt-20261022-gitlab-cve-2026-110264",
+        "title": "GitLab 满分未授权远程执行（CVE-2026-110264）：自建实例升到 19.5.1 等修复版",
+        "date": "2026-10-22",
+        "try_url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/",
+        "access": "补丁说明在 GitLab Docs。自建 CE/EE 按当前小版本升到对应修复版；很老的版本用官方 upgrade path 工具算出中间站。GitLab.com 与已修复的 Dedicated 无需操作。",
+        "integration": "升级的是自建 GitLab 实例。升完按官方说明重启相关服务；需要改库的版本预留维护窗口。",
+        "first_step": "确认你是否自建 GitLab。若是，对照公告升到 19.5.1 / 19.4.3 / 19.3.6 / 19.2.9 / 19.1.9 / 19.0.10 或 18.11.13 中与你分支对应的修复版；版本很老时先用 upgrade path 工具排路径。",
+        "alternatives": [
+          "仅使用 GitLab.com 或已确认打过补丁的 Dedicated（官方称已修复）",
+          "按官方检测规则翻日志，排查是否已有试探攻击"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
       }
     ],
     "暂缓": [

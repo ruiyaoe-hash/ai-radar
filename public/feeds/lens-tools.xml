@@ -5,14 +5,28 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看试用工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Thu, 22 Oct 2026 10:09:53 +0800</lastBuildDate>
+<lastBuildDate>Thu, 22 Oct 2026 21:10:54 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[今日必看 · 试用工具 · 安全] Node.js 安全更新：Brotli 解码高危可远程执行，请升到 22.23.4 / 24.22.1 / 26.12.1</title>
+<link>https://nodejs.org/en/blog/vulnerability/october-2026-security-releases</link>
+<guid isPermaLink="false">evt-20261022-nodejs-october-security-releases</guid>
+<pubDate>Thu, 22 Oct 2026 06:39:27 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Node.js 项目在 2026 年 10 月 21 日发布安全更新，覆盖仍在维护的 22.x、24.x、26.x。修复版是 v22.23.4、v24.22.1、v26.12.1。其中最高危之一是 Brotli 解码器越界写入（CVE-2026-111497，高危）：处理攻击者可控的 Brotli 数据时，可能导致内存泄露或远程代码执行（RCE，远程在机器上跑代码）。<br/>• 同批还修了多处高危：dns.resolve 遇 NUL 截断域名（CVE-2026-105482），以及若干 TLS 证书主机名核对可被绕过的问题（含全角数字 IP、非规范 IP 写法）。另外更新了内置的 c-ares、OpenSSL、SQLite、undici，并把 eMudhra 那 8 枚出问题的中间证书加入黑名单。<br/>• 20.x 与 25.x 已停止维护，这次没有补丁。还在用它们的，只能迁到 22、24 或 26 后再打补丁。自建容器镜像、CI 跑手、本机工具链和托管运行时之外的 Node 进程，都要对照版本号升级并重启进程。<br/><strong>对你意味着什么</strong> 如果你本机、服务器、CI 或容器里还在跑 Node.js，今天核对 node -v，把 22/24/26 升到 v22.23.4、v24.22.1 或 v26.12.1，并重启进程；停维的 20/25 先迁分支。不跑 Node 的，记下这组版本号即可。<br/>建议：今天升级 · 今天升到修复版并重启 Node 进程。<br/>有多确定：高<br/>什么情况下当这判断作废：如果环境里没有 Node.js，或者 node -v 已显示达到 v22.23.4、v24.22.1 或 v26.12.1 里对应分支的修复版，就收回「今天要先打这组 Node 安全更新」。<br/>来源 nodejs（一手）, nodejs（一手）, nodejs（一手）, dotey（解读）<br/>日期 2026-10-22]]></description>
+</item>
 <item>
 <title>[今日必看 · 试用工具 · 发布] Anthropic 放出 Claude Duet 研究预览（主动找你的助理）</title>
 <link>https://claude.com/product/claude-duet</link>
 <guid isPermaLink="false">evt-20261022-anthropic-claude-duet</guid>
 <pubDate>Thu, 22 Oct 2026 03:09:35 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Anthropic 在北京时间 2026 年 10 月 22 日凌晨开放 Claude Duet 的研究预览（research preview，给一部分用户提前试用）。这是一款会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已经交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并能接入 6000 多个 connector（连接器）和 plugin（插件）。<br/>• 官方产品页写明，这一轮候补面向美国的 Claude Pro 和 Max 订阅用户。研究预览和 Claude 共用现有套餐的用量额度，预览资格本身不加收一笔费用。后台巡检也会计入额度，做财务模型或幻灯片这类大任务更费。Team 和 Enterprise 的名额要等后续开放。它是独立应用，有 iOS 和 Android，电脑上在 claude.ai 打开，并沿用你 Claude 账号里的记忆、技能和已连接的应用。<br/>• 发消息、付款这类敏感动作，Duet 会先把将要执行的步骤摆给你看，等你点头再做。官方同时写明，它可能读错一段往来，把事情的缓急判偏，两次巡检之间新到的消息也可能漏过。排队时先写下同一批收件箱和跟进任务，开放后用这批任务看它能否在你离开时把步骤做完。<br/><strong>对你意味着什么</strong> Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。其他地区先把这批任务写下来，等开放区域扩大后再测。<br/>建议：试用 · 美国区 Pro/Max 这周排队，开放后用同一批任务复测。<br/>有多确定：高<br/>什么情况下当这判断作废：如果候补名单长期不放出名额，或开放范围一直停在美国区 Pro 与 Max，或者它只会发提醒、没有把你交代的收件箱和跟进任务往前做完，就收回「这周该去排队，并用同一批任务复测」。<br/>来源 claudeai（一手）, claudeai（一手）, addyosmani（一手）, dotey（解读）<br/>日期 2026-10-22]]></description>
+</item>
+<item>
+<title>[今日必看 · 试用工具 · 安全] GitLab 满分未授权远程执行（CVE-2026-110264）：自建实例升到 19.5.1 等修复版</title>
+<link>https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-1-released/</link>
+<guid isPermaLink="false">evt-20261022-gitlab-cve-2026-110264</guid>
+<pubDate>Thu, 22 Oct 2026 02:57:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• GitLab 在 2026 年 10 月 21 日发布关键补丁，修复 CVE-2026-110264：正则表达式编译器整数溢出，在某些条件下可让未登录攻击者在服务器上执行任意代码，CVSS 满分 10.0。受影响范围从 7.0 起的自建 Community/Enterprise，一直到各 19.x 未打补丁的版本；10 月 12 日刚打过补丁的版本也仍中招。<br/>• 修复版：19.5.1、19.4.3、19.3.6、19.2.9、19.1.9、19.0.10，以及回移植的 18.11.13。GitLab.com 与已打补丁的 GitLab Dedicated 租户不用再动手；要升级的是自建实例。官方未提供可靠的临时缓解，升级是确定有效的做法。<br/>• 这是约六周内第三个满分级漏洞。更老版本不能一步跳到最新，需按官方 upgrade path 工具经过中间站。19.4.3 与 19.3.6 升级会改数据库，单机可能短时停机。<br/><strong>对你意味着什么</strong> 如果你公司或个人自建了 GitLab，今天按公告把实例升到对应修复版；代码、密钥和流水线都在这台机器上，未授权远程执行不能拖。只用 GitLab.com 或已打补丁 Dedicated 的，记下 CVE 编号即可。<br/>建议：今天升级 · 今天把自建实例升到修复版。<br/>有多确定：高<br/>什么情况下当这判断作废：如果没有任何自建 GitLab（只用 GitLab.com 或已确认修复的 Dedicated），或实例版本已达到公告中对应修复版，就收回「今天要先打这组 GitLab 补丁」。<br/>来源 gitlab（一手）, cve（一手）, dotey（解读）, thehackernews（转述）<br/>日期 2026-10-22]]></description>
 </item>
 <item>
 <title>[今日必看 · 试用工具 · 安全] OpenAI 协调披露 PHP 引擎高危远程执行（PHP2Shell），并放出自查 skill</title>
