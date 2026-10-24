@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23 21:13 北京时间",
+  "updated": "2026-10-24 08:03 北京时间",
   "rings": {
     "采纳": [],
     "试用": [
@@ -62,6 +62,38 @@
         ],
         "status": "confirmed",
         "priority": "P1"
+      },
+      {
+        "id": "evt-20261024-kimi-k3-1-pro",
+        "title": "月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权",
+        "date": "2026-10-24",
+        "try_url": "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+        "access": "Kimi 网页/App、Kimi Work 3.1.0+、Kimi Code（/model 选 K3.1 Pro）、Kimi API。旗舰 API 需账户充值解锁。完整权重约 11 月 4 日前放出。",
+        "integration": "可作聊天、编程助手与 API 推理后端；权重放出后可自托管。Highspeed 变体适合更看延迟的路径。",
+        "first_step": "用你本周真实的一条编程或长文档任务，在 Kimi Code 或 API 上选 kimi-k3.1-pro，与现用的 Claude / GPT / 上一版 Kimi K3 对打延迟、费用和完成质量。",
+        "alternatives": [
+          "继续用 Claude Opus / GPT 等闭源前沿模型",
+          "等 11 月 4 日前开权后再自托管对比",
+          "DeepSeek V4.1 Flash 1017 等其他开权更新"
+        ],
+        "status": "confirmed",
+        "priority": "P0"
+      },
+      {
+        "id": "evt-20261024-deepseek-v41-flash-1017",
+        "title": "DeepSeek V4.1 Flash 1017：开权小更新，编程与智能体榜面明显抬升",
+        "date": "2026-10-24",
+        "try_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+        "access": "Hugging Face 权重可下；亦可通过 DeepSeek API / 第三方推理托管（以各平台上架名为准）。",
+        "integration": "开权推理后端或替换现有 V4.1-Flash 端点；注意官方提示编码与 deepseek-recipe 工具链。",
+        "first_step": "若你已在用 V4.1-Flash，把同一批编程或智能体任务切到 1017 权重/端点，看完成率与费用是否优于旧版。",
+        "alternatives": [
+          "继续用 DeepSeek V4.1-Flash 旧权重",
+          "Kimi K3.1 Pro API（尚未开权）",
+          "闭源编程助手（Claude Code / Codex 等）"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
       }
     ],
     "评估": [
@@ -79,6 +111,22 @@
         ],
         "status": "confirmed",
         "priority": "P0"
+      },
+      {
+        "id": "evt-20261024-tencent-hy-nomas",
+        "title": "腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型",
+        "date": "2026-10-24",
+        "try_url": "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+        "access": "GitHub 克隆 + Hugging Face 下权重；官方推荐 Docker 镜像。单卡 4090 配置见仓库说明。",
+        "integration": "本地/集群推理与 Web demo；可用 LoRA 做领域适配。与闭源交互世界预览（如仅浏览器队列）对照。",
+        "first_step": "打开 GitHub README，按推荐 Docker 或环境步骤拉起 demo，用一条多轮文本+简单相机轨迹看续写是否稳定，再决定是否投入显存做 LoRA。",
+        "alternatives": [
+          "闭源交互世界模型的浏览器预览/API",
+          "通用视频生成模型（非世界记忆向）",
+          "先只看评测与论文，暂不自托管"
+        ],
+        "status": "confirmed",
+        "priority": "P1"
       }
     ],
     "暂缓": []

@@ -5,8 +5,29 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Fri, 23 Oct 2026 21:13:09 +0800</lastBuildDate>
+<lastBuildDate>Sat, 24 Oct 2026 08:03:40 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[今日必看 · 试用工具 · 发布] 月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权</title>
+<link>https://www.kimi.ai/blog/kimi-k3-1-pro</link>
+<guid isPermaLink="false">evt-20261024-kimi-k3-1-pro</guid>
+<pubDate>Sat, 24 Oct 2026 01:44:44 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 月之暗面（Moonshot）在 2026 年 10 月 23 日发布 Kimi K3.1 Pro：自家宣称最强的 3T 级开放权重（open-weight）模型系列首款，上下文约 100 万 token；同时放出更快的 K3.1 Pro Highspeed（约 2–3 倍速度）。<br/>• 当天即可在 Kimi 网页与 App、办公助手 Kimi Work、编程工具 Kimi Code，以及 Kimi API（模型名 kimi-k3.1-pro / kimi-k3.1-pro-highspeed）使用；完整模型权重官方写明将在 2026 年 11 月 4 日前放出。参数规模约 2.8T 总量 / 104B 激活（MoE）。<br/>• Artificial Analysis 把 K3.1 Pro 排到 Intelligence Index（智能指数）第 4、得分 55，并称权重放出后将成为当时领先的开权模型；宝玉、Nathan Lambert、Simon Willison 等关注池账号同日多源确认。官方博客另说明对网络攻防相关训练数据做了针对性削减后再开权。<br/><strong>对你意味着什么</strong> 如果你这周在选型开权或国产 API 做编程/智能体，K3.1 Pro 已可在网页和 API 试跑，权重也给出明确窗口；值得用同一批真实任务对打你现有主力模型。<br/>建议：立即行动 · 今天即可 API/网页试；完整权重盯 11 月 4 日前。<br/>有多确定：高<br/>什么情况下当这判断作废：若在你的真实任务上明显弱于现用模型，或 API 配额/价格不可接受，且开权延期或许可不合规，就收回「这周必须换主力对照」。<br/>来源 Kimi_Moonshot（一手）, Kimi_Moonshot（一手）, ArtificialAnlys（转述）, dotey（转述）, natolambert（转述）, simonw（转述）<br/>日期 2026-10-24]]></description>
+</item>
+<item>
+<title>[重点关注 · 试用工具 · 发布] DeepSeek V4.1 Flash 1017：开权小更新，编程与智能体榜面明显抬升</title>
+<link>https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017</link>
+<guid isPermaLink="false">evt-20261024-deepseek-v41-flash-1017</guid>
+<pubDate>Sat, 24 Oct 2026 01:23:09 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• DeepSeek 放出 DeepSeek-V4.1-Flash-1017：在 V4.1-Flash 上的小版本更新，Hugging Face 已提供权重（MIT），并附推理与提示编码说明。<br/>• 官方对照表显示 Terminal-Bench 4.0 从 31.2 提到 42.3，DeepSWE、Automation-Bench、Agents’ Last Exam 等编程/智能体指标同步上升，同时缩短任务耗时与输出长度。<br/>• Artificial Analysis 另报它在 Cyber Index（网络防御指数）开权模型中暂列第一；适合已在跑 DeepSeek Flash 线、或想用开权做编程智能体对照的访客本周更新权重或端点。<br/><strong>对你意味着什么</strong> 如果你的流水线已经挂着 DeepSeek Flash，这周把端点或权重升到 1017，用同一批任务看编程/智能体收益是否值得停在旧版。<br/>建议：立即行动 · 权重已公开，本周可换可测。<br/>有多确定：中<br/>什么情况下当这判断作废：若在你的任务上提升不明显，或托管价格/延迟变差，就维持旧版并观察下一版。<br/>来源 deepseek_ai（一手）, ArtificialAnlys（转述）<br/>日期 2026-10-24]]></description>
+</item>
+<item>
+<title>[重点关注 · 试用工具 · 工具] 腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型</title>
+<link>https://github.com/Tencent-Hunyuan/Hy-Nomas</link>
+<guid isPermaLink="false">evt-20261024-tencent-hy-nomas</guid>
+<pubDate>Sat, 24 Oct 2026 01:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 腾讯混元（Tencent Hunyuan）账号宣布开源 Hy-Nomas：面向自由交互的视频世界模型（video world model），支持用文本指令与相机轨迹多轮续写世界，并保持跨段记忆（KV cache）。<br/>• 代码仓库提供训练、推理、Web 演示与标注流程；权重在 Hugging Face（tencent/Hy-Nomas），协议 Apache-2.0。官方写明有蒸馏 8 步推理，以及单卡 RTX 4090（INT8/FP8 + CPU offload）配置。<br/>• 适合想自托管、试交互式世界生成或做机器人/仿真领域 LoRA 适配的访客；不是即开即用的消费级 App，需要按仓库文档准备环境与显存。<br/><strong>对你意味着什么</strong> 如果你这周在找可自托管的交互式世界/视频生成底座，Hy-Nomas 给出了权重+代码+单卡路径，值得按官方 demo 跑通一轮再决定是否深做。<br/>建议：立即行动 · 仓库与权重已公开，有卡即可本周试。<br/>有多确定：中<br/>什么情况下当这判断作废：若安装成本过高、多轮一致性达不到你的场景，或许可/显存不合适，就收回「这周必须自托管」。<br/>来源 TencentHunyuan（一手）, TencentHunyuan（一手）, TencentHunyuan（一手）<br/>日期 2026-10-24]]></description>
+</item>
 <item>
 <title>[重点关注 · 试用工具 · 工具] MiniMax Design MCP 上线：在 Codex 等智能体里直接做设计并回同步画布</title>
 <link>https://x.com/Hailuo_AI/status/2113518150440595501</link>
