@@ -1,0 +1,209 @@
+{
+  "date": "2026-10-24",
+  "count": 3,
+  "schema_version": 1,
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261024-kimi-k3-1-pro",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权",
+      "date": "2026-10-24",
+      "time": "10-24 08:03",
+      "handle": "Kimi_Moonshot",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "published_at": "2026-10-23T17:44:44Z",
+      "ingested_at": "2026-10-24T00:03:36Z",
+      "candidate_id": "cand-20261024-414f8f1dbba0",
+      "promotion_path": "normal",
+      "objective": [
+        "月之暗面（Moonshot）在 2026 年 10 月 23 日发布 Kimi K3.1 Pro：自家宣称最强的 3T 级开放权重（open-weight）模型系列首款，上下文约 100 万 token；同时放出更快的 K3.1 Pro Highspeed（约 2–3 倍速度）。",
+        "当天即可在 Kimi 网页与 App、办公助手 Kimi Work、编程工具 Kimi Code，以及 Kimi API（模型名 kimi-k3.1-pro / kimi-k3.1-pro-highspeed）使用；完整模型权重官方写明将在 2026 年 11 月 4 日前放出。参数规模约 2.8T 总量 / 104B 激活（MoE）。",
+        "Artificial Analysis 把 K3.1 Pro 排到 Intelligence Index（智能指数）第 4、得分 55，并称权重放出后将成为当时领先的开权模型；宝玉、Nathan Lambert、Simon Willison 等关注池账号同日多源确认。官方博客另说明对网络攻防相关训练数据做了针对性削减后再开权。"
+      ],
+      "sources": [
+        {
+          "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+          "handle": "Kimi_Moonshot",
+          "role": "primary"
+        },
+        {
+          "url": "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+          "handle": "Kimi_Moonshot",
+          "role": "primary"
+        },
+        {
+          "url": "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
+          "handle": "ArtificialAnlys",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/dotey/status/2113689823311524225",
+          "handle": "dotey",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/natolambert/status/2113682066374062528",
+          "handle": "natolambert",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/simonw/status/2113718487529267593",
+          "handle": "simonw",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+      "access": "Kimi 网页/App、Kimi Work 3.1.0+、Kimi Code（/model 选 K3.1 Pro）、Kimi API。旗舰 API 需账户充值解锁。完整权重约 11 月 4 日前放出。",
+      "integration": "可作聊天、编程助手与 API 推理后端；权重放出后可自托管。Highspeed 变体适合更看延迟的路径。",
+      "first_step": "用你本周真实的一条编程或长文档任务，在 Kimi Code 或 API 上选 kimi-k3.1-pro，与现用的 Claude / GPT / 上一版 Kimi K3 对打延迟、费用和完成质量。",
+      "alternatives": [
+        "继续用 Claude Opus / GPT 等闭源前沿模型",
+        "等 11 月 4 日前开权后再自托管对比",
+        "DeepSeek V4.1 Flash 1017 等其他开权更新"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周在选型开权或国产 API 做编程/智能体，K3.1 Pro 已可在网页和 API 试跑，权重也给出明确窗口；值得用同一批真实任务对打你现有主力模型。",
+        "action": "立即行动",
+        "window": "今天即可 API/网页试；完整权重盯 11 月 4 日前。",
+        "confidence": "高",
+        "falsifier": "若在你的真实任务上明显弱于现用模型，或 API 配额/价格不可接受，且开权延期或许可不合规，就收回「这周必须换主力对照」。"
+      },
+      "card_copy": {
+        "watch_reason": "开权前沿模型已可 API 试用，权重日期明确，多源同日报。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": true
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261024-deepseek-v41-flash-1017",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "DeepSeek V4.1 Flash 1017：开权小更新，编程与智能体榜面明显抬升",
+      "date": "2026-10-24",
+      "time": "10-24 08:03",
+      "handle": "deepseek_ai",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "published_at": "2026-10-23T17:23:09Z",
+      "ingested_at": "2026-10-24T00:03:36Z",
+      "candidate_id": "cand-20261024-7fa1388b33a9",
+      "promotion_path": "normal",
+      "objective": [
+        "DeepSeek 放出 DeepSeek-V4.1-Flash-1017：在 V4.1-Flash 上的小版本更新，Hugging Face 已提供权重（MIT），并附推理与提示编码说明。",
+        "官方对照表显示 Terminal-Bench 4.0 从 31.2 提到 42.3，DeepSWE、Automation-Bench、Agents’ Last Exam 等编程/智能体指标同步上升，同时缩短任务耗时与输出长度。",
+        "Artificial Analysis 另报它在 Cyber Index（网络防御指数）开权模型中暂列第一；适合已在跑 DeepSeek Flash 线、或想用开权做编程智能体对照的访客本周更新权重或端点。"
+      ],
+      "sources": [
+        {
+          "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+          "handle": "deepseek_ai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/ArtificialAnlys/status/2113682654709313811",
+          "handle": "ArtificialAnlys",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "access": "Hugging Face 权重可下；亦可通过 DeepSeek API / 第三方推理托管（以各平台上架名为准）。",
+      "integration": "开权推理后端或替换现有 V4.1-Flash 端点；注意官方提示编码与 deepseek-recipe 工具链。",
+      "first_step": "若你已在用 V4.1-Flash，把同一批编程或智能体任务切到 1017 权重/端点，看完成率与费用是否优于旧版。",
+      "alternatives": [
+        "继续用 DeepSeek V4.1-Flash 旧权重",
+        "Kimi K3.1 Pro API（尚未开权）",
+        "闭源编程助手（Claude Code / Codex 等）"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你的流水线已经挂着 DeepSeek Flash，这周把端点或权重升到 1017，用同一批任务看编程/智能体收益是否值得停在旧版。",
+        "action": "立即行动",
+        "window": "权重已公开，本周可换可测。",
+        "confidence": "中",
+        "falsifier": "若在你的任务上提升不明显，或托管价格/延迟变差，就维持旧版并观察下一版。"
+      },
+      "card_copy": {
+        "watch_reason": "开权 Flash 小更新，编程榜面抬升，可直接换权重试。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261024-tencent-hy-nomas",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型",
+      "date": "2026-10-24",
+      "time": "10-24 08:03",
+      "handle": "TencentHunyuan",
+      "url": "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+      "published_at": "2026-10-23T17:00:00Z",
+      "ingested_at": "2026-10-24T00:03:36Z",
+      "candidate_id": "cand-20261024-614aa5580165",
+      "promotion_path": "normal",
+      "objective": [
+        "腾讯混元（Tencent Hunyuan）账号宣布开源 Hy-Nomas：面向自由交互的视频世界模型（video world model），支持用文本指令与相机轨迹多轮续写世界，并保持跨段记忆（KV cache）。",
+        "代码仓库提供训练、推理、Web 演示与标注流程；权重在 Hugging Face（tencent/Hy-Nomas），协议 Apache-2.0。官方写明有蒸馏 8 步推理，以及单卡 RTX 4090（INT8/FP8 + CPU offload）配置。",
+        "适合想自托管、试交互式世界生成或做机器人/仿真领域 LoRA 适配的访客；不是即开即用的消费级 App，需要按仓库文档准备环境与显存。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+          "handle": "TencentHunyuan",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/tencent/Hy-Nomas",
+          "handle": "TencentHunyuan",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/TencentHunyuan/status/2113676827114053892",
+          "handle": "TencentHunyuan",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+      "access": "GitHub 克隆 + Hugging Face 下权重；官方推荐 Docker 镜像。单卡 4090 配置见仓库说明。",
+      "integration": "本地/集群推理与 Web demo；可用 LoRA 做领域适配。与闭源交互世界预览（如仅浏览器队列）对照。",
+      "first_step": "打开 GitHub README，按推荐 Docker 或环境步骤拉起 demo，用一条多轮文本+简单相机轨迹看续写是否稳定，再决定是否投入显存做 LoRA。",
+      "alternatives": [
+        "闭源交互世界模型的浏览器预览/API",
+        "通用视频生成模型（非世界记忆向）",
+        "先只看评测与论文，暂不自托管"
+      ],
+      "tool_radar": "评估",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周在找可自托管的交互式世界/视频生成底座，Hy-Nomas 给出了权重+代码+单卡路径，值得按官方 demo 跑通一轮再决定是否深做。",
+        "action": "立即行动",
+        "window": "仓库与权重已公开，有卡即可本周试。",
+        "confidence": "中",
+        "falsifier": "若安装成本过高、多轮一致性达不到你的场景，或许可/显存不合适，就收回「这周必须自托管」。"
+      },
+      "card_copy": {
+        "watch_reason": "开源可跑的交互世界模型，适合有卡的访客评估。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    }
+  ]
+}
