@@ -2,10 +2,10 @@
 <html lang="zh-CN" data-page="today">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-PTMMgWC91Laav4ZKT3czYdf5duQVWlzZkqmyAJfIvhg=' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0F1110" />
-  <title>今日重点 · AI Radar</title>
+  <title>信息精选 · AI Radar</title>
   <link rel="icon" href="./assets/logo.png" />
   <link rel="stylesheet" href="./assets/radar.css" />
   <link rel="alternate" type="application/rss+xml" title="AI Radar 订阅" href="./feed.xml" />
@@ -16,18 +16,14 @@
     <script src="./assets/shell.js"></script>
     <div class="content">
       <main id="main">
-        <h1>今日重点</h1>
-        <p class="sub">今天最该拍板的几条放在这一页。时间紧，看完「今日精选」就可以离开。更早的变化按时间排在<a href="./briefs.html">最新动态</a>。做法留在<a href="./atlas.html">实战手册</a>。标成优先看的，是今天最该拍板的；标成尚待核实的，影响可能很大，原文还没核完，仍然放在这里。北京时间每天 08:00 主报，工作日 21:00 晚班。 <span id="updated"></span></p>
-
-        <section class="hero" aria-labelledby="hero-label">
-          <div class="hero-head">
-            <div class="label" id="hero-label"><span class="pill"><span class="dot"></span>精选</span> 今日精选</div>
-            <button class="btn" type="button" id="copyToday">复制今日精选</button>
-          </div>
-          <ol id="heroList"><li>正在读取…</li></ol>
-          <pre id="today3fallback" hidden></pre>
-        </section>
-
+        <h1>信息精选</h1>
+        <p class="sub">按天往下看，新的一天在最上面。每一天只放通过精选的几条，更早的日子仍留在下面。事实简讯在<a href="./briefs.html">信息简讯</a>，两边不会重复。标成优先看的，是这天最该拍板的；标成尚待核实的，影响可能很大，原文还没核完。北京时间每天 08:00 主报，工作日 21:00 晚班。 <span id="updated"></span></p>
+        <div class="day-jump">
+          <label for="dayJump">时间筛选</label>
+          <select id="dayJump"></select>
+          <button class="btn" type="button" id="copyToday">复制最新一天</button>
+        </div>
+        <pre id="today3fallback" hidden></pre>
         <div id="feed"><p class="empty">正在读取…</p></div>
         <footer class="site-footer">
           <p>内容可能包含未经证实的传闻与第三方帖子，请自行核对。</p>
@@ -37,69 +33,7 @@
     </div>
   </div>
   <script src="./assets/cards.js"></script>
-  <script>
-    const state = { items: [], today3: "", featured: new Set() };
-
-    function latestDate(items) {
-      return items.reduce((max, it) => (it.date && it.date > max ? it.date : max), "");
-    }
-
-    function renderRest() {
-      const day = latestDate(state.items);
-      const rest = state.items.filter((it) => it.date === day && (Radar.bandOf(it) === "must" || Radar.bandOf(it) === "market") && !(it.id && state.featured.has(it.id)));
-      const host = document.getElementById("feed");
-      if (!rest.length) {
-        host.innerHTML = '<p class="empty">今天精选之外，没有更多需要拍板的条目。更早的变化在<a href="./briefs.html">最新动态</a>。</p>';
-        return;
-      }
-      host.innerHTML = `<h2>今天其余的重点</h2><p class="sub">${Radar.esc(Radar.formatDay(day))}里，精选没有盖住、但仍然该看的几条。</p>` + rest.map((it) => Radar.renderCard(it, state.featured)).join("");
-    }
-
-    function renderHero() {
-      const model = Radar.heroModel(state.today3, state.items);
-      state.featured = model.featured;
-      document.getElementById("heroList").innerHTML = Radar.renderHero(model.rows);
-    }
-
-    async function load() {
-      const [itemsRes, todayRes] = await Promise.all([
-        fetch("./items.json?" + Date.now()),
-        fetch("./today3.txt?" + Date.now())
-      ]);
-      if (!itemsRes.ok) throw new Error("items");
-      const data = await itemsRes.json();
-      state.items = Array.isArray(data) ? data : (data.items || []);
-      if (data.updated) document.getElementById("updated").textContent = "最近更新 " + data.updated;
-      if (todayRes.ok) state.today3 = await todayRes.text();
-      renderHero();
-      renderRest();
-      Radar.scrollToHash();
-    }
-
-    document.getElementById("copyToday").addEventListener("click", async () => {
-      const btn = document.getElementById("copyToday");
-      const text = Radar.copyText(state.today3, state.items);
-      const fallback = document.getElementById("today3fallback");
-      try {
-        await navigator.clipboard.writeText(text);
-        fallback.hidden = true;
-        btn.textContent = "已复制";
-        btn.classList.add("done");
-      } catch (err) {
-        fallback.hidden = false;
-        fallback.textContent = text;
-        btn.textContent = "请手动复制";
-      }
-      setTimeout(() => {
-        btn.textContent = "复制今日精选";
-        btn.classList.remove("done");
-      }, 1800);
-    });
-
-    load().catch(() => {
-      document.getElementById("feed").innerHTML = '<p class="empty">今天的重点还没准备好。可以先打开<a href="./briefs.html">最新动态</a>。</p>';
-      document.getElementById("heroList").innerHTML = "<li>今日精选还在准备，稍后再来。</li>";
-    });
-  </script>
+  <script src="./assets/daystream.js"></script>
+  <script src="./assets/today.js"></script>
 </body>
 </html>

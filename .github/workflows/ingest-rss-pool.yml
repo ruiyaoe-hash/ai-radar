@@ -86,7 +86,9 @@ jobs:
           # Exit 2 means some items had no link (FETCH_GAP). Rows that parsed are still on disk.
           python3 scripts/annotate_gates.py --pool-dir ../pool --only-pending
           python3 scripts/score_pool.py --pool-dir ../pool --write-review
+          python3 scripts/project_public_lanes.py --pool-dir ../pool
           python3 scripts/derive_briefs.py --pool-dir ../pool --briefs public/briefs.json
+          python3 scripts/generate_derived.py
 
       - name: Push private pool only
         if: steps.token.outputs.skip != 'true'

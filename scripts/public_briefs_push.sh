@@ -10,6 +10,23 @@ set -euo pipefail
 BRANCH="${BRIEFS_BRANCH:-chore/auto-briefs}"
 BASE="${BRIEFS_BASE:-main}"
 PR_TITLE="${BRIEFS_PR_TITLE:-快讯：自动档 / auto briefs}"
+LANE_FILES=(
+  public/briefs.json
+  public/practice.json
+  public/data/atlas.source.json
+  public/data/kb.json
+  public/data/topics.json
+  public/data/sources.json
+  public/data/creators.json
+  public/data/watch.json
+  public/data/topic-suggestions.json
+  public/picks.json
+  public/tools-radar.json
+)
+LANE_DIRS=(
+  public/practice/inbox
+  public/topics
+)
 
 emit() {
   if [ -n "${GITHUB_OUTPUT:-}" ]; then
@@ -172,29 +189,19 @@ rolling_matches() {
   fi
   parent=$(git rev-parse --verify 'refs/briefs/rolling^' 2>/dev/null || true)
   [ "$parent" = "$base_sha" ] || return 1
-  current=$(mktemp)
-  if ! git show "refs/briefs/rolling:public/briefs.json" > "$current"; then
-    rm -f "$current"
-    return 1
-  fi
-  if cmp -s "$current" "$work/public/briefs.json"; then
-    rm -f "$current"
-    return 0
-  fi
-  rm -f "$current"
-  return 1
+  git -C "$work" diff --quiet "refs/briefs/rolling" -- "${LANE_FILES[@]}" "${LANE_DIRS[@]}"
 }
 
 write_pr_body() {
   body_file=$(mktemp)
   cat > "$body_file" <<'EOF'
-自动档快讯。这次只更新 `public/briefs.json`。
+自动档快讯，以及写清了的做法、领域进展和由它们派生的公开页。
 
-分支 `chore/auto-briefs` 从最新 `main` 重建，只多这一份提交。`validate-and-derive` 变绿后再合并。合并进 `main` 之后，`deploy-pages.yml` 才会部署 Pages。
+分支 `chore/auto-briefs` 从最新 `main` 重建。`validate-and-derive` 变绿后再合并。合并进 `main` 之后，`deploy-pages.yml` 才会部署 Pages。不推 `main`。
 
 用 `GITHUB_TOKEN` 打开的 PR，检查可能先停在 Approve workflows。点批准，等它变绿，再合并。这不是分支保护失效。不要直推 `main`，也不要给 Actions 开 bypass。
 
-Auto-band briefs (`public/briefs.json` only). Rolling branch `chore/auto-briefs`, rebuilt from the current `main` tip. Merge after `validate-and-derive` is green. Pages deploys on that merge.
+Auto-band briefs plus finished practice, watch, and derived public pages. Rolling branch `chore/auto-briefs`, rebuilt from the current `main` tip. Merge after `validate-and-derive` is green. Pages deploys on that merge. This script does not push main.
 EOF
 }
 
@@ -223,7 +230,7 @@ cleanup() {
   git worktree prune >/dev/null 2>&1 || true
   git update-ref -d refs/briefs/base >/dev/null 2>&1 || true
   git update-ref -d refs/briefs/rolling >/dev/null 2>&1 || true
-  rm -f "$derived" "$body_file"
+  rm -f "$body_file"
 }
 trap cleanup EXIT
 
@@ -246,14 +253,11 @@ if [ "$BRANCH" = "$BASE" ]; then
 fi
 refuse_protected_branch "$BRANCH"
 
-if git diff --quiet HEAD -- public/briefs.json; then
-  echo "快讯无更新"
+if [ -z "$(git status --porcelain -- "${LANE_FILES[@]}" "${LANE_DIRS[@]}")" ]; then
+  echo "公开页无更新"
   emit false
   exit 0
 fi
-
-derived=$(mktemp)
-cp public/briefs.json "$derived"
 
 basic=$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w 0)
 echo "::add-mask::${basic}"
@@ -271,22 +275,44 @@ work=$(mktemp -d)
 rmdir "$work"
 git worktree add -q --detach "$work" "$base_sha"
 
-if ! git diff --quiet "$head_sha" "$base_sha" -- public/briefs.json; then
+copy_lanes() {
+  local dest="$1" rel
+  for rel in "${LANE_FILES[@]}"; do
+    if [ -f "$rel" ]; then
+      mkdir -p "$dest/$(dirname "$rel")"
+      cp -a "$rel" "$dest/$rel"
+    fi
+  done
+  for rel in "${LANE_DIRS[@]}"; do
+    if [ -d "$rel" ]; then
+      rm -rf "$dest/$rel"
+      mkdir -p "$dest/$(dirname "$rel")"
+      cp -a "$rel" "$dest/$rel"
+    fi
+  done
+}
+
+if ! git diff --quiet "$head_sha" "$base_sha" -- "${LANE_FILES[@]}" "${LANE_DIRS[@]}"; then
   if [ -z "${POOL_DIR:-}" ] || [ ! -d "$POOL_DIR" ]; then
-    echo "FAIL: public/briefs.json on ${BASE} moved since derive; POOL_DIR is unset" >&2
+    echo "FAIL: public lanes on ${BASE} moved since derive; POOL_DIR is unset" >&2
     exit 1
   fi
   pool_abs=$(cd "$POOL_DIR" && pwd)
-  if ! python3 "$work/scripts/derive_briefs.py" --pool-dir "$pool_abs" --briefs "$work/public/briefs.json"; then
+  if ! (
+    cd "$work"
+    python3 scripts/project_public_lanes.py --pool-dir "$pool_abs"
+    python3 scripts/derive_briefs.py --pool-dir "$pool_abs" --briefs public/briefs.json
+    python3 scripts/generate_derived.py
+  ); then
     echo "FAIL: re-derive on ${BASE} failed; nothing pushed" >&2
     exit 1
   fi
 else
-  cp "$derived" "$work/public/briefs.json"
+  copy_lanes "$work"
 fi
 
-if git -C "$work" diff --quiet -- public/briefs.json; then
-  echo "快讯与 ${BASE} 一致"
+if [ -z "$(git -C "$work" status --porcelain -- "${LANE_FILES[@]}" "${LANE_DIRS[@]}")" ]; then
+  echo "公开页与 ${BASE} 一致"
   emit false
   exit 0
 fi
@@ -309,16 +335,16 @@ if [ -n "$remote_tip" ] && rolling_matches "$base_sha"; then
 fi
 
 check "$work"
-git -C "$work" add -- public/briefs.json
+git -C "$work" add -- "${LANE_FILES[@]}" "${LANE_DIRS[@]}"
 if git -C "$work" diff --cached --quiet; then
-  echo "快讯无更新"
+  echo "公开页无更新"
   emit false
   exit 0
 fi
 git -C "$work" \
   -c user.name="github-actions[bot]" \
   -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-  commit -q -m "briefs: auto band from scored pool"
+  commit -q -m "public: briefs and finished visitor lanes"
 sha=$(git -C "$work" rev-parse HEAD)
 
 if ! push_branch "$sha"; then

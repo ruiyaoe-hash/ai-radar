@@ -1,4 +1,4 @@
-AI Radar · 今日精选（2026-10-24）
+AI Radar · 信息精选（2026-10-24）
 
 1. 月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权
    对你意味着什么：如果你这周在选型开权或国产 API 做编程/智能体，K3.1 Pro 已可在网页和 API 试跑，权重也给出明确窗口；值得用同一批真实任务对打你现有主力模型。
@@ -9,10 +9,5 @@ AI Radar · 今日精选（2026-10-24）
    对你意味着什么：如果你的流水线已经挂着 DeepSeek Flash，这周把端点或权重升到 1017，用同一批任务看编程/智能体收益是否值得停在旧版。
    建议：立即行动 · 权重已公开，本周可换可测。
    https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017
-
-3. 腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型
-   对你意味着什么：如果你这周在找可自托管的交互式世界/视频生成底座，Hy-Nomas 给出了权重+代码+单卡路径，值得按官方 demo 跑通一轮再决定是否深做。
-   建议：立即行动 · 仓库与权重已公开，有卡即可本周试。
-   https://github.com/Tencent-Hunyuan/Hy-Nomas
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html

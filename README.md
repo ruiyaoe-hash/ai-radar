@@ -3,7 +3,8 @@
 把「情报时间线」升级为可行动、可证伪的决策信号。
 
 - 首页：https://ruiyaoe-hash.github.io/ai-radar/
-- 今日重点：https://ruiyaoe-hash.github.io/ai-radar/today.html
+- 信息精选：https://ruiyaoe-hash.github.io/ai-radar/today.html
+- 信息简讯：https://ruiyaoe-hash.github.io/ai-radar/briefs.html
 - RSS：https://ruiyaoe-hash.github.io/ai-radar/feed.xml
 - 工具雷达：https://ruiyaoe-hash.github.io/ai-radar/tools-radar.html
 - 卡片规范：[`CARD_SPEC.md`](./CARD_SPEC.md)
@@ -51,10 +52,10 @@
 
 | 入口 | 页面 |
 |------|------|
-| 首页 | `index.html`：每日决策简报。顺序是今日精选、工具与产品、最近的重要变化、把发现变成能力 |
-| 今日重点 | `today.html`：当天最该拍板的几条，含今日精选。完整时间流不在这一页 |
-| 最新动态 | `briefs.html`：按时间合并按日归档和事实短讯。`week.html` 跳到这里 |
-| 工具决策 | `tools-radar.html`：值得采用 / 可以试用 / 需要评估 / 暂缓跟进 |
+| 首页 | `index.html`：每日决策简报。顺序是信息精选、工具与产品、信息简讯、把发现变成能力 |
+| 信息精选 | `today.html`：按天往下排，每天只放选出来的几条。`picks.json` 是完整列表，`today3.txt` 是最新一天的纯文本 |
+| 信息简讯 | `briefs.html`：按天往下排的事实简讯，不和信息精选重复。`week.html` 跳到这里 |
+| 工具决策 | `tools-radar.html`：按时间往下排。每条写清摘要、大众价值、上手实验；档位仍是值得采用 / 可以试用 / 需要评估 / 暂缓跟进 |
 | 实战手册 | `atlas.html` 主题手册 + 做法预览；`practice.html` 做法全文；`topics/*.html`；`creators.html` 博主库在「更多」 |
 | 专题观察 | `observe.html`：长期看法和随笔。`blog/` 仍是随笔正文 |
 | 订阅更新 | `subscribe.html`，顶栏右侧动作。`agent.html`、`feed.xml`、`llms.txt` 地址不变 |

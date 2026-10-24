@@ -44,6 +44,7 @@ if __package__ in {None, ""}:
         parse_utc,
     )
     from card_copy import public_auto_copy, refuses_auto_publish
+    from editorial_zh import edit_pair, reader_lines
     from prompt_guard import find_instruction_override, strip_raw_post_fields
     from score_pool import is_official_row, is_practice_row
     from shift_ingest_x_to_pool import assert_shift_pool_dir
@@ -60,13 +61,15 @@ else:
         parse_utc,
     )
     from .card_copy import public_auto_copy, refuses_auto_publish
+    from .editorial_zh import edit_pair, reader_lines
     from .prompt_guard import find_instruction_override, strip_raw_post_fields
     from .score_pool import is_official_row, is_practice_row
     from .shift_ingest_x_to_pool import assert_shift_pool_dir
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_BRIEFS = ROOT / "public" / "briefs.json"
-ARCHIVE = ROOT / "public" / "archive"
+PUBLIC = ROOT / "public"
+PUBLIC_BRIEFS = PUBLIC / "briefs.json"
+ARCHIVE = PUBLIC / "archive"
 LENSES = ("工具", "赛道", "模式", "时机")
 MAX_AUTO = 20
 MAX_KEPT_AUTO = 60
@@ -152,7 +155,10 @@ def fact_lines(row: dict) -> tuple[str, str] | None:
         return None
     if find_instruction_override(title) or find_instruction_override(summary):
         return None
-    return title, summary
+    edited = edit_pair(title, summary)
+    if not edited:
+        return None
+    return edited
 
 
 def choose_url(row: dict, options) -> str | None:
@@ -197,6 +203,42 @@ def brief_id_for(row: dict) -> str:
     return f"brf-{day}-{suffix}"
 
 
+def door_urls() -> set[str]:
+    """URLs already on 信息精选, 实战手册, or 专题观察. 信息简讯 must not repeat them."""
+    found: set[str] = set()
+    paths = [
+        PUBLIC / "practice.json",
+        PUBLIC / "data" / "watch.json",
+        PUBLIC / "picks.json",
+    ]
+    inbox = PUBLIC / "practice" / "inbox"
+    files = list(paths)
+    if inbox.is_dir():
+        files.extend(inbox.glob("*.json"))
+    for path in files:
+        if not path.is_file():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        blobs = [data]
+        if isinstance(data, dict):
+            blobs.append(data.get("items"))
+            for day in data.get("days") or []:
+                if isinstance(day, dict):
+                    blobs.append(day.get("items"))
+        for blob in blobs:
+            rows = blob if isinstance(blob, list) else [blob]
+            for item in rows:
+                if not isinstance(item, dict):
+                    continue
+                raw = item.get("url")
+                if isinstance(raw, str) and safe_http_url(raw):
+                    found.add(normalize_url(raw))
+    return found
+
+
 def archive_urls() -> set[str]:
     found: set[str] = set()
     if not ARCHIVE.is_dir():
@@ -227,6 +269,7 @@ def project_brief(row: dict, options) -> dict | None:
     if not facts or not url:
         return None
     title, summary = facts
+    why, affect = reader_lines(lens_of(" ".join((title, summary, str(row.get("url") or "")))))
     clock = _clock(row.get("published_at")) or _clock(row.get("ingested_at"))
     if clock is None:
         return None
@@ -238,6 +281,8 @@ def project_brief(row: dict, options) -> dict | None:
         "time": local.strftime("%m-%d %H:%M"),
         "title": title,
         "summary": summary,
+        "why": why,
+        "affect": affect,
         "url": url,
         "source": source_label(row),
         "lens": lens_of(" ".join((title, summary, url))),
@@ -313,11 +358,7 @@ def merge_briefs(
         "schema_version": 1,
         "level": "L2",
         "updated": existing.get("updated") or updated,
-        "note": (
-            "origin=archive_seed 的条目摘自已经公开的归档，不是新事实。"
-            "origin=auto_brief 由 scripts/derive_briefs.py 从打分自动档写入。"
-            "实操不从这条管道进站。"
-        ),
+        "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
         "items": kept + fresh,
     }
     if _signature(document["items"]) != _signature(list(existing.get("items") or [])):
@@ -439,8 +480,8 @@ def self_check() -> None:
             "id": "cand-20261014-ccc000000001",
             "url": "https://openai.com/blog/fixture-derive-brief",
             "url_norm": "https://openai.com/blog/fixture-derive-brief",
-            "title": "FIXTURE model weights published",
-            "snippet": "FIXTURE 实验室放出了一个模型权重，只供自检。后面这句不该进快讯。",
+            "title": "自检用：实验室放出一份模型权重",
+            "snippet": "实验室放出了一份可以下载的模型权重，只供这条自检使用。后面这句不该进快讯。",
             "published_at": "2026-10-14T10:00:00Z",
             "ingested_at": "2026-10-14T11:00:00Z",
             "source": {"channel": "rss", "handle": "openai-blog", "role_guess": "primary"},
@@ -683,10 +724,17 @@ def self_check() -> None:
         rel["source"] = {"channel": "rss", "handle": "gh-releases-anthropic-sdk", "role_guess": "primary"}
         rel["cluster_id"] = f"clu-derive00010{n}"
         releases.append(rel)
+    if any(project_brief(row, options) is not None for row in releases):
+        raise SystemExit("FAIL: an English release title was published")
+    for rel in releases:
+        rel["title"] = "Anthropic 的 Python 开发包发布更新，补上组织回调"
+        rel["snippet"] = "&lt;h3&gt;更新&lt;/h3&gt; 增加了组织级回调地址，方便接收账号里的事件通知。"
     rel_doc, rel_rows = derive(releases, options, {"items": []}, set(), updated, as_of)
     rel_items = [item for item in rel_doc["items"] if item.get("origin") == "auto_brief"]
-    if len(rel_items) != 1 or rel_items[0]["title"] != "anthropic-sdk-python v1.17.0":
-        raise SystemExit(f"FAIL: one release per repo with a named title {rel_items}")
+    if len(rel_items) != 1 or "组织回调" not in rel_items[0]["title"]:
+        raise SystemExit(f"FAIL: one Chinese release per repo {rel_items}")
+    if not rel_items[0].get("why") or not rel_items[0].get("affect"):
+        raise SystemExit("FAIL: brief missing finished reader lines")
     if "<" in rel_items[0]["summary"] or "&lt;" in rel_items[0]["summary"]:
         raise SystemExit(f"FAIL: feed HTML reached a brief summary {rel_items[0]['summary']}")
     if rel_rows[1].get("brief_id"):
@@ -800,6 +848,7 @@ def main(argv: list[str] | None = None) -> int:
             rows, pairs, pool = _rows_from_path(Path(args.input))
         updated = as_of.astimezone(SHANGHAI).strftime("%Y-%m-%d %H:%M 北京时间")
         occupied = set(archive_urls())
+        occupied.update(door_urls())
         occupied.update(normalize_url(url) for url in args.occupy_url if normalize_url(url))
         document, rows = derive(rows, options, _load_existing(target), occupied, updated, as_of)
         rendered = render_briefs(document)

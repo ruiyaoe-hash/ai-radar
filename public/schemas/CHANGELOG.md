@@ -23,6 +23,12 @@
 
 `today3.txt` 是纯文本。`feed.xml` 和订阅分册是 RSS 2.0。这两类没有 JSON Schema。
 
+## 2026-10-24
+
+`briefs.json` 增加可选字段 `why` 和 `summary` 的字数上限放到 240。`schema_version` 仍是 1：没有改名、改类型或删除字段。`why` 是「为什么值得看」，`affect` 是「对我有什么影响」。两条都是写给访客的中文，不写编辑流程。
+
+`picks.json` 是信息精选的按天列表，由归档派生，没有单独的 schema_version。`data/watch.json` 是专题观察里跨天的领域进展，同样是可选的公开列表。
+
 ## 2026-10-23
 
 `data/kb.json` 的 `topics` 允许空数组。`schema_version` 仍是 1：没有改名、改类型或删除字段，只放宽最少条数，让公开站在没有主题时仍合法。五个方向 `tracks` 仍至少 5 条。

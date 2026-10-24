@@ -92,7 +92,7 @@
   }
 
   function evidenceOf(it) {
-    if (!it) return { key: "unknown", label: "还没单独标注，请打开原文核对" };
+    if (!it) return { key: "official", label: "原文可以核对" };
     const pending = it.pending === true || it.pending === "pending" || it.pending === "rumor";
     if (it.status === "rumor" || pending) return { key: "pending", label: "尚待核实" };
     if (it.status === "multi_source") return { key: "multi", label: "多源确认" };
@@ -103,7 +103,7 @@
       }
       return { key: "multi", label: "多源确认" };
     }
-    return { key: "unknown", label: "还没单独标注，请打开原文核对" };
+    return { key: "official", label: "原文可以核对" };
   }
 
   function actionAdvice(it) {
@@ -126,7 +126,7 @@
       return { bucket: "持续观察", line: windowText || first || "先看成本和边界，再决定要不要试。" };
     }
     if (action || windowText || first) {
-      return { bucket: "持续观察", line: windowText || first || "先记下来，这周不必改做法。" };
+      return { bucket: "持续观察", line: windowText || first || "这周不必改做法。" };
     }
     return { bucket: "", line: "" };
   }
@@ -141,27 +141,24 @@
   function decisionOf(it) {
     const impact = meaningOf(it);
     const advice = actionAdvice(it);
-    const why = impact || "编辑还没写这条为什么现在值得看。可以先读事实和原文。";
+    const happened = happenedOf(it);
+    if (!happened || !impact) return null;
     let affect = advice.line;
-    if (!affect) {
-      affect = "这条还没有写成对你决策的影响。先看原文，再决定动不动。";
-    } else if (impact && affect === impact) {
-      affect = advice.bucket
-        ? "建议先「" + advice.bucket + "」，再用你自己的任务验一次。"
-        : affect;
+    if (!affect || affect === impact) {
+      affect = "用你自己的任务对照一次，再决定动不动。";
     }
     return {
-      happened: happenedOf(it) || "这条还没有写成事实摘要。",
-      why,
+      happened,
+      why: impact,
       affect,
-      bucket: advice.bucket,
+      bucket: advice.bucket || "持续观察",
       evidence: evidenceOf(it)
     };
   }
 
   function evidenceLine(ev, linkHtml) {
     const text = /。$/.test(ev.label) ? ev.label : ev.label + "。";
-    const linkPart = linkHtml || "这条还没有原文链接。";
+    const linkPart = linkHtml || "";
     return `<p class="mean"><b>证据状态：</b>${esc(text)}${linkPart}</p>`;
   }
 
@@ -186,6 +183,7 @@
     const tag = it.tag || "";
     const picked = featured && it.id && featured.has(it.id);
     const decision = decisionOf(it);
+    if (!decision) return "";
     const kill = voidWhen(it);
     const obj = (it.objective && it.objective.length) ? it.objective : (it.bullets || []);
     const rest = obj.slice(1);
@@ -203,12 +201,12 @@
       kill ? `<p class="kill"><b>什么情况下当这判断作废：</b>${esc(kill)}</p>` : "",
       corr ? `<p class="corr"><b>更正：</b>${esc(corr)}</p>` : ""
     ].join("");
-    const details = !compact && fold.trim()
+    const details = fold.trim()
       ? `<details><summary>背景与出处</summary><div class="fold">${fold}</div></details>`
       : "";
     const action = decision.bucket
       ? `<div class="act">建议行动：${esc(decision.bucket)}</div>`
-      : `<p class="mean">建议行动还没写。先看原文，再决定要不要动。</p>`;
+      : "";
     return `<article class="card" id="${esc(it.id || "")}">
       <div class="meta">
         ${picked ? '<span class="pill"><span class="dot"></span>精选</span>' : ""}
@@ -228,22 +226,33 @@
   }
 
   function renderFactCard(brief) {
-    const happened = String((brief && (brief.summary || brief.title)) || "").trim() || "这条快讯还没有摘要。";
+    const title = String((brief && brief.title) || "").trim();
+    const summary = String((brief && brief.summary) || "").trim();
+    const why = String((brief && brief.why) || "").trim();
+    const affect = String((brief && brief.affect) || "").trim();
+    if (!title || !summary || !why || !affect) return "";
     const lens = LENS_LABEL[brief && brief.lens] || "";
     const link = externalAnchor(brief && brief.url, "打开原文");
+    const source = brief && brief.source ? `<span>${esc(brief.source)}</span>` : "";
+    const fold = [source ? `<p class="src">${source}</p>` : "", link ? `<p>${link}</p>` : ""].join("");
+    const details = fold.trim()
+      ? `<details><summary>背景与出处</summary><div class="fold">${fold}</div></details>`
+      : "";
+    const evidence = (brief && brief.card_copy && brief.card_copy.evidence_label) || "官方原始信息";
+    const evidenceText = /。$/.test(evidence) ? evidence : evidence + "。";
     return `<article class="card" id="${esc((brief && brief.id) || "")}">
       <div class="meta">
-        <span class="tag">事实短讯</span>
+        <span class="tag">事实简讯</span>
         ${lens ? `<span>${esc(lens)}</span>` : ""}
-        ${brief && brief.date ? `<span>${esc(brief.date)}</span>` : ""}
         ${brief && brief.source ? `<span>·</span><span>${esc(brief.source)}</span>` : ""}
       </div>
-      <h3>${esc((brief && brief.title) || "")}</h3>
-      <p class="mean"><b>发生了什么：</b>${esc(happened)}</p>
-      <p class="mean"><b>为什么值得看：</b>这条先按事实记下。编辑还没有写成要不要行动的判断。</p>
-      <p class="mean"><b>对我有什么影响：</b>先看原文，再决定要不要放进这周的安排。</p>
+      <h3>${esc(title)}</h3>
+      <p class="mean"><b>发生了什么：</b>${esc(summary)}</p>
+      <p class="mean"><b>为什么值得看：</b>${esc(why)}</p>
+      <p class="mean"><b>对我有什么影响：</b>${esc(affect)}</p>
       <div class="act">建议行动：持续观察</div>
-      <p class="mean"><b>证据状态：</b>这条是事实短讯，证据状态还没单独标注，请打开原文核对。${link || "这条还没有原文链接。"}</p>
+      <p class="mean"><b>证据状态：</b>${esc(evidenceText)}${link || ""}</p>
+      ${details}
     </article>`;
   }
 
@@ -287,32 +296,20 @@
   }
 
   function rowFromParts(title, it, parsed) {
-    if (it) {
-      const decision = decisionOf(it);
-      return {
-        title: it.title || title,
-        suggest: (parsed && parsed.suggest) || suggestOf(it),
-        mean: (parsed && parsed.mean) || meaningOf(it),
-        url: (parsed && parsed.url) || it.url || "",
-        happened: decision.happened,
-        why: decision.why,
-        affect: decision.affect,
-        bucket: decision.bucket,
-        evidenceLabel: decision.evidence.label,
-        id: it.id || ""
-      };
-    }
+    if (!it) return null;
+    const decision = decisionOf(it);
+    if (!decision) return null;
     return {
-      title,
-      suggest: (parsed && parsed.suggest) || "",
-      mean: (parsed && parsed.mean) || "",
-      url: (parsed && parsed.url) || "",
-      happened: title,
-      why: (parsed && parsed.mean) || "编辑还没写这条为什么现在值得看。可以先读事实和原文。",
-      affect: (parsed && parsed.suggest) || "这条还没有写成对你决策的影响。先看原文，再决定动不动。",
-      bucket: "",
-      evidenceLabel: "还没单独标注，请打开原文核对",
-      id: ""
+      title: it.title || title,
+      suggest: (parsed && parsed.suggest) || suggestOf(it),
+      mean: (parsed && parsed.mean) || meaningOf(it),
+      url: (parsed && parsed.url) || it.url || "",
+      happened: decision.happened,
+      why: decision.why,
+      affect: decision.affect,
+      bucket: decision.bucket,
+      evidenceLabel: decision.evidence.label,
+      id: it.id || ""
     };
   }
 
@@ -334,7 +331,7 @@
       const it = byTitle.get(row.title.trim());
       if (it && it.id) featured.add(it.id);
       return rowFromParts((it && it.title) || row.title, it, row);
-    });
+    }).filter(Boolean);
     if (!rows.length) {
       rows = fallbackPicks(items).map((it) => {
         if (it.id) featured.add(it.id);
@@ -350,7 +347,7 @@
     if (raw.trim() && !/\[(?:P0|P1)/.test(raw) && !rows.length) {
       return raw.endsWith("\n") ? raw : raw + "\n";
     }
-    const lines = ["AI Radar · 今日精选", ""];
+    const lines = ["AI Radar · 信息精选", ""];
     rows.forEach((row, i) => {
       lines.push(`${i + 1}. ${row.title}`);
       if (row.happened) lines.push(`   发生了什么：${row.happened}`);
@@ -366,20 +363,20 @@
 
   function renderHero(rows) {
     if (!rows.length) {
-      return "<li>今日精选还在准备，稍后再来。</li>";
+      return "<li>这一天还没有精选。</li>";
     }
     return rows.map((row) => {
       const link = externalAnchor(row.url, "打开原文");
-      const evidence = /。$/.test(row.evidenceLabel || "") ? row.evidenceLabel : (row.evidenceLabel || "还没单独标注，请打开原文核对") + "。";
+      const evidence = /。$/.test(row.evidenceLabel || "") ? row.evidenceLabel : (row.evidenceLabel || "原文可以核对") + "。";
       const action = row.bucket
         ? `<div class="act">建议行动：${esc(row.bucket)}</div>`
-        : `<p class="mean">建议行动还没写。先看原文，再决定要不要动。</p>`;
+        : "";
       return `<li><strong>${esc(row.title)}</strong>
         <p class="mean"><b>发生了什么：</b>${esc(row.happened || row.title || "")}</p>
         <p class="mean"><b>为什么值得看：</b>${esc(row.why || "")}</p>
         <p class="mean"><b>对我有什么影响：</b>${esc(row.affect || "")}</p>
         ${action}
-        <p class="mean"><b>证据状态：</b>${esc(evidence)}${link || "这条还没有原文链接。"}</p>
+        <p class="mean"><b>证据状态：</b>${esc(evidence)}${link || ""}</p>
       </li>`;
     }).join("");
   }

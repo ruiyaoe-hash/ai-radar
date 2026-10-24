@@ -5,7 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看试用工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sat, 24 Oct 2026 08:03:40 +0800</lastBuildDate>
+<lastBuildDate>Sat, 24 Oct 2026 10:36:06 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>[今日必看 · 试用工具 · 发布] 月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权</title>
@@ -47,21 +47,21 @@
 <link>https://claude.com/resources/articles/auto-mode-default-in-claude-code</link>
 <guid isPermaLink="false">evt-20261023-claude-auto-mode-default</guid>
 <pubDate>Fri, 23 Oct 2026 04:04:24 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 早班已确认、今日公开站清空后晚班重新上线。Anthropic 在 2026 年 10 月 22 日更新说明：从下周起，多数 Claude 应用（网页、桌面、手机）上，Pro、Max、Team 套餐的新会话将默认进入自动模式（auto mode）。不再逐步弹窗让你点同意，而是由自动检查放行安全动作、拦住高风险动作；可随时切回手动。企业版管理员会在其组织默认改成自动模式之前收到邮件。<br/>• 官方文章写，受控试验里约一千名付费测试者人工只拦下约一成多的危险命令，自动模式拦下约九成。人工对权限提示的同意率极高。连续三次被拦或单会话累计二十次被拦时，会退回手动审批。Enterprise、Claude API 以及云上托管通道目前仍以自愿开启为主，计划约一个月内再扩。<br/>• 若你本周用 Claude 网页、桌面或手机做带工具调用的长任务，先确认默认权限模式；需要逐步确认时，会话里切回手动，或让管理员用 managed settings 钉死 defaultMode / disableAutoMode。高风险改生产环境时，官方仍建议自己再看一遍动作。<br/><strong>对你意味着什么</strong> 如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。<br/>建议：立即行动 · 下周默认生效前，先设好个人或组织的权限默认。<br/>有多确定：高<br/>什么情况下当这判断作废：如果默认滚动被推迟、你的套餐或客户端不在「多数 Claude 应用」范围内，或你已钉死且不会被改写的手动默认，就收回「这周必须先改权限默认」。<br/>来源 claudeai（一手）, claudeai（一手）<br/>日期 2026-10-23]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 在 2026 年 10 月 22 日更新说明：从下周起，多数 Claude 应用（网页、桌面、手机）上，Pro、Max、Team 套餐的新会话将默认进入自动模式（auto mode）。不再逐步弹窗让你点同意，而是由自动检查放行安全动作、拦住高风险动作；可随时切回手动。企业版管理员会在其组织默认改成自动模式之前收到邮件。<br/>• 官方文章写，受控试验里约一千名付费测试者人工只拦下约一成多的危险命令，自动模式拦下约九成。人工对权限提示的同意率极高。连续三次被拦或单会话累计二十次被拦时，会退回手动审批。Enterprise、Claude API 以及云上托管通道目前仍以自愿开启为主，计划约一个月内再扩。<br/>• 若你本周用 Claude 网页、桌面或手机做带工具调用的长任务，先确认默认权限模式；需要逐步确认时，会话里切回手动，或让管理员用 managed settings 钉死 defaultMode / disableAutoMode。高风险改生产环境时，官方仍建议自己再看一遍动作。<br/><strong>对你意味着什么</strong> 如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。<br/>建议：立即行动 · 下周默认生效前，先设好个人或组织的权限默认。<br/>有多确定：高<br/>什么情况下当这判断作废：如果默认滚动被推迟、你的套餐或客户端不在「多数 Claude 应用」范围内，或你已钉死且不会被改写的手动默认，就收回「这周必须先改权限默认」。<br/>来源 claudeai（一手）, claudeai（一手）<br/>日期 2026-10-23]]></description>
 </item>
 <item>
 <title>[今日必看 · 试用工具 · 发布] OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口</title>
 <link>https://openai.com/index/decisions-api</link>
 <guid isPermaLink="false">evt-20261023-openai-decisions-api-ga</guid>
 <pubDate>Fri, 23 Oct 2026 03:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 早班已确认、今日公开站清空后晚班重新上线。OpenAI 在 2026 年 10 月 22 日宣布 Decisions API（决策接口）结束公开测试、正式可用。它跑在 GPT-6 Luna 上，专门回答有边界的问题：给应用和智能体做分类、路由或下一步动作选择。官方写它可比同一模型走 Responses API 快约 10 倍，适合热路径上的近实时判断。<br/>• 相对公开测试版，正式版新增原生 GPT-Live（实时语音）集成、复用上下文的提示缓存、美国与欧盟推理驻留，并支持原生 JSON 输入、在单题说明里带图片，以及每请求最多 400 道题（测试版上限的两倍）。计费只收输入：非缓存约每百万输入 token 0.10 美元，缓存输入约 0.01 美元；不收输出 token 费。<br/>• 官方开发者文档写明走 POST /v1/decisions，当前模型是 gpt-6-luna。答案类型有三种：predicate（条件成立概率）、choice（从你给定选项里选一个）、score（按量表打分）。若你的产品里反复做有限答案的判断，这周用同一批真实样例在 Decisions Playground 或接口里对打现有 Responses/聊天路径。<br/><strong>对你意味着什么</strong> 如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。<br/>建议：立即行动 · 这周用同一批样例对打；正式可用后即可接生产。<br/>有多确定：高<br/>什么情况下当这判断作废：如果在你的真实样例上，Decisions API 的准确率明显低于现有路径，或延迟/费用没有可感知的改善，就收回「这周必须放进对照表」。<br/>来源 OpenAI（一手）, OpenAI（一手）, TechCrunch（转述）<br/>日期 2026-10-23]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• OpenAI 在 2026 年 10 月 22 日宣布 Decisions API（决策接口）结束公开测试、正式可用。它跑在 GPT-6 Luna 上，专门回答有边界的问题：给应用和智能体做分类、路由或下一步动作选择。官方写它可比同一模型走 Responses API 快约 10 倍，适合热路径上的近实时判断。<br/>• 相对公开测试版，正式版新增原生 GPT-Live（实时语音）集成、复用上下文的提示缓存、美国与欧盟推理驻留，并支持原生 JSON 输入、在单题说明里带图片，以及每请求最多 400 道题（测试版上限的两倍）。计费只收输入：非缓存约每百万输入 token 0.10 美元，缓存输入约 0.01 美元；不收输出 token 费。<br/>• 官方开发者文档写明走 POST /v1/decisions，当前模型是 gpt-6-luna。答案类型有三种：predicate（条件成立概率）、choice（从你给定选项里选一个）、score（按量表打分）。若你的产品里反复做有限答案的判断，这周用同一批真实样例在 Decisions Playground 或接口里对打现有 Responses/聊天路径。<br/><strong>对你意味着什么</strong> 如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。<br/>建议：立即行动 · 这周用同一批样例对打；正式可用后即可接生产。<br/>有多确定：高<br/>什么情况下当这判断作废：如果在你的真实样例上，Decisions API 的准确率明显低于现有路径，或延迟/费用没有可感知的改善，就收回「这周必须放进对照表」。<br/>来源 OpenAI（一手）, OpenAI（一手）, TechCrunch（转述）<br/>日期 2026-10-23]]></description>
 </item>
 <item>
 <title>[今日必看 · 试用工具 · 发布] Anthropic 放出 Claude Duet 研究预览：会主动找你的助理</title>
 <link>https://claude.com/product/claude-duet</link>
 <guid isPermaLink="false">evt-20261023-anthropic-claude-duet</guid>
 <pubDate>Thu, 22 Oct 2026 03:09:35 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 公开站今日清空后晚班补上仍影响本周工具选择的条目。Anthropic 开放 Claude Duet 研究预览（research preview，给一部分用户提前试用）。这是会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并可接入六千多个 connector（连接器）和 plugin（插件）。<br/>• 官方产品页写明，这一轮候补面向美国的 Claude Pro 和 Max 订阅用户。研究预览和 Claude 共用现有套餐的用量额度，预览资格本身不加收一笔费用。Team 和 Enterprise 的名额要等后续开放。它是独立应用，有 iOS 和 Android，电脑上在 claude.ai 打开，并沿用你 Claude 账号里的记忆、技能和已连接的应用。<br/>• 发消息、付款这类敏感动作，Duet 会先把将要执行的步骤摆给你看，等你点头再做。官方同时写明，它可能读错一段往来，把事情的缓急判偏，两次巡检之间新到的消息也可能漏过。排队时先写下同一批收件箱和跟进任务，开放后用这批任务看它能否在你离开时把步骤做完。<br/><strong>对你意味着什么</strong> Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。<br/>建议：立即行动 · 美国区 Pro/Max 这周排队，开放后用同一批任务复测。<br/>有多确定：高<br/>什么情况下当这判断作废：如果候补名单长期不放出名额，或开放范围一直停在美国区 Pro 与 Max，或者它只会发提醒、没有把你交代的收件箱和跟进任务往前做完，就收回「这周该去排队，并用同一批任务复测」。<br/>来源 claudeai（一手）, addyosmani（一手）, dotey（解读）, theverge-ai（转述）<br/>日期 2026-10-23]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 开放 Claude Duet 研究预览（research preview，给一部分用户提前试用）。这是会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并可接入六千多个 connector（连接器）和 plugin（插件）。<br/>• 官方产品页写明，这一轮候补面向美国的 Claude Pro 和 Max 订阅用户。研究预览和 Claude 共用现有套餐的用量额度，预览资格本身不加收一笔费用。Team 和 Enterprise 的名额要等后续开放。它是独立应用，有 iOS 和 Android，电脑上在 claude.ai 打开，并沿用你 Claude 账号里的记忆、技能和已连接的应用。<br/>• 发消息、付款这类敏感动作，Duet 会先把将要执行的步骤摆给你看，等你点头再做。官方同时写明，它可能读错一段往来，把事情的缓急判偏，两次巡检之间新到的消息也可能漏过。排队时先写下同一批收件箱和跟进任务，开放后用这批任务看它能否在你离开时把步骤做完。<br/><strong>对你意味着什么</strong> Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。<br/>建议：立即行动 · 美国区 Pro/Max 这周排队，开放后用同一批任务复测。<br/>有多确定：高<br/>什么情况下当这判断作废：如果候补名单长期不放出名额，或开放范围一直停在美国区 Pro 与 Max，或者它只会发提醒、没有把你交代的收件箱和跟进任务往前做完，就收回「这周该去排队，并用同一批任务复测」。<br/>来源 claudeai（一手）, addyosmani（一手）, dotey（解读）, theverge-ai（转述）<br/>日期 2026-10-23]]></description>
 </item>
 </channel>
 </rss>
