@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Card copy for a scored row. Words for a card, not the algorithm numbers.
 
-The public UI is being reorganized around five tasks in another change:
-今日重点 / 最新动态 / 工具决策 / 实战手册 / 专题观察. This module only
-fills the copy those cards can show. It does not render HTML.
+The public site uses five visitor doors: 信息精选, 信息简讯, 工具决策, 实战手册, 专题观察.
+This module only fills the copy those cards can show. It does not render HTML.
 
   python3 scripts/card_copy.py --self-check
 

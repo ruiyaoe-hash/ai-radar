@@ -80,7 +80,7 @@
 
 ### 第三步（展示）
 
-导航已经改成任务名。顶栏由 `public/assets/shell.js` 写出五个入口：今日重点（`today.html`）、最新动态（`briefs.html`，`data-page="briefs"`）、工具决策、实战手册、专题观察。订阅更新在右侧。`week.html` 跳到 `briefs.html#archive`。次要入口（博主库、做法条目、随笔、飞书订阅群、给 Agent 用、收录标准、这是什么、反馈）收在「更多」。`scripts/validate.py` 的 `check_public_ui` 锁住这个顺序。
+导航已经改成任务名。顶栏由 `public/assets/shell.js` 写出五个入口：信息精选（`today.html`）、信息简讯（`briefs.html`，`data-page="briefs"`）、工具决策、实战手册、专题观察。订阅更新在右侧。`week.html` 跳到 `briefs.html#archive`。次要入口（博主库、做法条目、随笔、飞书订阅群、给 Agent 用、收录标准、这是什么、反馈）收在「更多」。`scripts/validate.py` 的 `check_public_ui` 锁住这个顺序。信息精选和信息简讯不互相收录。
 
 窗口和看板切换仍单独做：
 

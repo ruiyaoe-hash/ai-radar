@@ -392,6 +392,23 @@ a.btn:hover { text-decoration: none; }
 .hero-compact { margin-top: var(--space-xl); }
 .hero-compact .sub { margin: 4px 0 0; }
 
+.day-jump {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 var(--space-md);
+  color: var(--muted);
+}
+.day-jump select {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+}
+.tool-stream .field { margin: 8px 0; }
+
 .day {
   color: var(--muted);
   font-size: 0.88rem;

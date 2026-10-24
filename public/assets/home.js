@@ -20,13 +20,6 @@
       return res.json();
     });
   }
-  function getText(path) {
-    return fetch(path + "?" + Date.now()).then((res) => {
-      if (!res.ok) throw new Error(path);
-      return res.text();
-    });
-  }
-
   function fill(id, html) {
     const el = document.getElementById(id);
     if (el) el.innerHTML = html;
@@ -35,58 +28,72 @@
     fill(id, `<p class="empty">${esc(text)}<a href="${esc(href)}">${esc(label)}</a>。</p>`);
   }
 
-  function loadPicks() {
-    Promise.all([getJSON("./items.json"), getText("./today3.txt").catch(() => "")])
-      .then(([items, today3]) => {
-        const list = Array.isArray(items.items) ? items.items : [];
-        const model = R.heroModel(today3, list);
-        const rows = model.rows.slice(0, 3);
-        const byTitle = new Map(list.filter((it) => it.title).map((it) => [String(it.title).trim(), it]));
-        fill("home-today", rows.length
-          ? rows.map((row) => {
-            const it = byTitle.get(String(row.title || "").trim());
-            return it ? R.renderCard(it, model.featured, { compact: true }) : R.renderHero([row]);
-          }).join("")
-          : '<p class="empty">今日精选还在准备，稍后再来。也可以先看<a href="./briefs.html">最新动态</a>。</p>');
-        loadChanges(list, model.featured);
-      })
-      .catch(() => {
-        fail("home-today", "今日精选暂时读不到，可以直接打开", "./today.html", "今日重点");
-        fail("home-changes", "最近的变化暂时读不到，可以直接打开", "./briefs.html", "最新动态");
-      });
+  function normUrl(url) {
+    return String(url || "").trim().replace(/\/+$/, "").toLowerCase();
   }
 
-  function loadChanges(list, featured) {
-    const rest = (list || []).filter((it) => !(it.id && featured && featured.has(it.id)));
-    const slice = rest.slice(0, 4);
-    fill("home-changes", slice.length
-      ? slice.map((it) => R.renderCard(it, featured, { compact: true })).join("")
-      : '<p class="empty">精选之外这几天还没有更多变化。完整时间流在<a href="./briefs.html">最新动态</a>。</p>');
+  function blockedFrom(picks) {
+    const urls = new Set();
+    const ids = new Set();
+    (picks.blocked_urls || []).forEach((url) => { if (url) urls.add(normUrl(url)); });
+    (picks.blocked_ids || []).forEach((id) => { if (id) ids.add(id); });
+    (picks.days || []).forEach((day) => {
+      (day.items || []).forEach((item) => {
+        if (item.id) ids.add(item.id);
+        if (item.candidate_id) ids.add(item.candidate_id);
+        if (item.url) urls.add(normUrl(item.url));
+        (item.sources || []).forEach((source) => {
+          if (source && source.url) urls.add(normUrl(source.url));
+        });
+      });
+    });
+    return { urls, ids };
+  }
+
+  function loadPicks() {
+    getJSON("./picks.json").then((data) => {
+      const days = Array.isArray(data.days) ? data.days : [];
+      const newest = days.find((day) => Array.isArray(day.items) && day.items.length);
+      const items = newest ? newest.items : [];
+      fill("home-today", items.length
+        ? items.map((it) => R.renderCard(it, new Set())).join("")
+        : '<p class="empty">最新一天还没有精选。可以先看<a href="./briefs.html">信息简讯</a>。</p>');
+    }).catch(() => fail("home-today", "信息精选暂时读不到，可以直接打开", "./today.html", "信息精选"));
+  }
+
+  function loadBriefs() {
+    Promise.all([
+      getJSON("./briefs.json").catch(() => ({ items: [] })),
+      getJSON("./picks.json").catch(() => ({ days: [], blocked_urls: [], blocked_ids: [] }))
+    ]).then(([data, picks]) => {
+      const block = blockedFrom(picks || {});
+      const items = (Array.isArray(data.items) ? data.items : []).filter((item) => {
+        if (item.id && block.ids.has(item.id)) return false;
+        if (item.candidate_id && block.ids.has(item.candidate_id)) return false;
+        if (item.url && block.urls.has(normUrl(item.url))) return false;
+        return true;
+      }).slice(0, 4);
+      fill("home-changes", items.length
+        ? items.map((it) => R.renderFactCard(it)).join("")
+        : '<p class="empty">这几天还没有简讯。完整列表在<a href="./briefs.html">信息简讯</a>。</p>');
+    }).catch(() => fail("home-changes", "信息简讯暂时读不到，可以直接打开", "./briefs.html", "信息简讯"));
   }
 
   function loadTools() {
-    const rings = [
-      ["采纳", "值得采用"],
-      ["试用", "可以试用"],
-      ["评估", "需要评估"],
-      ["暂缓", "暂缓跟进"]
-    ];
     getJSON("./tools-radar.json").then((data) => {
-      const groups = data.rings || {};
-      fill("home-tools", rings.map(([key, title]) => {
-        const list = (groups[key] || []).slice(0, 2);
-        const body = list.length
-          ? list.map((it) => {
-            const href = R.safeHref(it.try_url || it.url || "");
-            const titleHtml = href
-              ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(it.title || "")}</a>`
-              : esc(it.title || "");
-            const step = it.first_step ? `<p class="mean">${esc(it.first_step)}</p>` : "";
-            return `<div class="tool-item"><div>${titleHtml}</div>${step}</div>`;
-          }).join("")
-          : '<p class="empty">这一档还没有。</p>';
-        return `<section class="card ring"><h3>${esc(title)}</h3>${body}</section>`;
-      }).join(""));
+      const items = (Array.isArray(data.stream) ? data.stream : [])
+        .filter((it) => it.summary && it.audience_value && it.first_step)
+        .slice(0, 4);
+      fill("home-tools", items.length
+        ? items.map((it) => {
+          const href = R.safeHref(it.try_url || it.url || "");
+          const title = href
+            ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(it.title || "")}</a>`
+            : esc(it.title || "");
+          const stance = it.stance ? `<span class="tag">${esc(it.stance)}</span>` : "";
+          return `<article class="card"><div class="meta">${stance}</div><h3>${title}</h3><p class="mean"><b>摘要：</b>${esc(it.summary)}</p><p class="mean"><b>大众价值：</b>${esc(it.audience_value)}</p><p class="mean"><b>上手实验：</b>${esc(it.first_step)}</p></article>`;
+        }).join("")
+        : '<p class="empty">最近还没有要决定的工具。可以打开<a href="./tools-radar.html">工具决策</a>。</p>');
     }).catch(() => fail("home-tools", "工具列表暂时读不到，可以直接打开", "./tools-radar.html", "工具决策"));
   }
 
@@ -116,12 +123,13 @@
         return `<article class="card"><div class="meta"><span class="tag">主题手册</span><span>${esc(String(topic.source_count || 0))} 条做法</span></div><h3>${title}</h3>${topic.summary ? `<p class="mean">${esc(topic.summary)}</p>` : ""}</article>`;
       }).join("");
       const html = practiceHtml + topicHtml;
-      fill("home-methods", html || '<p class="empty">手册还在整理。可以先打开<a href="./atlas.html">实战手册</a>看看现有主题。</p>');
+      fill("home-methods", html || '<p class="empty">能照着做的步骤和主题手册会出现在这里。可以先打开<a href="./atlas.html">实战手册</a>。</p>');
     }).catch(() => fail("home-methods", "手册暂时读不到，可以直接打开", "./atlas.html", "实战手册"));
   }
 
   liveNote();
   loadPicks();
+  loadBriefs();
   loadTools();
   loadMethods();
 })();

@@ -7,8 +7,8 @@ a candidate pool, and does not score.
 Pages output stays the promoted public artifacts.
 
 L2 briefs are filled by scripts/derive_briefs.py, not here. One URL is not both an
-archive card and a brief. The auto lane never writes the practice inbox; verified
-practice stays manual.
+archive card and a brief. Practice cards arrive from public/practice/inbox.
+scripts/project_public_lanes.py is the only writer of that inbox.
 
 Writes into public/ only:
   - items.json          (rolling window)
@@ -16,7 +16,8 @@ Writes into public/ only:
   - feed.xml            (main RSS; guid = event id permalink)
   - feeds/lens-*.xml    (per-lens feeds)
   - tools-radar.json    (tools with tool_radar / lens=工具)
-  - today3.txt          (今日精选，纯文本，页面叫法)
+  - today3.txt          (信息精选里最新一天的纯文本)
+  - picks.json          (信息精选：每个上海日历日最多 3 条，历史不截断)
   - practice.json       (only when public/practice/inbox/*.json has items)
   - data/kb.json        (atlas.source.json + practice ids → topics, sources, creators)
   - data/tracks.json, data/topics.json, data/sources.json, data/creators.json
@@ -48,11 +49,15 @@ if __package__ in {None, ""}:
     from card_times import parse_source_timestamp
     from human_layer import strip_machine_ids
     from prompt_guard import strip_raw_post_fields
+    from editorial_zh import visitor_ready
+    from lanes import PER_DAY, identity_ids, identity_urls, select_picks
 else:
     from .build_blog import build as build_blog
     from .card_times import parse_source_timestamp
     from .human_layer import strip_machine_ids
     from .prompt_guard import strip_raw_post_fields
+    from .editorial_zh import visitor_ready
+    from .lanes import PER_DAY, identity_ids, identity_urls, select_picks
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -296,48 +301,102 @@ def board_window(all_items: list[dict]) -> list[dict]:
     return window[:MAX_ITEMS]
 
 
+def _public_sentence(text: object, limit: int = 220) -> str:
+    cleaned = strip_machine_ids(str(text or "")).strip()
+    cleaned = re.sub(r"\s+", " ", cleaned)
+    if len(cleaned) <= limit:
+        return cleaned
+    return cleaned[: limit - 1].rstrip() + "…"
+
+
+def _tool_record(it: dict, ring: str) -> dict | None:
+    objective = it.get("objective") or []
+    summary = _public_sentence(objective[0] if objective else it.get("title"))
+    so = it.get("so_what") if isinstance(it.get("so_what"), dict) else {}
+    audience = _public_sentence(so.get("impact") or it.get("access") or "")
+    experiment = _public_sentence(it.get("first_step") or "", 240)
+    title = str(it.get("title") or "").strip()
+    if not summary or not audience or not experiment:
+        return None
+    if not visitor_ready(title) or not visitor_ready(summary) or not visitor_ready(audience) or not visitor_ready(experiment):
+        return None
+    return {
+        "id": it.get("id"),
+        "title": it.get("title"),
+        "date": it.get("date"),
+        "time": it.get("time"),
+        "try_url": it.get("try_url") or it.get("url"),
+        "access": it.get("access"),
+        "integration": it.get("integration"),
+        "first_step": experiment,
+        "summary": summary,
+        "audience_value": audience,
+        "alternatives": it.get("alternatives") or [],
+        "status": it.get("status"),
+        "priority": it.get("priority"),
+        "stance": TOOL_RING_LABEL.get(ring, "需要评估"),
+    }
+
+
 def build_tools_radar(all_items: list[dict]) -> dict:
     rings = {"采纳": [], "试用": [], "评估": [], "暂缓": []}
+    stream: list[dict] = []
     for it in all_items:
         if it.get("lens") != "工具" and not it.get("tool_radar"):
             continue
         ring = it.get("tool_radar") or "评估"
         if ring not in rings:
             ring = "评估"
-        rings[ring].append({
-            "id": it.get("id"),
-            "title": it.get("title"),
-            "date": it.get("date"),
-            "try_url": it.get("try_url") or it.get("url"),
-            "access": it.get("access"),
-            "integration": it.get("integration"),
-            "first_step": it.get("first_step"),
-            "alternatives": it.get("alternatives") or [],
-            "status": it.get("status"),
-            "priority": it.get("priority"),
-        })
+        record = _tool_record(it, ring)
+        if record is None:
+            continue
+        rings[ring].append(record)
+        stream.append(record)
+    stream.sort(key=lambda item: (str(item.get("date") or ""), str(item.get("time") or "")), reverse=True)
     return {
         "updated": datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间"),
         "rings": rings,
-        "note": "按你现在该怎么对待来分："
-        + "、".join(TOOL_RING_LABEL[k] for k in ("采纳", "试用", "评估", "暂缓"))
-        + "。不按热度排。",
+        "stream": stream,
+        "note": "按时间往下看。每条写清摘要、大众价值，以及第一次怎么试。",
+    }
+
+
+def _visitor_card(it: dict) -> bool:
+    """A public pick needs a finished Chinese title, fact, and impact."""
+    title = str(it.get("title") or "").strip()
+    obj = it.get("objective") or it.get("bullets") or []
+    happened = str(obj[0] if obj else title).strip()
+    so = it.get("so_what") if isinstance(it.get("so_what"), dict) else {}
+    impact = str(so.get("impact") or "").strip()
+    if not impact:
+        judgment = [str(line).strip() for line in (it.get("judgment") or []) if str(line).strip()]
+        impact = judgment[0] if judgment else ""
+    return visitor_ready(title) and visitor_ready(happened) and visitor_ready(impact)
+
+
+def build_picks(all_items: list[dict]) -> dict:
+    chosen = select_picks([it for it in all_items if _visitor_card(it)], PER_DAY)
+    by_day: dict[str, list[dict]] = {}
+    for item in chosen:
+        by_day.setdefault(str(item.get("date")), []).append(item)
+    days = [{"date": day, "items": by_day[day]} for day in sorted(by_day, reverse=True)]
+    return {
+        "updated": datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间"),
+        "per_day": PER_DAY,
+        "blocked_urls": sorted(identity_urls(all_items)),
+        "blocked_ids": sorted(identity_ids(all_items)),
+        "days": days,
     }
 
 
 def build_today3(board: list[dict]) -> str:
+    chosen = select_picks([it for it in board if _visitor_card(it)], PER_DAY)
     today = datetime.now(TZ).strftime("%Y-%m-%d")
-    day_items = [it for it in board if it.get("date") == today]
-    if not day_items:
-        day_items = board[:3]
-    # prefer P0 then confirmed
-    def score(it):
-        p = 0 if it.get("priority") == "P0" else 1
-        s = 0 if it.get("status") == "confirmed" else (1 if it.get("status") == "multi_source" else 2)
-        return (p, s, -(parse_item_time(it).timestamp()))
-
-    picked = sorted(day_items, key=score)[:3]
-    lines = [f"AI Radar · 今日精选（{today}）", ""]
+    if chosen:
+        today = max(str(it.get("date") or "") for it in chosen)
+    day_items = [it for it in chosen if it.get("date") == today]
+    picked = day_items[:3]
+    lines = [f"AI Radar · 信息精选（{today}）", ""]
     for i, it in enumerate(picked, 1):
         title = strip_machine_ids(str(it.get("title") or ""))
         lines.append(f"{i}. {title}")
@@ -374,7 +433,7 @@ def _practice_items(payload) -> list[dict]:
     raise ValueError("practice inbox entry must be an item, a list, or {items: []}")
 
 
-PRACTICE_NOTE = "编辑精选、每周投放，非自动从监控信源捞取。"
+PRACTICE_NOTE = "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。"
 
 
 def sync_practice_inbox() -> None:
@@ -782,7 +841,10 @@ def main():
     write_stable((PUBLIC / "tools-radar.json"),
         json.dumps(radar, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    write_stable((PUBLIC / "today3.txt"), build_today3(board), encoding="utf-8")
+    write_stable((PUBLIC / "picks.json"),
+        json.dumps(build_picks(all_items), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    write_stable((PUBLIC / "today3.txt"), build_today3(all_items), encoding="utf-8")
     sync_practice_inbox()
     sync_atlas()
     posts = build_blog()

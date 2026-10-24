@@ -393,8 +393,8 @@ def check_practice() -> None:
                 fail(f"practice/inbox/{path.name}: {first.message}")
     live_items = [it for it in live.get("items") or [] if isinstance(it, dict)]
     note = str(live.get("note") or "")
-    if "编辑精选" not in note or "非自动" not in note:
-        fail("practice.json note must say the lane is editor-curated, not auto-scraped")
+    if "能照着做的步骤" not in note or "没有写清步骤" not in note:
+        fail("practice.json note must say only finished steps are published")
     inbox_ids: list[str] = []
     if inbox.is_dir():
         for path in sorted(inbox.glob("*.json")):
@@ -570,18 +570,16 @@ def check_public_ui() -> None:
     required = {
         "index.html": [
             "今天，什么值得关注？",
-            "看今日重点",
+            "看信息精选",
             "./today.html",
             "./briefs.html",
             "./tools-radar.html",
             "./atlas.html",
             "./observe.html",
-            "今日精选",
+            "信息精选",
             "工具与产品",
-            "最近的重要变化",
+            "信息简讯",
             "把发现变成能力",
-            "今日重点",
-            "最新动态",
             "工具决策",
             "实战手册",
             "专题观察",
@@ -597,7 +595,7 @@ def check_public_ui() -> None:
         "atlas.html": [
             "实战手册",
             "实战图谱",
-            "今日重点",
+            "信息精选",
             "./today.html",
             "做法条目",
             "博主库",
@@ -618,11 +616,10 @@ def check_public_ui() -> None:
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
         "today.html": [
-            "今日重点",
-            "今日精选",
-            "精选",
-            "最新动态",
+            "信息精选",
+            "信息简讯",
             "./briefs.html",
+            "时间筛选",
             "优先看",
             "尚待核实",
             "未经证实的传闻与第三方帖子",
@@ -640,9 +637,9 @@ def check_public_ui() -> None:
             "Skill / 工作流",
             "硬件",
             "还没有可照着做的实操。",
-            "编辑精选、每周投放",
+            "没有写清步骤的分享不会上这一页",
         ],
-        "tools-radar.html": ["工具决策", "值得采用", "可以试用", "需要评估", "暂缓跟进", "相关发布", "相关做法"],
+        "tools-radar.html": ["工具决策", "值得采用", "可以试用", "需要评估", "暂缓跟进", "相关发布", "相关做法", "摘要", "大众价值", "上手实验", "时间筛选"],
         "subscribe.html": [
             "./feed.xml",
             "试用工具",
@@ -655,9 +652,9 @@ def check_public_ui() -> None:
             "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=e42k2f97-3894-42e8-af5a-68296c32ff83",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
         ],
-        "week.html": ["本周归档", "最新动态", "./briefs.html#archive"],
-        "briefs.html": ["最新动态", "今日重点", "近 3 天", "近 7 天", "官方原始信息", "多源确认", "尚待核实"],
-        "observe.html": ["专题观察", "随笔", "还在跟踪的看法", "今日重点", "最新动态"],
+        "week.html": ["本周归档", "信息简讯", "信息精选", "./briefs.html#archive"],
+        "briefs.html": ["信息简讯", "信息精选", "时间筛选", "按日期", "./today.html"],
+        "observe.html": ["专题观察", "随笔", "还在跟踪的看法", "信息精选", "信息简讯", "领域进展"],
         "agent.html": [
             "today3.txt",
             "items.json",
@@ -670,7 +667,9 @@ def check_public_ui() -> None:
             "YYYY-MM-DD.json",
             "theses.json",
             "llms.txt",
-            "编辑精选、每周投放",
+            "picks.json",
+            "briefs.json",
+            "能照着做的步骤才会出现在这里",
             "https://ruiyaoe-hash.github.io/ai-radar/",
             "schemas/card.schema.json",
             "schemas/items.schema.json",
@@ -689,8 +688,8 @@ def check_public_ui() -> None:
         ],
         "about.html": [
             "每日决策简报",
-            "今日重点",
-            "最新动态",
+            "信息精选",
+            "信息简讯",
             "工具决策",
             "实战手册",
             "专题观察",
@@ -700,13 +699,13 @@ def check_public_ui() -> None:
             "尚待核实",
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
-            "编辑精选、每周投放",
+            "没有写清步骤的分享不会上这一页",
             "每天 08:00 主报，工作日 21:00 晚班",
             "CC BY-NC 4.0",
         ],
     }
     shell = (PUBLIC / "assets" / "shell.js").read_text(encoding="utf-8")
-    for label in ("今日重点", "最新动态", "工具决策", "实战手册", "专题观察", "订阅更新", "博主库", "做法条目", "随笔", "飞书订阅群", "给 Agent 用", "收录标准", "这是什么", "反馈 / 建议"):
+    for label in ("信息精选", "信息简讯", "工具决策", "实战手册", "专题观察", "订阅更新", "博主库", "做法条目", "随笔", "飞书订阅群", "给 Agent 用", "收录标准", "这是什么", "反馈 / 建议"):
         if label not in shell:
             fail(f"shell.js missing nav label {label}")
     feedback = "https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd"
@@ -717,7 +716,7 @@ def check_public_ui() -> None:
         fail("shell.js missing Feishu subscribe-group invite")
     # Primary nav is five task doors, then 订阅更新 as the right-side action.
     # Secondary links live under 更多. Old 信号 / 造物 / 共鸣 groups are not the nav.
-    primary = ["今日重点", "最新动态", "工具决策", "实战手册", "专题观察"]
+    primary = ["信息精选", "信息简讯", "工具决策", "实战手册", "专题观察"]
     cursor = 0
     for label in primary:
         pos = shell.find(label, cursor)
@@ -1004,9 +1003,16 @@ def check_safe_href() -> None:
     atlas = PUBLIC / "assets" / "atlas.js"
     if not atlas.is_file() or "safeHref(" not in atlas.read_text(encoding="utf-8"):
         fail("atlas.js must filter links with safeHref")
+    linked = {"tools-radar.html": "assets/tools.js"}
     for name in ("practice.html", "tools-radar.html", "subscribe.html"):
         raw = (PUBLIC / name).read_text(encoding="utf-8")
-        if "safeHref(" not in raw:
+        extra = ""
+        script = linked.get(name)
+        if script:
+            if script not in raw:
+                fail(f"{name} must load {script}")
+            extra = (PUBLIC / script).read_text(encoding="utf-8")
+        if "safeHref(" not in raw and "safeHref(" not in extra:
             fail(f"{name} builds anchors without safeHref")
         if re.search(r"esc\(it\.(?:url|try_url)\)", raw):
             fail(f"{name} still puts a raw card url through esc() into href")
@@ -1306,6 +1312,79 @@ def check_prompt_injection() -> None:
     print("OK prompt injection: fixtures, edited public prose, no raw post fields")
 
 
+def check_public_copy() -> None:
+    """Visitor cards are finished Chinese. Workflow talk never reaches public files."""
+    try:
+        from editorial_zh import SCAFFOLD, visitor_ready
+    except ImportError:
+        from scripts.editorial_zh import SCAFFOLD, visitor_ready
+    scaffold_hits: list[str] = []
+    for path in PUBLIC.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in {".html", ".js", ".json", ".txt", ".md"}:
+            continue
+        if "schemas" in path.relative_to(PUBLIC).parts:
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        lowered = text.lower()
+        for phrase in SCAFFOLD:
+            if phrase.lower() in lowered:
+                scaffold_hits.append(f"{path.relative_to(PUBLIC)} contains {phrase}")
+    if scaffold_hits:
+        fail("public scaffolding:\n  " + "\n  ".join(scaffold_hits[:20]))
+
+    prose_hits: list[str] = []
+
+    def take(where: str, key: str, value: object) -> None:
+        if isinstance(value, str) and value.strip() and not visitor_ready(value):
+            prose_hits.append(f"{where} {key}")
+
+    def card(where: str, item: dict) -> None:
+        for key in ("title", "summary", "why", "affect", "audience_value", "first_step", "takeaway"):
+            if key in item:
+                take(where, key, item.get(key))
+        so = item.get("so_what") if isinstance(item.get("so_what"), dict) else {}
+        for key in ("impact", "falsifier", "window"):
+            if key in so:
+                take(where, key, so.get(key))
+        for key in ("objective", "bullets", "judgment", "steps"):
+            for index, line in enumerate(item.get(key) or []):
+                take(where, f"{key}[{index}]", line)
+
+    targets = [
+        PUBLIC / "briefs.json",
+        PUBLIC / "items.json",
+        PUBLIC / "picks.json",
+        PUBLIC / "tools-radar.json",
+        PUBLIC / "practice.json",
+        PUBLIC / "practice.sample.json",
+        PUBLIC / "data" / "watch.json",
+        PUBLIC / "theses.json",
+    ]
+    targets.extend(sorted((PUBLIC / "archive").glob("????-??-??.json")))
+    for path in targets:
+        if not path.is_file():
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        rows: list[dict] = []
+        if isinstance(data, dict):
+            rows.extend(item for item in data.get("items") or [] if isinstance(item, dict))
+            rows.extend(item for item in data.get("theses") or [] if isinstance(item, dict))
+            rows.extend(item for item in data.get("stream") or [] if isinstance(item, dict))
+            for day in data.get("days") or []:
+                if isinstance(day, dict):
+                    rows.extend(item for item in day.get("items") or [] if isinstance(item, dict))
+            rings = data.get("rings") if isinstance(data.get("rings"), dict) else {}
+            for group in rings.values():
+                if isinstance(group, list):
+                    rows.extend(item for item in group if isinstance(item, dict))
+        rel = path.relative_to(PUBLIC)
+        for item in rows:
+            card(f"{rel}:{item.get('id') or item.get('title')}", item)
+    if prose_hits:
+        fail("public copy is not visitor-ready:\n  " + "\n  ".join(prose_hits[:20]))
+    print("OK public copy: finished Chinese, no scaffolding")
+
+
 def check_briefs() -> None:
     """L2 briefs stay factual: schema, safe URLs, no raw post keys, no instruction text."""
     try:
@@ -1347,8 +1426,33 @@ def check_briefs() -> None:
     page = (PUBLIC / "briefs.html").read_text(encoding="utf-8")
     if "本页当前为示例数据" in page:
         fail("briefs.html still describes the page as sample data")
-    if "自动档" not in page:
-        fail("briefs.html should say the auto band supplies briefs")
+    if "信息简讯" not in page:
+        fail("briefs.html should name the visitor door")
+    script = (PUBLIC / "assets" / "briefs.js").read_text(encoding="utf-8")
+    if "archive/" in script:
+        fail("briefs.js must not load the archive; picks and briefs stay separate")
+    if "blocked_urls" not in script:
+        fail("briefs.js must drop items that already belong to 信息精选")
+    try:
+        from editorial_zh import visitor_ready
+    except ImportError:
+        from scripts.editorial_zh import visitor_ready
+    picks_path = PUBLIC / "picks.json"
+    if not picks_path.is_file():
+        fail("missing public/picks.json (run generate_derived.py)")
+    picks = json.loads(picks_path.read_text(encoding="utf-8"))
+    blocked_urls = {str(url).rstrip("/").lower() for url in picks.get("blocked_urls") or []}
+    blocked_ids = {str(item_id) for item_id in picks.get("blocked_ids") or []}
+    for item in data.get("items") or []:
+        for field in ("title", "summary", "why", "affect"):
+            text = str(item.get(field) or "")
+            if not visitor_ready(text):
+                fail(f"briefs.json {item.get('id')} {field} is not finished Chinese visitor copy")
+        url = str(item.get("url") or "").rstrip("/").lower()
+        if url and url in blocked_urls:
+            fail(f"briefs.json {item.get('id')} repeats a pick url")
+        if item.get("id") in blocked_ids or item.get("candidate_id") in blocked_ids:
+            fail(f"briefs.json {item.get('id')} repeats a pick id")
     derive = (ROOT / "scripts" / "derive_briefs.py").read_text(encoding="utf-8")
     for needle in ("safe_http_url", "find_instruction_override", "strip_raw_post_fields", "practice"):
         if needle not in derive:
@@ -1367,6 +1471,8 @@ def check_pool_workflows() -> None:
             fail(f"{label} workflow must keep workflow_dispatch and pool_git_push.sh")
         if "score_pool.py" not in text or "derive_briefs.py" not in text:
             fail(f"{label} workflow must score and derive briefs")
+        if "project_public_lanes.py" not in text or "generate_derived.py" not in text:
+            fail(f"{label} workflow must project practice and watch, then derive public pages")
     if "X_BEARER_TOKEN" not in watch or "shift_ingest_x_to_pool.py" not in watch:
         fail("X workflow must name X_BEARER_TOKEN and keep the hand-feed ingest")
     if "AI_RADAR_POOL_TOKEN" not in rss:
@@ -1487,6 +1593,17 @@ def main() -> None:
     check_fetch_x()
     check_score_sources()
     try:
+        from editorial_zh import self_check as check_editorial
+        from lanes import self_check as check_lanes
+        from project_public_lanes import self_check as check_project_lanes
+    except ImportError:
+        from scripts.editorial_zh import self_check as check_editorial
+        from scripts.lanes import self_check as check_lanes
+        from scripts.project_public_lanes import self_check as check_project_lanes
+    check_editorial()
+    check_lanes()
+    check_project_lanes()
+    try:
         from suggest_atlas_topics import self_check as check_suggest_topics
         from refresh_demand import self_check as check_refresh_demand
     except ImportError:
@@ -1497,6 +1614,7 @@ def main() -> None:
     check_blog()
     check_topic_suggestions()
     check_briefs()
+    check_public_copy()
     check_pool_workflows()
     check_pool_trace()
     live_report()

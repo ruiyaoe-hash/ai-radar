@@ -15,14 +15,51 @@
 
   var STATUS = { "待定": "还在观察", "命中": "已经对上", "未命中": "没有对上" };
 
+  function renderWatch(item) {
+    var href = typeof window.safeHref === "function" ? window.safeHref(item.url || "") : "";
+    var link = href ? `<p><a href="${esc(href)}" target="_blank" rel="noopener">打开原文</a></p>` : "";
+    var source = item.source ? `<p class="src"><span>${esc(item.source)}</span></p>` : "";
+    var fold = source + link;
+    var details = fold.trim()
+      ? `<details><summary>背景与出处</summary><div class="fold">${fold}</div></details>`
+      : "";
+    return `<article class="card">
+      <div class="meta"><span>${esc(item.date || "")}</span></div>
+      <h3>${esc(item.title || "")}</h3>
+      <p class="mean"><b>发生了什么：</b>${esc(item.summary || "")}</p>
+      <p class="mean"><b>为什么值得看：</b>${esc(item.why || "")}</p>
+      <p class="mean"><b>对我有什么影响：</b>${esc(item.affect || "")}</p>
+      ${details}
+    </article>`;
+  }
+
+  function loadWatch() {
+    fetch("./data/watch.json?" + Date.now()).then(function (res) {
+      if (!res.ok) throw new Error("watch");
+      return res.json();
+    }).then(function (data) {
+      var items = (Array.isArray(data.items) ? data.items : []).filter(function (item) {
+        return item && item.title && item.summary && item.why && item.affect;
+      });
+      if (!items.length) {
+        fill("watch", '<p class="empty">跨过一天仍然值得跟踪的领域进展，写清楚之后会出现在这里。</p>');
+        return;
+      }
+      fill("watch", items.map(renderWatch).join(""));
+    }).catch(function () {
+      fill("watch", '<p class="empty">领域进展暂时读不到。长期看法和随笔仍然可以看。</p>');
+    });
+  }
+
   function load() {
+    loadWatch();
     fetch("./theses.json?" + Date.now()).then(function (res) {
       if (!res.ok) throw new Error("theses");
       return res.json();
     }).then(function (data) {
       var theses = Array.isArray(data.theses) ? data.theses : [];
       if (!theses.length) {
-        fill("theses", '<p class="empty">还没有写成长句的长期看法。</p>');
+        fill("theses", '<p class="empty">写成完整看法之后，会出现在这里。</p>');
         return;
       }
       fill("theses", theses.map(function (item) {
@@ -30,7 +67,7 @@
         var horizon = item.horizon ? `<span>${esc(item.horizon)}</span>` : "";
         var kill = item.falsifier
           ? `<p class="mean"><b>什么情况下这条看法不再成立：</b>${esc(item.falsifier)}</p>`
-          : `<p class="mean">这条看法还没写明什么情况下不再成立。</p>`;
+          : "";
         return `<article class="card">
           <div class="meta"><span class="tag">${esc(status)}</span>${horizon}</div>
           <h3>${esc(item.statement || "")}</h3>
