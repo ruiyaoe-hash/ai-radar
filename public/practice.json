@@ -1,8 +1,95 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-25 20:56 北京时间",
+  "updated": "2026-10-26 01:43 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261025-e3bea54d075a",
+      "kind": "工具用法",
+      "title": "不少朋友感兴趣，写个极简版的 Kindle 越狱改造教程",
+      "author": "vista8",
+      "url": "https://x.com/vista8/status/2114354864088297475",
+      "time": "2026-10-25 21:54",
+      "takeaway": "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家",
+      "steps": [
+        "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家。",
+        "用数据线连上 Kindle，跟 Codex 说：“帮我越狱 kindle”。",
+        "越狱后说，帮我安装：KOReader和下面的插件 https://t.co/McdRQwHMFL。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "原文里用到的账号或软件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261025-e3bea54d075a"
+    },
+    {
+      "id": "prac-20261025-2a19b4f68001",
+      "kind": "工具用法",
+      "title": "没想到开发挺顺利，搞好了",
+      "author": "vista8",
+      "url": "https://x.com/vista8/status/2114352058577117439",
+      "time": "2026-10-25 21:43",
+      "takeaway": "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家",
+      "steps": [
+        "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家。",
+        "用数据线连上 Kindle，跟 Codex 说：“帮我越狱 kindle”。",
+        "越狱后说，帮我安装：KOReader和下面的插件。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "原文里用到的账号或软件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261025-2a19b4f68001"
+    },
+    {
+      "id": "prac-20261025-c08d81155c53",
+      "kind": "工具用法",
+      "title": "跟大家同步下 Kindle 刷机改造进展",
+      "author": "vista8",
+      "url": "https://x.com/vista8/status/2114340452870836238",
+      "time": "2026-10-25 20:57",
+      "takeaway": "更方便美观的排版设置",
+      "steps": [
+        "更方便美观的排版设置。",
+        "一句话下载发送电子书到 Kindle，不用 USB 线。",
+        "手机打开浏览器配置 API key。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "原文里用到的账号或软件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261025-c08d81155c53"
+    },
+    {
+      "id": "prac-20261025-d2980f2b60db",
+      "kind": "工具用法",
+      "title": "Agent 把你的密钥带进模型请求，可能只需要读一遍 .env",
+      "author": "realydt",
+      "url": "https://x.com/realydt/status/2114186078076936344",
+      "time": "2026-10-25 10:43",
+      "takeaway": "Codex 干活时会读配置和日志",
+      "steps": [
+        "Codex 干活时会读配置和日志。",
+        "内容就可能跟着请求一起发出去。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "原文里用到的账号或软件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261025-d2980f2b60db"
+    },
     {
       "id": "prac-20261024-6d6218870fce",
       "kind": "硬件",

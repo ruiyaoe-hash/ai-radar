@@ -1,0 +1,22 @@
+{
+  "id": "prac-20261025-c08d81155c53",
+  "kind": "工具用法",
+  "title": "跟大家同步下 Kindle 刷机改造进展",
+  "author": "vista8",
+  "url": "https://x.com/vista8/status/2114340452870836238",
+  "time": "2026-10-25 20:57",
+  "takeaway": "更方便美观的排版设置",
+  "steps": [
+    "更方便美观的排版设置。",
+    "一句话下载发送电子书到 Kindle，不用 USB 线。",
+    "手机打开浏览器配置 API key。"
+  ],
+  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "原文里用到的账号或软件"
+  ],
+  "estimated_time": "按步骤做完",
+  "verified": false,
+  "candidate_id": "cand-20261025-c08d81155c53"
+}

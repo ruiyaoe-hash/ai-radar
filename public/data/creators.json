@@ -1,10 +1,22 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-25 20:56 北京时间",
+  "updated": "2026-10-26 01:43 北京时间",
   "creators": [
     {
       "handle": "vista8",
       "name": "vista8",
+      "focus": "",
+      "source_count": 4,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/vista8"
+    },
+    {
+      "handle": "realydt",
+      "name": "realydt",
       "focus": "",
       "source_count": 1,
       "bookmarks": 0,
@@ -12,7 +24,7 @@
       "topics": [
         "hands-on"
       ],
-      "profile_url": "https://x.com/vista8"
+      "profile_url": "https://x.com/realydt"
     }
   ]
 }
