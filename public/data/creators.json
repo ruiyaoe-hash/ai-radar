@@ -1,5 +1,18 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-23 17:01 北京时间",
-  "creators": []
+  "updated": "2026-10-25 20:56 北京时间",
+  "creators": [
+    {
+      "handle": "vista8",
+      "name": "vista8",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/vista8"
+    }
+  ]
 }
