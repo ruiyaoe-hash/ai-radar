@@ -38,7 +38,7 @@ value = clamp(
 
 `review_not_official`：簇里有一手链接，但这一行自己不是 RSS 官方源。典型是 X 上的爆料帖和官方帖进了同一簇，或实验室自己的 X 账号。它们靠簇内印证拿到高分，但不会自动发布，必须人看。schema 用 `if band=auto_brief then official_source=true` 锁住这一条。
 
-实操（`practice_handles`、`tier_prior=practice`、`lane_hint` 或 `participation=practice`）即使分高也是 `review_practice`，不会自动进快讯。班次打分之后跑 `scripts/project_public_lanes.py`：实操车道、分档仍是 `review`、收藏数达到 `score.bookmark_prior`，并且能抽出至少两步写完的中文做法时，写入 `public/practice/inbox/`，再由 `generate_derived.py` 并入 `practice.json`。X 帖标题经常是空的；正文里第一句能用的话会先当成临时标题，再走中文编辑层（`editorial_zh.edit_pair`，可选 `AI_RADAR_EDITORIAL_URL`）。英文或没写完的句子仍然不上站。`verified` 仍是 false，不由脚本改成已复核。不够两步、没有收藏计数、或收藏低于 `bookmark_prior` 的留在池里。同一 `prac-*` id 重跑不会再写一份。专题观察的领域进展走同一脚本：分析行（不是实操、不是自动快讯）标题为空时同样补一句，再要求中文标题和摘要。主题手册在没有素材时保持空列表，不预造骨架；长期看法和随笔仍由人写。
+实操（`practice_handles`、`tier_prior=practice`、`lane_hint` 或 `participation=practice`）即使分高也是 `review_practice`，不会自动进快讯。班次打分之后跑 `scripts/project_public_lanes.py`：实操车道、分档仍是 `review`、收藏数达到 `score.bookmark_prior`，并且能抽出至少两步写完的中文做法时，写入 `public/practice/inbox/`，再由 `generate_derived.py` 并入 `practice.json`。步骤可以是编号或「首先 / 然后 / 接着 / 最后」，也可以是连续写成的中文操作说明：没有这些标记，只要正文里能拆出至少两个不同的具体动作，也过步骤门。短回复、纯观点、广告和没有具体动作的句子不算。公开卡上仍是拆开的步骤，不会把整段原文收成一步。X 帖标题经常是空的；正文里第一句能用的话会先当成临时标题，再走中文编辑层（`editorial_zh.edit_pair`，可选 `AI_RADAR_EDITORIAL_URL`）。英文或没写完的句子仍然不上站。`verified` 仍是 false，不由脚本改成已复核。不够两步、没有收藏计数、或收藏低于 `bookmark_prior` 的留在池里。同一 `prac-*` id 重跑不会再写一份。专题观察的领域进展走同一脚本：分析行（不是实操、不是自动快讯）标题为空时同样补一句，再要求中文标题和摘要。主题手册在没有素材时保持空列表，不预造骨架；长期看法和随笔仍由人写。
 
 已经是 `editor_skip`、`promoted`、`rerouted`，或其它 `dropped` 的行不改状态、不覆盖原因。`low_score` 再跑 `annotate_gates` 也不会被抬回去。要重看，人先把原因改掉。例外只有强制 P0：窗口内、`drop_reason` 为 `low_score` 或 `stale_old`、而且规则对上的行，会被抬回 `active` 并标 `review_p0`。编辑否决不在此列。
 

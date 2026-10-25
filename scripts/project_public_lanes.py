@@ -4,7 +4,10 @@
 Shifts call this after scoring. A practice-lane row that clears both gates
 already in the repo becomes one practice card under public/practice/inbox/:
 
-  - can-follow-along: at least two finished Chinese steps
+  - can-follow-along: at least two finished Chinese steps. Numbered lines and
+    sequence words (首先 / 然后 / 接着 / 最后) still count. Continuous Chinese
+    instruction prose counts too, once it splits into at least two concrete
+    actions. Short replies, opinion, ads, and fluff do not.
   - engagement: bookmarks at least config score.bookmark_prior
 
 generate_derived.py then merges that inbox into practice.json. The same run
@@ -68,7 +71,8 @@ CAUTION = "动手前对照原文核对命令、授权和费用。这里没有替
 _STEP_WORD = r"第[0-9一二三四五六七八九十]+步|首先|然后|接着|最后|其次|下一步"
 _STEP_NUM = r"(?<!\d)\d+[\.、\)](?!\d)"
 # Numbered steps may sit mid-paragraph ("1. … 2. …"). Sequence words only
-# count at a sentence boundary, so ordinary prose is not sliced into steps.
+# count at a sentence boundary, so ordinary prose is not sliced on 然后 alone.
+# Prose how-tos take a second path: split into concrete actions instead.
 _STEP_BOUNDARY = re.compile(
     rf"(?:^|[\n；;。])\s*(?:{_STEP_NUM}|{_STEP_WORD})\s*[:：]?"
     rf"|(?<=\s)(?:{_STEP_NUM}|第[0-9一二三四五六七八九十]+步)\s*[:：]?"
@@ -78,6 +82,54 @@ _LEAD_MARK = re.compile(
     rf"^\s*(?:{_STEP_NUM}|{_STEP_WORD})\s*[:：]?\s*"
 )
 _URL = re.compile(r"https?://\S+")
+_CLAUSE_SPLIT = re.compile(r"[。！？!?\n；;，,、]+")
+_LEAD_NOISE = re.compile(
+    r"^(?:我觉得|我认为|我感觉|个人觉得|说实话|其实|简单来说|做法很简单)[，,\s：:]*"
+)
+_FLUFF = re.compile(
+    r"太强了|绝了|真香|值得关注|值得收藏|值得看看|推荐关注|建议关注|"
+    r"个人观点|仅供参考|涨知识|马克一下|可以关注一下"
+)
+_AD = re.compile(r"扫码|加微信|加v信|私信我|限时优惠|优惠券|折扣码|领取资料|进群领取|广告合作")
+# Verbs that are also ordinary nouns do not count when they start those nouns
+# (配置文件, 安装门槛, 设置项). The reader has to be told to do something.
+_PROCEDURAL_VERB = re.compile(
+    r"打开|关掉|关闭|卸载|执行|输入|粘贴|复制|下载|上传|"
+    r"填写|填上|填入|登录|登入|注册|创建|新建|删除|修改|替换|"
+    r"保存|提交|重启|连接|导入|导出|选择|点击|勾选|添加|写入|"
+    r"调用|进入|切换|更新|升级|检查|确认|克隆|拉取|推送|编译|构建|"
+    r"验证|启用|禁用|改成|换成|写成|写好|写上|写进|建好|配好|装上|"
+    r"跑通|绑定|绑在|接上|接入|指向|指到|贴进|贴上|贴到|"
+    r"发给|发出|发一把|拉起|补上|补进|放进|放到|丢进|丢给|整理成|保存成|刷新|加上|发送|"
+    r"装(?!饰|修|置|备|满|作|样子|忙)|"
+    r"安装(?!量|包|说明|文档|门槛|成本|方式|方法|步骤)|"
+    r"运行(?!时|中|结果|日志)|"
+    r"配置(?!文件|项|说明|文档|界面|方式)|"
+    r"设置(?!项|页|里|界面)|"
+    r"生成(?!式|物|结果)|"
+    r"部署(?!文档|说明|方式)|"
+    r"测试(?!结果|报告)|"
+    r"启动(?!项|参数|日志)"
+)
+_BA_ACTION = re.compile(
+    r"把[^，。；\n]{1,24}"
+    r"(?:改成|换成|填上|填入|设成|设为|写成|写进|放进|放到|装上|删除|指向|指到|接到|发给|贴进|贴上|保存)"
+)
+_OBJECT = re.compile(
+    r"目录|文件夹|文件|配置|命令行|命令|账号|账户|端口|密钥|钥匙|"
+    r"页面|网页|终端|服务器|仓库|依赖|镜像|容器|服务|模型|接口|"
+    r"地址|环境变量|脚本|项目|编辑器|浏览器|插件|按钮|菜单|文档|"
+    r"代码|分支|隧道|网关|供应商|提示词|输入框|数据库|表格|字段|"
+    r"参数|证书|域名|面板|控制台|工作流|模板|请求|日志|进程|"
+    r"权限|令牌|用户|属主|客户端|设备|笔记|提纲|文字稿|流程|编排"
+)
+_COMMAND = re.compile(
+    r"(?<![A-Za-z])(?:pip3?|npm|pnpm|yarn|docker|git|curl|wget|uv|mkdir|ssh|brew|sudo)\s+\S",
+    re.I,
+)
+_PRODUCT_OP = re.compile(
+    r"(?:打开|安装|运行|登录|进入|部署|启动|调用|装)\s*[A-Za-z][A-Za-z0-9_./:-]{2,}"
+)
 
 
 def _clock(row: dict) -> datetime | None:
@@ -111,6 +163,20 @@ def _plain_bits(row: dict) -> str:
     return "\n".join(parts)
 
 
+def _step_text(row: dict) -> str:
+    """How-to text is the body. A headline is not an extra step.
+
+    X posts usually leave the title empty and put the instructions in the
+    snippet. When both exist, counting the headline as a step would turn a
+    one-line reply under a how-to title into two actions.
+    """
+    snippet = row.get("snippet") if isinstance(row.get("snippet"), str) else ""
+    if snippet.strip():
+        return snippet
+    title = row.get("title") if isinstance(row.get("title"), str) else ""
+    return title
+
+
 def _marker_spans(text: str) -> list[re.Match[str]]:
     found = list(_STEP_BOUNDARY.finditer(text or ""))
     found.sort(key=lambda match: (match.start(), -match.end()))
@@ -124,12 +190,98 @@ def _marker_spans(text: str) -> list[re.Match[str]]:
     return kept
 
 
-def extract_steps(text: str) -> list[str]:
-    """Keep numbered or sequenced sentences. A title plus a remark is not a tutorial.
+def _norm_step(text: str) -> str:
+    return re.sub(r"[\s，,。；;、：:]+", "", text or "")
 
-    This is the can-follow-along gate. Each kept step is finished Chinese.
-    A short reply, or a single numbered line, does not qualify.
+
+def _same_step(left: str, right: str) -> bool:
+    a, b = _norm_step(left), _norm_step(right)
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    if a in b or b in a:
+        return abs(len(a) - len(b)) <= 4
+    return False
+
+
+def _executable_clause(text: str) -> bool:
+    """A concrete operation on a tool, file, config, or machine.
+
+    Opinion, ads, and metaphorical 打开/把 do not qualify. A shell command
+    counts on its own. A procedural verb still needs an object the reader
+    can point at (目录, 账号, 端口, …).
     """
+    raw = text or ""
+    if _AD.search(raw) or _FLUFF.search(raw):
+        return False
+    has_command = bool(_COMMAND.search(raw))
+    has_verb = bool(_PROCEDURAL_VERB.search(raw) or _BA_ACTION.search(raw) or _PRODUCT_OP.search(raw))
+    has_object = bool(_OBJECT.search(raw) or has_command or _PRODUCT_OP.search(raw))
+    if has_command and has_object:
+        return True
+    return has_verb and has_object
+
+
+_STEP_LEAD = re.compile(
+    r"^(?:并且|而且|同时|另外|此外|随后|然后|接着|之后|我已经|已经|刚刚|刚|并|再(?!次)|也(?!许))"
+)
+
+
+def _finish_step(text: str) -> str | None:
+    cleaned = _LEAD_MARK.sub("", text or "")
+    cleaned = re.sub(r"\s+", " ", cleaned).strip(" ，,;；:：。 \t")
+    cleaned = re.sub(r"([把将])\s+", r"\1", cleaned)
+    while True:
+        nxt = _STEP_LEAD.sub("", cleaned, count=1).strip(" ，,;；:：。 \t")
+        if not nxt or nxt == cleaned:
+            break
+        cleaned = nxt
+    if len(cleaned) > 300:
+        cut = cleaned[:300]
+        if "，" in cut:
+            cut = cut.rsplit("，", 1)[0]
+        cleaned = cut.strip(" ，,;；")
+    if not cleaned or find_instruction_override(cleaned):
+        return None
+    if not _executable_clause(cleaned) or not visitor_ready(cleaned):
+        return None
+    return cleaned if cleaned.endswith("。") else cleaned + "。"
+
+
+def _remember_step(steps: list[str], step: str | None) -> None:
+    if not step or any(_same_step(step, prev) for prev in steps):
+        return
+    steps.append(step)
+
+
+def _rest_can_step(pieces: list[str]) -> bool:
+    buf: list[str] = []
+    for piece in pieces:
+        if not buf and not _executable_clause(piece):
+            continue
+        buf.append(piece)
+        joined = "，".join(buf)
+        if visitor_ready(joined) and _executable_clause(joined):
+            return True
+    return False
+
+
+def _clauses(text: str) -> list[str]:
+    body = _URL.sub(" ", text or "")
+    clauses: list[str] = []
+    for part in _CLAUSE_SPLIT.split(body):
+        piece = _LEAD_NOISE.sub("", part.strip())
+        piece = _LEAD_MARK.sub("", piece)
+        piece = re.sub(r"\s+", " ", piece).strip(" ，,;；:：。 \t")
+        if not piece or _AD.search(piece) or _FLUFF.search(piece):
+            continue
+        clauses.append(piece)
+    return clauses
+
+
+def _steps_from_markers(text: str) -> list[str]:
+    """Numbered lines and 首先 / 然后 / 接着 / 最后 at a sentence boundary."""
     raw = text or ""
     matches = _marker_spans(raw)
     steps: list[str] = []
@@ -145,6 +297,59 @@ def extract_steps(text: str) -> list[str]:
         if len(steps) >= 8:
             return steps
     return steps
+
+
+def _steps_from_prose(text: str) -> list[str]:
+    """Split continuous instructions into steps a visitor can follow.
+
+    Clauses stay together until the buffer is already a finished action and
+    the remainder can still make another one. A single sentence, an ad, or
+    a pure opinion therefore stays under two steps. The whole post is never
+    returned as one step.
+    """
+    pieces = _clauses(text)
+    steps: list[str] = []
+    buf: list[str] = []
+    full_norm = _norm_step(_URL.sub(" ", text or ""))
+    for index, piece in enumerate(pieces):
+        if not _executable_clause(piece):
+            # Keep a short constraint ("端口只留在本机") glued to the action
+            # it qualifies. Commentary with no object stays off the card.
+            if buf and _OBJECT.search(piece):
+                buf.append(piece)
+            continue
+        if (
+            buf
+            and visitor_ready("，".join(buf))
+            and _executable_clause("，".join(buf))
+            and _rest_can_step(pieces[index:])
+        ):
+            _remember_step(steps, _finish_step("，".join(buf)))
+            buf = []
+            if len(steps) >= 8:
+                return steps
+        buf.append(piece)
+    if buf and len(steps) < 8:
+        _remember_step(steps, _finish_step("，".join(buf)))
+    return [step for step in steps if _norm_step(step) != full_norm][:8]
+
+
+def extract_steps(text: str) -> list[str]:
+    """Can-follow-along gate. A title plus a remark is not a tutorial.
+
+    Numbered or sequenced sentences win when they already yield two finished
+    Chinese steps. Otherwise continuous instruction prose is split into
+    concrete actions. A short reply, one action, a pure opinion, an ad, or
+    non-actionable fluff does not qualify. The public card never receives
+    the unparsed post as a single step.
+    """
+    marked = _steps_from_markers(text)
+    if len(marked) >= 2:
+        return marked
+    prose = _steps_from_prose(text)
+    if len(prose) > len(marked):
+        return prose
+    return marked
 
 
 def first_usable_sentence(text: str) -> str:
@@ -240,7 +445,7 @@ def project_practice(
     suffix = _suffix(row)
     if not day or not re.fullmatch(r"[a-f0-9]{12}", suffix):
         return None
-    steps = extract_steps(_plain_bits(row))
+    steps = extract_steps(_step_text(row))
     if len(steps) < 2:
         return None
     url = row.get("url_norm") or row.get("url") or ""
@@ -294,7 +499,7 @@ def project_watch(row: dict, practice_handles: set[str], review_min: float) -> d
     role = (row.get("source") or {}).get("role_guess")
     if flags.get("content_type") != "analysis" and role != "analysis":
         return None
-    if flags.get("tutorial") and len(extract_steps(_plain_bits(row))) >= 2:
+    if flags.get("tutorial") and len(extract_steps(_step_text(row))) >= 2:
         return None
     day = _day(row)
     suffix = _suffix(row)
@@ -504,6 +709,8 @@ def self_check() -> None:
     card = practice[0]
     if len(card["steps"]) < 2 or card["verified"] is not False:
         raise SystemExit("FAIL: practice card shape")
+    if not card["steps"][0].startswith("安装官方命令行"):
+        raise SystemExit(f"FAIL: numbered sequence wording changed {card['steps']}")
     if "snippet" in card or "status_in_pool" in card:
         raise SystemExit("FAIL: pool fields reached the practice card")
     if not visitor_ready(card["title"]) or not visitor_ready(card["takeaway"]):
@@ -562,6 +769,78 @@ def self_check() -> None:
     )
     if project_practice(short, handles, 0.34, floor) is not None:
         raise SystemExit("FAIL: a thin two-liner became a practice card")
+    prose_body = (
+        "用一台服务器把私人模型网关跑起来，各台电脑只连同一个地址。"
+        "在服务器上建好配置目录，并把属主改成容器使用的用户。"
+        "按官方文档写好编排文件，客户端端口和管理端口分开，管理端口只绑在本机。"
+        "启动服务之后，从自己的电脑打开隧道，再在管理页里接上模型供应商。"
+        "给每台设备单独发一把网关钥匙，客户端只填写网关地址，用一条请求确认模型列表能返回。"
+    )
+    if len(_steps_from_markers(prose_body)) >= 2:
+        raise SystemExit("FAIL: prose fixture was accepted by the numbered gate")
+    prose = _sample_row(
+        id="cand-20261024-abc123abc131",
+        title="",
+        snippet=prose_body,
+    )
+    prose_card = project_practice(prose, handles, 0.34, floor)
+    if not prose_card or len(prose_card["steps"]) < 2 or prose_card["verified"] is not False:
+        raise SystemExit(f"FAIL: continuous Chinese how-to was dropped {prose_card}")
+    if not visitor_ready(prose_card["title"]) or not visitor_ready(prose_card["takeaway"]):
+        raise SystemExit(f"FAIL: prose card is not finished Chinese {prose_card}")
+    if any(_norm_step(step) == _norm_step(prose_body) or len(step) >= len(prose_body) for step in prose_card["steps"]):
+        raise SystemExit(f"FAIL: prose card kept an unparsed wall {prose_card['steps']}")
+    if any(re.match(r"^(并|再(?!次)|然后|接着)", step) for step in prose_card["steps"]):
+        raise SystemExit(f"FAIL: prose step still starts with a leftover connector {prose_card['steps']}")
+    joined = (
+        "在服务器上建好配置目录并把属主改成运行用户，"
+        "按官方文档写好编排文件并拉起容器，"
+        "从自己的电脑打开隧道后再到管理页接上供应商，"
+        "给每台设备单独发一把网关钥匙。"
+    )
+    joined_steps = extract_steps(joined)
+    if len(joined_steps) < 2 or any(len(step) >= len(joined) for step in joined_steps):
+        raise SystemExit(f"FAIL: one-sentence how-to was not split {joined_steps}")
+    bare = _sample_row(
+        id="cand-20261024-abc123abc136",
+        title="",
+        snippet="安装官方命令行并登录自己的账号，在编辑器里填上本地服务地址，用一条真实任务把流程跑通。",
+    )
+    bare_card = project_practice(bare, handles, 0.34, floor)
+    if not bare_card or len(bare_card["steps"]) < 2:
+        raise SystemExit(f"FAIL: unnumbered Chinese instructions were dropped {bare_card}")
+    opinion = _sample_row(
+        id="cand-20261024-abc123abc132",
+        snippet="我觉得这个方向以后会很有意思，大家可以关注一下后续进展，真的太强了，值得收藏。",
+    )
+    if project_practice(opinion, handles, 0.34, floor) is not None:
+        raise SystemExit("FAIL: a pure opinion became a practice card")
+    fluff = _sample_row(
+        id="cand-20261024-abc123abc135",
+        snippet="可以把视野打开一些，也可以把标准放宽一点，以后会很不一样。",
+    )
+    if project_practice(fluff, handles, 0.34, floor) is not None:
+        raise SystemExit("FAIL: non-actionable fluff became a practice card")
+    ad = _sample_row(
+        id="cand-20261024-abc123abc133",
+        snippet="限时优惠最后一天，扫码加微信领取全套资料，私信我还能再拿折扣码，名额不多赶紧进群领取。",
+    )
+    if project_practice(ad, handles, 0.34, floor) is not None:
+        raise SystemExit("FAIL: an ad became a practice card")
+    one_liner = _sample_row(
+        id="cand-20261024-abc123abc134",
+        snippet="把仓库克隆到本地安装依赖就能跑。",
+    )
+    if project_practice(one_liner, handles, 0.34, floor) is not None:
+        raise SystemExit("FAIL: a one-action line became a practice card")
+    prose_quiet = _sample_row(
+        id="cand-20261024-abc123abc137",
+        title="",
+        snippet=prose_body,
+        engagement={"likes": 40, "bookmarks": 2, "captured_at": "2026-10-24T02:00:00Z"},
+    )
+    if project_practice(prose_quiet, handles, 0.34, floor) is not None:
+        raise SystemExit("FAIL: prose under the bookmark floor became a practice card")
     analysis = _sample_row(
         id="cand-20261024-abc123abc128",
         url="https://example.com/analysis-horizon",

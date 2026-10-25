@@ -70,7 +70,7 @@ python3 scripts/ingest_x.py --pool-dir ../ai-radar-pool < fetch.json
 | `stale_old` | 超出今日或看板的时效窗 |
 | `no_reliable_time` | 没有可信时间，按策略不公开 |
 | `no_new_info` | 同一簇在 7 日内没有实质性新进展 |
-| `practice_not_steps` | 不像能照着做，步骤不够 |
+| `practice_not_steps` | 不像能照着做，步骤不够。连续的中文操作说明只要能拆出至少两步具体动作，也算写清了；短回复、纯观点和广告不算 |
 | `hot_signal_only` | 只作讨论证据，不上决策板 |
 | `editor_skip` | 编辑否决。`notes` 不能空。占比持续偏高要复盘门槛 |
 | `low_score` | 打分低于人工档，且行当时是 `active`。`notes` 不能空，里面有 `score:low_score` 和各分量。不是编辑否决，也不是「今天这期先不上」 |
