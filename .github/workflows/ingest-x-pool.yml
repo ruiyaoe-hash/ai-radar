@@ -3,6 +3,7 @@
 # Asia/Shanghai. GitHub's schedule can lag; workflow_dispatch is the reliable
 # entry. A Cloudflare Workers Cron (not deployed here) or any HTTPS client can
 # POST that dispatch. See docs/score-and-briefs.md.
+# RSS denser cadence is intentional; this X Actions schedule stays 2×/day until Bearer is primary.
 # Secrets, both optional until configured:
 #   AI_RADAR_POOL_TOKEN  fine-grained PAT, Contents read/write on ai-radar-pool only
 #   X_BEARER_TOKEN       X API bearer. Absent → skip live fetch; hand-feed still works

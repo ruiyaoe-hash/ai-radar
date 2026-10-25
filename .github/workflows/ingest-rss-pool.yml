@@ -1,5 +1,8 @@
 # Batch-1 lab RSS → private pool only. Public CI does not run this file.
-# Cron is UTC: 00:30, 06:30, 12:30 = 08:30, 14:30, 20:30 Asia/Shanghai (3×/day).
+# Ingest cadence only (抓取进库). Card publish (分流写卡上站) stays on its own 08/12/16/21 Asia/Shanghai slots.
+# Cron `30 2,5,8,11,14,23 * * *` is UTC 02:30, 05:30, 08:30, 11:30, 14:30, 23:30
+# = 10:30, 13:30, 16:30, 19:30, 22:30, and 07:30 Asia/Shanghai (UTC+8, no DST).
+# Six windows, about every 3h while awake. :30 staggers off Alba X ingest on the hour.
 # GitHub's schedule can lag. An external cron (Cloudflare Workers Cron or any
 # HTTPS client) may POST workflow_dispatch instead. This repo does not deploy
 # that Worker. See docs/score-and-briefs.md.
@@ -17,7 +20,7 @@ name: Ingest RSS into private pool
 
 on:
   schedule:
-    - cron: "30 0,6,12 * * *"
+    - cron: "30 2,5,8,11,14,23 * * *"
   workflow_dispatch:
 
 permissions:
