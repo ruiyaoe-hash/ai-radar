@@ -149,13 +149,15 @@ python3 scripts/annotate_gates.py --pool-dir ../ai-radar-pool --only-pending
 
 `ingest_x` 自己在有 `FETCH_GAP` 时也是退出码 2。包装脚本遇到这种情况仍会接着跑门槛，再把 2 交还给调用方。
 
-门槛之后再打分（仍不晋升、不写公开卡）：
+门槛之后再打分（打分本身不写公开卡）：
 
 ```bash
 python3 scripts/score_pool.py --pool-dir ../ai-radar-pool --as-of 2026-10-14T12:00:00Z --write-review
 ```
 
 `--write-review` 把中高分和实操写进私有池 `review/YYYY-MM-DD.md`。低分留在池里，`drop_reason=low_score`。没有 LLM 密钥时这一步只跑规则分。
+
+定时班次接着跑 `scripts/project_public_lanes.py --pool-dir …`。过了步骤门和收藏门的实操写入 `public/practice/inbox/`，分析行写入 `public/data/watch.json`，然后 `generate_derived.py` 并入页面。标题为空时用正文第一句做临时标题。没过门的不写公开卡。`verified` 不由脚本改成 true。
 
 自检不访问网络，只用 `testdata/x-fetch/sample.json` 里的虚构句子：
 

@@ -751,7 +751,7 @@ def score_records(rows: list[dict], options, cfg: ScoreConfig, as_of: datetime) 
 
 
 def review_markdown(rows: list[dict], as_of: datetime) -> str:
-    """Human queue. No raw post body. Practice stays on this list, not on the practice page."""
+    """Human queue. No raw post body. Qualifying practice cards are written later by the shift."""
     day = shanghai_file_day(as_of.strftime("%Y-%m-%dT%H:%M:%SZ"))
     queued = []
     for row in rows:
@@ -774,7 +774,7 @@ def review_markdown(rows: list[dict], as_of: datetime) -> str:
         "机器低分已是 `dropped` + `low_score`，不在本清单。延后（deferred，今日档先不上）也不是低价值，原因仍是 `review_deferred`。",
         "带 `review_p0` 的行是强制 P0（Forced P0）。代码是准绳，例程可以再看一眼。它们排在最前，只等人决定晋升或跳过，脚本不写公开归档，也不写今日必看。",
         "同一行的 `card_copy` 是给卡片用的短句：为什么值得看、证据标签、建议动作。短句里没有分数。`high_priority_review` 只表示优先审，不是已经公开。",
-        "实操只出现在这里，不写入 practice inbox。",
+        "实操仍留在这张清单里。过了步骤和收藏两道门的，由班次里的 project_public_lanes 写入 practice inbox，verified 保持 false。",
         "通过并上 L1：池行改为 `promoted`，`archive_id` 指向公开卡，公开卡写同一个 `candidate_id`。",
         "否决：`drop_reason=editor_skip`，并且 `notes` 不能空。`annotate_gates` 和 `score_pool` 都不再改这一行。",
         "私人 action（tried / ignored）写未跟踪的 `owner-actions.local.json`，或飞书。不要写入公开 `public/owner-actions.json`。",

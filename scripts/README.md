@@ -18,6 +18,7 @@
 | `card_copy.py` | Card wording next to the score: why watch, evidence label, suggested action, high-priority review flag. No raw scores. Auto briefs only get the official-source sentence |
 | `backtest_score_ab.py` | Compare v1 and v2. Chat pack is the labeling path (A or B per item). CSV remains for batch export |
 | `derive_briefs.py` | `auto_brief` rows → `public/briefs.json`. Strips raw posts, checks instruction text, skips archive URLs and practice |
+| `project_public_lanes.py` | Shift step after scoring. Practice rows that clear the step gate and `score.bookmark_prior` → `public/practice/inbox/`. Analysis rows → `public/data/watch.json`. Empty titles take the first usable sentence before Chinese editorial. Idempotent. Does not write briefs |
 | `ingest_rss.py` | Batch-1 lab RSS / GitHub Releases → the same pending rows (`channel=rss`). Live fetch stays out of public CI |
 | `annotate_gates.py` | L0 gates + L2 `cluster_id`. Writes judgment fields back. Does not promote. Leaves `low_score` and `editor_skip` in place |
 | `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |
