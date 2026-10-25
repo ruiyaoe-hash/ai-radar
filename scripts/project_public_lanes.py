@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 """Place finished public cards for 实战手册 and 专题观察.
 
-抓取 already puts practice handles into the private pool. 判定 parks them on
-review_practice and never writes a public card. This is the 上站 step: a row
-with at least two finished Chinese steps becomes a practice card; a long-horizon
-analysis that is not a news brief and not a pick becomes a watch item.
+Shifts call this after scoring. A practice-lane row that clears both gates
+already in the repo becomes one practice card under public/practice/inbox/:
 
-Rows that are still English, unfinished, low-score, or forced onto the pick
-queue are left in the pool. Nothing here writes briefs.
+  - can-follow-along: at least two finished Chinese steps
+  - engagement: bookmarks at least config score.bookmark_prior
+
+generate_derived.py then merges that inbox into practice.json. The same run
+writes a watch item for a long-horizon analysis that is not a practice row,
+not a news brief, and not a pick. Verified stays false. Re-running does not
+duplicate an inbox file or a watch id.
+
+An X post often has an empty title and a usable body. The first usable
+sentence becomes a provisional title before the Chinese editorial layer, so
+a qualifying row is not dropped only because title is blank. English or
+unfinished copy still does not publish. Nothing here writes briefs.
 
   python3 scripts/project_public_lanes.py --self-check
   python3 scripts/project_public_lanes.py --pool-dir ../ai-radar-pool
@@ -30,7 +38,7 @@ if __package__ in {None, ""}:
     from generate_derived import safe_http_url
     from ingest_x import SHANGHAI, IngestError, parse_utc
     from prompt_guard import find_instruction_override, strip_raw_post_fields
-    from score_pool import is_official_row, is_practice_row, load_score_config
+    from score_pool import _count, is_official_row, is_practice_row, load_score_config
     from shift_ingest_x_to_pool import assert_shift_pool_dir
 else:
     from .annotate_gates import read_pool
@@ -40,7 +48,7 @@ else:
     from .generate_derived import safe_http_url
     from .ingest_x import SHANGHAI, IngestError, parse_utc
     from .prompt_guard import find_instruction_override, strip_raw_post_fields
-    from .score_pool import is_official_row, is_practice_row, load_score_config
+    from .score_pool import _count, is_official_row, is_practice_row, load_score_config
     from .shift_ingest_x_to_pool import assert_shift_pool_dir
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,8 +65,19 @@ TOPIC = {
     "pitfalls": ["动手前对照原文核对命令、授权和费用。"],
 }
 CAUTION = "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。"
-STEP_SPLIT = re.compile(r"\n+|；")
-STEP_MARK = re.compile(r"^\s*(?:\d+[\.、\)]\s*|首先|然后|接着|最后)\s*")
+_STEP_WORD = r"第[0-9一二三四五六七八九十]+步|首先|然后|接着|最后|其次|下一步"
+_STEP_NUM = r"(?<!\d)\d+[\.、\)](?!\d)"
+# Numbered steps may sit mid-paragraph ("1. … 2. …"). Sequence words only
+# count at a sentence boundary, so ordinary prose is not sliced into steps.
+_STEP_BOUNDARY = re.compile(
+    rf"(?:^|[\n；;。])\s*(?:{_STEP_NUM}|{_STEP_WORD})\s*[:：]?"
+    rf"|(?<=\s)(?:{_STEP_NUM}|第[0-9一二三四五六七八九十]+步)\s*[:：]?"
+)
+_SENTENCE_SPLIT = re.compile(r"[。！？!?\n；;]+")
+_LEAD_MARK = re.compile(
+    rf"^\s*(?:{_STEP_NUM}|{_STEP_WORD})\s*[:：]?\s*"
+)
+_URL = re.compile(r"https?://\S+")
 
 
 def _clock(row: dict) -> datetime | None:
@@ -92,23 +111,71 @@ def _plain_bits(row: dict) -> str:
     return "\n".join(parts)
 
 
+def _marker_spans(text: str) -> list[re.Match[str]]:
+    found = list(_STEP_BOUNDARY.finditer(text or ""))
+    found.sort(key=lambda match: (match.start(), -match.end()))
+    kept: list[re.Match[str]] = []
+    last_end = -1
+    for match in found:
+        if match.start() < last_end:
+            continue
+        kept.append(match)
+        last_end = match.end()
+    return kept
+
+
 def extract_steps(text: str) -> list[str]:
-    """Keep numbered or sequenced sentences. A title plus a remark is not a tutorial."""
+    """Keep numbered or sequenced sentences. A title plus a remark is not a tutorial.
+
+    This is the can-follow-along gate. Each kept step is finished Chinese.
+    A short reply, or a single numbered line, does not qualify.
+    """
+    raw = text or ""
+    matches = _marker_spans(raw)
     steps: list[str] = []
-    for chunk in STEP_SPLIT.split(text or ""):
-        for sentence in re.split(r"。", chunk):
-            raw = sentence.strip()
-            if not STEP_MARK.match(raw):
-                continue
-            cleaned = STEP_MARK.sub("", sentence).strip(" ，,;；")
-            if not cleaned or find_instruction_override(cleaned):
-                continue
-            if not visitor_ready(cleaned):
-                continue
-            steps.append(cleaned if cleaned.endswith("。") else cleaned + "。")
-            if len(steps) >= 8:
-                return steps
+    for index, match in enumerate(matches):
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(raw)
+        piece = _SENTENCE_SPLIT.split(raw[match.end() : end], maxsplit=1)[0]
+        cleaned = piece.strip(" ，,;；:：。 \t")
+        if not cleaned or find_instruction_override(cleaned):
+            continue
+        if not visitor_ready(cleaned):
+            continue
+        steps.append(cleaned if cleaned.endswith("。") else cleaned + "。")
+        if len(steps) >= 8:
+            return steps
     return steps
+
+
+def first_usable_sentence(text: str) -> str:
+    """First sentence that can stand in for an empty title, before editorial."""
+    stripped = _URL.sub(" ", text or "")
+    for part in _SENTENCE_SPLIT.split(stripped):
+        sentence = _LEAD_MARK.sub("", part)
+        sentence = re.sub(r"\s+", " ", sentence).strip(" ，,;；:：")
+        if len(sentence) < 8 or find_instruction_override(sentence):
+            continue
+        return sentence[:120]
+    return ""
+
+
+def passes_engagement_gate(row: dict, bookmark_min: float) -> bool:
+    """Saves must clear score.bookmark_prior. Missing counts do not pass.
+
+    The prior is the engagement floor already in config.json. A liked reply
+    with no bookmarks stays in the pool.
+    """
+    engagement = row.get("engagement")
+    if not isinstance(engagement, dict):
+        return False
+    if "bookmarks" not in engagement and "likes" not in engagement:
+        return False
+    return _count(engagement.get("bookmarks")) + 1e-9 >= float(bookmark_min)
+
+
+def _raw_title(row: dict) -> str:
+    title = row.get("title") if isinstance(row.get("title"), str) else ""
+    return title.strip()
 
 
 def kind_of(text: str) -> str:
@@ -150,14 +217,24 @@ def _handle(row: dict) -> str:
     return ""
 
 
-def project_practice(row: dict, practice_handles: set[str], review_min: float) -> dict | None:
+def project_practice(
+    row: dict,
+    practice_handles: set[str],
+    review_min: float,
+    bookmark_min: float,
+) -> dict | None:
     if not is_practice_row(row, practice_handles):
         return None
     if refuses_auto_publish(row):
         return None
     if _cold(row, review_min):
         return None
+    score = row.get("score") if isinstance(row.get("score"), dict) else {}
+    if score.get("band") != "review":
+        return None
     if row.get("status_in_pool") not in {None, "active", "deferred"}:
+        return None
+    if not passes_engagement_gate(row, bookmark_min):
         return None
     day = _day(row)
     suffix = _suffix(row)
@@ -169,18 +246,18 @@ def project_practice(row: dict, practice_handles: set[str], review_min: float) -
     url = row.get("url_norm") or row.get("url") or ""
     if not safe_http_url(url):
         return None
-    raw_title = row.get("title") if isinstance(row.get("title"), str) else ""
-    edited = edit_pair(raw_title, steps[0].rstrip("。"))
+    raw_title = _raw_title(row)
+    if not raw_title:
+        raw_title = first_usable_sentence(_plain_bits(row)) or steps[0].rstrip("。")
+    summary = steps[0].rstrip("。")
+    edited = edit_pair(raw_title, summary)
     if not edited:
-        title = raw_title.strip()
-        if not visitor_ready(title):
-            return None
-    else:
-        title = edited[0]
-    if find_instruction_override(title):
+        return None
+    title, summary = edited
+    if find_instruction_override(title) or find_instruction_override(summary):
         return None
     handle = _handle(row) or "作者"
-    takeaway = steps[0] if len(steps[0]) <= 240 else steps[0][:239] + "…"
+    takeaway = summary if len(summary) <= 240 else summary[:239] + "…"
     card = {
         "id": f"prac-{day.replace('-', '')}-{suffix}",
         "kind": kind_of(_plain_bits(row)),
@@ -226,8 +303,13 @@ def project_watch(row: dict, practice_handles: set[str], review_min: float) -> d
     url = row.get("url_norm") or row.get("url") or ""
     if not safe_http_url(url):
         return None
-    raw_title = row.get("title") if isinstance(row.get("title"), str) else ""
+    raw_title = _raw_title(row)
     raw_summary = row.get("snippet") if isinstance(row.get("snippet"), str) else ""
+    raw_summary = raw_summary.strip()
+    if not raw_title:
+        raw_title = first_usable_sentence(raw_summary) or first_usable_sentence(_plain_bits(row))
+    if not raw_title or not raw_summary:
+        return None
     edited = edit_pair(raw_title, raw_summary)
     if not edited:
         return None
@@ -365,13 +447,18 @@ def apply_projections(
     _write(watch_path, watch_doc)
 
 
-def project_rows(rows: list[dict], practice_handles: set[str], review_min: float) -> tuple[list[dict], list[dict]]:
+def project_rows(
+    rows: list[dict],
+    practice_handles: set[str],
+    review_min: float,
+    bookmark_min: float,
+) -> tuple[list[dict], list[dict]]:
     practice = []
     watch = []
     seen_p: set[str] = set()
     seen_w: set[str] = set()
     for row in rows:
-        card = project_practice(row, practice_handles, review_min)
+        card = project_practice(row, practice_handles, review_min, bookmark_min)
         if card and card["id"] not in seen_p:
             seen_p.add(card["id"])
             practice.append(card)
@@ -400,6 +487,7 @@ def _sample_row(**extra) -> dict:
         "score": {"band": "review", "band_reason": "review_practice", "value": 0.61},
         "title": "用三步把本地模型接到你的编辑器",
         "snippet": "首先安装官方命令行并登录自己的账号。然后在编辑器里填上本地服务地址。接着用一条真实任务跑通。",
+        "engagement": {"likes": 12, "bookmarks": 8, "captured_at": "2026-10-24T02:00:00Z"},
     }
     base.update(extra)
     return base
@@ -409,7 +497,8 @@ def self_check() -> None:
     import tempfile
 
     handles = {"op7418"}
-    practice, watch = project_rows([_sample_row()], handles, 0.34)
+    floor = 3.0
+    practice, watch = project_rows([_sample_row()], handles, 0.34, floor)
     if len(practice) != 1 or watch:
         raise SystemExit(f"FAIL: step tutorial did not land on practice {practice} {watch}")
     card = practice[0]
@@ -417,26 +506,62 @@ def self_check() -> None:
         raise SystemExit("FAIL: practice card shape")
     if "snippet" in card or "status_in_pool" in card:
         raise SystemExit("FAIL: pool fields reached the practice card")
+    if not visitor_ready(card["title"]) or not visitor_ready(card["takeaway"]):
+        raise SystemExit("FAIL: practice card is not finished Chinese")
     english = _sample_row(
         id="cand-20261024-abc123abc124",
         title="How to install the local model",
         snippet="First install the CLI. Then paste the endpoint. Finally run a task.",
     )
-    if project_practice(english, handles, 0.34) is not None:
+    if project_practice(english, handles, 0.34, floor) is not None:
         raise SystemExit("FAIL: English tutorial was published")
     cold = _sample_row(id="cand-20261024-abc123abc125", score={"band": "drop", "band_reason": "drop_low_score", "value": 0.1})
-    if project_practice(cold, handles, 0.34) is not None:
+    if project_practice(cold, handles, 0.34, floor) is not None:
         raise SystemExit("FAIL: low-score tutorial was published")
     forced = _sample_row(
         id="cand-20261024-abc123abc126",
         force_p0={"active": True, "kinds": ["frontier_launch"]},
         score={"band": "review", "band_reason": "review_p0", "value": 0.8},
     )
-    if project_practice(forced, handles, 0.34) is not None:
+    if project_practice(forced, handles, 0.34, floor) is not None:
         raise SystemExit("FAIL: pick-queue row became a practice card")
     thin = _sample_row(id="cand-20261024-abc123abc127", snippet="只写了一句感想，没有步骤。")
-    if project_practice(thin, handles, 0.34) is not None:
+    if project_practice(thin, handles, 0.34, floor) is not None:
         raise SystemExit("FAIL: a note without steps became a practice card")
+    blank = _sample_row(
+        id="cand-20261024-abc123abc129",
+        title="",
+        snippet="首先安装官方命令行并登录自己的账号。然后在编辑器里填上本地服务地址。接着用一条真实任务跑通。",
+    )
+    blank_card = project_practice(blank, handles, 0.34, floor)
+    if not blank_card or not visitor_ready(blank_card["title"]):
+        raise SystemExit(f"FAIL: empty title dropped a finished step list {blank_card}")
+    if re.search(r"[A-Za-z]{4,}", blank_card["title"]):
+        raise SystemExit("FAIL: empty title published an English headline")
+    inline = _sample_row(
+        id="cand-20261024-abc123abc12a",
+        title=None,
+        snippet="1. 安装官方命令行并登录自己的账号 2. 在编辑器里填上本地服务地址 3. 用一条真实任务把流程跑通",
+    )
+    inline_card = project_practice(inline, handles, 0.34, floor)
+    if not inline_card or len(inline_card["steps"]) < 2:
+        raise SystemExit(f"FAIL: inline numbered steps were dropped {inline_card}")
+    quiet = _sample_row(
+        id="cand-20261024-abc123abc12b",
+        engagement={"likes": 40, "bookmarks": 0, "captured_at": "2026-10-24T02:00:00Z"},
+    )
+    if project_practice(quiet, handles, 0.34, floor) is not None:
+        raise SystemExit("FAIL: a reply with no bookmarks became a practice card")
+    unsaved = _sample_row(id="cand-20261024-abc123abc12c")
+    unsaved.pop("engagement", None)
+    if project_practice(unsaved, handles, 0.34, floor) is not None:
+        raise SystemExit("FAIL: a row with no engagement counts became a practice card")
+    short = _sample_row(
+        id="cand-20261024-abc123abc12d",
+        snippet="1. 点保存 2. 再点一次",
+    )
+    if project_practice(short, handles, 0.34, floor) is not None:
+        raise SystemExit("FAIL: a thin two-liner became a practice card")
     analysis = _sample_row(
         id="cand-20261024-abc123abc128",
         url="https://example.com/analysis-horizon",
@@ -454,7 +579,24 @@ def self_check() -> None:
         raise SystemExit(f"FAIL: analysis did not become a watch item {projected_watch}")
     if project_watch(analysis | {"score": {"band": "auto_brief", "official_source": True, "value": 0.8}}, handles, 0.34):
         raise SystemExit("FAIL: news brief also became a watch item")
-    brief_practice, brief_watch = project_rows([analysis], handles, 0.34)
+    blank_watch = project_watch(analysis | {"id": "cand-20261024-abc123abc12e", "title": ""}, handles, 0.34)
+    if not blank_watch or not visitor_ready(blank_watch["title"]) or not visitor_ready(blank_watch["summary"]):
+        raise SystemExit(f"FAIL: empty-title analysis did not become a Chinese watch card {blank_watch}")
+    if not blank_watch.get("source") or not blank_watch.get("url"):
+        raise SystemExit("FAIL: watch card dropped 背景与出处")
+    english_watch = project_watch(
+        analysis
+        | {
+            "id": "cand-20261024-abc123abc12f",
+            "title": "",
+            "snippet": "Costs keep falling and teams should revisit the model choice next quarter.",
+        },
+        handles,
+        0.34,
+    )
+    if english_watch is not None:
+        raise SystemExit("FAIL: English analysis was published onto 专题观察")
+    brief_practice, brief_watch = project_rows([analysis], handles, 0.34, floor)
     if brief_practice or not brief_watch:
         raise SystemExit("FAIL: analysis leaked into practice")
     with tempfile.TemporaryDirectory() as tmp:
@@ -479,6 +621,23 @@ def self_check() -> None:
         watch_doc = json.loads((root / "watch.json").read_text(encoding="utf-8"))
         if watch_doc["items"][0]["id"] != projected_watch["id"]:
             raise SystemExit("FAIL: watch file")
+        apply_projections(
+            practice,
+            brief_watch,
+            inbox=root / "inbox",
+            atlas_path=root / "atlas.source.json",
+            suggestions_path=root / "topic-suggestions.json",
+            watch_path=root / "watch.json",
+        )
+        inbox_files = list((root / "inbox").glob("*.json"))
+        if len(inbox_files) != 1:
+            raise SystemExit(f"FAIL: re-run duplicated practice inbox {inbox_files}")
+        atlas_again = json.loads((root / "atlas.source.json").read_text(encoding="utf-8"))
+        if sum(1 for item in atlas_again["sources"] if item["id"] == card["id"]) != 1:
+            raise SystemExit("FAIL: re-run duplicated the practice source")
+        watch_again = json.loads((root / "watch.json").read_text(encoding="utf-8"))
+        if sum(1 for item in watch_again["items"] if item["id"] == projected_watch["id"]) != 1:
+            raise SystemExit("FAIL: re-run duplicated the watch item")
     print("OK project_public_lanes self-check")
 
 
@@ -497,7 +656,7 @@ def main(argv: list[str] | None = None) -> int:
     cfg = load_score_config(ROOT)
     handles = {item.lower() for item in json.loads((ROOT / "config.json").read_text(encoding="utf-8")).get("practice_handles") or []}
     rows = [row for _day, row in read_pool(pool)]
-    practice, watch = project_rows(rows, handles, cfg.review_min)
+    practice, watch = project_rows(rows, handles, cfg.review_min, cfg.bookmark_prior)
     apply_projections(
         practice,
         watch,

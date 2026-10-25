@@ -16,7 +16,7 @@ Phase 1 定契约和全量入池。Phase 2 把 L0 门槛和 L2 聚簇写成可�
 | score | `scripts/score_pool.py` | v1 的 `score.value` / `band` / `components`，并影子写入 v2。低分且仍是 `active` 才是 `dropped` + `low_score`。`deferred` 不会被改写成低价值。强制 P0 在低分和「今天这期先不上」之前进入 `review_p0`，不写公开归档。高分且行本身是 RSS 一手才可能进 L2 快讯。行上另有 `card_copy`（为什么值得看、证据标签、建议动作、优先审标记），短句里没有分数。L1 仍不由分数单独发出。对照见 [`score-ab-backtest.md`](./score-ab-backtest.md) |
 | promote | Alba | 公开仓 `public/archive/` 或 practice inbox；池内改为 `promoted`，并写 `archive_id` |
 
-机器门槛和聚簇由脚本写回。打分由 `scripts/score_pool.py` 在这之后写回。Alba 不手写 JSONL 骨架，也不手填这批门槛字段。L1 晋升、`editor_skip`（编辑否决）、车道仍由 Alba 写。自动档只派生 L2 快讯（`scripts/derive_briefs.py`），不写 practice inbox。`scripts/generate_derived.py` 仍只读公开归档和 practice inbox，不读池。Pages 仍只发布 `public/`。字段和三档见 `docs/score-and-briefs.md`。
+机器门槛和聚簇由脚本写回。打分由 `scripts/score_pool.py` 在这之后写回。Alba 不手写 JSONL 骨架，也不手填这批门槛字段。L1 晋升、`editor_skip`（编辑否决）、车道仍由 Alba 写。自动档只派生 L2 快讯（`scripts/derive_briefs.py`），不写 practice inbox。过闸实操和领域进展由班次里的 `scripts/project_public_lanes.py` 写入，不走自动快讯。`scripts/generate_derived.py` 仍只读公开归档和 practice inbox，不读池。Pages 仍只发布 `public/`。字段和三档见 `docs/score-and-briefs.md`。
 
 ## 私有仓和公开仓
 

@@ -13,7 +13,7 @@ Phase 4 只做第一批。公开仓提供脚本和信源表；候选 JSONL 只�
 
 Newsletter 与实验室博客、作者博客一样走普通 RSS，不单开抓取通道。分析向周报 `role` 为 `analysis`，不当实验室一手。
 
-行和 `ingest_x` 同一套 schema：`channel=rss`，`status_in_pool=pending`，判断字段为空。工作流接着跑 `annotate_gates.py --only-pending`，再跑 `score_pool.py`（规则分，低分落 `low_score`）和 `derive_briefs.py`（只把自动档写成公开快讯）。不写公开 archive，不改 L1 的 derive，不自动晋升，不写 practice inbox。
+行和 `ingest_x` 同一套 schema：`channel=rss`，`status_in_pool=pending`，判断字段为空。工作流接着跑 `annotate_gates.py --only-pending`，再跑 `score_pool.py`（规则分，低分落 `low_score`）、`project_public_lanes.py`（过闸实操进 inbox，分析行进专题观察）和 `derive_briefs.py`（只把自动档写成公开快讯）。不写公开 archive，不改 L1 的 derive，不自动晋升。快讯脚本本身不写 practice inbox。
 
 定时是 UTC `30 0,6,12 * * *`，也就是北京时间 08:30、14:30、20:30，一天三次。另有 `workflow_dispatch`。GitHub 的 schedule 可能迟到；外部 cron 调 `workflow_dispatch` 的办法见 `docs/score-and-briefs.md`。这个工作流**不**在 pull request 上跑，所以公开 CI 不依赖私有仓，也不访问外网 feed。
 
