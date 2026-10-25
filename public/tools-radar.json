@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24 10:36 北京时间",
+  "updated": "2026-10-25 08:07 北京时间",
   "rings": {
     "采纳": [],
     "试用": [
@@ -118,6 +118,25 @@
         "status": "confirmed",
         "priority": "P1",
         "stance": "可以试用"
+      },
+      {
+        "id": "evt-20261025-impeccable-computer-skill",
+        "title": "Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能",
+        "date": "2026-10-25",
+        "time": "10-25 08:00",
+        "try_url": "https://github.com/pbakaus/impeccable",
+        "access": "开源技能可免费安装。Computer 技能市场入口需 Perplexity 含 Computer 的付费套餐；活动期内用该技能的任务有每用户约 5000 credits，截止约 2026-10-31。",
+        "integration": "可作 Computer 内的 /impeccable 技能，也可装进 Cursor、Claude Code、Codex 等本地编程助手，配合 PRODUCT.md / DESIGN.md 与审计命令使用。",
+        "first_step": "若你这周要改一屏「看起来像模板」的前端：在项目根目录执行 npx impeccable install，在助手里跑 /impeccable init，再对那一屏跑 critique 或 polish；已有 Computer 的可在技能市场启用并消耗活动额度对照一次。",
+        "summary": "Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。",
+        "audience_value": "如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。",
+        "alternatives": [
+          "继续用现有前端设计技能或手写设计规范",
+          "只用视觉模型口头挑问题，不跑确定性检测规则"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "可以试用"
       }
     ],
     "评估": [
@@ -164,6 +183,25 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261025-impeccable-computer-skill",
+      "title": "Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能",
+      "date": "2026-10-25",
+      "time": "10-25 08:00",
+      "try_url": "https://github.com/pbakaus/impeccable",
+      "access": "开源技能可免费安装。Computer 技能市场入口需 Perplexity 含 Computer 的付费套餐；活动期内用该技能的任务有每用户约 5000 credits，截止约 2026-10-31。",
+      "integration": "可作 Computer 内的 /impeccable 技能，也可装进 Cursor、Claude Code、Codex 等本地编程助手，配合 PRODUCT.md / DESIGN.md 与审计命令使用。",
+      "first_step": "若你这周要改一屏「看起来像模板」的前端：在项目根目录执行 npx impeccable install，在助手里跑 /impeccable init，再对那一屏跑 critique 或 polish；已有 Computer 的可在技能市场启用并消耗活动额度对照一次。",
+      "summary": "Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。",
+      "audience_value": "如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。",
+      "alternatives": [
+        "继续用现有前端设计技能或手写设计规范",
+        "只用视觉模型口头挑问题，不跑确定性检测规则"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "可以试用"
+    },
     {
       "id": "evt-20261024-kimi-k3-1-pro",
       "title": "月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权",

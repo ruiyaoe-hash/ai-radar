@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24 10:36 北京时间",
+  "updated": "2026-10-25 08:07 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
@@ -8,14 +8,18 @@
     "https://developers.openai.com/api/docs/guides/decisions",
     "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
     "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+    "https://github.com/pbakaus/impeccable",
     "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "https://huggingface.co/tencent/Hy-Nomas",
+    "https://impeccable.style",
     "https://openai.com/index/decisions-api",
     "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
     "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
     "https://www.kimi.ai/blog/kimi-k3-1-pro",
+    "https://www.perplexity.ai/products/computer",
     "https://www.theverge.com/ai-artificial-intelligence/1015843/anthropic-claude-duet-ai-agent",
     "https://x.com/AravSrinivas/status/2113420151232352444",
+    "https://x.com/AravSrinivas/status/2114021917586014449",
     "https://x.com/ArtificialAnlys/status/2113682654709313811",
     "https://x.com/Hailuo_AI/status/2113518150440595501",
     "https://x.com/Hailuo_AI/status/2113518153242497390",
@@ -34,6 +38,7 @@
     "cand-20261023-6ef19645e177",
     "cand-20261023-7f31c4dda252",
     "cand-20261023-daba1bdd6279",
+    "cand-20261024-027a1ddab66a",
     "cand-20261024-414f8f1dbba0",
     "cand-20261024-614aa5580165",
     "cand-20261024-7fa1388b33a9",
@@ -44,7 +49,8 @@
     "evt-20261023-perplexity-decider-mac",
     "evt-20261024-deepseek-v41-flash-1017",
     "evt-20261024-kimi-k3-1-pro",
-    "evt-20261024-tencent-hy-nomas"
+    "evt-20261024-tencent-hy-nomas",
+    "evt-20261025-impeccable-computer-skill"
   ],
   "days": [
     {

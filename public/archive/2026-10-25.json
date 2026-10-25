@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-25",
+  "count": 1,
+  "schema_version": 1,
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261025-impeccable-computer-skill",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能",
+      "date": "2026-10-25",
+      "time": "10-25 08:00",
+      "handle": "AravSrinivas",
+      "url": "https://x.com/AravSrinivas/status/2114021917586014449",
+      "published_at": "2026-10-24T15:51:16Z",
+      "ingested_at": "2026-10-25T00:05:16Z",
+      "candidate_id": "cand-20261024-027a1ddab66a",
+      "promotion_path": "normal",
+      "objective": [
+        "Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。",
+        "同一套技能本身是开源的（Apache 2.0），也可在 Cursor、Claude Code、Codex 等编程助手里用命令安装：在项目根目录执行 npx impeccable install，再在助手里跑 /impeccable init。官方站点与 GitHub 仓库提供命令说明。",
+        "Computer 侧活动：使用 /impeccable 的任务在 2026 年 10 月 31 日前可享每用户约 5000 credits（积分）额度；Computer 本身仍需带 Computer 的付费套餐。若你主要在自有编程助手里做前端，可直接装开源版，不必先开通 Computer。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/AravSrinivas/status/2114021917586014449",
+          "handle": "AravSrinivas",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/pbakaus/impeccable",
+          "handle": "AravSrinivas",
+          "role": "primary"
+        },
+        {
+          "url": "https://impeccable.style",
+          "handle": "AravSrinivas",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.perplexity.ai/products/computer",
+          "handle": "AravSrinivas",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/pbakaus/impeccable",
+      "access": "开源技能可免费安装。Computer 技能市场入口需 Perplexity 含 Computer 的付费套餐；活动期内用该技能的任务有每用户约 5000 credits，截止约 2026-10-31。",
+      "integration": "可作 Computer 内的 /impeccable 技能，也可装进 Cursor、Claude Code、Codex 等本地编程助手，配合 PRODUCT.md / DESIGN.md 与审计命令使用。",
+      "first_step": "若你这周要改一屏「看起来像模板」的前端：在项目根目录执行 npx impeccable install，在助手里跑 /impeccable init，再对那一屏跑 critique 或 polish；已有 Computer 的可在技能市场启用并消耗活动额度对照一次。",
+      "alternatives": [
+        "继续用现有前端设计技能或手写设计规范",
+        "只用视觉模型口头挑问题，不跑确定性检测规则"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。",
+        "action": "立即行动",
+        "window": "开源版今天可装；Computer 活动额度约到 10 月 31 日。",
+        "confidence": "中",
+        "falsifier": "若在你的真实页面上改完仍不像可用产品、安装进不了你的助手，或 Computer 套餐/额度对你不可用，就收回「这周必须接这条技能」。"
+      },
+      "card_copy": {
+        "watch_reason": "开源设计技能进 Computer，也可装进常用编程助手，适合改模板感界面。",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    }
+  ]
+}

@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sat, 24 Oct 2026 10:36:06 +0800</lastBuildDate>
+<lastBuildDate>Sun, 25 Oct 2026 08:08:16 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[重点关注 · 试用工具 · 工具] Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能</title>
+<link>https://x.com/AravSrinivas/status/2114021917586014449</link>
+<guid isPermaLink="false">evt-20261025-impeccable-computer-skill</guid>
+<pubDate>Sat, 24 Oct 2026 23:51:16 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。<br/>• 同一套技能本身是开源的（Apache 2.0），也可在 Cursor、Claude Code、Codex 等编程助手里用命令安装：在项目根目录执行 npx impeccable install，再在助手里跑 /impeccable init。官方站点与 GitHub 仓库提供命令说明。<br/>• Computer 侧活动：使用 /impeccable 的任务在 2026 年 10 月 31 日前可享每用户约 5000 credits（积分）额度；Computer 本身仍需带 Computer 的付费套餐。若你主要在自有编程助手里做前端，可直接装开源版，不必先开通 Computer。<br/><strong>对你意味着什么</strong> 如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。<br/>建议：立即行动 · 开源版今天可装；Computer 活动额度约到 10 月 31 日。<br/>有多确定：中<br/>什么情况下当这判断作废：若在你的真实页面上改完仍不像可用产品、安装进不了你的助手，或 Computer 套餐/额度对你不可用，就收回「这周必须接这条技能」。<br/>来源 AravSrinivas（一手）, AravSrinivas（一手）, AravSrinivas（一手）, AravSrinivas（一手）<br/>日期 2026-10-25]]></description>
+</item>
 <item>
 <title>[今日必看 · 试用工具 · 发布] 月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权</title>
 <link>https://www.kimi.ai/blog/kimi-k3-1-pro</link>
