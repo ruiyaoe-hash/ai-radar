@@ -1,6 +1,29 @@
 {
   "schema_version": 1,
-  "updated": null,
+  "updated": "2026-10-25 20:56 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
-  "items": []
+  "items": [
+    {
+      "id": "prac-20261024-6d6218870fce",
+      "kind": "硬件",
+      "title": "旧 Kindle 越狱后装 KOReader：当微信读书与 Obsidian 阅读器",
+      "author": "vista8",
+      "url": "https://x.com/vista8/status/2113997354655465727",
+      "time": "2026-10-24 22:13",
+      "takeaway": "越狱后的旧 Kindle 续航久、成本低；装 KOReader（开源阅读器）加微信读书插件，再从 Obsidian（笔记软件）一键推书。",
+      "steps": [
+        "在已越狱的 Kindle 上安装 KOReader，并装上微信读书插件；若默认界面不满意，再装 SimpleUI 主题，也可用 Codex 或 Claude Code 按自己习惯改界面。",
+        "给乔木 Read 的 Obsidian 插件加上「发送到 Kindle」功能，确认同时支持原生 Kindle 系统与 KOReader 系统后再日常推书。"
+      ],
+      "caution": "动手前对照原文核对越狱风险、插件授权和费用。本站没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "一台可越狱或已越狱的 Kindle",
+        "原文里用到的 KOReader、微信读书插件与 Obsidian 插件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261024-6d6218870fce"
+    }
+  ]
 }
