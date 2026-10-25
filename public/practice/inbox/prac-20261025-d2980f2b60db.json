@@ -1,0 +1,21 @@
+{
+  "id": "prac-20261025-d2980f2b60db",
+  "kind": "工具用法",
+  "title": "Agent 把你的密钥带进模型请求，可能只需要读一遍 .env",
+  "author": "realydt",
+  "url": "https://x.com/realydt/status/2114186078076936344",
+  "time": "2026-10-25 10:43",
+  "takeaway": "Codex 干活时会读配置和日志",
+  "steps": [
+    "Codex 干活时会读配置和日志。",
+    "内容就可能跟着请求一起发出去。"
+  ],
+  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "原文里用到的账号或软件"
+  ],
+  "estimated_time": "按步骤做完",
+  "verified": false,
+  "candidate_id": "cand-20261025-d2980f2b60db"
+}

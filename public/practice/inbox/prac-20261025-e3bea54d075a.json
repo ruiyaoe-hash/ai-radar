@@ -1,0 +1,22 @@
+{
+  "id": "prac-20261025-e3bea54d075a",
+  "kind": "工具用法",
+  "title": "不少朋友感兴趣，写个极简版的 Kindle 越狱改造教程",
+  "author": "vista8",
+  "url": "https://x.com/vista8/status/2114354864088297475",
+  "time": "2026-10-25 21:54",
+  "takeaway": "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家",
+  "steps": [
+    "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家。",
+    "用数据线连上 Kindle，跟 Codex 说：“帮我越狱 kindle”。",
+    "越狱后说，帮我安装：KOReader和下面的插件 https://t.co/McdRQwHMFL。"
+  ],
+  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "原文里用到的账号或软件"
+  ],
+  "estimated_time": "按步骤做完",
+  "verified": false,
+  "candidate_id": "cand-20261025-e3bea54d075a"
+}

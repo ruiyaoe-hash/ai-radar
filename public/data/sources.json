@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-25 20:56 北京时间",
+  "updated": "2026-10-26 01:43 北京时间",
   "sources": [
     {
       "id": "prac-20261024-6d6218870fce",
@@ -11,6 +11,54 @@
       "title": "旧 Kindle 越狱后装 KOReader：当微信读书与 Obsidian 阅读器",
       "excerpt": "越狱后的旧 Kindle 续航久、成本低；装 KOReader（开源阅读器）加微信读书插件，再从 Obsidian（笔记软件）一键推书。",
       "date": "2026-10-24",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261025-e3bea54d075a",
+      "url": "https://x.com/vista8/status/2114354864088297475",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "不少朋友感兴趣，写个极简版的 Kindle 越狱改造教程",
+      "excerpt": "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家",
+      "date": "2026-10-25",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261025-2a19b4f68001",
+      "url": "https://x.com/vista8/status/2114352058577117439",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "没想到开发挺顺利，搞好了",
+      "excerpt": "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家",
+      "date": "2026-10-25",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261025-c08d81155c53",
+      "url": "https://x.com/vista8/status/2114340452870836238",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "跟大家同步下 Kindle 刷机改造进展",
+      "excerpt": "更方便美观的排版设置",
+      "date": "2026-10-25",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261025-d2980f2b60db",
+      "url": "https://x.com/realydt/status/2114186078076936344",
+      "author": "realydt",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "Agent 把你的密钥带进模型请求，可能只需要读一遍 .env",
+      "excerpt": "Codex 干活时会读配置和日志",
+      "date": "2026-10-25",
       "origin": "practice",
       "verified": false
     }
