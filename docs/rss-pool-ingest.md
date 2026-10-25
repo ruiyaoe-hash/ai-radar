@@ -15,7 +15,7 @@ Newsletter 与实验室博客、作者博客一样走普通 RSS，不单开抓�
 
 行和 `ingest_x` 同一套 schema：`channel=rss`，`status_in_pool=pending`，判断字段为空。工作流接着跑 `annotate_gates.py --only-pending`，再跑 `score_pool.py`（规则分，低分落 `low_score`）、`project_public_lanes.py`（过闸实操进 inbox，分析行进专题观察）和 `derive_briefs.py`（只把自动档写成公开快讯）。不写公开 archive，不改 L1 的 derive，不自动晋升。快讯脚本本身不写 practice inbox。
 
-定时是 UTC `30 0,6,12 * * *`，也就是北京时间 08:30、14:30、20:30，一天三次。另有 `workflow_dispatch`。GitHub 的 schedule 可能迟到；外部 cron 调 `workflow_dispatch` 的办法见 `docs/score-and-briefs.md`。这个工作流**不**在 pull request 上跑，所以公开 CI 不依赖私有仓，也不访问外网 feed。
+定时是 UTC `30 2,5,8,11,14,23 * * *`（上海 = UTC+8，无夏令时）：02:30、05:30、08:30、11:30、14:30、23:30 UTC，也就是北京时间 10:30、13:30、16:30、19:30、22:30、以及次日 07:30。按北京时间排是 **07:30、10:30、13:30、16:30、19:30、22:30**，清醒时段大约每 3 小时一次，共六档。分钟放在 :30，和整点的 Alba X 抓取错开。这只改抓取进库；分流写卡上站不在这个 cron 里。另有 `workflow_dispatch`。GitHub 的 schedule 可能迟到；外部 cron 调 `workflow_dispatch` 的办法见 `docs/score-and-briefs.md`。这个工作流**不**在 pull request 上跑，所以公开 CI 不依赖私有仓，也不访问外网 feed。
 
 和 X 关注池工作流共用 `concurrency: pool-writer`，排队写池。推送私有池用 `scripts/pool_git_push.sh`（fetch + rebase，网络失败重试，冲突直接失败不覆盖）。公开仓这边若自动档有变化，先过 `validate.py`，再用 `GITHUB_TOKEN` 把 `public/briefs.json` 推到滚动分支 `chore/auto-briefs` 并打开或更新一个 PR。不推 `main`，也不在未合并时触发 Pages。人合并且 `validate-and-derive` 变绿之后，现有的 `deploy-pages.yml`（推送到 `main`）负责上线。池令牌仍然不能写公开仓。细节见 `docs/score-and-briefs.md`「工作流怎么写池、怎么上线」。
 
