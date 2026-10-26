@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-26 21:11 北京时间",
+  "updated": "2026-10-26 23:20 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
     {
@@ -78,6 +78,21 @@
       "candidate_id": "cand-20261024-58dba56773eb",
       "why": "做文献综述或选题的人，可以看一个问题在现有文献里站在哪，而不是只堆论文。",
       "affect": "手头有一个还散的研究想法时，打开原文看它怎么把文献收成问题；没有选题任务就不必改流程。"
+    },
+    {
+      "id": "brf-20261023-6a4f42571d7f",
+      "level": "L2",
+      "date": "2026-10-23",
+      "time": "10-23 01:21",
+      "title": "公开更新：代码仓库",
+      "summary": "公开说明里，代码仓库。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "它关系到你现在用的工具要不要换，或者能不能继续沿用。",
+      "affect": "拿一个你自己的真实任务对照这次变化，再决定换不换。",
+      "url": "https://github.blog/security/how-bug-bounty-sharpens-one-researchers-security-skills",
+      "source": "github-blog",
+      "lens": "工具",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261023-6a4f42571d7f"
     },
     {
       "id": "brf-20261023-aec2cbf8823d",
