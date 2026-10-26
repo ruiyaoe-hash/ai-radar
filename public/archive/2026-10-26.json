@@ -1,6 +1,6 @@
 {
   "date": "2026-10-26",
-  "count": 1,
+  "count": 3,
   "schema_version": 1,
   "items": [
     {
@@ -62,6 +62,132 @@
       "card_copy": {
         "watch_reason": "开源视频技能加可编辑时间线，适合双语与史料感版面。",
         "evidence_label": "尚待核实",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261026-geoinflow",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "GEOInflow：自托管看清哪些 AI 爬虫在抓你的站",
+      "date": "2026-10-26",
+      "time": "10-26 16:20",
+      "handle": "vista8",
+      "url": "https://x.com/vista8/status/2114579446795788675",
+      "published_at": "2026-10-26T04:46:41Z",
+      "ingested_at": "2026-10-26T08:15:11Z",
+      "candidate_id": "cand-20261026-4b58c863dbc6",
+      "promotion_path": "normal",
+      "objective": [
+        "猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。",
+        "内置约 61 类 AI 爬虫身份与用途分类（训练 / AI 搜索 / 用户触发等），也覆盖常规网站统计（PV/UV、事件漏斗、热力图等）。核心统计默认不依赖模型 API Key，数据留在自有服务器。",
+        "官方仓库提供 Docker 一键部署脚本；默认本机 http://127.0.0.1:3002，首次账号见仓库说明，登录后应立即改密。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/vista8/status/2114579446795788675",
+          "handle": "vista8",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/yaojingang/status/2114576054018818536",
+          "handle": "yaojingang",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/yaojingang/GEOInflow",
+          "handle": "yaojingang",
+          "role": "primary"
+        }
+      ],
+      "shift": "midday",
+      "try_url": "https://github.com/yaojingang/GEOInflow",
+      "access": "MIT 开源；用 Docker Compose 按仓库 scripts/liekan-deploy.sh 一键部署。需本机可达的镜像源与基本运维能力。",
+      "integration": "部署后按文档接入浏览器埋点与/或服务器/CDN 日志，可选导入 sitemap/CSV/JSON 内容清单，对比「该被抓」与「实际被抓」。",
+      "first_step": "若你这周要弄清站里的 AI 爬虫与 GEO 引荐：克隆仓库，跑部署脚本，改掉默认管理员密码，先接一个站点的访问日志或示例数据看看板。",
+      "alternatives": [
+        "继续只用传统统计（不区分 AI 爬虫）",
+        "自写日志脚本按 User-Agent 粗分，不做引荐与转化闭环"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。",
+        "action": "立即行动",
+        "window": "仓库与 Docker 部署说明今天即可对照试用。",
+        "confidence": "中",
+        "falsifier": "若你的环境装不上 Docker、日志接不进、或爬虫识别与你业务无关，就收回「这周上这套监测」。"
+      },
+      "card_copy": {
+        "watch_reason": "开源自托管 GEO/AI 爬虫分析，可 Docker 试用。",
+        "evidence_label": "多源确认",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261026-digital-human-koubo",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "数字人口播技能开源：一张照片做说话数字人短视频",
+      "date": "2026-10-26",
+      "time": "10-26 16:20",
+      "handle": "saccc_c",
+      "url": "https://x.com/saccc_c/status/2114621995409379654",
+      "published_at": "2026-10-26T07:35:46Z",
+      "ingested_at": "2026-10-26T08:15:11Z",
+      "candidate_id": "cand-20261026-2524cf6847f1",
+      "promotion_path": "normal",
+      "objective": [
+        "开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。",
+        "作者侧（berryxia）称教程已升级为可自动化、可稳定输出的技能包，技能在 GitHub 免费使用；数字资产链路示例使用 Renoise AI，也可按自己的资源替换。",
+        "关注池博主转发给出仓库入口；适合先克隆仓库读技能说明，再在本机助手里试一条口播样片。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/saccc_c/status/2114621995409379654",
+          "handle": "saccc_c",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/berryxia/status/2114579756633219416",
+          "handle": "berryxia",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/andyhuo520/digital-human-koubo",
+          "handle": "andyhuo520",
+          "role": "primary"
+        }
+      ],
+      "shift": "midday",
+      "try_url": "https://github.com/andyhuo520/digital-human-koubo",
+      "access": "MIT 开源技能，GitHub 可直接阅读与安装到支持 Skill 的编程助手；生成链路可能依赖 Renoise 等外部服务与相应费用。",
+      "integration": "在 Claude Code / Codex / OpenClaw / WorkBuddy 等环境按仓库说明安装技能后，用一张人像照片发起口播生成，再按提供的剪辑风格与包装组件出片。",
+      "first_step": "若你这周要试一条数字人口播：打开仓库，按 README 把技能装进常用助手，准备一张授权清晰的人像与一段口播文案，先出一版样片再决定是否规模化。",
+      "alternatives": [
+        "继续用手剪真人或传统数字人 SaaS",
+        "只用通用视频模型、不走可复用 Skill"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。",
+        "action": "立即行动",
+        "window": "仓库今天即可对照安装试用。",
+        "confidence": "中",
+        "falsifier": "若技能与你的助手不兼容、Renoise 等依赖不可用或费用过高，或样片质量达不到可发布标准，就收回「这周接这条工作流」。"
+      },
+      "card_copy": {
+        "watch_reason": "开源数字人口播技能，可给编程助手直接调用。",
+        "evidence_label": "多源确认",
         "suggested_action": "立即行动",
         "high_priority_review": false
       }

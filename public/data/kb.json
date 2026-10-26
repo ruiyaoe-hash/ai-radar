@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-10-23",
-  "updated": "2026-10-26 08:06 北京时间",
+  "updated": "2026-10-26 16:20 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,14 +43,14 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 6,
-      "creator_count": 3,
+      "source_count": 7,
+      "creator_count": 4,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 6,
+      "unverified_practice": 7,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
-      "latest": "2026-10-25"
+      "latest": "2026-10-26"
     }
   ],
   "sources": [
@@ -125,6 +125,18 @@
       "date": "2026-10-25",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261026-18932cb399ad",
+      "url": "https://x.com/shao__meng/status/2114569988870906111",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用六步闭环：从语音需求做到可录屏验收的应用",
+      "excerpt": "Hassan（nutlope）公开日常做应用的闭环：语音提需求 → 视觉参考 → 澄清问答 → v1 反馈 → 录屏验收 → 发帖或扔掉。",
+      "date": "2026-10-26",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": [
@@ -163,6 +175,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/realydt"
+    },
+    {
+      "handle": "shao__meng",
+      "name": "shao__meng",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/shao__meng"
     }
   ],
   "demand_refreshed_at": "2026-10-23 08:00 北京时间",

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26 11:49 北京时间",
+  "updated": "2026-10-26 16:20 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
@@ -10,7 +10,9 @@
     "https://github.com/JimLiu/baocut",
     "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
     "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+    "https://github.com/andyhuo520/digital-human-koubo",
     "https://github.com/pbakaus/impeccable",
+    "https://github.com/yaojingang/GEOInflow",
     "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
     "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "https://huggingface.co/tencent/Hy-Nomas",
@@ -28,13 +30,17 @@
     "https://x.com/Hailuo_AI/status/2113518153242497390",
     "https://x.com/TencentHunyuan/status/2113676827114053892",
     "https://x.com/addyosmani/status/2113015448203862255",
+    "https://x.com/berryxia/status/2114579756633219416",
     "https://x.com/claudeai/status/2113360845409583307",
     "https://x.com/dotey/status/2112995995017421133",
     "https://x.com/dotey/status/2113689823311524225",
     "https://x.com/dotey/status/2114375050971296135",
     "https://x.com/natolambert/status/2113682066374062528",
     "https://x.com/perplexitydevs/status/2113400672238616800",
-    "https://x.com/simonw/status/2113718487529267593"
+    "https://x.com/saccc_c/status/2114621995409379654",
+    "https://x.com/simonw/status/2113718487529267593",
+    "https://x.com/vista8/status/2114579446795788675",
+    "https://x.com/yaojingang/status/2114576054018818536"
   ],
   "blocked_ids": [
     "brf-20261021-2d9435d5289c",
@@ -49,6 +55,8 @@
     "cand-20261024-614aa5580165",
     "cand-20261024-7fa1388b33a9",
     "cand-20261025-a2cec43800e6",
+    "cand-20261026-2524cf6847f1",
+    "cand-20261026-4b58c863dbc6",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -58,7 +66,9 @@
     "evt-20261024-kimi-k3-1-pro",
     "evt-20261024-tencent-hy-nomas",
     "evt-20261025-impeccable-computer-skill",
-    "evt-20261026-baocut-skill"
+    "evt-20261026-baocut-skill",
+    "evt-20261026-digital-human-koubo",
+    "evt-20261026-geoinflow"
   ],
   "days": [
     {
@@ -66,69 +76,129 @@
       "items": [
         {
           "schema_version": 2,
-          "id": "evt-20261026-baocut-skill",
+          "id": "evt-20261026-digital-human-koubo",
           "status": "confirmed",
           "tag": "工具",
           "lens": "工具",
           "priority": "P1",
-          "title": "BaoCut 技能：用智能体做双语排版与史料感视频",
+          "title": "数字人口播技能开源：一张照片做说话数字人短视频",
           "date": "2026-10-26",
-          "time": "10-26 08:00",
-          "handle": "dotey",
-          "url": "https://x.com/dotey/status/2114375050971296135",
-          "published_at": "2026-10-25T15:14:29Z",
-          "ingested_at": "2026-10-26T00:05:00Z",
-          "candidate_id": "cand-20261025-a2cec43800e6",
+          "time": "10-26 16:20",
+          "handle": "saccc_c",
+          "url": "https://x.com/saccc_c/status/2114621995409379654",
+          "published_at": "2026-10-26T07:35:46Z",
+          "ingested_at": "2026-10-26T08:15:11Z",
+          "candidate_id": "cand-20261026-2524cf6847f1",
           "promotion_path": "normal",
           "objective": [
-            "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
-            "技能说明在 GitHub 仓库 JimLiu/baocut 的 skills/baocut/SKILL.md。BaoCut 本身负责转录、字幕对齐、翻译与时间线编辑；技能负责把「档案馆 / 纪录片」一类版面要求交给智能体执行。",
-            "同作者后续还公开了一条可用的历史演讲视频提示词模板（人物、年份、场合、章节与审片流程），适合先出简报再出片，避免直接烘焙导出。"
+            "开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。",
+            "作者侧（berryxia）称教程已升级为可自动化、可稳定输出的技能包，技能在 GitHub 免费使用；数字资产链路示例使用 Renoise AI，也可按自己的资源替换。",
+            "关注池博主转发给出仓库入口；适合先克隆仓库读技能说明，再在本机助手里试一条口播样片。"
           ],
           "sources": [
             {
-              "url": "https://x.com/dotey/status/2114375050971296135",
-              "handle": "dotey",
+              "url": "https://x.com/saccc_c/status/2114621995409379654",
+              "handle": "saccc_c",
+              "role": "report"
+            },
+            {
+              "url": "https://x.com/berryxia/status/2114579756633219416",
+              "handle": "berryxia",
               "role": "primary"
             },
             {
-              "url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
-              "handle": "dotey",
-              "role": "primary"
-            },
-            {
-              "url": "https://github.com/JimLiu/baocut",
-              "handle": "dotey",
+              "url": "https://github.com/andyhuo520/digital-human-koubo",
+              "handle": "andyhuo520",
               "role": "primary"
             }
           ],
-          "shift": "morning",
-          "try_url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
-          "access": "开源技能可在 GitHub 阅读与安装；需配合 BaoCut 应用做转录与时间线。应用本身按作者发布渠道获取。",
-          "integration": "在已装 BaoCut 的环境里启用 baocut 技能，用 Cursor、Claude Code 等助手按技能说明发起「版面视频」任务；也可套用作者给出的历史演讲提示词模板。",
-          "first_step": "若你这周要做一条带双语字幕、章节和史料配图的演讲视频：打开技能说明，装好 BaoCut，用作者示例提示词先出一版审片链接，确认后再导出。",
+          "shift": "midday",
+          "try_url": "https://github.com/andyhuo520/digital-human-koubo",
+          "access": "MIT 开源技能，GitHub 可直接阅读与安装到支持 Skill 的编程助手；生成链路可能依赖 Renoise 等外部服务与相应费用。",
+          "integration": "在 Claude Code / Codex / OpenClaw / WorkBuddy 等环境按仓库说明安装技能后，用一张人像照片发起口播生成，再按提供的剪辑风格与包装组件出片。",
+          "first_step": "若你这周要试一条数字人口播：打开仓库，按 README 把技能装进常用助手，准备一张授权清晰的人像与一段口播文案，先出一版样片再决定是否规模化。",
           "alternatives": [
-            "继续用手剪 + 字幕工具分步做",
-            "只用生成视频模型出片、不做可编辑时间线"
+            "继续用手剪真人或传统数字人 SaaS",
+            "只用通用视频模型、不走可复用 Skill"
           ],
           "tool_radar": "试用",
           "so_what": {
             "lens": "工具",
-            "impact": "如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。",
+            "impact": "如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。",
             "action": "立即行动",
-            "window": "技能与示例提示词今天即可对照原文试用。",
+            "window": "仓库今天即可对照安装试用。",
             "confidence": "中",
-            "falsifier": "若 BaoCut 装不上、技能与你的助手不兼容，或导出质量达不到可发布标准，就收回「这周接这条工作流」。"
+            "falsifier": "若技能与你的助手不兼容、Renoise 等依赖不可用或费用过高，或样片质量达不到可发布标准，就收回「这周接这条工作流」。"
           },
           "card_copy": {
-            "watch_reason": "开源视频技能加可编辑时间线，适合双语与史料感版面。",
-            "evidence_label": "尚待核实",
+            "watch_reason": "开源数字人口播技能，可给编程助手直接调用。",
+            "evidence_label": "多源确认",
             "suggested_action": "立即行动",
             "high_priority_review": false
+          }
+        },
+        {
+          "schema_version": 2,
+          "id": "evt-20261026-geoinflow",
+          "status": "confirmed",
+          "tag": "工具",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "GEOInflow：自托管看清哪些 AI 爬虫在抓你的站",
+          "date": "2026-10-26",
+          "time": "10-26 16:20",
+          "handle": "vista8",
+          "url": "https://x.com/vista8/status/2114579446795788675",
+          "published_at": "2026-10-26T04:46:41Z",
+          "ingested_at": "2026-10-26T08:15:11Z",
+          "candidate_id": "cand-20261026-4b58c863dbc6",
+          "promotion_path": "normal",
+          "objective": [
+            "猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。",
+            "内置约 61 类 AI 爬虫身份与用途分类（训练 / AI 搜索 / 用户触发等），也覆盖常规网站统计（PV/UV、事件漏斗、热力图等）。核心统计默认不依赖模型 API Key，数据留在自有服务器。",
+            "官方仓库提供 Docker 一键部署脚本；默认本机 http://127.0.0.1:3002，首次账号见仓库说明，登录后应立即改密。"
+          ],
+          "sources": [
+            {
+              "url": "https://x.com/vista8/status/2114579446795788675",
+              "handle": "vista8",
+              "role": "report"
+            },
+            {
+              "url": "https://x.com/yaojingang/status/2114576054018818536",
+              "handle": "yaojingang",
+              "role": "primary"
+            },
+            {
+              "url": "https://github.com/yaojingang/GEOInflow",
+              "handle": "yaojingang",
+              "role": "primary"
+            }
+          ],
+          "shift": "midday",
+          "try_url": "https://github.com/yaojingang/GEOInflow",
+          "access": "MIT 开源；用 Docker Compose 按仓库 scripts/liekan-deploy.sh 一键部署。需本机可达的镜像源与基本运维能力。",
+          "integration": "部署后按文档接入浏览器埋点与/或服务器/CDN 日志，可选导入 sitemap/CSV/JSON 内容清单，对比「该被抓」与「实际被抓」。",
+          "first_step": "若你这周要弄清站里的 AI 爬虫与 GEO 引荐：克隆仓库，跑部署脚本，改掉默认管理员密码，先接一个站点的访问日志或示例数据看看板。",
+          "alternatives": [
+            "继续只用传统统计（不区分 AI 爬虫）",
+            "自写日志脚本按 User-Agent 粗分，不做引荐与转化闭环"
+          ],
+          "tool_radar": "试用",
+          "so_what": {
+            "lens": "工具",
+            "impact": "如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。",
+            "action": "立即行动",
+            "window": "仓库与 Docker 部署说明今天即可对照试用。",
+            "confidence": "中",
+            "falsifier": "若你的环境装不上 Docker、日志接不进、或爬虫识别与你业务无关，就收回「这周上这套监测」。"
           },
-          "summary": "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
-          "fill_reason": "empty_day",
-          "promoted_from": "tool"
+          "card_copy": {
+            "watch_reason": "开源自托管 GEO/AI 爬虫分析，可 Docker 试用。",
+            "evidence_label": "多源确认",
+            "suggested_action": "立即行动",
+            "high_priority_review": false
+          }
         }
       ]
     },

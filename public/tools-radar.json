@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26 08:05 北京时间",
+  "updated": "2026-10-26 16:20 北京时间",
   "rings": {
     "采纳": [],
     "试用": [
@@ -156,6 +156,44 @@
         "status": "confirmed",
         "priority": "P1",
         "stance": "可以试用"
+      },
+      {
+        "id": "evt-20261026-geoinflow",
+        "title": "GEOInflow：自托管看清哪些 AI 爬虫在抓你的站",
+        "date": "2026-10-26",
+        "time": "10-26 16:20",
+        "try_url": "https://github.com/yaojingang/GEOInflow",
+        "access": "MIT 开源；用 Docker Compose 按仓库 scripts/liekan-deploy.sh 一键部署。需本机可达的镜像源与基本运维能力。",
+        "integration": "部署后按文档接入浏览器埋点与/或服务器/CDN 日志，可选导入 sitemap/CSV/JSON 内容清单，对比「该被抓」与「实际被抓」。",
+        "first_step": "若你这周要弄清站里的 AI 爬虫与 GEO 引荐：克隆仓库，跑部署脚本，改掉默认管理员密码，先接一个站点的访问日志或示例数据看看板。",
+        "summary": "猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。",
+        "audience_value": "如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。",
+        "alternatives": [
+          "继续只用传统统计（不区分 AI 爬虫）",
+          "自写日志脚本按 User-Agent 粗分，不做引荐与转化闭环"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "可以试用"
+      },
+      {
+        "id": "evt-20261026-digital-human-koubo",
+        "title": "数字人口播技能开源：一张照片做说话数字人短视频",
+        "date": "2026-10-26",
+        "time": "10-26 16:20",
+        "try_url": "https://github.com/andyhuo520/digital-human-koubo",
+        "access": "MIT 开源技能，GitHub 可直接阅读与安装到支持 Skill 的编程助手；生成链路可能依赖 Renoise 等外部服务与相应费用。",
+        "integration": "在 Claude Code / Codex / OpenClaw / WorkBuddy 等环境按仓库说明安装技能后，用一张人像照片发起口播生成，再按提供的剪辑风格与包装组件出片。",
+        "first_step": "若你这周要试一条数字人口播：打开仓库，按 README 把技能装进常用助手，准备一张授权清晰的人像与一段口播文案，先出一版样片再决定是否规模化。",
+        "summary": "开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。",
+        "audience_value": "如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。",
+        "alternatives": [
+          "继续用手剪真人或传统数字人 SaaS",
+          "只用通用视频模型、不走可复用 Skill"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "可以试用"
       }
     ],
     "评估": [
@@ -202,6 +240,44 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261026-geoinflow",
+      "title": "GEOInflow：自托管看清哪些 AI 爬虫在抓你的站",
+      "date": "2026-10-26",
+      "time": "10-26 16:20",
+      "try_url": "https://github.com/yaojingang/GEOInflow",
+      "access": "MIT 开源；用 Docker Compose 按仓库 scripts/liekan-deploy.sh 一键部署。需本机可达的镜像源与基本运维能力。",
+      "integration": "部署后按文档接入浏览器埋点与/或服务器/CDN 日志，可选导入 sitemap/CSV/JSON 内容清单，对比「该被抓」与「实际被抓」。",
+      "first_step": "若你这周要弄清站里的 AI 爬虫与 GEO 引荐：克隆仓库，跑部署脚本，改掉默认管理员密码，先接一个站点的访问日志或示例数据看看板。",
+      "summary": "猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。",
+      "audience_value": "如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。",
+      "alternatives": [
+        "继续只用传统统计（不区分 AI 爬虫）",
+        "自写日志脚本按 User-Agent 粗分，不做引荐与转化闭环"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "可以试用"
+    },
+    {
+      "id": "evt-20261026-digital-human-koubo",
+      "title": "数字人口播技能开源：一张照片做说话数字人短视频",
+      "date": "2026-10-26",
+      "time": "10-26 16:20",
+      "try_url": "https://github.com/andyhuo520/digital-human-koubo",
+      "access": "MIT 开源技能，GitHub 可直接阅读与安装到支持 Skill 的编程助手；生成链路可能依赖 Renoise 等外部服务与相应费用。",
+      "integration": "在 Claude Code / Codex / OpenClaw / WorkBuddy 等环境按仓库说明安装技能后，用一张人像照片发起口播生成，再按提供的剪辑风格与包装组件出片。",
+      "first_step": "若你这周要试一条数字人口播：打开仓库，按 README 把技能装进常用助手，准备一张授权清晰的人像与一段口播文案，先出一版样片再决定是否规模化。",
+      "summary": "开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。",
+      "audience_value": "如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。",
+      "alternatives": [
+        "继续用手剪真人或传统数字人 SaaS",
+        "只用通用视频模型、不走可复用 Skill"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "可以试用"
+    },
     {
       "id": "evt-20261026-baocut-skill",
       "title": "BaoCut 技能：用智能体做双语排版与史料感视频",

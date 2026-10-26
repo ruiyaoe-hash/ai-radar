@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-26 08:06 北京时间",
+  "updated": "2026-10-26 16:20 北京时间",
   "sources": [
     {
       "id": "prac-20261024-6d6218870fce",
@@ -71,6 +71,18 @@
       "title": "用 Syncthing 给云电脑做单向实时备份",
       "excerpt": "云电脑被回滚或误删时，本机仍有完整副本；用开源 Syncthing 做单向同步，约二十分钟可配好，误删还能从版本历史里捞回。",
       "date": "2026-10-25",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261026-18932cb399ad",
+      "url": "https://x.com/shao__meng/status/2114569988870906111",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用六步闭环：从语音需求做到可录屏验收的应用",
+      "excerpt": "Hassan（nutlope）公开日常做应用的闭环：语音提需求 → 视觉参考 → 澄清问答 → v1 反馈 → 录屏验收 → 发帖或扔掉。",
+      "date": "2026-10-26",
       "origin": "practice",
       "verified": false
     }

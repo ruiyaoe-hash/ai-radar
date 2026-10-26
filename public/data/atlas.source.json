@@ -115,6 +115,18 @@
       "date": "2026-10-25",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261026-18932cb399ad",
+      "url": "https://x.com/shao__meng/status/2114569988870906111",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用六步闭环：从语音需求做到可录屏验收的应用",
+      "excerpt": "Hassan（nutlope）公开日常做应用的闭环：语音提需求 → 视觉参考 → 澄清问答 → v1 反馈 → 录屏验收 → 发帖或扔掉。",
+      "date": "2026-10-26",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": []
