@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-26 16:20 北京时间",
+  "updated": "2026-10-26 23:20 北京时间",
   "sources": [
     {
       "id": "prac-20261024-6d6218870fce",
@@ -82,6 +82,30 @@
       "type": "教程",
       "title": "用六步闭环：从语音需求做到可录屏验收的应用",
       "excerpt": "Hassan（nutlope）公开日常做应用的闭环：语音提需求 → 视觉参考 → 澄清问答 → v1 反馈 → 录屏验收 → 发帖或扔掉。",
+      "date": "2026-10-26",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261026-c72ef03fa1ef",
+      "url": "https://x.com/realydt/status/2114504860167200828",
+      "author": "realydt",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "个人 Agent 到底该买 Mac mini，还是配一台 Linux 小主机",
+      "excerpt": "配置再往上加，本机文件或看得见的浏览器",
+      "date": "2026-10-26",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261026-d435aaec842c",
+      "url": "https://x.com/geekcatx/status/2114665225488417155",
+      "author": "geekcatx",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "兄弟们，千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+      "excerpt": "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
       "date": "2026-10-26",
       "origin": "practice",
       "verified": false

@@ -1,0 +1,21 @@
+{
+  "id": "prac-20261026-c72ef03fa1ef",
+  "kind": "Skill / 工作流",
+  "title": "个人 Agent 到底该买 Mac mini，还是配一台 Linux 小主机",
+  "author": "realydt",
+  "url": "https://x.com/realydt/status/2114504860167200828",
+  "time": "2026-10-26 07:50",
+  "takeaway": "配置再往上加，本机文件或看得见的浏览器",
+  "steps": [
+    "配置再往上加，本机文件或看得见的浏览器。",
+    "就有理由把Mac 放进工作流，OpenClaw 甚至支持网关放服务器，真打算离线跑模型。"
+  ],
+  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "原文里用到的账号或软件"
+  ],
+  "estimated_time": "按步骤做完",
+  "verified": false,
+  "candidate_id": "cand-20261026-c72ef03fa1ef"
+}

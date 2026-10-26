@@ -1,0 +1,21 @@
+{
+  "id": "prac-20261026-d435aaec842c",
+  "kind": "工具用法",
+  "title": "兄弟们，千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+  "author": "geekcatx",
+  "url": "https://x.com/geekcatx/status/2114665225488417155",
+  "time": "2026-10-26 18:27",
+  "takeaway": "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+  "steps": [
+    "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了。",
+    "有人把恶意指令伪装成普通的工程笔记。"
+  ],
+  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "原文里用到的账号或软件"
+  ],
+  "estimated_time": "按步骤做完",
+  "verified": false,
+  "candidate_id": "cand-20261026-d435aaec842c"
+}

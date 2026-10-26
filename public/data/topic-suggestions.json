@@ -61,6 +61,22 @@
       "verified": false,
       "apply": "blocked_unverified",
       "lane": "跟着做"
+    },
+    {
+      "id": "prac-20261026-c72ef03fa1ef",
+      "topic": "hands-on",
+      "reason": "这条写清了可照着做的步骤，先归在跟着做。确认之前不改手册正文。",
+      "verified": false,
+      "apply": "blocked_unverified",
+      "lane": "跟着做"
+    },
+    {
+      "id": "prac-20261026-d435aaec842c",
+      "topic": "hands-on",
+      "reason": "这条写清了可照着做的步骤，先归在跟着做。确认之前不改手册正文。",
+      "verified": false,
+      "apply": "blocked_unverified",
+      "lane": "跟着做"
     }
   ]
 }

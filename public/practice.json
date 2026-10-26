@@ -1,8 +1,29 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-26 16:20 北京时间",
+  "updated": "2026-10-26 23:20 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261026-d435aaec842c",
+      "kind": "工具用法",
+      "title": "兄弟们，千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+      "author": "geekcatx",
+      "url": "https://x.com/geekcatx/status/2114665225488417155",
+      "time": "2026-10-26 18:27",
+      "takeaway": "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+      "steps": [
+        "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了。",
+        "有人把恶意指令伪装成普通的工程笔记。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "原文里用到的账号或软件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261026-d435aaec842c"
+    },
     {
       "id": "prac-20261026-18932cb399ad",
       "kind": "Skill / 工作流",
@@ -29,6 +50,27 @@
       "estimated_time": "按一个小功能闭环做完",
       "verified": false,
       "candidate_id": "cand-20261026-18932cb399ad"
+    },
+    {
+      "id": "prac-20261026-c72ef03fa1ef",
+      "kind": "Skill / 工作流",
+      "title": "个人 Agent 到底该买 Mac mini，还是配一台 Linux 小主机",
+      "author": "realydt",
+      "url": "https://x.com/realydt/status/2114504860167200828",
+      "time": "2026-10-26 07:50",
+      "takeaway": "配置再往上加，本机文件或看得见的浏览器",
+      "steps": [
+        "配置再往上加，本机文件或看得见的浏览器。",
+        "就有理由把Mac 放进工作流，OpenClaw 甚至支持网关放服务器，真打算离线跑模型。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "原文里用到的账号或软件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261026-c72ef03fa1ef"
     },
     {
       "id": "prac-20261025-a2c7b1a99bef",
