@@ -1,9 +1,24 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-26 11:49 北京时间",
+  "updated": "2026-10-26 21:11 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261026-d435aaec842c",
+      "level": "L2",
+      "date": "2026-10-26",
+      "time": "10-26 21:00",
+      "title": "别在「下载」文件夹里直接开 Codex 或 Claude Code：有人用假 AGENTS.md 投毒",
+      "summary": "安全机构 Forever Security 称：恶意方把指令伪装成工程笔记 AGENTS.md，静默落到用户「下载」目录；若在该目录启动 Codex / Claude Code，可能被改全局配置并装上恶意 npm 包。复现中照做率很高。",
+      "why": "很多网页可不经确认往下载目录写文件；编程助手又会读取目录里的代理说明文件。",
+      "affect": "你今天用 Codex 或 Claude Code：打开 ~/.codex/config.toml 查陌生 mcp_servers；检查 Claude 是否被改成陌生 API；以后只在自己建的干净工程目录里启动助手。",
+      "url": "https://x.com/geekcatx/status/2114665225488417155",
+      "source": "geekcatx",
+      "lens": "时机",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261026-d435aaec842c"
+    },
     {
       "id": "brf-20261026-c5fb22fbf2c4",
       "level": "L2",

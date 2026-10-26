@@ -383,12 +383,17 @@ def build_tools_radar(all_items: list[dict]) -> dict:
         visitor = record.get("stance") or "值得关注"
         rings[visitor].append(record)
         stream.append(record)
-    stream.sort(key=lambda item: (str(item.get("date") or ""), str(item.get("time") or "")), reverse=True)
+    # Newest display clock first, matching the published rings. Equal clocks keep
+    # archive order so a later regenerate does not flip the whole list.
+    order = lambda item: (str(item.get("date") or ""), str(item.get("time") or ""))
+    for group in rings.values():
+        group.sort(key=order, reverse=True)
+    stream.sort(key=order, reverse=True)
     return {
         "updated": datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间"),
         "rings": rings,
         "stream": stream,
-        "note": "按时间往下看。每条写清摘要、大众价值，以及第一次怎么试。",
+        "note": "按时间往下看。档位只有推荐使用和值得关注。每条写清摘要、大众价值，以及第一次怎么试。",
     }
 
 

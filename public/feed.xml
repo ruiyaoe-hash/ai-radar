@@ -5,8 +5,22 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 26 Oct 2026 16:20:50 +0800</lastBuildDate>
+<lastBuildDate>Mon, 26 Oct 2026 21:11:43 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] VoiceStudio：本机开源配音套件，可替代部分 ElevenLabs 流水线</title>
+<link>https://x.com/geekcatx/status/2114667608188621074</link>
+<guid isPermaLink="false">evt-20261026-voicestudio</guid>
+<pubDate>Mon, 26 Oct 2026 18:37:01 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• VoiceStudio（AGPL-3.0）是本地开源语音工具：语音克隆、音色设计、视频配音、听写转写、有声书等，README 称覆盖约 646 种语言，并带本地 API 与 MCP（模型上下文协议）便于挂到 Codex / Claude Code。<br/>• 仓库在 GitHub 日榜热度很高（约 8.8 万星量级，以仓库页为准）；可从 Releases 下载或按文档本机安装。<br/>• 商用前必读许可：软件 AGPL；默认 OmniVoice 模型权重标注非商用——接单/商用需按文档换引擎或取得授权，不要默认「开源=可商用」。<br/><strong>对你意味着什么</strong> 如果你要做语音克隆、配音或有声书，又不想整条流水线都放在 ElevenLabs 上，VoiceStudio 把这些步骤收成本机套件；许可和默认模型权重会限制能不能接商用单。<br/>建议：立即行动 · 仓库今天可下载或按文档安装，先用短样本试音。<br/>有多确定：中<br/>什么情况下当这判断作废：若本机装不上、样音质量达不到可交付、硬件带不动，或许可与默认权重不允许你的商用用途，就收回「用它替换那部分 ElevenLabs 流水线」。<br/>来源 geekcatx（转述）, geekcatx（一手）<br/>日期 2026-10-26]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Graphify：把整仓建成可查询知识图，少让编程助手反复搜文件</title>
+<link>https://x.com/shao__meng/status/2114642398936502394</link>
+<guid isPermaLink="false">evt-20261026-graphify</guid>
+<pubDate>Mon, 26 Oct 2026 16:56:50 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Graphify（Apache-2.0 开源）给 Claude Code / Cursor / Codex / Gemini CLI 等编程助手加 `/graphify` 技能：对代码做本地 tree-sitter AST（抽象语法树）解析，把仓库（可含文档、PDF 等）建成可查询知识图，而不是向量库。<br/>• 在本机安装命令行：执行 uv tool install graphifyy，也可以改用 pipx。装好后执行 graphify install，把技能注册进编程助手。然后在项目里运行 /graphify .。完成后，graphify-out 目录里会有 graph.json、可以点开的 graph.html，以及 GRAPH_REPORT.md。<br/>• 边带 EXTRACTED/INFERRED 标记；也可用 graphify-mcp 把已有图挂进助手。官网另有 Graphify Cloud（常开记忆/跨仓），与开源 CLI 分开看待；仓库宣传的「降 80% token」要以你自己的仓规模与是否真接图查询为准。<br/><strong>对你意味着什么</strong> 如果你用 Claude Code、Cursor 或同类助手改一个大仓库，又烦它反复搜文件，Graphify 把仓库收成可查询的知识图，查询可以少扫无关文件。<br/>建议：立即行动 · 开源命令行今天就能安装，并对一个真实仓库跑一次。<br/>有多确定：中<br/>什么情况下当这判断作废：若安装或技能注册失败、图盖不住你的仓库，或助手并没有改去查这张图、省下的用量也对不上，就收回「这周用它少搜文件」。<br/>来源 shao__meng（转述）, Graphify-Labs（一手）<br/>日期 2026-10-26]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] 数字人口播技能开源：一张照片做说话数字人短视频</title>
 <link>https://x.com/saccc_c/status/2114621995409379654</link>
