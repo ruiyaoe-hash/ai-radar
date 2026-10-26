@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26 08:05 北京时间",
+  "updated": "2026-10-26 11:49 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
@@ -11,6 +11,7 @@
     "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
     "https://github.com/Tencent-Hunyuan/Hy-Nomas",
     "https://github.com/pbakaus/impeccable",
+    "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
     "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "https://huggingface.co/tencent/Hy-Nomas",
     "https://impeccable.style",
@@ -36,6 +37,8 @@
     "https://x.com/simonw/status/2113718487529267593"
   ],
   "blocked_ids": [
+    "brf-20261021-2d9435d5289c",
+    "cand-20261021-2d9435d5289c",
     "cand-20261022-5b11ed122be0",
     "cand-20261022-6fc43125f1db",
     "cand-20261023-6ef19645e177",
@@ -58,6 +61,153 @@
     "evt-20261026-baocut-skill"
   ],
   "days": [
+    {
+      "date": "2026-10-26",
+      "items": [
+        {
+          "schema_version": 2,
+          "id": "evt-20261026-baocut-skill",
+          "status": "confirmed",
+          "tag": "工具",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "BaoCut 技能：用智能体做双语排版与史料感视频",
+          "date": "2026-10-26",
+          "time": "10-26 08:00",
+          "handle": "dotey",
+          "url": "https://x.com/dotey/status/2114375050971296135",
+          "published_at": "2026-10-25T15:14:29Z",
+          "ingested_at": "2026-10-26T00:05:00Z",
+          "candidate_id": "cand-20261025-a2cec43800e6",
+          "promotion_path": "normal",
+          "objective": [
+            "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
+            "技能说明在 GitHub 仓库 JimLiu/baocut 的 skills/baocut/SKILL.md。BaoCut 本身负责转录、字幕对齐、翻译与时间线编辑；技能负责把「档案馆 / 纪录片」一类版面要求交给智能体执行。",
+            "同作者后续还公开了一条可用的历史演讲视频提示词模板（人物、年份、场合、章节与审片流程），适合先出简报再出片，避免直接烘焙导出。"
+          ],
+          "sources": [
+            {
+              "url": "https://x.com/dotey/status/2114375050971296135",
+              "handle": "dotey",
+              "role": "primary"
+            },
+            {
+              "url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+              "handle": "dotey",
+              "role": "primary"
+            },
+            {
+              "url": "https://github.com/JimLiu/baocut",
+              "handle": "dotey",
+              "role": "primary"
+            }
+          ],
+          "shift": "morning",
+          "try_url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+          "access": "开源技能可在 GitHub 阅读与安装；需配合 BaoCut 应用做转录与时间线。应用本身按作者发布渠道获取。",
+          "integration": "在已装 BaoCut 的环境里启用 baocut 技能，用 Cursor、Claude Code 等助手按技能说明发起「版面视频」任务；也可套用作者给出的历史演讲提示词模板。",
+          "first_step": "若你这周要做一条带双语字幕、章节和史料配图的演讲视频：打开技能说明，装好 BaoCut，用作者示例提示词先出一版审片链接，确认后再导出。",
+          "alternatives": [
+            "继续用手剪 + 字幕工具分步做",
+            "只用生成视频模型出片、不做可编辑时间线"
+          ],
+          "tool_radar": "试用",
+          "so_what": {
+            "lens": "工具",
+            "impact": "如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。",
+            "action": "立即行动",
+            "window": "技能与示例提示词今天即可对照原文试用。",
+            "confidence": "中",
+            "falsifier": "若 BaoCut 装不上、技能与你的助手不兼容，或导出质量达不到可发布标准，就收回「这周接这条工作流」。"
+          },
+          "card_copy": {
+            "watch_reason": "开源视频技能加可编辑时间线，适合双语与史料感版面。",
+            "evidence_label": "尚待核实",
+            "suggested_action": "立即行动",
+            "high_priority_review": false
+          },
+          "summary": "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
+          "fill_reason": "empty_day",
+          "promoted_from": "tool"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "items": [
+        {
+          "schema_version": 2,
+          "id": "evt-20261025-impeccable-computer-skill",
+          "status": "confirmed",
+          "tag": "工具",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能",
+          "date": "2026-10-25",
+          "time": "10-25 08:00",
+          "handle": "AravSrinivas",
+          "url": "https://x.com/AravSrinivas/status/2114021917586014449",
+          "published_at": "2026-10-24T15:51:16Z",
+          "ingested_at": "2026-10-25T00:05:16Z",
+          "candidate_id": "cand-20261024-027a1ddab66a",
+          "promotion_path": "normal",
+          "objective": [
+            "Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。",
+            "同一套技能本身是开源的（Apache 2.0），也可在 Cursor、Claude Code、Codex 等编程助手里用命令安装：在项目根目录执行 npx impeccable install，再在助手里跑 /impeccable init。官方站点与 GitHub 仓库提供命令说明。",
+            "Computer 侧活动：使用 /impeccable 的任务在 2026 年 10 月 31 日前可享每用户约 5000 credits（积分）额度；Computer 本身仍需带 Computer 的付费套餐。若你主要在自有编程助手里做前端，可直接装开源版，不必先开通 Computer。"
+          ],
+          "sources": [
+            {
+              "url": "https://x.com/AravSrinivas/status/2114021917586014449",
+              "handle": "AravSrinivas",
+              "role": "primary"
+            },
+            {
+              "url": "https://github.com/pbakaus/impeccable",
+              "handle": "AravSrinivas",
+              "role": "primary"
+            },
+            {
+              "url": "https://impeccable.style",
+              "handle": "AravSrinivas",
+              "role": "primary"
+            },
+            {
+              "url": "https://www.perplexity.ai/products/computer",
+              "handle": "AravSrinivas",
+              "role": "primary"
+            }
+          ],
+          "shift": "morning",
+          "try_url": "https://github.com/pbakaus/impeccable",
+          "access": "开源技能可免费安装。Computer 技能市场入口需 Perplexity 含 Computer 的付费套餐；活动期内用该技能的任务有每用户约 5000 credits，截止约 2026-10-31。",
+          "integration": "可作 Computer 内的 /impeccable 技能，也可装进 Cursor、Claude Code、Codex 等本地编程助手，配合 PRODUCT.md / DESIGN.md 与审计命令使用。",
+          "first_step": "若你这周要改一屏「看起来像模板」的前端：在项目根目录执行 npx impeccable install，在助手里跑 /impeccable init，再对那一屏跑 critique 或 polish；已有 Computer 的可在技能市场启用并消耗活动额度对照一次。",
+          "alternatives": [
+            "继续用现有前端设计技能或手写设计规范",
+            "只用视觉模型口头挑问题，不跑确定性检测规则"
+          ],
+          "tool_radar": "试用",
+          "so_what": {
+            "lens": "工具",
+            "impact": "如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。",
+            "action": "立即行动",
+            "window": "开源版今天可装；Computer 活动额度约到 10 月 31 日。",
+            "confidence": "中",
+            "falsifier": "若在你的真实页面上改完仍不像可用产品、安装进不了你的助手，或 Computer 套餐/额度对你不可用，就收回「这周必须接这条技能」。"
+          },
+          "card_copy": {
+            "watch_reason": "开源设计技能进 Computer，也可装进常用编程助手，适合改模板感界面。",
+            "evidence_label": "官方原始信息",
+            "suggested_action": "立即行动",
+            "high_priority_review": false
+          },
+          "summary": "Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。",
+          "fill_reason": "empty_day",
+          "promoted_from": "tool"
+        }
+      ]
+    },
     {
       "date": "2026-10-24",
       "items": [
@@ -392,6 +542,45 @@
             "suggested_action": "立即行动",
             "high_priority_review": true
           }
+        }
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "items": [
+        {
+          "schema_version": 2,
+          "id": "brf-20261021-2d9435d5289c",
+          "status": "confirmed",
+          "tag": "简讯",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "英伟达开放一套可直接用于仿真的三维素材库",
+          "summary": "英伟达宣布 SimReady Central，这是一套开放的三维素材库，资产按仿真要求整理好，面向机器人和人工智能工厂场景。",
+          "date": "2026-10-21",
+          "url": "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
+          "handle": "huggingface-blog",
+          "objective": [
+            "英伟达宣布 SimReady Central，这是一套开放的三维素材库，资产按仿真要求整理好，面向机器人和人工智能工厂场景。"
+          ],
+          "sources": [
+            {
+              "url": "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
+              "handle": "huggingface-blog",
+              "role": "primary"
+            }
+          ],
+          "so_what": {
+            "lens": "工具",
+            "impact": "做机器人仿真的人少了自己建基础场景资产的一步，可以直接拿来摆实验。",
+            "action": "持续观察",
+            "window": "你在做仿真或工厂场景，打开原文看素材怎么取用；不做仿真就不必加入现有流程。",
+            "falsifier": "如果原文事后被更正，或者这件事和你这周要做的事对不上，就不必为此改安排。"
+          },
+          "candidate_id": "cand-20261021-2d9435d5289c",
+          "time": "10-21 18:59",
+          "fill_reason": "empty_day",
+          "promoted_from": "brief"
         }
       ]
     }

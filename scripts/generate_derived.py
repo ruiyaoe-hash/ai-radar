@@ -17,7 +17,7 @@ Writes into public/ only:
   - feeds/lens-*.xml    (per-lens feeds)
   - tools-radar.json    (tools with tool_radar / lens=工具)
   - today3.txt          (信息精选里最新一天的纯文本)
-  - picks.json          (信息精选：每个上海日历日最多 3 条，历史不截断)
+  - picks.json          (信息精选：硬门槛每天最多 3 条；空天只顶一条工具或简讯)
   - practice.json       (only when public/practice/inbox/*.json has items)
   - data/kb.json        (atlas.source.json + practice ids → topics, sources, creators)
   - data/tracks.json, data/topics.json, data/sources.json, data/creators.json
@@ -34,6 +34,7 @@ removed before write. The private pool may keep those fields.
 """
 from __future__ import annotations
 
+import copy
 import html
 import json
 import re
@@ -50,14 +51,28 @@ if __package__ in {None, ""}:
     from human_layer import strip_machine_ids
     from prompt_guard import strip_raw_post_fields
     from editorial_zh import visitor_ready
-    from lanes import PER_DAY, identity_ids, identity_urls, select_picks
+    from lanes import (
+        PER_DAY,
+        fill_empty_pick_days,
+        identity_ids,
+        identity_urls,
+        select_picks,
+        without_promoted_briefs,
+    )
 else:
     from .build_blog import build as build_blog
     from .card_times import parse_source_timestamp
     from .human_layer import strip_machine_ids
     from .prompt_guard import strip_raw_post_fields
     from .editorial_zh import visitor_ready
-    from .lanes import PER_DAY, identity_ids, identity_urls, select_picks
+    from .lanes import (
+        PER_DAY,
+        fill_empty_pick_days,
+        identity_ids,
+        identity_urls,
+        select_picks,
+        without_promoted_briefs,
+    )
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -374,8 +389,233 @@ def _visitor_card(it: dict) -> bool:
     return visitor_ready(title) and visitor_ready(happened) and visitor_ready(impact)
 
 
+_RING_ACTION = {"采纳": "值得采用", "试用": "可以试用", "评估": "需要评估", "暂缓": "暂缓"}
+# Visitor falsifier for a fact that was lifted onto an empty picks day.
+# It does not claim a hard P0, and it does not name the fill machinery.
+_BRIEF_FILL_FALSIFIER = "如果原文事后被更正，或者这件事和你这周要做的事对不上，就不必为此改安排。"
+
+
+def _visitor_stamp(item: dict) -> float:
+    raw = item.get("published_at") or item.get("ingested_at") or ""
+    if isinstance(raw, str) and raw:
+        try:
+            return datetime.fromisoformat(raw.replace("Z", "+00:00")).timestamp()
+        except ValueError:
+            pass
+    day = str(item.get("date") or "")
+    clock = str(item.get("time") or "")
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", day) and " " in clock:
+        try:
+            hh, mi = clock.split(" ", 1)[1].split(":")
+            year, month, dom = (int(part) for part in day.split("-"))
+            return datetime(year, month, dom, int(hh), int(mi), tzinfo=TZ).timestamp()
+        except (ValueError, IndexError):
+            return 0.0
+    return 0.0
+
+
+def _action_labels_for_tool(it: dict, ring: str) -> list[str]:
+    labels: list[str] = []
+    so = it.get("so_what") if isinstance(it.get("so_what"), dict) else {}
+    action = str(so.get("action") or "").strip()
+    if action:
+        labels.append(action)
+    mapped = _RING_ACTION.get(ring)
+    if mapped:
+        labels.append(mapped)
+    copy = it.get("card_copy") if isinstance(it.get("card_copy"), dict) else {}
+    suggested = str(copy.get("suggested_action") or "").strip()
+    if suggested:
+        labels.append(suggested)
+    return labels
+
+
+def _action_labels_for_brief(it: dict) -> list[str]:
+    copy = it.get("card_copy") if isinstance(it.get("card_copy"), dict) else {}
+    suggested = str(copy.get("suggested_action") or "").strip()
+    if suggested in {"立即行动", "持续观察", "暂缓"}:
+        return [suggested]
+    return ["持续观察"]
+
+
+def _load_public_json(path: Path) -> dict:
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _brief_rows() -> list[dict]:
+    data = _load_public_json(PUBLIC / "briefs.json")
+    return [item for item in (data.get("items") or []) if isinstance(item, dict)]
+
+
+def _prior_brief_fills() -> list[dict]:
+    """Briefs already lifted into picks. The brief file drops them, so the next
+    derive has to read the pick copy or the empty day would go blank again.
+    """
+    data = _load_public_json(PUBLIC / "picks.json")
+    found: list[dict] = []
+    for day in data.get("days") or []:
+        if not isinstance(day, dict):
+            continue
+        for item in day.get("items") or []:
+            if (
+                isinstance(item, dict)
+                and item.get("fill_reason") == "empty_day"
+                and item.get("promoted_from") == "brief"
+            ):
+                found.append(item)
+    return found
+
+
+def _brief_pick(item: dict) -> dict | None:
+    """Visitor pick copy of a brief. Priority stays P1. Not a multi-source P0."""
+    day = str(item.get("date") or "")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", day):
+        return None
+    title = str(item.get("title") or "").strip()
+    summary = str(item.get("summary") or "").strip()
+    why = str(item.get("why") or "").strip()
+    affect = str(item.get("affect") or "").strip()
+    url = safe_http_url(item.get("url") or "")
+    if not url or not all(visitor_ready(part) for part in (title, summary, why, affect, _BRIEF_FILL_FALSIFIER)):
+        return None
+    lens = item.get("lens") if item.get("lens") in LENSES else "赛道"
+    copy = item.get("card_copy") if isinstance(item.get("card_copy"), dict) else {}
+    evidence = str(copy.get("evidence_label") or "").strip()
+    if evidence == "尚待核实":
+        status, role = "rumor", "report"
+    elif evidence == "多源确认":
+        status, role = "confirmed", "analysis"
+    else:
+        status, role = "confirmed", "primary"
+    handle = str(item.get("source") or "").strip()
+    if not handle or any(ch.isspace() or ch in "<>" for ch in handle) or len(handle) > 40:
+        handle = "原文"
+    eid = str(item.get("id") or "").strip()
+    if not eid:
+        return None
+    card = {
+        "schema_version": 2,
+        "id": eid,
+        "status": status,
+        "tag": "简讯",
+        "lens": lens,
+        "priority": "P1",
+        "title": title,
+        "summary": summary,
+        "date": day,
+        "url": url,
+        "handle": handle,
+        "objective": [summary],
+        "sources": [{"url": url, "handle": handle, "role": role}],
+        "so_what": {
+            "lens": lens,
+            "impact": why,
+            "action": _action_labels_for_brief(item)[0],
+            "window": affect,
+            "falsifier": _BRIEF_FILL_FALSIFIER,
+        },
+    }
+    candidate = item.get("candidate_id")
+    if isinstance(candidate, str) and candidate.strip():
+        card["candidate_id"] = candidate.strip()
+    clock = item.get("time")
+    if isinstance(clock, str) and clock.strip():
+        card["time"] = clock.strip()
+    return card
+
+
+def _tool_fill_candidates(all_items: list[dict]) -> list[tuple[dict, dict]]:
+    found: list[tuple[dict, dict]] = []
+    seen: set[str] = set()
+    for it in all_items:
+        if it.get("lens") != "工具" and not it.get("tool_radar"):
+            continue
+        ring = it.get("tool_radar") or "评估"
+        if ring not in TOOL_RING_LABEL:
+            ring = "评估"
+        if _tool_record(it, ring) is None or not _visitor_card(it):
+            continue
+        card = copy.deepcopy(it)
+        if not str(card.get("summary") or "").strip():
+            objective = card.get("objective") or []
+            if objective:
+                card["summary"] = str(objective[0])
+        eid = str(card.get("id") or "")
+        if not eid or eid in seen:
+            continue
+        seen.add(eid)
+        found.append(
+            (
+                card,
+                {
+                    "from": "tool",
+                    "actions": _action_labels_for_tool(it, ring),
+                    "has_step": bool(str(it.get("first_step") or "").strip()),
+                    "stamp": _visitor_stamp(it),
+                },
+            )
+        )
+    return found
+
+
+def _brief_fill_candidates(rows: list[dict], seen: set[str]) -> list[tuple[dict, dict]]:
+    found: list[tuple[dict, dict]] = []
+    for item in rows:
+        card = _brief_pick(item)
+        if card is None or card["id"] in seen:
+            continue
+        seen.add(card["id"])
+        found.append(
+            (
+                card,
+                {
+                    "from": "brief",
+                    "actions": _action_labels_for_brief(item),
+                    "has_step": bool(str(item.get("affect") or "").strip()),
+                    "stamp": _visitor_stamp(item),
+                },
+            )
+        )
+    return found
+
+
 def build_picks(all_items: list[dict]) -> dict:
-    chosen = select_picks([it for it in all_items if _visitor_card(it)], PER_DAY)
+    """Hard picks first. A Shanghai day with none gets one tool or brief.
+
+    The shift already runs this after derive_briefs.py, and the briefs publish
+    path runs it again. Empty days therefore fill on the next digest without
+    a separate command. Practice gates are not read here.
+    """
+    hard = select_picks([it for it in all_items if _visitor_card(it)], PER_DAY)
+    candidates = _tool_fill_candidates(all_items)
+    seen = {str(card.get("id") or "") for card, _meta in candidates}
+    candidates.extend(_brief_fill_candidates(_brief_rows(), seen))
+    for item in _prior_brief_fills():
+        eid = str(item.get("id") or "")
+        if not eid or eid in seen:
+            continue
+        seen.add(eid)
+        so = item.get("so_what") if isinstance(item.get("so_what"), dict) else {}
+        action = str(so.get("action") or "").strip() or "持续观察"
+        candidates.append(
+            (
+                copy.deepcopy(item),
+                {
+                    "from": "brief",
+                    "actions": [action],
+                    "has_step": bool(str(so.get("window") or "").strip()),
+                    "stamp": _visitor_stamp(item),
+                },
+            )
+        )
+    fills = fill_empty_pick_days(hard, candidates)
+    chosen = list(hard) + fills
     by_day: dict[str, list[dict]] = {}
     for item in chosen:
         by_day.setdefault(str(item.get("date")), []).append(item)
@@ -383,14 +623,47 @@ def build_picks(all_items: list[dict]) -> dict:
     return {
         "updated": datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间"),
         "per_day": PER_DAY,
-        "blocked_urls": sorted(identity_urls(all_items)),
-        "blocked_ids": sorted(identity_ids(all_items)),
+        "blocked_urls": sorted(identity_urls(list(all_items) + fills)),
+        "blocked_ids": sorted(identity_ids(list(all_items) + fills)),
         "days": days,
     }
 
 
-def build_today3(board: list[dict]) -> str:
-    chosen = select_picks([it for it in board if _visitor_card(it)], PER_DAY)
+def drop_promoted_briefs(picks_doc: dict) -> None:
+    """A brief lifted into an empty picks day leaves the brief file.
+
+    derive_briefs.py runs before this script on the shift, so it cannot see
+    the fill yet. Dropping the row here is what keeps the same event off
+    信息简讯. The pick copy is enough for the next run to fill that day again.
+    """
+    path = PUBLIC / "briefs.json"
+    if not path.is_file():
+        return
+    data = _load_public_json(path)
+    items = [item for item in (data.get("items") or []) if isinstance(item, dict)]
+    picks = [
+        item
+        for day in (picks_doc.get("days") or [])
+        if isinstance(day, dict)
+        for item in (day.get("items") or [])
+        if isinstance(item, dict)
+    ]
+    kept = without_promoted_briefs(items, picks)
+    if [item.get("id") for item in kept] == [item.get("id") for item in items]:
+        return
+    data["items"] = kept
+    data["updated"] = datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间")
+    write_stable(path, json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def build_today3(picks_doc: dict) -> str:
+    chosen = [
+        item
+        for day in (picks_doc.get("days") or [])
+        if isinstance(day, dict)
+        for item in (day.get("items") or [])
+        if isinstance(item, dict)
+    ]
     today = datetime.now(TZ).strftime("%Y-%m-%d")
     if chosen:
         today = max(str(it.get("date") or "") for it in chosen)
@@ -841,10 +1114,12 @@ def main():
     write_stable((PUBLIC / "tools-radar.json"),
         json.dumps(radar, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    picks_doc = build_picks(all_items)
     write_stable((PUBLIC / "picks.json"),
-        json.dumps(build_picks(all_items), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(picks_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    write_stable((PUBLIC / "today3.txt"), build_today3(all_items), encoding="utf-8")
+    drop_promoted_briefs(picks_doc)
+    write_stable((PUBLIC / "today3.txt"), build_today3(picks_doc), encoding="utf-8")
     sync_practice_inbox()
     sync_atlas()
     posts = build_blog()

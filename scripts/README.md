@@ -5,7 +5,7 @@
 | `card_times.py` | `published_at` / `ingested_at`（ISO-8601 UTC）。首次写入才盖 `ingested_at`；`published_at` 只从信源时间来，不猜 |
 | `migrate_cards.py` | Legacy cards → schema_version 2 (idempotent). Stamps ingest time only when materializing a new v2 card |
 | `human_layer.py` | 人读层：去掉 `evt-` / `cand-`，主报骨架。规则见 `docs/AIHOT对接与表达规范-v0.md`。不改门闩 |
-| `generate_derived.py` | archive → items/feed/lens feeds/tools-radar/today3；若 `public/practice/inbox/` 有 JSON 则并入 `practice.json`；`data/atlas.source.json` 与 `data/demand.json` → `data/kb.json` 与 `topics/<slug>.html` |
+| `generate_derived.py` | archive → items/feed/lens feeds/tools-radar/today3/picks。硬门槛为空的上海日，用当天最强的一条工具或简讯顶上（只一条），并让这条简讯离开 `briefs.json`。若 `public/practice/inbox/` 有 JSON 则并入 `practice.json`；`data/atlas.source.json` 与 `data/demand.json` → `data/kb.json` 与 `topics/<slug>.html`。班次在 `derive_briefs.py` 之后调用它 |
 | `suggest_atlas_topics.py` | 实操候选 → 主题建议。公开清单不写手册；`--apply` 只在 practice 卡 `verified=true` 且确认文件同意时改 `atlas.source.json` |
 | `refresh_demand.py` | 滚动图谱收藏/点赞到 `data/demand.json`。平滑比值与打分同一套先验。不改关注名单 |
 | `validate.py` | Schema + archive monotonic vs origin/main + feed count + pool-contract fixtures + 公开文本里的明显指令句 |

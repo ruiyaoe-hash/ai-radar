@@ -23,6 +23,10 @@
 
 `today3.txt` 是纯文本。`feed.xml` 和订阅分册是 RSS 2.0。这两类没有 JSON Schema。
 
+## 2026-10-26
+
+`picks.json` 的条目可以多两个机器字段：`fill_reason`（`empty_day`）和 `promoted_from`（`tool` 或 `brief`）。这份列表没有 schema_version，也不升任何版本：只增加可选字段，页面不展示这两个词。硬门槛仍是 P0、多源，或同一张卡上两个不同来源。某一上海日按硬门槛没有精选时，用当天最强的一条工具或简讯顶上，只一条，优先级不改成 P0。
+
 ## 2026-10-24
 
 `briefs.json` 增加可选字段 `why` 和 `summary` 的字数上限放到 240。`schema_version` 仍是 1：没有改名、改类型或删除字段。`why` 是「为什么值得看」，`affect` 是「对我有什么影响」。两条都是写给访客的中文，不写编辑流程。

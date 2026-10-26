@@ -1394,6 +1394,77 @@ def check_public_copy() -> None:
     print("OK public copy: finished Chinese, no scaffolding")
 
 
+def check_pick_fills() -> None:
+    """Empty Shanghai days get one tool or brief. The hard gate stays a hard gate."""
+    try:
+        from generate_derived import build_picks, load_all_archive_items
+        from lanes import qualifies_pick
+    except ImportError:
+        from scripts.generate_derived import build_picks, load_all_archive_items
+        from scripts.lanes import qualifies_pick
+
+    path = PUBLIC / "picks.json"
+    if not path.is_file():
+        fail("missing public/picks.json (run generate_derived.py)")
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    expected = build_picks(load_all_archive_items())
+
+    def signature(payload: dict) -> str:
+        body = {
+            "per_day": payload.get("per_day"),
+            "blocked_urls": payload.get("blocked_urls"),
+            "blocked_ids": payload.get("blocked_ids"),
+            "days": payload.get("days"),
+        }
+        return json.dumps(body, ensure_ascii=False, sort_keys=True)
+
+    if signature(doc) != signature(expected):
+        fail("picks.json drifted from the empty-day fill; run generate_derived.py")
+    briefs = json.loads((PUBLIC / "briefs.json").read_text(encoding="utf-8"))
+    brief_ids = set()
+    brief_urls = set()
+    for item in briefs.get("items") or []:
+        if not isinstance(item, dict):
+            continue
+        if item.get("id"):
+            brief_ids.add(item["id"])
+        if item.get("candidate_id"):
+            brief_ids.add(item["candidate_id"])
+        url = str(item.get("url") or "").rstrip("/").lower()
+        if url:
+            brief_urls.add(url)
+    fills = 0
+    for day in doc.get("days") or []:
+        items = [item for item in (day.get("items") or []) if isinstance(item, dict)]
+        filled = [item for item in items if item.get("fill_reason") or item.get("promoted_from")]
+        if not filled:
+            for item in items:
+                if not qualifies_pick(item):
+                    fail(f"picks {day.get('date')} {item.get('id')} is neither a hard pick nor an empty-day fill")
+            continue
+        fills += 1
+        if len(filled) != 1 or len(items) != 1:
+            fail(f"picks {day.get('date')} must contain exactly one empty-day fill and no second card")
+        fill = filled[0]
+        if fill.get("fill_reason") != "empty_day" or fill.get("promoted_from") not in {"tool", "brief"}:
+            fail(f"picks {fill.get('id')} provenance must be empty_day from tool or brief")
+        if fill.get("priority") == "P0" or qualifies_pick(fill):
+            fail(f"picks {fill.get('id')} fill lowered the P0 / multi-source gate")
+        prose = json.dumps(
+            {key: fill.get(key) for key in ("title", "summary", "objective", "so_what")},
+            ensure_ascii=False,
+        )
+        for token in ("fill_reason", "promoted_from", "empty_day"):
+            if token in prose:
+                fail(f"picks {fill.get('id')} visitor copy contains {token}")
+        if fill.get("promoted_from") != "brief":
+            continue
+        url = str(fill.get("url") or "").rstrip("/").lower()
+        if fill.get("id") in brief_ids or fill.get("candidate_id") in brief_ids or (url and url in brief_urls):
+            fail(f"briefs.json still carries the empty-day fill {fill.get('id')}")
+    print(f"OK picks fill: {fills} empty-day stand-in(s), hard gate unchanged")
+
+
 def check_briefs() -> None:
     """L2 briefs stay factual: schema, safe URLs, no raw post keys, no instruction text."""
     try:
@@ -1623,6 +1694,7 @@ def main() -> None:
     check_blog()
     check_topic_suggestions()
     check_briefs()
+    check_pick_fills()
     check_public_copy()
     check_pool_workflows()
     check_pool_trace()
