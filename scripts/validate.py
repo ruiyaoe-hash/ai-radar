@@ -379,6 +379,10 @@ def check_practice() -> None:
     leaked = [it.get("id") for it in live.get("items") or [] if it.get("sample") or it.get("id") in sample_ids]
     if leaked:
         fail(f"practice.json must not publish sample cards: {leaked}")
+    try:
+        from project_public_lanes import casual_status_title
+    except ImportError:
+        from scripts.project_public_lanes import casual_status_title
     inbox = PUBLIC / "practice" / "inbox"
     if inbox.is_dir():
         for path in sorted(inbox.glob("*.json")):
@@ -391,6 +395,9 @@ def check_practice() -> None:
             if errors:
                 first = errors[0]
                 fail(f"practice/inbox/{path.name}: {first.message}")
+            for it in items:
+                if isinstance(it, dict) and casual_status_title(str(it.get("title") or "")):
+                    fail(f"practice/inbox/{path.name}: title is follower status talk, not a visitor how-to")
     live_items = [it for it in live.get("items") or [] if isinstance(it, dict)]
     note = str(live.get("note") or "")
     if "能照着做的步骤" not in note or "没有写清步骤" not in note:
@@ -420,6 +427,8 @@ def check_practice() -> None:
             fail(f"{it.get('id')}: live practice card needs caution")
         if not str(it.get("takeaway") or "").strip():
             fail(f"{it.get('id')}: live practice card needs takeaway")
+        if casual_status_title(str(it.get("title") or "")):
+            fail(f"{it.get('id')}: practice title is follower status talk, not a visitor how-to")
     learner = ("difficulty", "prerequisites", "estimated_time", "verified")
     if not any(all(key in it and it.get(key) not in (None, "", []) for key in learner) for it in live_items):
         fail("need at least one practice card with difficulty, prerequisites, estimated_time, verified")

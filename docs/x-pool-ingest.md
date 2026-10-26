@@ -157,7 +157,7 @@ python3 scripts/score_pool.py --pool-dir ../ai-radar-pool --as-of 2026-10-14T12:
 
 `--write-review` 把中高分和实操写进私有池 `review/YYYY-MM-DD.md`。低分留在池里，`drop_reason=low_score`。没有 LLM 密钥时这一步只跑规则分。
 
-定时班次接着跑 `scripts/project_public_lanes.py --pool-dir …`。过了步骤门和收藏门的实操写入 `public/practice/inbox/`，分析行写入 `public/data/watch.json`，然后 `generate_derived.py` 并入页面。标题为空时用正文第一句做临时标题。步骤门认编号和「首先 / 然后」，也认连续写成的中文操作说明：能拆出至少两个具体动作即可。短回复、纯观点和广告过不了。写到卡片上的是拆开的步骤，不是整段原文。没过门的不写公开卡。`verified` 不由脚本改成 true。
+定时班次接着跑 `scripts/project_public_lanes.py --pool-dir …`。过了步骤门和收藏门的实操写入 `public/practice/inbox/`，分析行写入 `public/data/watch.json`，然后 `generate_derived.py` 并入页面。标题为空时用正文第一句做临时标题。状态句会改写成做法标题，不因标题闲聊丢掉还能照做的步骤。步骤门认编号和「首先 / 然后」，也认连续写成的中文操作说明：能拆出至少两个具体动作即可。短回复、纯观点和广告过不了。写到卡片上的是拆开的步骤，不是整段原文。没过门的不写公开卡。`verified` 不由脚本改成 true。
 
 自检不访问网络，只用 `testdata/x-fetch/sample.json` 里的虚构句子：
 
