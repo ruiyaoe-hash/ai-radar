@@ -15,10 +15,10 @@
 | `score_pool.py` | After gates: v1 rules score (production band), shadow v2, `low_score` trace. Forced P0 stays in review. No network LLM. Optional `review/YYYY-MM-DD.md` and `review/p0-YYYY-MM-DD.json` |
 | `score_pool_v2.py` | Experimental multi-axis score. Rules fallback is mandatory. Called from `score_pool.py` |
 | `force_p0.py` | Forced P0 matcher (frontier launch, runtime vuln with an upgrade, same-day a_tier pair). Does not publish |
-| `card_copy.py` | Card wording next to the score: why watch, evidence label, suggested action, high-priority review flag. No raw scores. Auto briefs only get the official-source sentence |
+| `card_copy.py` | Pool-side wording next to the score. No raw scores. Public briefs do not attach this object |
 | `backtest_score_ab.py` | Compare v1 and v2. Chat pack is the labeling path (A or B per item). CSV remains for batch export |
-| `derive_briefs.py` | `auto_brief` rows → `public/briefs.json`. Strips raw posts, checks instruction text, skips archive URLs and practice |
-| `project_public_lanes.py` | Shift step after scoring. Practice rows that clear the step gate and `score.bookmark_prior` → `public/practice/inbox/`. The step gate accepts numbered lines, 首先/然后 markers, and continuous Chinese how-to prose once it splits into at least two concrete actions. Short replies, opinion, ads, and fluff still fail. Cards publish those extracted steps, not one unparsed block. Analysis rows → `public/data/watch.json`. Empty titles take the first usable sentence before Chinese editorial. Idempotent. Does not write briefs |
+| `derive_briefs.py` | `auto_brief` rows → `public/briefs.json`. At most 18 new and 18 kept per round. No fixed evidence/action tail. Strips raw posts, checks instruction text, skips archive URLs and practice |
+| `project_public_lanes.py` | Shift step after scoring. Practice rows that clear the step gate → `public/practice/inbox/`. Bookmarks only sort the batch. The step gate accepts numbered lines, 首先/然后 markers, and continuous Chinese how-to prose once it splits into at least two concrete actions. Short replies, opinion, ads, and fluff still fail. English steps still fail. Cards publish those extracted steps, not one unparsed block. Analysis rows → `public/data/watch.json`. Empty titles take the first usable sentence before Chinese editorial, including a machine-translation fallback. Idempotent. Does not write briefs |
 | `ingest_rss.py` | Batch-1 lab RSS / GitHub Releases → the same pending rows (`channel=rss`). Live fetch stays out of public CI |
 | `annotate_gates.py` | L0 gates + L2 `cluster_id`. Writes judgment fields back. Does not promote. Leaves `low_score` and `editor_skip` in place |
 | `generate_weekly_memo.py` | Draft weekly decision memo under `public/memos/` |

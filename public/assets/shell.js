@@ -31,7 +31,7 @@
   const primary = [
     { href: "today.html", id: "today", label: "信息精选", hint: "按天回看选出来的几条", pages: ["today"] },
     { href: "briefs.html", id: "briefs", label: "信息简讯", hint: "按天回看事实简讯", pages: ["briefs", "week"] },
-    { href: "tools-radar.html", id: "tools", label: "工具决策", hint: "值得采用、可以试用、需要评估、暂缓跟进", pages: ["tools"] },
+    { href: "tools-radar.html", id: "tools", label: "工具决策", hint: "推荐使用、值得关注", pages: ["tools"] },
     { href: "atlas.html", id: "atlas", label: "实战手册", hint: "把发现收成能照着做的方法", pages: ["atlas", "practice", "topic"] },
     { href: "observe.html", id: "observe", label: "专题观察", hint: "跟得更久的判断和随笔", pages: ["observe", "blog"] }
   ];

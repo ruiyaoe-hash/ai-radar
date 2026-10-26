@@ -65,13 +65,13 @@ def main():
         "",
         "## 1. 本周信号概览",
         f"- 卡片总数：{len(items)}",
-        f"- 今日必看：{len(p0_formal)}；传闻待核对：{len(p0_pending)}",
+        f"- 重磅：{len(p0_formal)}；尚待核实：{len(p0_pending)}",
         f"- 按 lens：{dict(by_lens)}",
         f"- 含 so_what（可证伪）：{len(with_so)}",
         "",
-        "## 2. 本周今日必看",
+        "## 2. 本周重磅",
         "",
-        "> 机器规则未改：这里只收 priority 为 P0、且不是传闻的卡。编号在文末附录。",
+        "> 这里只收已经核对、值得单独看的重点。内部编号在文末附录。",
         "",
     ]
     if not p0_formal:
@@ -85,13 +85,21 @@ def main():
     if not p0_pending:
         lines.append("- （无）")
     for it in p0_pending:
-        lines.append(f"- {it.get('title')} — 还缺一手，或还缺两个独立来源。先不要当成今日必看。")
+        lines.append(f"- {it.get('title')} — 还缺一手，或还缺两个独立来源。先不要当成重磅。")
 
     lines += ["", "## 4. 工具雷达候选"]
     if not tools:
         lines.append("- （无）")
     for it in tools:
-        ring = it.get("tool_radar") or "（未分环）"
+        raw_ring = str(it.get("tool_radar") or "")
+        ring = {
+            "采纳": "推荐使用",
+            "试用": "推荐使用",
+            "评估": "值得关注",
+            "暂缓": "值得关注",
+            "推荐使用": "推荐使用",
+            "值得关注": "值得关注",
+        }.get(raw_ring, "值得关注")
         lines.append(f"- [{ring}] {it.get('title')} — {it.get('try_url') or it.get('url')}")
 
     measured = [lag for it in items if (lag := measured_lag_hours(it)) is not None]

@@ -1,6 +1,6 @@
 # 快讯层（L2）设计说明
 
-状态：页面和导航已在站上。`public/briefs.json` 里现有条目是 `origin=archive_seed`（摘自已公开归档，不是新事实）。`scripts/derive_briefs.py` 会把打分自动档追加为 `origin=auto_brief`。窗口和条数上限里，自动档每轮最多 20 条；看板窗口仍另说。
+状态：页面和导航已在站上。`public/briefs.json` 里现有条目是 `origin=archive_seed`（摘自已公开归档，不是新事实）。`scripts/derive_briefs.py` 会把打分自动档追加为 `origin=auto_brief`。自动档每轮新发和保留都最多 18 条。看板窗口另说。访客口径见 [`content-gates.md`](./content-gates.md)。
 
 ## 要解决的问题
 
@@ -48,7 +48,7 @@
 - `id`：`brf-YYYYMMDD-slug`，和 L1 的 `evt-` 区分开，避免两套 id 混用
 - `lens`：沿用现有四个枚举，前端直接复用同一组过滤 chip
 - **没有 `so_what`、没有 `priority`、没有 `status`**。L2 不承载判断，所以不需要证伪条件，也不参与 P0 门闩
-- 自动档可以多一个可选 `card_copy`。证据固定是「官方原始信息」，动作固定是「持续观察」，`high_priority_review` 固定为 false。短句里没有数字。强制 P0 不投进快讯。五个任务页由另一份改动来排，这里不改 `briefs.html`
+- 自动档不再附带固定的证据尾巴或「持续观察」。页面只写发生了什么、为什么值得看、对我有什么影响，并给一个原文链接。优先审的行不进自动简讯。
 - `url` 走现有 `safeHref()` 白名单，渲染时用 DOM API 而不是拼 innerHTML
 
 ## 与 L1 的边界

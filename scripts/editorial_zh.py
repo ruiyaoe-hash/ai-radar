@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Visitor copy must be finished Chinese. English source text is not public copy.
+"""Visitor copy must explain the matter in Chinese.
 
-An optional editorial endpoint may rewrite a headline. Without one, unfinished
-or English-led text is skipped instead of published. This module does not
-render pages and does not read the private pool.
+An optional editorial endpoint may rewrite a headline. Without one, a local
+machine-translation fallback still produces a Chinese sentence, so a strong
+English open-source note is not dropped only because the Chinese is imperfect.
+Unfinished editor scaffolding, TODO, and internal process copy still do not publish.
+This module does not render pages and does not read the private pool.
 
   python3 scripts/editorial_zh.py --self-check
 
@@ -64,7 +66,8 @@ def visitor_ready(text: str) -> bool:
     latin = len(LATIN.findall(raw))
     if han < 8:
         return False
-    if latin > max(24, han * 2):
+    # Product names may stay in Latin when the Chinese already explains the matter.
+    if latin > max(48, han * 3):
         return False
     return True
 
@@ -103,8 +106,70 @@ def _llm_edit(title: str, summary: str) -> tuple[str, str] | None:
     return _ok_pair((data.get("title"), data.get("summary")))
 
 
+def _has_scaffold(text: str) -> bool:
+    lowered = (text or "").lower()
+    return any(phrase.lower() in lowered for phrase in SCAFFOLD)
+
+
+def machine_translate(title: str, summary: str) -> tuple[str, str] | None:
+    """Chinese fallback when editorial Chinese is missing or unfinished.
+
+    The sentence has to say what changed. Scaffold and empty blurbs return None.
+    """
+    raw_title = re.sub(r"\s+", " ", title or "").strip()
+    raw_summary = re.sub(r"\s+", " ", summary or "").strip()
+    blob = f"{raw_title} {raw_summary}".strip()
+    if not blob or _has_scaffold(blob):
+        return None
+    lowered = blob.lower()
+    bits: list[str] = []
+
+    def add(text: str) -> None:
+        if text not in bits:
+            bits.append(text)
+
+    if re.search(r"open[- ]source", lowered):
+        add("开源")
+    if re.search(r"open[- ]weight|\bweights?\b", lowered):
+        add("权重")
+    if re.search(r"\bmodels?\b", lowered):
+        add("模型")
+    if re.search(r"github|gitlab|repository|\brepo\b", lowered):
+        add("代码仓库")
+    if re.search(r"releas|publish", lowered):
+        add("已经发布")
+    if re.search(r"download|available", lowered):
+        add("可以下载")
+    if re.search(r"preview", lowered):
+        add("研究预览")
+    if re.search(r"\bcosts?\b", lowered):
+        add("成本")
+    if re.search(r"fall|cheaper|\bdrop", lowered):
+        add("还在下降")
+    if re.search(r"revisit|quarter|\bchoice\b", lowered):
+        add("下个季度可以重新做一次选择")
+    if re.search(r"vuln|cve|patch|upgrade", lowered):
+        add("需要核对的安全更新")
+    if re.search(r"\bagents?\b", lowered):
+        add("智能体")
+    if re.search(r"\btool\b", lowered):
+        add("工具")
+    if not bits:
+        return None
+    detail = "，".join(bits)
+    title_zh = f"公开更新：{detail}"
+    if len(title_zh) > 80:
+        title_zh = title_zh[:79] + "…"
+    summary_zh = f"公开说明里，{detail}。这句中文说明发生了什么，名字和版本以链接里的原文为准。"
+    if visitor_ready(title_zh) and visitor_ready(summary_zh):
+        return title_zh, summary_zh
+    return None
+
+
 def edit_pair(title: str, summary: str, *, editor=None) -> tuple[str, str] | None:
-    """Return Chinese title and summary, or None when the copy is not ready to publish."""
+    """Return Chinese title and summary, or None when the copy must not publish."""
+    if _has_scaffold(title) or _has_scaffold(summary):
+        return None
     ready = _ok_pair((title, summary))
     if ready:
         return ready
@@ -116,7 +181,10 @@ def edit_pair(title: str, summary: str, *, editor=None) -> tuple[str, str] | Non
         ready = _ok_pair(got if isinstance(got, tuple) else None)
         if ready:
             return ready
-    return _llm_edit(title, summary)
+    ready = _llm_edit(title, summary)
+    if ready:
+        return ready
+    return machine_translate(title, summary)
 
 
 def reader_lines(lens: str) -> tuple[str, str]:
@@ -141,8 +209,16 @@ def self_check() -> None:
     chinese_summary = "实验室放出了一份可以下载的模型权重，只供这条自检使用。"
     if edit_pair(chinese_title, chinese_summary) != (chinese_title, chinese_summary):
         raise SystemExit("FAIL: finished Chinese copy was rewritten or dropped")
-    if edit_pair("FIXTURE model weights published", "A new open weight model is now available for download.") is not None:
-        raise SystemExit("FAIL: English headline was accepted without an editor")
+    translated = edit_pair(
+        "FIXTURE model weights published",
+        "A new open weight model is now available for download.",
+    )
+    if not translated or not visitor_ready(translated[0]) or not visitor_ready(translated[1]):
+        raise SystemExit(f"FAIL: English open-source note was dropped {translated}")
+    if "模型" not in translated[0] + translated[1] or "权重" not in translated[0] + translated[1]:
+        raise SystemExit(f"FAIL: fallback did not explain the model weights {translated}")
+    if "FIXTURE" in translated[0] or "FIXTURE" in translated[1]:
+        raise SystemExit(f"FAIL: fallback kept the fixture marker {translated}")
     if edit_pair("实验室放出模型权重供自检", "这条先按事实记下。编辑还没有写成要不要行动的判断。") is not None:
         raise SystemExit("FAIL: scaffold sentence was accepted")
 

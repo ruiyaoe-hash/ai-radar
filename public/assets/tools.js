@@ -42,12 +42,20 @@
     return bits.length ? '<p class="mean">' + bits.join(" · ") + "</p>" : "";
   }
 
+  function visitorStance(raw) {
+    var text = String(raw || "");
+    if (text === "推荐使用" || text === "采纳" || text === "试用" || text === "值得采用" || text === "可以试用") return "推荐使用";
+    if (text === "值得关注" || text === "评估" || text === "暂缓" || text === "需要评估" || text === "暂缓跟进") return "值得关注";
+    return text ? "值得关注" : "";
+  }
+
   function renderTool(tool, practices) {
     var href = Radar.safeHref(tool.try_url || tool.url || "");
     var title = href
       ? '<a href="' + Radar.esc(href) + '" target="_blank" rel="noopener">' + Radar.esc(tool.title || "") + "</a>"
       : Radar.esc(tool.title || "");
-    var stance = tool.stance ? '<span class="tag">' + Radar.esc(tool.stance) + "</span>" : "";
+    var stanceLabel = visitorStance(tool.stance);
+    var stance = stanceLabel ? '<span class="tag">' + Radar.esc(stanceLabel) + "</span>" : "";
     return '<article class="card tool-stream" id="' + Radar.esc(tool.id || "") + '">' +
       '<div class="meta">' + stance + (tool.date ? "<span>" + Radar.esc(tool.date) + "</span>" : "") + "</div>" +
       "<h3>" + title + "</h3>" +
@@ -67,7 +75,7 @@
       var practices = (pair[1] && pair[1].items) || [];
       var items = Array.isArray(data.stream) ? data.stream.slice() : [];
       if (!items.length) {
-        ["采纳", "试用", "评估", "暂缓"].forEach(function (key) {
+        ["推荐使用", "值得关注", "采纳", "试用", "评估", "暂缓"].forEach(function (key) {
           ((data.rings || {})[key] || []).forEach(function (item) { items.push(item); });
         });
       }

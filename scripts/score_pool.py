@@ -447,10 +447,13 @@ def counts_spread(row: dict) -> bool:
 
 
 def counts_independent(row: dict) -> bool:
-    """Independent witnesses. Reprint drops and quality drops do not count."""
+    """Independent witnesses. Reprint drops and folded no-progress rows do not count."""
     if not counts_spread(row):
         return False
     if row.get("status_in_pool") == "dropped" and row.get("drop_reason") in REPRINT_DROP_REASONS:
+        return False
+    notes = str(row.get("notes") or "")
+    if row.get("status_in_pool") == "deferred" and "no_new_info" in notes:
         return False
     return True
 

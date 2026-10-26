@@ -62,8 +62,8 @@
           </article>
           <article class="link-row">
             <div>
-              <strong>可试用工具</strong>
-              <span>按你现在该怎么对待来分：值得采用、可以试用、需要评估、暂缓跟进。文件里这四档写成采纳、试用、评估、暂缓。字段说明见 <a href="https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json">tools-radar.schema.json</a>。</span>
+              <strong>工具决策</strong>
+              <span>按你现在该怎么对待来分：推荐使用、值得关注。旧的四档仍能对上这两个说法。字段说明见 <a href="https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json">tools-radar.schema.json</a>。</span>
               <code class="endpoint">https://ruiyaoe-hash.github.io/ai-radar/tools-radar.json</code>
             </div>
             <a href="https://ruiyaoe-hash.github.io/ai-radar/tools-radar.json">tools-radar.json</a>
@@ -107,7 +107,7 @@
         <ul>
           <li>近期信号，以及按日归档里的某一天，现在是第 2 版。博主实操和长期判断是第 1 版。实战图谱 data/kb.json 也是第 1 版。文件里的 schema_version 就是这个数字。</li>
           <li>只有让原来的读取方式失效的改动，才把数字加 1。这包括改字段名、改类型、删掉字段，以及把可选值收紧。只多一个可以不填的字段，数字不变。你可以按现在这些字段来读。</li>
-          <li>可试用工具和日期索引没有这个数字。形状要变，会先写进变更记录。信息精选的纯文本是最新一天，全部订阅是 RSS，这两份也不用找 schema_version。</li>
+          <li>工具决策和日期索引没有这个数字。形状要变，会先写进变更记录。信息精选的纯文本是最新一天，全部订阅是 RSS，这两份也不用找 schema_version。</li>
           <li>标成不再使用的字段，至少再留 90 天，这期间数字也不变。真要删掉，会先把数字加 1。</li>
           <li>变更记录：<a href="https://ruiyaoe-hash.github.io/ai-radar/schemas/CHANGELOG.md">schemas/CHANGELOG.md</a>。</li>
         </ul>

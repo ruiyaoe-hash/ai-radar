@@ -43,7 +43,7 @@ _LEAK = re.compile(r"value\s*=|score|confidence|snippet|band_reason", re.I)
 
 
 def public_auto_copy() -> dict:
-    """The only copy an auto brief may carry. Official flash, not a tool decision."""
+    """Editor-side flash wording. Public briefs do not attach this object."""
     return {
         "watch_reason": OFFICIAL_REASON,
         "evidence_label": "官方原始信息",

@@ -5,8 +5,8 @@ L1 archive cards stay on scripts/generate_derived.py. This script is the only
 L2 writer. A URL already on an archive card is not repeated as a brief.
 Practice lanes stay on the human review list (Magpie: verified stays manual).
 
-Public fields are title, summary, url, source, lens, and a fixed card_copy
-for the auto band (official source, keep watching, not a review flag).
+Public fields are title, summary, why, affect, url, source, and lens.
+Auto briefs do not carry a fixed evidence or action tail.
 Raw post keys are stripped. Forced P0 is not projected.
 The summary is the first sentence, capped at 100 characters, not the full post.
 Instruction-shaped text is dropped instead of published.
@@ -43,7 +43,7 @@ if __package__ in {None, ""}:
         normalize_url,
         parse_utc,
     )
-    from card_copy import public_auto_copy, refuses_auto_publish
+    from card_copy import refuses_auto_publish
     from editorial_zh import edit_pair, reader_lines
     from prompt_guard import find_instruction_override, strip_raw_post_fields
     from score_pool import is_official_row, is_practice_row
@@ -60,7 +60,7 @@ else:
         normalize_url,
         parse_utc,
     )
-    from .card_copy import public_auto_copy, refuses_auto_publish
+    from .card_copy import refuses_auto_publish
     from .editorial_zh import edit_pair, reader_lines
     from .prompt_guard import find_instruction_override, strip_raw_post_fields
     from .score_pool import is_official_row, is_practice_row
@@ -71,8 +71,9 @@ PUBLIC = ROOT / "public"
 PUBLIC_BRIEFS = PUBLIC / "briefs.json"
 ARCHIVE = PUBLIC / "archive"
 LENSES = ("工具", "赛道", "模式", "时机")
-MAX_AUTO = 20
-MAX_KEPT_AUTO = 60
+# One publish round keeps the strongest briefs, not a long tail.
+MAX_AUTO = 18
+MAX_KEPT_AUTO = 18
 RETAIN_DAYS = 7
 SUMMARY_CHARS = 100
 TITLE_CHARS = 80
@@ -288,7 +289,6 @@ def project_brief(row: dict, options) -> dict | None:
         "lens": lens_of(" ".join((title, summary, url))),
         "origin": "auto_brief",
         "candidate_id": row["id"],
-        "card_copy": public_auto_copy(),
     }
     if item["lens"] not in LENSES:
         return None
@@ -296,9 +296,6 @@ def project_brief(row: dict, options) -> dict | None:
     for key in ("title", "summary", "source", "url"):
         if find_instruction_override(str(cleaned.get(key) or "")):
             return None
-    reason = str((cleaned.get("card_copy") or {}).get("watch_reason") or "")
-    if find_instruction_override(reason):
-        return None
     return cleaned
 
 
@@ -647,14 +644,10 @@ def self_check() -> None:
     auto = document["items"][1]
     if auto.get("origin") != "auto_brief" or auto.get("candidate_id") != clean["id"]:
         raise SystemExit(f"FAIL: auto brief shape {auto}")
-    auto_copy = auto.get("card_copy") or {}
-    if (
-        auto_copy.get("evidence_label") != "官方原始信息"
-        or auto_copy.get("suggested_action") != "持续观察"
-        or auto_copy.get("high_priority_review") is not False
-        or any(ch.isdigit() for ch in str(auto_copy.get("watch_reason") or ""))
-    ):
-        raise SystemExit(f"FAIL: auto brief copy {auto_copy}")
+    if auto.get("card_copy"):
+        raise SystemExit(f"FAIL: auto brief still carries a fixed tail {auto.get('card_copy')}")
+    if "官方原始信息" in json.dumps(auto, ensure_ascii=False) or "持续观察" in json.dumps(auto, ensure_ascii=False):
+        raise SystemExit("FAIL: auto brief emitted a fixed evidence or action tail")
     for banned in ("score", "force_p0", "priority", "so_what", "snippet", "value"):
         if banned in auto:
             raise SystemExit(f"FAIL: auto brief carried {banned}")

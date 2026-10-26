@@ -8,7 +8,7 @@ already in the repo becomes one practice card under public/practice/inbox/:
     sequence words (首先 / 然后 / 接着 / 最后) still count. Continuous Chinese
     instruction prose counts too, once it splits into at least two concrete
     actions. Short replies, opinion, ads, and fluff do not.
-  - engagement: bookmarks at least config score.bookmark_prior
+  - bookmarks may sort a batch. They never reject a row by themselves.
 
 generate_derived.py then merges that inbox into practice.json. The same run
 writes a watch item for a long-horizon analysis that is not a practice row,
@@ -21,7 +21,8 @@ a qualifying row is not dropped only because title is blank. A casual
 status line (跟大家同步, 没想到搞好了, 不少朋友感兴趣) is not a visitor
 title: when the steps are still usable, the card takes a how-to line from
 those steps instead of publishing the status line or dropping the row.
-English or unfinished copy still does not publish. Nothing here writes briefs.
+English step lists still do not publish. A title can use the Chinese
+fallback in editorial_zh. Nothing here writes briefs.
 
   python3 scripts/project_public_lanes.py --self-check
   python3 scripts/project_public_lanes.py --pool-dir ../ai-radar-pool
@@ -432,18 +433,12 @@ def _publishable_title(raw_title: str, steps: list[str]) -> str:
     return ""
 
 
-def passes_engagement_gate(row: dict, bookmark_min: float) -> bool:
-    """Saves must clear score.bookmark_prior. Missing counts do not pass.
-
-    The prior is the engagement floor already in config.json. A liked reply
-    with no bookmarks stays in the pool.
-    """
+def engagement_weight(row: dict) -> float:
+    """Soft rank only. Missing or low favorites do not reject the row."""
     engagement = row.get("engagement")
     if not isinstance(engagement, dict):
-        return False
-    if "bookmarks" not in engagement and "likes" not in engagement:
-        return False
-    return _count(engagement.get("bookmarks")) + 1e-9 >= float(bookmark_min)
+        return 0.0
+    return _count(engagement.get("bookmarks"))
 
 
 def _raw_title(row: dict) -> str:
@@ -507,8 +502,8 @@ def project_practice(
         return None
     if row.get("status_in_pool") not in {None, "active", "deferred"}:
         return None
-    if not passes_engagement_gate(row, bookmark_min):
-        return None
+    # bookmark_min stays in the signature so shift callers do not change.
+    # It is not a veto. Ordering uses engagement_weight.
     day = _day(row)
     suffix = _suffix(row)
     if not day or not re.fullmatch(r"[a-f0-9]{12}", suffix):
@@ -739,13 +734,14 @@ def project_rows(
         card = project_practice(row, practice_handles, review_min, bookmark_min)
         if card and card["id"] not in seen_p:
             seen_p.add(card["id"])
-            practice.append(card)
+            practice.append((engagement_weight(row), card["id"], card))
             continue
         item = project_watch(row, practice_handles, review_min)
         if item and item["id"] not in seen_w:
             seen_w.add(item["id"])
             watch.append(item)
-    return practice, watch
+    practice.sort(key=lambda part: (-part[0], part[1]))
+    return [part[2] for part in practice], watch
 
 
 def _sample_row(**extra) -> dict:
@@ -900,12 +896,16 @@ def self_check() -> None:
         id="cand-20261024-abc123abc12b",
         engagement={"likes": 40, "bookmarks": 0, "captured_at": "2026-10-24T02:00:00Z"},
     )
-    if project_practice(quiet, handles, 0.34, floor) is not None:
-        raise SystemExit("FAIL: a reply with no bookmarks became a practice card")
+    quiet_card = project_practice(quiet, handles, 0.34, floor)
+    if not quiet_card or len(quiet_card["steps"]) < 2:
+        raise SystemExit("FAIL: a finished how-to was dropped for low favorites")
     unsaved = _sample_row(id="cand-20261024-abc123abc12c")
     unsaved.pop("engagement", None)
-    if project_practice(unsaved, handles, 0.34, floor) is not None:
-        raise SystemExit("FAIL: a row with no engagement counts became a practice card")
+    if project_practice(unsaved, handles, 0.34, floor) is None:
+        raise SystemExit("FAIL: a finished how-to was dropped because favorites were missing")
+    ranked, _unused_watch = project_rows([quiet, _sample_row()], handles, 0.34, floor)
+    if [item["id"] for item in ranked][0] != "prac-20261024-abc123abc123":
+        raise SystemExit(f"FAIL: bookmarks did not soft-rank { [item['id'] for item in ranked] }")
     short = _sample_row(
         id="cand-20261024-abc123abc12d",
         snippet="1. 点保存 2. 再点一次",
@@ -982,8 +982,8 @@ def self_check() -> None:
         snippet=prose_body,
         engagement={"likes": 40, "bookmarks": 2, "captured_at": "2026-10-24T02:00:00Z"},
     )
-    if project_practice(prose_quiet, handles, 0.34, floor) is not None:
-        raise SystemExit("FAIL: prose under the bookmark floor became a practice card")
+    if project_practice(prose_quiet, handles, 0.34, floor) is None:
+        raise SystemExit("FAIL: a finished prose how-to was dropped for low favorites")
     analysis = _sample_row(
         id="cand-20261024-abc123abc128",
         url="https://example.com/analysis-horizon",
@@ -1016,8 +1016,10 @@ def self_check() -> None:
         handles,
         0.34,
     )
-    if english_watch is not None:
-        raise SystemExit("FAIL: English analysis was published onto 专题观察")
+    if not english_watch or not visitor_ready(english_watch["title"]) or not visitor_ready(english_watch["summary"]):
+        raise SystemExit(f"FAIL: English analysis was dropped instead of translated {english_watch}")
+    if "成本" not in english_watch["title"] + english_watch["summary"]:
+        raise SystemExit(f"FAIL: translated watch did not explain the cost note {english_watch}")
     brief_practice, brief_watch = project_rows([analysis], handles, 0.34, floor)
     if brief_practice or not brief_watch:
         raise SystemExit("FAIL: analysis leaked into practice")

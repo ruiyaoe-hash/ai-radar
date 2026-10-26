@@ -1,17 +1,17 @@
-/* 页面只显示中文叫法，不显示原始分数。内部字段在这里读取：
-   priority=P0 且 rumor/pending → 尚待核实（仍然展示）
-   priority=P0 且已确认 → 优先看
-   priority=P1 → 可以关注
-   status confirmed / multi_source / rumor → 官方原始信息 / 多源确认 / 尚待核实
-   lens 工具/赛道/模式/时机 → 试用工具/行业动态/方法模式/时机窗口
+/* 页面只显示访客能读的中文，不显示原始分数，也不显示内部编号。
+   已确认的重点 → 重磅；还没核完 → 尚待核实；其余可看的 → 快讯
+   证据说法：原文可以核对 / 已经核对 / 尚待核实
+   lens 工具/赛道/模式/时机 → 新工具/行业动态/方法模式/时机窗口
+   工具档位只显示「推荐使用」或「值得关注」
    objective → 发生了什么；impact → 为什么值得看
    action / window / first_step → 对我有什么影响，并收成建议行动
    falsifier → 什么情况下当这判断作废
    objective 其余句子 + sources → 背景与出处
+   信息简讯不追加固定的证据尾巴或「持续观察」
 */
 (function (global) {
   const LENS_LABEL = {
-    "工具": "试用工具",
+    "工具": "新工具",
     "赛道": "行业动态",
     "模式": "方法模式",
     "时机": "时机窗口"
@@ -50,9 +50,9 @@
   }
 
   const BAND_LABEL = {
-    must: "优先看",
+    must: "重磅",
     market: "尚待核实",
-    watch: "可以关注",
+    watch: "快讯",
     other: ""
   };
   const BAND_CLASS = { must: "must", market: "rumor", watch: "watch", other: "" };
@@ -95,13 +95,13 @@
     if (!it) return { key: "official", label: "原文可以核对" };
     const pending = it.pending === true || it.pending === "pending" || it.pending === "rumor";
     if (it.status === "rumor" || pending) return { key: "pending", label: "尚待核实" };
-    if (it.status === "multi_source") return { key: "multi", label: "多源确认" };
+    if (it.status === "multi_source") return { key: "multi", label: "已经核对" };
     if (it.status === "confirmed") {
       const roles = (it.sources || []).map((s) => s && s.role).filter(Boolean);
       if (!roles.length || roles.indexOf("primary") !== -1) {
-        return { key: "official", label: "官方原始信息" };
+        return { key: "official", label: "原文可以核对" };
       }
-      return { key: "multi", label: "多源确认" };
+      return { key: "multi", label: "已经核对" };
     }
     return { key: "official", label: "原文可以核对" };
   }
@@ -113,17 +113,16 @@
     const ring = String((it && it.tool_radar) || "").trim();
     const first = String((it && it.first_step) || "").trim();
     const blob = action + ring;
-    if (ring === "暂缓" || /暂缓|先别/.test(blob)) {
-      return { bucket: "暂缓", line: windowText || "这周先保持现有做法，等后续消息再决定。" };
+    const recommend = ring === "推荐使用" || ring === "采纳" || ring === "试用" || ring === "值得采用" || ring === "可以试用";
+    const watch = ring === "值得关注" || ring === "评估" || ring === "暂缓" || ring === "需要评估" || ring === "暂缓跟进";
+    if (ring === "暂缓" || ring === "暂缓跟进" || /暂缓|先别/.test(blob)) {
+      return { bucket: "先放一放", line: windowText || "这周先保持现有做法，等后续消息再决定。" };
     }
-    if (ring === "采纳") {
-      return { bucket: "立即行动", line: first || windowText || "值得采用。用一次你自己的任务，确认它能不能留下。" };
+    if (recommend) {
+      return { bucket: "推荐使用", line: first || windowText || "用一次你自己的任务，确认它能不能留下。" };
     }
-    if (ring === "试用" || action === "试用" || /试用/.test(action)) {
-      return { bucket: "立即行动", line: first || windowText || "这周用一次真实任务试一下。" };
-    }
-    if (ring === "评估" || /评估/.test(action)) {
-      return { bucket: "持续观察", line: windowText || first || "先看成本和边界，再决定要不要试。" };
+    if (watch) {
+      return { bucket: "值得关注", line: windowText || first || "先看成本和边界，再决定要不要试。" };
     }
     if (action || windowText || first) {
       return { bucket: "持续观察", line: windowText || first || "这周不必改做法。" };
@@ -151,7 +150,7 @@
       happened,
       why: impact,
       affect,
-      bucket: advice.bucket || "持续观察",
+      bucket: advice.bucket || "值得关注",
       evidence: evidenceOf(it)
     };
   }
@@ -234,15 +233,13 @@
     const lens = LENS_LABEL[brief && brief.lens] || "";
     const link = externalAnchor(brief && brief.url, "打开原文");
     const source = brief && brief.source ? `<span>${esc(brief.source)}</span>` : "";
-    const fold = [source ? `<p class="src">${source}</p>` : "", link ? `<p>${link}</p>` : ""].join("");
+    const fold = source ? `<p class="src">${source}</p>` : "";
     const details = fold.trim()
       ? `<details><summary>背景与出处</summary><div class="fold">${fold}</div></details>`
       : "";
-    const evidence = (brief && brief.card_copy && brief.card_copy.evidence_label) || "官方原始信息";
-    const evidenceText = /。$/.test(evidence) ? evidence : evidence + "。";
     return `<article class="card" id="${esc((brief && brief.id) || "")}">
       <div class="meta">
-        <span class="tag">事实简讯</span>
+        <span class="tag">快讯</span>
         ${lens ? `<span>${esc(lens)}</span>` : ""}
         ${brief && brief.source ? `<span>·</span><span>${esc(brief.source)}</span>` : ""}
       </div>
@@ -250,8 +247,7 @@
       <p class="mean"><b>发生了什么：</b>${esc(summary)}</p>
       <p class="mean"><b>为什么值得看：</b>${esc(why)}</p>
       <p class="mean"><b>对我有什么影响：</b>${esc(affect)}</p>
-      <div class="act">建议行动：持续观察</div>
-      <p class="mean"><b>证据状态：</b>${esc(evidenceText)}${link || ""}</p>
+      ${link ? `<p>${link}</p>` : ""}
       ${details}
     </article>`;
   }

@@ -1,83 +1,82 @@
 {
   "updated": "2026-10-26 16:20 北京时间",
   "rings": {
-    "采纳": [],
-    "试用": [
+    "推荐使用": [
       {
-        "id": "evt-20261023-openai-decisions-api-ga",
-        "title": "OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口",
-        "date": "2026-10-23",
-        "time": "10-23 21:00",
-        "try_url": "https://developers.openai.com/api/docs/guides/decisions",
-        "access": "正式可用。文档与计费见 OpenAI 开发者站 Decisions 指南与定价页。走 API 密钥调用 POST /v1/decisions，模型 gpt-6-luna。Playground 可先用自有文本或图片试跑。",
-        "integration": "独立 Decisions 端点，不是完整聊天回复。可嵌进应用编排、智能体路由，以及 GPT-Live 会话触发器。美国与欧盟驻留、符合条件的零数据保留见官方数据控制说明。",
-        "first_step": "挑一条产品里反复出现、答案集合有限的判断（分类、路由或是否继续）。在 Decisions Playground 或按开发者指南发第一条请求，用同一批真实样例对照现在的 Responses/聊天路径看延迟和费用。",
-        "summary": "OpenAI 在 2026 年 10 月 22 日宣布 Decisions API（决策接口）结束公开测试、正式可用。它跑在 GPT-6 Luna 上，专门回答有边界的问题：给应用和智能体做分类、路由或下一步动作选择。官方写它可比同一模型走 Responses API 快约 10 倍，适合热路径上的近实时判断。",
-        "audience_value": "如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。",
+        "id": "evt-20261026-geoinflow",
+        "title": "GEOInflow：自托管看清哪些 AI 爬虫在抓你的站",
+        "date": "2026-10-26",
+        "time": "10-26 16:20",
+        "try_url": "https://github.com/yaojingang/GEOInflow",
+        "access": "MIT 开源；用 Docker Compose 按仓库 scripts/liekan-deploy.sh 一键部署。需本机可达的镜像源与基本运维能力。",
+        "integration": "部署后按文档接入浏览器埋点与/或服务器/CDN 日志，可选导入 sitemap/CSV/JSON 内容清单，对比「该被抓」与「实际被抓」。",
+        "first_step": "若你这周要弄清站里的 AI 爬虫与 GEO 引荐：克隆仓库，跑部署脚本，改掉默认管理员密码，先接一个站点的访问日志或示例数据看看板。",
+        "summary": "猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。",
+        "audience_value": "如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。",
         "alternatives": [
-          "继续用 Responses API / 聊天模型做同题（更慢、通常更贵）",
-          "自建或第三方 decision / System-1 小模型（需自行对齐延迟与准确率）"
-        ],
-        "status": "confirmed",
-        "priority": "P0",
-        "stance": "可以试用"
-      },
-      {
-        "id": "evt-20261023-anthropic-claude-duet",
-        "title": "Anthropic 放出 Claude Duet 研究预览：会主动找你的助理",
-        "date": "2026-10-23",
-        "time": "10-23 21:00",
-        "try_url": "https://claude.com/product/claude-duet",
-        "access": "研究预览，需候补。美国区 Claude Pro 与 Max 可以排队。用量计入现有套餐，预览资格不加收。Team 与 Enterprise 的名额要等后续开放。客户端有 iOS、Android，电脑上在 claude.ai。",
-        "integration": "沿用 Claude 账号里的记忆、技能和已连接应用。官方称可接六千多个 connector（连接器）和 plugin（插件），底层是 Opus 5.5。",
-        "first_step": "打开产品页加入候补（美国区 Claude Pro 或 Max）。排队时写好同一批收件箱和跟进任务，开放后对照你现在的助手复测。其他地区先保存产品页和这批任务，等区域扩大后用同一套任务测一次。",
-        "summary": "Anthropic 开放 Claude Duet 研究预览（research preview，给一部分用户提前试用）。这是会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并可接入六千多个 connector（连接器）和 plugin（插件）。",
-        "audience_value": "Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。",
-        "alternatives": [
-          "现有的 Claude 对话（打开聊天后才开始干活）",
-          "把同一批收件箱任务留给现在的助手跟进"
-        ],
-        "status": "confirmed",
-        "priority": "P0",
-        "stance": "可以试用"
-      },
-      {
-        "id": "evt-20261023-minimax-design-mcp",
-        "title": "MiniMax Design MCP 上线：在 Codex 等智能体里直接做设计并回同步画布",
-        "date": "2026-10-23",
-        "time": "10-23 14:29",
-        "try_url": "https://x.com/Hailuo_AI/status/2113518150440595501",
-        "access": "需 MiniMax Design 与支持 MCP 的智能体（官方示例含 Codex）。按官方线程更新客户端并连接 External Agent。",
-        "integration": "经 MCP 把 Design 能力挂进智能体会话；产物回写 Design Canvas。",
-        "first_step": "更新 MiniMax Design 到最新版，在头像旁连接 External Agent，用一条真实设计任务在 Codex（或其他已接 MCP 的客户端）里跑通并核对画布是否自动同步。",
-        "summary": "MiniMax（海螺）官方账号宣布 Design MCP（模型上下文协议连接器）上线：可在 Codex 及其他支持 MCP 的智能体里直接调用 Design 能力，产物会自动同步回 Design Canvas（设计画布），减少在智能体与设计工具之间来回拷贝。",
-        "audience_value": "如果你已经用 Codex 或其它 MCP 智能体做稿，又常在设计画布和对话之间来回贴，这周用一条真实设计任务试 MiniMax Design MCP，看同步是否省事。",
-        "alternatives": [
-          "继续在独立设计工具里出图，再手工贴回智能体会话",
-          "其他厂商的设计类 MCP / 插件"
+          "继续只用传统统计（不区分 AI 爬虫）",
+          "自写日志脚本按 User-Agent 粗分，不做引荐与转化闭环"
         ],
         "status": "confirmed",
         "priority": "P1",
-        "stance": "可以试用"
+        "stance": "推荐使用"
       },
       {
-        "id": "evt-20261023-perplexity-decider-mac",
-        "title": "Perplexity Decider for Mac：本机跑开权决策小模型，无需 API 密钥",
-        "date": "2026-10-23",
-        "time": "10-23 06:42",
-        "try_url": "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
-        "access": "Mac 本机应用 Decider for Mac；文档写明可本机跑模型并在本地环回地址调用，无需云端 API 密钥。",
-        "integration": "菜单栏应用 + 本机 Decisions 风格接口。可与云端 Decisions API 做同题对照。",
-        "first_step": "打开官方 Decider for Mac 文档安装应用，用同一批「有限答案」样例在本机跑一遍，再对照你现有的云端决策或聊天路径。",
-        "summary": "Perplexity 开发者账号宣布 Decider for Mac 可用：在 Mac 菜单栏本机运行开权（open-weight）决策模型 pplx-decider-flash，对文本或图片提问并返回概率，数据不离开本机；本地也可在 127.0.0.1 调用 Decisions API 形态接口，且不需要云端 API 密钥。",
-        "audience_value": "如果你这周在评估「有限答案」决策路径，又想先看本机、无密钥方案，用同一批样例跑 Decider for Mac，再和云端 Decisions 或现有聊天路径比延迟、准确率和隐私边界。",
+        "id": "evt-20261026-digital-human-koubo",
+        "title": "数字人口播技能开源：一张照片做说话数字人短视频",
+        "date": "2026-10-26",
+        "time": "10-26 16:20",
+        "try_url": "https://github.com/andyhuo520/digital-human-koubo",
+        "access": "MIT 开源技能，GitHub 可直接阅读与安装到支持 Skill 的编程助手；生成链路可能依赖 Renoise 等外部服务与相应费用。",
+        "integration": "在 Claude Code / Codex / OpenClaw / WorkBuddy 等环境按仓库说明安装技能后，用一张人像照片发起口播生成，再按提供的剪辑风格与包装组件出片。",
+        "first_step": "若你这周要试一条数字人口播：打开仓库，按 README 把技能装进常用助手，准备一张授权清晰的人像与一段口播文案，先出一版样片再决定是否规模化。",
+        "summary": "开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。",
+        "audience_value": "如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。",
         "alternatives": [
-          "OpenAI Decisions API（云端、正式可用）",
-          "继续用通用聊天模型做同题分类/路由"
+          "继续用手剪真人或传统数字人 SaaS",
+          "只用通用视频模型、不走可复用 Skill"
         ],
         "status": "confirmed",
         "priority": "P1",
-        "stance": "可以试用"
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261026-baocut-skill",
+        "title": "BaoCut 技能：用智能体做双语排版与史料感视频",
+        "date": "2026-10-26",
+        "time": "10-26 08:00",
+        "try_url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+        "access": "开源技能可在 GitHub 阅读与安装；需配合 BaoCut 应用做转录与时间线。应用本身按作者发布渠道获取。",
+        "integration": "在已装 BaoCut 的环境里启用 baocut 技能，用 Cursor、Claude Code 等助手按技能说明发起「版面视频」任务；也可套用作者给出的历史演讲提示词模板。",
+        "first_step": "若你这周要做一条带双语字幕、章节和史料配图的演讲视频：打开技能说明，装好 BaoCut，用作者示例提示词先出一版审片链接，确认后再导出。",
+        "summary": "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
+        "audience_value": "如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。",
+        "alternatives": [
+          "继续用手剪 + 字幕工具分步做",
+          "只用生成视频模型出片、不做可编辑时间线"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261025-impeccable-computer-skill",
+        "title": "Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能",
+        "date": "2026-10-25",
+        "time": "10-25 08:00",
+        "try_url": "https://github.com/pbakaus/impeccable",
+        "access": "开源技能可免费安装。Computer 技能市场入口需 Perplexity 含 Computer 的付费套餐；活动期内用该技能的任务有每用户约 5000 credits，截止约 2026-10-31。",
+        "integration": "可作 Computer 内的 /impeccable 技能，也可装进 Cursor、Claude Code、Codex 等本地编程助手，配合 PRODUCT.md / DESIGN.md 与审计命令使用。",
+        "first_step": "若你这周要改一屏「看起来像模板」的前端：在项目根目录执行 npx impeccable install，在助手里跑 /impeccable init，再对那一屏跑 critique 或 polish；已有 Computer 的可在技能市场启用并消耗活动额度对照一次。",
+        "summary": "Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。",
+        "audience_value": "如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。",
+        "alternatives": [
+          "继续用现有前端设计技能或手写设计规范",
+          "只用视觉模型口头挑问题，不跑确定性检测规则"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
       },
       {
         "id": "evt-20261024-kimi-k3-1-pro",
@@ -97,7 +96,7 @@
         ],
         "status": "confirmed",
         "priority": "P0",
-        "stance": "可以试用"
+        "stance": "推荐使用"
       },
       {
         "id": "evt-20261024-deepseek-v41-flash-1017",
@@ -117,105 +116,86 @@
         ],
         "status": "confirmed",
         "priority": "P1",
-        "stance": "可以试用"
+        "stance": "推荐使用"
       },
       {
-        "id": "evt-20261025-impeccable-computer-skill",
-        "title": "Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能",
-        "date": "2026-10-25",
-        "time": "10-25 08:00",
-        "try_url": "https://github.com/pbakaus/impeccable",
-        "access": "开源技能可免费安装。Computer 技能市场入口需 Perplexity 含 Computer 的付费套餐；活动期内用该技能的任务有每用户约 5000 credits，截止约 2026-10-31。",
-        "integration": "可作 Computer 内的 /impeccable 技能，也可装进 Cursor、Claude Code、Codex 等本地编程助手，配合 PRODUCT.md / DESIGN.md 与审计命令使用。",
-        "first_step": "若你这周要改一屏「看起来像模板」的前端：在项目根目录执行 npx impeccable install，在助手里跑 /impeccable init，再对那一屏跑 critique 或 polish；已有 Computer 的可在技能市场启用并消耗活动额度对照一次。",
-        "summary": "Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。",
-        "audience_value": "如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。",
-        "alternatives": [
-          "继续用现有前端设计技能或手写设计规范",
-          "只用视觉模型口头挑问题，不跑确定性检测规则"
-        ],
-        "status": "confirmed",
-        "priority": "P1",
-        "stance": "可以试用"
-      },
-      {
-        "id": "evt-20261026-baocut-skill",
-        "title": "BaoCut 技能：用智能体做双语排版与史料感视频",
-        "date": "2026-10-26",
-        "time": "10-26 08:00",
-        "try_url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
-        "access": "开源技能可在 GitHub 阅读与安装；需配合 BaoCut 应用做转录与时间线。应用本身按作者发布渠道获取。",
-        "integration": "在已装 BaoCut 的环境里启用 baocut 技能，用 Cursor、Claude Code 等助手按技能说明发起「版面视频」任务；也可套用作者给出的历史演讲提示词模板。",
-        "first_step": "若你这周要做一条带双语字幕、章节和史料配图的演讲视频：打开技能说明，装好 BaoCut，用作者示例提示词先出一版审片链接，确认后再导出。",
-        "summary": "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
-        "audience_value": "如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。",
-        "alternatives": [
-          "继续用手剪 + 字幕工具分步做",
-          "只用生成视频模型出片、不做可编辑时间线"
-        ],
-        "status": "confirmed",
-        "priority": "P1",
-        "stance": "可以试用"
-      },
-      {
-        "id": "evt-20261026-geoinflow",
-        "title": "GEOInflow：自托管看清哪些 AI 爬虫在抓你的站",
-        "date": "2026-10-26",
-        "time": "10-26 16:20",
-        "try_url": "https://github.com/yaojingang/GEOInflow",
-        "access": "MIT 开源；用 Docker Compose 按仓库 scripts/liekan-deploy.sh 一键部署。需本机可达的镜像源与基本运维能力。",
-        "integration": "部署后按文档接入浏览器埋点与/或服务器/CDN 日志，可选导入 sitemap/CSV/JSON 内容清单，对比「该被抓」与「实际被抓」。",
-        "first_step": "若你这周要弄清站里的 AI 爬虫与 GEO 引荐：克隆仓库，跑部署脚本，改掉默认管理员密码，先接一个站点的访问日志或示例数据看看板。",
-        "summary": "猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。",
-        "audience_value": "如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。",
-        "alternatives": [
-          "继续只用传统统计（不区分 AI 爬虫）",
-          "自写日志脚本按 User-Agent 粗分，不做引荐与转化闭环"
-        ],
-        "status": "confirmed",
-        "priority": "P1",
-        "stance": "可以试用"
-      },
-      {
-        "id": "evt-20261026-digital-human-koubo",
-        "title": "数字人口播技能开源：一张照片做说话数字人短视频",
-        "date": "2026-10-26",
-        "time": "10-26 16:20",
-        "try_url": "https://github.com/andyhuo520/digital-human-koubo",
-        "access": "MIT 开源技能，GitHub 可直接阅读与安装到支持 Skill 的编程助手；生成链路可能依赖 Renoise 等外部服务与相应费用。",
-        "integration": "在 Claude Code / Codex / OpenClaw / WorkBuddy 等环境按仓库说明安装技能后，用一张人像照片发起口播生成，再按提供的剪辑风格与包装组件出片。",
-        "first_step": "若你这周要试一条数字人口播：打开仓库，按 README 把技能装进常用助手，准备一张授权清晰的人像与一段口播文案，先出一版样片再决定是否规模化。",
-        "summary": "开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。",
-        "audience_value": "如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。",
-        "alternatives": [
-          "继续用手剪真人或传统数字人 SaaS",
-          "只用通用视频模型、不走可复用 Skill"
-        ],
-        "status": "confirmed",
-        "priority": "P1",
-        "stance": "可以试用"
-      }
-    ],
-    "评估": [
-      {
-        "id": "evt-20261023-claude-auto-mode-default",
-        "title": "Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式",
+        "id": "evt-20261023-openai-decisions-api-ga",
+        "title": "OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口",
         "date": "2026-10-23",
         "time": "10-23 21:00",
-        "try_url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
-        "access": "Pro、Max、Team：下周起多数 Claude 应用的新会话默认自动模式；已钉死其他默认的可能收到一次性提示。Enterprise 与 API/云托管通道暂仍自愿开启。客户端内可切换模式。",
-        "integration": "权限模式写在 Claude 应用与 Claude Code 设置里。管理员可用 managed settings 的 defaultMode 或 disableAutoMode。自动模式分类器按工具调用计少量额外 token；Pro/Max/Team 的 Claude Code 用户官方写明不再收这笔分类器费用。",
-        "first_step": "打开 Claude 网页、桌面或手机，看当前默认权限模式。若下周不想默认自动跑工具，现在切到手动并钉死；Team 管理员先核对 managed settings。",
-        "summary": "Anthropic 在 2026 年 10 月 22 日更新说明：从下周起，多数 Claude 应用（网页、桌面、手机）上，Pro、Max、Team 套餐的新会话将默认进入自动模式（auto mode）。不再逐步弹窗让你点同意，而是由自动检查放行安全动作、拦住高风险动作；可随时切回手动。企业版管理员会在其组织默认改成自动模式之前收到邮件。",
-        "audience_value": "如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。",
+        "try_url": "https://developers.openai.com/api/docs/guides/decisions",
+        "access": "正式可用。文档与计费见 OpenAI 开发者站 Decisions 指南与定价页。走 API 密钥调用 POST /v1/decisions，模型 gpt-6-luna。Playground 可先用自有文本或图片试跑。",
+        "integration": "独立 Decisions 端点，不是完整聊天回复。可嵌进应用编排、智能体路由，以及 GPT-Live 会话触发器。美国与欧盟驻留、符合条件的零数据保留见官方数据控制说明。",
+        "first_step": "挑一条产品里反复出现、答案集合有限的判断（分类、路由或是否继续）。在 Decisions Playground 或按开发者指南发第一条请求，用同一批真实样例对照现在的 Responses/聊天路径看延迟和费用。",
+        "summary": "OpenAI 在 2026 年 10 月 22 日宣布 Decisions API（决策接口）结束公开测试、正式可用。它跑在 GPT-6 Luna 上，专门回答有边界的问题：给应用和智能体做分类、路由或下一步动作选择。官方写它可比同一模型走 Responses API 快约 10 倍，适合热路径上的近实时判断。",
+        "audience_value": "如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。",
         "alternatives": [
-          "继续手动审批每一步",
-          "Enterprise / API 通道暂保持自愿开启，等管理员通知后再改"
+          "继续用 Responses API / 聊天模型做同题（更慢、通常更贵）",
+          "自建或第三方 decision / System-1 小模型（需自行对齐延迟与准确率）"
         ],
         "status": "confirmed",
         "priority": "P0",
-        "stance": "需要评估"
+        "stance": "推荐使用"
       },
+      {
+        "id": "evt-20261023-anthropic-claude-duet",
+        "title": "Anthropic 放出 Claude Duet 研究预览：会主动找你的助理",
+        "date": "2026-10-23",
+        "time": "10-23 21:00",
+        "try_url": "https://claude.com/product/claude-duet",
+        "access": "研究预览，需候补。美国区 Claude Pro 与 Max 可以排队。用量计入现有套餐，预览资格不加收。Team 与 Enterprise 的名额要等后续开放。客户端有 iOS、Android，电脑上在 claude.ai。",
+        "integration": "沿用 Claude 账号里的记忆、技能和已连接应用。官方称可接六千多个 connector（连接器）和 plugin（插件），底层是 Opus 5.5。",
+        "first_step": "打开产品页加入候补（美国区 Claude Pro 或 Max）。排队时写好同一批收件箱和跟进任务，开放后对照你现在的助手复测。其他地区先保存产品页和这批任务，等区域扩大后用同一套任务测一次。",
+        "summary": "Anthropic 开放 Claude Duet 研究预览（research preview，给一部分用户提前试用）。这是会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并可接入六千多个 connector（连接器）和 plugin（插件）。",
+        "audience_value": "Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。",
+        "alternatives": [
+          "现有的 Claude 对话（打开聊天后才开始干活）",
+          "把同一批收件箱任务留给现在的助手跟进"
+        ],
+        "status": "confirmed",
+        "priority": "P0",
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261023-minimax-design-mcp",
+        "title": "MiniMax Design MCP 上线：在 Codex 等智能体里直接做设计并回同步画布",
+        "date": "2026-10-23",
+        "time": "10-23 14:29",
+        "try_url": "https://x.com/Hailuo_AI/status/2113518150440595501",
+        "access": "需 MiniMax Design 与支持 MCP 的智能体（官方示例含 Codex）。按官方线程更新客户端并连接 External Agent。",
+        "integration": "经 MCP 把 Design 能力挂进智能体会话；产物回写 Design Canvas。",
+        "first_step": "更新 MiniMax Design 到最新版，在头像旁连接 External Agent，用一条真实设计任务在 Codex（或其他已接 MCP 的客户端）里跑通并核对画布是否自动同步。",
+        "summary": "MiniMax（海螺）官方账号宣布 Design MCP（模型上下文协议连接器）上线：可在 Codex 及其他支持 MCP 的智能体里直接调用 Design 能力，产物会自动同步回 Design Canvas（设计画布），减少在智能体与设计工具之间来回拷贝。",
+        "audience_value": "如果你已经用 Codex 或其它 MCP 智能体做稿，又常在设计画布和对话之间来回贴，这周用一条真实设计任务试 MiniMax Design MCP，看同步是否省事。",
+        "alternatives": [
+          "继续在独立设计工具里出图，再手工贴回智能体会话",
+          "其他厂商的设计类 MCP / 插件"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261023-perplexity-decider-mac",
+        "title": "Perplexity Decider for Mac：本机跑开权决策小模型，无需 API 密钥",
+        "date": "2026-10-23",
+        "time": "10-23 06:42",
+        "try_url": "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
+        "access": "Mac 本机应用 Decider for Mac；文档写明可本机跑模型并在本地环回地址调用，无需云端 API 密钥。",
+        "integration": "菜单栏应用 + 本机 Decisions 风格接口。可与云端 Decisions API 做同题对照。",
+        "first_step": "打开官方 Decider for Mac 文档安装应用，用同一批「有限答案」样例在本机跑一遍，再对照你现有的云端决策或聊天路径。",
+        "summary": "Perplexity 开发者账号宣布 Decider for Mac 可用：在 Mac 菜单栏本机运行开权（open-weight）决策模型 pplx-decider-flash，对文本或图片提问并返回概率，数据不离开本机；本地也可在 127.0.0.1 调用 Decisions API 形态接口，且不需要云端 API 密钥。",
+        "audience_value": "如果你这周在评估「有限答案」决策路径，又想先看本机、无密钥方案，用同一批样例跑 Decider for Mac，再和云端 Decisions 或现有聊天路径比延迟、准确率和隐私边界。",
+        "alternatives": [
+          "OpenAI Decisions API（云端、正式可用）",
+          "继续用通用聊天模型做同题分类/路由"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      }
+    ],
+    "值得关注": [
       {
         "id": "evt-20261024-tencent-hy-nomas",
         "title": "腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型",
@@ -234,9 +214,31 @@
         ],
         "status": "confirmed",
         "priority": "P1",
-        "stance": "需要评估"
+        "stance": "值得关注"
+      },
+      {
+        "id": "evt-20261023-claude-auto-mode-default",
+        "title": "Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式",
+        "date": "2026-10-23",
+        "time": "10-23 21:00",
+        "try_url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
+        "access": "Pro、Max、Team：下周起多数 Claude 应用的新会话默认自动模式；已钉死其他默认的可能收到一次性提示。Enterprise 与 API/云托管通道暂仍自愿开启。客户端内可切换模式。",
+        "integration": "权限模式写在 Claude 应用与 Claude Code 设置里。管理员可用 managed settings 的 defaultMode 或 disableAutoMode。自动模式分类器按工具调用计少量额外 token；Pro/Max/Team 的 Claude Code 用户官方写明不再收这笔分类器费用。",
+        "first_step": "打开 Claude 网页、桌面或手机，看当前默认权限模式。若下周不想默认自动跑工具，现在切到手动并钉死；Team 管理员先核对 managed settings。",
+        "summary": "Anthropic 在 2026 年 10 月 22 日更新说明：从下周起，多数 Claude 应用（网页、桌面、手机）上，Pro、Max、Team 套餐的新会话将默认进入自动模式（auto mode）。不再逐步弹窗让你点同意，而是由自动检查放行安全动作、拦住高风险动作；可随时切回手动。企业版管理员会在其组织默认改成自动模式之前收到邮件。",
+        "audience_value": "如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。",
+        "alternatives": [
+          "继续手动审批每一步",
+          "Enterprise / API 通道暂保持自愿开启，等管理员通知后再改"
+        ],
+        "status": "confirmed",
+        "priority": "P0",
+        "stance": "值得关注"
       }
     ],
+    "采纳": [],
+    "试用": [],
+    "评估": [],
     "暂缓": []
   },
   "stream": [
@@ -257,7 +259,7 @@
       ],
       "status": "confirmed",
       "priority": "P1",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261026-digital-human-koubo",
@@ -276,7 +278,7 @@
       ],
       "status": "confirmed",
       "priority": "P1",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261026-baocut-skill",
@@ -295,7 +297,7 @@
       ],
       "status": "confirmed",
       "priority": "P1",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261025-impeccable-computer-skill",
@@ -314,7 +316,7 @@
       ],
       "status": "confirmed",
       "priority": "P1",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261024-kimi-k3-1-pro",
@@ -334,7 +336,7 @@
       ],
       "status": "confirmed",
       "priority": "P0",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261024-deepseek-v41-flash-1017",
@@ -354,7 +356,7 @@
       ],
       "status": "confirmed",
       "priority": "P1",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261024-tencent-hy-nomas",
@@ -374,7 +376,7 @@
       ],
       "status": "confirmed",
       "priority": "P1",
-      "stance": "需要评估"
+      "stance": "值得关注"
     },
     {
       "id": "evt-20261023-openai-decisions-api-ga",
@@ -393,7 +395,7 @@
       ],
       "status": "confirmed",
       "priority": "P0",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261023-claude-auto-mode-default",
@@ -412,7 +414,7 @@
       ],
       "status": "confirmed",
       "priority": "P0",
-      "stance": "需要评估"
+      "stance": "值得关注"
     },
     {
       "id": "evt-20261023-anthropic-claude-duet",
@@ -431,7 +433,7 @@
       ],
       "status": "confirmed",
       "priority": "P0",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261023-minimax-design-mcp",
@@ -450,7 +452,7 @@
       ],
       "status": "confirmed",
       "priority": "P1",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     },
     {
       "id": "evt-20261023-perplexity-decider-mac",
@@ -469,8 +471,8 @@
       ],
       "status": "confirmed",
       "priority": "P1",
-      "stance": "可以试用"
+      "stance": "推荐使用"
     }
   ],
-  "note": "按时间往下看。每条写清摘要、大众价值，以及第一次怎么试。"
+  "note": "按时间往下看。档位只有推荐使用和值得关注。每条写清摘要、大众价值，以及第一次怎么试。"
 }

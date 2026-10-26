@@ -72,7 +72,7 @@
       ],
       "expect": {
         "cand-20261014-000000000004": {"status_in_pool": "active", "drop_reason": null},
-        "cand-20261014-000000000005": {"status_in_pool": "dropped", "drop_reason": "duplicate_event"}
+        "cand-20261014-000000000005": {"status_in_pool": "active", "drop_reason": null}
       }
     },
     {
@@ -147,7 +147,7 @@
       }
     },
     {
-      "name": "no-reliable-time-pending",
+      "name": "no-reliable-time-deferred",
       "rows": [
         {
           "id": "cand-20261014-00000000000a",
@@ -160,11 +160,11 @@
       ],
       "expect": {
         "cand-20261014-00000000000a": {
-          "status_in_pool": "pending",
+          "status_in_pool": "deferred",
           "drop_reason": null,
           "prefilter": "UNKNOWN",
           "tier_prior": "T1",
-          "notes_contains": "no_reliable_time pending"
+          "notes_contains": "deferred no_reliable_time"
         }
       }
     },
@@ -299,7 +299,11 @@
       ],
       "expect": {
         "cand-20261014-000000000010": {"status_in_pool": "active", "drop_reason": null},
-        "cand-20261014-000000000011": {"status_in_pool": "dropped", "drop_reason": "no_new_info"}
+        "cand-20261014-000000000011": {
+          "status_in_pool": "deferred",
+          "drop_reason": null,
+          "notes_contains": "deferred no_new_info"
+        }
       },
       "same_cluster": [["cand-20261014-000000000010", "cand-20261014-000000000011"]]
     },
@@ -638,7 +642,11 @@
       ],
       "expect": {
         "cand-20261014-000000000023": {"status_in_pool": "active", "drop_reason": null},
-        "cand-20261014-000000000024": {"status_in_pool": "dropped", "drop_reason": "no_new_info"},
+        "cand-20261014-000000000024": {
+          "status_in_pool": "deferred",
+          "drop_reason": null,
+          "notes_contains": "deferred no_new_info"
+        },
         "cand-20261014-000000000025": {"status_in_pool": "active", "drop_reason": null}
       },
       "same_cluster": [["cand-20261014-000000000023", "cand-20261014-000000000024"]],

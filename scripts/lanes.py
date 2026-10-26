@@ -117,15 +117,18 @@ def _norm_url(value: object) -> str:
 
 # Empty-day ranking for one stand-in. Clearer mass-visitor action first.
 # This does not relax P0 / multi-source, and it does not add a second card.
-#   立即行动 / 值得采用  >  可以试用  >  持续观察  >  需要评估  >  暂缓
+#   立即行动 / 推荐使用  >  可以试用 / 值得采用  >  持续观察  >  值得关注 / 需要评估  >  暂缓
 # Same band: a concrete next step (上手实验, or 对我有什么影响) ranks ahead.
 # Still tied: newer source clock, then id.
 # A tool does not outrank a brief unless its action band is clearer.
+# This order only picks the single empty-day stand-in. It does not add a second pick.
 _ACTION_RANK = {
     "立即行动": 0,
+    "推荐使用": 0,
     "值得采用": 0,
     "可以试用": 1,
     "持续观察": 2,
+    "值得关注": 3,
     "需要评估": 3,
     "暂缓跟进": 4,
     "暂缓": 4,

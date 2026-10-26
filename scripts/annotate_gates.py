@@ -6,17 +6,20 @@ This script runs the gates, then clustering, then the 7-day no_new_info check
 that needs a cluster_id. It does not score, rank, or write public cards.
 
 Rows are already in the pool. BLOCK / UNKNOWN stay as rows. Deferred and
-rerouted are statuses, not drop reasons. no_new_info is a true drop.
+rerouted are statuses, not drop reasons. Age, a missing clock, and a cluster
+with no material progress fold to deferred. They are not deleted.
 wrong_lane, quota, and quota_defer are never written.
 
 Defaults, on purpose:
-  - no reliable clock → prefilter UNKNOWN and status pending (not a silent skip).
-    --no-time-policy drop is the only path to drop_reason no_reliable_time.
-  - age > 48h → status deferred, drop_reason null (not today's slot).
-    --stale-policy drop is the only path to drop_reason stale_old.
+  - no reliable clock → status deferred, drop_reason null. The row stays in
+    the pool and is not today's slot. --no-time-policy drop is ignored.
+  - age > 48h → status deferred, drop_reason null. --stale-policy drop is ignored.
     Forced P0 (scripts/force_p0.py) bypasses both and stays active for review.
   - RSS whose Shanghai publish date is before --as-of → deferred
-    (rss backfill is not today). That is not stale_old. Forced P0 bypasses it.
+    (rss backfill is not today). Forced P0 bypasses it.
+  - same-source short window drops only on URL or title similarity.
+    A low new-word count is not a drop.
+  - same cluster, 7 days, no material progress → deferred, not dropped.
   - role=report with no primary/official link → stays active, with a note that
     formal P0 is blocked. drop_reason media_alone only when the input notes
     contain attempt_formal_p0.
@@ -104,7 +107,7 @@ class GateOptions:
     as_of: datetime
     stale_hours: float = 48
     stale_policy: str = "defer"
-    no_time_policy: str = "pending"
+    no_time_policy: str = "defer"
     same_source_window_minutes: int = 30
     no_new_info_days: int = 7
     novel_token_min: int = 3
@@ -119,10 +122,12 @@ class GateOptions:
     practice_handles: set[str] = field(default_factory=set)
 
     def validate(self) -> None:
+        # "drop" and "pending" remain accepted so older shift commands still run.
+        # Neither one deletes a row for age or a missing clock.
         if self.stale_policy not in {"defer", "drop"}:
             raise IngestError("--stale-policy must be defer or drop")
-        if self.no_time_policy not in {"pending", "drop"}:
-            raise IngestError("--no-time-policy must be pending or drop")
+        if self.no_time_policy not in {"defer", "pending", "drop"}:
+            raise IngestError("--no-time-policy must be defer, pending, or drop")
         if self.as_of.tzinfo is None:
             raise IngestError("--as-of needs a timezone")
 
@@ -289,6 +294,23 @@ def jaccard(left: set[str], right: set[str]) -> float:
 
 def named_entities(row: dict, rules: list[dict]) -> set[str]:
     return {key for key, is_alone in entity_matches(row, rules) if is_alone}
+
+
+def same_source_similar(row: dict, anchors: list[dict], title_threshold: float) -> bool:
+    """True when this row repeats a same-source URL or a similar title.
+
+    New-word count is not a reason to drop. Exact URL identity is also caught
+    earlier as duplicate_url; title similarity is the short-window check.
+    """
+    own = canonical_url(row.get("url_norm") or row.get("url"))
+    title = title_tokens(row.get("title"))
+    for anchor in anchors:
+        other = canonical_url(anchor.get("url_norm") or anchor.get("url"))
+        if own and other and own == other:
+            return True
+        if jaccard(title, title_tokens(anchor.get("title"))) >= title_threshold:
+            return True
+    return False
 
 
 def is_substantive(
@@ -630,9 +652,7 @@ def annotate_records(records: list[dict], options: GateOptions) -> list[dict]:
         key = source_key(row)
         if clock and key:
             window_rows = [item for when, src, item in anchors if src == key and abs(clock - when) <= window]
-            if window_rows and not is_substantive(
-                row, window_rows, options.novel_token_min, options.entity_rules, options.novel_ratio_min
-            ):
+            if window_rows and same_source_similar(row, window_rows, options.title_threshold):
                 _set_decision(
                     row,
                     "dropped",
@@ -647,24 +667,14 @@ def annotate_records(records: list[dict], options: GateOptions) -> list[dict]:
                 continue
 
         if clock is None:
-            if options.no_time_policy == "drop":
-                _set_decision(
-                    row,
-                    "dropped",
-                    "no_reliable_time",
-                    "UNKNOWN",
-                    original_notes,
-                    ["gate: no_reliable_time drop"],
-                )
-            else:
-                _set_decision(
-                    row,
-                    "pending",
-                    None,
-                    "UNKNOWN",
-                    original_notes,
-                    ["gate: no_reliable_time pending"],
-                )
+            _set_decision(
+                row,
+                "deferred",
+                None,
+                "UNKNOWN",
+                original_notes,
+                ["gate: deferred no_reliable_time"],
+            )
             if isinstance(rid, str):
                 seen_ids.setdefault(rid, idx)
             seen_urls.setdefault(canon, idx)
@@ -687,8 +697,6 @@ def annotate_records(records: list[dict], options: GateOptions) -> list[dict]:
                 ["gate: force_p0 " + ",".join(p0_hit["kinds"])],
             )
             assign_p0(row, p0_hit, ["edition_date"])
-        elif stale and options.stale_policy == "drop":
-            _set_decision(row, "dropped", "stale_old", prefilter, original_notes, ["gate: stale_old"])
         elif stale or backfill:
             reasons = []
             if stale:
@@ -768,9 +776,9 @@ def _apply_no_new_info(rows: list[dict], locked: list[bool], options: GateOption
             if in_window and not is_substantive(
                 row, in_window, options.novel_token_min, options.entity_rules, options.novel_ratio_min
             ):
-                row["status_in_pool"] = "dropped"
-                row["drop_reason"] = "no_new_info"
-                bit = "gate: no_new_info"
+                row["status_in_pool"] = "deferred"
+                row["drop_reason"] = None
+                bit = "gate: deferred no_new_info"
                 if bit not in (row.get("notes") or ""):
                     row["notes"] = ((row.get("notes") or "") + " " + bit).strip()
                 continue
@@ -1032,7 +1040,7 @@ def self_check() -> None:
             if row.get("title") is None and not isinstance(row.get("cluster_id"), str):
                 raise SystemExit(f"FAIL {name}: missing title crashed clustering for {row['id']}")
 
-    # Policy switches are explicit. The fixture default stays defer / pending.
+    # Age and a missing clock fold. The old drop switches must not delete the row.
     stale_src = _expand_fixture_row(
         {
             "id": "cand-20261010-aaaaaaaaaaaa",
@@ -1043,9 +1051,9 @@ def self_check() -> None:
             "channel": "rss",
         }
     )
-    dropped = annotate_records([stale_src], options_from_repo(as_of, stale_policy="drop"))[0]
-    if dropped["status_in_pool"] != "dropped" or dropped["drop_reason"] != "stale_old":
-        raise SystemExit(f"FAIL stale-policy drop: {dropped['status_in_pool']} {dropped['drop_reason']}")
+    folded = annotate_records([stale_src], options_from_repo(as_of, stale_policy="drop"))[0]
+    if folded["status_in_pool"] != "deferred" or folded["drop_reason"] is not None:
+        raise SystemExit(f"FAIL stale age must defer, not drop: {folded['status_in_pool']} {folded['drop_reason']}")
     duet_stale = _expand_fixture_row(
         {
             "id": "cand-20261010-a11ce0000001",
@@ -1061,7 +1069,7 @@ def self_check() -> None:
     kept_p0 = annotate_records([duet_stale], options_from_repo(as_of, stale_policy="drop"))[0]
     if kept_p0["status_in_pool"] != "active" or kept_p0["drop_reason"] is not None:
         raise SystemExit(
-            f"FAIL forced P0 must bypass stale drop: {kept_p0['status_in_pool']} {kept_p0['drop_reason']}"
+            f"FAIL forced P0 must bypass a stale edition hold: {kept_p0['status_in_pool']} {kept_p0['drop_reason']}"
         )
     if "frontier_launch" not in (kept_p0.get("force_p0") or {}).get("kinds", []):
         raise SystemExit(f"FAIL forced P0 kinds missing: {kept_p0.get('force_p0')}")
@@ -1085,8 +1093,8 @@ def self_check() -> None:
         ],
         options_from_repo(as_of, no_time_policy="drop"),
     )[0]
-    if timed["drop_reason"] != "no_reliable_time" or timed["status_in_pool"] != "dropped":
-        raise SystemExit(f"FAIL no-time-policy drop: {timed['status_in_pool']} {timed['drop_reason']}")
+    if timed["status_in_pool"] != "deferred" or timed["drop_reason"] is not None:
+        raise SystemExit(f"FAIL missing clock must defer, not drop: {timed['status_in_pool']} {timed['drop_reason']}")
 
     public_out = ROOT / "public" / "_gates_should_not_write.jsonl"
     try:
@@ -1254,8 +1262,18 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--pool-dir", help="Pool repo root. Rewrites candidates/*.jsonl in place. Not combined with --input.")
     parser.add_argument("--as-of", help="ISO-8601 UTC clock for stale / backfill. Default: now.")
     parser.add_argument("--stale-hours", type=float, default=48)
-    parser.add_argument("--stale-policy", choices=("defer", "drop"), default="defer")
-    parser.add_argument("--no-time-policy", choices=("pending", "drop"), default="pending")
+    parser.add_argument(
+        "--stale-policy",
+        choices=("defer", "drop"),
+        default="defer",
+        help="Accepted for older commands. Age never deletes a row; both values defer.",
+    )
+    parser.add_argument(
+        "--no-time-policy",
+        choices=("defer", "pending", "drop"),
+        default="defer",
+        help="Accepted for older commands. A missing clock defers the row and does not drop it.",
+    )
     parser.add_argument("--same-source-window-minutes", type=int, default=30)
     parser.add_argument("--no-new-info-days", type=int, default=7)
     parser.add_argument(

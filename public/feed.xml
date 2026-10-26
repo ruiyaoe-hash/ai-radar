@@ -8,84 +8,84 @@
 <lastBuildDate>Mon, 26 Oct 2026 16:20:50 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
 <item>
-<title>[重点关注 · 试用工具 · 工具] 数字人口播技能开源：一张照片做说话数字人短视频</title>
+<title>[快讯 · 新工具 · 工具] 数字人口播技能开源：一张照片做说话数字人短视频</title>
 <link>https://x.com/saccc_c/status/2114621995409379654</link>
 <guid isPermaLink="false">evt-20261026-digital-human-koubo</guid>
 <pubDate>Mon, 26 Oct 2026 15:35:46 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。<br/>• 作者侧（berryxia）称教程已升级为可自动化、可稳定输出的技能包，技能在 GitHub 免费使用；数字资产链路示例使用 Renoise AI，也可按自己的资源替换。<br/>• 关注池博主转发给出仓库入口；适合先克隆仓库读技能说明，再在本机助手里试一条口播样片。<br/><strong>对你意味着什么</strong> 如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。<br/>建议：立即行动 · 仓库今天即可对照安装试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、Renoise 等依赖不可用或费用过高，或样片质量达不到可发布标准，就收回「这周接这条工作流」。<br/>来源 saccc_c（转述）, berryxia（一手）, andyhuo520（一手）<br/>日期 2026-10-26]]></description>
 </item>
 <item>
-<title>[重点关注 · 试用工具 · 工具] GEOInflow：自托管看清哪些 AI 爬虫在抓你的站</title>
+<title>[快讯 · 新工具 · 工具] GEOInflow：自托管看清哪些 AI 爬虫在抓你的站</title>
 <link>https://x.com/vista8/status/2114579446795788675</link>
 <guid isPermaLink="false">evt-20261026-geoinflow</guid>
 <pubDate>Mon, 26 Oct 2026 12:46:41 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。<br/>• 内置约 61 类 AI 爬虫身份与用途分类（训练 / AI 搜索 / 用户触发等），也覆盖常规网站统计（PV/UV、事件漏斗、热力图等）。核心统计默认不依赖模型 API Key，数据留在自有服务器。<br/>• 官方仓库提供 Docker 一键部署脚本；默认本机 http://127.0.0.1:3002，首次账号见仓库说明，登录后应立即改密。<br/><strong>对你意味着什么</strong> 如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。<br/>建议：立即行动 · 仓库与 Docker 部署说明今天即可对照试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若你的环境装不上 Docker、日志接不进、或爬虫识别与你业务无关，就收回「这周上这套监测」。<br/>来源 vista8（转述）, yaojingang（一手）, yaojingang（一手）<br/>日期 2026-10-26]]></description>
 </item>
 <item>
-<title>[重点关注 · 试用工具 · 工具] BaoCut 技能：用智能体做双语排版与史料感视频</title>
+<title>[快讯 · 新工具 · 工具] BaoCut 技能：用智能体做双语排版与史料感视频</title>
 <link>https://x.com/dotey/status/2114375050971296135</link>
 <guid isPermaLink="false">evt-20261026-baocut-skill</guid>
 <pubDate>Sun, 25 Oct 2026 23:14:29 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。<br/>• 技能说明在 GitHub 仓库 JimLiu/baocut 的 skills/baocut/SKILL.md。BaoCut 本身负责转录、字幕对齐、翻译与时间线编辑；技能负责把「档案馆 / 纪录片」一类版面要求交给智能体执行。<br/>• 同作者后续还公开了一条可用的历史演讲视频提示词模板（人物、年份、场合、章节与审片流程），适合先出简报再出片，避免直接烘焙导出。<br/><strong>对你意味着什么</strong> 如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。<br/>建议：立即行动 · 技能与示例提示词今天即可对照原文试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若 BaoCut 装不上、技能与你的助手不兼容，或导出质量达不到可发布标准，就收回「这周接这条工作流」。<br/>来源 dotey（一手）, dotey（一手）, dotey（一手）<br/>日期 2026-10-26]]></description>
 </item>
 <item>
-<title>[重点关注 · 试用工具 · 工具] Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能</title>
+<title>[快讯 · 新工具 · 工具] Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能</title>
 <link>https://x.com/AravSrinivas/status/2114021917586014449</link>
 <guid isPermaLink="false">evt-20261025-impeccable-computer-skill</guid>
 <pubDate>Sat, 24 Oct 2026 23:51:16 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。<br/>• 同一套技能本身是开源的（Apache 2.0），也可在 Cursor、Claude Code、Codex 等编程助手里用命令安装：在项目根目录执行 npx impeccable install，再在助手里跑 /impeccable init。官方站点与 GitHub 仓库提供命令说明。<br/>• Computer 侧活动：使用 /impeccable 的任务在 2026 年 10 月 31 日前可享每用户约 5000 credits（积分）额度；Computer 本身仍需带 Computer 的付费套餐。若你主要在自有编程助手里做前端，可直接装开源版，不必先开通 Computer。<br/><strong>对你意味着什么</strong> 如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。<br/>建议：立即行动 · 开源版今天可装；Computer 活动额度约到 10 月 31 日。<br/>有多确定：中<br/>什么情况下当这判断作废：若在你的真实页面上改完仍不像可用产品、安装进不了你的助手，或 Computer 套餐/额度对你不可用，就收回「这周必须接这条技能」。<br/>来源 AravSrinivas（一手）, AravSrinivas（一手）, AravSrinivas（一手）, AravSrinivas（一手）<br/>日期 2026-10-25]]></description>
 </item>
 <item>
-<title>[今日必看 · 试用工具 · 发布] 月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权</title>
+<title>[重磅 · 新工具 · 发布] 月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权</title>
 <link>https://www.kimi.ai/blog/kimi-k3-1-pro</link>
 <guid isPermaLink="false">evt-20261024-kimi-k3-1-pro</guid>
 <pubDate>Sat, 24 Oct 2026 01:44:44 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 月之暗面（Moonshot）在 2026 年 10 月 23 日发布 Kimi K3.1 Pro：自家宣称最强的 3T 级开放权重（open-weight）模型系列首款，上下文约 100 万 token；同时放出更快的 K3.1 Pro Highspeed（约 2–3 倍速度）。<br/>• 当天即可在 Kimi 网页与 App、办公助手 Kimi Work、编程工具 Kimi Code，以及 Kimi API（模型名 kimi-k3.1-pro / kimi-k3.1-pro-highspeed）使用；完整模型权重官方写明将在 2026 年 11 月 4 日前放出。参数规模约 2.8T 总量 / 104B 激活（MoE）。<br/>• Artificial Analysis 把 K3.1 Pro 排到 Intelligence Index（智能指数）第 4、得分 55，并称权重放出后将成为当时领先的开权模型；宝玉、Nathan Lambert、Simon Willison 等关注池账号同日多源确认。官方博客另说明对网络攻防相关训练数据做了针对性削减后再开权。<br/><strong>对你意味着什么</strong> 如果你这周在选型开权或国产 API 做编程/智能体，K3.1 Pro 已可在网页和 API 试跑，权重也给出明确窗口；值得用同一批真实任务对打你现有主力模型。<br/>建议：立即行动 · 今天即可 API/网页试；完整权重盯 11 月 4 日前。<br/>有多确定：高<br/>什么情况下当这判断作废：若在你的真实任务上明显弱于现用模型，或 API 配额/价格不可接受，且开权延期或许可不合规，就收回「这周必须换主力对照」。<br/>来源 Kimi_Moonshot（一手）, Kimi_Moonshot（一手）, ArtificialAnlys（转述）, dotey（转述）, natolambert（转述）, simonw（转述）<br/>日期 2026-10-24]]></description>
 </item>
 <item>
-<title>[重点关注 · 试用工具 · 发布] DeepSeek V4.1 Flash 1017：开权小更新，编程与智能体榜面明显抬升</title>
+<title>[快讯 · 新工具 · 发布] DeepSeek V4.1 Flash 1017：开权小更新，编程与智能体榜面明显抬升</title>
 <link>https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017</link>
 <guid isPermaLink="false">evt-20261024-deepseek-v41-flash-1017</guid>
 <pubDate>Sat, 24 Oct 2026 01:23:09 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• DeepSeek 放出 DeepSeek-V4.1-Flash-1017：在 V4.1-Flash 上的小版本更新，Hugging Face 已提供权重（MIT），并附推理与提示编码说明。<br/>• 官方对照表显示 Terminal-Bench 4.0 从 31.2 提到 42.3，DeepSWE、Automation-Bench、Agents’ Last Exam 等编程/智能体指标同步上升，同时缩短任务耗时与输出长度。<br/>• Artificial Analysis 另报它在 Cyber Index（网络防御指数）开权模型中暂列第一；适合已在跑 DeepSeek Flash 线、或想用开权做编程智能体对照的访客本周更新权重或端点。<br/><strong>对你意味着什么</strong> 如果你的流水线已经挂着 DeepSeek Flash，这周把端点或权重升到 1017，用同一批任务看编程/智能体收益是否值得停在旧版。<br/>建议：立即行动 · 权重已公开，本周可换可测。<br/>有多确定：中<br/>什么情况下当这判断作废：若在你的任务上提升不明显，或托管价格/延迟变差，就维持旧版并观察下一版。<br/>来源 deepseek_ai（一手）, ArtificialAnlys（转述）<br/>日期 2026-10-24]]></description>
 </item>
 <item>
-<title>[重点关注 · 试用工具 · 工具] 腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型</title>
+<title>[快讯 · 新工具 · 工具] 腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型</title>
 <link>https://github.com/Tencent-Hunyuan/Hy-Nomas</link>
 <guid isPermaLink="false">evt-20261024-tencent-hy-nomas</guid>
 <pubDate>Sat, 24 Oct 2026 01:00:00 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 腾讯混元（Tencent Hunyuan）账号宣布开源 Hy-Nomas：面向自由交互的视频世界模型（video world model），支持用文本指令与相机轨迹多轮续写世界，并保持跨段记忆（KV cache）。<br/>• 代码仓库提供训练、推理、Web 演示与标注流程；权重在 Hugging Face（tencent/Hy-Nomas），协议 Apache-2.0。官方写明有蒸馏 8 步推理，以及单卡 RTX 4090（INT8/FP8 + CPU offload）配置。<br/>• 适合想自托管、试交互式世界生成或做机器人/仿真领域 LoRA 适配的访客；不是即开即用的消费级 App，需要按仓库文档准备环境与显存。<br/><strong>对你意味着什么</strong> 如果你这周在找可自托管的交互式世界/视频生成底座，Hy-Nomas 给出了权重+代码+单卡路径，值得按官方 demo 跑通一轮再决定是否深做。<br/>建议：立即行动 · 仓库与权重已公开，有卡即可本周试。<br/>有多确定：中<br/>什么情况下当这判断作废：若安装成本过高、多轮一致性达不到你的场景，或许可/显存不合适，就收回「这周必须自托管」。<br/>来源 TencentHunyuan（一手）, TencentHunyuan（一手）, TencentHunyuan（一手）<br/>日期 2026-10-24]]></description>
 </item>
 <item>
-<title>[重点关注 · 试用工具 · 工具] MiniMax Design MCP 上线：在 Codex 等智能体里直接做设计并回同步画布</title>
+<title>[快讯 · 新工具 · 工具] MiniMax Design MCP 上线：在 Codex 等智能体里直接做设计并回同步画布</title>
 <link>https://x.com/Hailuo_AI/status/2113518150440595501</link>
 <guid isPermaLink="false">evt-20261023-minimax-design-mcp</guid>
 <pubDate>Fri, 23 Oct 2026 14:29:28 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• MiniMax（海螺）官方账号宣布 Design MCP（模型上下文协议连接器）上线：可在 Codex 及其他支持 MCP 的智能体里直接调用 Design 能力，产物会自动同步回 Design Canvas（设计画布），减少在智能体与设计工具之间来回拷贝。<br/>• 同线程给出上手步骤：先更新到最新客户端，再在头像旁点「Connect External Agent」按提示完成连接。面向已经在用 Codex/MCP 做产品或内容稿的访客，这是可立刻试的设计侧工具入口。<br/>• 官方帖以产品发布为主，未在帖内给出完整定价与区域限制；试用前先确认你的 MiniMax Design 账号与目标智能体是否在支持列表内。<br/><strong>对你意味着什么</strong> 如果你已经用 Codex 或其它 MCP 智能体做稿，又常在设计画布和对话之间来回贴，这周用一条真实设计任务试 MiniMax Design MCP，看同步是否省事。<br/>建议：立即行动 · 今晚可按官方两步连接后试跑。<br/>有多确定：中<br/>什么情况下当这判断作废：若你的套餐或客户端连不上、同步经常失败，或设计质量达不到你现有工作流，就收回「这周必须换这条链路」。<br/>来源 Hailuo_AI（一手）, Hailuo_AI（一手）<br/>日期 2026-10-23]]></description>
 </item>
 <item>
-<title>[重点关注 · 试用工具 · 工具] Perplexity Decider for Mac：本机跑开权决策小模型，无需 API 密钥</title>
+<title>[快讯 · 新工具 · 工具] Perplexity Decider for Mac：本机跑开权决策小模型，无需 API 密钥</title>
 <link>https://docs.perplexity.ai/docs/decisions/decider-for-mac</link>
 <guid isPermaLink="false">evt-20261023-perplexity-decider-mac</guid>
 <pubDate>Fri, 23 Oct 2026 06:42:40 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Perplexity 开发者账号宣布 Decider for Mac 可用：在 Mac 菜单栏本机运行开权（open-weight）决策模型 pplx-decider-flash，对文本或图片提问并返回概率，数据不离开本机；本地也可在 127.0.0.1 调用 Decisions API 形态接口，且不需要云端 API 密钥。<br/>• 这与本周 OpenAI Decisions API 云端正式可用形成对照：一个是云上近实时有边界决策，一个是本机小模型、无密钥、可离线试。适合关心隐私或想先在本机验证「有限答案」路径的访客。<br/>• 官方文档入口为 Decider for Mac。CEO 账号同步转发了本机可跑的消息。试用前确认 Mac 机型与文档列出的系统要求。<br/><strong>对你意味着什么</strong> 如果你这周在评估「有限答案」决策路径，又想先看本机、无密钥方案，用同一批样例跑 Decider for Mac，再和云端 Decisions 或现有聊天路径比延迟、准确率和隐私边界。<br/>建议：立即行动 · 文档已公开，Mac 上今晚可装可测。<br/>有多确定：中<br/>什么情况下当这判断作废：若本机模型在你的真实样例上明显不准、机器跑不动，或你其实只需要云端低延迟，就收回「必须先上本机 Decider」。<br/>来源 perplexitydevs（一手）, perplexitydevs（一手）, AravSrinivas（转述）<br/>日期 2026-10-23]]></description>
 </item>
 <item>
-<title>[今日必看 · 试用工具 · 发布] Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式</title>
+<title>[重磅 · 新工具 · 发布] Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式</title>
 <link>https://claude.com/resources/articles/auto-mode-default-in-claude-code</link>
 <guid isPermaLink="false">evt-20261023-claude-auto-mode-default</guid>
 <pubDate>Fri, 23 Oct 2026 04:04:24 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Anthropic 在 2026 年 10 月 22 日更新说明：从下周起，多数 Claude 应用（网页、桌面、手机）上，Pro、Max、Team 套餐的新会话将默认进入自动模式（auto mode）。不再逐步弹窗让你点同意，而是由自动检查放行安全动作、拦住高风险动作；可随时切回手动。企业版管理员会在其组织默认改成自动模式之前收到邮件。<br/>• 官方文章写，受控试验里约一千名付费测试者人工只拦下约一成多的危险命令，自动模式拦下约九成。人工对权限提示的同意率极高。连续三次被拦或单会话累计二十次被拦时，会退回手动审批。Enterprise、Claude API 以及云上托管通道目前仍以自愿开启为主，计划约一个月内再扩。<br/>• 若你本周用 Claude 网页、桌面或手机做带工具调用的长任务，先确认默认权限模式；需要逐步确认时，会话里切回手动，或让管理员用 managed settings 钉死 defaultMode / disableAutoMode。高风险改生产环境时，官方仍建议自己再看一遍动作。<br/><strong>对你意味着什么</strong> 如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。<br/>建议：立即行动 · 下周默认生效前，先设好个人或组织的权限默认。<br/>有多确定：高<br/>什么情况下当这判断作废：如果默认滚动被推迟、你的套餐或客户端不在「多数 Claude 应用」范围内，或你已钉死且不会被改写的手动默认，就收回「这周必须先改权限默认」。<br/>来源 claudeai（一手）, claudeai（一手）<br/>日期 2026-10-23]]></description>
 </item>
 <item>
-<title>[今日必看 · 试用工具 · 发布] OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口</title>
+<title>[重磅 · 新工具 · 发布] OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口</title>
 <link>https://openai.com/index/decisions-api</link>
 <guid isPermaLink="false">evt-20261023-openai-decisions-api-ga</guid>
 <pubDate>Fri, 23 Oct 2026 03:00:00 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• OpenAI 在 2026 年 10 月 22 日宣布 Decisions API（决策接口）结束公开测试、正式可用。它跑在 GPT-6 Luna 上，专门回答有边界的问题：给应用和智能体做分类、路由或下一步动作选择。官方写它可比同一模型走 Responses API 快约 10 倍，适合热路径上的近实时判断。<br/>• 相对公开测试版，正式版新增原生 GPT-Live（实时语音）集成、复用上下文的提示缓存、美国与欧盟推理驻留，并支持原生 JSON 输入、在单题说明里带图片，以及每请求最多 400 道题（测试版上限的两倍）。计费只收输入：非缓存约每百万输入 token 0.10 美元，缓存输入约 0.01 美元；不收输出 token 费。<br/>• 官方开发者文档写明走 POST /v1/decisions，当前模型是 gpt-6-luna。答案类型有三种：predicate（条件成立概率）、choice（从你给定选项里选一个）、score（按量表打分）。若你的产品里反复做有限答案的判断，这周用同一批真实样例在 Decisions Playground 或接口里对打现有 Responses/聊天路径。<br/><strong>对你意味着什么</strong> 如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。<br/>建议：立即行动 · 这周用同一批样例对打；正式可用后即可接生产。<br/>有多确定：高<br/>什么情况下当这判断作废：如果在你的真实样例上，Decisions API 的准确率明显低于现有路径，或延迟/费用没有可感知的改善，就收回「这周必须放进对照表」。<br/>来源 OpenAI（一手）, OpenAI（一手）, TechCrunch（转述）<br/>日期 2026-10-23]]></description>
 </item>
 <item>
-<title>[今日必看 · 试用工具 · 发布] Anthropic 放出 Claude Duet 研究预览：会主动找你的助理</title>
+<title>[重磅 · 新工具 · 发布] Anthropic 放出 Claude Duet 研究预览：会主动找你的助理</title>
 <link>https://claude.com/product/claude-duet</link>
 <guid isPermaLink="false">evt-20261023-anthropic-claude-duet</guid>
 <pubDate>Thu, 22 Oct 2026 03:09:35 +0800</pubDate>

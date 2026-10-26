@@ -18,11 +18,11 @@
 - [信息简讯](https://ruiyaoe-hash.github.io/ai-radar/briefs.json): 按天列出的事实简讯，和信息精选不重复，schema_version 1
 - [近期信号](https://ruiyaoe-hash.github.io/ai-radar/items.json): 近几天的卡片，schema_version 2
 - [全部订阅](https://ruiyaoe-hash.github.io/ai-radar/feed.xml): RSS，和近期信号是同一批
-- [试用工具分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml): RSS，只收试用工具
+- [新工具分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml): RSS，只收新工具
 - [行业动态分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml): RSS，只收行业动态
 - [方法模式分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-models.xml): RSS，只收方法模式
 - [时机窗口分册](https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-timing.xml): RSS，只收时机窗口
-- [工具决策](https://ruiyaoe-hash.github.io/ai-radar/tools-radar.json): 四档：值得采用、可以试用、需要评估、暂缓跟进
+- [工具决策](https://ruiyaoe-hash.github.io/ai-radar/tools-radar.json): 两档：推荐使用、值得关注
 - [博主实操](https://ruiyaoe-hash.github.io/ai-radar/practice.json): 写清步骤才会出现，schema_version 1
 - [实战手册](https://ruiyaoe-hash.github.io/ai-radar/data/kb.json): 主题手册、原帖和博主，schema_version 1。需求信号的最近滚动时间在 demand_refreshed_at
 - [需求信号滚动](https://ruiyaoe-hash.github.io/ai-radar/data/demand.json): 最近一次平滑收藏比所用的计数和时间戳。名单不因这个比值自动升降
@@ -44,7 +44,7 @@
 - [实战图谱](https://ruiyaoe-hash.github.io/ai-radar/schemas/atlas.schema.json): data/kb.json
 - [需求信号](https://ruiyaoe-hash.github.io/ai-radar/schemas/demand.schema.json): data/demand.json
 - [主题建议](https://ruiyaoe-hash.github.io/ai-radar/schemas/topic-suggestions.schema.json): data/topic-suggestions.json
-- [可试用工具](https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json): tools-radar.json
+- [工具决策](https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json): tools-radar.json
 - [归档索引](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-index.schema.json): archive/index.json
 - [单日归档](https://ruiyaoe-hash.github.io/ai-radar/schemas/archive-day.schema.json): archive/YYYY-MM-DD.json
 - [长期判断](https://ruiyaoe-hash.github.io/ai-radar/schemas/theses.schema.json): theses.json
