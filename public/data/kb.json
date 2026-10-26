@@ -72,8 +72,8 @@
       "author": "vista8",
       "topic": "hands-on",
       "type": "教程",
-      "title": "不少朋友感兴趣，写个极简版的 Kindle 越狱改造教程",
-      "excerpt": "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家",
+      "title": "用转接线连上 Kindle，让 Codex 越狱并装上 KOReader",
+      "excerpt": "旧 Kindle 接上转接线后，把越狱和安装 KOReader 交给 Codex，插件地址按原文核对。",
       "date": "2026-10-25",
       "origin": "practice",
       "verified": false
@@ -84,8 +84,8 @@
       "author": "vista8",
       "topic": "hands-on",
       "type": "教程",
-      "title": "没想到开发挺顺利，搞好了",
-      "excerpt": "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家",
+      "title": "连上 Kindle，用 Codex 完成越狱并装上 KOReader",
+      "excerpt": "用转接线把 Kindle 连到电脑，让 Codex 按口令完成越狱，再装上 KOReader。",
       "date": "2026-10-25",
       "origin": "practice",
       "verified": false
@@ -96,8 +96,8 @@
       "author": "vista8",
       "topic": "hands-on",
       "type": "教程",
-      "title": "跟大家同步下 Kindle 刷机改造进展",
-      "excerpt": "更方便美观的排版设置",
+      "title": "不用数据线，一句话把电子书发到 Kindle",
+      "excerpt": "在手机浏览器里配好接口密钥后，可以用一句话把电子书发到 Kindle，并改成更方便的排版。",
       "date": "2026-10-25",
       "origin": "practice",
       "verified": false
@@ -109,7 +109,7 @@
       "topic": "hands-on",
       "type": "教程",
       "title": "Agent 把你的密钥带进模型请求，可能只需要读一遍 .env",
-      "excerpt": "Codex 干活时会读配置和日志",
+      "excerpt": "Codex 读取配置和日志时，写在里面的密钥可能跟着模型请求发出去，动手前先检查环境文件。",
       "date": "2026-10-25",
       "origin": "practice",
       "verified": false

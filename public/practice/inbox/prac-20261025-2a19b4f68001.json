@@ -1,11 +1,11 @@
 {
   "id": "prac-20261025-2a19b4f68001",
   "kind": "工具用法",
-  "title": "没想到开发挺顺利，搞好了",
+  "title": "连上 Kindle，用 Codex 完成越狱并装上 KOReader",
   "author": "vista8",
   "url": "https://x.com/vista8/status/2114352058577117439",
   "time": "2026-10-25 21:43",
-  "takeaway": "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家",
+  "takeaway": "用转接线把 Kindle 连到电脑，让 Codex 按口令完成越狱，再装上 KOReader。",
   "steps": [
     "京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家。",
     "用数据线连上 Kindle，跟 Codex 说：“帮我越狱 kindle”。",

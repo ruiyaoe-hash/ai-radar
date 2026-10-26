@@ -17,8 +17,11 @@ duplicate an inbox file or a watch id.
 
 An X post often has an empty title and a usable body. The first usable
 sentence becomes a provisional title before the Chinese editorial layer, so
-a qualifying row is not dropped only because title is blank. English or
-unfinished copy still does not publish. Nothing here writes briefs.
+a qualifying row is not dropped only because title is blank. A casual
+status line (跟大家同步, 没想到搞好了, 不少朋友感兴趣) is not a visitor
+title: when the steps are still usable, the card takes a how-to line from
+those steps instead of publishing the status line or dropping the row.
+English or unfinished copy still does not publish. Nothing here writes briefs.
 
   python3 scripts/project_public_lanes.py --self-check
   python3 scripts/project_public_lanes.py --pool-dir ../ai-radar-pool
@@ -130,6 +133,15 @@ _COMMAND = re.compile(
 _PRODUCT_OP = re.compile(
     r"(?:打开|安装|运行|登录|进入|部署|启动|调用|装)\s*[A-Za-z][A-Za-z0-9_./:-]{2,}"
 )
+# Follower status talk. A how-to title names the outcome, not the author's mood.
+_STATUS_TALK = re.compile(
+    r"没想到|挺顺利|搞好了|搞定了|"
+    r"跟大家|同步一下|同步下|汇报一下|更新一下|分享一下|通知一下|"
+    r"不少朋友|朋友们感兴趣|"
+    r"写个极简|写个教程|写了个教程|写了一版"
+)
+# Shopping chatter is not the outcome a visitor came for.
+_ASIDE = re.compile(r"京东|淘宝|拼多多|到家买|一小时送到|好像\s*\d+\s*多?块")
 
 
 def _clock(row: dict) -> datetime | None:
@@ -364,6 +376,62 @@ def first_usable_sentence(text: str) -> str:
     return ""
 
 
+def casual_status_title(text: str) -> bool:
+    """True when the line is the author talking to followers, not a how-to."""
+    raw = re.sub(r"\s+", "", text or "")
+    if not raw:
+        return False
+    return bool(_STATUS_TALK.search(raw))
+
+
+def _outcome_line(steps: list[str]) -> str:
+    """A visitor line taken from finished steps.
+
+    Status talk and shopping asides lose to a concrete action. When every
+    step is an aside, the first finished step is still returned so a usable
+    card is rewritten instead of dropped.
+    """
+    fallback = ""
+    for step in steps:
+        candidate = re.sub(r"\s+", " ", step or "").strip().rstrip("。")
+        if not candidate or not visitor_ready(candidate) or casual_status_title(candidate):
+            continue
+        if not fallback:
+            fallback = candidate
+        if _ASIDE.search(candidate):
+            continue
+        if _executable_clause(candidate):
+            return candidate[:120]
+    for step in steps:
+        candidate = re.sub(r"\s+", " ", step or "").strip().rstrip("。")
+        if (
+            candidate
+            and visitor_ready(candidate)
+            and not casual_status_title(candidate)
+            and not _ASIDE.search(candidate)
+        ):
+            return candidate[:120]
+    return fallback[:120]
+
+
+def _publishable_title(raw_title: str, steps: list[str]) -> str:
+    """Keep a finished how-to title. Replace status talk from the steps."""
+    title = re.sub(r"\s+", " ", raw_title or "").strip()
+    if (
+        title
+        and visitor_ready(title)
+        and not casual_status_title(title)
+        and not _ASIDE.search(title)
+    ):
+        return title[:120]
+    fixed = _outcome_line(steps)
+    if fixed and visitor_ready(fixed) and not casual_status_title(fixed):
+        return fixed[:120]
+    if title and visitor_ready(title) and not casual_status_title(title):
+        return title[:120]
+    return ""
+
+
 def passes_engagement_gate(row: dict, bookmark_min: float) -> bool:
     """Saves must clear score.bookmark_prior. Missing counts do not pass.
 
@@ -453,9 +521,14 @@ def project_practice(
         return None
     raw_title = _raw_title(row)
     if not raw_title:
-        raw_title = first_usable_sentence(_plain_bits(row)) or steps[0].rstrip("。")
-    summary = steps[0].rstrip("。")
-    edited = edit_pair(raw_title, summary)
+        raw_title = first_usable_sentence(_plain_bits(row)) or ""
+    title = _publishable_title(raw_title, steps)
+    if not title:
+        return None
+    summary = _outcome_line(steps) or title
+    if casual_status_title(summary) or not visitor_ready(summary):
+        summary = title
+    edited = edit_pair(title, summary)
     if not edited:
         return None
     title, summary = edited
@@ -711,6 +784,8 @@ def self_check() -> None:
         raise SystemExit("FAIL: practice card shape")
     if not card["steps"][0].startswith("安装官方命令行"):
         raise SystemExit(f"FAIL: numbered sequence wording changed {card['steps']}")
+    if card["title"] != "用三步把本地模型接到你的编辑器":
+        raise SystemExit(f"FAIL: how-to title was rewritten {card['title']}")
     if "snippet" in card or "status_in_pool" in card:
         raise SystemExit("FAIL: pool fields reached the practice card")
     if not visitor_ready(card["title"]) or not visitor_ready(card["takeaway"]):
@@ -745,6 +820,74 @@ def self_check() -> None:
         raise SystemExit(f"FAIL: empty title dropped a finished step list {blank_card}")
     if re.search(r"[A-Za-z]{4,}", blank_card["title"]):
         raise SystemExit("FAIL: empty title published an English headline")
+    for bad in (
+        "没想到开发挺顺利，搞好了",
+        "跟大家同步下 Kindle 刷机改造进展",
+        "不少朋友感兴趣，写个极简版的 Kindle 越狱改造教程",
+    ):
+        if not casual_status_title(bad):
+            raise SystemExit(f"FAIL: status title not detected {bad}")
+    for good in (
+        "用 Syncthing 给云电脑做单向实时备份",
+        "旧 Kindle 越狱后装 KOReader：当微信读书与 Obsidian 阅读器",
+        "用三步把本地模型接到你的编辑器",
+    ):
+        if casual_status_title(good):
+            raise SystemExit(f"FAIL: how-to title was treated as status talk {good}")
+    status_body = "首先安装官方命令行并登录自己的账号。然后在编辑器里填上本地服务地址。接着用一条真实任务跑通。"
+    for index, bad_title in enumerate(
+        (
+            "没想到开发挺顺利，搞好了",
+            "跟大家同步下 Kindle 刷机改造进展",
+            "不少朋友感兴趣，写个极简版的 Kindle 越狱改造教程",
+        )
+    ):
+        status_card = project_practice(
+            _sample_row(
+                id=f"cand-20261025-abc123abc1{index:02x}",
+                title=bad_title,
+                snippet=status_body,
+            ),
+            handles,
+            0.34,
+            floor,
+        )
+        if not status_card or len(status_card["steps"]) < 2:
+            raise SystemExit(f"FAIL: usable steps were dropped for a status title {bad_title} {status_card}")
+        if status_card["title"] == bad_title or casual_status_title(status_card["title"]):
+            raise SystemExit(f"FAIL: status-line title published {status_card['title']}")
+        if not status_card["steps"][0].startswith("安装官方命令行"):
+            raise SystemExit(f"FAIL: status-title rewrite changed the steps {status_card['steps']}")
+    blank_status = project_practice(
+        _sample_row(
+            id="cand-20261025-abc123abc140",
+            title="",
+            snippet="没想到开发挺顺利，搞好了。" + status_body,
+        ),
+        handles,
+        0.34,
+        floor,
+    )
+    if not blank_status or casual_status_title(blank_status["title"]) or "搞好了" in blank_status["title"]:
+        raise SystemExit(f"FAIL: empty title published the status sentence {blank_status}")
+    shopping = project_practice(
+        _sample_row(
+            id="cand-20261025-abc123abc141",
+            title="没想到开发挺顺利，搞好了",
+            snippet=(
+                "1. 京东到家买一个绿联的 type-c 转 micro-usb 线，好像20 多块，一小时送到家 "
+                "2. 用数据线连上 Kindle，让助手完成越狱 "
+                "3. 装上 KOReader 阅读插件并打开一本书"
+            ),
+        ),
+        handles,
+        0.34,
+        floor,
+    )
+    if not shopping or len(shopping["steps"]) < 2:
+        raise SystemExit(f"FAIL: shopping aside dropped a usable how-to {shopping}")
+    if "京东" in shopping["title"] or casual_status_title(shopping["title"]):
+        raise SystemExit(f"FAIL: aside or status line became the title {shopping['title']}")
     inline = _sample_row(
         id="cand-20261024-abc123abc12a",
         title=None,
