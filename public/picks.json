@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25 08:07 北京时间",
+  "updated": "2026-10-26 08:05 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
@@ -7,6 +7,8 @@
     "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
     "https://developers.openai.com/api/docs/guides/decisions",
     "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
+    "https://github.com/JimLiu/baocut",
+    "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
     "https://github.com/Tencent-Hunyuan/Hy-Nomas",
     "https://github.com/pbakaus/impeccable",
     "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
@@ -28,6 +30,7 @@
     "https://x.com/claudeai/status/2113360845409583307",
     "https://x.com/dotey/status/2112995995017421133",
     "https://x.com/dotey/status/2113689823311524225",
+    "https://x.com/dotey/status/2114375050971296135",
     "https://x.com/natolambert/status/2113682066374062528",
     "https://x.com/perplexitydevs/status/2113400672238616800",
     "https://x.com/simonw/status/2113718487529267593"
@@ -42,6 +45,7 @@
     "cand-20261024-414f8f1dbba0",
     "cand-20261024-614aa5580165",
     "cand-20261024-7fa1388b33a9",
+    "cand-20261025-a2cec43800e6",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -50,7 +54,8 @@
     "evt-20261024-deepseek-v41-flash-1017",
     "evt-20261024-kimi-k3-1-pro",
     "evt-20261024-tencent-hy-nomas",
-    "evt-20261025-impeccable-computer-skill"
+    "evt-20261025-impeccable-computer-skill",
+    "evt-20261026-baocut-skill"
   ],
   "days": [
     {

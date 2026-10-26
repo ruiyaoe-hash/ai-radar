@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25 08:07 北京时间",
+  "updated": "2026-10-26 08:05 北京时间",
   "rings": {
     "采纳": [],
     "试用": [
@@ -137,6 +137,25 @@
         "status": "confirmed",
         "priority": "P1",
         "stance": "可以试用"
+      },
+      {
+        "id": "evt-20261026-baocut-skill",
+        "title": "BaoCut 技能：用智能体做双语排版与史料感视频",
+        "date": "2026-10-26",
+        "time": "10-26 08:00",
+        "try_url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+        "access": "开源技能可在 GitHub 阅读与安装；需配合 BaoCut 应用做转录与时间线。应用本身按作者发布渠道获取。",
+        "integration": "在已装 BaoCut 的环境里启用 baocut 技能，用 Cursor、Claude Code 等助手按技能说明发起「版面视频」任务；也可套用作者给出的历史演讲提示词模板。",
+        "first_step": "若你这周要做一条带双语字幕、章节和史料配图的演讲视频：打开技能说明，装好 BaoCut，用作者示例提示词先出一版审片链接，确认后再导出。",
+        "summary": "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
+        "audience_value": "如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。",
+        "alternatives": [
+          "继续用手剪 + 字幕工具分步做",
+          "只用生成视频模型出片、不做可编辑时间线"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "可以试用"
       }
     ],
     "评估": [
@@ -183,6 +202,25 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261026-baocut-skill",
+      "title": "BaoCut 技能：用智能体做双语排版与史料感视频",
+      "date": "2026-10-26",
+      "time": "10-26 08:00",
+      "try_url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+      "access": "开源技能可在 GitHub 阅读与安装；需配合 BaoCut 应用做转录与时间线。应用本身按作者发布渠道获取。",
+      "integration": "在已装 BaoCut 的环境里启用 baocut 技能，用 Cursor、Claude Code 等助手按技能说明发起「版面视频」任务；也可套用作者给出的历史演讲提示词模板。",
+      "first_step": "若你这周要做一条带双语字幕、章节和史料配图的演讲视频：打开技能说明，装好 BaoCut，用作者示例提示词先出一版审片链接，确认后再导出。",
+      "summary": "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
+      "audience_value": "如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。",
+      "alternatives": [
+        "继续用手剪 + 字幕工具分步做",
+        "只用生成视频模型出片、不做可编辑时间线"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "可以试用"
+    },
     {
       "id": "evt-20261025-impeccable-computer-skill",
       "title": "Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能",

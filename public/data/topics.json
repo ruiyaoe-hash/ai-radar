@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-26 01:43 北京时间",
+  "updated": "2026-10-26 08:06 北京时间",
   "topics": [
     {
       "slug": "hands-on",
@@ -14,11 +14,11 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 5,
-      "creator_count": 2,
+      "source_count": 6,
+      "creator_count": 3,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 5,
+      "unverified_practice": 6,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
       "latest": "2026-10-25"
