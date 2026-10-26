@@ -84,17 +84,24 @@ WINDOW_DAYS = 7
 MAX_ITEMS = 50
 LENSES = ["工具", "赛道", "模式", "时机"]
 LENS_LABEL = {
-    "工具": "试用工具",
+    "工具": "新工具",
     "赛道": "行业动态",
     "模式": "方法模式",
     "时机": "时机窗口",
 }
 ROLE_LABEL = {"primary": "一手", "analysis": "解读", "report": "转述"}
+# Visitor tool states are two labels. Older four-ring values still map.
 TOOL_RING_LABEL = {
-    "采纳": "值得采用",
-    "试用": "可以试用",
-    "评估": "需要评估",
-    "暂缓": "暂缓跟进",
+    "采纳": "推荐使用",
+    "试用": "推荐使用",
+    "评估": "值得关注",
+    "暂缓": "值得关注",
+    "值得采用": "推荐使用",
+    "可以试用": "推荐使用",
+    "需要评估": "值得关注",
+    "暂缓跟进": "值得关注",
+    "推荐使用": "推荐使用",
+    "值得关注": "值得关注",
 }
 
 
@@ -190,15 +197,15 @@ def objective_lines(it: dict) -> list[str]:
 
 
 def public_band(it: dict) -> str:
-    """Page label for priority. P0 rumor/pending → 市场信号; other P0 → 今日必看; P1 → 重点关注."""
+    """Visitor label. Internal priority stays on the card and is not printed as P0."""
     if it.get("priority") == "P0" and (
         it.get("status") == "rumor" or it.get("pending") in (True, "pending", "rumor")
     ):
-        return "市场信号"
+        return "尚待核实"
     if it.get("priority") == "P0":
-        return "今日必看"
+        return "重磅"
     if it.get("priority") == "P1":
-        return "重点关注"
+        return "快讯"
     return ""
 
 
@@ -349,23 +356,32 @@ def _tool_record(it: dict, ring: str) -> dict | None:
         "alternatives": it.get("alternatives") or [],
         "status": it.get("status"),
         "priority": it.get("priority"),
-        "stance": TOOL_RING_LABEL.get(ring, "需要评估"),
+        "stance": TOOL_RING_LABEL.get(ring, "值得关注"),
     }
 
 
 def build_tools_radar(all_items: list[dict]) -> dict:
-    rings = {"采纳": [], "试用": [], "评估": [], "暂缓": []}
+    rings = {
+        "推荐使用": [],
+        "值得关注": [],
+        # Legacy keys stay empty so older readers do not crash. Visitors use the two labels.
+        "采纳": [],
+        "试用": [],
+        "评估": [],
+        "暂缓": [],
+    }
     stream: list[dict] = []
     for it in all_items:
         if it.get("lens") != "工具" and not it.get("tool_radar"):
             continue
-        ring = it.get("tool_radar") or "评估"
-        if ring not in rings:
-            ring = "评估"
+        ring = it.get("tool_radar") or "值得关注"
+        if ring not in TOOL_RING_LABEL:
+            ring = "值得关注"
         record = _tool_record(it, ring)
         if record is None:
             continue
-        rings[ring].append(record)
+        visitor = record.get("stance") or "值得关注"
+        rings[visitor].append(record)
         stream.append(record)
     stream.sort(key=lambda item: (str(item.get("date") or ""), str(item.get("time") or "")), reverse=True)
     return {
@@ -389,7 +405,14 @@ def _visitor_card(it: dict) -> bool:
     return visitor_ready(title) and visitor_ready(happened) and visitor_ready(impact)
 
 
-_RING_ACTION = {"采纳": "值得采用", "试用": "可以试用", "评估": "需要评估", "暂缓": "暂缓"}
+_RING_ACTION = {
+    "采纳": "推荐使用",
+    "试用": "推荐使用",
+    "评估": "值得关注",
+    "暂缓": "值得关注",
+    "推荐使用": "推荐使用",
+    "值得关注": "值得关注",
+}
 # Visitor falsifier for a fact that was lifted onto an empty picks day.
 # It does not claim a hard P0, and it does not name the fill machinery.
 _BRIEF_FILL_FALSIFIER = "如果原文事后被更正，或者这件事和你这周要做的事对不上，就不必为此改安排。"
@@ -536,9 +559,9 @@ def _tool_fill_candidates(all_items: list[dict]) -> list[tuple[dict, dict]]:
     for it in all_items:
         if it.get("lens") != "工具" and not it.get("tool_radar"):
             continue
-        ring = it.get("tool_radar") or "评估"
+        ring = it.get("tool_radar") or "值得关注"
         if ring not in TOOL_RING_LABEL:
-            ring = "评估"
+            ring = "值得关注"
         if _tool_record(it, ring) is None or not _visitor_card(it):
             continue
         card = copy.deepcopy(it)

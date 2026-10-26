@@ -119,7 +119,8 @@
     },
     "tool_radar": {
       "type": "string",
-      "enum": ["采纳", "试用", "评估", "暂缓"]
+      "enum": ["推荐使用", "值得关注", "采纳", "试用", "评估", "暂缓"],
+      "description": "Visitor labels are 推荐使用 and 值得关注. The four older values remain so historical cards still validate; new writes use the two labels."
     },
     "lead_lag_hours": {
       "type": ["number", "null"],

@@ -55,7 +55,7 @@
 | 首页 | `index.html`：每日决策简报。顺序是信息精选、工具与产品、信息简讯、把发现变成能力 |
 | 信息精选 | `today.html`：按天往下排。硬门槛每天最多 3 条；某一天一条都没有时，用当天最强的一条工具或简讯顶上，只一条。`picks.json` 是完整列表，`today3.txt` 是最新一天的纯文本 |
 | 信息简讯 | `briefs.html`：按天往下排的事实简讯，不和信息精选重复。`week.html` 跳到这里 |
-| 工具决策 | `tools-radar.html`：按时间往下排。每条写清摘要、大众价值、上手实验；档位仍是值得采用 / 可以试用 / 需要评估 / 暂缓跟进 |
+| 工具决策 | `tools-radar.html`：按时间往下排。每条写清摘要、大众价值、上手实验；访客只看到「推荐使用」或「值得关注」 |
 | 实战手册 | `atlas.html` 主题手册 + 做法预览；`practice.html` 做法全文；`topics/*.html`；`creators.html` 博主库在「更多」 |
 | 专题观察 | `observe.html`：长期看法和随笔。`blog/` 仍是随笔正文 |
 | 订阅更新 | `subscribe.html`，顶栏右侧动作。`agent.html`、`feed.xml`、`llms.txt` 地址不变 |

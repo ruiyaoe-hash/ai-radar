@@ -47,9 +47,9 @@ def spoken_band(it: dict) -> str:
     if it.get("priority") == "P0" and it.get("status") == "rumor":
         return "传闻，先核对"
     if it.get("priority") == "P0":
-        return "今日必看"
+        return "重磅"
     if it.get("priority") == "P1":
-        return "可关注"
+        return "快讯"
     return "先不跟"
 
 
@@ -119,7 +119,7 @@ def _self_check() -> int:
     if card["priority"] != "P0" or card["status"] != "confirmed":
         print("FAIL: digest helper mutated the card", file=sys.stderr)
         return 1
-    for needle in ("**是什么：**", "**所以呢：**", "**若证伪：**", "今日必看"):
+    for needle in ("**是什么：**", "**所以呢：**", "**若证伪：**", "重磅"):
         if needle not in block:
             print(f"FAIL: missing {needle}", file=sys.stderr)
             return 1
@@ -130,10 +130,10 @@ def _self_check() -> int:
         print("FAIL: digest copied a raw post field", block, file=sys.stderr)
         return 1
     rumor = spoken_band({"priority": "P0", "status": "rumor"})
-    if rumor == "今日必看":
-        print("FAIL: rumor rendered as 今日必看", file=sys.stderr)
+    if rumor == "重磅":
+        print("FAIL: rumor rendered as 重磅", file=sys.stderr)
         return 1
-    if spoken_band({"priority": "P1", "status": "confirmed"}) != "可关注":
+    if spoken_band({"priority": "P1", "status": "confirmed"}) != "快讯":
         print("FAIL: P1 band", file=sys.stderr)
         return 1
     print("OK human_layer")

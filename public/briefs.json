@@ -46,12 +46,6 @@
       "lens": "赛道",
       "origin": "auto_brief",
       "candidate_id": "cand-20261024-de27875ea339",
-      "card_copy": {
-        "watch_reason": "官方源发布了新说明。",
-        "evidence_label": "官方原始信息",
-        "suggested_action": "持续观察",
-        "high_priority_review": false
-      },
       "why": "在线存储怎么扛住十亿级用户，会改变你对这类产品能不能稳住大规模使用的判断。",
       "affect": "你自己的服务也要扩到很大的用户量时，对照这篇里的多租户和缓存做法，再决定要不要改架构。"
     },
@@ -67,12 +61,6 @@
       "lens": "工具",
       "origin": "auto_brief",
       "candidate_id": "cand-20261024-58dba56773eb",
-      "card_copy": {
-        "watch_reason": "官方源发布了新说明。",
-        "evidence_label": "官方原始信息",
-        "suggested_action": "持续观察",
-        "high_priority_review": false
-      },
       "why": "做文献综述或选题的人，可以看一个问题在现有文献里站在哪，而不是只堆论文。",
       "affect": "手头有一个还散的研究想法时，打开原文看它怎么把文献收成问题；没有选题任务就不必改流程。"
     },
@@ -88,12 +76,6 @@
       "lens": "工具",
       "origin": "auto_brief",
       "candidate_id": "cand-20261023-aec2cbf8823d",
-      "card_copy": {
-        "watch_reason": "官方源发布了新说明。",
-        "evidence_label": "官方原始信息",
-        "suggested_action": "持续观察",
-        "high_priority_review": false
-      },
       "why": "做遥感、环境或地理数据的人，多了一份可以拿来用的全球地表表示。",
       "affect": "你的任务要用地球观测数据，就打开原文看这版嵌入怎么取；用不上就不必更换现有数据。"
     }

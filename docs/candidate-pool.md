@@ -1,6 +1,6 @@
 # 候选池契约（candidate pool）
 
-Phase 1 定契约和全量入池。Phase 2 把 L0 门槛和 L2 聚簇写成可跑函数，并加上源分级表。Phase 4 用 Actions 把 T1 实验室 RSS 写进私有池。公开仓不存放候选正文、分数或弃稿流水。不训 ranker（排序模型），不做公开热度榜，也不改飞书 webhook。
+Phase 1 定契约和全量入池。Phase 2 把 L0 门槛和 L2 聚簇写成可跑函数，并加上源分级表。Phase 4 用 Actions 把 T1 实验室 RSS 写进私有池。公开仓不存放候选正文、分数或弃稿流水。不训 ranker（排序模型），不做公开热度榜，也不改飞书 webhook。访客会碰到的取舍见 [`content-gates.md`](./content-gates.md)。排班和抓取间隔不在筛选口径里。
 
 ## 管道
 
@@ -67,9 +67,9 @@ python3 scripts/ingest_x.py --pool-dir ../ai-radar-pool < fetch.json
 | `media_alone` | 只有媒体二手，挡住正式 P0 |
 | `duplicate_event` | 同一事件已经有卡或候选 |
 | `duplicate_url` | URL 规范化之后重复 |
-| `stale_old` | 超出今日或看板的时效窗 |
-| `no_reliable_time` | 没有可信时间，按策略不公开 |
-| `no_new_info` | 同一簇在 7 日内没有实质性新进展 |
+| `stale_old` | 历史原因。新的过旧条目改为 `deferred`，不再写入这个原因 |
+| `no_reliable_time` | 历史原因。没有可信时间时改为 `deferred`，不再挂起或删除 |
+| `no_new_info` | 历史原因。同簇 7 日没有实质进展时改为 `deferred`，不再删除 |
 | `practice_not_steps` | 不像能照着做，步骤不够。连续的中文操作说明只要能拆出至少两步具体动作，也算写清了；短回复、纯观点和广告不算 |
 | `hot_signal_only` | 只作讨论证据，不上决策板 |
 | `editor_skip` | 编辑否决。`notes` 不能空。占比持续偏高要复盘门槛 |
@@ -103,7 +103,7 @@ python3 scripts/ingest_x.py --pool-dir ../ai-radar-pool < fetch.json
 
 `op7418`、`vista8`、`lijigang`、`bcherny`、`trq212`、`mattpocockuk`、`addyosmani`、`ryolu_`、`ammaar`、`ameliax111`、`Saccc_c`、`AlchainHust`、`RealYDT`、`GeekCatX`、`bozhou_ai`、`0xlangeai`
 
-`a_tier` 继续只做决策和情报的信任先验。`dotey`、`simonw`、`shao__meng` 留在 `a_tier`，并补上 `dhh`、`thomaszhou_`、`xiaohuiyuan`，再在末尾补上 `pauliusztin_`、`swyx`、`levelsio`、`marclou`。班次仍是每天 08:00 和工作日 21:00。derive 不读这张名单，所以已发布的 digest 不变。默认 `lane_hint=practice`、`participation=practice` 要到 Phase 3 的路由才强制；ingest 不替 Alba 填这两个字段。
+`a_tier` 继续只做决策和情报的信任先验。`dotey`、`simonw`、`shao__meng` 留在 `a_tier`，并补上 `dhh`、`thomaszhou_`、`xiaohuiyuan`，再在末尾补上 `pauliusztin_`、`swyx`、`levelsio`、`marclou`。derive 不读这张名单，所以已发布的 digest 不变。默认 `lane_hint=practice`、`participation=practice` 要到 Phase 3 的路由才强制；ingest 不替 Alba 填这两个字段。班次时刻是运行安排，不是内容筛选条件。
 
 公开实操卡的学习者字段在 `schemas/practice.schema.json`：`difficulty`（难度）、`prerequisites`（前置条件）、`estimated_time`（预计耗时）、`verified`（已验证）。已验证占比是集合指标，不是池字段。
 
@@ -120,14 +120,14 @@ Alba 在全量入池之后跑 `scripts/annotate_gates.py`。脚本读候选行�
 | 规则 | 默认行为 | `drop_reason` / `status_in_pool` |
 |------|----------|----------------------------------|
 | URL 规范化 | 去掉 tracking query，统一成 https | 同一 `id` 或同一 `url_norm` → `dropped` + `duplicate_url` |
-| 同源短窗 | 默认 30 分钟。同一 channel+handle，且没有新外链、正文新 token 也不到 3 个。中文按字符 bigram，英文和数字仍按词 | `dropped` + `duplicate_event`。短窗里如果带来新外链，留下 |
-| 时效 | 发表时间早于 `--as-of` 超过 48 小时（可配） | **默认 `deferred`，`drop_reason` 仍是 null**。`--stale-policy drop` 才是 `stale_old`。强制 P0（`scripts/force_p0.py`）绕过这两条，留在 `active` 等人审，仍不写公开卡 |
-| RSS 回填 | `channel=rss` 且发表日的北京日历日早于 `--as-of` | `deferred`，notes 写 `rss_backfill_not_today`。这不是 `stale_old`，也不占今日 |
-| 无可信时间 | 没有 `published_at` | **默认 `prefilter=UNKNOWN` 且 `pending`，不静默跳过**。`--no-time-policy drop` 才是 `no_reliable_time` |
+| 同源短窗 | 默认 30 分钟。同一 channel+handle，只在网址相同或标题相似时去重。新词太少不是丢弃理由 | `dropped` + `duplicate_event` |
+| 时效 | 发表时间早于 `--as-of` 超过 48 小时（可配） | `deferred`，`drop_reason` 为 null。不因过旧删除。强制 P0 仍留在 `active` 等人审，不写公开卡 |
+| RSS 回填 | `channel=rss` 且发表日的北京日历日早于 `--as-of` | `deferred`，notes 写 `rss_backfill_not_today`。也不占今日 |
+| 无可信时间 | 没有 `published_at` | `deferred`，`drop_reason` 为 null。不挂起，也不删除 |
 | 预筛三态 | 宽召回。只有明显非 AI（例如天气、菜谱、球赛，且没有模型词）才 BLOCK | `BLOCK` → `dropped` + `prefilter_block`。材料够且像 AI，或低门槛源，为 `PASS` |
 | 信任先验 | `config.json` 的 `a_tier` / `practice_handles`，加上 `config/source_tier_map.json` | 写入 `tier_prior` 和能对上的 `role_guess`。不在表里**不**硬排除 |
 | 媒体 alone | `role=report` 且候选 URL 和外链都不是 primary / 官方 | 默认留 `active`，notes 写明不能升正式 P0。notes 里有 `attempt_formal_p0` 才 `dropped` + `media_alone` |
-| 无新进展 | 同簇 7 日内没有新外链，正文新 token 也不到 3 个（中文 bigram，英文按词） | `dropped` + `no_new_info`（这是真丢） |
+| 无新进展 | 同簇 7 日内没有新外链，也没有新的模型名或足够的新说法 | `deferred`，`drop_reason` 为 null。留在池里，不占今日首页 |
 | 安全 | 只收 http(s)，沿用 `generate_derived.safe_http_url` | 其它协议 → `dropped` + `prefilter_block` |
 
 `deferred` 和 `rerouted` 仍然不是 `drop_reason`。脚本不写 `wrong_lane`、`quota`、`quota_defer`。
@@ -168,7 +168,7 @@ python3 scripts/annotate_gates.py --pool-dir ../ai-radar-pool --only-pending
 
 ## X 班次入池
 
-早班每天 08:00、晚班工作日 21:00（Asia/Shanghai）。Alba 自己准备原始 X JSON（公开 CI 不抓 X），用 `scripts/shift_ingest_x_to_pool.py --fetch … --pool-dir …` 写进私有仓：先全量 `ingest_x`，再 `annotate_gates.py --only-pending`。只在私有仓提交 `candidates/`。之后再晋升：公开卡写 `candidate_id`，或 `promotion_path=emergency`。池 JSONL 不进 `public/`。检出、JSON 形状、退出码和提交说明见 `docs/x-pool-ingest.md`。
+Alba 自己准备原始 X JSON（公开 CI 不抓 X），用 `scripts/shift_ingest_x_to_pool.py --fetch … --pool-dir …` 写进私有仓：先全量 `ingest_x`，再 `annotate_gates.py --only-pending`。只在私有仓提交 `candidates/`。池 JSONL 不进 `public/`。运行时刻和检出步骤见 `docs/x-pool-ingest.md`，不在这里当作筛选条件。
 
 ## RSS 入池（Phase 4）
 
@@ -243,11 +243,12 @@ The public contract is `schemas/candidate.schema.json` in `ruiyaoe-hash/ai-radar
    It fills `score` and, for a low rules score on an active row, `dropped` + `low_score` with a note.
    Deferred rows stay deferred. Forced P0 becomes `review_p0` and `review/p0-YYYY-MM-DD.json`.
    It does not promote and does not call a hosted model. The review list stays in
-   this private repo under `review/`. v2 is shadowed; the band stays v1 until `active_scorer` is flipped.
+   this private repo under `review/`.
 6. Alba then fills what the script does not: `lane_hint`, `participation`,
    `editor_skip` (with a note), and on promotion `archive_id` plus
    `promotion_path=normal`. Do not hand-edit `id`.
-7. `drop_reason` is null unless `status_in_pool=dropped`. `no_new_info` and `low_score` are true drops.
+7. `drop_reason` is null unless `status_in_pool=dropped`. `low_score` is a true drop.
+   Age, a missing clock, and no material progress in a cluster are `deferred`, not drops.
    `pending`, `wrong_lane`, `quota`, and `quota_defer` are not drop reasons.
    Delay is `deferred`. A lane change that can be routed is `rerouted`.
 8. RSS batch 1 is ingested by GitHub Actions with `AI_RADAR_POOL_TOKEN`.

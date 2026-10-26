@@ -133,7 +133,7 @@ def validate_card(it: dict, path: str, card_validator) -> None:
             continue
         if not isinstance(val, str) or not UTC_STAMP.match(val):
             fail(f"{path}: {key} must be ISO-8601 UTC, got {val!r}")
-    # rumor may stay priority P0; the board renders that as 尚待核实, never as 优先看.
+    # rumor may stay priority P0; the board renders that as 尚待核实, never as 重磅.
 
 
 def check_schema() -> int:
@@ -592,7 +592,7 @@ def check_public_ui() -> None:
             "工具决策",
             "实战手册",
             "专题观察",
-            "值得采用",
+            "推荐使用",
             "给迷途者的代码，给觉醒者的诗。",
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
@@ -629,7 +629,7 @@ def check_public_ui() -> None:
             "信息简讯",
             "./briefs.html",
             "时间筛选",
-            "优先看",
+            "重磅",
             "尚待核实",
             "未经证实的传闻与第三方帖子",
             '更正与下架：请通过「<a href="https://my.feishu.cn/share/base/form/shrcnEpIGDXepmIOFwMD8QUARwd" target="_blank" rel="noopener noreferrer">反馈 / 建议</a>」告知。',
@@ -648,10 +648,10 @@ def check_public_ui() -> None:
             "还没有可照着做的实操。",
             "没有写清步骤的分享不会上这一页",
         ],
-        "tools-radar.html": ["工具决策", "值得采用", "可以试用", "需要评估", "暂缓跟进", "相关发布", "相关做法", "摘要", "大众价值", "上手实验", "时间筛选"],
+        "tools-radar.html": ["工具决策", "推荐使用", "值得关注", "相关发布", "相关做法", "摘要", "大众价值", "上手实验", "时间筛选"],
         "subscribe.html": [
             "./feed.xml",
-            "试用工具",
+            "新工具",
             "行业动态",
             "方法模式",
             "时机窗口",

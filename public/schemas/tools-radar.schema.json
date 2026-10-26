@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ruiyaoe-hash.github.io/ai-radar/schemas/tools-radar.schema.json",
   "title": "AI Radar tools radar",
-  "description": "Derived tool list at tools-radar.json. This document has no schema_version. Incompatible shape changes are recorded in CHANGELOG.md. Deprecated fields stay at least 90 days. Ring keys are 采纳, 试用, 评估, 暂缓 (human labels: 值得采用, 可以试用, 需要评估, 暂缓跟进).",
+  "description": "Derived tool list at tools-radar.json. Visitor states are 推荐使用 and 值得关注. Older ring keys 采纳, 试用, 评估, 暂缓 stay in the file and may be empty. This document has no schema_version. Deprecated keys stay at least 90 days.",
   "type": "object",
   "required": ["updated", "rings", "note"],
   "additionalProperties": true,
@@ -15,9 +15,11 @@
     "note": { "type": "string", "minLength": 1, "maxLength": 160 },
     "rings": {
       "type": "object",
-      "required": ["采纳", "试用", "评估", "暂缓"],
+      "required": ["推荐使用", "值得关注", "采纳", "试用", "评估", "暂缓"],
       "additionalProperties": false,
       "properties": {
+        "推荐使用": { "$ref": "#/$defs/ring" },
+        "值得关注": { "$ref": "#/$defs/ring" },
         "采纳": { "$ref": "#/$defs/ring" },
         "试用": { "$ref": "#/$defs/ring" },
         "评估": { "$ref": "#/$defs/ring" },

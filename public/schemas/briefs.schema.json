@@ -41,7 +41,7 @@
         "card_copy": {
           "type": "object",
           "additionalProperties": false,
-          "description": "Optional flash copy. Auto briefs only: official source, keep watching, and high_priority_review false. No scores. A Forced P0 row is not projected into this file.",
+          "description": "Deprecated optional copy. New briefs omit it. If an older brief still has it, evidence_label stays 官方原始信息, suggested_action stays 持续观察, and high_priority_review stays false. Kept at least 90 days. No scores.",
           "required": ["watch_reason", "evidence_label", "suggested_action", "high_priority_review"],
           "properties": {
             "watch_reason": {
