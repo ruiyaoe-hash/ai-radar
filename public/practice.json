@@ -1,8 +1,30 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-26 23:20 北京时间",
+  "updated": "2026-10-27 07:58 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261027-4817e76d9dff",
+      "kind": "工具用法",
+      "title": "用 Grok Bot 筛出 AI 评论，再交给 Codex 批量拉黑",
+      "author": "vista8",
+      "url": "https://x.com/vista8/status/2114756709302644792",
+      "time": "2026-10-27 00:31",
+      "takeaway": "先让 Grok Bot 把最近一周疑似 AI 回复写入飞书文档，再把名单交给 Codex，用浏览器自动化依次拉黑；误伤可私信解除。",
+      "steps": [
+        "用 Grok Bot 识别最近一周的 AI 回复，并写入飞书文档。",
+        "把飞书文档转交 Codex，调用 Browser Use（浏览器操作）依次拉黑对应账号。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "可用的 Grok Bot 与飞书文档",
+        "Codex（或同类编程助手）及浏览器自动化权限"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261027-4817e76d9dff"
+    },
     {
       "id": "prac-20261026-d435aaec842c",
       "kind": "工具用法",

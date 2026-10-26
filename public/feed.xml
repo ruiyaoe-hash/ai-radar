@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 26 Oct 2026 21:11:43 +0800</lastBuildDate>
+<lastBuildDate>Tue, 27 Oct 2026 07:58:28 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[重磅 · 新工具 · 发布] OpenAI 发布 GPT-6.1 Terra：Plus 及以上可用、不另收费，API 价约减半，电脑操作追平 Astra 档</title>
+<link>https://openai.com/index/introducing-gpt-6-1-terra</link>
+<guid isPermaLink="false">evt-20261027-gpt61-terra</guid>
+<pubDate>Tue, 27 Oct 2026 02:06:27 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• OpenAI 于 2026-10-26（上海时间已入 10-27）发布 GPT-6.1 Terra：主打更快、更省的电脑操作（Computer Use）与视觉理解，官方称能看懂屏幕、跨应用点选与输入，并改进日常写作。相对上一代 GPT-5.6 Terra，标准 API 价约降 50%；模型名 gpt-6.1-terra。<br/>• 可用性：ChatGPT Work 与 Codex 向 Plus、Pro、Enterprise、Edu 用户推出，订阅内不另加收模型费；开发者可走 OpenAI API。官方称在 Agents’ Last Exam 等电脑操作评测上明显强于 GPT-5.6 Terra，并在约十分之一的每 token 价格下追平 GPT-6 Astra 的表现，平均完成任务更快。<br/>• 同日 OpenAI 官方线程、CEO Sam Altman、Artificial Analysis 与宝玉等多路关注池账号交叉确认；Artificial Analysis 另给出编程智能体与幻觉率等第三方读数。复杂极限编程任务官方仍更推荐 GPT-6.1 Sol / GPT-6 Astra。<br/><strong>对你意味着什么</strong> 如果你这周在付费用 ChatGPT / Codex，或按 token 跑大量电脑操作与看图任务，Terra 把「更强电脑操作」和「大约一半 API 价」叠在同一档，值得立刻用真实任务对打现用主力。<br/>建议：立即行动 · Plus 及以上与 API 今天即可试；盯官方配额与地区开关是否已开到你的账户。<br/>有多确定：高<br/>什么情况下当这判断作废：若你的账户尚未开放、真实电脑操作仍明显弱于 Astra/Sol，或按量费用并未下降，就收回「这周把批处理与电脑操作切到 Terra」。<br/>来源 openai（一手）, openai（一手）, openai（一手）, openai（一手）, openai（一手）, openai（一手）, sama（转述）, artificialanlys（转述）, dotey（转述）<br/>日期 2026-10-27]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] VoiceStudio：本机开源配音套件，可替代部分 ElevenLabs 流水线</title>
 <link>https://x.com/geekcatx/status/2114667608188621074</link>

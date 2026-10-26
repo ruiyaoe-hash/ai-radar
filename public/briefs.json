@@ -1,9 +1,24 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-26 23:20 北京时间",
+  "updated": "2026-10-26T23:57:41Z",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261027-6cd5b6ad40f5",
+      "level": "L2",
+      "date": "2026-10-27",
+      "time": "10-27 08:00",
+      "title": "Anthropic 向美国证监会递交招股书，拟纳斯达克代码 ANT",
+      "summary": "Anthropic 于 2026-10-26 公开递交 Form S-1，拟发行 A 类普通股并在纳斯达克上市，股票代码拟为 ANT；发行股数与价格区间尚未确定。注册声明尚未生效，当前信息不是出售要约。",
+      "why": "这是头部模型公司公开上市流程的关键节点，后续路演、定价与生效时间会影响行业融资与产品节奏预期，但还不等于今天就能买卖股票。",
+      "affect": "你若跟踪 Claude 生态或相关供应链：先当事实记下，等生效与定价再谈「能不能买」；本周工具选型不必只因招股书改换。",
+      "url": "https://www.anthropic.com/news/s1-sec",
+      "source": "anthropicai",
+      "lens": "时机",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261026-6cd5b6ad40f5"
+    },
     {
       "id": "brf-20261026-d435aaec842c",
       "level": "L2",

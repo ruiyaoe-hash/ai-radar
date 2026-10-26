@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-10-23",
-  "updated": "2026-10-26 23:20 北京时间",
+  "updated": "2026-10-27 07:58 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,14 +43,14 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 9,
+      "source_count": 10,
       "creator_count": 5,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 9,
+      "unverified_practice": 10,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
-      "latest": "2026-10-26"
+      "latest": "2026-10-27"
     }
   ],
   "sources": [
@@ -161,6 +161,18 @@
       "date": "2026-10-26",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261027-4817e76d9dff",
+      "url": "https://x.com/vista8/status/2114756709302644792",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "Grok bot 分析 AI 评论账号，Codex 操作浏览器拉黑",
+      "excerpt": "Grok Bot 识别最近一周的 AI 回复，写入飞书文档",
+      "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": [
@@ -168,7 +180,7 @@
       "handle": "vista8",
       "name": "vista8",
       "focus": "",
-      "source_count": 4,
+      "source_count": 5,
       "bookmarks": 0,
       "bookmark_metric": false,
       "topics": [
