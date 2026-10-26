@@ -1,6 +1,6 @@
 {
   "date": "2026-10-26",
-  "count": 3,
+  "count": 5,
   "schema_version": 1,
   "items": [
     {
@@ -188,6 +188,125 @@
       "card_copy": {
         "watch_reason": "开源数字人口播技能，可给编程助手直接调用。",
         "evidence_label": "多源确认",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261026-graphify",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Graphify：把整仓建成可查询知识图，少让编程助手反复搜文件",
+      "date": "2026-10-26",
+      "time": "10-26 21:00",
+      "handle": "shao__meng",
+      "url": "https://x.com/shao__meng/status/2114642398936502394",
+      "published_at": "2026-10-26T08:56:50Z",
+      "ingested_at": "2026-10-26T13:11:37Z",
+      "candidate_id": "cand-20261026-491a5fa6ec1b",
+      "promotion_path": "normal",
+      "objective": [
+        "Graphify（Apache-2.0 开源）给 Claude Code / Cursor / Codex / Gemini CLI 等编程助手加 `/graphify` 技能：对代码做本地 tree-sitter AST（抽象语法树）解析，把仓库（可含文档、PDF 等）建成可查询知识图，而不是向量库。",
+        "在本机安装命令行：执行 uv tool install graphifyy，也可以改用 pipx。装好后执行 graphify install，把技能注册进编程助手。然后在项目里运行 /graphify .。完成后，graphify-out 目录里会有 graph.json、可以点开的 graph.html，以及 GRAPH_REPORT.md。",
+        "边带 EXTRACTED/INFERRED 标记；也可用 graphify-mcp 把已有图挂进助手。官网另有 Graphify Cloud（常开记忆/跨仓），与开源 CLI 分开看待；仓库宣传的「降 80% token」要以你自己的仓规模与是否真接图查询为准。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/shao__meng/status/2114642398936502394",
+          "handle": "shao__meng",
+          "role": "report"
+        },
+        {
+          "url": "https://github.com/Graphify-Labs/graphify",
+          "handle": "Graphify-Labs",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/Graphify-Labs/graphify",
+      "access": "Apache-2.0 开源。在本机执行 uv tool install graphifyy（或改用 pipx）安装命令行，再执行 graphify install，把 /graphify 技能注册进 Claude Code、Cursor、Codex、Gemini CLI 等编程助手。",
+      "integration": "在项目里运行 /graphify . 生成知识图，或用 graphify-mcp 把已有图挂进助手，按图查询而不是反复搜文件。",
+      "first_step": "若你这周常让编程助手在大仓库里反复找文件：装好命令行，对当前项目跑一次 /graphify .，打开 graph.html 确认图盖住你关心的模块，再让助手按图查询。",
+      "alternatives": [
+        "继续让助手用搜索和读文件摸清仓库",
+        "只建向量库做语义检索，不建可查询的代码图"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用 Claude Code、Cursor 或同类助手改一个大仓库，又烦它反复搜文件，Graphify 把仓库收成可查询的知识图，查询可以少扫无关文件。",
+        "action": "立即行动",
+        "window": "开源命令行今天就能安装，并对一个真实仓库跑一次。",
+        "confidence": "中",
+        "falsifier": "若安装或技能注册失败、图盖不住你的仓库，或助手并没有改去查这张图、省下的用量也对不上，就收回「这周用它少搜文件」。"
+      },
+      "card_copy": {
+        "watch_reason": "开源知识图技能，让编程助手按图查仓库。",
+        "evidence_label": "多源确认",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261026-voicestudio",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "VoiceStudio：本机开源配音套件，可替代部分 ElevenLabs 流水线",
+      "date": "2026-10-26",
+      "time": "10-26 21:00",
+      "handle": "geekcatx",
+      "url": "https://x.com/geekcatx/status/2114667608188621074",
+      "published_at": "2026-10-26T10:37:01Z",
+      "ingested_at": "2026-10-26T13:11:37Z",
+      "candidate_id": "cand-20261026-1c4419d16438",
+      "promotion_path": "normal",
+      "block_ids": [
+        "cand-20261026-e68ce24a479a"
+      ],
+      "objective": [
+        "VoiceStudio（AGPL-3.0）是本地开源语音工具：语音克隆、音色设计、视频配音、听写转写、有声书等，README 称覆盖约 646 种语言，并带本地 API 与 MCP（模型上下文协议）便于挂到 Codex / Claude Code。",
+        "仓库在 GitHub 日榜热度很高（约 8.8 万星量级，以仓库页为准）；可从 Releases 下载或按文档本机安装。",
+        "商用前必读许可：软件 AGPL；默认 OmniVoice 模型权重标注非商用——接单/商用需按文档换引擎或取得授权，不要默认「开源=可商用」。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/geekcatx/status/2114667608188621074",
+          "handle": "geekcatx",
+          "role": "report"
+        },
+        {
+          "url": "https://github.com/debpalash/VoiceStudio",
+          "handle": "geekcatx",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/debpalash/VoiceStudio",
+      "access": "AGPL-3.0 开源。可从 GitHub Releases 下载，或按仓库文档在本机安装。默认 OmniVoice 权重标注非商用，商用前要按文档换引擎或取得授权。",
+      "integration": "本地 API 与 MCP 可挂到 Codex 或 Claude Code，用来做语音克隆、配音、转写和有声书，替换一部分 ElevenLabs 流水线。",
+      "first_step": "若你这周要把口播或视频配音留在本机：按文档装好或从 Releases 下载，用一段你有权使用的短样本出一条样音，并核对许可是否允许你的用途。",
+      "alternatives": [
+        "继续用 ElevenLabs 等云端配音服务",
+        "改用允许商用的系统语音或其他本地引擎"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你要做语音克隆、配音或有声书，又不想整条流水线都放在 ElevenLabs 上，VoiceStudio 把这些步骤收成本机套件；许可和默认模型权重会限制能不能接商用单。",
+        "action": "立即行动",
+        "window": "仓库今天可下载或按文档安装，先用短样本试音。",
+        "confidence": "中",
+        "falsifier": "若本机装不上、样音质量达不到可交付、硬件带不动，或许可与默认权重不允许你的商用用途，就收回「用它替换那部分 ElevenLabs 流水线」。"
+      },
+      "card_copy": {
+        "watch_reason": "本机开源配音套件，可替代部分云端配音流水线。",
+        "evidence_label": "官方原始信息",
         "suggested_action": "立即行动",
         "high_priority_review": false
       }

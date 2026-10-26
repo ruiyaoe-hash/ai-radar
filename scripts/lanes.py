@@ -21,6 +21,8 @@ from datetime import datetime
 
 PER_DAY = 3
 _DAY = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+# Sibling pool rows blocked with a card. They are not a second public id.
+_BLOCK_ID = re.compile(r"^(?:evt|cand|brf|prac)-[0-9]{8}-[a-z0-9][a-z0-9-]{0,80}$")
 
 
 def _handles(item: dict) -> set[str]:
@@ -106,6 +108,11 @@ def identity_ids(items: list[dict]) -> set[str]:
             value = item.get(key)
             if isinstance(value, str) and value.strip():
                 found.add(value.strip())
+        extra = item.get("block_ids")
+        if isinstance(extra, list):
+            for value in extra:
+                if isinstance(value, str) and _BLOCK_ID.match(value.strip()):
+                    found.add(value.strip())
     return found
 
 
@@ -274,6 +281,16 @@ def self_check() -> None:
         raise SystemExit(f"FAIL: multi-source boundary {ids}")
     if "https://example.com/multi-b" not in identity_urls(picked):
         raise SystemExit("FAIL: source urls missing from the pick identity set")
+    sibling = {
+        "id": "evt-20261026-linked",
+        "candidate_id": "cand-20261026-1c4419d16438",
+        "block_ids": ["cand-20261026-e68ce24a479a", "not-an-id"],
+    }
+    blocked = identity_ids([sibling])
+    if "cand-20261026-e68ce24a479a" not in blocked or "cand-20261026-1c4419d16438" not in blocked:
+        raise SystemExit(f"FAIL: sibling block_ids missing from identity set {blocked}")
+    if "not-an-id" in blocked:
+        raise SystemExit("FAIL: block_ids accepted a non-id")
     if not (action_rank(["可以试用"]) < action_rank(["持续观察"]) < action_rank(["暂缓"])):
         raise SystemExit("FAIL: mass-visitor action bands")
     if action_rank(["暂缓", "立即行动"]) != 0 or action_rank([]) != 5:
