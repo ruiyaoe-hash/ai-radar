@@ -1,9 +1,39 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-24 12:49 北京时间",
+  "updated": "2026-10-26 08:05 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261026-c5fb22fbf2c4",
+      "level": "L2",
+      "date": "2026-10-26",
+      "time": "10-26 01:04",
+      "title": "有人用 Opus 5.5 做出免费三维物理课本《Every Joule》",
+      "summary": "创作者 Techartist 用 Anthropic 的 Opus 5.5 与网页三维库 Three.js，做完覆盖英国中学「能量」整章的十课互动课本，可免费在线阅读。",
+      "why": "这说明当前顶尖对话模型已经能撑起一门可交互的完整小课，而不只是单页演示。",
+      "affect": "你若在评估「模型能不能交付可给外人用的学习/演示成品」，打开原站看完一课后，再决定要不要用同类栈做自己的小课。",
+      "url": "https://iamtechartist.com/every-joule/",
+      "source": "dotey",
+      "lens": "赛道",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261026-c5fb22fbf2c4"
+    },
+    {
+      "id": "brf-20261026-7da07aa09f99",
+      "level": "L2",
+      "date": "2026-10-26",
+      "time": "10-26 02:50",
+      "title": "独立报告提示 Tailscale SSH 等风险，并提供自查页",
+      "summary": "有安全报告称 Tailscale SSH 及相关面存在可被横向利用的问题；作者 levelsio 转发自查站点 Tailworm，方便使用者对照自己的组网与 SSH 设置。",
+      "why": "不少个人开发者用 Tailscale 连自己的机器；若开了它的 SSH，需要尽快核对暴露面。",
+      "affect": "你正在用 Tailscale SSH 或同类组网，就打开自查页与厂商说明核对；没用到可以忽略。",
+      "url": "https://tailworm.com/",
+      "source": "levelsio",
+      "lens": "时机",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261026-7da07aa09f99"
+    },
     {
       "id": "brf-20261024-de27875ea339",
       "level": "L2",

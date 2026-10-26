@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-10-23",
-  "updated": "2026-10-26 01:43 北京时间",
+  "updated": "2026-10-26 08:06 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,11 +43,11 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 5,
-      "creator_count": 2,
+      "source_count": 6,
+      "creator_count": 3,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 5,
+      "unverified_practice": 6,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
       "latest": "2026-10-25"
@@ -113,6 +113,18 @@
       "date": "2026-10-25",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261025-a2c7b1a99bef",
+      "url": "https://x.com/0xlangeai/status/2114381226530472425",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 Syncthing 给云电脑做单向实时备份",
+      "excerpt": "云电脑被回滚或误删时，本机仍有完整副本；用开源 Syncthing 做单向同步，约二十分钟可配好，误删还能从版本历史里捞回。",
+      "date": "2026-10-25",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": [
@@ -127,6 +139,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/vista8"
+    },
+    {
+      "handle": "0xlangeai",
+      "name": "0xlangeai",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/0xlangeai"
     },
     {
       "handle": "realydt",

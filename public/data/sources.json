@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-26 01:43 北京时间",
+  "updated": "2026-10-26 08:06 北京时间",
   "sources": [
     {
       "id": "prac-20261024-6d6218870fce",
@@ -58,6 +58,18 @@
       "type": "教程",
       "title": "Agent 把你的密钥带进模型请求，可能只需要读一遍 .env",
       "excerpt": "Codex 干活时会读配置和日志",
+      "date": "2026-10-25",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261025-a2c7b1a99bef",
+      "url": "https://x.com/0xlangeai/status/2114381226530472425",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 Syncthing 给云电脑做单向实时备份",
+      "excerpt": "云电脑被回滚或误删时，本机仍有完整副本；用开源 Syncthing 做单向同步，约二十分钟可配好，误删还能从版本历史里捞回。",
       "date": "2026-10-25",
       "origin": "practice",
       "verified": false

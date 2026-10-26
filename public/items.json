@@ -1,8 +1,71 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-25 08:08 北京时间",
+  "updated": "2026-10-26 08:05 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261026-baocut-skill",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "BaoCut 技能：用智能体做双语排版与史料感视频",
+      "date": "2026-10-26",
+      "time": "10-26 08:00",
+      "handle": "dotey",
+      "url": "https://x.com/dotey/status/2114375050971296135",
+      "published_at": "2026-10-25T15:14:29Z",
+      "ingested_at": "2026-10-26T00:05:00Z",
+      "candidate_id": "cand-20261025-a2cec43800e6",
+      "promotion_path": "normal",
+      "objective": [
+        "宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。",
+        "技能说明在 GitHub 仓库 JimLiu/baocut 的 skills/baocut/SKILL.md。BaoCut 本身负责转录、字幕对齐、翻译与时间线编辑；技能负责把「档案馆 / 纪录片」一类版面要求交给智能体执行。",
+        "同作者后续还公开了一条可用的历史演讲视频提示词模板（人物、年份、场合、章节与审片流程），适合先出简报再出片，避免直接烘焙导出。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/dotey/status/2114375050971296135",
+          "handle": "dotey",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+          "handle": "dotey",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/JimLiu/baocut",
+          "handle": "dotey",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+      "access": "开源技能可在 GitHub 阅读与安装；需配合 BaoCut 应用做转录与时间线。应用本身按作者发布渠道获取。",
+      "integration": "在已装 BaoCut 的环境里启用 baocut 技能，用 Cursor、Claude Code 等助手按技能说明发起「版面视频」任务；也可套用作者给出的历史演讲提示词模板。",
+      "first_step": "若你这周要做一条带双语字幕、章节和史料配图的演讲视频：打开技能说明，装好 BaoCut，用作者示例提示词先出一版审片链接，确认后再导出。",
+      "alternatives": [
+        "继续用手剪 + 字幕工具分步做",
+        "只用生成视频模型出片、不做可编辑时间线"
+      ],
+      "tool_radar": "试用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。",
+        "action": "立即行动",
+        "window": "技能与示例提示词今天即可对照原文试用。",
+        "confidence": "中",
+        "falsifier": "若 BaoCut 装不上、技能与你的助手不兼容，或导出质量达不到可发布标准，就收回「这周接这条工作流」。"
+      },
+      "card_copy": {
+        "watch_reason": "开源视频技能加可编辑时间线，适合双语与史料感版面。",
+        "evidence_label": "尚待核实",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261025-impeccable-computer-skill",
