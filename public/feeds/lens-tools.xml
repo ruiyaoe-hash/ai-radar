@@ -5,8 +5,22 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看试用工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 26 Oct 2026 08:05:49 +0800</lastBuildDate>
+<lastBuildDate>Mon, 26 Oct 2026 16:20:50 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[重点关注 · 试用工具 · 工具] 数字人口播技能开源：一张照片做说话数字人短视频</title>
+<link>https://x.com/saccc_c/status/2114621995409379654</link>
+<guid isPermaLink="false">evt-20261026-digital-human-koubo</guid>
+<pubDate>Mon, 26 Oct 2026 15:35:46 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。<br/>• 作者侧（berryxia）称教程已升级为可自动化、可稳定输出的技能包，技能在 GitHub 免费使用；数字资产链路示例使用 Renoise AI，也可按自己的资源替换。<br/>• 关注池博主转发给出仓库入口；适合先克隆仓库读技能说明，再在本机助手里试一条口播样片。<br/><strong>对你意味着什么</strong> 如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。<br/>建议：立即行动 · 仓库今天即可对照安装试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、Renoise 等依赖不可用或费用过高，或样片质量达不到可发布标准，就收回「这周接这条工作流」。<br/>来源 saccc_c（转述）, berryxia（一手）, andyhuo520（一手）<br/>日期 2026-10-26]]></description>
+</item>
+<item>
+<title>[重点关注 · 试用工具 · 工具] GEOInflow：自托管看清哪些 AI 爬虫在抓你的站</title>
+<link>https://x.com/vista8/status/2114579446795788675</link>
+<guid isPermaLink="false">evt-20261026-geoinflow</guid>
+<pubDate>Mon, 26 Oct 2026 12:46:41 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。<br/>• 内置约 61 类 AI 爬虫身份与用途分类（训练 / AI 搜索 / 用户触发等），也覆盖常规网站统计（PV/UV、事件漏斗、热力图等）。核心统计默认不依赖模型 API Key，数据留在自有服务器。<br/>• 官方仓库提供 Docker 一键部署脚本；默认本机 http://127.0.0.1:3002，首次账号见仓库说明，登录后应立即改密。<br/><strong>对你意味着什么</strong> 如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。<br/>建议：立即行动 · 仓库与 Docker 部署说明今天即可对照试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若你的环境装不上 Docker、日志接不进、或爬虫识别与你业务无关，就收回「这周上这套监测」。<br/>来源 vista8（转述）, yaojingang（一手）, yaojingang（一手）<br/>日期 2026-10-26]]></description>
+</item>
 <item>
 <title>[重点关注 · 试用工具 · 工具] BaoCut 技能：用智能体做双语排版与史料感视频</title>
 <link>https://x.com/dotey/status/2114375050971296135</link>
