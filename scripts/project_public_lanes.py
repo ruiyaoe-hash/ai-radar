@@ -2,7 +2,9 @@
 """Place finished public cards for 实战手册 and 专题观察.
 
 Shifts call this after scoring. A practice-lane row that clears both gates
-already in the repo becomes one practice card under public/practice/inbox/:
+already in the repo becomes one practice card under public/practice/inbox/.
+That card is the only public copy: the same event is not also a pick or a brief.
+generate_derived.py removes a brief that later matches one of these cards.
 
   - can-follow-along: at least two finished Chinese steps. Numbered lines and
     sequence words (首先 / 然后 / 接着 / 最后) still count. Continuous Chinese

@@ -114,6 +114,64 @@ assert(html.includes("&lt;script&gt;"), "renderCard did not escape objective tex
 assert(html.includes("https://github.com/a/b"), "renderCard dropped a https source");
 assert(html.includes("&lt;img"), "renderCard did not escape the title");
 
+function openOriginalPlacement(markup) {
+  const inside = (markup.match(/<details>[\s\S]*?<\/details>/g) || []).join("");
+  const outside = markup.replace(/<details>[\s\S]*?<\/details>/g, "");
+  const count = (chunk) => (chunk.match(/打开原文/g) || []).length;
+  return { total: count(markup), inside: count(inside), outside: count(outside) };
+}
+
+const linked = Radar.renderCard({
+  id: "evt-open-once",
+  title: "一条可以打开的原文",
+  url: "https://example.com/post",
+  try_url: "https://example.com/try",
+  handle: "ex",
+  tag: "发布",
+  lens: "工具",
+  priority: "P0",
+  status: "confirmed",
+  objective: ["发生了这件事。", "还有一句背景。"],
+  sources: [
+    { handle: "ex", role: "primary", url: "https://example.com/post" },
+    { handle: "other", role: "report", url: "https://example.com/note" },
+  ],
+  so_what: { impact: "值得看一眼。", action: "立即行动", window: "本周用自己的任务试一次。", falsifier: "若打不开就收回。" },
+}, new Set());
+const linkedPlace = openOriginalPlacement(linked);
+assert(linkedPlace.total === 1, `renderCard repeated 打开原文 (${linkedPlace.total})`);
+assert(linkedPlace.inside === 1 && linkedPlace.outside === 0, "renderCard 打开原文 must stay inside 背景与出处");
+assert(/<b>证据状态：<\/b>[^<]*<\/p>/.test(linked) && !/证据状态：[\s\S]{0,40}打开原文/.test(linked), "evidence line repeated 打开原文");
+assert(linked.includes("https://example.com/post") && linked.includes("https://example.com/try"), "renderCard dropped the source or try link");
+assert((linked.match(/去试用/g) || []).length === 1, "renderCard repeated 去试用");
+
+const brief = Radar.renderFactCard({
+  id: "brf-open-once",
+  title: "一条简讯",
+  summary: "发生了这件事。",
+  why: "值得看一眼。",
+  affect: "用你自己的任务对照一次。",
+  url: "https://example.com/brief",
+  source: "example",
+  lens: "赛道",
+});
+const briefPlace = openOriginalPlacement(brief);
+assert(briefPlace.total === 1 && briefPlace.inside === 1 && briefPlace.outside === 0, "brief with a source repeated 打开原文 outside 背景与出处");
+assert(brief.includes("背景与出处") && brief.includes("https://example.com/brief"), "brief dropped the only original link");
+
+const bare = Radar.renderFactCard({
+  id: "brf-open-bare",
+  title: "一条没有出处名的简讯",
+  summary: "发生了这件事。",
+  why: "值得看一眼。",
+  affect: "用你自己的任务对照一次。",
+  url: "https://example.com/bare",
+  lens: "时机",
+});
+const barePlace = openOriginalPlacement(bare);
+assert(barePlace.total === 1 && barePlace.outside === 1, "brief without 背景与出处 dropped its only 打开原文");
+assert(!bare.includes("背景与出处"), "brief without a source invented 背景与出处");
+
 if (failed) {
   console.error(`safeHref: ${failed} failed`);
   process.exit(1);

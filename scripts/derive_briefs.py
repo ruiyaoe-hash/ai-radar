@@ -14,10 +14,12 @@ Instruction-shaped text is dropped instead of published.
   python3 scripts/derive_briefs.py --self-check
   python3 scripts/derive_briefs.py --pool-dir ../ai-radar-pool --briefs public/briefs.json
 
-Existing items whose origin is not auto_brief are kept (archive seeds).
-Published auto briefs stay for RETAIN_DAYS even after their score decays, so a
-brief does not vanish from the page a few hours after it went up. Only rows whose
-own source is official on an RSS feed are projected; X posts never auto-publish.
+Existing items whose origin is not auto_brief are kept (archive seeds), unless
+the same event is already a practice card, a pick, or a watch item. A how-to
+stays on 实战手册 and is not also a brief. Published auto briefs stay for
+RETAIN_DAYS even after their score decays, so a brief does not vanish from the
+page a few hours after it went up. Only rows whose own source is official on
+an RSS feed are projected; X posts never auto-publish.
 """
 from __future__ import annotations
 
@@ -46,6 +48,7 @@ if __package__ in {None, ""}:
     from card_copy import refuses_auto_publish
     from editorial_zh import edit_pair, reader_lines
     from prompt_guard import find_instruction_override, strip_raw_post_fields
+    from lanes import event_keys
     from score_pool import is_official_row, is_practice_row
     from shift_ingest_x_to_pool import assert_shift_pool_dir
 else:
@@ -63,6 +66,7 @@ else:
     from .card_copy import refuses_auto_publish
     from .editorial_zh import edit_pair, reader_lines
     from .prompt_guard import find_instruction_override, strip_raw_post_fields
+    from .lanes import event_keys
     from .score_pool import is_official_row, is_practice_row
     from .shift_ingest_x_to_pool import assert_shift_pool_dir
 
@@ -204,9 +208,8 @@ def brief_id_for(row: dict) -> str:
     return f"brf-{day}-{suffix}"
 
 
-def door_urls() -> set[str]:
-    """URLs already on 信息精选, 实战手册, or 专题观察. 信息简讯 must not repeat them."""
-    found: set[str] = set()
+def _door_items() -> list[dict]:
+    """Cards already on 信息精选, 实战手册, or 专题观察."""
     paths = [
         PUBLIC / "practice.json",
         PUBLIC / "data" / "watch.json",
@@ -216,6 +219,7 @@ def door_urls() -> set[str]:
     files = list(paths)
     if inbox.is_dir():
         files.extend(inbox.glob("*.json"))
+    found: list[dict] = []
     for path in files:
         if not path.is_file():
             continue
@@ -232,12 +236,27 @@ def door_urls() -> set[str]:
         for blob in blobs:
             rows = blob if isinstance(blob, list) else [blob]
             for item in rows:
-                if not isinstance(item, dict):
-                    continue
-                raw = item.get("url")
-                if isinstance(raw, str) and safe_http_url(raw):
-                    found.add(normalize_url(raw))
+                if isinstance(item, dict):
+                    found.append(item)
     return found
+
+
+def door_urls() -> set[str]:
+    """URLs already on 信息精选, 实战手册, or 专题观察. 信息简讯 must not repeat them."""
+    found: set[str] = set()
+    for item in _door_items():
+        raw = item.get("url")
+        if isinstance(raw, str) and safe_http_url(raw):
+            found.add(normalize_url(raw))
+    return found
+
+
+def door_event_keys() -> set[str]:
+    """同一件事已经在精选、做法或专题观察时，简讯不再写一遍。"""
+    keys: set[str] = set()
+    for item in _door_items():
+        keys |= event_keys(item)
+    return keys
 
 
 def archive_urls() -> set[str]:
@@ -313,18 +332,26 @@ def _retained(item: dict, now: datetime | None) -> bool:
     return (now.astimezone(SHANGHAI) - day).days <= RETAIN_DAYS
 
 
+def _same_event(item: dict, blocked: set[str]) -> bool:
+    return bool(blocked and (event_keys(item) & blocked))
+
+
 def merge_briefs(
     existing: dict,
     auto_items: list[dict],
     updated: str,
     now: datetime | None = None,
     withdrawn: set[str] | None = None,
+    blocked: set[str] | None = None,
 ) -> dict:
     withdrawn = withdrawn or set()
+    blocked = blocked or set()
     kept = []
     previous_auto = []
     for item in existing.get("items") or []:
         if not isinstance(item, dict):
+            continue
+        if _same_event(item, blocked):
             continue
         if item.get("origin") != "auto_brief":
             kept.append(item)
@@ -342,6 +369,8 @@ def merge_briefs(
     merged_auto = [by_id.pop(item.get("id"), item) for item in previous_auto] + list(by_id.values())
     merged_auto.sort(key=lambda item: (str(item.get("date") or ""), str(item.get("time") or ""), str(item.get("id"))), reverse=True)
     for item in merged_auto:
+        if _same_event(item, blocked):
+            continue
         url = normalize_url(item["url"])
         repo = release_repo(url)
         key = f"release:{repo}" if repo else url
@@ -376,6 +405,7 @@ def derive(
     archive: set[str],
     updated: str,
     now: datetime | None = None,
+    blocked: set[str] | None = None,
 ) -> tuple[dict, list[dict]]:
     # A published row is never rescored, so a dropped row with brief_id was an editor's call.
     withdrawn = {
@@ -388,7 +418,7 @@ def derive(
         item = project_brief(row, options)
         if not item:
             continue
-        if normalize_url(item["url"]) in archive:
+        if normalize_url(item["url"]) in archive or _same_event(item, blocked or set()):
             continue
         value = float((row.get("score") or {}).get("value") or 0)
         ranked.append((value, str(row.get("id")), item, row))
@@ -410,7 +440,7 @@ def derive(
         cid = row.get("id")
         if cid in published and not row.get("brief_id"):
             row["brief_id"] = published[cid]
-    return merge_briefs(existing, auto_items, updated, now, withdrawn), rows
+    return merge_briefs(existing, auto_items, updated, now, withdrawn, blocked), rows
 
 
 def _load_existing(path: Path) -> dict:
@@ -664,6 +694,27 @@ def self_check() -> None:
     again_doc, _again_rows = derive(json.loads(json.dumps(written)), options, document, occupied, updated, as_of)
     if render_briefs(again_doc) != body:
         raise SystemExit("FAIL: derive_briefs is not stable")
+    practice_block = event_keys(
+        {
+            "id": "prac-20261014-aaa",
+            "url": "https://example.com/fixture-seed",
+            "candidate_id": "cand-20261014-seed",
+        }
+    )
+    stripped, _stripped_rows = derive(
+        json.loads(json.dumps(written)),
+        options,
+        document,
+        occupied,
+        updated,
+        as_of,
+        practice_block,
+    )
+    stripped_ids = [item["id"] for item in stripped["items"]]
+    if "brf-20261014-seed-fixture" in stripped_ids:
+        raise SystemExit("FAIL: a practice event stayed in briefs")
+    if "brf-20261014-ccc000000001" not in stripped_ids:
+        raise SystemExit("FAIL: an unrelated brief was dropped with the practice event")
 
     rumor = json.loads(json.dumps(clean))
     rumor["id"] = "cand-20261014-ccc000000006"
@@ -843,7 +894,11 @@ def main(argv: list[str] | None = None) -> int:
         occupied = set(archive_urls())
         occupied.update(door_urls())
         occupied.update(normalize_url(url) for url in args.occupy_url if normalize_url(url))
-        document, rows = derive(rows, options, _load_existing(target), occupied, updated, as_of)
+        blocked = door_event_keys()
+        for url in occupied:
+            if url:
+                blocked.add("url:" + url.rstrip("/").lower())
+        document, rows = derive(rows, options, _load_existing(target), occupied, updated, as_of, blocked)
         rendered = render_briefs(document)
         previous = target.read_text(encoding="utf-8") if target.is_file() else ""
         if rendered != previous:

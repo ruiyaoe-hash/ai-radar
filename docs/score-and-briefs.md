@@ -158,7 +158,7 @@ python3 scripts/score_sources.py --pool-dir ../ai-radar-pool
 
 ## 快讯怎么被填上
 
-`public/briefs.json` 里 `origin=archive_seed` 的条目摘自已经公开的归档，派生时保留。`origin=auto_brief` 只来自自动档：
+`public/briefs.json` 里 `origin=archive_seed` 的条目摘自已经公开的归档，派生时保留，除非同一件事已经在实战手册、信息精选或专题观察里。`origin=auto_brief` 只来自自动档：
 
 - 摘要是第一句，最多 100 字，链接留在 `url`
 - 去掉原始帖字段；`find_instruction_override` 命中的整条丢弃，不改写后硬发

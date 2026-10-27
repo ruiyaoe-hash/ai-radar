@@ -8,8 +8,11 @@ on the same card. That gate is not lowered to fill a day.
 When a Shanghai day still has zero picks, one same-day tool or brief can
 stand in (see fill_empty_pick_days). The stand-in is not marked P0, and a
 second card is not added. 信息简讯 does not keep a brief that was promoted
-into that empty day. This module only reads public cards. It does not read
-the private pool.
+into that empty day.
+
+同一件事不能同时出现在信息精选、信息简讯和实战手册。能照着做的步骤只留在
+实战手册。信息精选可以和工具决策同时留下；不要让精选、简讯、工具三处一起
+出现。这个模块只读公开卡片，不读私有池。
 
   python3 scripts/lanes.py --self-check
 """
@@ -120,6 +123,54 @@ def _norm_url(value: object) -> str:
     if not isinstance(value, str):
         return ""
     return value.strip().rstrip("/").lower()
+
+
+# 公开编号形如 brf-20261026-d435aaec842c。日期后面那一段在精选、简讯、做法之间相同，就是同一件事。
+_EVENT_SUFFIX = re.compile(r"^(?:evt|cand|brf|prac|watch)-(\d{8})-([a-z0-9][a-z0-9-]{0,80})$")
+
+
+def event_keys(item: dict) -> set[str]:
+    """对照同一件事用的键：主链接、候选编号、编号末段。
+
+    不看标题像不像。套话标题（例如「公开更新」）不是同一件事。
+    """
+    if not isinstance(item, dict):
+        return set()
+    keys: set[str] = set()
+    url = _norm_url(item.get("url"))
+    if url:
+        keys.add("url:" + url)
+    cid = item.get("candidate_id")
+    if isinstance(cid, str) and cid.strip():
+        keys.add("id:" + cid.strip())
+    for raw in (item.get("id"), cid):
+        if not isinstance(raw, str):
+            continue
+        matched = _EVENT_SUFFIX.match(raw.strip())
+        if matched:
+            keys.add("suf:" + matched.group(2))
+    return keys
+
+
+def without_practice_events(items: list[dict], practice: list[dict]) -> list[dict]:
+    """去掉已经写成做法的同一件事。
+
+    信息精选和信息简讯不再收这些。工具决策不走这里，所以工具页可以继续
+    和信息精选同时留下一条工具。
+    """
+    blocked: set[str] = set()
+    for item in practice:
+        blocked |= event_keys(item)
+    if not blocked:
+        return [item for item in items if isinstance(item, dict)]
+    kept: list[dict] = []
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        if event_keys(item) & blocked:
+            continue
+        kept.append(item)
+    return kept
 
 
 # Empty-day ranking for one stand-in. Clearer mass-visitor action first.
@@ -404,6 +455,40 @@ def self_check() -> None:
         raise SystemExit("FAIL: brief promoted by id still remains in the brief list")
     if without_promoted_briefs([other], []) != [other]:
         raise SystemExit("FAIL: briefs dropped when nothing was promoted")
+    practice_card = {
+        "id": "prac-20261026-d435aaec842c",
+        "url": "https://x.com/geekcatx/status/1/",
+        "candidate_id": "cand-20261026-d435aaec842c",
+        "title": "别在下载文件夹里直接开编程助手",
+    }
+    same_brief = {
+        "id": "brf-20261026-d435aaec842c",
+        "url": "https://x.com/geekcatx/status/1",
+        "candidate_id": "cand-20261026-d435aaec842c",
+        "title": "有人用假说明投毒",
+    }
+    other_url = dict(same_brief)
+    other_url["url"] = "https://example.com/other-writeup"
+    news = {
+        "id": "evt-20261027-gpt61-terra",
+        "url": "https://openai.com/index/x",
+        "candidate_id": "cand-20261027-c31b6b275e00",
+        "title": "模型发布",
+    }
+    kept_news = without_practice_events([same_brief, news], [practice_card])
+    if kept_news != [news]:
+        raise SystemExit(f"FAIL: a practice event stayed in the news lanes {kept_news}")
+    if without_practice_events([other_url], [practice_card]):
+        raise SystemExit("FAIL: same candidate with a different url stayed in the news lanes")
+    if without_practice_events([news], []) != [news]:
+        raise SystemExit("FAIL: news dropped when there is no practice card")
+    tool_and_pick = {
+        "id": "evt-20261027-gpt61-terra",
+        "url": "https://openai.com/index/x",
+        "title": "模型发布",
+    }
+    if without_practice_events([tool_and_pick], [practice_card]) != [tool_and_pick]:
+        raise SystemExit("FAIL: a tool that is not a practice card was removed")
     print("OK lanes self-check")
 
 

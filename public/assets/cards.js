@@ -7,6 +7,8 @@
    action / window / first_step → 对我有什么影响，并收成建议行动
    falsifier → 什么情况下当这判断作废
    objective 其余句子 + sources → 背景与出处
+   打开原文只留在「背景与出处」。证据状态行不再重复放一次。
+   简讯已经有「背景与出处」时，原文入口并进这一处；没有这一处时，摘要下面保留唯一入口。
    信息简讯不追加固定的证据尾巴或「持续观察」
 */
 (function (global) {
@@ -155,10 +157,9 @@
     };
   }
 
-  function evidenceLine(ev, linkHtml) {
+  function evidenceLine(ev) {
     const text = /。$/.test(ev.label) ? ev.label : ev.label + "。";
-    const linkPart = linkHtml || "";
-    return `<p class="mean"><b>证据状态：</b>${esc(text)}${linkPart}</p>`;
+    return `<p class="mean"><b>证据状态：</b>${esc(text)}</p>`;
   }
 
   function renderSources(it) {
@@ -219,7 +220,7 @@
       <p class="mean"><b>为什么值得看：</b>${esc(decision.why)}</p>
       <p class="mean"><b>对我有什么影响：</b>${esc(decision.affect)}</p>
       ${action}
-      ${evidenceLine(decision.evidence, primaryAnchor)}
+      ${evidenceLine(decision.evidence)}
       ${details}
     </article>`;
   }
@@ -233,7 +234,11 @@
     const lens = LENS_LABEL[brief && brief.lens] || "";
     const link = externalAnchor(brief && brief.url, "打开原文");
     const source = brief && brief.source ? `<span>${esc(brief.source)}</span>` : "";
-    const fold = source ? `<p class="src">${source}</p>` : "";
+    const open = link ? `<p>${link}</p>` : "";
+    const fold = [
+      source ? `<p class="src">${source}</p>` : "",
+      source ? open : ""
+    ].join("");
     const details = fold.trim()
       ? `<details><summary>背景与出处</summary><div class="fold">${fold}</div></details>`
       : "";
@@ -247,7 +252,7 @@
       <p class="mean"><b>发生了什么：</b>${esc(summary)}</p>
       <p class="mean"><b>为什么值得看：</b>${esc(why)}</p>
       <p class="mean"><b>对我有什么影响：</b>${esc(affect)}</p>
-      ${link ? `<p>${link}</p>` : ""}
+      ${source ? "" : open}
       ${details}
     </article>`;
   }
