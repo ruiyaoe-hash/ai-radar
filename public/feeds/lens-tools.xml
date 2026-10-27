@@ -5,8 +5,29 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 27 Oct 2026 16:14:48 +0800</lastBuildDate>
+<lastBuildDate>Tue, 27 Oct 2026 21:05:29 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] skill-diet：给 Agent Skill 减重，用同任务评测保证「更瘦但不更差」</title>
+<link>https://github.com/nicobailon/skill-diet</link>
+<guid isPermaLink="false">evt-20261027-skill-diet</guid>
+<pubDate>Tue, 27 Oct 2026 21:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• nicobailon 开源的 skill-diet 是管其他 skill 的元技能：一边把臃肿说明压薄并校对过时命令，一边给后续每次改 skill 立规矩；官方称实测可砍掉约七到八成 token 且评测不掉点。<br/><strong>对你意味着什么</strong> 如果你在 Cursor、Codex 或 Claude Code 里堆了不少 Skills，又开始感到上下文被说明书吃掉，skill-diet 把「减重 + 防回潮」做成可一键试的流程。<br/>建议：立即行动 · 今天装好，对一个真实臃肿技能跑一轮对照评测。<br/>有多确定：中<br/>什么情况下当这判断作废：若装不上、瘦身后同任务评测变差，或说明并没有变薄，就收回「这周用它给臃肿技能减重」。<br/>来源 nicobailon（一手）<br/>日期 2026-10-27]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] DeepSeek Harness：一切皆插件的开源 Agent 壳，本地一条命令就能开 Web</title>
+<link>https://github.com/deepseek-ai/deepseek-harness</link>
+<guid isPermaLink="false">evt-20261027-deepseek-harness</guid>
+<pubDate>Tue, 27 Oct 2026 21:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• DeepSeek 开源的 DeepSeek Harness（dsh）把 Agent 壳做成「一切皆插件」架构；中文圈今晚开始密集试用热门插件，适合爱折腾、又想控制成本的本机用户。<br/><strong>对你意味着什么</strong> 如果你已经在付高价跑编程助手，又想用 DeepSeek 的性价比搭一套可扩展本机壳，dsh 给出了官方入口和正在冒头的插件市场，值得先跑通 Web 再决定深做。<br/>建议：立即行动 · 今天拉起本机网页，用一条真实任务看插件是否稳。<br/>有多确定：中<br/>什么情况下当这判断作废：若本机网页拉不起来、插件装不上，或真实任务跑不稳，就收回「这周用它搭可插拔本地壳」。<br/>来源 deepseek-ai（一手）, deepseek-ai（一手）<br/>日期 2026-10-27]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] huashu-art-motion：用代码把画做成动画的艺术风格 Skill</title>
+<link>https://github.com/alchaincyf/huashu-art-motion</link>
+<guid isPermaLink="false">evt-20261027-huashu-art-motion</guid>
+<pubDate>Tue, 27 Oct 2026 21:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 花叔开源的 huashu-art-motion 把数十种艺术风格和解说语法做成给 coding agent 用的 Skill，用代码驱动画面运动，而不是只出静帧。<br/><strong>对你意味着什么</strong> 如果你用编程助手做短片或演示动画，又嫌通用视频模型不好控风格，这套 Skill 把「选定风格 → 写出会动的画」收成可安装流程。<br/>建议：立即行动 · 今天装好，对照样片先生成一段可运行片段。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能装不上、片段跑不起来，或运动与风格对不上样片，就收回「这周用它做代码驱动的短动画」。<br/>来源 alchaincyf（一手）<br/>日期 2026-10-27]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] OpenAgentCore：自托管的 OpenAI Agents API，一套 Core 可换多种 Agent 与模型</title>
 <link>https://github.com/MiniMax-AI/OpenAgentCore</link>
