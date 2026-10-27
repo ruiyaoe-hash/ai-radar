@@ -141,9 +141,37 @@ const linked = Radar.renderCard({
 const linkedPlace = openOriginalPlacement(linked);
 assert(linkedPlace.total === 1, `renderCard repeated 打开原文 (${linkedPlace.total})`);
 assert(linkedPlace.inside === 1 && linkedPlace.outside === 0, "renderCard 打开原文 must stay inside 背景与出处");
-assert(/<b>证据状态：<\/b>[^<]*<\/p>/.test(linked) && !/证据状态：[\s\S]{0,40}打开原文/.test(linked), "evidence line repeated 打开原文");
+assert(!linked.includes("证据状态"), "renderCard still shows 证据状态");
+assert(!linked.includes("原文可以核对") && !linked.includes("已经核对"), "renderCard still shows an evidence value");
+assert(linked.includes("背景与出处") && linked.includes("建议行动"), "renderCard dropped the kept meta");
 assert(linked.includes("https://example.com/post") && linked.includes("https://example.com/try"), "renderCard dropped the source or try link");
 assert((linked.match(/去试用/g) || []).length === 1, "renderCard repeated 去试用");
+
+const hero = Radar.renderHero([{
+  title: "精选标题",
+  happened: "发生了这件事。",
+  why: "值得看一眼。",
+  affect: "用你自己的任务对照一次。",
+  bucket: "值得关注",
+  evidenceLabel: "原文可以核对",
+  url: "https://example.com/hero",
+}]);
+assert(!hero.includes("证据状态") && !hero.includes("原文可以核对"), "renderHero still shows 证据状态");
+assert((hero.match(/打开原文/g) || []).length === 1 && hero.includes("https://example.com/hero"), "renderHero dropped its only 打开原文");
+
+const copied = Radar.copyText("", [{
+  id: "evt-copy",
+  title: "复制标题",
+  date: "2026-10-27",
+  url: "https://example.com/copy",
+  priority: "P0",
+  status: "confirmed",
+  objective: ["发生了这件事。"],
+  sources: [{ handle: "ex", role: "primary", url: "https://example.com/copy" }],
+  so_what: { impact: "值得看一眼。", action: "立即行动", window: "本周用自己的任务试一次。", falsifier: "若打不开就收回。" },
+}]);
+assert(!copied.includes("证据状态") && !copied.includes("原文可以核对"), "copyText still includes 证据状态");
+assert(copied.includes("发生了什么：发生了这件事。") && copied.includes("https://example.com/copy"), "copyText dropped the kept lines");
 
 const brief = Radar.renderFactCard({
   id: "brf-open-once",

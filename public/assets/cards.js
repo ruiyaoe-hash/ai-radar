@@ -1,13 +1,12 @@
 /* 页面只显示访客能读的中文，不显示原始分数，也不显示内部编号。
    已确认的重点 → 重磅；还没核完 → 尚待核实；其余可看的 → 快讯
-   证据说法：原文可以核对 / 已经核对 / 尚待核实
    lens 工具/赛道/模式/时机 → 新工具/行业动态/方法模式/时机窗口
    工具档位只显示「推荐使用」或「值得关注」
    objective → 发生了什么；impact → 为什么值得看
    action / window / first_step → 对我有什么影响，并收成建议行动
    falsifier → 什么情况下当这判断作废
    objective 其余句子 + sources → 背景与出处
-   打开原文只留在「背景与出处」。证据状态行不再重复放一次。
+   打开原文只留在「背景与出处」。卡片上不写证据那一行。
    简讯已经有「背景与出处」时，原文入口并进这一处；没有这一处时，摘要下面保留唯一入口。
    信息简讯不追加固定的证据尾巴或「持续观察」
 */
@@ -157,11 +156,6 @@
     };
   }
 
-  function evidenceLine(ev) {
-    const text = /。$/.test(ev.label) ? ev.label : ev.label + "。";
-    return `<p class="mean"><b>证据状态：</b>${esc(text)}</p>`;
-  }
-
   function renderSources(it) {
     const srcs = (it && it.sources) || [];
     if (!srcs.length) {
@@ -220,7 +214,6 @@
       <p class="mean"><b>为什么值得看：</b>${esc(decision.why)}</p>
       <p class="mean"><b>对我有什么影响：</b>${esc(decision.affect)}</p>
       ${action}
-      ${evidenceLine(decision.evidence)}
       ${details}
     </article>`;
   }
@@ -355,7 +348,6 @@
       if (row.why) lines.push(`   为什么值得看：${row.why}`);
       if (row.affect) lines.push(`   对我有什么影响：${row.affect}`);
       if (row.bucket) lines.push(`   建议行动：${row.bucket}`);
-      if (row.evidenceLabel) lines.push(`   证据状态：${row.evidenceLabel}`);
       if (row.url) lines.push(`   ${row.url}`);
       lines.push("");
     });
@@ -368,7 +360,6 @@
     }
     return rows.map((row) => {
       const link = externalAnchor(row.url, "打开原文");
-      const evidence = /。$/.test(row.evidenceLabel || "") ? row.evidenceLabel : (row.evidenceLabel || "原文可以核对") + "。";
       const action = row.bucket
         ? `<div class="act">建议行动：${esc(row.bucket)}</div>`
         : "";
@@ -377,7 +368,7 @@
         <p class="mean"><b>为什么值得看：</b>${esc(row.why || "")}</p>
         <p class="mean"><b>对我有什么影响：</b>${esc(row.affect || "")}</p>
         ${action}
-        <p class="mean"><b>证据状态：</b>${esc(evidence)}${link || ""}</p>
+        ${link ? `<p>${link}</p>` : ""}
       </li>`;
     }).join("");
   }

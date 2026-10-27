@@ -703,7 +703,6 @@ def check_public_ui() -> None:
             "实战手册",
             "专题观察",
             "对我有什么影响",
-            "证据状态",
             "背景与出处",
             "尚待核实",
             "未经证实的传闻与第三方帖子",
@@ -771,9 +770,17 @@ def check_public_ui() -> None:
     if "AIHOT" in shell:
         fail("shell.js must not add another wordmark besides AI Radar")
     cards = (PUBLIC / "assets" / "cards.js").read_text(encoding="utf-8")
-    for label in ("发生了什么", "为什么值得看", "对我有什么影响", "建议行动", "证据状态", "背景与出处", "什么情况下当这判断作废"):
+    for label in ("发生了什么", "为什么值得看", "对我有什么影响", "建议行动", "背景与出处", "什么情况下当这判断作废"):
         if label not in cards:
             fail(f"cards.js missing {label}")
+    leaked = []
+    for path in PUBLIC.rglob("*"):
+        if path.suffix not in {".html", ".js"}:
+            continue
+        if "证据状态" in path.read_text(encoding="utf-8"):
+            leaked.append(str(path.relative_to(PUBLIC)))
+    if leaked:
+        fail("visitor pages still show 证据状态: " + ", ".join(sorted(leaked)))
     if "so_what.confidence" in cards or ".confidence" in cards:
         fail("cards.js must not render confidence or a raw score")
     atlas_js = (PUBLIC / "assets" / "atlas.js").read_text(encoding="utf-8")
