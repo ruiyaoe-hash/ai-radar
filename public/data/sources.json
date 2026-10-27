@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-27 12:12 北京时间",
+  "updated": "2026-10-27 14:29 北京时间",
   "sources": [
     {
       "id": "prac-20261024-6d6218870fce",
@@ -39,30 +39,6 @@
       "verified": false
     },
     {
-      "id": "prac-20261025-c08d81155c53",
-      "url": "https://x.com/vista8/status/2114340452870836238",
-      "author": "vista8",
-      "topic": "hands-on",
-      "type": "教程",
-      "title": "不用数据线，一句话把电子书发到 Kindle",
-      "excerpt": "在手机浏览器里配好接口密钥后，可以用一句话把电子书发到 Kindle，并改成更方便的排版。",
-      "date": "2026-10-25",
-      "origin": "practice",
-      "verified": false
-    },
-    {
-      "id": "prac-20261025-d2980f2b60db",
-      "url": "https://x.com/realydt/status/2114186078076936344",
-      "author": "realydt",
-      "topic": "hands-on",
-      "type": "教程",
-      "title": "Agent 把你的密钥带进模型请求，可能只需要读一遍 .env",
-      "excerpt": "Codex 读取配置和日志时，写在里面的密钥可能跟着模型请求发出去，动手前先检查环境文件。",
-      "date": "2026-10-25",
-      "origin": "practice",
-      "verified": false
-    },
-    {
       "id": "prac-20261025-a2c7b1a99bef",
       "url": "https://x.com/0xlangeai/status/2114381226530472425",
       "author": "0xlangeai",
@@ -92,8 +68,8 @@
       "author": "realydt",
       "topic": "hands-on",
       "type": "教程",
-      "title": "个人 Agent 到底该买 Mac mini，还是配一台 Linux 小主机",
-      "excerpt": "配置再往上加，本机文件或看得见的浏览器",
+      "title": "先列任务，再决定个人 Agent 用 Mac 还是 Linux 小主机",
+      "excerpt": "先列出 Agent 要干的活，再决定 Linux 网关还是接入 Mac。",
       "date": "2026-10-26",
       "origin": "practice",
       "verified": false
@@ -104,8 +80,8 @@
       "author": "geekcatx",
       "topic": "hands-on",
       "type": "教程",
-      "title": "兄弟们，千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
-      "excerpt": "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+      "title": "三步自查：别在下载文件夹里启动 Codex 或 Claude Code",
+      "excerpt": "先查 Codex 配置和 Claude 接口，只在干净目录里启动。",
       "date": "2026-10-26",
       "origin": "practice",
       "verified": false
