@@ -1,9 +1,24 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-27 09:16 北京时间",
+  "updated": "2026-10-27 12:20 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261027-5f8e0f8ff8e2",
+      "level": "L2",
+      "date": "2026-10-27",
+      "time": "10-26 22:30",
+      "title": "OpenAI 称模型给出 Kakeya 猜想、指数时间假设和量子色动力学结果，并请外部学者核验",
+      "summary": "OpenAI 于北京时间 10 月 26 日 22:30 发文，称其模型给出了 Kakeya 猜想、指数时间假设（Exponential Time Hypothesis），以及量子色动力学和相关杨-米尔斯（Yang-Mills）工作的结果，并请外部学者以 shepherd 身份组织核验和后续整理。这些仍是 OpenAI 的主张，尚未经过同行评议；截至现有来源，这些学者没有公开判定对或错。",
+      "why": "这三项如果成立，会牵动数学分析、许多以指数时间假设为前提的复杂度结论，以及粒子物理的严格存在性证明。外部核验还在进行，现在不能当成已经证实。",
+      "affect": "你若做研究或准备引用，先把它当成 OpenAI 的公开主张，等牵头学者和同行给出对错再引用。本周的产品和模型选型不必因此改换。",
+      "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities",
+      "source": "openai-blog",
+      "lens": "赛道",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261026-5f8e0f8ff8e2"
+    },
     {
       "id": "brf-20261027-6cd5b6ad40f5",
       "level": "L2",

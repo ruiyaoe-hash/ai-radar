@@ -163,6 +163,18 @@
       "date": "2026-10-27",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261027-4deda6805f12",
+      "url": "https://x.com/vista8/status/2114893008781156471",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "在 iOS 上用快捷指令设置 Grok 语音唤起",
+      "excerpt": "先做好唤起 Grok 语音的快捷指令，再在人声快捷指令里设置唤醒词。",
+      "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": []
