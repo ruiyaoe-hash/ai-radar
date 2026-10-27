@@ -1,30 +1,18 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-27 12:12 北京时间",
+  "updated": "2026-10-27 14:29 北京时间",
   "creators": [
     {
       "handle": "vista8",
       "name": "vista8",
       "focus": "",
-      "source_count": 6,
+      "source_count": 5,
       "bookmarks": 0,
       "bookmark_metric": false,
       "topics": [
         "hands-on"
       ],
       "profile_url": "https://x.com/vista8"
-    },
-    {
-      "handle": "realydt",
-      "name": "realydt",
-      "focus": "",
-      "source_count": 2,
-      "bookmarks": 0,
-      "bookmark_metric": false,
-      "topics": [
-        "hands-on"
-      ],
-      "profile_url": "https://x.com/realydt"
     },
     {
       "handle": "0xlangeai",
@@ -49,6 +37,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/geekcatx"
+    },
+    {
+      "handle": "realydt",
+      "name": "realydt",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/realydt"
     },
     {
       "handle": "shao__meng",

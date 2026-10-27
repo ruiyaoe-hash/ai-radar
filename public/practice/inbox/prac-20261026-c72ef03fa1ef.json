@@ -1,21 +1,22 @@
 {
   "id": "prac-20261026-c72ef03fa1ef",
   "kind": "Skill / 工作流",
-  "title": "个人 Agent 到底该买 Mac mini，还是配一台 Linux 小主机",
+  "title": "先列任务，再决定个人 Agent 用 Mac 还是 Linux 小主机",
   "author": "realydt",
   "url": "https://x.com/realydt/status/2114504860167200828",
   "time": "2026-10-26 07:50",
-  "takeaway": "配置再往上加，本机文件或看得见的浏览器",
+  "takeaway": "接云端模型时，常驻主机主要收消息、跑网关和调工具。OpenClaw 网关的 VPS 最低是 1 核、1GB 内存；要操作 Mac 本机再把 Mac 接上，离线跑模型则另算显卡和内存。",
   "steps": [
-    "配置再往上加，本机文件或看得见的浏览器。",
-    "就有理由把Mac 放进工作流，OpenClaw 甚至支持网关放服务器，真打算离线跑模型。"
+    "列出这个 Agent 要做的事：只接 Claude 或 GPT 这类云模型并全天收任务，还是要操作 iMessage、macOS 软件、本机文件或看得见的浏览器。",
+    "如果只跑云模型网关，准备一台至少 1 核、1GB 内存的 Linux 小主机或 VPS；要开浏览器或接更多频道，就在这个最低配置上再加资源。OpenClaw 可以把网关放在服务器上。",
+    "需要操作 Mac 本机时，再把 Mac 作为节点接入。打算离线跑模型时，单独算显卡和内存，不要按网关的最低配置买机器。"
   ],
-  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "caution": "动手前对照原文核对配置、授权和费用。这里没有替你跑过这组步骤。最低配置以 OpenClaw 官方说明为准。",
   "difficulty": "入门",
   "prerequisites": [
-    "原文里用到的账号或软件"
+    "已想好这个个人 Agent 要接的任务"
   ],
-  "estimated_time": "按步骤做完",
+  "estimated_time": "对照原文清单做完",
   "verified": false,
   "candidate_id": "cand-20261026-c72ef03fa1ef"
 }

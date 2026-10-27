@@ -51,21 +51,22 @@
     {
       "id": "prac-20261026-d435aaec842c",
       "kind": "工具用法",
-      "title": "兄弟们，千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+      "title": "三步自查：别在下载文件夹里启动 Codex 或 Claude Code",
       "author": "geekcatx",
       "url": "https://x.com/geekcatx/status/2114665225488417155",
       "time": "2026-10-26 18:27",
-      "takeaway": "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+      "takeaway": "Forever Security 在客户电脑里发现，有人把恶意指令伪装成工程笔记 AGENTS.md 放进下载文件夹。在该目录启动 Codex 时，它可能改写全局 config.toml 并装上恶意 npm 包。原文称官方复现里 Codex 照做率超过九成，Claude Code 也会中招。",
       "steps": [
-        "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了。",
-        "有人把恶意指令伪装成普通的工程笔记。"
+        "打开本机的 ~/.codex/config.toml，查看 mcp_servers，标出你不认识的条目。",
+        "打开常用项目的 Claude 设置，核对接口地址有没有被改成你没用过的地址。",
+        "只在自己新建的干净工程目录里启动 Codex 或 Claude Code，不要在「下载」文件夹里直接打开。"
       ],
-      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "caution": "动手前对照原文核对路径和设置项。这里没有替你跑过这组步骤。照做率以原帖里的官方复现为准。",
       "difficulty": "入门",
       "prerequisites": [
-        "原文里用到的账号或软件"
+        "已经安装 Codex 或 Claude Code 的电脑"
       ],
-      "estimated_time": "按步骤做完",
+      "estimated_time": "大约一分钟可以做完",
       "verified": false,
       "candidate_id": "cand-20261026-d435aaec842c"
     },
@@ -99,21 +100,22 @@
     {
       "id": "prac-20261026-c72ef03fa1ef",
       "kind": "Skill / 工作流",
-      "title": "个人 Agent 到底该买 Mac mini，还是配一台 Linux 小主机",
+      "title": "先列任务，再决定个人 Agent 用 Mac 还是 Linux 小主机",
       "author": "realydt",
       "url": "https://x.com/realydt/status/2114504860167200828",
       "time": "2026-10-26 07:50",
-      "takeaway": "配置再往上加，本机文件或看得见的浏览器",
+      "takeaway": "接云端模型时，常驻主机主要收消息、跑网关和调工具。OpenClaw 网关的 VPS 最低是 1 核、1GB 内存；要操作 Mac 本机再把 Mac 接上，离线跑模型则另算显卡和内存。",
       "steps": [
-        "配置再往上加，本机文件或看得见的浏览器。",
-        "就有理由把Mac 放进工作流，OpenClaw 甚至支持网关放服务器，真打算离线跑模型。"
+        "列出这个 Agent 要做的事：只接 Claude 或 GPT 这类云模型并全天收任务，还是要操作 iMessage、macOS 软件、本机文件或看得见的浏览器。",
+        "如果只跑云模型网关，准备一台至少 1 核、1GB 内存的 Linux 小主机或 VPS；要开浏览器或接更多频道，就在这个最低配置上再加资源。OpenClaw 可以把网关放在服务器上。",
+        "需要操作 Mac 本机时，再把 Mac 作为节点接入。打算离线跑模型时，单独算显卡和内存，不要按网关的最低配置买机器。"
       ],
-      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "caution": "动手前对照原文核对配置、授权和费用。这里没有替你跑过这组步骤。最低配置以 OpenClaw 官方说明为准。",
       "difficulty": "入门",
       "prerequisites": [
-        "原文里用到的账号或软件"
+        "已想好这个个人 Agent 要接的任务"
       ],
-      "estimated_time": "按步骤做完",
+      "estimated_time": "对照原文清单做完",
       "verified": false,
       "candidate_id": "cand-20261026-c72ef03fa1ef"
     },
@@ -184,49 +186,6 @@
       "estimated_time": "按步骤做完",
       "verified": false,
       "candidate_id": "cand-20261025-2a19b4f68001"
-    },
-    {
-      "id": "prac-20261025-c08d81155c53",
-      "kind": "工具用法",
-      "title": "不用数据线，一句话把电子书发到 Kindle",
-      "author": "vista8",
-      "url": "https://x.com/vista8/status/2114340452870836238",
-      "time": "2026-10-25 20:57",
-      "takeaway": "在手机浏览器里配好接口密钥后，可以用一句话把电子书发到 Kindle，并改成更方便的排版。",
-      "steps": [
-        "更方便美观的排版设置。",
-        "一句话下载发送电子书到 Kindle，不用 USB 线。",
-        "手机打开浏览器配置 API key。"
-      ],
-      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
-      "difficulty": "入门",
-      "prerequisites": [
-        "原文里用到的账号或软件"
-      ],
-      "estimated_time": "按步骤做完",
-      "verified": false,
-      "candidate_id": "cand-20261025-c08d81155c53"
-    },
-    {
-      "id": "prac-20261025-d2980f2b60db",
-      "kind": "工具用法",
-      "title": "Agent 把你的密钥带进模型请求，可能只需要读一遍 .env",
-      "author": "realydt",
-      "url": "https://x.com/realydt/status/2114186078076936344",
-      "time": "2026-10-25 10:43",
-      "takeaway": "Codex 读取配置和日志时，写在里面的密钥可能跟着模型请求发出去，动手前先检查环境文件。",
-      "steps": [
-        "Codex 干活时会读配置和日志。",
-        "内容就可能跟着请求一起发出去。"
-      ],
-      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
-      "difficulty": "入门",
-      "prerequisites": [
-        "原文里用到的账号或软件"
-      ],
-      "estimated_time": "按步骤做完",
-      "verified": false,
-      "candidate_id": "cand-20261025-d2980f2b60db"
     },
     {
       "id": "prac-20261024-6d6218870fce",

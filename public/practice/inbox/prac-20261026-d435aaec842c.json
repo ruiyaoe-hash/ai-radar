@@ -1,21 +1,22 @@
 {
   "id": "prac-20261026-d435aaec842c",
   "kind": "工具用法",
-  "title": "兄弟们，千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+  "title": "三步自查：别在下载文件夹里启动 Codex 或 Claude Code",
   "author": "geekcatx",
   "url": "https://x.com/geekcatx/status/2114665225488417155",
   "time": "2026-10-26 18:27",
-  "takeaway": "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了",
+  "takeaway": "Forever Security 在客户电脑里发现，有人把恶意指令伪装成工程笔记 AGENTS.md 放进下载文件夹。在该目录启动 Codex 时，它可能改写全局 config.toml 并装上恶意 npm 包。原文称官方复现里 Codex 照做率超过九成，Claude Code 也会中招。",
   "steps": [
-    "千万别在电脑的「下载（Downloads）」文件夹里直接打开 Codex 或 Claude Code 了。",
-    "有人把恶意指令伪装成普通的工程笔记。"
+    "打开本机的 ~/.codex/config.toml，查看 mcp_servers，标出你不认识的条目。",
+    "打开常用项目的 Claude 设置，核对接口地址有没有被改成你没用过的地址。",
+    "只在自己新建的干净工程目录里启动 Codex 或 Claude Code，不要在「下载」文件夹里直接打开。"
   ],
-  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "caution": "动手前对照原文核对路径和设置项。这里没有替你跑过这组步骤。照做率以原帖里的官方复现为准。",
   "difficulty": "入门",
   "prerequisites": [
-    "原文里用到的账号或软件"
+    "已经安装 Codex 或 Claude Code 的电脑"
   ],
-  "estimated_time": "按步骤做完",
+  "estimated_time": "大约一分钟可以做完",
   "verified": false,
   "candidate_id": "cand-20261026-d435aaec842c"
 }
