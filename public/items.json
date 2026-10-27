@@ -1,8 +1,102 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-26 21:11 北京时间",
+  "updated": "2026-10-27 07:58 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261027-gpt61-terra",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "工具",
+      "priority": "P0",
+      "title": "OpenAI 发布 GPT-6.1 Terra：Plus 及以上可用、不另收费，API 价约减半，电脑操作追平 Astra 档",
+      "date": "2026-10-27",
+      "time": "10-27 08:00",
+      "handle": "openai",
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+      "published_at": "2026-10-26T18:06:27Z",
+      "ingested_at": "2026-10-26T23:57:41Z",
+      "candidate_id": "cand-20261027-c31b6b275e00",
+      "promotion_path": "normal",
+      "objective": [
+        "OpenAI 于 2026-10-26（上海时间已入 10-27）发布 GPT-6.1 Terra：主打更快、更省的电脑操作（Computer Use）与视觉理解，官方称能看懂屏幕、跨应用点选与输入，并改进日常写作。相对上一代 GPT-5.6 Terra，标准 API 价约降 50%；模型名 gpt-6.1-terra。",
+        "可用性：ChatGPT Work 与 Codex 向 Plus、Pro、Enterprise、Edu 用户推出，订阅内不另加收模型费；开发者可走 OpenAI API。官方称在 Agents’ Last Exam 等电脑操作评测上明显强于 GPT-5.6 Terra，并在约十分之一的每 token 价格下追平 GPT-6 Astra 的表现，平均完成任务更快。",
+        "同日 OpenAI 官方线程、CEO Sam Altman、Artificial Analysis 与宝玉等多路关注池账号交叉确认；Artificial Analysis 另给出编程智能体与幻觉率等第三方读数。复杂极限编程任务官方仍更推荐 GPT-6.1 Sol / GPT-6 Astra。"
+      ],
+      "sources": [
+        {
+          "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+          "handle": "openai",
+          "role": "primary"
+        },
+        {
+          "url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+          "handle": "openai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/openai/status/2114780711664398349",
+          "handle": "openai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/openai/status/2114780720170164735",
+          "handle": "openai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/openai/status/2114780715086754261",
+          "handle": "openai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/openai/status/2114780717188272382",
+          "handle": "openai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/sama/status/2114818620782248024",
+          "handle": "sama",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/artificialanlys/status/2114781865811063259",
+          "handle": "artificialanlys",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/dotey/status/2114790675279413738",
+          "handle": "dotey",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+      "access": "ChatGPT Work / Codex：Plus、Pro、Enterprise、Edu 可用，不另加模型费。API 模型名 gpt-6.1-terra；官方标准价约 $1 / $5 每百万输入/输出 token（缓存输入更低），相对 GPT-5.6 Terra 约减半。",
+      "integration": "可作聊天、Codex 编程助手与 Responses/Chat Completions API 后端；适合高量电脑操作、表单录入、看图后动作与日常文案。极限复杂编程仍可对照 Sol / Astra。",
+      "first_step": "用你本周一条真实的跨应用电脑操作或看图填表任务，在 ChatGPT Work / Codex 或 API 选 gpt-6.1-terra，对照现用的 Astra / Sol / 上一代 Terra，记延迟、费用和完成质量。",
+      "alternatives": [
+        "继续用 GPT-6 Astra / GPT-6.1 Sol 做最难编程与智能体",
+        "继续用 Claude Opus 等竞品对照电脑操作与费用",
+        "只在低价模型上跑批处理，不换主力对话模型"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周在付费用 ChatGPT / Codex，或按 token 跑大量电脑操作与看图任务，Terra 把「更强电脑操作」和「大约一半 API 价」叠在同一档，值得立刻用真实任务对打现用主力。",
+        "action": "立即行动",
+        "window": "Plus 及以上与 API 今天即可试；盯官方配额与地区开关是否已开到你的账户。",
+        "confidence": "高",
+        "falsifier": "若你的账户尚未开放、真实电脑操作仍明显弱于 Astra/Sol，或按量费用并未下降，就收回「这周把批处理与电脑操作切到 Terra」。"
+      },
+      "card_copy": {
+        "watch_reason": "前沿实验室新模型族：电脑操作可用、订阅内上线、API 约减半，多源同日确认。",
+        "evidence_label": "多源确认",
+        "suggested_action": "立即行动",
+        "high_priority_review": true
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261026-voicestudio",

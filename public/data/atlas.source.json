@@ -151,6 +151,18 @@
       "date": "2026-10-26",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261027-4817e76d9dff",
+      "url": "https://x.com/vista8/status/2114756709302644792",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "Grok bot 分析 AI 评论账号，Codex 操作浏览器拉黑",
+      "excerpt": "Grok Bot 识别最近一周的 AI 回复，写入飞书文档",
+      "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": []
