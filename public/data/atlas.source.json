@@ -151,6 +151,18 @@
       "date": "2026-10-27",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261027-85fac8008fc4",
+      "url": "https://x.com/vista8/status/2114996459531874801",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用乔木商业海报 Skill 从活动链接做出可扫码报名海报",
+      "excerpt": "先装上乔木海报技能，再把活动链接做成可扫码报名海报。",
+      "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": []

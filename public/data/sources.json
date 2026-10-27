@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-27 14:29 北京时间",
+  "updated": "2026-10-27 21:05 北京时间",
   "sources": [
     {
       "id": "prac-20261024-6d6218870fce",
@@ -106,6 +106,18 @@
       "type": "教程",
       "title": "在 iOS 上用快捷指令设置 Grok 语音唤起",
       "excerpt": "先做好唤起 Grok 语音的快捷指令，再在人声快捷指令里设置唤醒词。",
+      "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261027-85fac8008fc4",
+      "url": "https://x.com/vista8/status/2114996459531874801",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用乔木商业海报 Skill 从活动链接做出可扫码报名海报",
+      "excerpt": "先装上乔木海报技能，再把活动链接做成可扫码报名海报。",
       "date": "2026-10-27",
       "origin": "practice",
       "verified": false

@@ -1,8 +1,148 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-27 16:14 北京时间",
+  "updated": "2026-10-27 21:05 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261027-skill-diet",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "skill-diet：给 Agent Skill 减重，用同任务评测保证「更瘦但不更差」",
+      "date": "2026-10-27",
+      "time": "10-27 21:00",
+      "handle": "nicobailon",
+      "url": "https://github.com/nicobailon/skill-diet",
+      "candidate_id": "cand-20261027-beb6329a03c2",
+      "promotion_path": "normal",
+      "objective": [
+        "nicobailon 开源的 skill-diet 是管其他 skill 的元技能：一边把臃肿说明压薄并校对过时命令，一边给后续每次改 skill 立规矩；官方称实测可砍掉约七到八成 token 且评测不掉点。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/nicobailon/skill-diet",
+          "handle": "nicobailon",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/nicobailon/skill-diet",
+      "access": "开源技能。Codex / Cursor 等：npx skills add nicobailon/skill-diet -g；Claude Code 可用 /plugin install skill-diet --marketplace nicobailon/skill-diet；Pi 可用 pi install npm:skill-diet。",
+      "integration": "装好后对助手说「把某某 skill 做一次 diet」或「这个 skill 还跟得上当前 CLI 吗」。它会压薄 SKILL.md、核对工具说明是否过时，并在旧版/新版/无 skill 同任务评测里至少不输才留下瘦身版。",
+      "first_step": "若你这周已经觉得某个 skill 又长又旧：先装 skill-diet，点名一个真实臃肿 skill 跑一轮 diet，对照评测结果再决定要不要替换原文件。",
+      "alternatives": [
+        "继续手改 SKILL.md，不跑对照评测",
+        "直接删掉冷门 skill，不做系统性瘦身",
+        "换更短的自写规则，不用元技能"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你在 Cursor、Codex 或 Claude Code 里堆了不少 Skills，又开始感到上下文被说明书吃掉，skill-diet 把「减重 + 防回潮」做成可一键试的流程。",
+        "action": "立即行动",
+        "window": "今天装好，对一个真实臃肿技能跑一轮对照评测。",
+        "confidence": "中",
+        "falsifier": "若装不上、瘦身后同任务评测变差，或说明并没有变薄，就收回「这周用它给臃肿技能减重」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261027-deepseek-harness",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "DeepSeek Harness：一切皆插件的开源 Agent 壳，本地一条命令就能开 Web",
+      "date": "2026-10-27",
+      "time": "10-27 21:00",
+      "handle": "deepseek-ai",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "candidate_id": "cand-20261027-1e6d7b52f823",
+      "promotion_path": "normal",
+      "block_ids": [
+        "cand-20261027-af0555d9f26d"
+      ],
+      "objective": [
+        "DeepSeek 开源的 DeepSeek Harness（dsh）把 Agent 壳做成「一切皆插件」架构；中文圈今晚开始密集试用热门插件，适合爱折腾、又想控制成本的本机用户。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/deepseek-ai/deepseek-harness",
+          "handle": "deepseek-ai",
+          "role": "primary"
+        },
+        {
+          "url": "https://deepseek-harness.github.io/deepseek-harness/",
+          "handle": "deepseek-ai",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/deepseek-ai/deepseek-harness",
+      "access": "开发者预览、迭代快，可能有破坏性变更。需 Node.js。本机试跑：npx @deepseek-ai/dsh web，默认打开 http://127.0.0.1:3080。也可用源码 pnpm install && pnpm run build && pnpm dsh web。跑前先读仓库 SAFETY.md。",
+      "integration": "插件生态走 GitHub topic:dsh-plugin；社区里常见 dsh-market、侧边栏增强、余额小组件、上下文与宠物类插件。文档站：https://deepseek-harness.github.io/deepseek-harness/",
+      "first_step": "若你这周想用便宜的 DeepSeek 模型搭可插拔本地壳：先 npx @deepseek-ai/dsh web 拉起界面，装一两个你真正会用的插件（例如市场或侧边栏），用一条真实任务看稳定性和权限边界。",
+      "alternatives": [
+        "继续只用 Claude Code / Codex / Cursor，不换壳",
+        "直接调 DeepSeek API，自写薄封装",
+        "等正式版后再试，避开开发者预览的破坏性变更"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你已经在付高价跑编程助手，又想用 DeepSeek 的性价比搭一套可扩展本机壳，dsh 给出了官方入口和正在冒头的插件市场，值得先跑通 Web 再决定深做。",
+        "action": "立即行动",
+        "window": "今天拉起本机网页，用一条真实任务看插件是否稳。",
+        "confidence": "中",
+        "falsifier": "若本机网页拉不起来、插件装不上，或真实任务跑不稳，就收回「这周用它搭可插拔本地壳」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261027-huashu-art-motion",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "huashu-art-motion：用代码把画做成动画的艺术风格 Skill",
+      "date": "2026-10-27",
+      "time": "10-27 21:00",
+      "handle": "alchaincyf",
+      "url": "https://github.com/alchaincyf/huashu-art-motion",
+      "candidate_id": "cand-20261027-87d3f0a3c7f1",
+      "promotion_path": "normal",
+      "objective": [
+        "花叔开源的 huashu-art-motion 把数十种艺术风格和解说语法做成给 coding agent 用的 Skill，用代码驱动画面运动，而不是只出静帧。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/alchaincyf/huashu-art-motion",
+          "handle": "alchaincyf",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/alchaincyf/huashu-art-motion",
+      "access": "开源 Skill。一行安装：npx skills add alchaincyf/huashu-art-motion。需要能跑代码并导出视频/动画的编程助手宿主；完整样片可在仓库 Releases 下载。",
+      "integration": "面向 Claude Code 等支持 Skills 的 coding agent；仓库内含多种艺术风格、解说语法与参数化片段参考。Open Design 等项目已收录适配版并保留上游出处。",
+      "first_step": "若你这周要做一段有明确画风的短动画：先装好 huashu-art-motion，选一种风格让助手生成可运行片段，对照 Releases 样片看运动与风格是否对得上，再扩成整段。",
+      "alternatives": [
+        "继续用通用视频/图生视频模型出片",
+        "纯手工 After Effects / Rive，不用 Agent Skill",
+        "只用静帧提示词，不做代码驱动动画"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用编程助手做短片或演示动画，又嫌通用视频模型不好控风格，这套 Skill 把「选定风格 → 写出会动的画」收成可安装流程。",
+        "action": "立即行动",
+        "window": "今天装好，对照样片先生成一段可运行片段。",
+        "confidence": "中",
+        "falsifier": "若技能装不上、片段跑不起来，或运动与风格对不上样片，就收回「这周用它做代码驱动的短动画」。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261027-openagentcore",
