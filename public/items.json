@@ -1,8 +1,148 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-27 07:58 北京时间",
+  "updated": "2026-10-27 16:14 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261027-openagentcore",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "OpenAgentCore：自托管的 OpenAI Agents API，一套 Core 可换多种 Agent 与模型",
+      "date": "2026-10-27",
+      "time": "10-27 16:00",
+      "handle": "MiniMax-AI",
+      "url": "https://github.com/MiniMax-AI/OpenAgentCore",
+      "candidate_id": "cand-20261027-0b00f791dd01",
+      "promotion_path": "normal",
+      "objective": [
+        "MiniMax 开源的 OpenAgentCore 是可自托管的 OpenAI Agents API 实现：对外保持同一套 API，对内把 harness、模型、沙箱和工作区做成可替换协议，避免业务绑死在某一家实现上。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/MiniMax-AI/OpenAgentCore",
+          "handle": "MiniMax-AI",
+          "role": "primary"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://github.com/MiniMax-AI/OpenAgentCore",
+      "access": "MIT 开源。Linux/macOS 可用官方安装脚本：curl -fsSL https://github.com/MiniMax-AI/OpenAgentCore/releases/latest/download/install.sh | bash；Windows 用对应 PowerShell 安装脚本。装好后在控制台签发项目 API Key，把 OPENAI_BASE_URL 指到你的 Core /v1。",
+      "integration": "用官方 OpenAI SDK 或裸 HTTP 调 Agents API；每个 Session 可选 Codex、Claude Code 或 MiniMax Code 等 harness，模型与沙箱（Docker / microsandbox / E2B / 本机）按协议替换。",
+      "first_step": "若你这周想把 Codex / Claude Code 接到自建 Agents API：先按仓库 README 装好 Core 与 Web，签发一把项目 Key，把 OPENAI_BASE_URL 指过去，用一条真实任务开一个 Session 试跑。",
+      "alternatives": [
+        "继续直接用 OpenAI 托管 Agents API",
+        "自研一层网关，不接开源 Core",
+        "只用单机 Claude Code / Codex，不做统一 API"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你在做 Agent 产品或内网智能体，又不想把业务死绑在某一家托管 Agents API 上，这套开源 Core 让你用熟悉的 OpenAI SDK 自建，并按需换 Codex / Claude Code / 自有模型。",
+        "action": "立即行动",
+        "window": "仓库今天可装，并对一条真实任务开 Session 试跑。",
+        "confidence": "中",
+        "falsifier": "若 Core 装不上、项目 Key 指过去后 Session 跑不起来，或换不了 harness 与模型，就收回「这周用它自建 Agents API」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261027-ub-mode",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "ub-mode：把 Clean Code / TDD 纪律装进编程助手的三段式技能",
+      "date": "2026-10-27",
+      "time": "10-27 16:00",
+      "handle": "unclebob",
+      "url": "https://github.com/unclebob/ub-mode",
+      "candidate_id": "cand-20261027-2bf84d7ad75d",
+      "promotion_path": "normal",
+      "objective": [
+        "Clean Code 作者 Uncle Bob 开源的 ub-mode，把「先让它工作、再用可机器量的门槛做对、最后用日志与小提交收尾」写成给 coding agent 用的技能，并配上 CRAP / 重复 / 变异测试等闸门工具。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/unclebob/ub-mode",
+          "handle": "unclebob",
+          "role": "primary"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://github.com/unclebob/ub-mode",
+      "access": "开源技能包。把仓库里的 SKILL.md 拷到本机助手技能目录（例如 ~/.claude/skills/ub-mode/SKILL.md、~/.cursor/skills/ub-mode/SKILL.md 或 ~/.grok/skills/ub-mode/SKILL.md），然后用 /ub-mode 唤起。",
+      "integration": "配合 companion 工具 crapper / dryer / mutator（同作者仓库）做 CRAP、重复与变异测试闸门；适合 Claude Code、Cursor、Codex、Grok 等支持 Skills 的编程助手。",
+      "first_step": "若你这周常让编程助手直接大改代码：先装好 ub-mode，对一个真实小改动唤起 /ub-mode，按「先跑通 → 再做对 → 养成习惯」走完一轮，看它是否拦住了草率补丁。",
+      "alternatives": [
+        "继续用手写 AGENTS.md / 项目规则约束助手",
+        "只用测试与 CI，不装专门技能",
+        "采用更重的完整 Uncle Bob 技能包（第三方合集）"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用 Claude Code、Cursor 或 Codex 改生产代码，又担心助手只求能跑、不管可维护，ub-mode 把纪律和可机器量的门槛直接塞进助手流程。",
+        "action": "立即行动",
+        "window": "今天把技能装进助手，对一个真实小改动走完一轮。",
+        "confidence": "中",
+        "falsifier": "若技能装不上、唤起后并不按三段式拦住草率补丁，就收回「这周用它约束编程助手的大改」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261027-unlimited-ocr-2",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "文心 Unlimited OCR 2：开源超长文档解析，页数几乎不再设上限",
+      "date": "2026-10-27",
+      "time": "10-27 16:00",
+      "handle": "baidu",
+      "url": "https://github.com/baidu/Unlimited-OCR",
+      "candidate_id": "cand-20261027-cbd1a5e6bbff",
+      "promotion_path": "normal",
+      "block_ids": [
+        "cand-20261027-3227fd5115c7"
+      ],
+      "objective": [
+        "百度于 2026-10-27 开源文心 Unlimited OCR 2：用稀疏参考滑动窗口注意力（SR-SWA）把超长文档的单步解码开销压到近似恒定，官方称可一次解析任意页数文档，并在多页与百页级基准上给出领先读数。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/baidu/Unlimited-OCR",
+          "handle": "baidu",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/baidu/Unlimited-OCR-2",
+          "handle": "baidu",
+          "role": "primary"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://github.com/baidu/Unlimited-OCR",
+      "access": "MIT 开源。代码见 GitHub baidu/Unlimited-OCR；权重在 Hugging Face baidu/Unlimited-OCR-2。本机需 CUDA 与较新的 transformers/torch；Hugging Face 模型卡给了 Transformers 快速试用与 SGLang 服务示例。百度云也提供托管解析接口（额度另计）。",
+      "integration": "多页用 infer_multi 一次吃完整本扫描件；单页用 infer。输出可含正文、表格、公式与阅读顺序，适合喂给后续研报解读或入库流水线。",
+      "first_step": "若你这周要拆一本几十页以上的扫描 PDF / 研报：先到 Hugging Face 拉 baidu/Unlimited-OCR-2，按模型卡用一小叠页图跑 infer_multi，对照原文看跨页表格与标题是否还能接上。",
+      "alternatives": [
+        "继续用上一代 Unlimited OCR 或通用多模态模型逐页拼",
+        "只用云厂商文档解析 API，不自托管",
+        "传统 OCR + 自写跨页拼接"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你经常把厚扫描件、长研报丢给模型却卡在页数或显存上，Unlimited OCR 2 把「先拆成可引用正文」这一步开源化了，值得用你自己的长文档试一次。",
+        "action": "立即行动",
+        "window": "今天用一小叠页图跑一次，对照原文看跨页是否接上。",
+        "confidence": "中",
+        "falsifier": "若模型卡跑不通、跨页表格和标题接不上，或页数与显存仍然卡住，就收回「这周用它拆长扫描件」。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261027-gpt61-terra",

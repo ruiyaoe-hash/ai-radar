@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27 07:58 北京时间",
+  "updated": "2026-10-27 16:14 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
@@ -12,11 +12,15 @@
     "https://github.com/Graphify-Labs/graphify",
     "https://github.com/JimLiu/baocut",
     "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+    "https://github.com/MiniMax-AI/OpenAgentCore",
     "https://github.com/Tencent-Hunyuan/Hy-Nomas",
     "https://github.com/andyhuo520/digital-human-koubo",
+    "https://github.com/baidu/Unlimited-OCR",
     "https://github.com/debpalash/VoiceStudio",
     "https://github.com/pbakaus/impeccable",
+    "https://github.com/unclebob/ub-mode",
     "https://github.com/yaojingang/GEOInflow",
+    "https://huggingface.co/baidu/Unlimited-OCR-2",
     "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
     "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "https://huggingface.co/tencent/Hy-Nomas",
@@ -76,7 +80,11 @@
     "cand-20261026-491a5fa6ec1b",
     "cand-20261026-4b58c863dbc6",
     "cand-20261026-e68ce24a479a",
+    "cand-20261027-0b00f791dd01",
+    "cand-20261027-2bf84d7ad75d",
+    "cand-20261027-3227fd5115c7",
     "cand-20261027-c31b6b275e00",
+    "cand-20261027-cbd1a5e6bbff",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -91,7 +99,10 @@
     "evt-20261026-geoinflow",
     "evt-20261026-graphify",
     "evt-20261026-voicestudio",
-    "evt-20261027-gpt61-terra"
+    "evt-20261027-gpt61-terra",
+    "evt-20261027-openagentcore",
+    "evt-20261027-ub-mode",
+    "evt-20261027-unlimited-ocr-2"
   ],
   "days": [
     {

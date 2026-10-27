@@ -5,8 +5,29 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 27 Oct 2026 07:58:28 +0800</lastBuildDate>
+<lastBuildDate>Tue, 27 Oct 2026 16:14:48 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] OpenAgentCore：自托管的 OpenAI Agents API，一套 Core 可换多种 Agent 与模型</title>
+<link>https://github.com/MiniMax-AI/OpenAgentCore</link>
+<guid isPermaLink="false">evt-20261027-openagentcore</guid>
+<pubDate>Tue, 27 Oct 2026 16:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• MiniMax 开源的 OpenAgentCore 是可自托管的 OpenAI Agents API 实现：对外保持同一套 API，对内把 harness、模型、沙箱和工作区做成可替换协议，避免业务绑死在某一家实现上。<br/><strong>对你意味着什么</strong> 如果你在做 Agent 产品或内网智能体，又不想把业务死绑在某一家托管 Agents API 上，这套开源 Core 让你用熟悉的 OpenAI SDK 自建，并按需换 Codex / Claude Code / 自有模型。<br/>建议：立即行动 · 仓库今天可装，并对一条真实任务开 Session 试跑。<br/>有多确定：中<br/>什么情况下当这判断作废：若 Core 装不上、项目 Key 指过去后 Session 跑不起来，或换不了 harness 与模型，就收回「这周用它自建 Agents API」。<br/>来源 MiniMax-AI（一手）<br/>日期 2026-10-27]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] ub-mode：把 Clean Code / TDD 纪律装进编程助手的三段式技能</title>
+<link>https://github.com/unclebob/ub-mode</link>
+<guid isPermaLink="false">evt-20261027-ub-mode</guid>
+<pubDate>Tue, 27 Oct 2026 16:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Clean Code 作者 Uncle Bob 开源的 ub-mode，把「先让它工作、再用可机器量的门槛做对、最后用日志与小提交收尾」写成给 coding agent 用的技能，并配上 CRAP / 重复 / 变异测试等闸门工具。<br/><strong>对你意味着什么</strong> 如果你用 Claude Code、Cursor 或 Codex 改生产代码，又担心助手只求能跑、不管可维护，ub-mode 把纪律和可机器量的门槛直接塞进助手流程。<br/>建议：立即行动 · 今天把技能装进助手，对一个真实小改动走完一轮。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能装不上、唤起后并不按三段式拦住草率补丁，就收回「这周用它约束编程助手的大改」。<br/>来源 unclebob（一手）<br/>日期 2026-10-27]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] 文心 Unlimited OCR 2：开源超长文档解析，页数几乎不再设上限</title>
+<link>https://github.com/baidu/Unlimited-OCR</link>
+<guid isPermaLink="false">evt-20261027-unlimited-ocr-2</guid>
+<pubDate>Tue, 27 Oct 2026 16:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 百度于 2026-10-27 开源文心 Unlimited OCR 2：用稀疏参考滑动窗口注意力（SR-SWA）把超长文档的单步解码开销压到近似恒定，官方称可一次解析任意页数文档，并在多页与百页级基准上给出领先读数。<br/><strong>对你意味着什么</strong> 如果你经常把厚扫描件、长研报丢给模型却卡在页数或显存上，Unlimited OCR 2 把「先拆成可引用正文」这一步开源化了，值得用你自己的长文档试一次。<br/>建议：立即行动 · 今天用一小叠页图跑一次，对照原文看跨页是否接上。<br/>有多确定：中<br/>什么情况下当这判断作废：若模型卡跑不通、跨页表格和标题接不上，或页数与显存仍然卡住，就收回「这周用它拆长扫描件」。<br/>来源 baidu（一手）, baidu（一手）<br/>日期 2026-10-27]]></description>
+</item>
 <item>
 <title>[重磅 · 新工具 · 发布] OpenAI 发布 GPT-6.1 Terra：Plus 及以上可用、不另收费，API 价约减半，电脑操作追平 Astra 档</title>
 <link>https://openai.com/index/introducing-gpt-6-1-terra</link>
