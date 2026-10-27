@@ -151,6 +151,30 @@
       "date": "2026-10-27",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261027-fab4d9234369",
+      "url": "https://x.com/vista8/status/2114902671471841345",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "我的 Obsidian 插件 Qiaomu Reader 下载安装已超 8k",
+      "excerpt": "我的 Obsidian 插件 Qiaomu Reader 下载安装已超 8k，给 Github 仓库地址",
+      "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261027-b54e5aabf366",
+      "url": "https://x.com/alchainhust/status/2114927864361693669",
+      "author": "alchainhust",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "买到了大溪地到斐济的邮轮票，本以为南太平洋行程会有13天要大出血颠沛流离了",
+      "excerpt": "周二注册的Claude新账号，用量40%了，然后发现重置日居然是周四",
+      "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": []
