@@ -57,6 +57,7 @@ if __package__ in {None, ""}:
         identity_ids,
         identity_urls,
         select_picks,
+        without_practice_events,
         without_promoted_briefs,
     )
 else:
@@ -71,6 +72,7 @@ else:
         identity_ids,
         identity_urls,
         select_picks,
+        without_practice_events,
         without_promoted_briefs,
     )
 
@@ -613,17 +615,48 @@ def _brief_fill_candidates(rows: list[dict], seen: set[str]) -> list[tuple[dict,
     return found
 
 
+def load_practice_cards() -> list[dict]:
+    """已公开的做法。收件箱里同一编号覆盖 practice.json 里的旧稿。"""
+    found: list[dict] = []
+    doc = _load_public_json(PUBLIC / "practice.json")
+    found.extend(item for item in (doc.get("items") or []) if isinstance(item, dict))
+    inbox = PUBLIC / "practice" / "inbox"
+    if inbox.is_dir():
+        for path in sorted(inbox.glob("*.json")):
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                continue
+            try:
+                found.extend(_practice_items(payload))
+            except ValueError:
+                continue
+    by_id: dict[str, dict] = {}
+    order: list[str] = []
+    for item in found:
+        eid = str(item.get("id") or "")
+        if not eid:
+            continue
+        if eid not in by_id:
+            order.append(eid)
+        by_id[eid] = item
+    return [by_id[eid] for eid in order]
+
+
 def build_picks(all_items: list[dict]) -> dict:
     """Hard picks first. A Shanghai day with none gets one tool or brief.
 
     The shift already runs this after derive_briefs.py, and the briefs publish
     path runs it again. Empty days therefore fill on the next digest without
-    a separate command. Practice gates are not read here.
+    a separate command. A how-to that already has a practice card is not a pick
+    and is not used to fill an empty day. Tool pages still list their own copy.
     """
-    hard = select_picks([it for it in all_items if _visitor_card(it)], PER_DAY)
-    candidates = _tool_fill_candidates(all_items)
+    practice = load_practice_cards()
+    news_items = without_practice_events(all_items, practice)
+    hard = select_picks([it for it in news_items if _visitor_card(it)], PER_DAY)
+    candidates = _tool_fill_candidates(news_items)
     seen = {str(card.get("id") or "") for card, _meta in candidates}
-    candidates.extend(_brief_fill_candidates(_brief_rows(), seen))
+    candidates.extend(_brief_fill_candidates(without_practice_events(_brief_rows(), practice), seen))
     for item in _prior_brief_fills():
         eid = str(item.get("id") or "")
         if not eid or eid in seen:
@@ -677,6 +710,25 @@ def drop_promoted_briefs(picks_doc: dict) -> None:
         if isinstance(item, dict)
     ]
     kept = without_promoted_briefs(items, picks)
+    if [item.get("id") for item in kept] == [item.get("id") for item in items]:
+        return
+    data["items"] = kept
+    data["updated"] = datetime.now(TZ).strftime("%Y-%m-%d %H:%M 北京时间")
+    write_stable(path, json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def drop_practice_briefs() -> None:
+    """做法已经上了实战手册的，信息简讯里不再留一份。
+
+    以前摘自归档的简讯会一直留着。同一件事后来写成做法时，这里把简讯那份拿掉。
+    工具决策不动。
+    """
+    path = PUBLIC / "briefs.json"
+    if not path.is_file():
+        return
+    data = _load_public_json(path)
+    items = [item for item in (data.get("items") or []) if isinstance(item, dict)]
+    kept = without_practice_events(items, load_practice_cards())
     if [item.get("id") for item in kept] == [item.get("id") for item in items]:
         return
     data["items"] = kept
@@ -1142,13 +1194,14 @@ def main():
     write_stable((PUBLIC / "tools-radar.json"),
         json.dumps(radar, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    sync_practice_inbox()
     picks_doc = build_picks(all_items)
     write_stable((PUBLIC / "picks.json"),
         json.dumps(picks_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     drop_promoted_briefs(picks_doc)
+    drop_practice_briefs()
     write_stable((PUBLIC / "today3.txt"), build_today3(picks_doc), encoding="utf-8")
-    sync_practice_inbox()
     sync_atlas()
     posts = build_blog()
 

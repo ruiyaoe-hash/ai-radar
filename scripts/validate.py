@@ -1542,6 +1542,37 @@ def check_briefs() -> None:
     print(f"OK briefs: {len(data.get('items') or [])} items, schema, safe url, no raw post")
 
 
+def check_lane_exclusivity() -> None:
+    """Practice events stay off 信息精选 and 信息简讯. Picks may still match tools."""
+    try:
+        from generate_derived import load_practice_cards
+        from lanes import without_practice_events
+    except ImportError:
+        from scripts.generate_derived import load_practice_cards
+        from scripts.lanes import without_practice_events
+
+    practice = load_practice_cards()
+    briefs = json.loads((PUBLIC / "briefs.json").read_text(encoding="utf-8"))
+    brief_items = [item for item in briefs.get("items") or [] if isinstance(item, dict)]
+    kept_briefs = without_practice_events(brief_items, practice)
+    if [item.get("id") for item in kept_briefs] != [item.get("id") for item in brief_items]:
+        dropped = [item.get("id") for item in brief_items if item not in kept_briefs]
+        fail(f"briefs.json still repeats a practice event: {dropped}")
+    picks = json.loads((PUBLIC / "picks.json").read_text(encoding="utf-8"))
+    pick_items = [
+        item
+        for day in picks.get("days") or []
+        if isinstance(day, dict)
+        for item in (day.get("items") or [])
+        if isinstance(item, dict)
+    ]
+    kept_picks = without_practice_events(pick_items, practice)
+    if [item.get("id") for item in kept_picks] != [item.get("id") for item in pick_items]:
+        dropped = [item.get("id") for item in pick_items if item.get("id") not in {item.get("id") for item in kept_picks}]
+        fail(f"picks.json still repeats a practice event: {dropped}")
+    print(f"OK lane exclusivity: {len(practice)} practice cards stay off picks and briefs")
+
+
 def check_pool_workflows() -> None:
     """RSS and X ingest rebase before push. X live fetch stays behind a secret name."""
     rss = (ROOT / ".github" / "workflows" / "ingest-rss-pool.yml").read_text(encoding="utf-8")
@@ -1694,6 +1725,7 @@ def main() -> None:
     check_blog()
     check_topic_suggestions()
     check_briefs()
+    check_lane_exclusivity()
     check_pick_fills()
     check_public_copy()
     check_pool_workflows()
