@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-27 16:14 北京时间",
+  "updated": "2026-10-28 16:52 北京时间",
   "note": "跨过一天仍然值得跟踪的领域进展。写不清价值的不会出现在这里。",
   "items": [
     {
@@ -13,6 +13,105 @@
       "url": "https://mp.weixin.qq.com/s/I_hNNAf7LFBf5nJ0rEJHig",
       "source": "dotey",
       "candidate_id": "cand-20261027-fbb1db839747"
+    },
+    {
+      "id": "watch-20261018-eb12b460d5f1",
+      "date": "2026-10-18",
+      "title": "公开更新：还在下降",
+      "summary": "公开说明里，还在下降。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://simonwillison.net/2026/Oct/17/document-currentscript",
+      "source": "simonwillison",
+      "candidate_id": "cand-20261018-eb12b460d5f1"
+    },
+    {
+      "id": "watch-20261017-5b6e299181f2",
+      "date": "2026-10-17",
+      "title": "公开更新：代码仓库，已经发布",
+      "summary": "公开说明里，代码仓库，已经发布。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://simonwillison.net/2026/Oct/17/web-edit",
+      "source": "simonwillison",
+      "candidate_id": "cand-20261017-5b6e299181f2"
+    },
+    {
+      "id": "watch-20261015-1b42861c6535",
+      "date": "2026-10-15",
+      "title": "公开更新：模型，下个季度可以重新做一次选择",
+      "summary": "公开说明里，模型，下个季度可以重新做一次选择。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://simonwillison.net/2026/Oct/15/anthropic-tells-investors",
+      "source": "simonwillison",
+      "candidate_id": "cand-20261015-1b42861c6535"
+    },
+    {
+      "id": "watch-20261015-d33520127f42",
+      "date": "2026-10-15",
+      "title": "公开更新：智能体，工具",
+      "summary": "公开说明里，智能体，工具。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://simonwillison.net/2026/Oct/15/latex",
+      "source": "simonwillison",
+      "candidate_id": "cand-20261015-d33520127f42"
+    },
+    {
+      "id": "watch-20261015-1f35c522edf3",
+      "date": "2026-10-15",
+      "title": "公开更新：还在下降，需要核对的安全更新，工具",
+      "summary": "公开说明里，还在下降，需要核对的安全更新，工具。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://simonwillison.net/2026/Oct/14/tree-appreciator",
+      "source": "simonwillison",
+      "candidate_id": "cand-20261015-1f35c522edf3"
+    },
+    {
+      "id": "watch-20261014-a8a5ee8bee95",
+      "date": "2026-10-14",
+      "title": "公开更新：模型，代码仓库，已经发布，可以下载，研究预览",
+      "summary": "公开说明里，模型，代码仓库，已经发布，可以下载，研究预览。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic",
+      "source": "simonwillison",
+      "candidate_id": "cand-20261014-a8a5ee8bee95"
+    },
+    {
+      "id": "watch-20261014-34900d4095ad",
+      "date": "2026-10-14",
+      "title": "公开更新：模型，代码仓库，已经发布，可以下载，成本",
+      "summary": "公开说明里，模型，代码仓库，已经发布，可以下载，成本。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://simonwillison.net/2026/Oct/13/llm-gemini",
+      "source": "simonwillison",
+      "candidate_id": "cand-20261014-34900d4095ad"
+    },
+    {
+      "id": "watch-20261015-12fa19786e3f",
+      "date": "2026-10-15",
+      "title": "公开更新：模型，智能体",
+      "summary": "公开说明里，模型，智能体。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://www.latent.space/p/lab-in-the-loop-at-compute-speed",
+      "source": "latent-space",
+      "candidate_id": "cand-20261015-12fa19786e3f"
+    },
+    {
+      "id": "watch-20261014-e76ae5468803",
+      "date": "2026-10-14",
+      "title": "公开更新：模型，智能体",
+      "summary": "公开说明里，模型，智能体。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "这是已经公开的一条行业事实，用来判断这周的选择变不变。",
+      "affect": "对得上你这周的选择就调整安排，对不上就保持原来的做法。",
+      "url": "https://www.latent.space/p/dyna",
+      "source": "latent-space",
+      "candidate_id": "cand-20261014-e76ae5468803"
     }
   ]
 }
