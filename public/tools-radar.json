@@ -1,7 +1,47 @@
 {
-  "updated": "2026-10-27 21:05 北京时间",
+  "updated": "2026-10-28 08:01 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261028-word-atlas",
+        "title": "词光 word-atlas：7298 个雅思词配插画与英美音，开源可本地跑也可在线背",
+        "date": "2026-10-28",
+        "time": "10-28 08:00",
+        "try_url": "https://github.com/designfuchen/word-atlas",
+        "access": "开源（MIT）+ 词库 CC BY 4.0。在线：https://0xlei.tech/words/ 。本地需 Node 20+：git clone --depth 1 https://github.com/designfuchen/word-atlas.git && cd word-atlas && npm ci && npm run dev，打开 http://localhost:5188。也可让编程助手安装该仓库。",
+        "integration": "本地优先、无需登录；进度在本机，换设备前请导出。可用 JSON/CSV 词库自建 Anki。",
+        "first_step": "若你这周在背雅思：先打开 https://0xlei.tech/words/ 试 10 分钟；合适再 clone 本地跑。",
+        "summary": "词光（word-atlas）把 7298 个雅思词做成插画词卡，配英美发音、例句与 FSRS 间隔复习；开源可本地跑，也有在线体验站。",
+        "audience_value": "如果你在准备雅思或想要一套可审计、可自托管的中文友好背词工具，词光比封闭 App 更透明，也方便用编程助手一键拉起。",
+        "alternatives": [
+          "继续用付费背词 App，不自托管",
+          "只用 Anki 官方牌组，不装带插画的本地站",
+          "等 iOS 内测，先不碰网页版"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261028-qiaomu-design",
+        "title": "qiaomu-design：去前端 AI 味的偏执型设计 Skill，可装进 Claude Code / Codex",
+        "date": "2026-10-28",
+        "time": "10-28 08:00",
+        "try_url": "https://github.com/joeseesun/qiaomu-design",
+        "access": "开源 Skill。安装：npx skills add joeseesun/qiaomu-design。面向支持 Agent Skills 的编程助手（如 Claude Code、Codex、Cursor）。",
+        "integration": "装好后把重设计、去 AI 模板味、公众号/多平台封面等任务丢给助手；含诊断、四方向预览与验收闭环。",
+        "first_step": "若你这周嫌页面「一眼 AI」：先装 qiaomu-design，丢一个真实页面让它做去模板味重设计，对照预览方向再决定是否合入。",
+        "summary": "乔木开源的 qiaomu-design 把反通用 AI 味、风格试衣间与多平台封面流程做成可安装 Skill，目标是做出有个性、可运行、可验收的界面，而不是默认紫蓝光晕模板。",
+        "audience_value": "如果你用编程助手改前端或做封面，又总觉得成品像同一套 AI 模板，这套 Skill 把「诊断—选方向—实现—验收」收成可复用流程。",
+        "alternatives": [
+          "继续用手写提示词抠 UI，不装专用 Skill",
+          "只用 impeccable / emil-design-eng 等现有前端 Skill",
+          "交给专职设计师，不走 Agent Skill"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261027-skill-diet",
         "title": "skill-diet：给 Agent Skill 减重，用同任务评测保证「更瘦但不更差」",
@@ -375,6 +415,26 @@
     ],
     "值得关注": [
       {
+        "id": "evt-20261028-synthid-gemini",
+        "title": "Gemini 内可查 SynthID：上传图/视频/音频问「这是 AI 生成的吗」",
+        "date": "2026-10-28",
+        "time": "10-28 08:00",
+        "try_url": "https://gemini.google.com",
+        "access": "需登录 Gemini。添加图/视频/音频后问「这是 AI 生成的吗」。也可用 SynthID Detector 独立站（通常需登录且有日配额）。",
+        "integration": "Gemini 侧主要识别 Google AI 的 SynthID；未检出不等于一定非 AI。",
+        "first_step": "若你这周要核验疑似 AI 媒体：打开 Gemini 上传样本询问是否 AI 生成。",
+        "summary": "Google 在 Gemini 应用内提供基于 SynthID 的媒体核验：上传图、视频或音频后直接追问是否 AI 生成，方便快速筛 Google 系水印内容。",
+        "audience_value": "如果你经常转发或引用网络媒体，又担心 AI 合成图音视频，先在 Gemini 里做一轮水印核验，比凭肉眼猜更有依据。",
+        "alternatives": [
+          "只用肉眼或第三方「AI 检测」分类器",
+          "直接上 SynthID 独立检测站",
+          "暂不核验，只标注来源存疑"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "值得关注"
+      },
+      {
         "id": "evt-20261024-tencent-hy-nomas",
         "title": "腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型",
         "date": "2026-10-24",
@@ -420,6 +480,66 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261028-word-atlas",
+      "title": "词光 word-atlas：7298 个雅思词配插画与英美音，开源可本地跑也可在线背",
+      "date": "2026-10-28",
+      "time": "10-28 08:00",
+      "try_url": "https://github.com/designfuchen/word-atlas",
+      "access": "开源（MIT）+ 词库 CC BY 4.0。在线：https://0xlei.tech/words/ 。本地需 Node 20+：git clone --depth 1 https://github.com/designfuchen/word-atlas.git && cd word-atlas && npm ci && npm run dev，打开 http://localhost:5188。也可让编程助手安装该仓库。",
+      "integration": "本地优先、无需登录；进度在本机，换设备前请导出。可用 JSON/CSV 词库自建 Anki。",
+      "first_step": "若你这周在背雅思：先打开 https://0xlei.tech/words/ 试 10 分钟；合适再 clone 本地跑。",
+      "summary": "词光（word-atlas）把 7298 个雅思词做成插画词卡，配英美发音、例句与 FSRS 间隔复习；开源可本地跑，也有在线体验站。",
+      "audience_value": "如果你在准备雅思或想要一套可审计、可自托管的中文友好背词工具，词光比封闭 App 更透明，也方便用编程助手一键拉起。",
+      "alternatives": [
+        "继续用付费背词 App，不自托管",
+        "只用 Anki 官方牌组，不装带插画的本地站",
+        "等 iOS 内测，先不碰网页版"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
+    {
+      "id": "evt-20261028-qiaomu-design",
+      "title": "qiaomu-design：去前端 AI 味的偏执型设计 Skill，可装进 Claude Code / Codex",
+      "date": "2026-10-28",
+      "time": "10-28 08:00",
+      "try_url": "https://github.com/joeseesun/qiaomu-design",
+      "access": "开源 Skill。安装：npx skills add joeseesun/qiaomu-design。面向支持 Agent Skills 的编程助手（如 Claude Code、Codex、Cursor）。",
+      "integration": "装好后把重设计、去 AI 模板味、公众号/多平台封面等任务丢给助手；含诊断、四方向预览与验收闭环。",
+      "first_step": "若你这周嫌页面「一眼 AI」：先装 qiaomu-design，丢一个真实页面让它做去模板味重设计，对照预览方向再决定是否合入。",
+      "summary": "乔木开源的 qiaomu-design 把反通用 AI 味、风格试衣间与多平台封面流程做成可安装 Skill，目标是做出有个性、可运行、可验收的界面，而不是默认紫蓝光晕模板。",
+      "audience_value": "如果你用编程助手改前端或做封面，又总觉得成品像同一套 AI 模板，这套 Skill 把「诊断—选方向—实现—验收」收成可复用流程。",
+      "alternatives": [
+        "继续用手写提示词抠 UI，不装专用 Skill",
+        "只用 impeccable / emil-design-eng 等现有前端 Skill",
+        "交给专职设计师，不走 Agent Skill"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
+    {
+      "id": "evt-20261028-synthid-gemini",
+      "title": "Gemini 内可查 SynthID：上传图/视频/音频问「这是 AI 生成的吗」",
+      "date": "2026-10-28",
+      "time": "10-28 08:00",
+      "try_url": "https://gemini.google.com",
+      "access": "需登录 Gemini。添加图/视频/音频后问「这是 AI 生成的吗」。也可用 SynthID Detector 独立站（通常需登录且有日配额）。",
+      "integration": "Gemini 侧主要识别 Google AI 的 SynthID；未检出不等于一定非 AI。",
+      "first_step": "若你这周要核验疑似 AI 媒体：打开 Gemini 上传样本询问是否 AI 生成。",
+      "summary": "Google 在 Gemini 应用内提供基于 SynthID 的媒体核验：上传图、视频或音频后直接追问是否 AI 生成，方便快速筛 Google 系水印内容。",
+      "audience_value": "如果你经常转发或引用网络媒体，又担心 AI 合成图音视频，先在 Gemini 里做一轮水印核验，比凭肉眼猜更有依据。",
+      "alternatives": [
+        "只用肉眼或第三方「AI 检测」分类器",
+        "直接上 SynthID 独立检测站",
+        "暂不核验，只标注来源存疑"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "值得关注"
+    },
     {
       "id": "evt-20261027-skill-diet",
       "title": "skill-diet：给 Agent Skill 减重，用同任务评测保证「更瘦但不更差」",

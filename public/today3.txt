@@ -1,8 +1,8 @@
-AI Radar · 信息精选（2026-10-27）
+AI Radar · 信息精选（2026-10-28）
 
-1. OpenAI 发布 GPT-6.1 Terra：Plus 及以上可用、不另收费，API 价约减半，电脑操作追平 Astra 档
-   对你意味着什么：如果你这周在付费用 ChatGPT / Codex，或按 token 跑大量电脑操作与看图任务，Terra 把「更强电脑操作」和「大约一半 API 价」叠在同一档，值得立刻用真实任务对打现用主力。
-   建议：立即行动 · Plus 及以上与 API 今天即可试；盯官方配额与地区开关是否已开到你的账户。
-   https://openai.com/index/introducing-gpt-6-1-terra
+1. Anthropic：Claude 已深度参与六家新药研发，自研肌萎缩候选药最快 2028 年底进人体试验
+   对你意味着什么：这是前沿大模型公司把 Claude 推进真实药物管线与自研项目的公开进度，说明 AI 医药从演示走向多环节实操；对一人公司本周选型影响有限，但对长线「AI×生物」赛道判断有用。
+   建议：持续观察 · 先读官方博文与案例技术报告摘要；若你不做医药研发，不必本周改工具栈。
+   https://www.anthropic.com/research/early-progress-drug-development
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html
