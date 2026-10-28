@@ -1,7 +1,27 @@
 {
-  "updated": "2026-10-28 08:01 北京时间",
+  "updated": "2026-10-28 12:05 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261028-ai-app-playbook",
+        "title": "ai-app-playbook：把消费级 AI App 从选品到首月盈利写成给编程助手执行的规程",
+        "date": "2026-10-28",
+        "time": "10-28 12:10",
+        "try_url": "https://github.com/blakeandersonw/ai-app-playbook",
+        "access": "开源（MIT）。克隆仓库后把 AGENTS.md 丢给 Claude Code 或 OpenCode；也可在空目录里让助手按 README 直接开干。默认栈：Cloudflare Workers / D1 / R2、Better Auth、OpenRouter（DeepSeek 默认）、Superwall / Stripe、Tinybird。",
+        "integration": "面向想用编程助手做出可上架消费级 AI App 的独立开发者。章节从 Niche 评分、后端、鉴权、AI、客户端、支付、分析、留存到分发；作者写明禁用 Vercel、Supabase、Next.js 等一长串替代品，需按自己约束取舍。",
+        "first_step": "若你这周想按固定栈试一条「选品→能上架」路径：先 clone https://github.com/blakeandersonw/ai-app-playbook，把 AGENTS.md 交给 Claude Code / OpenCode，从第 0 章 Niche 评分卡跑一轮真实点子验证。",
+        "summary": "blakeandersonw 开源的 ai-app-playbook（MIT）是一份给 coding agent 执行的操作规程：按固定 Cloudflare 技术栈走完选品、搭建、上架到首月盈利，并写明一长串「别用」的工具与托管。",
+        "audience_value": "如果你正想用编程助手做能收费的消费级 AI App，又不想每次从零拼栈，这份规程把「选什么、用什么、别用什么、怎么走到首月」收成可交给助手执行的清单。",
+        "alternatives": [
+          "继续用 Lovable / Bolt / v0 等托管生成器，不跟这套 Cloudflare 规程",
+          "自写提示词搭栈，不克隆 playbook",
+          "先只读章节，不把 AGENTS.md 交给助手执行"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261028-word-atlas",
         "title": "词光 word-atlas：7298 个雅思词配插画与英美音，开源可本地跑也可在线背",
@@ -480,6 +500,26 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261028-ai-app-playbook",
+      "title": "ai-app-playbook：把消费级 AI App 从选品到首月盈利写成给编程助手执行的规程",
+      "date": "2026-10-28",
+      "time": "10-28 12:10",
+      "try_url": "https://github.com/blakeandersonw/ai-app-playbook",
+      "access": "开源（MIT）。克隆仓库后把 AGENTS.md 丢给 Claude Code 或 OpenCode；也可在空目录里让助手按 README 直接开干。默认栈：Cloudflare Workers / D1 / R2、Better Auth、OpenRouter（DeepSeek 默认）、Superwall / Stripe、Tinybird。",
+      "integration": "面向想用编程助手做出可上架消费级 AI App 的独立开发者。章节从 Niche 评分、后端、鉴权、AI、客户端、支付、分析、留存到分发；作者写明禁用 Vercel、Supabase、Next.js 等一长串替代品，需按自己约束取舍。",
+      "first_step": "若你这周想按固定栈试一条「选品→能上架」路径：先 clone https://github.com/blakeandersonw/ai-app-playbook，把 AGENTS.md 交给 Claude Code / OpenCode，从第 0 章 Niche 评分卡跑一轮真实点子验证。",
+      "summary": "blakeandersonw 开源的 ai-app-playbook（MIT）是一份给 coding agent 执行的操作规程：按固定 Cloudflare 技术栈走完选品、搭建、上架到首月盈利，并写明一长串「别用」的工具与托管。",
+      "audience_value": "如果你正想用编程助手做能收费的消费级 AI App，又不想每次从零拼栈，这份规程把「选什么、用什么、别用什么、怎么走到首月」收成可交给助手执行的清单。",
+      "alternatives": [
+        "继续用 Lovable / Bolt / v0 等托管生成器，不跟这套 Cloudflare 规程",
+        "自写提示词搭栈，不克隆 playbook",
+        "先只读章节，不把 AGENTS.md 交给助手执行"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
     {
       "id": "evt-20261028-word-atlas",
       "title": "词光 word-atlas：7298 个雅思词配插画与英美音，开源可本地跑也可在线背",

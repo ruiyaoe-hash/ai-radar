@@ -5,4 +5,9 @@ AI Radar · 信息精选（2026-10-28）
    建议：持续观察 · 先读官方博文与案例技术报告摘要；若你不做医药研发，不必本周改工具栈。
    https://www.anthropic.com/research/early-progress-drug-development
 
+2. DeepMind 发布 Genie 4：实时交互世界模型，原生音画对话，先向可信测试者开放
+   对你意味着什么：这是前沿实验室把「可玩、可听、可改」的实时世界模拟又推进一步，对机器人训练环境、预可视化与交互体验原型有长线意义；大众访客眼下多数还进不了正式产品，本周工具栈不必因此大换。
+   建议：持续观察 · 先读 DeepMind 博文；有 Ultra 或想试用可关注 Project Genie 等待名单，勿把演示当成已全面开放。
+   https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation
+
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html

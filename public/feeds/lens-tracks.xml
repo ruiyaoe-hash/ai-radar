@@ -5,7 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看行业动态。</description>
 <language>zh-cn</language>
-<lastBuildDate>Wed, 28 Oct 2026 08:00:59 +0800</lastBuildDate>
+<lastBuildDate>Wed, 28 Oct 2026 12:05:39 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>[快讯 · 行业动态 · 发布] Anthropic：Claude 已深度参与六家新药研发，自研肌萎缩候选药最快 2028 年底进人体试验</title>
@@ -13,6 +13,13 @@
 <guid isPermaLink="false">evt-20261028-anthropic-drug</guid>
 <pubDate>Wed, 28 Oct 2026 04:27:48 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Anthropic 于北京时间 10 月 28 日凌晨发文，称过去数月与 BigHat、Bristol Myers Squibb、Divergence Labs、Enveda、Generate Biomedicines、The Column Group 六家机构开展新药研发合作，并启动自有药物发现项目。<br/>• 案例包括：Generate 用 Claude Code 缩短 CAR-T 基因片段并在实验室测出受体表达约高 10 倍；Divergence 约一个月生成约 3.5 万个抗体设计并筛到可解离 IgE 的命中；BigHat 约 10 周测约 1010 个变体，部分结合力提升逾 10 倍；Enveda 用 Claude 审制造文档并起草监管材料，称人工审阅时间大约降 89%。<br/>• Anthropic 收购 Mithril Medicine 后继续肌萎缩相关候选药；文中称若候选继续成立，最快 2028 年底可准备启动人体临床试验。整体仍多属临床前。宝玉中文帖与官方帖交叉确认同一事件。<br/><strong>对你意味着什么</strong> 这是前沿大模型公司把 Claude 推进真实药物管线与自研项目的公开进度，说明 AI 医药从演示走向多环节实操；对一人公司本周选型影响有限，但对长线「AI×生物」赛道判断有用。<br/>建议：持续观察 · 先读官方博文与案例技术报告摘要；若你不做医药研发，不必本周改工具栈。<br/>有多确定：高<br/>什么情况下当这判断作废：若后续官方撤回合作表述、关键实验室结果无法复现，或人体试验时间表明显推迟且无替代进展，就收回「Claude 已在多环节实质进入新药研发」。<br/>来源 anthropic（一手）, anthropicai（一手）, dotey（转述）<br/>日期 2026-10-28]]></description>
+</item>
+<item>
+<title>[快讯 · 行业动态 · 发布] DeepMind 发布 Genie 4：实时交互世界模型，原生音画对话，先向可信测试者开放</title>
+<link>https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation</link>
+<guid isPermaLink="false">evt-20261028-genie-4</guid>
+<pubDate>Wed, 28 Oct 2026 00:01:38 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Google DeepMind 于北京时间 10 月 28 日凌晨发文，宣布世界模型 Genie 4：可实时交互生成场景，并原生同时生成环境音、音乐与人物对话。<br/>• 官方称四项能力升级：自然语言实时改场景、更强物理与人物动作拟真、原生音频，以及用 Gemini 3.8 Flash 在环内做多步推理与连贯引导；单次连续交互约可到两分钟量级（较 Genie 3 约一分钟更长）。<br/>• 当前为研究预览，先向可信测试者开放，随后面向 Google AI Ultra 订阅者的 Project Genie，以及 Gemini API / Google AI Studio 早期合作方；Demis Hassabis 与 The Verge 同日交叉确认同一发布。<br/><strong>对你意味着什么</strong> 这是前沿实验室把「可玩、可听、可改」的实时世界模拟又推进一步，对机器人训练环境、预可视化与交互体验原型有长线意义；大众访客眼下多数还进不了正式产品，本周工具栈不必因此大换。<br/>建议：持续观察 · 先读 DeepMind 博文；有 Ultra 或想试用可关注 Project Genie 等待名单，勿把演示当成已全面开放。<br/>有多确定：高<br/>什么情况下当这判断作废：若官方撤回 Genie 4 发布表述、可信测试者与 Ultra 路线图长期无进展，或独立评测表明实时拟真与音频能力明显达不到文中宣称，就收回「Genie 4 已实质推进实时世界模拟」。<br/>来源 deepmind（一手）, demishassabis（一手）, theverge（转述）<br/>日期 2026-10-28]]></description>
 </item>
 </channel>
 </rss>

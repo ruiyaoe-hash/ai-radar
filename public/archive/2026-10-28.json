@@ -1,6 +1,6 @@
 {
   "date": "2026-10-28",
-  "count": 4,
+  "count": 6,
   "schema_version": 1,
   "items": [
     {
@@ -52,6 +52,110 @@
         "window": "先读官方博文与案例技术报告摘要；若你不做医药研发，不必本周改工具栈。",
         "confidence": "高",
         "falsifier": "若后续官方撤回合作表述、关键实验室结果无法复现，或人体试验时间表明显推迟且无替代进展，就收回「Claude 已在多环节实质进入新药研发」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-genie-4",
+      "status": "multi_source",
+      "tag": "发布",
+      "lens": "赛道",
+      "priority": "P1",
+      "title": "DeepMind 发布 Genie 4：实时交互世界模型，原生音画对话，先向可信测试者开放",
+      "date": "2026-10-28",
+      "time": "10-28 00:01",
+      "handle": "deepmind",
+      "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation",
+      "published_at": "2026-10-27T16:01:38Z",
+      "ingested_at": "2026-10-28T02:29:09Z",
+      "candidate_id": "cand-20261028-1ffc89088a74",
+      "promotion_path": "normal",
+      "block_ids": [
+        "cand-20261028-1407780b4ef7",
+        "cand-20261028-576094f1661f",
+        "cand-20261028-8eccacec88e0"
+      ],
+      "objective": [
+        "Google DeepMind 于北京时间 10 月 28 日凌晨发文，宣布世界模型 Genie 4：可实时交互生成场景，并原生同时生成环境音、音乐与人物对话。",
+        "官方称四项能力升级：自然语言实时改场景、更强物理与人物动作拟真、原生音频，以及用 Gemini 3.8 Flash 在环内做多步推理与连贯引导；单次连续交互约可到两分钟量级（较 Genie 3 约一分钟更长）。",
+        "当前为研究预览，先向可信测试者开放，随后面向 Google AI Ultra 订阅者的 Project Genie，以及 Gemini API / Google AI Studio 早期合作方；Demis Hassabis 与 The Verge 同日交叉确认同一发布。"
+      ],
+      "sources": [
+        {
+          "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation",
+          "handle": "deepmind",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/demishassabis/status/2115232001275924722",
+          "handle": "demishassabis",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.theverge.com/tech/1019076/google-genie-4-ai-model",
+          "handle": "theverge",
+          "role": "report"
+        }
+      ],
+      "shift": "other",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "这是前沿实验室把「可玩、可听、可改」的实时世界模拟又推进一步，对机器人训练环境、预可视化与交互体验原型有长线意义；大众访客眼下多数还进不了正式产品，本周工具栈不必因此大换。",
+        "action": "持续观察",
+        "window": "先读 DeepMind 博文；有 Ultra 或想试用可关注 Project Genie 等待名单，勿把演示当成已全面开放。",
+        "confidence": "高",
+        "falsifier": "若官方撤回 Genie 4 发布表述、可信测试者与 Ultra 路线图长期无进展，或独立评测表明实时拟真与音频能力明显达不到文中宣称，就收回「Genie 4 已实质推进实时世界模拟」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-ai-app-playbook",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "ai-app-playbook：把消费级 AI App 从选品到首月盈利写成给编程助手执行的规程",
+      "date": "2026-10-28",
+      "time": "10-28 12:10",
+      "handle": "blakeandersonw",
+      "url": "https://github.com/blakeandersonw/ai-app-playbook",
+      "published_at": "2026-10-28T01:02:10Z",
+      "ingested_at": "2026-10-28T02:11:17Z",
+      "candidate_id": "cand-20261028-da36115fd939",
+      "promotion_path": "normal",
+      "objective": [
+        "blakeandersonw 开源的 ai-app-playbook（MIT）是一份给 coding agent 执行的操作规程：按固定 Cloudflare 技术栈走完选品、搭建、上架到首月盈利，并写明一长串「别用」的工具与托管。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/blakeandersonw/ai-app-playbook",
+          "handle": "blakeandersonw",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/shao__meng/status/2115247718608310389",
+          "handle": "shao__meng",
+          "role": "report"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://github.com/blakeandersonw/ai-app-playbook",
+      "access": "开源（MIT）。克隆仓库后把 AGENTS.md 丢给 Claude Code 或 OpenCode；也可在空目录里让助手按 README 直接开干。默认栈：Cloudflare Workers / D1 / R2、Better Auth、OpenRouter（DeepSeek 默认）、Superwall / Stripe、Tinybird。",
+      "integration": "面向想用编程助手做出可上架消费级 AI App 的独立开发者。章节从 Niche 评分、后端、鉴权、AI、客户端、支付、分析、留存到分发；作者写明禁用 Vercel、Supabase、Next.js 等一长串替代品，需按自己约束取舍。",
+      "first_step": "若你这周想按固定栈试一条「选品→能上架」路径：先 clone https://github.com/blakeandersonw/ai-app-playbook，把 AGENTS.md 交给 Claude Code / OpenCode，从第 0 章 Niche 评分卡跑一轮真实点子验证。",
+      "alternatives": [
+        "继续用 Lovable / Bolt / v0 等托管生成器，不跟这套 Cloudflare 规程",
+        "自写提示词搭栈，不克隆 playbook",
+        "先只读章节，不把 AGENTS.md 交给助手执行"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你正想用编程助手做能收费的消费级 AI App，又不想每次从零拼栈，这份规程把「选什么、用什么、别用什么、怎么走到首月」收成可交给助手执行的清单。",
+        "action": "立即行动",
+        "window": "今天先 clone 仓库，把 AGENTS.md 丢给助手，用一个真实点子跑完 Niche 评分，再决定要不要按栈往下建。",
+        "confidence": "中",
+        "falsifier": "若仓库不可用、AGENTS.md 无法驱动助手，或你验证后发现栈约束与你的产品明显冲突且无法裁剪，就收回「这周用它开消费级 AI App」。"
       }
     },
     {
