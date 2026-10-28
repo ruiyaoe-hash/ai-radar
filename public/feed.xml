@@ -5,8 +5,29 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Wed, 28 Oct 2026 16:17:49 +0800</lastBuildDate>
+<lastBuildDate>Wed, 28 Oct 2026 20:58:35 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] tibot：用 Grok Bot 模板盯提及与关键词，按日程出短摘要且不代发帖</title>
+<link>https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3</link>
+<guid isPermaLink="false">evt-20261028-tibot</guid>
+<pubDate>Wed, 28 Oct 2026 18:38:23 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 开发者 poteto 公开了自己用来管 X 账号的 Grok Bot 模板 tibot：盯提及与关键词、按日程给出已排序的短摘要、过滤噪音、翻译非英文帖，并可在连接自有 X API 应用后自动拉黑骚扰号。<br/>• 模板页写明：默认按日摘要，没事时保持安静；绝不替你发帖。写作与长文仍由本人手写，tibot 只做情报与防护。<br/>• 中文圈 shao__meng 同日转述了安装入口与能力列表，并提醒自动拉黑会消耗 X API credits。<br/><strong>对你意味着什么</strong> 如果你在 X 上经营账号又坚持手写内容，tibot 可以把「听声」和「发声」分开：摘要与防护交给 Bot，帖文仍自己写，适合先小范围试。<br/>建议：立即行动 · 今天先装模板并跑一天摘要；确认节奏合适再考虑自动拉黑。<br/>有多确定：中<br/>什么情况下当这判断作废：若模板在你账号上装不上、摘要噪音仍很大，或自动拉黑误伤正常互动，就收回「这周用 tibot 管提及」。<br/>来源 poteto（一手）, poteto（一手）, shao__meng（转述）<br/>日期 2026-10-28]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] LangChain 开源 design-agent：把品牌设计 Agent 装进团队 Slack</title>
+<link>https://github.com/langchain-ai/design-agent</link>
+<guid isPermaLink="false">evt-20261028-design-agent</guid>
+<pubDate>Wed, 28 Oct 2026 15:29:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• LangChain 开源了公司内部在用的设计 Agent 仓库 design-agent（又称 Content Studio）：在 Slack 里描述需求、附上 brief 或素材，可拿回按品牌规范生成的静图、幻灯片、图表和动态片。<br/>• 仓库基于 Deep Agents，可用 Managed Deep Agents 部署；官方写明可先本地试跑（不必先配密钥），再写入品牌色板、字体与 skills，用一条命令发到团队 Slack。<br/>• 官方复盘称自 8 月起已交付三千多件物料，带其视觉的帖在 X 上约有四百五十万曝光；单次请求模型花费中位数约从 8 美元降到约 0.5 美元。中文圈 shao__meng 同日转述了同一开源与做法。<br/><strong>对你意味着什么</strong> 如果你的团队反复在 Slack 里要海报、幻灯片和短片，又缺设计人力，这套开源 harness 把「品牌品味 + 沙箱电脑 + 异步子代理」打包好了，值得本周动手试，而不是只收藏链接。<br/>建议：立即行动 · 今天先本地跑通 demo；确认方向后再写入品牌 token 并部署到测试频道。<br/>有多确定：中<br/>什么情况下当这判断作废：若本地 demo 跑不通、部署后产出明显不像你的品牌，或成本与审核流程扛不住，就收回「这周用它分担重复设计活」。<br/>来源 langchain（一手）, langchain（一手）, shao__meng（转述）<br/>日期 2026-10-28]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] 三套 Agent Skills 串起来：对照头部 App 学设计，再按 Expo 与动效规则复刻</title>
+<link>https://github.com/Appllama/appllama-skills</link>
+<guid isPermaLink="false">evt-20261028-ios-app-skills</guid>
+<pubDate>Wed, 28 Oct 2026 14:38:09 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• shao__meng 梳理了一条「复刻顶级 iOS App 观感」的路径：不是去拆 IPA，而是给编程助手装三套 Agent Skills，分别管设计研究、Expo 工程规范，以及动效与界面品味。<br/>• 三套仓库分别是 Appllama/appllama-skills（对照高收入移动 App 的设计研究与原生感建造标准，另有付费 MCP）、expo/skills（Expo 官方项目结构、Router、EAS 等最佳实践），以及 emilkowalski/skills（动效与反廉价 UI 规则）。<br/>• 组合方式是：Appllama 回答「学谁、长什么样」，Expo 回答「工程与分发怎么按官方做」，Emil 回答「动效与细节怎样不廉价」。原文引用了 jaimintf 的同主题帖。<br/><strong>对你意味着什么</strong> 如果你用编程助手做 iOS/Expo 界面，又总觉得「能跑但不像真 App」，这三套技能把参考样本、官方工程规范和动效品味拆开了，比单靠一条万能提示词更可执行。<br/>建议：立即行动 · 今天先装好技能，挑一个你常打开的 App 复刻一屏，对照原版看差在哪。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能在你的助手里装不上、对照参考 App 仍明显廉价，或 Expo 工程规范与你现有栈冲突到无法落地，就收回「这周用这三套来复刻移动端界面」。<br/>来源 Appllama（一手）, expo（一手）, emilkowalski（一手）, shao__meng（转述）<br/>日期 2026-10-28]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] 乔木 UI 学习迁到 DeepSeek Harness：装上后可把提示词交给助手复刻落地页</title>
 <link>https://github.com/joeseesun/qiaomu-ui-learn-dsh</link>

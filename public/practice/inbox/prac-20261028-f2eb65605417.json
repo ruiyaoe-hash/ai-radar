@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261028-f2eb65605417",
+  "kind": "Skill / 工作流",
+  "title": "Fork LangChain 的 design-agent，先本地 demo 再写入品牌并部署到 Slack",
+  "author": "shao__meng",
+  "url": "https://x.com/shao__meng/status/2115345069570212202",
+  "time": "2026-10-28 15:29",
+  "takeaway": "先按仓库 Quickstart 本地跑通设计 Agent，再写入自己的品牌 token 与 skills，最后用 Managed Deep Agents 部署到团队 Slack。",
+  "steps": [
+    "打开 https://github.com/langchain-ai/design-agent ，按 Quickstart 安装依赖，先跑本地 sandbox build / demo，确认能完成一次出图或出片请求。",
+    "把品牌色板、字体和你们的设计原则写进品牌包与 skills；需要给团队用时，配置 LangSmith 与模型密钥，执行部署命令并在测试频道授权 Slack 应用，用真实 brief 试一条再开放给更多人。"
+  ],
+  "caution": "生产部署通常要 Managed Deep Agents 与密钥；密钥不要进沙箱。仓库与中文转述都没有替你跑过安装。生成物料仍需人工审核后才能对外发布。",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "Python 3.11+",
+    "可访问 GitHub",
+    "若部署到 Slack：LangSmith 与模型密钥"
+  ],
+  "estimated_time": "先本地试半小时起",
+  "verified": false,
+  "candidate_id": "cand-20261028-f2eb65605417",
+  "try_url": "https://github.com/langchain-ai/design-agent"
+}

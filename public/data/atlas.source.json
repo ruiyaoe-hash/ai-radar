@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot": "2026-10-28 afternoon",
+  "snapshot": "2026-10-28 evening",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -44,6 +44,42 @@
     }
   ],
   "sources": [
+    {
+      "id": "prac-20261028-b43980f0330b",
+      "url": "https://x.com/shao__meng/status/2115392731333951528",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "安装 tibot 模板，先设关键词与摘要节奏，确认不代发后再考虑自动拉黑",
+      "excerpt": "安装 poteto 的 Grok Bot 模板 tibot，先跑摘要，确认不代发后再按需接 X API。",
+      "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261028-bc7a1b6dbccb",
+      "url": "https://x.com/shao__meng/status/2115332272152826248",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "给编程助手装 Appllama、Expo 与 Emil 三套技能，对照头部 App 复刻一屏",
+      "excerpt": "先装三套 Agent Skills，再选一个头部 App 当参考，按 Expo 规范复刻并审动效。",
+      "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261028-f2eb65605417",
+      "url": "https://x.com/shao__meng/status/2115345069570212202",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "Fork LangChain 的 design-agent，先本地 demo 再写入品牌并部署到 Slack",
+      "excerpt": "按仓库 Quickstart 本地跑通，再写入品牌包，需要时用 Managed Deep Agents 部署到 Slack。",
+      "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
     {
       "id": "prac-20261028-6c41b5f6c2ed",
       "url": "https://x.com/vista8/status/2115293920955605424",

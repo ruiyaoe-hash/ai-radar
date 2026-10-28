@@ -1,8 +1,187 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-28 16:17 北京时间",
+  "updated": "2026-10-28 20:58 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-tibot",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "tibot：用 Grok Bot 模板盯提及与关键词，按日程出短摘要且不代发帖",
+      "date": "2026-10-28",
+      "time": "10-28 18:38",
+      "handle": "poteto",
+      "url": "https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3",
+      "published_at": "2026-10-28T10:38:23Z",
+      "ingested_at": "2026-10-28T12:57:30Z",
+      "candidate_id": "cand-20261028-b43980f0330b",
+      "promotion_path": "normal",
+      "objective": [
+        "开发者 poteto 公开了自己用来管 X 账号的 Grok Bot 模板 tibot：盯提及与关键词、按日程给出已排序的短摘要、过滤噪音、翻译非英文帖，并可在连接自有 X API 应用后自动拉黑骚扰号。",
+        "模板页写明：默认按日摘要，没事时保持安静；绝不替你发帖。写作与长文仍由本人手写，tibot 只做情报与防护。",
+        "中文圈 shao__meng 同日转述了安装入口与能力列表，并提醒自动拉黑会消耗 X API credits。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3",
+          "handle": "poteto",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/poteto/status/2115205951649423585",
+          "handle": "poteto",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/shao__meng/status/2115392731333951528",
+          "handle": "shao__meng",
+          "role": "report"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3",
+      "access": "通过 x.ai 的 Bot 模板页安装。基础摘要与过滤按模板说明使用；自动拉黑需自行连接 X API 应用，并会消耗 API credits。",
+      "integration": "适合本人仍手写内容、但容易漏看提及与关键词的人。定位是情报助理，不是自动运营发帖机器人。",
+      "first_step": "若你这周总漏看提及：打开模板页安装 tibot，先设关键词与摘要节奏，确认它不会代发后再视需要接 X API。",
+      "alternatives": [
+        "继续只用 X 自带通知，不装 Bot",
+        "用手写搜索收藏夹盯关键词",
+        "上完整的社媒管理台，而不是轻量 Bot"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你在 X 上经营账号又坚持手写内容，tibot 可以把「听声」和「发声」分开：摘要与防护交给 Bot，帖文仍自己写，适合先小范围试。",
+        "action": "立即行动",
+        "window": "今天先装模板并跑一天摘要；确认节奏合适再考虑自动拉黑。",
+        "confidence": "中",
+        "falsifier": "若模板在你账号上装不上、摘要噪音仍很大，或自动拉黑误伤正常互动，就收回「这周用 tibot 管提及」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-design-agent",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "LangChain 开源 design-agent：把品牌设计 Agent 装进团队 Slack",
+      "date": "2026-10-28",
+      "time": "10-28 15:29",
+      "handle": "langchain",
+      "url": "https://github.com/langchain-ai/design-agent",
+      "published_at": "2026-10-28T07:29:00Z",
+      "ingested_at": "2026-10-28T12:57:30Z",
+      "candidate_id": "cand-20261028-f2eb65605417",
+      "promotion_path": "normal",
+      "objective": [
+        "LangChain 开源了公司内部在用的设计 Agent 仓库 design-agent（又称 Content Studio）：在 Slack 里描述需求、附上 brief 或素材，可拿回按品牌规范生成的静图、幻灯片、图表和动态片。",
+        "仓库基于 Deep Agents，可用 Managed Deep Agents 部署；官方写明可先本地试跑（不必先配密钥），再写入品牌色板、字体与 skills，用一条命令发到团队 Slack。",
+        "官方复盘称自 8 月起已交付三千多件物料，带其视觉的帖在 X 上约有四百五十万曝光；单次请求模型花费中位数约从 8 美元降到约 0.5 美元。中文圈 shao__meng 同日转述了同一开源与做法。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/langchain-ai/design-agent",
+          "handle": "langchain",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.langchain.com/blog/design-agent",
+          "handle": "langchain",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/shao__meng/status/2115345069570212202",
+          "handle": "shao__meng",
+          "role": "report"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/langchain-ai/design-agent",
+      "access": "开源（Apache 2.0）。Python 3.11+。可读仓库 Quickstart：安装后本地 demo，或配置 LangSmith / 模型密钥后用 Managed Deep Agents 部署到 Slack。",
+      "integration": "适合已经有品牌规范、又想在 Slack 里批量出营销与活动物料的小团队。本地可先试；正式给全员用通常要接 Managed Deep Agents 与 Slack 授权。",
+      "first_step": "若你这周要减轻重复出图压力：先打开仓库，按 Quickstart 本地跑一遍 demo，再决定要不要写入自己的品牌包并部署。",
+      "alternatives": [
+        "继续用手搓提示词或设计师排期，不部署这套 Agent",
+        "只读官方博文，先不 fork",
+        "用现成的单次生成工具出图，不接团队 Slack"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你的团队反复在 Slack 里要海报、幻灯片和短片，又缺设计人力，这套开源 harness 把「品牌品味 + 沙箱电脑 + 异步子代理」打包好了，值得本周动手试，而不是只收藏链接。",
+        "action": "立即行动",
+        "window": "今天先本地跑通 demo；确认方向后再写入品牌 token 并部署到测试频道。",
+        "confidence": "中",
+        "falsifier": "若本地 demo 跑不通、部署后产出明显不像你的品牌，或成本与审核流程扛不住，就收回「这周用它分担重复设计活」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-ios-app-skills",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "三套 Agent Skills 串起来：对照头部 App 学设计，再按 Expo 与动效规则复刻",
+      "date": "2026-10-28",
+      "time": "10-28 14:38",
+      "handle": "shao__meng",
+      "url": "https://github.com/Appllama/appllama-skills",
+      "published_at": "2026-10-28T06:38:09Z",
+      "ingested_at": "2026-10-28T12:57:30Z",
+      "candidate_id": "cand-20261028-bc7a1b6dbccb",
+      "promotion_path": "normal",
+      "objective": [
+        "shao__meng 梳理了一条「复刻顶级 iOS App 观感」的路径：不是去拆 IPA，而是给编程助手装三套 Agent Skills，分别管设计研究、Expo 工程规范，以及动效与界面品味。",
+        "三套仓库分别是 Appllama/appllama-skills（对照高收入移动 App 的设计研究与原生感建造标准，另有付费 MCP）、expo/skills（Expo 官方项目结构、Router、EAS 等最佳实践），以及 emilkowalski/skills（动效与反廉价 UI 规则）。",
+        "组合方式是：Appllama 回答「学谁、长什么样」，Expo 回答「工程与分发怎么按官方做」，Emil 回答「动效与细节怎样不廉价」。原文引用了 jaimintf 的同主题帖。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/Appllama/appllama-skills",
+          "handle": "Appllama",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/expo/skills",
+          "handle": "expo",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/emilkowalski/skills",
+          "handle": "emilkowalski",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/shao__meng/status/2115332272152826248",
+          "handle": "shao__meng",
+          "role": "report"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/Appllama/appllama-skills",
+      "access": "三套 Skills 仓库均可在 GitHub 查看。Appllama 的设计 MCP 标了 Pro 计费；设计技能可单独装。Expo Skills 可用官方插件或 skills CLI；Emil 的技能偏跨 Web/移动的动效方法论。",
+      "integration": "面向用 Claude Code / Codex 等编程助手做 Expo 或 React Native 应用的人。先装技能，再让助手对照参考 App 出界面与动效，而不是指望一次提示词出成品。",
+      "first_step": "若你这周要做移动端界面：先装 Appllama 与 Expo 两套技能，选一个头部 App 当参考，让助手按 Expo 规范搭一版，再用 Emil 的规则审动效。",
+      "alternatives": [
+        "只装 Expo 官方技能，不对照 Appllama 设计库",
+        "继续用通用前端提示词写移动端，不装这三套",
+        "把界面交给设计师，助手只写业务逻辑"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用编程助手做 iOS/Expo 界面，又总觉得「能跑但不像真 App」，这三套技能把参考样本、官方工程规范和动效品味拆开了，比单靠一条万能提示词更可执行。",
+        "action": "立即行动",
+        "window": "今天先装好技能，挑一个你常打开的 App 复刻一屏，对照原版看差在哪。",
+        "confidence": "中",
+        "falsifier": "若技能在你的助手里装不上、对照参考 App 仍明显廉价，或 Expo 工程规范与你现有栈冲突到无法落地，就收回「这周用这三套来复刻移动端界面」。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261028-dsh-landing",
