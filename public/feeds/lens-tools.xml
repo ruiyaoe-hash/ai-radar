@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Wed, 28 Oct 2026 08:01:48 +0800</lastBuildDate>
+<lastBuildDate>Wed, 28 Oct 2026 12:05:04 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] ai-app-playbook：把消费级 AI App 从选品到首月盈利写成给编程助手执行的规程</title>
+<link>https://github.com/blakeandersonw/ai-app-playbook</link>
+<guid isPermaLink="false">evt-20261028-ai-app-playbook</guid>
+<pubDate>Wed, 28 Oct 2026 09:02:10 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• blakeandersonw 开源的 ai-app-playbook（MIT）是一份给 coding agent 执行的操作规程：按固定 Cloudflare 技术栈走完选品、搭建、上架到首月盈利，并写明一长串「别用」的工具与托管。<br/><strong>对你意味着什么</strong> 如果你正想用编程助手做能收费的消费级 AI App，又不想每次从零拼栈，这份规程把「选什么、用什么、别用什么、怎么走到首月」收成可交给助手执行的清单。<br/>建议：立即行动 · 今天先 clone 仓库，把 AGENTS.md 丢给助手，用一个真实点子跑完 Niche 评分，再决定要不要按栈往下建。<br/>有多确定：中<br/>什么情况下当这判断作废：若仓库不可用、AGENTS.md 无法驱动助手，或你验证后发现栈约束与你的产品明显冲突且无法裁剪，就收回「这周用它开消费级 AI App」。<br/>来源 blakeandersonw（一手）, shao__meng（转述）<br/>日期 2026-10-28]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] 词光 word-atlas：7298 个雅思词配插画与英美音，开源可本地跑也可在线背</title>
 <link>https://github.com/designfuchen/word-atlas</link>

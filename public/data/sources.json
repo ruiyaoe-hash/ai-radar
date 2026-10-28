@@ -1,7 +1,19 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-28 08:01 北京时间",
+  "updated": "2026-10-28 12:05 北京时间",
   "sources": [
+    {
+      "id": "prac-20261028-da36115fd939",
+      "url": "https://x.com/shao__meng/status/2115247718608310389",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用编程助手按 ai-app-playbook 从点子验证走到可上架消费级 AI App",
+      "excerpt": "克隆 playbook，把 AGENTS.md 交给助手，先跑 Niche 评分再按 Cloudflare 栈往下建。",
+      "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
     {
       "id": "prac-20261028-f6700b2010cf",
       "url": "https://x.com/vista8/status/2115061564852367449",
