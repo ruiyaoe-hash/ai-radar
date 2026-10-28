@@ -7,7 +7,7 @@
   "time": "2026-10-28 09:02",
   "takeaway": "先克隆开源的 ai-app-playbook，把 AGENTS.md 交给 Claude Code 或 OpenCode；再用第 0 章 Niche 评分卡验证一个真实点子，通过后再按固定 Cloudflare 栈往下搭建与上架。",
   "steps": [
-    "在本机执行：git clone https://github.com/blakeandersonw/ai-app-playbook.git，打开仓库里的 AGENTS.md 与 README，确认默认栈（Cloudflare 全家桶、Better Auth、OpenRouter 等）和「别用」清单是否可接受。",
+    "在本机用 Git 克隆开源仓库 ai-app-playbook（地址见本卡试做链接），打开仓库里的 AGENTS.md 与 README，确认默认技术栈（Cloudflare 全家桶、Better Auth、OpenRouter 等）和「别用」清单是否可接受。",
     "把 AGENTS.md 交给 Claude Code 或 OpenCode（也可在空目录里让助手按 README 开干），从第 0 章 Niche 评分卡对一个真实点子打分；达到作者门槛后再按后续章节做搭建、支付与上架，不要跳过验证直接写全站。"
   ],
   "caution": "动手前对照仓库 README 与 AGENTS.md 核对命令与约束。作者自称的收入案例与成本表是其个人说法，不是你的保证。栈里「别用」名单很硬，需按自己产品取舍。这里没有替你跑过安装或上架。",
