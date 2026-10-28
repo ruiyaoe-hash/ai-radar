@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot": "2026-10-28 noon",
+  "snapshot": "2026-10-28 afternoon",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -44,6 +44,18 @@
     }
   ],
   "sources": [
+    {
+      "id": "prac-20261028-6c41b5f6c2ed",
+      "url": "https://x.com/vista8/status/2115293920955605424",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "装上乔木的 DSH 插件，再把设计提示词交给编程助手复刻落地页",
+      "excerpt": "先在 DeepSeek Harness 安装乔木 UI 学习插件，再把设计提示词交给编程助手复刻落地页。",
+      "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
     {
       "id": "prac-20261028-da36115fd939",
       "url": "https://x.com/shao__meng/status/2115247718608310389",
