@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28 12:05 北京时间",
+  "updated": "2026-10-28 16:16 北京时间",
   "rings": {
     "推荐使用": [
       {
@@ -17,6 +17,26 @@
           "继续用 Lovable / Bolt / v0 等托管生成器，不跟这套 Cloudflare 规程",
           "自写提示词搭栈，不克隆 playbook",
           "先只读章节，不把 AGENTS.md 交给助手执行"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261028-dsh-landing",
+        "title": "乔木 UI 学习迁到 DeepSeek Harness：装上后可把提示词交给助手复刻落地页",
+        "date": "2026-10-28",
+        "time": "10-28 12:05",
+        "try_url": "https://github.com/joeseesun/qiaomu-ui-learn-dsh",
+        "access": "开源（MIT）。需要 DeepSeek Harness 0.2.1-rc.3。从仓库 Releases 下载安装包，在插件管理中安装；也可以用宿主自带命令行装到指定配置。设计参考缩略图按需从外部图库加载，词典和交互标本随包提供。",
+        "integration": "面向已经在用 DeepSeek Harness、又想照着现成网站做落地页的人。插件提供设计参考、提示词复制和源码读取；页面仍由你的编程助手生成。",
+        "first_step": "若你这周要做落地页：先装上这个插件，选一个参考站，把提示词交给编程助手复刻一版，再对照原站看差在哪。",
+        "summary": "vista8 分享了一种复刻落地页的做法：先在 DeepSeek Harness 里安装乔木开源的「乔木 UI 学习」插件，再选一个优质网站，把提示词交给编程助手去生成页面。",
+        "audience_value": "如果你用编程助手做落地页，又不想从空白提示词硬凑版式，这个插件把设计参考和可复制的实现提示词放进 DeepSeek Harness，选一个站就能让助手照着复刻。",
+        "alternatives": [
+          "继续用通用前端提示词写落地页，不装这个插件",
+          "只浏览设计参考，不把提示词交给编程助手",
+          "把落地页交给设计师，不走复刻"
         ],
         "status": "confirmed",
         "priority": "P1",
@@ -455,6 +475,26 @@
         "stance": "值得关注"
       },
       {
+        "id": "evt-20261028-lfm3",
+        "title": "Liquid AI 发布 LFM3：约 20 亿参数的多模态底座，单张显卡就能微调",
+        "date": "2026-10-28",
+        "time": "10-28 01:16",
+        "try_url": "https://huggingface.co/blog/LiquidAI/lfm3",
+        "access": "开放权重，可在 Hugging Face 下载。文本、视觉、音频、全模态和决策模型从同一代底座分出。博文写明用 transformers 加载，并称每种模型都能在单张显卡上微调。",
+        "integration": "适合要在本机或单卡上做专用小模型的人。文本模型写明可接入本地智能体框架；视觉和音频模型需要对应的 transformers 版本。",
+        "first_step": "若你这周在看边缘侧小模型：先读这篇博文，按你要的模态打开模型卡，核对体积和微调说明。",
+        "summary": "Liquid AI 在 Hugging Face 发文，发布液体基础模型 LFM3：文本、视觉、音频、全模态和决策模型共用约 20 亿参数这一档的底座，权重已开放下载，并称每一种都能在单张显卡上微调。",
+        "audience_value": "如果你想在自己的电脑或单张显卡上微调一个小多模态模型，LFM3 把文本、看图、听音频和做决策收成同一代约 20 亿参数的开放权重，可以放进对照，但不必因此立刻换掉现有模型。",
+        "alternatives": [
+          "继续用手头的小模型，这周不换 LFM3",
+          "只读博文，先不下载权重",
+          "等独立评测出来，再决定是否微调"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "值得关注"
+      },
+      {
         "id": "evt-20261024-tencent-hy-nomas",
         "title": "腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型",
         "date": "2026-10-24",
@@ -521,6 +561,26 @@
       "stance": "推荐使用"
     },
     {
+      "id": "evt-20261028-dsh-landing",
+      "title": "乔木 UI 学习迁到 DeepSeek Harness：装上后可把提示词交给助手复刻落地页",
+      "date": "2026-10-28",
+      "time": "10-28 12:05",
+      "try_url": "https://github.com/joeseesun/qiaomu-ui-learn-dsh",
+      "access": "开源（MIT）。需要 DeepSeek Harness 0.2.1-rc.3。从仓库 Releases 下载安装包，在插件管理中安装；也可以用宿主自带命令行装到指定配置。设计参考缩略图按需从外部图库加载，词典和交互标本随包提供。",
+      "integration": "面向已经在用 DeepSeek Harness、又想照着现成网站做落地页的人。插件提供设计参考、提示词复制和源码读取；页面仍由你的编程助手生成。",
+      "first_step": "若你这周要做落地页：先装上这个插件，选一个参考站，把提示词交给编程助手复刻一版，再对照原站看差在哪。",
+      "summary": "vista8 分享了一种复刻落地页的做法：先在 DeepSeek Harness 里安装乔木开源的「乔木 UI 学习」插件，再选一个优质网站，把提示词交给编程助手去生成页面。",
+      "audience_value": "如果你用编程助手做落地页，又不想从空白提示词硬凑版式，这个插件把设计参考和可复制的实现提示词放进 DeepSeek Harness，选一个站就能让助手照着复刻。",
+      "alternatives": [
+        "继续用通用前端提示词写落地页，不装这个插件",
+        "只浏览设计参考，不把提示词交给编程助手",
+        "把落地页交给设计师，不走复刻"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
+    {
       "id": "evt-20261028-word-atlas",
       "title": "词光 word-atlas：7298 个雅思词配插画与英美音，开源可本地跑也可在线背",
       "date": "2026-10-28",
@@ -575,6 +635,26 @@
         "只用肉眼或第三方「AI 检测」分类器",
         "直接上 SynthID 独立检测站",
         "暂不核验，只标注来源存疑"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "值得关注"
+    },
+    {
+      "id": "evt-20261028-lfm3",
+      "title": "Liquid AI 发布 LFM3：约 20 亿参数的多模态底座，单张显卡就能微调",
+      "date": "2026-10-28",
+      "time": "10-28 01:16",
+      "try_url": "https://huggingface.co/blog/LiquidAI/lfm3",
+      "access": "开放权重，可在 Hugging Face 下载。文本、视觉、音频、全模态和决策模型从同一代底座分出。博文写明用 transformers 加载，并称每种模型都能在单张显卡上微调。",
+      "integration": "适合要在本机或单卡上做专用小模型的人。文本模型写明可接入本地智能体框架；视觉和音频模型需要对应的 transformers 版本。",
+      "first_step": "若你这周在看边缘侧小模型：先读这篇博文，按你要的模态打开模型卡，核对体积和微调说明。",
+      "summary": "Liquid AI 在 Hugging Face 发文，发布液体基础模型 LFM3：文本、视觉、音频、全模态和决策模型共用约 20 亿参数这一档的底座，权重已开放下载，并称每一种都能在单张显卡上微调。",
+      "audience_value": "如果你想在自己的电脑或单张显卡上微调一个小多模态模型，LFM3 把文本、看图、听音频和做决策收成同一代约 20 亿参数的开放权重，可以放进对照，但不必因此立刻换掉现有模型。",
+      "alternatives": [
+        "继续用手头的小模型，这周不换 LFM3",
+        "只读博文，先不下载权重",
+        "等独立评测出来，再决定是否微调"
       ],
       "status": "confirmed",
       "priority": "P1",

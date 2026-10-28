@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28 12:05 北京时间",
+  "updated": "2026-10-28 16:16 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
@@ -25,11 +25,13 @@
     "https://github.com/deepseek-ai/deepseek-harness",
     "https://github.com/designfuchen/word-atlas",
     "https://github.com/joeseesun/qiaomu-design",
+    "https://github.com/joeseesun/qiaomu-ui-learn-dsh",
     "https://github.com/nicobailon/skill-diet",
     "https://github.com/pbakaus/impeccable",
     "https://github.com/unclebob/ub-mode",
     "https://github.com/yaojingang/GEOInflow",
     "https://huggingface.co/baidu/Unlimited-OCR-2",
+    "https://huggingface.co/blog/LiquidAI/lfm3",
     "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
     "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "https://huggingface.co/tencent/Hy-Nomas",
@@ -73,6 +75,7 @@
     "https://x.com/shao__meng/status/2115247718608310389",
     "https://x.com/simonw/status/2113718487529267593",
     "https://x.com/vista8/status/2114579446795788675",
+    "https://x.com/vista8/status/2115293920955605424",
     "https://x.com/yaojingang/status/2114576054018818536"
   ],
   "blocked_ids": [
@@ -111,8 +114,10 @@
     "cand-20261028-49809484ed9a",
     "cand-20261028-4d81211305f0",
     "cand-20261028-576094f1661f",
+    "cand-20261028-6c41b5f6c2ed",
     "cand-20261028-83e588a0304c",
     "cand-20261028-8eccacec88e0",
+    "cand-20261028-a9a79561e567",
     "cand-20261028-da36115fd939",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
@@ -137,7 +142,9 @@
     "evt-20261027-unlimited-ocr-2",
     "evt-20261028-ai-app-playbook",
     "evt-20261028-anthropic-drug",
+    "evt-20261028-dsh-landing",
     "evt-20261028-genie-4",
+    "evt-20261028-lfm3",
     "evt-20261028-qiaomu-design",
     "evt-20261028-synthid-gemini",
     "evt-20261028-word-atlas"

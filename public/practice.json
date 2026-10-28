@@ -1,8 +1,32 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-28 12:05 北京时间",
+  "updated": "2026-10-28 16:16 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261028-6c41b5f6c2ed",
+      "kind": "工具用法",
+      "title": "装上乔木的 DSH 插件，再把设计提示词交给编程助手复刻落地页",
+      "author": "vista8",
+      "url": "https://x.com/vista8/status/2115293920955605424",
+      "time": "2026-10-28 12:05",
+      "takeaway": "先在 DeepSeek Harness 里安装乔木的 UI 学习插件，再选一个想复刻的落地页或设计参考，把提示词交给编程助手生成页面。",
+      "steps": [
+        "在 DeepSeek Harness 0.2.1-rc.3 里安装乔木的 qiaomu-ui-learn-dsh 插件：从仓库 Releases 下载安装包，在插件管理中安装并启用；也可以用宿主自带命令行装到你的配置。装好后从侧边栏打开「乔木 UI 学习」。",
+        "选一个你想复刻的优质落地页，或在插件的设计参考里选一条接近的卡片，复制其中的实现提示词，交给编程助手按这个参考生成页面。做完后对照原站检查版式和文案，不要直接当成品上线。"
+      ],
+      "caution": "动手前对照仓库说明核对 Harness 版本。设计参考的图片和版式有原作者，复刻提示词并不转移版权。这里没有替你跑过安装或复刻。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "已安装 DeepSeek Harness 0.2.1-rc.3",
+        "可用的编程助手",
+        "一个想复刻的落地页或设计参考"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261028-6c41b5f6c2ed",
+      "try_url": "https://github.com/joeseesun/qiaomu-ui-learn-dsh"
+    },
     {
       "id": "prac-20261028-da36115fd939",
       "kind": "工具用法",

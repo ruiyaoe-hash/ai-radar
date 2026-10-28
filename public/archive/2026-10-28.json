@@ -1,6 +1,6 @@
 {
   "date": "2026-10-28",
-  "count": 6,
+  "count": 8,
   "schema_version": 1,
   "items": [
     {
@@ -288,6 +288,107 @@
         "window": "今天在 Gemini 上传一份样本问是否 AI 生成。",
         "confidence": "中",
         "falsifier": "若 Gemini 无法上传媒体、核验结果混乱，或你主要面对非 Google 系无水印内容，就收回「这周靠 Gemini 做媒体核验」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-dsh-landing",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "乔木 UI 学习迁到 DeepSeek Harness：装上后可把提示词交给助手复刻落地页",
+      "date": "2026-10-28",
+      "time": "10-28 12:05",
+      "handle": "joeseesun",
+      "url": "https://github.com/joeseesun/qiaomu-ui-learn-dsh",
+      "published_at": "2026-10-28T04:05:45Z",
+      "ingested_at": "2026-10-28T08:14:50Z",
+      "candidate_id": "cand-20261028-6c41b5f6c2ed",
+      "promotion_path": "normal",
+      "objective": [
+        "vista8 分享了一种复刻落地页的做法：先在 DeepSeek Harness 里安装乔木开源的「乔木 UI 学习」插件，再选一个优质网站，把提示词交给编程助手去生成页面。",
+        "插件仓库是 qiaomu-ui-learn-dsh，把原版乔木 UI 学习迁到 DeepSeek Harness 0.2.1-rc.3，含 13561 条设计参考、106 个交互标本，以及可复制的实现提示词和参考页源码。",
+        "仓库说明写了两种安装：从 Releases 下载安装包，在插件管理里安装；或用宿主自带的命令行装到自己的配置。没有乔木 Home 时，插件也能单独从侧边栏打开。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/joeseesun/qiaomu-ui-learn-dsh",
+          "handle": "joeseesun",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/vista8/status/2115293920955605424",
+          "handle": "vista8",
+          "role": "report"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://github.com/joeseesun/qiaomu-ui-learn-dsh",
+      "access": "开源（MIT）。需要 DeepSeek Harness 0.2.1-rc.3。从仓库 Releases 下载安装包，在插件管理中安装；也可以用宿主自带命令行装到指定配置。设计参考缩略图按需从外部图库加载，词典和交互标本随包提供。",
+      "integration": "面向已经在用 DeepSeek Harness、又想照着现成网站做落地页的人。插件提供设计参考、提示词复制和源码读取；页面仍由你的编程助手生成。",
+      "first_step": "若你这周要做落地页：先装上这个插件，选一个参考站，把提示词交给编程助手复刻一版，再对照原站看差在哪。",
+      "alternatives": [
+        "继续用通用前端提示词写落地页，不装这个插件",
+        "只浏览设计参考，不把提示词交给编程助手",
+        "把落地页交给设计师，不走复刻"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用编程助手做落地页，又不想从空白提示词硬凑版式，这个插件把设计参考和可复制的实现提示词放进 DeepSeek Harness，选一个站就能让助手照着复刻。",
+        "action": "立即行动",
+        "window": "今天先装好插件，挑一个真实落地页复刻一版。",
+        "confidence": "中",
+        "falsifier": "若插件在你这台 DeepSeek Harness 上装不上、设计参考打不开，或助手按提示词复刻的页面明显对不上所选参考站，就收回「这周用它复刻落地页」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-lfm3",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Liquid AI 发布 LFM3：约 20 亿参数的多模态底座，单张显卡就能微调",
+      "date": "2026-10-28",
+      "time": "10-28 01:16",
+      "handle": "LiquidAI",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm3",
+      "published_at": "2026-10-27T17:16:52Z",
+      "ingested_at": "2026-10-28T08:14:50Z",
+      "candidate_id": "cand-20261028-a9a79561e567",
+      "promotion_path": "normal",
+      "objective": [
+        "Liquid AI 在 Hugging Face 发文，发布液体基础模型 LFM3：文本、视觉、音频、全模态和决策模型共用约 20 亿参数这一档的底座，权重已开放下载，并称每一种都能在单张显卡上微调。",
+        "博文列出六款模型，包括约 17 亿参数的文本模型、可看视频的视觉模型、能听能说的音频模型、同时处理图文和声音的全模态模型，以及一次给出多项校准答案的决策模型。",
+        "文本模型在 4 比特精度下大约占用 1 GB，上下文窗口到 256K token。权重在 Hugging Face 可下载，博文给出用 transformers 加载和微调的入口。"
+      ],
+      "sources": [
+        {
+          "url": "https://huggingface.co/blog/LiquidAI/lfm3",
+          "handle": "LiquidAI",
+          "role": "primary"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://huggingface.co/blog/LiquidAI/lfm3",
+      "access": "开放权重，可在 Hugging Face 下载。文本、视觉、音频、全模态和决策模型从同一代底座分出。博文写明用 transformers 加载，并称每种模型都能在单张显卡上微调。",
+      "integration": "适合要在本机或单卡上做专用小模型的人。文本模型写明可接入本地智能体框架；视觉和音频模型需要对应的 transformers 版本。",
+      "first_step": "若你这周在看边缘侧小模型：先读这篇博文，按你要的模态打开模型卡，核对体积和微调说明。",
+      "alternatives": [
+        "继续用手头的小模型，这周不换 LFM3",
+        "只读博文，先不下载权重",
+        "等独立评测出来，再决定是否微调"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你想在自己的电脑或单张显卡上微调一个小多模态模型，LFM3 把文本、看图、听音频和做决策收成同一代约 20 亿参数的开放权重，可以放进对照，但不必因此立刻换掉现有模型。",
+        "action": "持续观察",
+        "window": "这周先读博文，核对显存和微调说明再下载。",
+        "confidence": "中",
+        "falsifier": "若权重无法下载、单卡微调示例跑不通，或在你的任务上明显弱于同体积现有模型，就收回「值得放进这周的小模型对照」。"
       }
     }
   ]
