@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28 20:58 北京时间",
+  "updated": "2026-10-29 01:14 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
@@ -12,6 +12,7 @@
     "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
     "https://gemini.google.com",
     "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure",
+    "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack",
     "https://github.com/Appllama/appllama-skills",
     "https://github.com/Graphify-Labs/graphify",
     "https://github.com/JimLiu/baocut",
@@ -91,6 +92,7 @@
   "blocked_ids": [
     "brf-20261021-2d9435d5289c",
     "brf-20261022-76c720a455a2",
+    "brf-20261029-06ceaed31ecf",
     "cand-20261021-2d9435d5289c",
     "cand-20261022-5b11ed122be0",
     "cand-20261022-6fc43125f1db",
@@ -132,6 +134,7 @@
     "cand-20261028-bc7a1b6dbccb",
     "cand-20261028-da36115fd939",
     "cand-20261028-f2eb65605417",
+    "cand-20261029-06ceaed31ecf",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -166,6 +169,45 @@
     "evt-20261028-word-atlas"
   ],
   "days": [
+    {
+      "date": "2026-10-29",
+      "items": [
+        {
+          "schema_version": 2,
+          "id": "brf-20261029-06ceaed31ecf",
+          "status": "confirmed",
+          "tag": "简讯",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "公开更新：代码仓库",
+          "summary": "公开说明里，代码仓库。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+          "date": "2026-10-29",
+          "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack",
+          "handle": "github-blog",
+          "objective": [
+            "公开说明里，代码仓库。这句中文说明发生了什么，名字和版本以链接里的原文为准。"
+          ],
+          "sources": [
+            {
+              "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack",
+              "handle": "github-blog",
+              "role": "primary"
+            }
+          ],
+          "so_what": {
+            "lens": "工具",
+            "impact": "它关系到你现在用的工具要不要换，或者能不能继续沿用。",
+            "action": "持续观察",
+            "window": "拿一个你自己的真实任务对照这次变化，再决定换不换。",
+            "falsifier": "如果原文事后被更正，或者这件事和你这周要做的事对不上，就不必为此改安排。"
+          },
+          "candidate_id": "cand-20261029-06ceaed31ecf",
+          "time": "10-29 00:09",
+          "fill_reason": "empty_day",
+          "promoted_from": "brief"
+        }
+      ]
+    },
     {
       "date": "2026-10-28",
       "items": [

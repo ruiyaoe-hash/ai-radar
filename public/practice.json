@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-28 20:58 北京时间",
+  "updated": "2026-10-29 01:14 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
     {
@@ -25,6 +25,28 @@
       "verified": false,
       "candidate_id": "cand-20261028-b43980f0330b",
       "try_url": "https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3"
+    },
+    {
+      "id": "prac-20261028-7a1d10510004",
+      "kind": "创意作品",
+      "title": "这篇值得收藏的不是配置 Prompt，是它划的三条线",
+      "author": "realydt",
+      "url": "https://x.com/realydt/status/2115375356685512960",
+      "time": "2026-10-28 17:29",
+      "takeaway": "API key、登录状态、数据库和缓存一律不上传，推之前让 AI 检查待提交文件和历史",
+      "steps": [
+        "代码、Agent、知识库进同一个 GitHub 私有库，视频这类大素材留本地。",
+        "API key、登录状态、数据库和缓存一律不上传，推之前让 AI 检查待提交文件和历史。",
+        "先把同步和手动接力跑通，再加跨机派单。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "原文里用到的账号或软件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261028-7a1d10510004"
     },
     {
       "id": "prac-20261028-f2eb65605417",

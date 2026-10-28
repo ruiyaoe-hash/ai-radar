@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-28 20:59 北京时间",
+  "updated": "2026-10-29 01:14 北京时间",
   "sources": [
     {
       "id": "prac-20261028-b43980f0330b",
@@ -191,6 +191,18 @@
       "title": "用乔木商业海报 Skill 从活动链接做出可扫码报名海报",
       "excerpt": "先装上乔木海报技能，再把活动链接做成可扫码报名海报。",
       "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261028-7a1d10510004",
+      "url": "https://x.com/realydt/status/2115375356685512960",
+      "author": "realydt",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "这篇值得收藏的不是配置 Prompt，是它划的三条线",
+      "excerpt": "API key、登录状态、数据库和缓存一律不上传，推之前让 AI 检查待提交文件和历史",
+      "date": "2026-10-28",
       "origin": "practice",
       "verified": false
     }
