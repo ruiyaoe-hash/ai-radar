@@ -1,8 +1,191 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-27 21:05 北京时间",
+  "updated": "2026-10-28 08:01 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-word-atlas",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "词光 word-atlas：7298 个雅思词配插画与英美音，开源可本地跑也可在线背",
+      "date": "2026-10-28",
+      "time": "10-28 08:00",
+      "handle": "designfuchen",
+      "url": "https://github.com/designfuchen/word-atlas",
+      "candidate_id": "cand-20261027-f6700b2010cf",
+      "promotion_path": "normal",
+      "objective": [
+        "词光（word-atlas）把 7298 个雅思词做成插画词卡，配英美发音、例句与 FSRS 间隔复习；开源可本地跑，也有在线体验站。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/designfuchen/word-atlas",
+          "handle": "designfuchen",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/designfuchen/word-atlas",
+      "access": "开源（MIT）+ 词库 CC BY 4.0。在线：https://0xlei.tech/words/ 。本地需 Node 20+：git clone --depth 1 https://github.com/designfuchen/word-atlas.git && cd word-atlas && npm ci && npm run dev，打开 http://localhost:5188。也可让编程助手安装该仓库。",
+      "integration": "本地优先、无需登录；进度在本机，换设备前请导出。可用 JSON/CSV 词库自建 Anki。",
+      "first_step": "若你这周在背雅思：先打开 https://0xlei.tech/words/ 试 10 分钟；合适再 clone 本地跑。",
+      "alternatives": [
+        "继续用付费背词 App，不自托管",
+        "只用 Anki 官方牌组，不装带插画的本地站",
+        "等 iOS 内测，先不碰网页版"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你在准备雅思或想要一套可审计、可自托管的中文友好背词工具，词光比封闭 App 更透明，也方便用编程助手一键拉起。",
+        "action": "立即行动",
+        "window": "今天先打开在线站试 10 分钟，合适再本地 clone。",
+        "confidence": "中",
+        "falsifier": "若装不上、在线站不可用，或词卡/发音大面积不可用，就收回「这周用词光背雅思词」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-qiaomu-design",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "qiaomu-design：去前端 AI 味的偏执型设计 Skill，可装进 Claude Code / Codex",
+      "date": "2026-10-28",
+      "time": "10-28 08:00",
+      "handle": "joeseesun",
+      "url": "https://github.com/joeseesun/qiaomu-design",
+      "candidate_id": "cand-20261027-f9ef9c0bc7cf",
+      "promotion_path": "normal",
+      "objective": [
+        "乔木开源的 qiaomu-design 把反通用 AI 味、风格试衣间与多平台封面流程做成可安装 Skill，目标是做出有个性、可运行、可验收的界面，而不是默认紫蓝光晕模板。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/joeseesun/qiaomu-design",
+          "handle": "joeseesun",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/joeseesun/qiaomu-design",
+      "access": "开源 Skill。安装：npx skills add joeseesun/qiaomu-design。面向支持 Agent Skills 的编程助手（如 Claude Code、Codex、Cursor）。",
+      "integration": "装好后把重设计、去 AI 模板味、公众号/多平台封面等任务丢给助手；含诊断、四方向预览与验收闭环。",
+      "first_step": "若你这周嫌页面「一眼 AI」：先装 qiaomu-design，丢一个真实页面让它做去模板味重设计，对照预览方向再决定是否合入。",
+      "alternatives": [
+        "继续用手写提示词抠 UI，不装专用 Skill",
+        "只用 impeccable / emil-design-eng 等现有前端 Skill",
+        "交给专职设计师，不走 Agent Skill"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用编程助手改前端或做封面，又总觉得成品像同一套 AI 模板，这套 Skill 把「诊断—选方向—实现—验收」收成可复用流程。",
+        "action": "立即行动",
+        "window": "今天装好 Skill，对一个真实页面跑去模板味重设计。",
+        "confidence": "中",
+        "falsifier": "若 Skill 装不上、预览跑不通，或改完仍是同一套 AI 模板脸，就收回「这周用它去前端 AI 味」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-synthid-gemini",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Gemini 内可查 SynthID：上传图/视频/音频问「这是 AI 生成的吗」",
+      "date": "2026-10-28",
+      "time": "10-28 08:00",
+      "handle": "geminiapp",
+      "url": "https://gemini.google.com",
+      "candidate_id": "cand-20261028-49809484ed9a",
+      "promotion_path": "normal",
+      "objective": [
+        "Google 在 Gemini 应用内提供基于 SynthID 的媒体核验：上传图、视频或音频后直接追问是否 AI 生成，方便快速筛 Google 系水印内容。"
+      ],
+      "sources": [
+        {
+          "url": "https://gemini.google.com",
+          "handle": "geminiapp",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://gemini.google.com",
+      "access": "需登录 Gemini。添加图/视频/音频后问「这是 AI 生成的吗」。也可用 SynthID Detector 独立站（通常需登录且有日配额）。",
+      "integration": "Gemini 侧主要识别 Google AI 的 SynthID；未检出不等于一定非 AI。",
+      "first_step": "若你这周要核验疑似 AI 媒体：打开 Gemini 上传样本询问是否 AI 生成。",
+      "alternatives": [
+        "只用肉眼或第三方「AI 检测」分类器",
+        "直接上 SynthID 独立检测站",
+        "暂不核验，只标注来源存疑"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你经常转发或引用网络媒体，又担心 AI 合成图音视频，先在 Gemini 里做一轮水印核验，比凭肉眼猜更有依据。",
+        "action": "持续观察",
+        "window": "今天在 Gemini 上传一份样本问是否 AI 生成。",
+        "confidence": "中",
+        "falsifier": "若 Gemini 无法上传媒体、核验结果混乱，或你主要面对非 Google 系无水印内容，就收回「这周靠 Gemini 做媒体核验」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261028-anthropic-drug",
+      "status": "multi_source",
+      "tag": "发布",
+      "lens": "赛道",
+      "priority": "P1",
+      "title": "Anthropic：Claude 已深度参与六家新药研发，自研肌萎缩候选药最快 2028 年底进人体试验",
+      "date": "2026-10-28",
+      "time": "10-28 04:27",
+      "handle": "anthropic",
+      "url": "https://www.anthropic.com/research/early-progress-drug-development",
+      "published_at": "2026-10-27T20:27:48Z",
+      "ingested_at": "2026-10-27T23:13:12Z",
+      "candidate_id": "cand-20261028-4d81211305f0",
+      "promotion_path": "normal",
+      "block_ids": [
+        "cand-20261028-83e588a0304c"
+      ],
+      "objective": [
+        "Anthropic 于北京时间 10 月 28 日凌晨发文，称过去数月与 BigHat、Bristol Myers Squibb、Divergence Labs、Enveda、Generate Biomedicines、The Column Group 六家机构开展新药研发合作，并启动自有药物发现项目。",
+        "案例包括：Generate 用 Claude Code 缩短 CAR-T 基因片段并在实验室测出受体表达约高 10 倍；Divergence 约一个月生成约 3.5 万个抗体设计并筛到可解离 IgE 的命中；BigHat 约 10 周测约 1010 个变体，部分结合力提升逾 10 倍；Enveda 用 Claude 审制造文档并起草监管材料，称人工审阅时间大约降 89%。",
+        "Anthropic 收购 Mithril Medicine 后继续肌萎缩相关候选药；文中称若候选继续成立，最快 2028 年底可准备启动人体临床试验。整体仍多属临床前。宝玉中文帖与官方帖交叉确认同一事件。"
+      ],
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/research/early-progress-drug-development",
+          "handle": "anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/anthropicai/status/2115178675050307942",
+          "handle": "anthropicai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2115183164905906513",
+          "handle": "dotey",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "这是前沿大模型公司把 Claude 推进真实药物管线与自研项目的公开进度，说明 AI 医药从演示走向多环节实操；对一人公司本周选型影响有限，但对长线「AI×生物」赛道判断有用。",
+        "action": "持续观察",
+        "window": "先读官方博文与案例技术报告摘要；若你不做医药研发，不必本周改工具栈。",
+        "confidence": "高",
+        "falsifier": "若后续官方撤回合作表述、关键实验室结果无法复现，或人体试验时间表明显推迟且无替代进展，就收回「Claude 已在多环节实质进入新药研发」。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261027-skill-diet",

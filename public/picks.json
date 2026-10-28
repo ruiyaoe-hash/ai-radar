@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27 21:05 北京时间",
+  "updated": "2026-10-28 08:01 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
@@ -9,6 +9,7 @@
     "https://developers.openai.com/api/docs/guides/decisions",
     "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
     "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
+    "https://gemini.google.com",
     "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure",
     "https://github.com/Graphify-Labs/graphify",
     "https://github.com/JimLiu/baocut",
@@ -20,6 +21,8 @@
     "https://github.com/baidu/Unlimited-OCR",
     "https://github.com/debpalash/VoiceStudio",
     "https://github.com/deepseek-ai/deepseek-harness",
+    "https://github.com/designfuchen/word-atlas",
+    "https://github.com/joeseesun/qiaomu-design",
     "https://github.com/nicobailon/skill-diet",
     "https://github.com/pbakaus/impeccable",
     "https://github.com/unclebob/ub-mode",
@@ -33,6 +36,7 @@
     "https://openai.com/index/introducing-gpt-6-1-terra",
     "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
     "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+    "https://www.anthropic.com/research/early-progress-drug-development",
     "https://www.kimi.ai/blog/kimi-k3-1-pro",
     "https://www.perplexity.ai/products/computer",
     "https://www.theverge.com/ai-artificial-intelligence/1015843/anthropic-claude-duet-ai-agent",
@@ -43,6 +47,7 @@
     "https://x.com/Hailuo_AI/status/2113518153242497390",
     "https://x.com/TencentHunyuan/status/2113676827114053892",
     "https://x.com/addyosmani/status/2113015448203862255",
+    "https://x.com/anthropicai/status/2115178675050307942",
     "https://x.com/artificialanlys/status/2114781865811063259",
     "https://x.com/berryxia/status/2114579756633219416",
     "https://x.com/claudeai/status/2113360845409583307",
@@ -50,6 +55,7 @@
     "https://x.com/dotey/status/2113689823311524225",
     "https://x.com/dotey/status/2114375050971296135",
     "https://x.com/dotey/status/2114790675279413738",
+    "https://x.com/dotey/status/2115183164905906513",
     "https://x.com/geekcatx/status/2114667608188621074",
     "https://x.com/natolambert/status/2113682066374062528",
     "https://x.com/openai/status/2114780711664398349",
@@ -93,6 +99,11 @@
     "cand-20261027-beb6329a03c2",
     "cand-20261027-c31b6b275e00",
     "cand-20261027-cbd1a5e6bbff",
+    "cand-20261027-f6700b2010cf",
+    "cand-20261027-f9ef9c0bc7cf",
+    "cand-20261028-49809484ed9a",
+    "cand-20261028-4d81211305f0",
+    "cand-20261028-83e588a0304c",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -113,9 +124,69 @@
     "evt-20261027-openagentcore",
     "evt-20261027-skill-diet",
     "evt-20261027-ub-mode",
-    "evt-20261027-unlimited-ocr-2"
+    "evt-20261027-unlimited-ocr-2",
+    "evt-20261028-anthropic-drug",
+    "evt-20261028-qiaomu-design",
+    "evt-20261028-synthid-gemini",
+    "evt-20261028-word-atlas"
   ],
   "days": [
+    {
+      "date": "2026-10-28",
+      "items": [
+        {
+          "schema_version": 2,
+          "id": "evt-20261028-anthropic-drug",
+          "status": "multi_source",
+          "tag": "发布",
+          "lens": "赛道",
+          "priority": "P1",
+          "title": "Anthropic：Claude 已深度参与六家新药研发，自研肌萎缩候选药最快 2028 年底进人体试验",
+          "date": "2026-10-28",
+          "time": "10-28 04:27",
+          "handle": "anthropic",
+          "url": "https://www.anthropic.com/research/early-progress-drug-development",
+          "published_at": "2026-10-27T20:27:48Z",
+          "ingested_at": "2026-10-27T23:13:12Z",
+          "candidate_id": "cand-20261028-4d81211305f0",
+          "promotion_path": "normal",
+          "block_ids": [
+            "cand-20261028-83e588a0304c"
+          ],
+          "objective": [
+            "Anthropic 于北京时间 10 月 28 日凌晨发文，称过去数月与 BigHat、Bristol Myers Squibb、Divergence Labs、Enveda、Generate Biomedicines、The Column Group 六家机构开展新药研发合作，并启动自有药物发现项目。",
+            "案例包括：Generate 用 Claude Code 缩短 CAR-T 基因片段并在实验室测出受体表达约高 10 倍；Divergence 约一个月生成约 3.5 万个抗体设计并筛到可解离 IgE 的命中；BigHat 约 10 周测约 1010 个变体，部分结合力提升逾 10 倍；Enveda 用 Claude 审制造文档并起草监管材料，称人工审阅时间大约降 89%。",
+            "Anthropic 收购 Mithril Medicine 后继续肌萎缩相关候选药；文中称若候选继续成立，最快 2028 年底可准备启动人体临床试验。整体仍多属临床前。宝玉中文帖与官方帖交叉确认同一事件。"
+          ],
+          "sources": [
+            {
+              "url": "https://www.anthropic.com/research/early-progress-drug-development",
+              "handle": "anthropic",
+              "role": "primary"
+            },
+            {
+              "url": "https://x.com/anthropicai/status/2115178675050307942",
+              "handle": "anthropicai",
+              "role": "primary"
+            },
+            {
+              "url": "https://x.com/dotey/status/2115183164905906513",
+              "handle": "dotey",
+              "role": "report"
+            }
+          ],
+          "shift": "morning",
+          "so_what": {
+            "lens": "赛道",
+            "impact": "这是前沿大模型公司把 Claude 推进真实药物管线与自研项目的公开进度，说明 AI 医药从演示走向多环节实操；对一人公司本周选型影响有限，但对长线「AI×生物」赛道判断有用。",
+            "action": "持续观察",
+            "window": "先读官方博文与案例技术报告摘要；若你不做医药研发，不必本周改工具栈。",
+            "confidence": "高",
+            "falsifier": "若后续官方撤回合作表述、关键实验室结果无法复现，或人体试验时间表明显推迟且无替代进展，就收回「Claude 已在多环节实质进入新药研发」。"
+          }
+        }
+      ]
+    },
     {
       "date": "2026-10-27",
       "items": [

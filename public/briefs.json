@@ -1,9 +1,24 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-27 12:20 北京时间",
+  "updated": "2026-10-28 08:05 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261028-2498aaca798f",
+      "level": "L2",
+      "date": "2026-10-28",
+      "time": "10-28 06:20",
+      "title": "Anthropic 与美国 GSA 扩 OneGov：联邦到地方政企用 Claude 可享约 40% 折扣",
+      "summary": "Anthropic 于北京时间 10 月 28 日凌晨宣布扩大与美国总务管理局（GSA）的 OneGov 协议：联邦、州、地方、部落与领地政府购买 Claude Enterprise、Claude for Government 与 Claude API 可获约 40% 折扣，并称无最低消费门槛。",
+      "why": "这是美国公共部门采购 Claude 的价格与覆盖面变化，会影响政企侧部署节奏，但不是面向个人订阅的普惠降价。",
+      "affect": "若你不做美国政府或政企采购，本周个人与小团队的模型选型不必因此改换；若你对接美政企客户，可把 OneGov 折扣记进报价对比。",
+      "url": "https://www.anthropic.com/news/expanding-partnership-gsa",
+      "source": "anthropic",
+      "lens": "赛道",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261028-2498aaca798f"
+    },
     {
       "id": "brf-20261027-5f8e0f8ff8e2",
       "level": "L2",

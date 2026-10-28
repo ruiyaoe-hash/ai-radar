@@ -5,8 +5,36 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 27 Oct 2026 21:05:29 +0800</lastBuildDate>
+<lastBuildDate>Wed, 28 Oct 2026 08:01:48 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] 词光 word-atlas：7298 个雅思词配插画与英美音，开源可本地跑也可在线背</title>
+<link>https://github.com/designfuchen/word-atlas</link>
+<guid isPermaLink="false">evt-20261028-word-atlas</guid>
+<pubDate>Wed, 28 Oct 2026 08:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 词光（word-atlas）把 7298 个雅思词做成插画词卡，配英美发音、例句与 FSRS 间隔复习；开源可本地跑，也有在线体验站。<br/><strong>对你意味着什么</strong> 如果你在准备雅思或想要一套可审计、可自托管的中文友好背词工具，词光比封闭 App 更透明，也方便用编程助手一键拉起。<br/>建议：立即行动 · 今天先打开在线站试 10 分钟，合适再本地 clone。<br/>有多确定：中<br/>什么情况下当这判断作废：若装不上、在线站不可用，或词卡/发音大面积不可用，就收回「这周用词光背雅思词」。<br/>来源 designfuchen（一手）<br/>日期 2026-10-28]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] qiaomu-design：去前端 AI 味的偏执型设计 Skill，可装进 Claude Code / Codex</title>
+<link>https://github.com/joeseesun/qiaomu-design</link>
+<guid isPermaLink="false">evt-20261028-qiaomu-design</guid>
+<pubDate>Wed, 28 Oct 2026 08:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 乔木开源的 qiaomu-design 把反通用 AI 味、风格试衣间与多平台封面流程做成可安装 Skill，目标是做出有个性、可运行、可验收的界面，而不是默认紫蓝光晕模板。<br/><strong>对你意味着什么</strong> 如果你用编程助手改前端或做封面，又总觉得成品像同一套 AI 模板，这套 Skill 把「诊断—选方向—实现—验收」收成可复用流程。<br/>建议：立即行动 · 今天装好 Skill，对一个真实页面跑去模板味重设计。<br/>有多确定：中<br/>什么情况下当这判断作废：若 Skill 装不上、预览跑不通，或改完仍是同一套 AI 模板脸，就收回「这周用它去前端 AI 味」。<br/>来源 joeseesun（一手）<br/>日期 2026-10-28]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Gemini 内可查 SynthID：上传图/视频/音频问「这是 AI 生成的吗」</title>
+<link>https://gemini.google.com</link>
+<guid isPermaLink="false">evt-20261028-synthid-gemini</guid>
+<pubDate>Wed, 28 Oct 2026 08:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Google 在 Gemini 应用内提供基于 SynthID 的媒体核验：上传图、视频或音频后直接追问是否 AI 生成，方便快速筛 Google 系水印内容。<br/><strong>对你意味着什么</strong> 如果你经常转发或引用网络媒体，又担心 AI 合成图音视频，先在 Gemini 里做一轮水印核验，比凭肉眼猜更有依据。<br/>建议：持续观察 · 今天在 Gemini 上传一份样本问是否 AI 生成。<br/>有多确定：中<br/>什么情况下当这判断作废：若 Gemini 无法上传媒体、核验结果混乱，或你主要面对非 Google 系无水印内容，就收回「这周靠 Gemini 做媒体核验」。<br/>来源 geminiapp（一手）<br/>日期 2026-10-28]]></description>
+</item>
+<item>
+<title>[快讯 · 行业动态 · 发布] Anthropic：Claude 已深度参与六家新药研发，自研肌萎缩候选药最快 2028 年底进人体试验</title>
+<link>https://www.anthropic.com/research/early-progress-drug-development</link>
+<guid isPermaLink="false">evt-20261028-anthropic-drug</guid>
+<pubDate>Wed, 28 Oct 2026 04:27:48 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 于北京时间 10 月 28 日凌晨发文，称过去数月与 BigHat、Bristol Myers Squibb、Divergence Labs、Enveda、Generate Biomedicines、The Column Group 六家机构开展新药研发合作，并启动自有药物发现项目。<br/>• 案例包括：Generate 用 Claude Code 缩短 CAR-T 基因片段并在实验室测出受体表达约高 10 倍；Divergence 约一个月生成约 3.5 万个抗体设计并筛到可解离 IgE 的命中；BigHat 约 10 周测约 1010 个变体，部分结合力提升逾 10 倍；Enveda 用 Claude 审制造文档并起草监管材料，称人工审阅时间大约降 89%。<br/>• Anthropic 收购 Mithril Medicine 后继续肌萎缩相关候选药；文中称若候选继续成立，最快 2028 年底可准备启动人体临床试验。整体仍多属临床前。宝玉中文帖与官方帖交叉确认同一事件。<br/><strong>对你意味着什么</strong> 这是前沿大模型公司把 Claude 推进真实药物管线与自研项目的公开进度，说明 AI 医药从演示走向多环节实操；对一人公司本周选型影响有限，但对长线「AI×生物」赛道判断有用。<br/>建议：持续观察 · 先读官方博文与案例技术报告摘要；若你不做医药研发，不必本周改工具栈。<br/>有多确定：高<br/>什么情况下当这判断作废：若后续官方撤回合作表述、关键实验室结果无法复现，或人体试验时间表明显推迟且无替代进展，就收回「Claude 已在多环节实质进入新药研发」。<br/>来源 anthropic（一手）, anthropicai（一手）, dotey（转述）<br/>日期 2026-10-28]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] skill-diet：给 Agent Skill 减重，用同任务评测保证「更瘦但不更差」</title>
 <link>https://github.com/nicobailon/skill-diet</link>

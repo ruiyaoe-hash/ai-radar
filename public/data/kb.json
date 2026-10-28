@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-10-23",
-  "updated": "2026-10-27 21:05 北京时间",
+  "updated": "2026-10-28 08:01 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,17 +43,29 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 10,
+      "source_count": 11,
       "creator_count": 5,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 10,
+      "unverified_practice": 11,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
-      "latest": "2026-10-27"
+      "latest": "2026-10-28"
     }
   ],
   "sources": [
+    {
+      "id": "prac-20261028-f6700b2010cf",
+      "url": "https://x.com/vista8/status/2115061564852367449",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用编程助手装开源雅思单词工具词光，再按 FSRS 开始背词",
+      "excerpt": "先让助手或本机装好 word-atlas，再打开本地或在线站按每日计划与 FSRS 背 7298 词。",
+      "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
     {
       "id": "prac-20261024-6d6218870fce",
       "url": "https://x.com/vista8/status/2113997354655465727",
@@ -180,7 +192,7 @@
       "handle": "vista8",
       "name": "vista8",
       "focus": "",
-      "source_count": 6,
+      "source_count": 7,
       "bookmarks": 0,
       "bookmark_metric": false,
       "topics": [
