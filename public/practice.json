@@ -1,8 +1,78 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-28 16:16 北京时间",
+  "updated": "2026-10-28 20:58 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261028-b43980f0330b",
+      "kind": "工具用法",
+      "title": "安装 tibot 模板，先设关键词与摘要节奏，确认不代发后再考虑自动拉黑",
+      "author": "shao__meng",
+      "url": "https://x.com/shao__meng/status/2115392731333951528",
+      "time": "2026-10-28 18:38",
+      "takeaway": "用 poteto 公开的 Grok Bot 模板 tibot 盯提及与关键词；写作仍自己来，Bot 只做摘要与可选防护。",
+      "steps": [
+        "打开模板页 https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3 安装 tibot，设置要跟踪的账号或关键词，以及每日或按小时的摘要节奏；先跑一天，确认摘要有用且它不会替你发帖。",
+        "若需要自动拉黑骚扰号，再按模板说明连接你自己的 X API 应用，并留意 API credits 消耗；先小范围试，避免误伤正常互动。"
+      ],
+      "caution": "自动拉黑依赖自有 X API，会消耗额度。模板作者强调帖文仍手写。这里没有替你完成安装或授权。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "可用的 Grok Bot / x.ai 账号",
+        "若启用自动拉黑：自有 X API 应用"
+      ],
+      "estimated_time": "十几分钟装好并设节奏",
+      "verified": false,
+      "candidate_id": "cand-20261028-b43980f0330b",
+      "try_url": "https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3"
+    },
+    {
+      "id": "prac-20261028-f2eb65605417",
+      "kind": "Skill / 工作流",
+      "title": "Fork LangChain 的 design-agent，先本地 demo 再写入品牌并部署到 Slack",
+      "author": "shao__meng",
+      "url": "https://x.com/shao__meng/status/2115345069570212202",
+      "time": "2026-10-28 15:29",
+      "takeaway": "先按仓库 Quickstart 本地跑通设计 Agent，再写入自己的品牌 token 与 skills，最后用 Managed Deep Agents 部署到团队 Slack。",
+      "steps": [
+        "打开 https://github.com/langchain-ai/design-agent ，按 Quickstart 安装依赖，先跑本地 sandbox build / demo，确认能完成一次出图或出片请求。",
+        "把品牌色板、字体和你们的设计原则写进品牌包与 skills；需要给团队用时，配置 LangSmith 与模型密钥，执行部署命令并在测试频道授权 Slack 应用，用真实 brief 试一条再开放给更多人。"
+      ],
+      "caution": "生产部署通常要 Managed Deep Agents 与密钥；密钥不要进沙箱。仓库与中文转述都没有替你跑过安装。生成物料仍需人工审核后才能对外发布。",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "Python 3.11+",
+        "可访问 GitHub",
+        "若部署到 Slack：LangSmith 与模型密钥"
+      ],
+      "estimated_time": "先本地试半小时起",
+      "verified": false,
+      "candidate_id": "cand-20261028-f2eb65605417",
+      "try_url": "https://github.com/langchain-ai/design-agent"
+    },
+    {
+      "id": "prac-20261028-bc7a1b6dbccb",
+      "kind": "Skill / 工作流",
+      "title": "给编程助手装 Appllama、Expo 与 Emil 三套技能，对照头部 App 复刻一屏",
+      "author": "shao__meng",
+      "url": "https://x.com/shao__meng/status/2115332272152826248",
+      "time": "2026-10-28 14:38",
+      "takeaway": "先装设计研究、Expo 规范与动效品味三套 Agent Skills，再选一个头部 App 当参考，让助手按规范复刻一屏并审动效。",
+      "steps": [
+        "在你的编程助手里安装三套技能：Appllama/appllama-skills（设计研究与原生感标准）、expo/skills（官方工程与 EAS 实践）、emilkowalski/skills（动效与反廉价 UI 规则）。Appllama 的 MCP 若要完整设计库，按仓库说明核对付费边界。",
+        "选一个你熟悉的头部 iOS App 做参考，让助手先按 Appllama 梳理界面与流程，再按 Expo 技能搭工程或单页，最后用 Emil 的规则检查动效、阴影和跟手感；对照原版截图改到可演示，不要直接当上架稿。"
+      ],
+      "caution": "这不是拆 IPA 的逆向工具链。参考 App 的视觉与品牌仍受版权约束，复刻练习不等于可商用抄袭。这里没有替你跑过安装。",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "可用的编程助手（如 Claude Code / Codex）",
+        "Expo 或 React Native 开发环境更佳"
+      ],
+      "estimated_time": "装技能加复刻一屏",
+      "verified": false,
+      "candidate_id": "cand-20261028-bc7a1b6dbccb",
+      "try_url": "https://github.com/Appllama/appllama-skills"
+    },
     {
       "id": "prac-20261028-6c41b5f6c2ed",
       "kind": "工具用法",
