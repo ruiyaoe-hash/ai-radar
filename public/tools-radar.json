@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29 12:08 北京时间",
+  "updated": "2026-10-29 12:11 北京时间",
   "rings": {
     "推荐使用": [
       {
@@ -8,9 +8,9 @@
         "date": "2026-10-29",
         "time": "10-29 12:00",
         "try_url": "https://claude.ai/directory/basecamp",
-        "access": "需要可用的 Basecamp 账号，以及支持自定义连接器的 Claude（网页 / Desktop / Cowork 等）。在 Claude 打开 Basecamp 目录项或添加 MCP 地址 https://mcp.basecamp.com/mcp，登录 Basecamp 并选择只读或完整权限。Claude Code 可用：claude mcp add --transport http basecamp https://mcp.basecamp.com/mcp。",
+        "access": "需要可用的 Basecamp 账号，以及支持自定义连接器的 Claude（网页、桌面版或 Cowork 等）。在 Claude 打开本卡试做链接中的 Basecamp 目录项，或按官方说明添加托管连接器地址；登录后选择只读或完整权限。Claude Code 也可按官方文档用命令添加同一连接器。",
         "integration": "适合已经用 Basecamp 管项目、又希望 Claude 直接读线程与改待办的人。权限跟随你的 Basecamp 可见范围；Team / Enterprise 需所有者先为工作区添加连接器，成员再各自登录。",
-        "first_step": "若你这周仍在 Basecamp 与聊天窗口之间来回粘贴：打开 https://claude.ai/directory/basecamp 完成授权，先选只读，问一句「本周某项目有什么逾期」，确认答案对得上再考虑完整权限。",
+        "first_step": "若你这周仍在 Basecamp 与聊天窗口之间来回粘贴：打开本卡试做链接完成授权，先选只读，问一句「本周某项目有什么逾期」，确认答案对得上再考虑完整权限。",
         "summary": "37signals / Basecamp 宣布官方 AI 连接器上线：把 Basecamp 接到 Claude、ChatGPT、Cursor 或 Grok 后，助手可按你的权限查看项目进展、逾期事项与讨论结论，也可代写待办、挪卡片与起草更新。",
         "audience_value": "如果你日常项目在 Basecamp、对话在 Claude，这条连接器把「查进度 / 写待办 / 起草更新」收进同一对话，值得今天先用只读权限试一条真实问题。",
         "alternatives": [
@@ -666,9 +666,9 @@
       "date": "2026-10-29",
       "time": "10-29 12:00",
       "try_url": "https://claude.ai/directory/basecamp",
-      "access": "需要可用的 Basecamp 账号，以及支持自定义连接器的 Claude（网页 / Desktop / Cowork 等）。在 Claude 打开 Basecamp 目录项或添加 MCP 地址 https://mcp.basecamp.com/mcp，登录 Basecamp 并选择只读或完整权限。Claude Code 可用：claude mcp add --transport http basecamp https://mcp.basecamp.com/mcp。",
+      "access": "需要可用的 Basecamp 账号，以及支持自定义连接器的 Claude（网页、桌面版或 Cowork 等）。在 Claude 打开本卡试做链接中的 Basecamp 目录项，或按官方说明添加托管连接器地址；登录后选择只读或完整权限。Claude Code 也可按官方文档用命令添加同一连接器。",
       "integration": "适合已经用 Basecamp 管项目、又希望 Claude 直接读线程与改待办的人。权限跟随你的 Basecamp 可见范围；Team / Enterprise 需所有者先为工作区添加连接器，成员再各自登录。",
-      "first_step": "若你这周仍在 Basecamp 与聊天窗口之间来回粘贴：打开 https://claude.ai/directory/basecamp 完成授权，先选只读，问一句「本周某项目有什么逾期」，确认答案对得上再考虑完整权限。",
+      "first_step": "若你这周仍在 Basecamp 与聊天窗口之间来回粘贴：打开本卡试做链接完成授权，先选只读，问一句「本周某项目有什么逾期」，确认答案对得上再考虑完整权限。",
       "summary": "37signals / Basecamp 宣布官方 AI 连接器上线：把 Basecamp 接到 Claude、ChatGPT、Cursor 或 Grok 后，助手可按你的权限查看项目进展、逾期事项与讨论结论，也可代写待办、挪卡片与起草更新。",
       "audience_value": "如果你日常项目在 Basecamp、对话在 Claude，这条连接器把「查进度 / 写待办 / 起草更新」收进同一对话，值得今天先用只读权限试一条真实问题。",
       "alternatives": [

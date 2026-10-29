@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-29 12:08 北京时间",
+  "updated": "2026-10-29 12:11 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
     {
@@ -12,7 +12,7 @@
       "time": "2026-10-29 12:00",
       "takeaway": "用 Claude 目录里的 Basecamp 连接器（或 MCP 地址）完成授权；先只读验证项目可见范围，再决定是否给完整写入权限。",
       "steps": [
-        "打开 https://claude.ai/directory/basecamp（或在 Claude 自定义连接器里填写 https://mcp.basecamp.com/mcp），确认后跳转 Basecamp 登录并授权；首次建议选手动「只读」。若你用 Claude Code，也可运行：claude mcp add --transport http basecamp https://mcp.basecamp.com/mcp。",
+        "先打开本卡试做链接里的 Basecamp 连接器页，在 Claude 里确认后跳到 Basecamp 登录并授权；第一次请只开「只读」权限。若你用的是 Claude Code，再按官方说明把同一托管连接器加进会话。",
         "回到 Claude，用一条真实问题验收，例如「某项目本周有哪些逾期待办」或「总结某条消息板讨论的未决问题」。核对答案是否只包含你可见的内容后，若需要代写待办或挪卡片，再断开重连并选择完整权限。"
       ],
       "caution": "完整权限下助手可改待办、发消息与挪卡片；先在非关键项目试。Team / Enterprise 需所有者先添加连接器。这里没有替你完成授权。",
