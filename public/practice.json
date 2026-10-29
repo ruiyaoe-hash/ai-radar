@@ -1,8 +1,56 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-28 20:58 北京时间",
+  "updated": "2026-10-29 09:22 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261028-b090d9d381ec",
+      "kind": "工具用法",
+      "title": "先打开乔木 AI 资讯网页，再按需装 Obsidian 或 DeepSeek Harness 插件",
+      "author": "vista8",
+      "url": "https://x.com/vista8/status/2115446064593674587",
+      "time": "2026-10-28 22:10",
+      "takeaway": "用网页确认中文阅读是否合用，再把同一套资讯装进 Obsidian 摘录，或装进 DeepSeek Harness 做伴读。",
+      "steps": [
+        "打开 https://rss.qiaomu.ai/ 或 https://airss.qiaomu.ai/，订阅或浏览精选 Newsletter / 播客，对照「原文 · 中文翻译 · 乔木改写」读两三篇，确认质量后再决定装插件。",
+        "若要进知识库：在 Obsidian 1.13+ 打开设置 → 第三方插件 → 浏览，搜索并启用 Qiaomu AI RSS，用侧栏 RSS 图标打开阅读器并试一次摘录到日记。若要在 Harness 伴读：先装好 DeepSeek Harness，下载 qiaomu-rss-dsh 的 .tgz 与 SHA256SUMS，校验后执行 dsh plugin --profile desktop add \"$PWD/….tgz\"，重启对应 profile 后在侧栏打开「乔木 RSS」。"
+      ],
+      "caution": "各端订阅与已读不自动同步。Harness / Floatboat 伴读费用取决于你配置的宿主模型。社区插件非 DeepSeek / Floatboat 官方维护。这里没有替你完成安装。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "浏览器",
+        "若用 Obsidian：Obsidian 1.13+",
+        "若用 Harness：已安装的 DeepSeek Harness"
+      ],
+      "estimated_time": "网页试用几分钟；装插件约十五分钟",
+      "verified": false,
+      "candidate_id": "cand-20261028-b090d9d381ec",
+      "try_url": "https://rss.qiaomu.ai/"
+    },
+    {
+      "id": "prac-20261028-2a652b92ed25",
+      "kind": "工具用法",
+      "title": "在 Claude Code 装 Delta 插件：用 /delta share 让同事加入同一会话与未提交改动",
+      "author": "bozhou_ai",
+      "url": "https://x.com/bozhou_ai/status/2115417242758439203",
+      "time": "2026-10-28 20:15",
+      "takeaway": "先装 Delta 的 Claude Code 插件，在 Git 仓库里 /delta share 发链接；同事 /delta join 后即可带着完整对话与未提交改动一起改。",
+      "steps": [
+        "双方先在 Claude Code 里添加 Delta 插件市场并安装插件：运行「claude plugin marketplace add zed-industries/delta-claude」，再运行「claude plugin install delta@zed-industries」；然后新开一个会话，或在当前会话执行「/reload-plugins」。请确认 Claude Code 至少 2.1.303、Delta 至少 0.22.0，并在已配置 origin 远程的 Git 仓库目录中操作。",
+        "你在当前仓库的 Claude Code 里运行「/delta share」，选择团队或输入同事邮箱，复制链接发给对方；同事在自己的 Claude Code 里运行「/delta join」并粘贴该链接，信任新目录后即可在同步后的检出上继续同一线程。需要长期自动同步时，再运行「/delta setup」。"
+      ],
+      "caution": "功能处于 beta，行为可能变。分享会暴露对话与未提交改动，只发给可信同事。这里没有替你完成安装或登录。",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "Claude Code 2.1.303+",
+        "可写的 Git 仓库（含 origin）",
+        "同事同样安装插件"
+      ],
+      "estimated_time": "双方各十几分钟",
+      "verified": false,
+      "candidate_id": "cand-20261028-2a652b92ed25",
+      "try_url": "https://delta.dev/docs/cli/claude-code"
+    },
     {
       "id": "prac-20261028-b43980f0330b",
       "kind": "工具用法",

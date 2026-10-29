@@ -1,14 +1,17 @@
 {
-  "updated": "2026-10-28 20:58 北京时间",
+  "updated": "2026-10-29 09:22 北京时间",
   "per_day": 3,
   "blocked_urls": [
+    "https://airss.qiaomu.ai/",
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
     "https://claude.com/product/claude-duet",
     "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
+    "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model",
     "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation",
     "https://deepseek-harness.github.io/deepseek-harness/",
     "https://developers.openai.com/api/docs/guides/decisions",
     "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+    "https://docs.mistral.ai/studio/conversations/responses",
     "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
     "https://gemini.google.com",
     "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure",
@@ -43,6 +46,7 @@
     "https://openai.com/index/decisions-api",
     "https://openai.com/index/introducing-gpt-6-1-terra",
     "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+    "https://rss.qiaomu.ai/",
     "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
     "https://www.anthropic.com/research/early-progress-drug-development",
     "https://www.kimi.ai/blog/kimi-k3-1-pro",
@@ -69,6 +73,7 @@
     "https://x.com/dotey/status/2114790675279413738",
     "https://x.com/dotey/status/2115183164905906513",
     "https://x.com/geekcatx/status/2114667608188621074",
+    "https://x.com/mistralai/status/2115443720371814478",
     "https://x.com/natolambert/status/2113682066374062528",
     "https://x.com/openai/status/2114780711664398349",
     "https://x.com/openai/status/2114780715086754261",
@@ -86,6 +91,7 @@
     "https://x.com/simonw/status/2113718487529267593",
     "https://x.com/vista8/status/2114579446795788675",
     "https://x.com/vista8/status/2115293920955605424",
+    "https://x.com/vista8/status/2115446064593674587",
     "https://x.com/yaojingang/status/2114576054018818536"
   ],
   "blocked_ids": [
@@ -120,6 +126,7 @@
     "cand-20261027-f6700b2010cf",
     "cand-20261027-f9ef9c0bc7cf",
     "cand-20261028-1407780b4ef7",
+    "cand-20261028-1b0164f4a988",
     "cand-20261028-1ffc89088a74",
     "cand-20261028-49809484ed9a",
     "cand-20261028-4d81211305f0",
@@ -127,11 +134,15 @@
     "cand-20261028-6c41b5f6c2ed",
     "cand-20261028-83e588a0304c",
     "cand-20261028-8eccacec88e0",
+    "cand-20261028-9a22841f0552",
     "cand-20261028-a9a79561e567",
+    "cand-20261028-b090d9d381ec",
     "cand-20261028-b43980f0330b",
     "cand-20261028-bc7a1b6dbccb",
+    "cand-20261028-c8519b2ccf09",
     "cand-20261028-da36115fd939",
     "cand-20261028-f2eb65605417",
+    "cand-20261029-0accba52581d",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -163,9 +174,55 @@
     "evt-20261028-qiaomu-design",
     "evt-20261028-synthid-gemini",
     "evt-20261028-tibot",
-    "evt-20261028-word-atlas"
+    "evt-20261028-word-atlas",
+    "evt-20261029-gemini-4-carbon",
+    "evt-20261029-mistral-responses-api",
+    "evt-20261029-qiaomu-ai-rss"
   ],
   "days": [
+    {
+      "date": "2026-10-29",
+      "items": [
+        {
+          "schema_version": 2,
+          "id": "evt-20261029-gemini-4-carbon",
+          "status": "confirmed",
+          "tag": "发布",
+          "lens": "赛道",
+          "priority": "P0",
+          "title": "DeepMind 发布 Gemini 4 Carbon：强调长程工程与网络安全，本周先给部分防御方试用",
+          "date": "2026-10-29",
+          "time": "10-29 01:00",
+          "handle": "deepmind",
+          "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model",
+          "published_at": "2026-10-28T17:00:58Z",
+          "ingested_at": "2026-10-28T17:14:36Z",
+          "candidate_id": "cand-20261029-0accba52581d",
+          "promotion_path": "normal",
+          "objective": [
+            "Google DeepMind 于北京时间 10 月 29 日凌晨宣布 Gemini 4 Carbon：在 Gemini 4 Argon 两周后推出的下一代前沿模型，官方称在编码、智能体长程任务与网络安全防御评测上有明显提升。",
+            "对外数字包括 Artificial Analysis Intelligence Index v5.0 得分 59（榜首）、SEC-bench Pro 88.2%、ExploitGym 54.8%、CWE-bench 71.0%；WebDev Arena 升至约 1768 Elo（第 4）。官方还称内部安全代码生成成功率相对 Argon 提升逾两倍，间接提示注入评测攻击成功率降到 0.0%。",
+            "上线节奏刻意收紧：本周先向一部分网络安全防御方开放，再经 Fairwind 计划逐步扩到可信伙伴；面向开发者、企业与消费者的产品入口「尽快」跟进。入门价与 Argon 相同：百万输入 token 2 美元、输出 10 美元（缓存输入约九五折）；入门期结束后升至 4 / 20 美元。"
+          ],
+          "sources": [
+            {
+              "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model",
+              "handle": "deepmind",
+              "role": "primary"
+            }
+          ],
+          "shift": "morning",
+          "so_what": {
+            "lens": "赛道",
+            "impact": "这是 DeepMind 在两周内连续推出的前沿模型，重点押在「能跑多天的工程智能体」和「找洞—验证—打补丁」的安全闭环；但普通开发者这周还拿不到通用入口，先把它当成赛道信号，而不是立刻换默认模型。",
+            "action": "持续观察",
+            "window": "若你做安全研究或已在 Fairwind / 防御方名单，按官方渠道申请试用；其他人先读博文与评测口径，等产品面开放再比价与对照 Argon。",
+            "confidence": "高",
+            "falsifier": "若官方撤回 Carbon 发布、Fairwind 长期不扩面且无产品排期，或独立评测与官方数字严重不符，就收回「Carbon 已构成可跟进的前沿安全/长程工程节点」。"
+          }
+        }
+      ]
+    },
     {
       "date": "2026-10-28",
       "items": [

@@ -1,9 +1,24 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-28 16:15 北京时间",
+  "updated": "2026-10-29 09:30 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261029-718a46e93fdd",
+      "level": "L2",
+      "date": "2026-10-29",
+      "time": "10-29 00:07",
+      "title": "GitHub Octoverse 2026：过去一年推送 179 亿次，九月逾四成 PR 由智能体起稿",
+      "summary": "GitHub 发布 2026 Octoverse：过去 12 个月代码推送 179 亿次，超过 2024 与 2025 之和；合并 PR 增至约 13 亿。官方称截至 9 月，超过 40% 的 PR 由智能体给出初稿（3 月约 17%）；带智能体配置文件的新仓库平均提交量约为无配置仓库的 8 倍。",
+      "why": "这是平台级年度体检，用公开遥测把「智能体进日常开发」写成可核对的比例，而不只是个别团队的体感。",
+      "affect": "若你带研发团队，可用「四成 PR 智能体起稿」对照自己仓库的 agent 配置与评审节奏；个人开发者不必为报告本身改工具，但值得看清行业默认工作流在往哪偏。",
+      "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents",
+      "source": "github",
+      "lens": "赛道",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261029-718a46e93fdd"
+    },
     {
       "id": "brf-20261028-2498aaca798f",
       "level": "L2",

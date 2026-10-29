@@ -1,13 +1,8 @@
-AI Radar · 信息精选（2026-10-28）
+AI Radar · 信息精选（2026-10-29）
 
-1. Anthropic：Claude 已深度参与六家新药研发，自研肌萎缩候选药最快 2028 年底进人体试验
-   对你意味着什么：这是前沿大模型公司把 Claude 推进真实药物管线与自研项目的公开进度，说明 AI 医药从演示走向多环节实操；对一人公司本周选型影响有限，但对长线「AI×生物」赛道判断有用。
-   建议：持续观察 · 先读官方博文与案例技术报告摘要；若你不做医药研发，不必本周改工具栈。
-   https://www.anthropic.com/research/early-progress-drug-development
-
-2. DeepMind 发布 Genie 4：实时交互世界模型，原生音画对话，先向可信测试者开放
-   对你意味着什么：这是前沿实验室把「可玩、可听、可改」的实时世界模拟又推进一步，对机器人训练环境、预可视化与交互体验原型有长线意义；大众访客眼下多数还进不了正式产品，本周工具栈不必因此大换。
-   建议：持续观察 · 先读 DeepMind 博文；有 Ultra 或想试用可关注 Project Genie 等待名单，勿把演示当成已全面开放。
-   https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation
+1. DeepMind 发布 Gemini 4 Carbon：强调长程工程与网络安全，本周先给部分防御方试用
+   对你意味着什么：这是 DeepMind 在两周内连续推出的前沿模型，重点押在「能跑多天的工程智能体」和「找洞—验证—打补丁」的安全闭环；但普通开发者这周还拿不到通用入口，先把它当成赛道信号，而不是立刻换默认模型。
+   建议：持续观察 · 若你做安全研究或已在 Fairwind / 防御方名单，按官方渠道申请试用；其他人先读博文与评测口径，等产品面开放再比价与对照 Argon。
+   https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html
