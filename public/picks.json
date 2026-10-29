@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29 16:15 北京时间",
+  "updated": "2026-10-29 21:01 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://airss.qiaomu.ai/",
@@ -13,6 +13,7 @@
     "https://deepseek-harness.github.io/deepseek-harness/",
     "https://developers.openai.com/api/docs/guides/decisions",
     "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+    "https://docs.dev.runwayml.com/guides/plugin/",
     "https://docs.mistral.ai/studio/conversations/responses",
     "https://docs.particle.ai/",
     "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
@@ -27,6 +28,7 @@
     "https://github.com/Tencent-Hunyuan/Hy-Nomas",
     "https://github.com/alchaincyf/huashu-art-motion",
     "https://github.com/andyhuo520/digital-human-koubo",
+    "https://github.com/ayi-ai/qingshang-waigua",
     "https://github.com/baidu/Unlimited-OCR",
     "https://github.com/blakeandersonw/ai-app-playbook",
     "https://github.com/debpalash/VoiceStudio",
@@ -39,6 +41,7 @@
     "https://github.com/langchain-ai/design-agent",
     "https://github.com/nicobailon/skill-diet",
     "https://github.com/pbakaus/impeccable",
+    "https://github.com/runwayml/skills",
     "https://github.com/unclebob/ub-mode",
     "https://github.com/yaojingang/GEOInflow",
     "https://huggingface.co/baidu/Unlimited-OCR-2",
@@ -60,10 +63,13 @@
     "https://www.theverge.com/ai-artificial-intelligence/1015843/anthropic-claude-duet-ai-agent",
     "https://www.theverge.com/tech/1019076/google-genie-4-ai-model",
     "https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3",
+    "https://x.com/0xlangeai/status/2115754265180574033",
+    "https://x.com/AYi_AInotes/status/2115665851403673788",
     "https://x.com/AravSrinivas/status/2113420151232352444",
     "https://x.com/AravSrinivas/status/2114021917586014449",
     "https://x.com/AravSrinivas/status/2115510517871890511",
     "https://x.com/ArtificialAnlys/status/2113682654709313811",
+    "https://x.com/GeekCatX/status/2115676657839382566",
     "https://x.com/Hailuo_AI/status/2113518150440595501",
     "https://x.com/Hailuo_AI/status/2113518153242497390",
     "https://x.com/Suhail/status/2115497949421883648",
@@ -155,6 +161,8 @@
     "cand-20261029-78fc87376f9b",
     "cand-20261029-8d2dada04dc5",
     "cand-20261029-92f0d7516f2b",
+    "cand-20261029-d7d77f58c356",
+    "cand-20261029-e7d7777be3ab",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -192,7 +200,9 @@
     "evt-20261029-gemini-4-carbon",
     "evt-20261029-mistral-responses-api",
     "evt-20261029-particle-inference",
-    "evt-20261029-qiaomu-ai-rss"
+    "evt-20261029-qiaomu-ai-rss",
+    "evt-20261029-qingshang-waigua",
+    "evt-20261029-runway-dev-plugin"
   ],
   "days": [
     {

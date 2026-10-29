@@ -1,0 +1,23 @@
+{
+  "id": "prac-20261029-e7d7777be3ab",
+  "kind": "Skill / 工作流",
+  "title": "给 Codex 或 Cursor 装 Runway Dev 插件：先登录再问一句额度验收",
+  "author": "runwayml",
+  "url": "https://docs.dev.runwayml.com/guides/plugin/",
+  "time": "2026-10-29 21:01",
+  "takeaway": "官方插件一次带上 MCP 与接入技能，让编程助手帮你写 Runway API 代码、查模型限额，而不是在终端里「免费出片」。",
+  "steps": [
+    "打开官方安装页，确认已有 Runway Dev 账号。若用 Codex CLI：依次执行 marketplace 添加、安装 runway-api@runway-dev，再 mcp login 完成浏览器登录；若用 Cursor：在 Agent 对话输入 /add-plugin runway-api 或从 Marketplace 安装。Claude Code 按文档分步加 MCP 与技能。",
+    "新开一轮助手会话，先问「当前 Runway 账号能用哪些模型、限额和价格是多少」，确认 MCP 已连上。再在你的应用仓库里让助手写一段最小视频生成调用，把 API 密钥只放服务端环境变量，跑通一次请求或至少生成可审查的接入草稿后再扩大范围。"
+  ],
+  "caution": "插件不生成媒体；费用在 Runway 项目结算。Codex IDE 扩展暂不支持插件。不要把 API 密钥写进前端或插件配置。这里没有替你完成安装或扣费调用。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "Runway Dev 账号与可创建密钥的权限",
+    "Codex CLI、Cursor，或可按文档分步配置的 Claude Code"
+  ],
+  "estimated_time": "十几到几十分钟完成安装并问通额度",
+  "verified": false,
+  "candidate_id": "cand-20261029-e7d7777be3ab",
+  "try_url": "https://docs.dev.runwayml.com/guides/plugin/"
+}

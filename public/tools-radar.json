@@ -1,7 +1,27 @@
 {
-  "updated": "2026-10-29 16:15 北京时间",
+  "updated": "2026-10-29 21:01 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261029-runway-dev-plugin",
+        "title": "Runway Dev 官方插件：一次给 Codex / Cursor 装上 MCP 与七个接入技能",
+        "date": "2026-10-29",
+        "time": "10-29 21:01",
+        "try_url": "https://docs.dev.runwayml.com/guides/plugin/",
+        "access": "需要 Runway Dev 账号与 API 密钥（费用在你的 Runway 项目里结算）。Codex：终端执行 codex plugin marketplace add runwayml/skills，再 codex plugin add runway-api@runway-dev，然后 codex mcp login runway-dev。Cursor：在 Agent 对话输入 /add-plugin runway-api 或从 Marketplace 安装。Claude Code 暂无插件，按文档分别加 MCP 与 npx skills add。密钥只放服务端，不要写进插件配置。",
+        "integration": "适合正在做 AI 视频/图像 SaaS 或要把 Runway 嵌进自有产品的开发者，希望用编程助手写接入代码、查额度与排错。只想自己出片、不接 API 的创作者不必装这套，应继续用 Runway 网页或其它出片工作流。",
+        "first_step": "若你这周要把 Runway 接到自己的应用：打开本卡试做链接，在 Codex 或 Cursor 装好插件并完成登录，问助手「当前项目能用哪些 Runway 模型、限额多少」，再用一句「帮我在这个仓库接一段视频生成」跑通最小示例。",
+        "summary": "Runway 官方文档上线 Runway Dev 插件安装指南：一次安装同时带上 Runway Dev MCP（连账号、查模型额度与价格、配 Model Router、查失败任务）以及七个 Agent Skill（接入 SDK、模型端点、Characters、Recipes、Workflows 等）。",
+        "audience_value": "如果你在用 Codex / Cursor 写 Runway 接入，官方插件把 MCP 账号能力与七个技能一次装齐，能少踩「免费出片」误解，把助手用在查额度、写 SDK 与排错上。",
+        "alternatives": [
+          "继续手写 Runway SDK 接入，不装官方插件",
+          "只用 Runway 网页/创作端出片，不走 API",
+          "改用其它视频 API（如自建或其它厂商）并自写助手技能"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261029-baoyu-design",
         "title": "baoyu-design v2：把 Claude Design / 幻灯片 / 仪表盘搬进本地 Agent Skill",
@@ -575,6 +595,26 @@
     ],
     "值得关注": [
       {
+        "id": "evt-20261029-qingshang-waigua",
+        "title": "情商外挂：本地开源网页，发送前按非暴力沟通改一版再说",
+        "date": "2026-10-29",
+        "time": "10-29 21:01",
+        "try_url": "https://github.com/ayi-ai/qingshang-waigua",
+        "access": "需要 Python 3。从 GitHub 下载 ZIP 或 clone 后，在目录执行 python3 app.py（Windows 可用 python app.py）；浏览器打开 http://127.0.0.1:8787，用终端打印的设置口令在页面里填 OpenAI 兼容接口密钥。只想看界面：MOCK=1 python3 app.py。",
+        "integration": "适合经常在微信/飞书里改措辞、又希望规则留在本机的人。内容会发往你配置的模型接口，勿贴机密；正式纠纷仍应走人工。外发分享依赖你自己的穿透或部署方案，电脑需保持运行。",
+        "first_step": "若你这周总有「打完又删掉」的消息：打开本卡试做链接，先 MOCK 跑通页面，再接一把便宜中文模型的密钥，拿一句真实草稿选「坚定」改一版，对照刺耳词诊断后再决定要不要日常用。",
+        "summary": "作者 AYi 开源「情商外挂」（MIT）：两个文件、零第三方依赖的本地网页工具。把带火气的草稿贴进去，选对方身份（客户/上级/同事等）与语气（温和/坚定/直接），先标刺耳词，再给出可直接发的改写；规则提炼自其《非暴力沟通》Agent Skill。",
+        "audience_value": "如果你常在发送前卡壳，这套开源本地页把「标刺耳词 + 按身份改写」收成可今天跑通的小工具；先当本机助手试，不必为分享链路先上云。",
+        "alternatives": [
+          "直接把提示词丢进网页版 ChatGPT / Claude 改写",
+          "安装作者的非暴力沟通 Agent Skill，在编程助手里改",
+          "继续靠自己冷静重写，不装工具"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "值得关注"
+      },
+      {
         "id": "evt-20261029-particle-inference",
         "title": "Particle 上线开权推理 API：OpenAI 兼容端点，主推更省 token 的 particle-1",
         "date": "2026-10-29",
@@ -700,6 +740,46 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261029-runway-dev-plugin",
+      "title": "Runway Dev 官方插件：一次给 Codex / Cursor 装上 MCP 与七个接入技能",
+      "date": "2026-10-29",
+      "time": "10-29 21:01",
+      "try_url": "https://docs.dev.runwayml.com/guides/plugin/",
+      "access": "需要 Runway Dev 账号与 API 密钥（费用在你的 Runway 项目里结算）。Codex：终端执行 codex plugin marketplace add runwayml/skills，再 codex plugin add runway-api@runway-dev，然后 codex mcp login runway-dev。Cursor：在 Agent 对话输入 /add-plugin runway-api 或从 Marketplace 安装。Claude Code 暂无插件，按文档分别加 MCP 与 npx skills add。密钥只放服务端，不要写进插件配置。",
+      "integration": "适合正在做 AI 视频/图像 SaaS 或要把 Runway 嵌进自有产品的开发者，希望用编程助手写接入代码、查额度与排错。只想自己出片、不接 API 的创作者不必装这套，应继续用 Runway 网页或其它出片工作流。",
+      "first_step": "若你这周要把 Runway 接到自己的应用：打开本卡试做链接，在 Codex 或 Cursor 装好插件并完成登录，问助手「当前项目能用哪些 Runway 模型、限额多少」，再用一句「帮我在这个仓库接一段视频生成」跑通最小示例。",
+      "summary": "Runway 官方文档上线 Runway Dev 插件安装指南：一次安装同时带上 Runway Dev MCP（连账号、查模型额度与价格、配 Model Router、查失败任务）以及七个 Agent Skill（接入 SDK、模型端点、Characters、Recipes、Workflows 等）。",
+      "audience_value": "如果你在用 Codex / Cursor 写 Runway 接入，官方插件把 MCP 账号能力与七个技能一次装齐，能少踩「免费出片」误解，把助手用在查额度、写 SDK 与排错上。",
+      "alternatives": [
+        "继续手写 Runway SDK 接入，不装官方插件",
+        "只用 Runway 网页/创作端出片，不走 API",
+        "改用其它视频 API（如自建或其它厂商）并自写助手技能"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
+    {
+      "id": "evt-20261029-qingshang-waigua",
+      "title": "情商外挂：本地开源网页，发送前按非暴力沟通改一版再说",
+      "date": "2026-10-29",
+      "time": "10-29 21:01",
+      "try_url": "https://github.com/ayi-ai/qingshang-waigua",
+      "access": "需要 Python 3。从 GitHub 下载 ZIP 或 clone 后，在目录执行 python3 app.py（Windows 可用 python app.py）；浏览器打开 http://127.0.0.1:8787，用终端打印的设置口令在页面里填 OpenAI 兼容接口密钥。只想看界面：MOCK=1 python3 app.py。",
+      "integration": "适合经常在微信/飞书里改措辞、又希望规则留在本机的人。内容会发往你配置的模型接口，勿贴机密；正式纠纷仍应走人工。外发分享依赖你自己的穿透或部署方案，电脑需保持运行。",
+      "first_step": "若你这周总有「打完又删掉」的消息：打开本卡试做链接，先 MOCK 跑通页面，再接一把便宜中文模型的密钥，拿一句真实草稿选「坚定」改一版，对照刺耳词诊断后再决定要不要日常用。",
+      "summary": "作者 AYi 开源「情商外挂」（MIT）：两个文件、零第三方依赖的本地网页工具。把带火气的草稿贴进去，选对方身份（客户/上级/同事等）与语气（温和/坚定/直接），先标刺耳词，再给出可直接发的改写；规则提炼自其《非暴力沟通》Agent Skill。",
+      "audience_value": "如果你常在发送前卡壳，这套开源本地页把「标刺耳词 + 按身份改写」收成可今天跑通的小工具；先当本机助手试，不必为分享链路先上云。",
+      "alternatives": [
+        "直接把提示词丢进网页版 ChatGPT / Claude 改写",
+        "安装作者的非暴力沟通 Agent Skill，在编程助手里改",
+        "继续靠自己冷静重写，不装工具"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "值得关注"
+    },
     {
       "id": "evt-20261029-baoyu-design",
       "title": "baoyu-design v2：把 Claude Design / 幻灯片 / 仪表盘搬进本地 Agent Skill",

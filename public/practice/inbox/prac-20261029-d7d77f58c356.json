@@ -1,0 +1,23 @@
+{
+  "id": "prac-20261029-d7d77f58c356",
+  "kind": "工具用法",
+  "title": "本机跑起情商外挂：先 MOCK 看界面，再接密钥改一句真草稿",
+  "author": "AYi_AInotes",
+  "url": "https://github.com/ayi-ai/qingshang-waigua",
+  "time": "2026-10-29 21:01",
+  "takeaway": "把带火气的话先丢进本地页，看清刺耳词再选语气改写，比气头上直接发送更不容易把关系搞砸。",
+  "steps": [
+    "打开本卡试做链接，用 Code → Download ZIP 或 git clone 把仓库放到本机，进入目录后执行 MOCK=1 python3 app.py（Windows 可用 python）。浏览器打开 http://127.0.0.1:8787，随意输入一句话点「帮我改」，确认返回示例即代表本地链路通。",
+    "停掉 MOCK 后执行 python3 app.py，用终端里的设置口令打开页面设置，填入兼容 OpenAI 格式的接口地址与密钥并拉取模型列表。回到首页贴一句你真实想发又怕太冲的话，选对方身份与「坚定」语气改一版，核对刺耳词诊断与是否编造事实后，再决定要不要日常使用。"
+  ],
+  "caution": "输入会发往你配置的模型接口，勿贴公司机密或他人隐私。改写仅供参考，不能替代正式协商或法务。外网分享需自备方案且电脑保持运行。这里没有替你启动服务或代付模型费用。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "已安装 Python 3 的电脑",
+    "一把兼容 OpenAI 格式的模型接口密钥（MOCK 阶段可不需要）"
+  ],
+  "estimated_time": "十几分钟跑通 MOCK，半小时内完成真密钥验收",
+  "verified": false,
+  "candidate_id": "cand-20261029-d7d77f58c356",
+  "try_url": "https://github.com/ayi-ai/qingshang-waigua"
+}
