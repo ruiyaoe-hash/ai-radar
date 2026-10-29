@@ -5,14 +5,28 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Thu, 29 Oct 2026 16:15:06 +0800</lastBuildDate>
+<lastBuildDate>Thu, 29 Oct 2026 21:01:33 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] Runway Dev 官方插件：一次给 Codex / Cursor 装上 MCP 与七个接入技能</title>
+<link>https://docs.dev.runwayml.com/guides/plugin/</link>
+<guid isPermaLink="false">evt-20261029-runway-dev-plugin</guid>
+<pubDate>Thu, 29 Oct 2026 13:26:37 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Runway 官方文档上线 Runway Dev 插件安装指南：一次安装同时带上 Runway Dev MCP（连账号、查模型额度与价格、配 Model Router、查失败任务）以及七个 Agent Skill（接入 SDK、模型端点、Characters、Recipes、Workflows 等）。<br/>• 插件本身不直接生成视频或图像；生成仍由你的应用通过 Runway API 发起。官方写明适合在 Codex CLI、Cursor、Claude Code（需分步装 MCP 与技能）及其他支持 MCP + Skills 的助手里，让编程助手帮你写/排接入代码。Codex IDE 扩展暂不支持插件。<br/>• 中文圈 GeekCatX 同日转述并指向官方文档；本卡以官方安装页为一手，按「可今天装上的开发者插件」记入工具决策，并同步实战手册。<br/><strong>对你意味着什么</strong> 如果你在用 Codex / Cursor 写 Runway 接入，官方插件把 MCP 账号能力与七个技能一次装齐，能少踩「免费出片」误解，把助手用在查额度、写 SDK 与排错上。<br/>建议：立即行动 · 今天完成安装与登录，用一条真实接入问题验收；确认助手不会把密钥写进前端后再扩大到 Model Router 或 Characters。<br/>有多确定：中<br/>什么情况下当这判断作废：若你的助手宿主装不上插件、Runway 账号申请不到，或你根本不走 API 只做出片，就不必改现有工作流。<br/>来源 runwayml（一手）, runwayml（一手）, GeekCatX（转述）<br/>日期 2026-10-29]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] baoyu-design v2：把 Claude Design / 幻灯片 / 仪表盘搬进本地 Agent Skill</title>
 <link>https://github.com/JimLiu/baoyu-design</link>
 <guid isPermaLink="false">evt-20261029-baoyu-design</guid>
 <pubDate>Thu, 29 Oct 2026 12:52:04 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。<br/>• 推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。<br/>• 宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。<br/><strong>对你意味着什么</strong> 如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。<br/>建议：立即行动 · 今天完成安装并用一版落地页或幻灯片跑通预览；确认模型与助手兼容后再扩到仪表盘或设计系统。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、本机 Node 环境装不上，或生成质量明显差于你现有网页工作流，就不必为本工具改流程。<br/>来源 JimLiu（一手）, dotey（转述）<br/>日期 2026-10-29]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] 情商外挂：本地开源网页，发送前按非暴力沟通改一版再说</title>
+<link>https://github.com/ayi-ai/qingshang-waigua</link>
+<guid isPermaLink="false">evt-20261029-qingshang-waigua</guid>
+<pubDate>Thu, 29 Oct 2026 12:43:40 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 作者 AYi 开源「情商外挂」（MIT）：两个文件、零第三方依赖的本地网页工具。把带火气的草稿贴进去，选对方身份（客户/上级/同事等）与语气（温和/坚定/直接），先标刺耳词，再给出可直接发的改写；规则提炼自其《非暴力沟通》Agent Skill。<br/>• 默认在本机 127.0.0.1:8787 运行，兼容任意 OpenAI 格式接口；可用 MOCK=1 不接模型先看界面。长文还演示用第三方穿透把本地页发成链接给同事，但核心价值是本机改写链路，分享方式可自选。<br/>• 原作者长文与 GitHub README 步骤一致；中文圈转述指向同一仓库。本卡按可试用小工具记入工具决策（值得关注），并同步实战手册；不作信息精选。<br/><strong>对你意味着什么</strong> 如果你常在发送前卡壳，这套开源本地页把「标刺耳词 + 按身份改写」收成可今天跑通的小工具；先当本机助手试，不必为分享链路先上云。<br/>建议：持续观察 · 本周用 MOCK 与一条真实草稿验收改写质量与费用；确认不泄露敏感内容后再考虑是否分享给同事。<br/>有多确定：中<br/>什么情况下当这判断作废：若本机 Python 跑不起来、改写总编造事实，或你更习惯直接在大模型对话框里改，就不必为本工具改习惯。<br/>来源 ayi-ai（一手）, AYi_AInotes（一手）, 0xlangeai（转述）<br/>日期 2026-10-29]]></description>
 </item>
 <item>
 <title>[快讯 · 新工具 · 工具] Basecamp 正式接入 Claude：用官方 MCP 连接器让助手查项目、写待办与发更新</title>

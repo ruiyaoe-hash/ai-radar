@@ -1,7 +1,31 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-29 16:15 北京时间",
+  "updated": "2026-10-29 21:01 北京时间",
   "sources": [
+    {
+      "id": "prac-20261029-e7d7777be3ab",
+      "url": "https://docs.dev.runwayml.com/guides/plugin/",
+      "author": "runwayml",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "给 Codex 或 Cursor 装 Runway Dev 插件：先登录再问一句额度验收",
+      "excerpt": "官方插件一次带上 MCP 与接入技能，让编程助手帮你写 Runway API 代码、查模型限额，而不是在终端里「免费出片」。",
+      "origin": "practice",
+      "date": "2026-10-29",
+      "verified": false
+    },
+    {
+      "id": "prac-20261029-d7d77f58c356",
+      "url": "https://github.com/ayi-ai/qingshang-waigua",
+      "author": "AYi_AInotes",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "本机跑起情商外挂：先 MOCK 看界面，再接密钥改一句真草稿",
+      "excerpt": "把带火气的话先丢进本地页，看清刺耳词再选语气改写，比气头上直接发送更不容易把关系搞砸。",
+      "origin": "practice",
+      "date": "2026-10-29",
+      "verified": false
+    },
     {
       "id": "prac-20261029-78fc87376f9b",
       "url": "https://x.com/dotey/status/2115667965328977920",
