@@ -307,6 +307,18 @@
       "date": "2026-10-28",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261029-33f55775a138",
+      "url": "https://x.com/0xlangeai/status/2115693961876795842",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "孩子问我：“一张纸一直对折下去，能有多厚",
+      "excerpt": "从一个具体问题开始",
+      "date": "2026-10-29",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": []

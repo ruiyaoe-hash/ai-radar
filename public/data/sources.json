@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-29 21:01 北京时间",
+  "updated": "2026-10-30 03:44 北京时间",
   "sources": [
     {
       "id": "prac-20261029-e7d7777be3ab",
@@ -263,6 +263,18 @@
       "title": "先打开乔木 AI 资讯网页，再按需装 Obsidian 或 DeepSeek Harness 插件",
       "excerpt": "先网页试用乔木 AI 资讯中文阅读，再装 Obsidian 或 DeepSeek Harness 插件。",
       "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261029-33f55775a138",
+      "url": "https://x.com/0xlangeai/status/2115693961876795842",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "孩子问我：“一张纸一直对折下去，能有多厚",
+      "excerpt": "从一个具体问题开始",
+      "date": "2026-10-29",
       "origin": "practice",
       "verified": false
     }
