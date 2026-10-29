@@ -1,7 +1,27 @@
 {
-  "updated": "2026-10-29 09:23 北京时间",
+  "updated": "2026-10-29 12:08 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261029-basecamp-claude",
+        "title": "Basecamp 正式接入 Claude：用官方 MCP 连接器让助手查项目、写待办与发更新",
+        "date": "2026-10-29",
+        "time": "10-29 12:00",
+        "try_url": "https://claude.ai/directory/basecamp",
+        "access": "需要可用的 Basecamp 账号，以及支持自定义连接器的 Claude（网页 / Desktop / Cowork 等）。在 Claude 打开 Basecamp 目录项或添加 MCP 地址 https://mcp.basecamp.com/mcp，登录 Basecamp 并选择只读或完整权限。Claude Code 可用：claude mcp add --transport http basecamp https://mcp.basecamp.com/mcp。",
+        "integration": "适合已经用 Basecamp 管项目、又希望 Claude 直接读线程与改待办的人。权限跟随你的 Basecamp 可见范围；Team / Enterprise 需所有者先为工作区添加连接器，成员再各自登录。",
+        "first_step": "若你这周仍在 Basecamp 与聊天窗口之间来回粘贴：打开 https://claude.ai/directory/basecamp 完成授权，先选只读，问一句「本周某项目有什么逾期」，确认答案对得上再考虑完整权限。",
+        "summary": "37signals / Basecamp 宣布官方 AI 连接器上线：把 Basecamp 接到 Claude、ChatGPT、Cursor 或 Grok 后，助手可按你的权限查看项目进展、逾期事项与讨论结论，也可代写待办、挪卡片与起草更新。",
+        "audience_value": "如果你日常项目在 Basecamp、对话在 Claude，这条连接器把「查进度 / 写待办 / 起草更新」收进同一对话，值得今天先用只读权限试一条真实问题。",
+        "alternatives": [
+          "继续在 Basecamp 网页里手动查与写",
+          "用 Basecamp CLI / Agent Skill 在终端给编程助手用",
+          "换用其他项目管理工具自带的助手集成"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261029-qiaomu-ai-rss",
         "title": "乔木 AI 资讯：免费聚合 Newsletter / 播客并出中文，可装进 Obsidian 与 DeepSeek Harness",
@@ -640,6 +660,26 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261029-basecamp-claude",
+      "title": "Basecamp 正式接入 Claude：用官方 MCP 连接器让助手查项目、写待办与发更新",
+      "date": "2026-10-29",
+      "time": "10-29 12:00",
+      "try_url": "https://claude.ai/directory/basecamp",
+      "access": "需要可用的 Basecamp 账号，以及支持自定义连接器的 Claude（网页 / Desktop / Cowork 等）。在 Claude 打开 Basecamp 目录项或添加 MCP 地址 https://mcp.basecamp.com/mcp，登录 Basecamp 并选择只读或完整权限。Claude Code 可用：claude mcp add --transport http basecamp https://mcp.basecamp.com/mcp。",
+      "integration": "适合已经用 Basecamp 管项目、又希望 Claude 直接读线程与改待办的人。权限跟随你的 Basecamp 可见范围；Team / Enterprise 需所有者先为工作区添加连接器，成员再各自登录。",
+      "first_step": "若你这周仍在 Basecamp 与聊天窗口之间来回粘贴：打开 https://claude.ai/directory/basecamp 完成授权，先选只读，问一句「本周某项目有什么逾期」，确认答案对得上再考虑完整权限。",
+      "summary": "37signals / Basecamp 宣布官方 AI 连接器上线：把 Basecamp 接到 Claude、ChatGPT、Cursor 或 Grok 后，助手可按你的权限查看项目进展、逾期事项与讨论结论，也可代写待办、挪卡片与起草更新。",
+      "audience_value": "如果你日常项目在 Basecamp、对话在 Claude，这条连接器把「查进度 / 写待办 / 起草更新」收进同一对话，值得今天先用只读权限试一条真实问题。",
+      "alternatives": [
+        "继续在 Basecamp 网页里手动查与写",
+        "用 Basecamp CLI / Agent Skill 在终端给编程助手用",
+        "换用其他项目管理工具自带的助手集成"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
     {
       "id": "evt-20261029-qiaomu-ai-rss",
       "title": "乔木 AI 资讯：免费聚合 Newsletter / 播客并出中文，可装进 Obsidian 与 DeepSeek Harness",

@@ -1,9 +1,11 @@
 {
-  "updated": "2026-10-29 09:22 北京时间",
+  "updated": "2026-10-29 12:08 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://airss.qiaomu.ai/",
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
+    "https://basecamp.com/ai",
+    "https://claude.ai/directory/basecamp",
     "https://claude.com/product/claude-duet",
     "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
     "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model",
@@ -67,6 +69,7 @@
     "https://x.com/berryxia/status/2114579756633219416",
     "https://x.com/claudeai/status/2113360845409583307",
     "https://x.com/demishassabis/status/2115232001275924722",
+    "https://x.com/dhh/status/2115575125223387320",
     "https://x.com/dotey/status/2112995995017421133",
     "https://x.com/dotey/status/2113689823311524225",
     "https://x.com/dotey/status/2114375050971296135",
@@ -143,6 +146,7 @@
     "cand-20261028-da36115fd939",
     "cand-20261028-f2eb65605417",
     "cand-20261029-0accba52581d",
+    "cand-20261029-92f0d7516f2b",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -175,6 +179,7 @@
     "evt-20261028-synthid-gemini",
     "evt-20261028-tibot",
     "evt-20261028-word-atlas",
+    "evt-20261029-basecamp-claude",
     "evt-20261029-gemini-4-carbon",
     "evt-20261029-mistral-responses-api",
     "evt-20261029-qiaomu-ai-rss"

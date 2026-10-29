@@ -1,9 +1,24 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-29 09:30 北京时间",
+  "updated": "2026-10-29 12:08 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261029-7fd3b00c7a21",
+      "level": "L2",
+      "date": "2026-10-29",
+      "time": "10-29 12:05",
+      "title": "ChatGPT Pro / Business 可领每月最高 500 美元 API 额度，Plus 不在列",
+      "summary": "OpenAI 面向符合条件的 ChatGPT Pro 与 Business 订阅开放 API 积分福利：把订阅关联到你拥有的 API 组织后，可按档位领取每月免费额度（Pro 对应该档价格 100/200/500 美元；Business 按席位汇总且工作区上限 500 美元）。首期按剩余账期按比例发放，周期结束未用完不结转；不增加 ChatGPT / 已登录 Codex 用量，也不覆盖经 API 密钥的 Codex 用量。",
+      "why": "这是订阅侧直接补贴「自己调 API 做应用」的动作，对已付 Pro/Business 又在另开账单的人，能立刻少一笔接口费用。",
+      "affect": "若你已是 Pro 或 Business 所有者：今天到 ChatGPT 账单或 API Platform 账单里走一遍领取，并确认关联的是目标 API 组织。Plus、试用、Enterprise / Edu 不在此福利；额度用完或过期后仍要按 API 计费。",
+      "url": "https://help.openai.com/en/articles/20001626-api-credits-benefit-for-eligible-chatgpt-subscriptions",
+      "source": "openai",
+      "lens": "工具",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261029-7fd3b00c7a21"
+    },
     {
       "id": "brf-20261029-718a46e93fdd",
       "level": "L2",

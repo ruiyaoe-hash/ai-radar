@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Thu, 29 Oct 2026 09:22:26 +0800</lastBuildDate>
+<lastBuildDate>Thu, 29 Oct 2026 12:08:58 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] Basecamp 正式接入 Claude：用官方 MCP 连接器让助手查项目、写待办与发更新</title>
+<link>https://basecamp.com/ai</link>
+<guid isPermaLink="false">evt-20261029-basecamp-claude</guid>
+<pubDate>Thu, 29 Oct 2026 06:43:09 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 37signals / Basecamp 宣布官方 AI 连接器上线：把 Basecamp 接到 Claude、ChatGPT、Cursor 或 Grok 后，助手可按你的权限查看项目进展、逾期事项与讨论结论，也可代写待办、挪卡片与起草更新。<br/>• Claude 侧可在连接器目录打开 Basecamp（claude.ai/directory/basecamp），或手工添加托管 MCP 地址 https://mcp.basecamp.com/mcp；授权时可选手动只读或完整读写。官方说明不另收费，包含在现有 Basecamp 账号里，且助手只能看到你本人可见的内容。<br/>• DHH 于北京时间 10 月 29 日凌晨发帖确认「Basecamp for Claude is live」，并指向 Claude 目录页；产品说明页与 MCP 地址互相印证。<br/><strong>对你意味着什么</strong> 如果你日常项目在 Basecamp、对话在 Claude，这条连接器把「查进度 / 写待办 / 起草更新」收进同一对话，值得今天先用只读权限试一条真实问题。<br/>建议：立即行动 · 今天完成授权并用一条真实项目问题验收；确认可见范围与写入风险后再开完整权限。<br/>有多确定：中<br/>什么情况下当这判断作废：若你根本不用 Basecamp、连接器在你的套餐里不可用，或只读问答经常答错/越权，就不必为本工具改工作流。<br/>来源 basecamp（一手）, anthropic（一手）, dhh（转述）<br/>日期 2026-10-29]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] 乔木 AI 资讯：免费聚合 Newsletter / 播客并出中文，可装进 Obsidian 与 DeepSeek Harness</title>
 <link>https://airss.qiaomu.ai/</link>

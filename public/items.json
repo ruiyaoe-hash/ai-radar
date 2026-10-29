@@ -1,8 +1,66 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-29 09:23 北京时间",
+  "updated": "2026-10-29 12:09 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261029-basecamp-claude",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Basecamp 正式接入 Claude：用官方 MCP 连接器让助手查项目、写待办与发更新",
+      "date": "2026-10-29",
+      "time": "10-29 12:00",
+      "handle": "dhh",
+      "url": "https://basecamp.com/ai",
+      "published_at": "2026-10-28T22:43:09Z",
+      "ingested_at": "2026-10-28T23:00:00Z",
+      "candidate_id": "cand-20261029-92f0d7516f2b",
+      "promotion_path": "normal",
+      "objective": [
+        "37signals / Basecamp 宣布官方 AI 连接器上线：把 Basecamp 接到 Claude、ChatGPT、Cursor 或 Grok 后，助手可按你的权限查看项目进展、逾期事项与讨论结论，也可代写待办、挪卡片与起草更新。",
+        "Claude 侧可在连接器目录打开 Basecamp（claude.ai/directory/basecamp），或手工添加托管 MCP 地址 https://mcp.basecamp.com/mcp；授权时可选手动只读或完整读写。官方说明不另收费，包含在现有 Basecamp 账号里，且助手只能看到你本人可见的内容。",
+        "DHH 于北京时间 10 月 29 日凌晨发帖确认「Basecamp for Claude is live」，并指向 Claude 目录页；产品说明页与 MCP 地址互相印证。"
+      ],
+      "sources": [
+        {
+          "url": "https://basecamp.com/ai",
+          "handle": "basecamp",
+          "role": "primary"
+        },
+        {
+          "url": "https://claude.ai/directory/basecamp",
+          "handle": "anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dhh/status/2115575125223387320",
+          "handle": "dhh",
+          "role": "report"
+        }
+      ],
+      "shift": "midday",
+      "try_url": "https://claude.ai/directory/basecamp",
+      "access": "需要可用的 Basecamp 账号，以及支持自定义连接器的 Claude（网页 / Desktop / Cowork 等）。在 Claude 打开 Basecamp 目录项或添加 MCP 地址 https://mcp.basecamp.com/mcp，登录 Basecamp 并选择只读或完整权限。Claude Code 可用：claude mcp add --transport http basecamp https://mcp.basecamp.com/mcp。",
+      "integration": "适合已经用 Basecamp 管项目、又希望 Claude 直接读线程与改待办的人。权限跟随你的 Basecamp 可见范围；Team / Enterprise 需所有者先为工作区添加连接器，成员再各自登录。",
+      "first_step": "若你这周仍在 Basecamp 与聊天窗口之间来回粘贴：打开 https://claude.ai/directory/basecamp 完成授权，先选只读，问一句「本周某项目有什么逾期」，确认答案对得上再考虑完整权限。",
+      "alternatives": [
+        "继续在 Basecamp 网页里手动查与写",
+        "用 Basecamp CLI / Agent Skill 在终端给编程助手用",
+        "换用其他项目管理工具自带的助手集成"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你日常项目在 Basecamp、对话在 Claude，这条连接器把「查进度 / 写待办 / 起草更新」收进同一对话，值得今天先用只读权限试一条真实问题。",
+        "action": "立即行动",
+        "window": "今天完成授权并用一条真实项目问题验收；确认可见范围与写入风险后再开完整权限。",
+        "confidence": "中",
+        "falsifier": "若你根本不用 Basecamp、连接器在你的套餐里不可用，或只读问答经常答错/越权，就不必为本工具改工作流。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261029-gemini-4-carbon",

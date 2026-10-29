@@ -1,7 +1,19 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-29 09:22 北京时间",
+  "updated": "2026-10-29 12:09 北京时间",
   "sources": [
+    {
+      "id": "prac-20261029-92f0d7516f2b",
+      "url": "https://x.com/dhh/status/2115575125223387320",
+      "author": "dhh",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "在 Claude 接入 Basecamp 官方连接器：先只读问逾期，再按需开写入",
+      "excerpt": "用 Claude 目录或 MCP 地址接入 Basecamp，先只读验收再开完整权限。",
+      "date": "2026-10-29",
+      "origin": "practice",
+      "verified": false
+    },
     {
       "id": "prac-20261028-b43980f0330b",
       "url": "https://x.com/shao__meng/status/2115392731333951528",
