@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_at": "2026-10-29T01:22:36Z",
-  "note": "建议清单。held 还要人工确认；blocked_unverified 不能写手册；no_topic 要人指定主题。这里不是上站。",
+  "note": "每条做法对应一个主题建议。还没经人确认的，不会改写主题手册正文。",
   "items": [
     {
       "id": "prac-20261024-6d6218870fce",
@@ -200,6 +200,22 @@
       "matched_on": [
         "atlas:hands-on"
       ]
+    },
+    {
+      "id": "prac-20261029-84d58a62db2c",
+      "topic": "hands-on",
+      "reason": "这条写清了可照着做的步骤，先归在跟着做。确认之前不改手册正文。",
+      "verified": false,
+      "apply": "blocked_unverified",
+      "lane": "跟着做"
+    },
+    {
+      "id": "prac-20261029-f21e1be29885",
+      "topic": "hands-on",
+      "reason": "这条写清了可照着做的步骤，先归在跟着做。确认之前不改手册正文。",
+      "verified": false,
+      "apply": "blocked_unverified",
+      "lane": "跟着做"
     }
   ]
 }

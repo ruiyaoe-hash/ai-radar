@@ -1,0 +1,21 @@
+{
+  "id": "prac-20261029-84d58a62db2c",
+  "kind": "工具用法",
+  "title": "感觉自己运气好，Claude 账号一个都没被封过，不是凡尔赛啊",
+  "author": "vista8",
+  "url": "https://x.com/vista8/status/2115487808404230154",
+  "time": "2026-10-29 00:56",
+  "takeaway": "注册 Claude 用自己域名邮箱",
+  "steps": [
+    "注册 Claude 用自己域名邮箱。",
+    "路由指向 Gmail 账号，只需绑定一个域名到 cloudflare 就行。"
+  ],
+  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "原文里用到的账号或软件"
+  ],
+  "estimated_time": "按步骤做完",
+  "verified": false,
+  "candidate_id": "cand-20261029-84d58a62db2c"
+}

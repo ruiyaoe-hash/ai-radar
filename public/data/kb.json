@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-10-29 morning",
-  "updated": "2026-10-29 09:22 北京时间",
+  "updated": "2026-10-29 10:35 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,14 +43,14 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 18,
+      "source_count": 20,
       "creator_count": 6,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 18,
+      "unverified_practice": 20,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
-      "latest": "2026-10-28"
+      "latest": "2026-10-29"
     }
   ],
   "sources": [
@@ -269,6 +269,30 @@
       "date": "2026-10-28",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261029-84d58a62db2c",
+      "url": "https://x.com/vista8/status/2115487808404230154",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "感觉自己运气好，Claude 账号一个都没被封过，不是凡尔赛啊",
+      "excerpt": "注册 Claude 用自己域名邮箱",
+      "date": "2026-10-29",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261029-f21e1be29885",
+      "url": "https://x.com/0xlangeai/status/2115603843254009961",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "Kin这篇集合贴把主流的 Codex、Claude、Gemini、 Deepseek 接入都给讲了",
+      "excerpt": "𝗖𝗼𝗱𝗲𝘅：通过云电脑 𝗖𝗟𝗜 登录账号，专门接生图、中大型调研和编程，走 𝗖𝗼𝗱𝗲𝘅 自身额度",
+      "date": "2026-10-29",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": [
@@ -276,7 +300,7 @@
       "handle": "vista8",
       "name": "vista8",
       "focus": "",
-      "source_count": 9,
+      "source_count": 10,
       "bookmarks": 0,
       "bookmark_metric": false,
       "topics": [
@@ -300,7 +324,7 @@
       "handle": "0xlangeai",
       "name": "0xlangeai",
       "focus": "",
-      "source_count": 1,
+      "source_count": 2,
       "bookmarks": 0,
       "bookmark_metric": false,
       "topics": [
