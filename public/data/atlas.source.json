@@ -45,6 +45,18 @@
   ],
   "sources": [
     {
+      "id": "prac-20261029-78fc87376f9b",
+      "url": "https://x.com/dotey/status/2115667965328977920",
+      "author": "dotey",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 baoyu-design 把 Claude Design 装进本地 Agent：先装技能再生成一版落地页验收",
+      "excerpt": "把设计引擎当成本地 Skill 安装后，界面稿与幻灯片可以直接落进你的项目目录，并和 Agent 预览来回改，不必再在网页 Artifacts 里导出。",
+      "origin": "practice",
+      "date": "2026-10-29",
+      "verified": false
+    },
+    {
       "id": "prac-20261029-92f0d7516f2b",
       "url": "https://x.com/dhh/status/2115575125223387320",
       "author": "dhh",

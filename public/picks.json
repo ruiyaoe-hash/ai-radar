@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29 12:08 北京时间",
+  "updated": "2026-10-29 16:15 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://airss.qiaomu.ai/",
@@ -14,6 +14,7 @@
     "https://developers.openai.com/api/docs/guides/decisions",
     "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
     "https://docs.mistral.ai/studio/conversations/responses",
+    "https://docs.particle.ai/",
     "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
     "https://gemini.google.com",
     "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure",
@@ -21,6 +22,7 @@
     "https://github.com/Graphify-Labs/graphify",
     "https://github.com/JimLiu/baocut",
     "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
+    "https://github.com/JimLiu/baoyu-design",
     "https://github.com/MiniMax-AI/OpenAgentCore",
     "https://github.com/Tencent-Hunyuan/Hy-Nomas",
     "https://github.com/alchaincyf/huashu-art-motion",
@@ -47,6 +49,7 @@
     "https://impeccable.style",
     "https://openai.com/index/decisions-api",
     "https://openai.com/index/introducing-gpt-6-1-terra",
+    "https://particle.ai",
     "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
     "https://rss.qiaomu.ai/",
     "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
@@ -59,9 +62,11 @@
     "https://x.ai/bot/xZ4wRvomWqzCXnyYFr7i3",
     "https://x.com/AravSrinivas/status/2113420151232352444",
     "https://x.com/AravSrinivas/status/2114021917586014449",
+    "https://x.com/AravSrinivas/status/2115510517871890511",
     "https://x.com/ArtificialAnlys/status/2113682654709313811",
     "https://x.com/Hailuo_AI/status/2113518150440595501",
     "https://x.com/Hailuo_AI/status/2113518153242497390",
+    "https://x.com/Suhail/status/2115497949421883648",
     "https://x.com/TencentHunyuan/status/2113676827114053892",
     "https://x.com/addyosmani/status/2113015448203862255",
     "https://x.com/anthropicai/status/2115178675050307942",
@@ -75,6 +80,7 @@
     "https://x.com/dotey/status/2114375050971296135",
     "https://x.com/dotey/status/2114790675279413738",
     "https://x.com/dotey/status/2115183164905906513",
+    "https://x.com/dotey/status/2115667965328977920",
     "https://x.com/geekcatx/status/2114667608188621074",
     "https://x.com/mistralai/status/2115443720371814478",
     "https://x.com/natolambert/status/2113682066374062528",
@@ -146,6 +152,8 @@
     "cand-20261028-da36115fd939",
     "cand-20261028-f2eb65605417",
     "cand-20261029-0accba52581d",
+    "cand-20261029-78fc87376f9b",
+    "cand-20261029-8d2dada04dc5",
     "cand-20261029-92f0d7516f2b",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
@@ -179,9 +187,11 @@
     "evt-20261028-synthid-gemini",
     "evt-20261028-tibot",
     "evt-20261028-word-atlas",
+    "evt-20261029-baoyu-design",
     "evt-20261029-basecamp-claude",
     "evt-20261029-gemini-4-carbon",
     "evt-20261029-mistral-responses-api",
+    "evt-20261029-particle-inference",
     "evt-20261029-qiaomu-ai-rss"
   ],
   "days": [
@@ -224,6 +234,69 @@
             "window": "若你做安全研究或已在 Fairwind / 防御方名单，按官方渠道申请试用；其他人先读博文与评测口径，等产品面开放再比价与对照 Argon。",
             "confidence": "高",
             "falsifier": "若官方撤回 Carbon 发布、Fairwind 长期不扩面且无产品排期，或独立评测与官方数字严重不符，就收回「Carbon 已构成可跟进的前沿安全/长程工程节点」。"
+          }
+        },
+        {
+          "schema_version": 2,
+          "id": "evt-20261029-particle-inference",
+          "status": "confirmed",
+          "tag": "工具",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "Particle 上线开权推理 API：OpenAI 兼容端点，主推更省 token 的 particle-1",
+          "date": "2026-10-29",
+          "time": "10-29 16:10",
+          "handle": "Suhail",
+          "url": "https://particle.ai",
+          "published_at": "2026-10-28T17:36:29Z",
+          "ingested_at": "2026-10-29T08:15:00Z",
+          "candidate_id": "cand-20261029-8d2dada04dc5",
+          "promotion_path": "normal",
+          "objective": [
+            "新公司 Particle 宣布面向开发者的开权模型推理层上线：提供 OpenAI 兼容的 Chat Completions 等接口，基址为 api.particle.ai；控制台在 platform.particle.ai 申请密钥。",
+            "文档写明默认模型 particle-1（约一百万 token 上下文，文本与图像输入），并同时提供 DeepSeek V4.1 Flash、GLM 5.3 Flash；支持流式、工具调用、Responses WebSocket 中途转向等。创始人 Suhail 称 particle-1 在性能持平下约少用四成五 token；Perplexity 创始人 Aravind 发帖表示将在搜索与编排等工具上合作。",
+            "产品页、开发者文档与两则一手/转发帖时间同日互相印证；本卡按可试用 API 记入工具，不作强制优先精选。"
+          ],
+          "sources": [
+            {
+              "url": "https://particle.ai",
+              "handle": "particle",
+              "role": "primary"
+            },
+            {
+              "url": "https://docs.particle.ai/",
+              "handle": "particle",
+              "role": "primary"
+            },
+            {
+              "url": "https://x.com/Suhail/status/2115497949421883648",
+              "handle": "Suhail",
+              "role": "report"
+            },
+            {
+              "url": "https://x.com/AravSrinivas/status/2115510517871890511",
+              "handle": "AravSrinivas",
+              "role": "report"
+            }
+          ],
+          "shift": "other",
+          "try_url": "https://docs.particle.ai/",
+          "access": "在 Particle 控制台注册并创建 API 密钥，把任意 OpenAI 兼容 SDK 或 Agent 框架的基址指到官方文档给出的接口，模型名先用 particle-1 做一条短请求验收。费用与额度以控制台为准。",
+          "integration": "适合已经在用开权模型、想换一档更省 token 或带中途转向能力的推理后端的人。可与现有 OpenAI SDK / 代理层并行对比延迟与账单后再决定是否切主路径。",
+          "first_step": "若你这周仍在为开权模型的 token 账单发愁：打开本卡试做链接，按入门示例用 particle-1 跑一条聊天请求，对照你现有后端的用量与质量再决定。",
+          "alternatives": [
+            "继续用 OpenRouter、一起火等开权聚合推理",
+            "自建 vLLM / SGLang 等本地或云上推理",
+            "直接调用各模型官方 API"
+          ],
+          "tool_radar": "值得关注",
+          "so_what": {
+            "lens": "工具",
+            "impact": "若你的应用已经走 OpenAI 兼容协议、又在意开权模型的 token 成本，Particle 提供可今天试的新后端，值得先小流量对比，不必立刻全量切换。",
+            "action": "持续观察",
+            "window": "本周用同一条评测提示对比 particle-1 与你现用后端的质量、延迟和账单；确认稳定与数据政策后再扩大流量。",
+            "confidence": "中",
+            "falsifier": "若控制台申请不到密钥、延迟或稳定性明显差于现用后端，或省 token 的宣称在你的负载上不成立，就不必改默认推理路径。"
           }
         }
       ]

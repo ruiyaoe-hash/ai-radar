@@ -1,0 +1,23 @@
+{
+  "id": "prac-20261029-78fc87376f9b",
+  "kind": "Skill / 工作流",
+  "title": "用 baoyu-design 把 Claude Design 装进本地 Agent：先装技能再生成一版落地页验收",
+  "author": "dotey",
+  "url": "https://x.com/dotey/status/2115667965328977920",
+  "time": "2026-10-29 16:10",
+  "takeaway": "把设计引擎当成本地 Skill 安装后，界面稿与幻灯片可以直接落进你的项目目录，并和 Agent 预览来回改，不必再在网页 Artifacts 里导出。",
+  "steps": [
+    "打开本卡试做链接阅读仓库说明，确认本机已有 Node.js 与你常用的编程助手。在目标项目目录执行安装命令，把 baoyu-design 技能装进该助手对应的技能目录；若只要幻灯片或仪表盘，也可按文档只装对应技能。",
+    "选定一个较强模型，让助手按刚装好的技能为当前项目生成一版简单落地页或幻灯片。用技能自带的本地预览或编辑器打开产物，改一处文案或布局并保存，确认文件写回项目目录后再决定是否扩大到仪表盘或设计系统。"
+  ],
+  "caution": "技能偏长，弱模型效果会明显下降。首次请在非关键仓库试装；导出与预览依赖本机 Node 版本。这里没有替你完成安装或生成。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "已安装 Node.js 的本机环境",
+    "Cursor、Claude Code 或 Codex 等支持 Skill 的编程助手"
+  ],
+  "estimated_time": "十几到几十分钟完成安装并跑通一版小样",
+  "verified": false,
+  "candidate_id": "cand-20261029-78fc87376f9b",
+  "try_url": "https://github.com/JimLiu/baoyu-design"
+}

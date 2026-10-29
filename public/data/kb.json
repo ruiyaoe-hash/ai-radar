@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-10-29 noon",
-  "updated": "2026-10-29 12:09 北京时间",
+  "updated": "2026-10-29 16:15 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,17 +43,29 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 19,
-      "creator_count": 7,
+      "source_count": 20,
+      "creator_count": 8,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 19,
+      "unverified_practice": 20,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
       "latest": "2026-10-29"
     }
   ],
   "sources": [
+    {
+      "id": "prac-20261029-78fc87376f9b",
+      "url": "https://x.com/dotey/status/2115667965328977920",
+      "author": "dotey",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 baoyu-design 把 Claude Design 装进本地 Agent：先装技能再生成一版落地页验收",
+      "excerpt": "把设计引擎当成本地 Skill 安装后，界面稿与幻灯片可以直接落进你的项目目录，并和 Agent 预览来回改，不必再在网页 Artifacts 里导出。",
+      "origin": "practice",
+      "date": "2026-10-29",
+      "verified": false
+    },
     {
       "id": "prac-20261029-92f0d7516f2b",
       "url": "https://x.com/dhh/status/2115575125223387320",
@@ -343,6 +355,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/dhh"
+    },
+    {
+      "handle": "dotey",
+      "name": "dotey",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/dotey"
     },
     {
       "handle": "geekcatx",

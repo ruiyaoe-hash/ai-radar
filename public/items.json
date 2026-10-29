@@ -1,8 +1,61 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-29 12:11 北京时间",
+  "updated": "2026-10-29 16:15 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261029-baoyu-design",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "baoyu-design v2：把 Claude Design / 幻灯片 / 仪表盘搬进本地 Agent Skill",
+      "date": "2026-10-29",
+      "time": "10-29 16:10",
+      "handle": "dotey",
+      "url": "https://github.com/JimLiu/baoyu-design",
+      "published_at": "2026-10-29T04:52:04Z",
+      "ingested_at": "2026-10-29T08:15:00Z",
+      "candidate_id": "cand-20261029-78fc87376f9b",
+      "promotion_path": "normal",
+      "objective": [
+        "开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。",
+        "推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。",
+        "宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/JimLiu/baoyu-design",
+          "handle": "JimLiu",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2115667965328977920",
+          "handle": "dotey",
+          "role": "report"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://github.com/JimLiu/baoyu-design",
+      "access": "需要本机已装 Node.js，以及 Cursor、Claude Code、Codex 等能读写文件的编程助手。打开本卡试做链接阅读仓库说明后，在目标项目里运行安装命令把技能装进对应目录；首次建议只装 baoyu-design 或再加幻灯片技能做验收。",
+      "integration": "适合已经在本地用 Agent 做界面稿、落地页、幻灯片或数据看板，却不想在网页 Artifacts 与本地仓库之间来回导出的人。产物进 git，可与设计系统技能共用。",
+      "first_step": "若你这周还在把设计稿从网页来回拷进项目：打开本卡试做链接，按说明安装技能，让助手为当前仓库生成一版简单落地页或幻灯片，再用本地预览改一处文案确认链路通。",
+      "alternatives": [
+        "继续只用 claude.ai/design 网页版 Artifacts",
+        "手写 HTML / 用 Figma 等传统设计工具",
+        "其他社区把设计流程写成的 Agent Skill"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。",
+        "action": "立即行动",
+        "window": "今天完成安装并用一版落地页或幻灯片跑通预览；确认模型与助手兼容后再扩到仪表盘或设计系统。",
+        "confidence": "中",
+        "falsifier": "若技能与你的助手不兼容、本机 Node 环境装不上，或生成质量明显差于你现有网页工作流，就不必为本工具改流程。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261029-basecamp-claude",
@@ -59,6 +112,69 @@
         "window": "今天完成授权并用一条真实项目问题验收；确认可见范围与写入风险后再开完整权限。",
         "confidence": "中",
         "falsifier": "若你根本不用 Basecamp、连接器在你的套餐里不可用，或只读问答经常答错/越权，就不必为本工具改工作流。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261029-particle-inference",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Particle 上线开权推理 API：OpenAI 兼容端点，主推更省 token 的 particle-1",
+      "date": "2026-10-29",
+      "time": "10-29 16:10",
+      "handle": "Suhail",
+      "url": "https://particle.ai",
+      "published_at": "2026-10-28T17:36:29Z",
+      "ingested_at": "2026-10-29T08:15:00Z",
+      "candidate_id": "cand-20261029-8d2dada04dc5",
+      "promotion_path": "normal",
+      "objective": [
+        "新公司 Particle 宣布面向开发者的开权模型推理层上线：提供 OpenAI 兼容的 Chat Completions 等接口，基址为 api.particle.ai；控制台在 platform.particle.ai 申请密钥。",
+        "文档写明默认模型 particle-1（约一百万 token 上下文，文本与图像输入），并同时提供 DeepSeek V4.1 Flash、GLM 5.3 Flash；支持流式、工具调用、Responses WebSocket 中途转向等。创始人 Suhail 称 particle-1 在性能持平下约少用四成五 token；Perplexity 创始人 Aravind 发帖表示将在搜索与编排等工具上合作。",
+        "产品页、开发者文档与两则一手/转发帖时间同日互相印证；本卡按可试用 API 记入工具，不作强制优先精选。"
+      ],
+      "sources": [
+        {
+          "url": "https://particle.ai",
+          "handle": "particle",
+          "role": "primary"
+        },
+        {
+          "url": "https://docs.particle.ai/",
+          "handle": "particle",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/Suhail/status/2115497949421883648",
+          "handle": "Suhail",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/AravSrinivas/status/2115510517871890511",
+          "handle": "AravSrinivas",
+          "role": "report"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://docs.particle.ai/",
+      "access": "在 Particle 控制台注册并创建 API 密钥，把任意 OpenAI 兼容 SDK 或 Agent 框架的基址指到官方文档给出的接口，模型名先用 particle-1 做一条短请求验收。费用与额度以控制台为准。",
+      "integration": "适合已经在用开权模型、想换一档更省 token 或带中途转向能力的推理后端的人。可与现有 OpenAI SDK / 代理层并行对比延迟与账单后再决定是否切主路径。",
+      "first_step": "若你这周仍在为开权模型的 token 账单发愁：打开本卡试做链接，按入门示例用 particle-1 跑一条聊天请求，对照你现有后端的用量与质量再决定。",
+      "alternatives": [
+        "继续用 OpenRouter、一起火等开权聚合推理",
+        "自建 vLLM / SGLang 等本地或云上推理",
+        "直接调用各模型官方 API"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "若你的应用已经走 OpenAI 兼容协议、又在意开权模型的 token 成本，Particle 提供可今天试的新后端，值得先小流量对比，不必立刻全量切换。",
+        "action": "持续观察",
+        "window": "本周用同一条评测提示对比 particle-1 与你现用后端的质量、延迟和账单；确认稳定与数据政策后再扩大流量。",
+        "confidence": "中",
+        "falsifier": "若控制台申请不到密钥、延迟或稳定性明显差于现用后端，或省 token 的宣称在你的负载上不成立，就不必改默认推理路径。"
       }
     },
     {

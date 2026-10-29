@@ -5,4 +5,9 @@ AI Radar · 信息精选（2026-10-29）
    建议：持续观察 · 若你做安全研究或已在 Fairwind / 防御方名单，按官方渠道申请试用；其他人先读博文与评测口径，等产品面开放再比价与对照 Argon。
    https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model
 
+2. Particle 上线开权推理 API：OpenAI 兼容端点，主推更省 token 的 particle-1
+   对你意味着什么：若你的应用已经走 OpenAI 兼容协议、又在意开权模型的 token 成本，Particle 提供可今天试的新后端，值得先小流量对比，不必立刻全量切换。
+   建议：持续观察 · 本周用同一条评测提示对比 particle-1 与你现用后端的质量、延迟和账单；确认稳定与数据政策后再扩大流量。
+   https://particle.ai
+
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html
