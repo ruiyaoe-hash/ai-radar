@@ -5,14 +5,28 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Thu, 29 Oct 2026 12:11:04 +0800</lastBuildDate>
+<lastBuildDate>Thu, 29 Oct 2026 16:15:06 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] baoyu-design v2：把 Claude Design / 幻灯片 / 仪表盘搬进本地 Agent Skill</title>
+<link>https://github.com/JimLiu/baoyu-design</link>
+<guid isPermaLink="false">evt-20261029-baoyu-design</guid>
+<pubDate>Thu, 29 Oct 2026 12:52:04 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。<br/>• 推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。<br/>• 宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。<br/><strong>对你意味着什么</strong> 如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。<br/>建议：立即行动 · 今天完成安装并用一版落地页或幻灯片跑通预览；确认模型与助手兼容后再扩到仪表盘或设计系统。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、本机 Node 环境装不上，或生成质量明显差于你现有网页工作流，就不必为本工具改流程。<br/>来源 JimLiu（一手）, dotey（转述）<br/>日期 2026-10-29]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] Basecamp 正式接入 Claude：用官方 MCP 连接器让助手查项目、写待办与发更新</title>
 <link>https://basecamp.com/ai</link>
 <guid isPermaLink="false">evt-20261029-basecamp-claude</guid>
 <pubDate>Thu, 29 Oct 2026 06:43:09 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 37signals / Basecamp 宣布官方 AI 连接器上线：把 Basecamp 接到 Claude、ChatGPT、Cursor 或 Grok 后，助手可按你的权限查看项目进展、逾期事项与讨论结论，也可代写待办、挪卡片与起草更新。<br/>• Claude 侧可在连接器目录打开 Basecamp，或按产品页说明添加官方托管连接器；授权时可选手动只读或完整读写。官方说明不另收费，包含在现有 Basecamp 账号里，且助手只能看到你本人可见的内容。<br/>• DHH 于北京时间 10 月 29 日凌晨发帖确认「Basecamp for Claude is live」，并指向 Claude 目录页；产品说明页与 MCP 地址互相印证。<br/><strong>对你意味着什么</strong> 如果你日常项目在 Basecamp、对话在 Claude，这条连接器把「查进度 / 写待办 / 起草更新」收进同一对话，值得今天先用只读权限试一条真实问题。<br/>建议：立即行动 · 今天完成授权并用一条真实项目问题验收；确认可见范围与写入风险后再开完整权限。<br/>有多确定：中<br/>什么情况下当这判断作废：若你根本不用 Basecamp、连接器在你的套餐里不可用，或只读问答经常答错/越权，就不必为本工具改工作流。<br/>来源 basecamp（一手）, anthropic（一手）, dhh（转述）<br/>日期 2026-10-29]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Particle 上线开权推理 API：OpenAI 兼容端点，主推更省 token 的 particle-1</title>
+<link>https://particle.ai</link>
+<guid isPermaLink="false">evt-20261029-particle-inference</guid>
+<pubDate>Thu, 29 Oct 2026 01:36:29 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 新公司 Particle 宣布面向开发者的开权模型推理层上线：提供 OpenAI 兼容的 Chat Completions 等接口，基址为 api.particle.ai；控制台在 platform.particle.ai 申请密钥。<br/>• 文档写明默认模型 particle-1（约一百万 token 上下文，文本与图像输入），并同时提供 DeepSeek V4.1 Flash、GLM 5.3 Flash；支持流式、工具调用、Responses WebSocket 中途转向等。创始人 Suhail 称 particle-1 在性能持平下约少用四成五 token；Perplexity 创始人 Aravind 发帖表示将在搜索与编排等工具上合作。<br/>• 产品页、开发者文档与两则一手/转发帖时间同日互相印证；本卡按可试用 API 记入工具，不作强制优先精选。<br/><strong>对你意味着什么</strong> 若你的应用已经走 OpenAI 兼容协议、又在意开权模型的 token 成本，Particle 提供可今天试的新后端，值得先小流量对比，不必立刻全量切换。<br/>建议：持续观察 · 本周用同一条评测提示对比 particle-1 与你现用后端的质量、延迟和账单；确认稳定与数据政策后再扩大流量。<br/>有多确定：中<br/>什么情况下当这判断作废：若控制台申请不到密钥、延迟或稳定性明显差于现用后端，或省 token 的宣称在你的负载上不成立，就不必改默认推理路径。<br/>来源 particle（一手）, particle（一手）, Suhail（转述）, AravSrinivas（转述）<br/>日期 2026-10-29]]></description>
 </item>
 <item>
 <title>[重磅 · 行业动态 · 发布] DeepMind 发布 Gemini 4 Carbon：强调长程工程与网络安全，本周先给部分防御方试用</title>
