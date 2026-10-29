@@ -1,0 +1,162 @@
+{
+  "date": "2026-10-29",
+  "count": 3,
+  "schema_version": 2,
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261029-gemini-4-carbon",
+      "status": "confirmed",
+      "tag": "发布",
+      "lens": "赛道",
+      "priority": "P0",
+      "title": "DeepMind 发布 Gemini 4 Carbon：强调长程工程与网络安全，本周先给部分防御方试用",
+      "date": "2026-10-29",
+      "time": "10-29 01:00",
+      "handle": "deepmind",
+      "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model",
+      "published_at": "2026-10-28T17:00:58Z",
+      "ingested_at": "2026-10-28T17:14:36Z",
+      "candidate_id": "cand-20261029-0accba52581d",
+      "promotion_path": "normal",
+      "objective": [
+        "Google DeepMind 于北京时间 10 月 29 日凌晨宣布 Gemini 4 Carbon：在 Gemini 4 Argon 两周后推出的下一代前沿模型，官方称在编码、智能体长程任务与网络安全防御评测上有明显提升。",
+        "对外数字包括 Artificial Analysis Intelligence Index v5.0 得分 59（榜首）、SEC-bench Pro 88.2%、ExploitGym 54.8%、CWE-bench 71.0%；WebDev Arena 升至约 1768 Elo（第 4）。官方还称内部安全代码生成成功率相对 Argon 提升逾两倍，间接提示注入评测攻击成功率降到 0.0%。",
+        "上线节奏刻意收紧：本周先向一部分网络安全防御方开放，再经 Fairwind 计划逐步扩到可信伙伴；面向开发者、企业与消费者的产品入口「尽快」跟进。入门价与 Argon 相同：百万输入 token 2 美元、输出 10 美元（缓存输入约九五折）；入门期结束后升至 4 / 20 美元。"
+      ],
+      "sources": [
+        {
+          "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model",
+          "handle": "deepmind",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "这是 DeepMind 在两周内连续推出的前沿模型，重点押在「能跑多天的工程智能体」和「找洞—验证—打补丁」的安全闭环；但普通开发者这周还拿不到通用入口，先把它当成赛道信号，而不是立刻换默认模型。",
+        "action": "持续观察",
+        "window": "若你做安全研究或已在 Fairwind / 防御方名单，按官方渠道申请试用；其他人先读博文与评测口径，等产品面开放再比价与对照 Argon。",
+        "confidence": "高",
+        "falsifier": "若官方撤回 Carbon 发布、Fairwind 长期不扩面且无产品排期，或独立评测与官方数字严重不符，就收回「Carbon 已构成可跟进的前沿安全/长程工程节点」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261029-mistral-responses-api",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Mistral 上线 Responses API 公开预览：用 OpenAI Responses 形态在 Mistral 上搭智能体",
+      "date": "2026-10-29",
+      "time": "10-29 08:00",
+      "handle": "mistralai",
+      "url": "https://docs.mistral.ai/studio/conversations/responses",
+      "published_at": "2026-10-28T14:01:00Z",
+      "ingested_at": "2026-10-28T14:21:19Z",
+      "candidate_id": "cand-20261028-9a22841f0552",
+      "promotion_path": "normal",
+      "block_ids": [
+        "cand-20261028-1b0164f4a988"
+      ],
+      "objective": [
+        "Mistral 宣布 Responses API 进入公开预览：接口对齐 OpenAI Responses 形态，一次响应里把模型回答、推理与工具调用拆成独立 output 项，方便应用逐步处理，而不是挤在传统 Chat Completions 里。",
+        "官方文档写明该 API 无状态：多轮要由应用自己把历史 output 再塞回 input。预览期支持文本、图片与文件输入、结构化输出、流式事件、客户端函数调用，以及按模型开放的 reasoning.effort。",
+        "服务已在欧盟与美国的 Mistral AI Cloud Inference 上提供；文档入口与官方 X 帖互相指向同一预览。"
+      ],
+      "sources": [
+        {
+          "url": "https://docs.mistral.ai/studio/conversations/responses",
+          "handle": "mistralai",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/mistralai/status/2115443720371814478",
+          "handle": "mistralai",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://docs.mistral.ai/studio/conversations/responses",
+      "access": "需要 Mistral 的接口密钥。先升级官方 SDK（Python 用 pip 安装 mistralai，Node 用 npm 安装同名包），再向官方 Responses 地址发请求。当前是公开预览，行为可能变化。",
+      "integration": "适合已经按 OpenAI Responses 写过客户端、想迁到或对照 Mistral 的团队；与 Mistral 另一套有状态的 Agents / Conversations API 分开，Responses 由你自己管历史。",
+      "first_step": "设好 MISTRAL_API_KEY，按文档用一条短 prompt 打通 /v1/responses，确认 output 数组里能看到回答（以及你启用的推理/工具项），再决定是否替换现有 Chat Completions 路径。",
+      "alternatives": [
+        "继续用 Mistral Chat Completions",
+        "继续用 OpenAI Responses API",
+        "改用 Mistral Agents API（服务端会话与内置工具）"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周在评「同一套 Responses 客户端能否换到 Mistral」，或想把回答、推理、工具调用拆开处理，这个预览值得今天打通一条请求；若你只用聊天补全且不迁供应商，可以先记在备选里。",
+        "action": "立即行动",
+        "window": "今天用文档里的最小示例跑通；确认流式与函数调用是否覆盖你的场景后再改生产路径。",
+        "confidence": "中",
+        "falsifier": "若预览缺你依赖的能力、欧/美区域不可用，或迁移动成本高于收益，就收回「这周用 Responses API 替换现有路径」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261029-qiaomu-ai-rss",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "乔木 AI 资讯：免费聚合 Newsletter / 播客并出中文，可装进 Obsidian 与 DeepSeek Harness",
+      "date": "2026-10-29",
+      "time": "10-29 08:10",
+      "handle": "vista8",
+      "url": "https://airss.qiaomu.ai/",
+      "published_at": "2026-10-28T14:10:19Z",
+      "ingested_at": "2026-10-28T14:21:19Z",
+      "candidate_id": "cand-20261028-b090d9d381ec",
+      "promotion_path": "normal",
+      "block_ids": [
+        "cand-20261028-c8519b2ccf09"
+      ],
+      "objective": [
+        "向阳乔木的「乔木 AI 资讯」提供网页版（rss.qiaomu.ai / airss.qiaomu.ai）、Obsidian 插件「Qiaomu AI RSS」，以及 DeepSeek Harness / Floatboat 社区插件：把常用 AI Newsletter、播客与精选源聚在一处，并给出中文翻译与改写阅读视图。",
+        "公开阅读与个人订阅在 Obsidian 侧不要求账号或模型密钥；各端数据不自动同步，可用 OPML 导入导出。中文圈 vista8 同日转述了网页、Obsidian 与 Harness 入口。",
+        "产品还收录 Product Hunt 与 GitHub Trending 等频道；Harness 伴读需要先配好宿主模型。"
+      ],
+      "sources": [
+        {
+          "url": "https://airss.qiaomu.ai/",
+          "handle": "qiaomu",
+          "role": "primary"
+        },
+        {
+          "url": "https://rss.qiaomu.ai/",
+          "handle": "qiaomu",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/vista8/status/2115446064593674587",
+          "handle": "vista8",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://rss.qiaomu.ai/",
+      "access": "网页版打开即可。Obsidian ≥1.13：设置 → 第三方插件 → 搜索 Qiaomu AI RSS 安装启用。Harness：从 GitHub 下 .tgz 与校验文件后用 dsh plugin add 安装社区插件。",
+      "integration": "适合每天要扫多源 AI 资讯、又希望中文阅读与摘录进知识库的人。笔记能力在 Obsidian；伴读在 Harness / Floatboat。各端订阅不互通。",
+      "first_step": "先打开 https://rss.qiaomu.ai/ 扫一遍精选；若你主力在 Obsidian，再装官方目录里的 Qiaomu AI RSS，用侧栏打开阅读器试一次摘录。",
+      "alternatives": [
+        "继续分站点看 Newsletter",
+        "只用通用 RSS 阅读器（无中文改写）",
+        "只用现有播客 / 邮件客户端"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周仍在多个 Newsletter 和英文源之间切换，这一套把「聚合 + 中文阅读 + 进 Obsidian/Harness」串起来了，值得先网页试用再决定装插件。",
+        "action": "立即行动",
+        "window": "今天先网页读三篇对照原文；确认改写可用后再装 Obsidian 或 Harness 插件。",
+        "confidence": "中",
+        "falsifier": "若精选源对你没用、中文质量不稳，或你已经有满意的 RSS 工作流，就不必为本工具改阅读习惯。"
+      }
+    }
+  ]
+}

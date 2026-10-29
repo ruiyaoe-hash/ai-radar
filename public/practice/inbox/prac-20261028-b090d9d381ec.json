@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261028-b090d9d381ec",
+  "kind": "工具用法",
+  "title": "先打开乔木 AI 资讯网页，再按需装 Obsidian 或 DeepSeek Harness 插件",
+  "author": "vista8",
+  "url": "https://x.com/vista8/status/2115446064593674587",
+  "time": "2026-10-28 22:10",
+  "takeaway": "用网页确认中文阅读是否合用，再把同一套资讯装进 Obsidian 摘录，或装进 DeepSeek Harness 做伴读。",
+  "steps": [
+    "打开 https://rss.qiaomu.ai/ 或 https://airss.qiaomu.ai/，订阅或浏览精选 Newsletter / 播客，对照「原文 · 中文翻译 · 乔木改写」读两三篇，确认质量后再决定装插件。",
+    "若要进知识库：在 Obsidian 1.13+ 打开设置 → 第三方插件 → 浏览，搜索并启用 Qiaomu AI RSS，用侧栏 RSS 图标打开阅读器并试一次摘录到日记。若要在 Harness 伴读：先装好 DeepSeek Harness，下载 qiaomu-rss-dsh 的 .tgz 与 SHA256SUMS，校验后执行 dsh plugin --profile desktop add \"$PWD/….tgz\"，重启对应 profile 后在侧栏打开「乔木 RSS」。"
+  ],
+  "caution": "各端订阅与已读不自动同步。Harness / Floatboat 伴读费用取决于你配置的宿主模型。社区插件非 DeepSeek / Floatboat 官方维护。这里没有替你完成安装。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "浏览器",
+    "若用 Obsidian：Obsidian 1.13+",
+    "若用 Harness：已安装的 DeepSeek Harness"
+  ],
+  "estimated_time": "网页试用几分钟；装插件约十五分钟",
+  "verified": false,
+  "candidate_id": "cand-20261028-b090d9d381ec",
+  "try_url": "https://rss.qiaomu.ai/"
+}

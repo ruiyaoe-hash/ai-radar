@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看行业动态。</description>
 <language>zh-cn</language>
-<lastBuildDate>Wed, 28 Oct 2026 12:05:39 +0800</lastBuildDate>
+<lastBuildDate>Thu, 29 Oct 2026 09:22:26 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[重磅 · 行业动态 · 发布] DeepMind 发布 Gemini 4 Carbon：强调长程工程与网络安全，本周先给部分防御方试用</title>
+<link>https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model</link>
+<guid isPermaLink="false">evt-20261029-gemini-4-carbon</guid>
+<pubDate>Thu, 29 Oct 2026 01:00:58 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Google DeepMind 于北京时间 10 月 29 日凌晨宣布 Gemini 4 Carbon：在 Gemini 4 Argon 两周后推出的下一代前沿模型，官方称在编码、智能体长程任务与网络安全防御评测上有明显提升。<br/>• 对外数字包括 Artificial Analysis Intelligence Index v5.0 得分 59（榜首）、SEC-bench Pro 88.2%、ExploitGym 54.8%、CWE-bench 71.0%；WebDev Arena 升至约 1768 Elo（第 4）。官方还称内部安全代码生成成功率相对 Argon 提升逾两倍，间接提示注入评测攻击成功率降到 0.0%。<br/>• 上线节奏刻意收紧：本周先向一部分网络安全防御方开放，再经 Fairwind 计划逐步扩到可信伙伴；面向开发者、企业与消费者的产品入口「尽快」跟进。入门价与 Argon 相同：百万输入 token 2 美元、输出 10 美元（缓存输入约九五折）；入门期结束后升至 4 / 20 美元。<br/><strong>对你意味着什么</strong> 这是 DeepMind 在两周内连续推出的前沿模型，重点押在「能跑多天的工程智能体」和「找洞—验证—打补丁」的安全闭环；但普通开发者这周还拿不到通用入口，先把它当成赛道信号，而不是立刻换默认模型。<br/>建议：持续观察 · 若你做安全研究或已在 Fairwind / 防御方名单，按官方渠道申请试用；其他人先读博文与评测口径，等产品面开放再比价与对照 Argon。<br/>有多确定：高<br/>什么情况下当这判断作废：若官方撤回 Carbon 发布、Fairwind 长期不扩面且无产品排期，或独立评测与官方数字严重不符，就收回「Carbon 已构成可跟进的前沿安全/长程工程节点」。<br/>来源 deepmind（一手）<br/>日期 2026-10-29]]></description>
+</item>
 <item>
 <title>[快讯 · 行业动态 · 发布] Anthropic：Claude 已深度参与六家新药研发，自研肌萎缩候选药最快 2028 年底进人体试验</title>
 <link>https://www.anthropic.com/research/early-progress-drug-development</link>

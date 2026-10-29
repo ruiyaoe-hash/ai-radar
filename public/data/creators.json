@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-28 20:59 北京时间",
+  "updated": "2026-10-29 09:22 北京时间",
   "creators": [
     {
       "handle": "vista8",
       "name": "vista8",
       "focus": "",
-      "source_count": 8,
+      "source_count": 9,
       "bookmarks": 0,
       "bookmark_metric": false,
       "topics": [
@@ -37,6 +37,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/0xlangeai"
+    },
+    {
+      "handle": "bozhou_ai",
+      "name": "bozhou_ai",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/bozhou_ai"
     },
     {
       "handle": "geekcatx",

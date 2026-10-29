@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-28 20:59 北京时间",
+  "updated": "2026-10-29 09:22 北京时间",
   "sources": [
     {
       "id": "prac-20261028-b43980f0330b",
@@ -191,6 +191,30 @@
       "title": "用乔木商业海报 Skill 从活动链接做出可扫码报名海报",
       "excerpt": "先装上乔木海报技能，再把活动链接做成可扫码报名海报。",
       "date": "2026-10-27",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261028-2a652b92ed25",
+      "url": "https://x.com/bozhou_ai/status/2115417242758439203",
+      "author": "bozhou_ai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "在 Claude Code 装 Delta 插件：用 /delta share 让同事加入同一会话与未提交改动",
+      "excerpt": "安装 Delta 的 Claude Code 插件后 /delta share，同事 /delta join 即可共享对话与未提交改动。",
+      "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261028-b090d9d381ec",
+      "url": "https://x.com/vista8/status/2115446064593674587",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "先打开乔木 AI 资讯网页，再按需装 Obsidian 或 DeepSeek Harness 插件",
+      "excerpt": "先网页试用乔木 AI 资讯中文阅读，再装 Obsidian 或 DeepSeek Harness 插件。",
+      "date": "2026-10-28",
       "origin": "practice",
       "verified": false
     }

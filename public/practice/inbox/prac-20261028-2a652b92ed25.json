@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261028-2a652b92ed25",
+  "kind": "工具用法",
+  "title": "在 Claude Code 装 Delta 插件：用 /delta share 让同事加入同一会话与未提交改动",
+  "author": "bozhou_ai",
+  "url": "https://x.com/bozhou_ai/status/2115417242758439203",
+  "time": "2026-10-28 20:15",
+  "takeaway": "先装 Delta 的 Claude Code 插件，在 Git 仓库里 /delta share 发链接；同事 /delta join 后即可带着完整对话与未提交改动一起改。",
+  "steps": [
+    "双方先在 Claude Code 里添加 Delta 插件市场并安装插件：运行「claude plugin marketplace add zed-industries/delta-claude」，再运行「claude plugin install delta@zed-industries」；然后新开一个会话，或在当前会话执行「/reload-plugins」。请确认 Claude Code 至少 2.1.303、Delta 至少 0.22.0，并在已配置 origin 远程的 Git 仓库目录中操作。",
+    "你在当前仓库的 Claude Code 里运行「/delta share」，选择团队或输入同事邮箱，复制链接发给对方；同事在自己的 Claude Code 里运行「/delta join」并粘贴该链接，信任新目录后即可在同步后的检出上继续同一线程。需要长期自动同步时，再运行「/delta setup」。"
+  ],
+  "caution": "功能处于 beta，行为可能变。分享会暴露对话与未提交改动，只发给可信同事。这里没有替你完成安装或登录。",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "Claude Code 2.1.303+",
+    "可写的 Git 仓库（含 origin）",
+    "同事同样安装插件"
+  ],
+  "estimated_time": "双方各十几分钟",
+  "verified": false,
+  "candidate_id": "cand-20261028-2a652b92ed25",
+  "try_url": "https://delta.dev/docs/cli/claude-code"
+}

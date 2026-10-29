@@ -1,7 +1,47 @@
 {
-  "updated": "2026-10-28 20:58 北京时间",
+  "updated": "2026-10-29 09:23 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261029-qiaomu-ai-rss",
+        "title": "乔木 AI 资讯：免费聚合 Newsletter / 播客并出中文，可装进 Obsidian 与 DeepSeek Harness",
+        "date": "2026-10-29",
+        "time": "10-29 08:10",
+        "try_url": "https://rss.qiaomu.ai/",
+        "access": "网页版打开即可。Obsidian ≥1.13：设置 → 第三方插件 → 搜索 Qiaomu AI RSS 安装启用。Harness：从 GitHub 下 .tgz 与校验文件后用 dsh plugin add 安装社区插件。",
+        "integration": "适合每天要扫多源 AI 资讯、又希望中文阅读与摘录进知识库的人。笔记能力在 Obsidian；伴读在 Harness / Floatboat。各端订阅不互通。",
+        "first_step": "先打开 https://rss.qiaomu.ai/ 扫一遍精选；若你主力在 Obsidian，再装官方目录里的 Qiaomu AI RSS，用侧栏打开阅读器试一次摘录。",
+        "summary": "向阳乔木的「乔木 AI 资讯」提供网页版（rss.qiaomu.ai / airss.qiaomu.ai）、Obsidian 插件「Qiaomu AI RSS」，以及 DeepSeek Harness / Floatboat 社区插件：把常用 AI Newsletter、播客与精选源聚在一处，并给出中文翻译与改写阅读视图。",
+        "audience_value": "如果你这周仍在多个 Newsletter 和英文源之间切换，这一套把「聚合 + 中文阅读 + 进 Obsidian/Harness」串起来了，值得先网页试用再决定装插件。",
+        "alternatives": [
+          "继续分站点看 Newsletter",
+          "只用通用 RSS 阅读器（无中文改写）",
+          "只用现有播客 / 邮件客户端"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261029-mistral-responses-api",
+        "title": "Mistral 上线 Responses API 公开预览：用 OpenAI Responses 形态在 Mistral 上搭智能体",
+        "date": "2026-10-29",
+        "time": "10-29 08:00",
+        "try_url": "https://docs.mistral.ai/studio/conversations/responses",
+        "access": "需要 Mistral 的接口密钥。先升级官方 SDK（Python 用 pip 安装 mistralai，Node 用 npm 安装同名包），再向官方 Responses 地址发请求。当前是公开预览，行为可能变化。",
+        "integration": "适合已经按 OpenAI Responses 写过客户端、想迁到或对照 Mistral 的团队；与 Mistral 另一套有状态的 Agents / Conversations API 分开，Responses 由你自己管历史。",
+        "first_step": "设好 MISTRAL_API_KEY，按文档用一条短 prompt 打通 /v1/responses，确认 output 数组里能看到回答（以及你启用的推理/工具项），再决定是否替换现有 Chat Completions 路径。",
+        "summary": "Mistral 宣布 Responses API 进入公开预览：接口对齐 OpenAI Responses 形态，一次响应里把模型回答、推理与工具调用拆成独立 output 项，方便应用逐步处理，而不是挤在传统 Chat Completions 里。",
+        "audience_value": "如果你这周在评「同一套 Responses 客户端能否换到 Mistral」，或想把回答、推理、工具调用拆开处理，这个预览值得今天打通一条请求；若你只用聊天补全且不迁供应商，可以先记在备选里。",
+        "alternatives": [
+          "继续用 Mistral Chat Completions",
+          "继续用 OpenAI Responses API",
+          "改用 Mistral Agents API（服务端会话与内置工具）"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261028-design-agent",
         "title": "LangChain 开源 design-agent：把品牌设计 Agent 装进团队 Slack",
@@ -600,6 +640,46 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261029-qiaomu-ai-rss",
+      "title": "乔木 AI 资讯：免费聚合 Newsletter / 播客并出中文，可装进 Obsidian 与 DeepSeek Harness",
+      "date": "2026-10-29",
+      "time": "10-29 08:10",
+      "try_url": "https://rss.qiaomu.ai/",
+      "access": "网页版打开即可。Obsidian ≥1.13：设置 → 第三方插件 → 搜索 Qiaomu AI RSS 安装启用。Harness：从 GitHub 下 .tgz 与校验文件后用 dsh plugin add 安装社区插件。",
+      "integration": "适合每天要扫多源 AI 资讯、又希望中文阅读与摘录进知识库的人。笔记能力在 Obsidian；伴读在 Harness / Floatboat。各端订阅不互通。",
+      "first_step": "先打开 https://rss.qiaomu.ai/ 扫一遍精选；若你主力在 Obsidian，再装官方目录里的 Qiaomu AI RSS，用侧栏打开阅读器试一次摘录。",
+      "summary": "向阳乔木的「乔木 AI 资讯」提供网页版（rss.qiaomu.ai / airss.qiaomu.ai）、Obsidian 插件「Qiaomu AI RSS」，以及 DeepSeek Harness / Floatboat 社区插件：把常用 AI Newsletter、播客与精选源聚在一处，并给出中文翻译与改写阅读视图。",
+      "audience_value": "如果你这周仍在多个 Newsletter 和英文源之间切换，这一套把「聚合 + 中文阅读 + 进 Obsidian/Harness」串起来了，值得先网页试用再决定装插件。",
+      "alternatives": [
+        "继续分站点看 Newsletter",
+        "只用通用 RSS 阅读器（无中文改写）",
+        "只用现有播客 / 邮件客户端"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
+    {
+      "id": "evt-20261029-mistral-responses-api",
+      "title": "Mistral 上线 Responses API 公开预览：用 OpenAI Responses 形态在 Mistral 上搭智能体",
+      "date": "2026-10-29",
+      "time": "10-29 08:00",
+      "try_url": "https://docs.mistral.ai/studio/conversations/responses",
+      "access": "需要 Mistral 的接口密钥。先升级官方 SDK（Python 用 pip 安装 mistralai，Node 用 npm 安装同名包），再向官方 Responses 地址发请求。当前是公开预览，行为可能变化。",
+      "integration": "适合已经按 OpenAI Responses 写过客户端、想迁到或对照 Mistral 的团队；与 Mistral 另一套有状态的 Agents / Conversations API 分开，Responses 由你自己管历史。",
+      "first_step": "设好 MISTRAL_API_KEY，按文档用一条短 prompt 打通 /v1/responses，确认 output 数组里能看到回答（以及你启用的推理/工具项），再决定是否替换现有 Chat Completions 路径。",
+      "summary": "Mistral 宣布 Responses API 进入公开预览：接口对齐 OpenAI Responses 形态，一次响应里把模型回答、推理与工具调用拆成独立 output 项，方便应用逐步处理，而不是挤在传统 Chat Completions 里。",
+      "audience_value": "如果你这周在评「同一套 Responses 客户端能否换到 Mistral」，或想把回答、推理、工具调用拆开处理，这个预览值得今天打通一条请求；若你只用聊天补全且不迁供应商，可以先记在备选里。",
+      "alternatives": [
+        "继续用 Mistral Chat Completions",
+        "继续用 OpenAI Responses API",
+        "改用 Mistral Agents API（服务端会话与内置工具）"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
     {
       "id": "evt-20261028-tibot",
       "title": "tibot：用 Grok Bot 模板盯提及与关键词，按日程出短摘要且不代发帖",
