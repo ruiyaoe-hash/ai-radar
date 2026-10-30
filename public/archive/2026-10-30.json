@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-30",
-  "generated_at": "2026-10-30T04:08:53Z",
+  "generated_at": "2026-10-30T08:20:00Z",
   "items": [
     {
       "schema_version": 2,
@@ -166,7 +166,108 @@
         "confidence": "高",
         "falsifier": "若你只用 Bedrock 等未放宽通道、或任务瓶颈其实是上下文窗口与计费而不是请求字节数，就不必为本改动改架构。"
       }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-claude-carplay",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Claude 语音模式接通 Apple CarPlay：开车时也能双手不离方向盘问问题",
+      "date": "2026-10-30",
+      "time": "10-30 16:15",
+      "handle": "claudeai",
+      "url": "https://x.com/claudeai/status/2115859388191912193",
+      "published_at": "2026-10-29T17:32:43Z",
+      "ingested_at": "2026-10-30T08:20:00Z",
+      "candidate_id": "cand-20261030-64a6c27b6815",
+      "promotion_path": "normal",
+      "objective": [
+        "Anthropic 官方账号 Claude 于北京时间约 10 月 30 日凌晨发帖确认：iPhone 上的 Claude 语音模式（voice mode）已支持 Apple CarPlay（车载互联），可在开车时用语音提问并保持双手在方向盘上。",
+        "同一条产品更新串还写明：iOS / Android 语音模式响应更快、嘈杂或轻声环境更好听清；非英语语音更自然；语音模式覆盖更多 Android 机型。本卡以 CarPlay 接通为一手可核事实。",
+        "中文圈账号归藏等同日转发官方帖；本卡以 Claude 官方帖为一手出处，不以二手评测榜单独定档。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/claudeai/status/2115859388191912193",
+          "handle": "claudeai",
+          "role": "primary"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://x.com/claudeai/status/2115859388191912193",
+      "access": "需要 iPhone 上已登录的 Claude 应用，以及支持 CarPlay 的车辆或车机。打开本卡试做链接核对官方说明后，把手机连上 CarPlay，用语音提一个短问题验收链路。",
+      "integration": "适合已经在用 Claude 聊天、又经常开车通勤、想把「路上随口问一句」接到同一助手的人。不替代车机导航或免提电话安全规范。",
+      "first_step": "若你这周通勤会开带 CarPlay 的车：先确认 iPhone Claude 已是最新版并登录，上车后连上 CarPlay，用语音问一个不涉操作车辆的短问题，确认能听到回复再考虑日常使用。",
+      "alternatives": [
+        "继续用手机免提或耳机语音模式，不走 CarPlay",
+        "用车机自带语音助手或 Siri",
+        "到目的地再打开 Claude 文字聊天"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你开车时也想继续用 Claude 问事，官方已把语音模式接到 CarPlay，今天就能在真实通勤里验收一次，而不必另装车机助手。",
+        "action": "可以试用",
+        "window": "下次通勤用一个短问题跑通；若你的车机或地区尚未出现 Claude，就先别改开车习惯。",
+        "confidence": "高",
+        "falsifier": "若你的车辆 / 系统版本不显示 Claude、语音无法启动，或当地法规不允许驾驶中使用，就不必为本能力改流程。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-ai-coding-hunt",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录",
+      "date": "2026-10-30",
+      "time": "10-30 16:18",
+      "handle": "vista8",
+      "url": "https://aicodinghunt.qiaomu.ai/",
+      "published_at": "2026-10-30T02:57:40Z",
+      "ingested_at": "2026-10-30T08:20:00Z",
+      "candidate_id": "cand-20261030-aae9c34727c3",
+      "promotion_path": "normal",
+      "objective": [
+        "向阳乔木（vista8）于北京时间 10 月 30 日下午发帖：把大家在 X 上自荐的 Vibe Coding（氛围编程）产品整理成网站 AI Coding Hunt，并附 Grok Bot 开发过程录屏。",
+        "站点自称中文优先的图文猎场：聚合 Agent、插件、CLI 与开源项目等社区真实在用条目，可用本站点赞 / 社区点赞 / 社区浏览排序，并提供在线投稿；页面写明数据来自自荐帖回复，不靠广告位。",
+        "主链 https://aicodinghunt.qiaomu.ai/ 可打开核对目录与关于说明；本卡以站点与发帖互相印证。"
+      ],
+      "sources": [
+        {
+          "url": "https://aicodinghunt.qiaomu.ai/",
+          "handle": "vista8",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/vista8/status/2116001563420586192",
+          "handle": "vista8",
+          "role": "report"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://aicodinghunt.qiaomu.ai/",
+      "access": "浏览器可打开即可，无需登录浏览。打开本卡试做链接后，按本站点赞或社区点赞排序翻几张卡片；要上架自己的项目可走站内投稿入口。",
+      "integration": "适合在找可下载、可复现的小工具 / Skill / 桌面端，又不想只盯单一厂商商店的人。可与本站工具决策卡交叉对照，不替代亲自试用验收。",
+      "first_step": "若你这周还在搜氛围编程小工具：打开本卡试做链接，用排序找到 2–3 个与你栈相关的条目，点进原项目页跑通一次安装或试用再决定是否收藏。",
+      "alternatives": [
+        "继续只在 GitHub / Product Hunt 搜索",
+        "只跟单一博主转发清单",
+        "自己维护一份私人书签而不用公共目录"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你经常在时间线上刷到自荐小工具却难回头找，这个中文目录把它们收成可排序猎场，今天就能按榜单挑两件亲自试。",
+        "action": "可以试用",
+        "window": "今天打开目录挑 2 个相关条目试用；若条目质量不稳或与你栈无关，就当发现渠道，不必改主力工具。",
+        "confidence": "中",
+        "falsifier": "若目录大量失效链接、硬广占满，或没有你需要的品类，就不必把它当成默认发现入口。"
+      }
     }
   ],
-  "count": 3
+  "count": 5
 }

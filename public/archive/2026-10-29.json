@@ -235,7 +235,8 @@
       "objective": [
         "开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。",
         "推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。",
-        "宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。"
+        "宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。",
+        "宝玉于北京时间 10 月 30 日下午宣布 baoyu-design v2.1：可在设计页与幻灯片上标记元素并添加评论，Agent 可读评论并回复；评论与项目数据同存。"
       ],
       "sources": [
         {
@@ -245,6 +246,11 @@
         },
         {
           "url": "https://x.com/dotey/status/2115667965328977920",
+          "handle": "dotey",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/dotey/status/2116060639533969759",
           "handle": "dotey",
           "role": "report"
         }

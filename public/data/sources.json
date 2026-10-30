@@ -1,7 +1,19 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-30 12:09 北京时间",
+  "updated": "2026-10-30 16:18 北京时间",
   "sources": [
+    {
+      "id": "prac-20261030-9ba6d8c9ae90",
+      "url": "https://x.com/shao__meng/status/2115991611306086574",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "给 Agent 一台电脑对照真界面：用代码做视频资产并收成 Skill",
+      "excerpt": "给 Agent 一台可操控电脑对照真界面，用代码做动效视频，做→对照→修后再收成 Skill。",
+      "origin": "practice",
+      "date": "2026-10-30",
+      "verified": false
+    },
     {
       "id": "prac-20261030-6339a69aad9d",
       "url": "https://x.com/shao__meng/status/2115986116482613486",
