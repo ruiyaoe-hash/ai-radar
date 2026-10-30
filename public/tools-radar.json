@@ -1,7 +1,47 @@
 {
-  "updated": "2026-10-29 21:01 北京时间",
+  "updated": "2026-10-30 09:25 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261030-pika-h3-flex",
+        "title": "Pika H3 Flex：开源权重视频模型，可带参考图与同步音轨加速迭代",
+        "date": "2026-10-30",
+        "time": "10-30 08:05",
+        "try_url": "https://pika.art/blog/pika-h3-flex",
+        "access": "云端可走 Pika API Club 试用；本机需按 GitHub / Hugging Face 说明准备合适 GPU 与依赖，并遵守模型许可证。上采样、分轨与加速栈为 Pika 托管功能，本地不一定具备。打开本卡试做链接读官方博文后，按你的环境选 API 或本机权重。",
+        "integration": "适合已经在做短视频、广告片或角色一致性、需要多参考与可拆音轨的创作者与研究者。可与现有剪辑时间线对接：先出草稿再上采样精修。",
+        "first_step": "若你这周要试一条带参考的短片：先打开官方博文，用 API Club 或本机权重跑一条 15 秒草稿；满意后再考虑上采样或分轨，不要一上来就上 4K。",
+        "summary": "Pika 于北京时间约 10 月 30 日发布 H3 Flex：在 MiniMax H3 上后训练的文生视频模型，面向专业创作者迭代。官方称可将生成压到约六步（相对约五十步），并在受控基准里用约七秒变换器计算生成 15 秒、768p、带同步立体声音频的片段（不等于端到端接口总耗时）。",
+        "audience_value": "如果你做视频还卡在「出片慢、参考带不进、音轨拆不开」，H3 Flex 把开源权重和专业迭代能力放在一起，值得今天先跑一条短草稿验收。",
+        "alternatives": [
+          "继续用 Runway / Luma 等闭源成片工具",
+          "其他开源文生视频权重（无 Pika 同款参考与分轨托管）",
+          "先手写分镜与素材，再交给传统剪辑流程"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261030-gemini-edit-files",
+        "title": "Gemini 聊天里直接生成并改 Docs / PDF / 表格 / 幻灯片",
+        "date": "2026-10-30",
+        "time": "10-30 08:00",
+        "try_url": "https://gemini.google.com/",
+        "access": "需要能打开 Gemini 应用的账号。PDF 可在网页或手机里预览编辑；Docs / Sheets / 幻灯片 / Markdown / 文本 / 代码目前只在网页端。打开本卡试做链接进 Gemini，用一句话让它生成一份短文档再全屏改一处即可验收。",
+        "integration": "适合写纪要、提纲、表格草案或短幻灯片、又不想在聊天和应用之间来回导出的人。产物可继续在 Google Workspace 里打开精修。",
+        "first_step": "若你这周还要写一份短提纲或复习 PDF：打开 Gemini 网页，上传素材或直接口述需求，让它生成文件后展开全屏改标题或一段正文，确认编辑链路通再扩大范围。",
+        "summary": "Google 于北京时间 10 月 30 日前后更新 Gemini 应用：可在同一条聊天里直接生成、全屏预览并编辑文件，覆盖 Google 文档、表格、幻灯片、PDF、Markdown、纯文本与代码。PDF 预览与编辑在网页与手机都可用；其余格式目前仅网页端。",
+        "audience_value": "如果你常用 Gemini 起草文档却卡在「复制粘贴进 Docs」，现在可以在聊天里直接改文件，今天就能少一次导出往返。",
+        "alternatives": [
+          "先在 Docs / Notion 里手写，再把成品贴回聊天",
+          "用 ChatGPT / Claude 等生成文案后手动粘贴进文档",
+          "继续只用 Gemini 出文字、在本地编辑器收尾"
+        ],
+        "status": "multi_source",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261029-runway-dev-plugin",
         "title": "Runway Dev 官方插件：一次给 Codex / Cursor 装上 MCP 与七个接入技能",
@@ -740,6 +780,46 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261030-pika-h3-flex",
+      "title": "Pika H3 Flex：开源权重视频模型，可带参考图与同步音轨加速迭代",
+      "date": "2026-10-30",
+      "time": "10-30 08:05",
+      "try_url": "https://pika.art/blog/pika-h3-flex",
+      "access": "云端可走 Pika API Club 试用；本机需按 GitHub / Hugging Face 说明准备合适 GPU 与依赖，并遵守模型许可证。上采样、分轨与加速栈为 Pika 托管功能，本地不一定具备。打开本卡试做链接读官方博文后，按你的环境选 API 或本机权重。",
+      "integration": "适合已经在做短视频、广告片或角色一致性、需要多参考与可拆音轨的创作者与研究者。可与现有剪辑时间线对接：先出草稿再上采样精修。",
+      "first_step": "若你这周要试一条带参考的短片：先打开官方博文，用 API Club 或本机权重跑一条 15 秒草稿；满意后再考虑上采样或分轨，不要一上来就上 4K。",
+      "summary": "Pika 于北京时间约 10 月 30 日发布 H3 Flex：在 MiniMax H3 上后训练的文生视频模型，面向专业创作者迭代。官方称可将生成压到约六步（相对约五十步），并在受控基准里用约七秒变换器计算生成 15 秒、768p、带同步立体声音频的片段（不等于端到端接口总耗时）。",
+      "audience_value": "如果你做视频还卡在「出片慢、参考带不进、音轨拆不开」，H3 Flex 把开源权重和专业迭代能力放在一起，值得今天先跑一条短草稿验收。",
+      "alternatives": [
+        "继续用 Runway / Luma 等闭源成片工具",
+        "其他开源文生视频权重（无 Pika 同款参考与分轨托管）",
+        "先手写分镜与素材，再交给传统剪辑流程"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
+    {
+      "id": "evt-20261030-gemini-edit-files",
+      "title": "Gemini 聊天里直接生成并改 Docs / PDF / 表格 / 幻灯片",
+      "date": "2026-10-30",
+      "time": "10-30 08:00",
+      "try_url": "https://gemini.google.com/",
+      "access": "需要能打开 Gemini 应用的账号。PDF 可在网页或手机里预览编辑；Docs / Sheets / 幻灯片 / Markdown / 文本 / 代码目前只在网页端。打开本卡试做链接进 Gemini，用一句话让它生成一份短文档再全屏改一处即可验收。",
+      "integration": "适合写纪要、提纲、表格草案或短幻灯片、又不想在聊天和应用之间来回导出的人。产物可继续在 Google Workspace 里打开精修。",
+      "first_step": "若你这周还要写一份短提纲或复习 PDF：打开 Gemini 网页，上传素材或直接口述需求，让它生成文件后展开全屏改标题或一段正文，确认编辑链路通再扩大范围。",
+      "summary": "Google 于北京时间 10 月 30 日前后更新 Gemini 应用：可在同一条聊天里直接生成、全屏预览并编辑文件，覆盖 Google 文档、表格、幻灯片、PDF、Markdown、纯文本与代码。PDF 预览与编辑在网页与手机都可用；其余格式目前仅网页端。",
+      "audience_value": "如果你常用 Gemini 起草文档却卡在「复制粘贴进 Docs」，现在可以在聊天里直接改文件，今天就能少一次导出往返。",
+      "alternatives": [
+        "先在 Docs / Notion 里手写，再把成品贴回聊天",
+        "用 ChatGPT / Claude 等生成文案后手动粘贴进文档",
+        "继续只用 Gemini 出文字、在本地编辑器收尾"
+      ],
+      "status": "multi_source",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
     {
       "id": "evt-20261029-runway-dev-plugin",
       "title": "Runway Dev 官方插件：一次给 Codex / Cursor 装上 MCP 与七个接入技能",

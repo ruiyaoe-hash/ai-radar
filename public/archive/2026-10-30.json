@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-30",
+  "generated_at": "2026-10-30T01:24:37Z",
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-gemini-edit-files",
+      "status": "multi_source",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Gemini 聊天里直接生成并改 Docs / PDF / 表格 / 幻灯片",
+      "date": "2026-10-30",
+      "time": "10-30 08:00",
+      "handle": "google",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/",
+      "published_at": "2026-10-29T16:00:00Z",
+      "ingested_at": "2026-10-30T01:24:37Z",
+      "candidate_id": "cand-20261030-2259899004aa",
+      "promotion_path": "normal",
+      "objective": [
+        "Google 于北京时间 10 月 30 日前后更新 Gemini 应用：可在同一条聊天里直接生成、全屏预览并编辑文件，覆盖 Google 文档、表格、幻灯片、PDF、Markdown、纯文本与代码。PDF 预览与编辑在网页与手机都可用；其余格式目前仅网页端。",
+        "用法是：让 Gemini 先出一版文件（例如根据手写笔记生成 PDF 复习提纲），再展开全屏自己改字，或圈出一段让 Gemini 改文案与图示，也可继续追问内容。官方称已对 Gemini 应用已开放的语言面向全部用户开放。",
+        "媒体 The Verge 同日报道了同一能力；本卡以 Google 官方博文为一手出处。"
+      ],
+      "sources": [
+        {
+          "url": "https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/",
+          "handle": "google",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs",
+          "handle": "verge",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://gemini.google.com/",
+      "access": "需要能打开 Gemini 应用的账号。PDF 可在网页或手机里预览编辑；Docs / Sheets / 幻灯片 / Markdown / 文本 / 代码目前只在网页端。打开本卡试做链接进 Gemini，用一句话让它生成一份短文档再全屏改一处即可验收。",
+      "integration": "适合写纪要、提纲、表格草案或短幻灯片、又不想在聊天和应用之间来回导出的人。产物可继续在 Google Workspace 里打开精修。",
+      "first_step": "若你这周还要写一份短提纲或复习 PDF：打开 Gemini 网页，上传素材或直接口述需求，让它生成文件后展开全屏改标题或一段正文，确认编辑链路通再扩大范围。",
+      "alternatives": [
+        "先在 Docs / Notion 里手写，再把成品贴回聊天",
+        "用 ChatGPT / Claude 等生成文案后手动粘贴进文档",
+        "继续只用 Gemini 出文字、在本地编辑器收尾"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你常用 Gemini 起草文档却卡在「复制粘贴进 Docs」，现在可以在聊天里直接改文件，今天就能少一次导出往返。",
+        "action": "立即行动",
+        "window": "今天用一份真实短稿跑通「生成 → 全屏改 → 再让 Gemini 改一段」；确认网页端可用后再把流程扩到表格或幻灯片。",
+        "confidence": "高",
+        "falsifier": "若你所在语言或套餐尚未开放、网页端打不开编辑，或改完无法导出到自己工作流，就不必为本能力改习惯。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-pika-h3-flex",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Pika H3 Flex：开源权重视频模型，可带参考图与同步音轨加速迭代",
+      "date": "2026-10-30",
+      "time": "10-30 08:05",
+      "handle": "pika",
+      "url": "https://pika.art/blog/pika-h3-flex",
+      "published_at": "2026-10-29T16:00:00Z",
+      "ingested_at": "2026-10-30T01:24:37Z",
+      "candidate_id": "cand-20261030-4e7604b57b9c",
+      "promotion_path": "normal",
+      "objective": [
+        "Pika 于北京时间约 10 月 30 日发布 H3 Flex：在 MiniMax H3 上后训练的文生视频模型，面向专业创作者迭代。官方称可将生成压到约六步（相对约五十步），并在受控基准里用约七秒变换器计算生成 15 秒、768p、带同步立体声音频的片段（不等于端到端接口总耗时）。",
+        "能力包括最多 12 个参考（图 / 视频 / 音频）、参考引导剪辑、以及经 Pika API 可选的五轨音频分离（对白 / 配乐 / 音效 / 拟音 / 环境）。草稿可在 480p 或 768p 生成，再经 Pika 托管上采样到 1080p / 2K / 4K。开源部分覆盖生成适配器与推理代码（文生视频、首末帧、多模态参考生视频等）；上采样、分轨与加速服务仍为托管能力。",
+        "权重与代码分别在 Hugging Face（Pika-Labs/Pika-H3-Flex）与 GitHub；网页创作产品计划约 11 月 2 日接入。AlphaSignal 等同日转述了开源与加速要点；本卡以 Pika 官方博文为一手出处。"
+      ],
+      "sources": [
+        {
+          "url": "https://pika.art/blog/pika-h3-flex",
+          "handle": "pika",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/Pika-Labs/Pika-H3-Flex",
+          "handle": "pika",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/Pika-Labs/Pika-H3-Flex",
+          "handle": "pika",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://pika.art/blog/pika-h3-flex",
+      "access": "云端可走 Pika API Club 试用；本机需按 GitHub / Hugging Face 说明准备合适 GPU 与依赖，并遵守模型许可证。上采样、分轨与加速栈为 Pika 托管功能，本地不一定具备。打开本卡试做链接读官方博文后，按你的环境选 API 或本机权重。",
+      "integration": "适合已经在做短视频、广告片或角色一致性、需要多参考与可拆音轨的创作者与研究者。可与现有剪辑时间线对接：先出草稿再上采样精修。",
+      "first_step": "若你这周要试一条带参考的短片：先打开官方博文，用 API Club 或本机权重跑一条 15 秒草稿；满意后再考虑上采样或分轨，不要一上来就上 4K。",
+      "alternatives": [
+        "继续用 Runway / Luma 等闭源成片工具",
+        "其他开源文生视频权重（无 Pika 同款参考与分轨托管）",
+        "先手写分镜与素材，再交给传统剪辑流程"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你做视频还卡在「出片慢、参考带不进、音轨拆不开」，H3 Flex 把开源权重和专业迭代能力放在一起，值得今天先跑一条短草稿验收。",
+        "action": "立即行动",
+        "window": "今天完成一条短草稿（API 或本机二选一）；确认画质与参考是否够用，再决定是否接入托管上采样或等 11 月 2 日产品端。",
+        "confidence": "中",
+        "falsifier": "若本机显存不够、许可证与商用场景冲突，或草稿质量明显差于你现有闭源工具，就不必为本模型改管线。"
+      }
+    }
+  ],
+  "count": 2
+}

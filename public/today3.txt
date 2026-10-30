@@ -1,13 +1,8 @@
-AI Radar · 信息精选（2026-10-29）
+AI Radar · 信息精选（2026-10-30）
 
-1. DeepMind 发布 Gemini 4 Carbon：强调长程工程与网络安全，本周先给部分防御方试用
-   对你意味着什么：这是 DeepMind 在两周内连续推出的前沿模型，重点押在「能跑多天的工程智能体」和「找洞—验证—打补丁」的安全闭环；但普通开发者这周还拿不到通用入口，先把它当成赛道信号，而不是立刻换默认模型。
-   建议：持续观察 · 若你做安全研究或已在 Fairwind / 防御方名单，按官方渠道申请试用；其他人先读博文与评测口径，等产品面开放再比价与对照 Argon。
-   https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model
-
-2. Particle 上线开权推理 API：OpenAI 兼容端点，主推更省 token 的 particle-1
-   对你意味着什么：若你的应用已经走 OpenAI 兼容协议、又在意开权模型的 token 成本，Particle 提供可今天试的新后端，值得先小流量对比，不必立刻全量切换。
-   建议：持续观察 · 本周用同一条评测提示对比 particle-1 与你现用后端的质量、延迟和账单；确认稳定与数据政策后再扩大流量。
-   https://particle.ai
+1. Gemini 聊天里直接生成并改 Docs / PDF / 表格 / 幻灯片
+   对你意味着什么：如果你常用 Gemini 起草文档却卡在「复制粘贴进 Docs」，现在可以在聊天里直接改文件，今天就能少一次导出往返。
+   建议：立即行动 · 今天用一份真实短稿跑通「生成 → 全屏改 → 再让 Gemini 改一段」；确认网页端可用后再把流程扩到表格或幻灯片。
+   https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html
