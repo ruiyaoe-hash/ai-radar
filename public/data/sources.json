@@ -1,7 +1,19 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-30 16:18 北京时间",
+  "updated": "2026-10-30 21:06 北京时间",
   "sources": [
+    {
+      "id": "prac-20261030-4792ab46bb30",
+      "url": "https://huggingface.co/blog/mistral-large4",
+      "author": "huggingface-blog",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "试跑 Mistral Large 4：先选权重格式，再起服务问一句验收",
+      "excerpt": "按机器选 FP8 / NVFP4 / GGUF，用端点或本机推理起服务，用一句问答验收后再对照旧底座。",
+      "origin": "practice",
+      "date": "2026-10-30",
+      "verified": false
+    },
     {
       "id": "prac-20261030-9ba6d8c9ae90",
       "url": "https://x.com/shao__meng/status/2115991611306086574",

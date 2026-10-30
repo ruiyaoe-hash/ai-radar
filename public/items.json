@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-30 16:21 北京时间",
+  "updated": "2026-10-30 21:08 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
     {
@@ -388,6 +388,59 @@
         "window": "本周用 MOCK 与一条真实草稿验收改写质量与费用；确认不泄露敏感内容后再考虑是否分享给同事。",
         "confidence": "中",
         "falsifier": "若本机 Python 跑不起来、改写总编造事实，或你更习惯直接在大模型对话框里改，就不必为本工具改习惯。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-mistral-large-4",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Mistral Large 4（Le Chonk）开源权重上架 Hugging Face：多模态 MoE，可本机或端点试跑",
+      "date": "2026-10-30",
+      "time": "10-30 21:05",
+      "handle": "huggingface-blog",
+      "url": "https://huggingface.co/blog/mistral-large4",
+      "published_at": "2026-10-29T00:00:00Z",
+      "ingested_at": "2026-10-30T13:05:00Z",
+      "candidate_id": "cand-20261029-4792ab46bb30",
+      "promotion_path": "normal",
+      "objective": [
+        "Hugging Face 于北京时间约 10 月 29 日发文，欢迎 Mistral Large 4（别名 Le Chonk）开源权重上架：约 1 万亿总参数、约 490 亿激活参数的专家混合模型，可同时吃文本与图片，上下文约 100 万 token；官方提供 FP8 与 NVFP4 两种精度，社区另有 GGUF 量化包。",
+        "当天起即可按文档用 Transformers、vLLM、llama.cpp 推理，也可用 Hugging Face 推理端点或戴尔企业中枢部署；许可证是 Mistral 生态开源权重许可（由 MIT 衍生，对「把模型当云服务卖」另有限制）。",
+        "官方更强调网络安全防御、编程智能体与多模态场景；榜面数字以原文为准。本卡以 Hugging Face 博文与合集为一手出处。"
+      ],
+      "sources": [
+        {
+          "url": "https://huggingface.co/blog/mistral-large4",
+          "handle": "huggingface-blog",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/collections/mistralai/mistral-large-4",
+          "handle": "mistralai",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://huggingface.co/blog/mistral-large4",
+      "access": "需要能访问 Hugging Face。本机试跑通常要多卡或很大内存（低比特量化可在高内存苹果芯片上试）；也可用文内推理端点配方在云端起服务。打开本卡试做链接核对合集与许可证后再下载或部署。",
+      "integration": "适合已经在自建推理、做编程或安全防御智能体、又想换一档开源多模态底座对照的人。这不是点开网页就能聊天的消费产品；密钥与算力费用自理。",
+      "first_step": "若你这周要给开源智能体换底座：打开本卡试做链接，进入 Mistral Large 4 合集，按机器选 FP8、NVFP4 或 GGUF 之一；用推理端点一键部署，或按文档用 llama.cpp / vLLM 起服务，发一句纯文本或带图问题，确认能回复后再谈接入。",
+      "alternatives": [
+        "继续用 DeepSeek V4.1 Flash 等已在跑的开权编程线",
+        "继续用 Claude / GPT 等闭源 API",
+        "只读榜面、先不下载权重"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "若你自建推理或要开源多模态编程/安全智能体底座，Large 4 权重与首日工具链已公开，本周就能按机器选一版跑通验收，而不必只盯闭源接口。",
+        "action": "立即行动",
+        "window": "权重与文档已公开；本周用同一批小任务对照你现有开权或 API 线。",
+        "confidence": "高",
+        "falsifier": "若你的机器装不下、许可证限制挡住你的分发形态，或在你的任务上明显弱于现有底座，就维持旧线并只把 Large 4 当对照样本。"
       }
     },
     {

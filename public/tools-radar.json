@@ -1,7 +1,27 @@
 {
-  "updated": "2026-10-30 16:17 北京时间",
+  "updated": "2026-10-30 21:08 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261030-mistral-large-4",
+        "title": "Mistral Large 4（Le Chonk）开源权重上架 Hugging Face：多模态 MoE，可本机或端点试跑",
+        "date": "2026-10-30",
+        "time": "10-30 21:05",
+        "try_url": "https://huggingface.co/blog/mistral-large4",
+        "access": "需要能访问 Hugging Face。本机试跑通常要多卡或很大内存（低比特量化可在高内存苹果芯片上试）；也可用文内推理端点配方在云端起服务。打开本卡试做链接核对合集与许可证后再下载或部署。",
+        "integration": "适合已经在自建推理、做编程或安全防御智能体、又想换一档开源多模态底座对照的人。这不是点开网页就能聊天的消费产品；密钥与算力费用自理。",
+        "first_step": "若你这周要给开源智能体换底座：打开本卡试做链接，进入 Mistral Large 4 合集，按机器选 FP8、NVFP4 或 GGUF 之一；用推理端点一键部署，或按文档用 llama.cpp / vLLM 起服务，发一句纯文本或带图问题，确认能回复后再谈接入。",
+        "summary": "Hugging Face 于北京时间约 10 月 29 日发文，欢迎 Mistral Large 4（别名 Le Chonk）开源权重上架：约 1 万亿总参数、约 490 亿激活参数的专家混合模型，可同时吃文本与图片，上下文约 100 万 token；官方提供 FP8 与 NVFP4 两种精度，社区另有 GGUF 量化包。",
+        "audience_value": "若你自建推理或要开源多模态编程/安全智能体底座，Large 4 权重与首日工具链已公开，本周就能按机器选一版跑通验收，而不必只盯闭源接口。",
+        "alternatives": [
+          "继续用 DeepSeek V4.1 Flash 等已在跑的开权编程线",
+          "继续用 Claude / GPT 等闭源 API",
+          "只读榜面、先不下载权重"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261030-claude-api-128mb",
         "title": "Claude API 单次请求上限提到 128 MB：大 PDF 与长截图会话少卡一次",
@@ -840,6 +860,26 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261030-mistral-large-4",
+      "title": "Mistral Large 4（Le Chonk）开源权重上架 Hugging Face：多模态 MoE，可本机或端点试跑",
+      "date": "2026-10-30",
+      "time": "10-30 21:05",
+      "try_url": "https://huggingface.co/blog/mistral-large4",
+      "access": "需要能访问 Hugging Face。本机试跑通常要多卡或很大内存（低比特量化可在高内存苹果芯片上试）；也可用文内推理端点配方在云端起服务。打开本卡试做链接核对合集与许可证后再下载或部署。",
+      "integration": "适合已经在自建推理、做编程或安全防御智能体、又想换一档开源多模态底座对照的人。这不是点开网页就能聊天的消费产品；密钥与算力费用自理。",
+      "first_step": "若你这周要给开源智能体换底座：打开本卡试做链接，进入 Mistral Large 4 合集，按机器选 FP8、NVFP4 或 GGUF 之一；用推理端点一键部署，或按文档用 llama.cpp / vLLM 起服务，发一句纯文本或带图问题，确认能回复后再谈接入。",
+      "summary": "Hugging Face 于北京时间约 10 月 29 日发文，欢迎 Mistral Large 4（别名 Le Chonk）开源权重上架：约 1 万亿总参数、约 490 亿激活参数的专家混合模型，可同时吃文本与图片，上下文约 100 万 token；官方提供 FP8 与 NVFP4 两种精度，社区另有 GGUF 量化包。",
+      "audience_value": "若你自建推理或要开源多模态编程/安全智能体底座，Large 4 权重与首日工具链已公开，本周就能按机器选一版跑通验收，而不必只盯闭源接口。",
+      "alternatives": [
+        "继续用 DeepSeek V4.1 Flash 等已在跑的开权编程线",
+        "继续用 Claude / GPT 等闭源 API",
+        "只读榜面、先不下载权重"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
     {
       "id": "evt-20261030-ai-coding-hunt",
       "title": "AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录",

@@ -5,7 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Fri, 30 Oct 2026 16:21:49 +0800</lastBuildDate>
+<lastBuildDate>Fri, 30 Oct 2026 21:08:44 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>[快讯 · 新工具 · 工具] AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录</title>
@@ -55,6 +55,13 @@
 <guid isPermaLink="false">evt-20261029-qingshang-waigua</guid>
 <pubDate>Thu, 29 Oct 2026 12:43:40 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 作者 AYi 开源「情商外挂」（MIT）：两个文件、零第三方依赖的本地网页工具。把带火气的草稿贴进去，选对方身份（客户/上级/同事等）与语气（温和/坚定/直接），先标刺耳词，再给出可直接发的改写；规则提炼自其《非暴力沟通》Agent Skill。<br/>• 默认在本机 127.0.0.1:8787 运行，兼容任意 OpenAI 格式接口；可用 MOCK=1 不接模型先看界面。长文还演示用第三方穿透把本地页发成链接给同事，但核心价值是本机改写链路，分享方式可自选。<br/>• 原作者长文与 GitHub README 步骤一致；中文圈转述指向同一仓库。本卡按可试用小工具记入工具决策（值得关注），并同步实战手册；不作信息精选。<br/><strong>对你意味着什么</strong> 如果你常在发送前卡壳，这套开源本地页把「标刺耳词 + 按身份改写」收成可今天跑通的小工具；先当本机助手试，不必为分享链路先上云。<br/>建议：持续观察 · 本周用 MOCK 与一条真实草稿验收改写质量与费用；确认不泄露敏感内容后再考虑是否分享给同事。<br/>有多确定：中<br/>什么情况下当这判断作废：若本机 Python 跑不起来、改写总编造事实，或你更习惯直接在大模型对话框里改，就不必为本工具改习惯。<br/>来源 ayi-ai（一手）, AYi_AInotes（一手）, 0xlangeai（转述）<br/>日期 2026-10-29]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Mistral Large 4（Le Chonk）开源权重上架 Hugging Face：多模态 MoE，可本机或端点试跑</title>
+<link>https://huggingface.co/blog/mistral-large4</link>
+<guid isPermaLink="false">evt-20261030-mistral-large-4</guid>
+<pubDate>Thu, 29 Oct 2026 08:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Hugging Face 于北京时间约 10 月 29 日发文，欢迎 Mistral Large 4（别名 Le Chonk）开源权重上架：约 1 万亿总参数、约 490 亿激活参数的专家混合模型，可同时吃文本与图片，上下文约 100 万 token；官方提供 FP8 与 NVFP4 两种精度，社区另有 GGUF 量化包。<br/>• 当天起即可按文档用 Transformers、vLLM、llama.cpp 推理，也可用 Hugging Face 推理端点或戴尔企业中枢部署；许可证是 Mistral 生态开源权重许可（由 MIT 衍生，对「把模型当云服务卖」另有限制）。<br/>• 官方更强调网络安全防御、编程智能体与多模态场景；榜面数字以原文为准。本卡以 Hugging Face 博文与合集为一手出处。<br/><strong>对你意味着什么</strong> 若你自建推理或要开源多模态编程/安全智能体底座，Large 4 权重与首日工具链已公开，本周就能按机器选一版跑通验收，而不必只盯闭源接口。<br/>建议：立即行动 · 权重与文档已公开；本周用同一批小任务对照你现有开权或 API 线。<br/>有多确定：高<br/>什么情况下当这判断作废：若你的机器装不下、许可证限制挡住你的分发形态，或在你的任务上明显弱于现有底座，就维持旧线并只把 Large 4 当对照样本。<br/>来源 huggingface-blog（一手）, mistralai（一手）<br/>日期 2026-10-30]]></description>
 </item>
 <item>
 <title>[快讯 · 新工具 · 工具] Basecamp 正式接入 Claude：用官方 MCP 连接器让助手查项目、写待办与发更新</title>

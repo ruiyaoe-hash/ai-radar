@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-30T08:21:49Z",
+  "generated_at": "2026-10-30T13:08:17Z",
   "note": "建议清单。held 还要人工确认；blocked_unverified 不能写手册；no_topic 要人指定主题。这里不是上站。",
   "items": [
     {
@@ -247,6 +247,17 @@
     },
     {
       "id": "prac-20261030-33f55775a138",
+      "topic": "hands-on",
+      "reason": "已在图谱归入 hands-on（跟着做）。verified=false，不能当作已上站的完备课程，也不会写入手册。",
+      "verified": false,
+      "apply": "blocked_unverified",
+      "lane": "public_practice",
+      "matched_on": [
+        "atlas:hands-on"
+      ]
+    },
+    {
+      "id": "prac-20261030-4792ab46bb30",
       "topic": "hands-on",
       "reason": "已在图谱归入 hands-on（跟着做）。verified=false，不能当作已上站的完备课程，也不会写入手册。",
       "verified": false,

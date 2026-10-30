@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30 16:21 北京时间",
+  "updated": "2026-10-30 21:05 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://aicodinghunt.qiaomu.ai/",
@@ -51,7 +51,9 @@
     "https://huggingface.co/Pika-Labs/Pika-H3-Flex",
     "https://huggingface.co/baidu/Unlimited-OCR-2",
     "https://huggingface.co/blog/LiquidAI/lfm3",
+    "https://huggingface.co/blog/mistral-large4",
     "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
+    "https://huggingface.co/collections/mistralai/mistral-large-4",
     "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
     "https://huggingface.co/tencent/Hy-Nomas",
     "https://impeccable.style",
@@ -170,6 +172,7 @@
     "cand-20261028-da36115fd939",
     "cand-20261028-f2eb65605417",
     "cand-20261029-0accba52581d",
+    "cand-20261029-4792ab46bb30",
     "cand-20261029-78fc87376f9b",
     "cand-20261029-8d2dada04dc5",
     "cand-20261029-92f0d7516f2b",
@@ -224,6 +227,7 @@
     "evt-20261030-claude-api-128mb",
     "evt-20261030-claude-carplay",
     "evt-20261030-gemini-edit-files",
+    "evt-20261030-mistral-large-4",
     "evt-20261030-pika-h3-flex"
   ],
   "days": [
