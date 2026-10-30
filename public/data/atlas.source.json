@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot": "2026-10-30 morning",
+  "snapshot": "2026-10-30 noon",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -44,6 +44,18 @@
     }
   ],
   "sources": [
+    {
+      "id": "prac-20261030-6339a69aad9d",
+      "url": "https://x.com/shao__meng/status/2115986116482613486",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "Opus 5.5 少堆提示词：一条说清目标与验收，再让 Claude Code 自己跑完",
+      "excerpt": "对更强的 Claude 5 系列，与其继续写长系统提示和手把手拆任务，不如一条说清要做成什么、如何证明做完，让模型自己跑并在验收通过后停下。",
+      "origin": "practice",
+      "date": "2026-10-30",
+      "verified": false
+    },
     {
       "id": "prac-20261030-33f55775a138",
       "url": "https://x.com/0xlangeai/status/2115693961876795842",

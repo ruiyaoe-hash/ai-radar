@@ -1,9 +1,24 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-30T01:24:37Z",
+  "updated": "2026-10-30T04:08:53Z",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261030-56a6f9b20787",
+      "level": "L2",
+      "date": "2026-10-30",
+      "time": "10-30 12:05",
+      "title": "ChatGPT Pro / Business Premium：Work 与 Codex 用量翻倍，Pro 200 减半计划取消",
+      "summary": "OpenAI 于北京时间约 10 月 30 日在帮助中心确认：Pro 100 / Pro 500 与 Business Premium 的 Work（工作）与 Codex（编程助手）纳入用量翻倍；此前计划下调的 Pro 200 额度取消，低档额度用户同步翻倍到与高档一致。Plus 用量不变；Dots（常驻助手）额度仍与默认用量分开。",
+      "why": "这是面向付费订阅的即时额度政策回摆，影响本周还能不能继续高强度用 Work / Codex，而不是新模型发布。",
+      "affect": "已订 Pro 100 / 200 / 500 或 Business Premium 的人今天打开账户即可用更高纳入额度，无需改订阅；Plus 用户不受益。不要把翻倍理解成任务数一定翻倍——仍取决于模型与任务设置。",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "source": "openai",
+      "lens": "时机",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261030-56a6f9b20787"
+    },
     {
       "id": "brf-20261030-ceeb58ea1d7d",
       "level": "L2",

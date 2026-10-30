@@ -1,7 +1,27 @@
 {
-  "updated": "2026-10-30 09:25 北京时间",
+  "updated": "2026-10-30 12:09 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261030-claude-api-128mb",
+        "title": "Claude API 单次请求上限提到 128 MB：大 PDF 与长截图会话少卡一次",
+        "date": "2026-10-30",
+        "time": "10-30 12:08",
+        "try_url": "https://platform.claude.com/docs/en/api/overview#request-size-limits",
+        "access": "需要 Anthropic 官方 Claude API 密钥。云厂商托管通道（如 Bedrock 约 20 MB）不在本次放宽内。打开本卡试做链接核对当前上限表后，用原来会撞 32 MB 的大 PDF 或长截图会话重试一次。",
+        "integration": "适合做 computer use（电脑操控）、多截图会话或一次塞大 PDF 的开发者与自动化管线。可与现有 Messages 调用并存；超大文件仍可先走 Files API 再引用。",
+        "first_step": "若你最近被 32 MB 或 413 挡住：今天用官方 API 对同一份大 PDF 或一串截图重发一次 Messages 请求；若仍超限，再考虑拆文件或改走 Files API。",
+        "summary": "Anthropic 于北京时间约 10 月 28 日在平台发布说明中确认：自家 Claude API（应用程序接口）上，Messages（主对话接口）与 Token Counting（发送前估算用量）单次请求体积上限从 32 MB 提到 128 MB，约四倍。",
+        "audience_value": "如果你用官方 Claude API 跑长截图或大 PDF 经常先撞体积墙，现在同一请求大约有四倍空间，今天就能重试原先失败的任务。",
+        "alternatives": [
+          "继续把大文件拆成多次请求",
+          "先用 Files API 上传再按 file_id 引用",
+          "留在 Bedrock / 其他托管通道并接受更低体积上限"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261030-pika-h3-flex",
         "title": "Pika H3 Flex：开源权重视频模型，可带参考图与同步音轨加速迭代",
@@ -780,6 +800,26 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261030-claude-api-128mb",
+      "title": "Claude API 单次请求上限提到 128 MB：大 PDF 与长截图会话少卡一次",
+      "date": "2026-10-30",
+      "time": "10-30 12:08",
+      "try_url": "https://platform.claude.com/docs/en/api/overview#request-size-limits",
+      "access": "需要 Anthropic 官方 Claude API 密钥。云厂商托管通道（如 Bedrock 约 20 MB）不在本次放宽内。打开本卡试做链接核对当前上限表后，用原来会撞 32 MB 的大 PDF 或长截图会话重试一次。",
+      "integration": "适合做 computer use（电脑操控）、多截图会话或一次塞大 PDF 的开发者与自动化管线。可与现有 Messages 调用并存；超大文件仍可先走 Files API 再引用。",
+      "first_step": "若你最近被 32 MB 或 413 挡住：今天用官方 API 对同一份大 PDF 或一串截图重发一次 Messages 请求；若仍超限，再考虑拆文件或改走 Files API。",
+      "summary": "Anthropic 于北京时间约 10 月 28 日在平台发布说明中确认：自家 Claude API（应用程序接口）上，Messages（主对话接口）与 Token Counting（发送前估算用量）单次请求体积上限从 32 MB 提到 128 MB，约四倍。",
+      "audience_value": "如果你用官方 Claude API 跑长截图或大 PDF 经常先撞体积墙，现在同一请求大约有四倍空间，今天就能重试原先失败的任务。",
+      "alternatives": [
+        "继续把大文件拆成多次请求",
+        "先用 Files API 上传再按 file_id 引用",
+        "留在 Bedrock / 其他托管通道并接受更低体积上限"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
     {
       "id": "evt-20261030-pika-h3-flex",
       "title": "Pika H3 Flex：开源权重视频模型，可带参考图与同步音轨加速迭代",

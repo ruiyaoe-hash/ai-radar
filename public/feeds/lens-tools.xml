@@ -5,7 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Fri, 30 Oct 2026 09:25:30 +0800</lastBuildDate>
+<lastBuildDate>Fri, 30 Oct 2026 12:11:18 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>[快讯 · 新工具 · 工具] Gemini 聊天里直接生成并改 Docs / PDF / 表格 / 幻灯片</title>
@@ -125,6 +125,13 @@
 <guid isPermaLink="false">evt-20261028-synthid-gemini</guid>
 <pubDate>Wed, 28 Oct 2026 08:00:00 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Google 在 Gemini 应用内提供基于 SynthID 的媒体核验：上传图、视频或音频后直接追问是否 AI 生成，方便快速筛 Google 系水印内容。<br/><strong>对你意味着什么</strong> 如果你经常转发或引用网络媒体，又担心 AI 合成图音视频，先在 Gemini 里做一轮水印核验，比凭肉眼猜更有依据。<br/>建议：持续观察 · 今天在 Gemini 上传一份样本问是否 AI 生成。<br/>有多确定：中<br/>什么情况下当这判断作废：若 Gemini 无法上传媒体、核验结果混乱，或你主要面对非 Google 系无水印内容，就收回「这周靠 Gemini 做媒体核验」。<br/>来源 geminiapp（一手）<br/>日期 2026-10-28]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Claude API 单次请求上限提到 128 MB：大 PDF 与长截图会话少卡一次</title>
+<link>https://platform.claude.com/docs/en/release-notes/overview</link>
+<guid isPermaLink="false">evt-20261030-claude-api-128mb</guid>
+<pubDate>Wed, 28 Oct 2026 08:00:00 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 于北京时间约 10 月 28 日在平台发布说明中确认：自家 Claude API（应用程序接口）上，Messages（主对话接口）与 Token Counting（发送前估算用量）单次请求体积上限从 32 MB 提到 128 MB，约四倍。<br/>• 官方称此前大量图片或大 PDF 常在上下文窗口（一次能读的内容量）还有余量时就因请求体积撞 32 MB；多图请求超过 20 张时，单图边长上限也从 2000 像素放宽到 3000 像素。128 MB 仅适用于 Anthropic 官方 API；Bedrock / 部分云托管通道仍是更低上限。<br/>• 费用仍按实际 token（用量单位）计，文档未提涨价或额外开通。一手出处为 Claude Platform 发布说明与 API 总览中的请求大小表。<br/><strong>对你意味着什么</strong> 如果你用官方 Claude API 跑长截图或大 PDF 经常先撞体积墙，现在同一请求大约有四倍空间，今天就能重试原先失败的任务。<br/>建议：立即行动 · 今天用一条真实大请求验收；确认官方 API 通路后再改默认管线，不要假设云托管通道同步放宽。<br/>有多确定：高<br/>什么情况下当这判断作废：若你只用 Bedrock 等未放宽通道、或任务瓶颈其实是上下文窗口与计费而不是请求字节数，就不必为本改动改架构。<br/>来源 anthropic（一手）, anthropic（一手）<br/>日期 2026-10-30]]></description>
 </item>
 <item>
 <title>[快讯 · 新工具 · 工具] Liquid AI 发布 LFM3：约 20 亿参数的多模态底座，单张显卡就能微调</title>

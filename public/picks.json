@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30 09:25 北京时间",
+  "updated": "2026-10-30 12:11 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://airss.qiaomu.ai/",
@@ -58,6 +58,8 @@
     "https://openai.com/index/introducing-gpt-6-1-terra",
     "https://particle.ai",
     "https://pika.art/blog/pika-h3-flex",
+    "https://platform.claude.com/docs/en/api/overview#request-size-limits",
+    "https://platform.claude.com/docs/en/release-notes/overview",
     "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
     "https://rss.qiaomu.ai/",
     "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
@@ -169,6 +171,7 @@
     "cand-20261029-92f0d7516f2b",
     "cand-20261029-d7d77f58c356",
     "cand-20261029-e7d7777be3ab",
+    "cand-20261030-1c12cf3b37a0",
     "cand-20261030-2259899004aa",
     "cand-20261030-4e7604b57b9c",
     "evt-20261023-anthropic-claude-duet",
@@ -211,6 +214,7 @@
     "evt-20261029-qiaomu-ai-rss",
     "evt-20261029-qingshang-waigua",
     "evt-20261029-runway-dev-plugin",
+    "evt-20261030-claude-api-128mb",
     "evt-20261030-gemini-edit-files",
     "evt-20261030-pika-h3-flex"
   ],
