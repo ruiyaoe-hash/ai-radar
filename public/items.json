@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-30 09:25 北京时间",
+  "updated": "2026-10-30 12:11 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
     {
@@ -972,6 +972,59 @@
         "window": "今天在 Gemini 上传一份样本问是否 AI 生成。",
         "confidence": "中",
         "falsifier": "若 Gemini 无法上传媒体、核验结果混乱，或你主要面对非 Google 系无水印内容，就收回「这周靠 Gemini 做媒体核验」。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-claude-api-128mb",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Claude API 单次请求上限提到 128 MB：大 PDF 与长截图会话少卡一次",
+      "date": "2026-10-30",
+      "time": "10-30 12:08",
+      "handle": "anthropic",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "published_at": "2026-10-28T00:00:00Z",
+      "ingested_at": "2026-10-30T04:08:53Z",
+      "candidate_id": "cand-20261030-1c12cf3b37a0",
+      "promotion_path": "normal",
+      "objective": [
+        "Anthropic 于北京时间约 10 月 28 日在平台发布说明中确认：自家 Claude API（应用程序接口）上，Messages（主对话接口）与 Token Counting（发送前估算用量）单次请求体积上限从 32 MB 提到 128 MB，约四倍。",
+        "官方称此前大量图片或大 PDF 常在上下文窗口（一次能读的内容量）还有余量时就因请求体积撞 32 MB；多图请求超过 20 张时，单图边长上限也从 2000 像素放宽到 3000 像素。128 MB 仅适用于 Anthropic 官方 API；Bedrock / 部分云托管通道仍是更低上限。",
+        "费用仍按实际 token（用量单位）计，文档未提涨价或额外开通。一手出处为 Claude Platform 发布说明与 API 总览中的请求大小表。"
+      ],
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "handle": "anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://platform.claude.com/docs/en/api/overview#request-size-limits",
+          "handle": "anthropic",
+          "role": "primary"
+        }
+      ],
+      "shift": "midday",
+      "try_url": "https://platform.claude.com/docs/en/api/overview#request-size-limits",
+      "access": "需要 Anthropic 官方 Claude API 密钥。云厂商托管通道（如 Bedrock 约 20 MB）不在本次放宽内。打开本卡试做链接核对当前上限表后，用原来会撞 32 MB 的大 PDF 或长截图会话重试一次。",
+      "integration": "适合做 computer use（电脑操控）、多截图会话或一次塞大 PDF 的开发者与自动化管线。可与现有 Messages 调用并存；超大文件仍可先走 Files API 再引用。",
+      "first_step": "若你最近被 32 MB 或 413 挡住：今天用官方 API 对同一份大 PDF 或一串截图重发一次 Messages 请求；若仍超限，再考虑拆文件或改走 Files API。",
+      "alternatives": [
+        "继续把大文件拆成多次请求",
+        "先用 Files API 上传再按 file_id 引用",
+        "留在 Bedrock / 其他托管通道并接受更低体积上限"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用官方 Claude API 跑长截图或大 PDF 经常先撞体积墙，现在同一请求大约有四倍空间，今天就能重试原先失败的任务。",
+        "action": "立即行动",
+        "window": "今天用一条真实大请求验收；确认官方 API 通路后再改默认管线，不要假设云托管通道同步放宽。",
+        "confidence": "高",
+        "falsifier": "若你只用 Bedrock 等未放宽通道、或任务瓶颈其实是上下文窗口与计费而不是请求字节数，就不必为本改动改架构。"
       }
     },
     {
