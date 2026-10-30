@@ -5,8 +5,22 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Fri, 30 Oct 2026 12:11:18 +0800</lastBuildDate>
+<lastBuildDate>Fri, 30 Oct 2026 16:21:49 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录</title>
+<link>https://aicodinghunt.qiaomu.ai/</link>
+<guid isPermaLink="false">evt-20261030-ai-coding-hunt</guid>
+<pubDate>Fri, 30 Oct 2026 10:57:40 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 向阳乔木（vista8）于北京时间 10 月 30 日下午发帖：把大家在 X 上自荐的 Vibe Coding（氛围编程）产品整理成网站 AI Coding Hunt，并附 Grok Bot 开发过程录屏。<br/>• 站点自称中文优先的图文猎场：聚合 Agent、插件、CLI 与开源项目等社区真实在用条目，可用本站点赞 / 社区点赞 / 社区浏览排序，并提供在线投稿；页面写明数据来自自荐帖回复，不靠广告位。<br/>• 主链 https://aicodinghunt.qiaomu.ai/ 可打开核对目录与关于说明；本卡以站点与发帖互相印证。<br/><strong>对你意味着什么</strong> 如果你经常在时间线上刷到自荐小工具却难回头找，这个中文目录把它们收成可排序猎场，今天就能按榜单挑两件亲自试。<br/>建议：可以试用 · 今天打开目录挑 2 个相关条目试用；若条目质量不稳或与你栈无关，就当发现渠道，不必改主力工具。<br/>有多确定：中<br/>什么情况下当这判断作废：若目录大量失效链接、硬广占满，或没有你需要的品类，就不必把它当成默认发现入口。<br/>来源 vista8（一手）, vista8（转述）<br/>日期 2026-10-30]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Claude 语音模式接通 Apple CarPlay：开车时也能双手不离方向盘问问题</title>
+<link>https://x.com/claudeai/status/2115859388191912193</link>
+<guid isPermaLink="false">evt-20261030-claude-carplay</guid>
+<pubDate>Fri, 30 Oct 2026 01:32:43 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 官方账号 Claude 于北京时间约 10 月 30 日凌晨发帖确认：iPhone 上的 Claude 语音模式（voice mode）已支持 Apple CarPlay（车载互联），可在开车时用语音提问并保持双手在方向盘上。<br/>• 同一条产品更新串还写明：iOS / Android 语音模式响应更快、嘈杂或轻声环境更好听清；非英语语音更自然；语音模式覆盖更多 Android 机型。本卡以 CarPlay 接通为一手可核事实。<br/>• 中文圈账号归藏等同日转发官方帖；本卡以 Claude 官方帖为一手出处，不以二手评测榜单独定档。<br/><strong>对你意味着什么</strong> 如果你开车时也想继续用 Claude 问事，官方已把语音模式接到 CarPlay，今天就能在真实通勤里验收一次，而不必另装车机助手。<br/>建议：可以试用 · 下次通勤用一个短问题跑通；若你的车机或地区尚未出现 Claude，就先别改开车习惯。<br/>有多确定：高<br/>什么情况下当这判断作废：若你的车辆 / 系统版本不显示 Claude、语音无法启动，或当地法规不允许驾驶中使用，就不必为本能力改流程。<br/>来源 claudeai（一手）<br/>日期 2026-10-30]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] Gemini 聊天里直接生成并改 Docs / PDF / 表格 / 幻灯片</title>
 <link>https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/</link>
@@ -33,7 +47,7 @@
 <link>https://github.com/JimLiu/baoyu-design</link>
 <guid isPermaLink="false">evt-20261029-baoyu-design</guid>
 <pubDate>Thu, 29 Oct 2026 12:52:04 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。<br/>• 推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。<br/>• 宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。<br/><strong>对你意味着什么</strong> 如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。<br/>建议：立即行动 · 今天完成安装并用一版落地页或幻灯片跑通预览；确认模型与助手兼容后再扩到仪表盘或设计系统。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、本机 Node 环境装不上，或生成质量明显差于你现有网页工作流，就不必为本工具改流程。<br/>来源 JimLiu（一手）, dotey（转述）<br/>日期 2026-10-29]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• 开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。<br/>• 推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。<br/>• 宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。<br/>• 宝玉于北京时间 10 月 30 日下午宣布 baoyu-design v2.1：可在设计页与幻灯片上标记元素并添加评论，Agent 可读评论并回复；评论与项目数据同存。<br/><strong>对你意味着什么</strong> 如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。<br/>建议：立即行动 · 今天完成安装并用一版落地页或幻灯片跑通预览；确认模型与助手兼容后再扩到仪表盘或设计系统。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、本机 Node 环境装不上，或生成质量明显差于你现有网页工作流，就不必为本工具改流程。<br/>来源 JimLiu（一手）, dotey（转述）, dotey（转述）<br/>日期 2026-10-29]]></description>
 </item>
 <item>
 <title>[快讯 · 新工具 · 工具] 情商外挂：本地开源网页，发送前按非暴力沟通改一版再说</title>

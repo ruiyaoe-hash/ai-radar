@@ -1,7 +1,8 @@
 {
-  "updated": "2026-10-30 12:11 北京时间",
+  "updated": "2026-10-30 16:21 北京时间",
   "per_day": 3,
   "blocked_urls": [
+    "https://aicodinghunt.qiaomu.ai/",
     "https://airss.qiaomu.ai/",
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
     "https://basecamp.com/ai",
@@ -87,6 +88,7 @@
     "https://x.com/artificialanlys/status/2114781865811063259",
     "https://x.com/berryxia/status/2114579756633219416",
     "https://x.com/claudeai/status/2113360845409583307",
+    "https://x.com/claudeai/status/2115859388191912193",
     "https://x.com/demishassabis/status/2115232001275924722",
     "https://x.com/dhh/status/2115575125223387320",
     "https://x.com/dotey/status/2112995995017421133",
@@ -95,6 +97,7 @@
     "https://x.com/dotey/status/2114790675279413738",
     "https://x.com/dotey/status/2115183164905906513",
     "https://x.com/dotey/status/2115667965328977920",
+    "https://x.com/dotey/status/2116060639533969759",
     "https://x.com/geekcatx/status/2114667608188621074",
     "https://x.com/mistralai/status/2115443720371814478",
     "https://x.com/natolambert/status/2113682066374062528",
@@ -115,6 +118,7 @@
     "https://x.com/vista8/status/2114579446795788675",
     "https://x.com/vista8/status/2115293920955605424",
     "https://x.com/vista8/status/2115446064593674587",
+    "https://x.com/vista8/status/2116001563420586192",
     "https://x.com/yaojingang/status/2114576054018818536"
   ],
   "blocked_ids": [
@@ -174,6 +178,8 @@
     "cand-20261030-1c12cf3b37a0",
     "cand-20261030-2259899004aa",
     "cand-20261030-4e7604b57b9c",
+    "cand-20261030-64a6c27b6815",
+    "cand-20261030-aae9c34727c3",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -214,7 +220,9 @@
     "evt-20261029-qiaomu-ai-rss",
     "evt-20261029-qingshang-waigua",
     "evt-20261029-runway-dev-plugin",
+    "evt-20261030-ai-coding-hunt",
     "evt-20261030-claude-api-128mb",
+    "evt-20261030-claude-carplay",
     "evt-20261030-gemini-edit-files",
     "evt-20261030-pika-h3-flex"
   ],

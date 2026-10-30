@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30 12:09 北京时间",
+  "updated": "2026-10-30 16:17 北京时间",
   "rings": {
     "推荐使用": [
       {
@@ -655,6 +655,46 @@
     ],
     "值得关注": [
       {
+        "id": "evt-20261030-ai-coding-hunt",
+        "title": "AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录",
+        "date": "2026-10-30",
+        "time": "10-30 16:18",
+        "try_url": "https://aicodinghunt.qiaomu.ai/",
+        "access": "浏览器可打开即可，无需登录浏览。打开本卡试做链接后，按本站点赞或社区点赞排序翻几张卡片；要上架自己的项目可走站内投稿入口。",
+        "integration": "适合在找可下载、可复现的小工具 / Skill / 桌面端，又不想只盯单一厂商商店的人。可与本站工具决策卡交叉对照，不替代亲自试用验收。",
+        "first_step": "若你这周还在搜氛围编程小工具：打开本卡试做链接，用排序找到 2–3 个与你栈相关的条目，点进原项目页跑通一次安装或试用再决定是否收藏。",
+        "summary": "向阳乔木（vista8）于北京时间 10 月 30 日下午发帖：把大家在 X 上自荐的 Vibe Coding（氛围编程）产品整理成网站 AI Coding Hunt，并附 Grok Bot 开发过程录屏。",
+        "audience_value": "如果你经常在时间线上刷到自荐小工具却难回头找，这个中文目录把它们收成可排序猎场，今天就能按榜单挑两件亲自试。",
+        "alternatives": [
+          "继续只在 GitHub / Product Hunt 搜索",
+          "只跟单一博主转发清单",
+          "自己维护一份私人书签而不用公共目录"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "值得关注"
+      },
+      {
+        "id": "evt-20261030-claude-carplay",
+        "title": "Claude 语音模式接通 Apple CarPlay：开车时也能双手不离方向盘问问题",
+        "date": "2026-10-30",
+        "time": "10-30 16:15",
+        "try_url": "https://x.com/claudeai/status/2115859388191912193",
+        "access": "需要 iPhone 上已登录的 Claude 应用，以及支持 CarPlay 的车辆或车机。打开本卡试做链接核对官方说明后，把手机连上 CarPlay，用语音提一个短问题验收链路。",
+        "integration": "适合已经在用 Claude 聊天、又经常开车通勤、想把「路上随口问一句」接到同一助手的人。不替代车机导航或免提电话安全规范。",
+        "first_step": "若你这周通勤会开带 CarPlay 的车：先确认 iPhone Claude 已是最新版并登录，上车后连上 CarPlay，用语音问一个不涉操作车辆的短问题，确认能听到回复再考虑日常使用。",
+        "summary": "Anthropic 官方账号 Claude 于北京时间约 10 月 30 日凌晨发帖确认：iPhone 上的 Claude 语音模式（voice mode）已支持 Apple CarPlay（车载互联），可在开车时用语音提问并保持双手在方向盘上。",
+        "audience_value": "如果你开车时也想继续用 Claude 问事，官方已把语音模式接到 CarPlay，今天就能在真实通勤里验收一次，而不必另装车机助手。",
+        "alternatives": [
+          "继续用手机免提或耳机语音模式，不走 CarPlay",
+          "用车机自带语音助手或 Siri",
+          "到目的地再打开 Claude 文字聊天"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "值得关注"
+      },
+      {
         "id": "evt-20261029-qingshang-waigua",
         "title": "情商外挂：本地开源网页，发送前按非暴力沟通改一版再说",
         "date": "2026-10-29",
@@ -800,6 +840,46 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261030-ai-coding-hunt",
+      "title": "AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录",
+      "date": "2026-10-30",
+      "time": "10-30 16:18",
+      "try_url": "https://aicodinghunt.qiaomu.ai/",
+      "access": "浏览器可打开即可，无需登录浏览。打开本卡试做链接后，按本站点赞或社区点赞排序翻几张卡片；要上架自己的项目可走站内投稿入口。",
+      "integration": "适合在找可下载、可复现的小工具 / Skill / 桌面端，又不想只盯单一厂商商店的人。可与本站工具决策卡交叉对照，不替代亲自试用验收。",
+      "first_step": "若你这周还在搜氛围编程小工具：打开本卡试做链接，用排序找到 2–3 个与你栈相关的条目，点进原项目页跑通一次安装或试用再决定是否收藏。",
+      "summary": "向阳乔木（vista8）于北京时间 10 月 30 日下午发帖：把大家在 X 上自荐的 Vibe Coding（氛围编程）产品整理成网站 AI Coding Hunt，并附 Grok Bot 开发过程录屏。",
+      "audience_value": "如果你经常在时间线上刷到自荐小工具却难回头找，这个中文目录把它们收成可排序猎场，今天就能按榜单挑两件亲自试。",
+      "alternatives": [
+        "继续只在 GitHub / Product Hunt 搜索",
+        "只跟单一博主转发清单",
+        "自己维护一份私人书签而不用公共目录"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "值得关注"
+    },
+    {
+      "id": "evt-20261030-claude-carplay",
+      "title": "Claude 语音模式接通 Apple CarPlay：开车时也能双手不离方向盘问问题",
+      "date": "2026-10-30",
+      "time": "10-30 16:15",
+      "try_url": "https://x.com/claudeai/status/2115859388191912193",
+      "access": "需要 iPhone 上已登录的 Claude 应用，以及支持 CarPlay 的车辆或车机。打开本卡试做链接核对官方说明后，把手机连上 CarPlay，用语音提一个短问题验收链路。",
+      "integration": "适合已经在用 Claude 聊天、又经常开车通勤、想把「路上随口问一句」接到同一助手的人。不替代车机导航或免提电话安全规范。",
+      "first_step": "若你这周通勤会开带 CarPlay 的车：先确认 iPhone Claude 已是最新版并登录，上车后连上 CarPlay，用语音问一个不涉操作车辆的短问题，确认能听到回复再考虑日常使用。",
+      "summary": "Anthropic 官方账号 Claude 于北京时间约 10 月 30 日凌晨发帖确认：iPhone 上的 Claude 语音模式（voice mode）已支持 Apple CarPlay（车载互联），可在开车时用语音提问并保持双手在方向盘上。",
+      "audience_value": "如果你开车时也想继续用 Claude 问事，官方已把语音模式接到 CarPlay，今天就能在真实通勤里验收一次，而不必另装车机助手。",
+      "alternatives": [
+        "继续用手机免提或耳机语音模式，不走 CarPlay",
+        "用车机自带语音助手或 Siri",
+        "到目的地再打开 Claude 文字聊天"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "值得关注"
+    },
     {
       "id": "evt-20261030-claude-api-128mb",
       "title": "Claude API 单次请求上限提到 128 MB：大 PDF 与长截图会话少卡一次",
