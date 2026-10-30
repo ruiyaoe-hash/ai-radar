@@ -1,0 +1,23 @@
+{
+  "id": "prac-20261030-4792ab46bb30",
+  "kind": "工具用法",
+  "title": "试跑 Mistral Large 4：先选权重格式，再起服务问一句验收",
+  "author": "huggingface-blog",
+  "url": "https://huggingface.co/blog/mistral-large4",
+  "time": "2026-10-30 21:05",
+  "takeaway": "开源多模态 MoE 已上架，先按机器选 FP8 / NVFP4 / GGUF，用官方推荐的端点或本机推理起服务，用一句带图或纯文本问题确认链路，再决定是否换底座。",
+  "steps": [
+    "打开 Hugging Face 博文与 Mistral Large 4 合集，阅读许可证与机器要求；按你的 GPU / Apple Silicon 内存选择 FP8、NVFP4 或社区 GGUF 之一，不要一上来就拉满精度。",
+    "按博文「Inference Support」：云端可用 Inference Endpoints 配方部署；本机可用 llama.cpp（GGUF）或 vLLM / Transformers。服务起来后发一句纯文本或带图问题，并试一下 reasoning_effort（推理力度）档位，确认能回复、延迟与费用可接受，再把同一批小任务与你现有开权或 API 线对照。"
+  ],
+  "caution": "模型体积大，下载与推理费用自理。许可证对模型即服务有额外限制，分发前读原文。这里没有替你租卡、下载权重或代付 Inference Endpoints。",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "能访问 Hugging Face，并有可部署的多卡 / 大内存机器，或愿意用 Inference Endpoints",
+    "会按文档启动 vLLM、llama.cpp 或 Transformers 之一"
+  ],
+  "estimated_time": "一到数小时（含下载与首次编译），先用最小量化跑通问答",
+  "verified": false,
+  "candidate_id": "cand-20261029-4792ab46bb30",
+  "try_url": "https://huggingface.co/blog/mistral-large4"
+}
