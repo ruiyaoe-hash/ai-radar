@@ -1,8 +1,119 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-29 21:01 北京时间",
+  "updated": "2026-10-30 09:25 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-gemini-edit-files",
+      "status": "multi_source",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Gemini 聊天里直接生成并改 Docs / PDF / 表格 / 幻灯片",
+      "date": "2026-10-30",
+      "time": "10-30 08:00",
+      "handle": "google",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/",
+      "published_at": "2026-10-29T16:00:00Z",
+      "ingested_at": "2026-10-30T01:24:37Z",
+      "candidate_id": "cand-20261030-2259899004aa",
+      "promotion_path": "normal",
+      "objective": [
+        "Google 于北京时间 10 月 30 日前后更新 Gemini 应用：可在同一条聊天里直接生成、全屏预览并编辑文件，覆盖 Google 文档、表格、幻灯片、PDF、Markdown、纯文本与代码。PDF 预览与编辑在网页与手机都可用；其余格式目前仅网页端。",
+        "用法是：让 Gemini 先出一版文件（例如根据手写笔记生成 PDF 复习提纲），再展开全屏自己改字，或圈出一段让 Gemini 改文案与图示，也可继续追问内容。官方称已对 Gemini 应用已开放的语言面向全部用户开放。",
+        "媒体 The Verge 同日报道了同一能力；本卡以 Google 官方博文为一手出处。"
+      ],
+      "sources": [
+        {
+          "url": "https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/",
+          "handle": "google",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs",
+          "handle": "verge",
+          "role": "report"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://gemini.google.com/",
+      "access": "需要能打开 Gemini 应用的账号。PDF 可在网页或手机里预览编辑；Docs / Sheets / 幻灯片 / Markdown / 文本 / 代码目前只在网页端。打开本卡试做链接进 Gemini，用一句话让它生成一份短文档再全屏改一处即可验收。",
+      "integration": "适合写纪要、提纲、表格草案或短幻灯片、又不想在聊天和应用之间来回导出的人。产物可继续在 Google Workspace 里打开精修。",
+      "first_step": "若你这周还要写一份短提纲或复习 PDF：打开 Gemini 网页，上传素材或直接口述需求，让它生成文件后展开全屏改标题或一段正文，确认编辑链路通再扩大范围。",
+      "alternatives": [
+        "先在 Docs / Notion 里手写，再把成品贴回聊天",
+        "用 ChatGPT / Claude 等生成文案后手动粘贴进文档",
+        "继续只用 Gemini 出文字、在本地编辑器收尾"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你常用 Gemini 起草文档却卡在「复制粘贴进 Docs」，现在可以在聊天里直接改文件，今天就能少一次导出往返。",
+        "action": "立即行动",
+        "window": "今天用一份真实短稿跑通「生成 → 全屏改 → 再让 Gemini 改一段」；确认网页端可用后再把流程扩到表格或幻灯片。",
+        "confidence": "高",
+        "falsifier": "若你所在语言或套餐尚未开放、网页端打不开编辑，或改完无法导出到自己工作流，就不必为本能力改习惯。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-pika-h3-flex",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Pika H3 Flex：开源权重视频模型，可带参考图与同步音轨加速迭代",
+      "date": "2026-10-30",
+      "time": "10-30 08:05",
+      "handle": "pika",
+      "url": "https://pika.art/blog/pika-h3-flex",
+      "published_at": "2026-10-29T16:00:00Z",
+      "ingested_at": "2026-10-30T01:24:37Z",
+      "candidate_id": "cand-20261030-4e7604b57b9c",
+      "promotion_path": "normal",
+      "objective": [
+        "Pika 于北京时间约 10 月 30 日发布 H3 Flex：在 MiniMax H3 上后训练的文生视频模型，面向专业创作者迭代。官方称可将生成压到约六步（相对约五十步），并在受控基准里用约七秒变换器计算生成 15 秒、768p、带同步立体声音频的片段（不等于端到端接口总耗时）。",
+        "能力包括最多 12 个参考（图 / 视频 / 音频）、参考引导剪辑、以及经 Pika API 可选的五轨音频分离（对白 / 配乐 / 音效 / 拟音 / 环境）。草稿可在 480p 或 768p 生成，再经 Pika 托管上采样到 1080p / 2K / 4K。开源部分覆盖生成适配器与推理代码（文生视频、首末帧、多模态参考生视频等）；上采样、分轨与加速服务仍为托管能力。",
+        "权重与代码分别在 Hugging Face（Pika-Labs/Pika-H3-Flex）与 GitHub；网页创作产品计划约 11 月 2 日接入。AlphaSignal 等同日转述了开源与加速要点；本卡以 Pika 官方博文为一手出处。"
+      ],
+      "sources": [
+        {
+          "url": "https://pika.art/blog/pika-h3-flex",
+          "handle": "pika",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/Pika-Labs/Pika-H3-Flex",
+          "handle": "pika",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/Pika-Labs/Pika-H3-Flex",
+          "handle": "pika",
+          "role": "primary"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://pika.art/blog/pika-h3-flex",
+      "access": "云端可走 Pika API Club 试用；本机需按 GitHub / Hugging Face 说明准备合适 GPU 与依赖，并遵守模型许可证。上采样、分轨与加速栈为 Pika 托管功能，本地不一定具备。打开本卡试做链接读官方博文后，按你的环境选 API 或本机权重。",
+      "integration": "适合已经在做短视频、广告片或角色一致性、需要多参考与可拆音轨的创作者与研究者。可与现有剪辑时间线对接：先出草稿再上采样精修。",
+      "first_step": "若你这周要试一条带参考的短片：先打开官方博文，用 API Club 或本机权重跑一条 15 秒草稿；满意后再考虑上采样或分轨，不要一上来就上 4K。",
+      "alternatives": [
+        "继续用 Runway / Luma 等闭源成片工具",
+        "其他开源文生视频权重（无 Pika 同款参考与分轨托管）",
+        "先手写分镜与素材，再交给传统剪辑流程"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你做视频还卡在「出片慢、参考带不进、音轨拆不开」，H3 Flex 把开源权重和专业迭代能力放在一起，值得今天先跑一条短草稿验收。",
+        "action": "立即行动",
+        "window": "今天完成一条短草稿（API 或本机二选一）；确认画质与参考是否够用，再决定是否接入托管上采样或等 11 月 2 日产品端。",
+        "confidence": "中",
+        "falsifier": "若本机显存不够、许可证与商用场景冲突，或草稿质量明显差于你现有闭源工具，就不必为本模型改管线。"
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261029-runway-dev-plugin",
@@ -1965,316 +2076,6 @@
         "evidence_label": "官方原始信息",
         "suggested_action": "立即行动",
         "high_priority_review": false
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261023-minimax-design-mcp",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "MiniMax Design MCP 上线：在 Codex 等智能体里直接做设计并回同步画布",
-      "date": "2026-10-23",
-      "time": "10-23 14:29",
-      "handle": "Hailuo_AI",
-      "url": "https://x.com/Hailuo_AI/status/2113518150440595501",
-      "published_at": "2026-10-23T06:29:28Z",
-      "ingested_at": "2026-10-23T13:10:00Z",
-      "candidate_id": "cand-20261023-6ef19645e177",
-      "promotion_path": "normal",
-      "objective": [
-        "MiniMax（海螺）官方账号宣布 Design MCP（模型上下文协议连接器）上线：可在 Codex 及其他支持 MCP 的智能体里直接调用 Design 能力，产物会自动同步回 Design Canvas（设计画布），减少在智能体与设计工具之间来回拷贝。",
-        "同线程给出上手步骤：先更新到最新客户端，再在头像旁点「Connect External Agent」按提示完成连接。面向已经在用 Codex/MCP 做产品或内容稿的访客，这是可立刻试的设计侧工具入口。",
-        "官方帖以产品发布为主，未在帖内给出完整定价与区域限制；试用前先确认你的 MiniMax Design 账号与目标智能体是否在支持列表内。"
-      ],
-      "sources": [
-        {
-          "url": "https://x.com/Hailuo_AI/status/2113518150440595501",
-          "handle": "Hailuo_AI",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/Hailuo_AI/status/2113518153242497390",
-          "handle": "Hailuo_AI",
-          "role": "primary"
-        }
-      ],
-      "shift": "evening",
-      "try_url": "https://x.com/Hailuo_AI/status/2113518150440595501",
-      "access": "需 MiniMax Design 与支持 MCP 的智能体（官方示例含 Codex）。按官方线程更新客户端并连接 External Agent。",
-      "integration": "经 MCP 把 Design 能力挂进智能体会话；产物回写 Design Canvas。",
-      "first_step": "更新 MiniMax Design 到最新版，在头像旁连接 External Agent，用一条真实设计任务在 Codex（或其他已接 MCP 的客户端）里跑通并核对画布是否自动同步。",
-      "alternatives": [
-        "继续在独立设计工具里出图，再手工贴回智能体会话",
-        "其他厂商的设计类 MCP / 插件"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你已经用 Codex 或其它 MCP 智能体做稿，又常在设计画布和对话之间来回贴，这周用一条真实设计任务试 MiniMax Design MCP，看同步是否省事。",
-        "action": "立即行动",
-        "window": "今晚可按官方两步连接后试跑。",
-        "confidence": "中",
-        "falsifier": "若你的套餐或客户端连不上、同步经常失败，或设计质量达不到你现有工作流，就收回「这周必须换这条链路」。"
-      },
-      "card_copy": {
-        "watch_reason": "设计能力可挂进智能体并回写画布，适合现成 MCP 用户试。",
-        "evidence_label": "官方原始信息",
-        "suggested_action": "立即行动",
-        "high_priority_review": false
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261023-perplexity-decider-mac",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "Perplexity Decider for Mac：本机跑开权决策小模型，无需 API 密钥",
-      "date": "2026-10-23",
-      "time": "10-23 06:42",
-      "handle": "perplexitydevs",
-      "url": "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
-      "published_at": "2026-10-22T22:42:40Z",
-      "ingested_at": "2026-10-23T13:10:00Z",
-      "candidate_id": "cand-20261023-daba1bdd6279",
-      "promotion_path": "normal",
-      "objective": [
-        "Perplexity 开发者账号宣布 Decider for Mac 可用：在 Mac 菜单栏本机运行开权（open-weight）决策模型 pplx-decider-flash，对文本或图片提问并返回概率，数据不离开本机；本地也可在 127.0.0.1 调用 Decisions API 形态接口，且不需要云端 API 密钥。",
-        "这与本周 OpenAI Decisions API 云端正式可用形成对照：一个是云上近实时有边界决策，一个是本机小模型、无密钥、可离线试。适合关心隐私或想先在本机验证「有限答案」路径的访客。",
-        "官方文档入口为 Decider for Mac。CEO 账号同步转发了本机可跑的消息。试用前确认 Mac 机型与文档列出的系统要求。"
-      ],
-      "sources": [
-        {
-          "url": "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
-          "handle": "perplexitydevs",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/perplexitydevs/status/2113400672238616800",
-          "handle": "perplexitydevs",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/AravSrinivas/status/2113420151232352444",
-          "handle": "AravSrinivas",
-          "role": "report"
-        }
-      ],
-      "shift": "evening",
-      "try_url": "https://docs.perplexity.ai/docs/decisions/decider-for-mac",
-      "access": "Mac 本机应用 Decider for Mac；文档写明可本机跑模型并在本地环回地址调用，无需云端 API 密钥。",
-      "integration": "菜单栏应用 + 本机 Decisions 风格接口。可与云端 Decisions API 做同题对照。",
-      "first_step": "打开官方 Decider for Mac 文档安装应用，用同一批「有限答案」样例在本机跑一遍，再对照你现有的云端决策或聊天路径。",
-      "alternatives": [
-        "OpenAI Decisions API（云端、正式可用）",
-        "继续用通用聊天模型做同题分类/路由"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你这周在评估「有限答案」决策路径，又想先看本机、无密钥方案，用同一批样例跑 Decider for Mac，再和云端 Decisions 或现有聊天路径比延迟、准确率和隐私边界。",
-        "action": "立即行动",
-        "window": "文档已公开，Mac 上今晚可装可测。",
-        "confidence": "中",
-        "falsifier": "若本机模型在你的真实样例上明显不准、机器跑不动，或你其实只需要云端低延迟，就收回「必须先上本机 Decider」。"
-      },
-      "card_copy": {
-        "watch_reason": "本机开权决策小模型可无，便于和云端决策路径对打。",
-        "evidence_label": "官方原始信息",
-        "suggested_action": "立即行动",
-        "high_priority_review": false
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261023-claude-auto-mode-default",
-      "status": "confirmed",
-      "tag": "发布",
-      "lens": "工具",
-      "priority": "P0",
-      "title": "Claude 网页/桌面/手机：Pro、Max、Team 新会话下周默认自动模式",
-      "date": "2026-10-23",
-      "time": "10-23 21:00",
-      "handle": "claudeai",
-      "url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
-      "published_at": "2026-10-22T20:04:24Z",
-      "ingested_at": "2026-10-23T13:10:00Z",
-      "candidate_id": "cand-20261023-7f31c4dda252",
-      "promotion_path": "normal",
-      "objective": [
-        "Anthropic 在 2026 年 10 月 22 日更新说明：从下周起，多数 Claude 应用（网页、桌面、手机）上，Pro、Max、Team 套餐的新会话将默认进入自动模式（auto mode）。不再逐步弹窗让你点同意，而是由自动检查放行安全动作、拦住高风险动作；可随时切回手动。企业版管理员会在其组织默认改成自动模式之前收到邮件。",
-        "官方文章写，受控试验里约一千名付费测试者人工只拦下约一成多的危险命令，自动模式拦下约九成。人工对权限提示的同意率极高。连续三次被拦或单会话累计二十次被拦时，会退回手动审批。Enterprise、Claude API 以及云上托管通道目前仍以自愿开启为主，计划约一个月内再扩。",
-        "若你本周用 Claude 网页、桌面或手机做带工具调用的长任务，先确认默认权限模式；需要逐步确认时，会话里切回手动，或让管理员用 managed settings 钉死 defaultMode / disableAutoMode。高风险改生产环境时，官方仍建议自己再看一遍动作。"
-      ],
-      "sources": [
-        {
-          "url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
-          "handle": "claudeai",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/claudeai/status/2113360845409583307",
-          "handle": "claudeai",
-          "role": "primary"
-        }
-      ],
-      "shift": "evening",
-      "try_url": "https://claude.com/resources/articles/auto-mode-default-in-claude-code",
-      "access": "Pro、Max、Team：下周起多数 Claude 应用的新会话默认自动模式；已钉死其他默认的可能收到一次性提示。Enterprise 与 API/云托管通道暂仍自愿开启。客户端内可切换模式。",
-      "integration": "权限模式写在 Claude 应用与 Claude Code 设置里。管理员可用 managed settings 的 defaultMode 或 disableAutoMode。自动模式分类器按工具调用计少量额外 token；Pro/Max/Team 的 Claude Code 用户官方写明不再收这笔分类器费用。",
-      "first_step": "打开 Claude 网页、桌面或手机，看当前默认权限模式。若下周不想默认自动跑工具，现在切到手动并钉死；Team 管理员先核对 managed settings。",
-      "alternatives": [
-        "继续手动审批每一步",
-        "Enterprise / API 通道暂保持自愿开启，等管理员通知后再改"
-      ],
-      "tool_radar": "值得关注",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你用 Claude Pro、Max 或 Team 的网页、桌面或手机做带工具的事，下周新会话会默认少打断、多自动执行。这周先确认要不要钉死手动；Team 管理员先看组织默认。",
-        "action": "立即行动",
-        "window": "下周默认生效前，先设好个人或组织的权限默认。",
-        "confidence": "高",
-        "falsifier": "如果默认滚动被推迟、你的套餐或客户端不在「多数 Claude 应用」范围内，或你已钉死且不会被改写的手动默认，就收回「这周必须先改权限默认」。"
-      },
-      "card_copy": {
-        "watch_reason": "付费套餐新会话下周默认自动跑工具，先钉权限。",
-        "evidence_label": "官方原始信息",
-        "suggested_action": "立即行动",
-        "high_priority_review": true
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261023-openai-decisions-api-ga",
-      "status": "confirmed",
-      "tag": "发布",
-      "lens": "工具",
-      "priority": "P0",
-      "title": "OpenAI Decisions API 正式可用：面向有边界答案的近实时决策接口",
-      "date": "2026-10-23",
-      "time": "10-23 21:00",
-      "handle": "OpenAI",
-      "url": "https://openai.com/index/decisions-api",
-      "published_at": "2026-10-22T19:00:00Z",
-      "ingested_at": "2026-10-23T13:10:00Z",
-      "candidate_id": "cand-20261022-5b11ed122be0",
-      "promotion_path": "normal",
-      "objective": [
-        "OpenAI 在 2026 年 10 月 22 日宣布 Decisions API（决策接口）结束公开测试、正式可用。它跑在 GPT-6 Luna 上，专门回答有边界的问题：给应用和智能体做分类、路由或下一步动作选择。官方写它可比同一模型走 Responses API 快约 10 倍，适合热路径上的近实时判断。",
-        "相对公开测试版，正式版新增原生 GPT-Live（实时语音）集成、复用上下文的提示缓存、美国与欧盟推理驻留，并支持原生 JSON 输入、在单题说明里带图片，以及每请求最多 400 道题（测试版上限的两倍）。计费只收输入：非缓存约每百万输入 token 0.10 美元，缓存输入约 0.01 美元；不收输出 token 费。",
-        "官方开发者文档写明走 POST /v1/decisions，当前模型是 gpt-6-luna。答案类型有三种：predicate（条件成立概率）、choice（从你给定选项里选一个）、score（按量表打分）。若你的产品里反复做有限答案的判断，这周用同一批真实样例在 Decisions Playground 或接口里对打现有 Responses/聊天路径。"
-      ],
-      "sources": [
-        {
-          "url": "https://openai.com/index/decisions-api",
-          "handle": "OpenAI",
-          "role": "primary"
-        },
-        {
-          "url": "https://developers.openai.com/api/docs/guides/decisions",
-          "handle": "OpenAI",
-          "role": "primary"
-        },
-        {
-          "url": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
-          "handle": "TechCrunch",
-          "role": "report"
-        }
-      ],
-      "shift": "evening",
-      "try_url": "https://developers.openai.com/api/docs/guides/decisions",
-      "access": "正式可用。文档与计费见 OpenAI 开发者站 Decisions 指南与定价页。走 API 密钥调用 POST /v1/decisions，模型 gpt-6-luna。Playground 可先用自有文本或图片试跑。",
-      "integration": "独立 Decisions 端点，不是完整聊天回复。可嵌进应用编排、智能体路由，以及 GPT-Live 会话触发器。美国与欧盟驻留、符合条件的零数据保留见官方数据控制说明。",
-      "first_step": "挑一条产品里反复出现、答案集合有限的判断（分类、路由或是否继续）。在 Decisions Playground 或按开发者指南发第一条请求，用同一批真实样例对照现在的 Responses/聊天路径看延迟和费用。",
-      "alternatives": [
-        "继续用 Responses API / 聊天模型做同题（更慢、通常更贵）",
-        "自建或第三方 decision / System-1 小模型（需自行对齐延迟与准确率）"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你在做应用或智能体，热路径上有大量「有限答案」的分类、路由或下一步选择，这周用同一批真实样例把 Decisions API 和现在的 Responses/聊天路径对打一遍，看延迟和费用是否值得换。",
-        "action": "立即行动",
-        "window": "这周用同一批样例对打；正式可用后即可接生产。",
-        "confidence": "高",
-        "falsifier": "如果在你的真实样例上，Decisions API 的准确率明显低于现有路径，或延迟/费用没有可感知的改善，就收回「这周必须放进对照表」。"
-      },
-      "card_copy": {
-        "watch_reason": "正式决策接口已可用，热路径可对打现有聊天路径。",
-        "evidence_label": "官方原始信息",
-        "suggested_action": "立即行动",
-        "high_priority_review": true
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261023-anthropic-claude-duet",
-      "status": "confirmed",
-      "tag": "发布",
-      "lens": "工具",
-      "priority": "P0",
-      "title": "Anthropic 放出 Claude Duet 研究预览：会主动找你的助理",
-      "date": "2026-10-23",
-      "time": "10-23 21:00",
-      "handle": "claudeai",
-      "url": "https://claude.com/product/claude-duet",
-      "published_at": "2026-10-21T19:09:35Z",
-      "ingested_at": "2026-10-23T13:10:00Z",
-      "candidate_id": "cand-20261022-6fc43125f1db",
-      "promotion_path": "normal",
-      "objective": [
-        "Anthropic 开放 Claude Duet 研究预览（research preview，给一部分用户提前试用）。这是会主动来找你的助理：早上整理需要你看的事项，你离开后它在云端继续做已交代的任务，做完或需要你拍板时再发消息。官方写它跑在 Opus 5.5 上，并可接入六千多个 connector（连接器）和 plugin（插件）。",
-        "官方产品页写明，这一轮候补面向美国的 Claude Pro 和 Max 订阅用户。研究预览和 Claude 共用现有套餐的用量额度，预览资格本身不加收一笔费用。Team 和 Enterprise 的名额要等后续开放。它是独立应用，有 iOS 和 Android，电脑上在 claude.ai 打开，并沿用你 Claude 账号里的记忆、技能和已连接的应用。",
-        "发消息、付款这类敏感动作，Duet 会先把将要执行的步骤摆给你看，等你点头再做。官方同时写明，它可能读错一段往来，把事情的缓急判偏，两次巡检之间新到的消息也可能漏过。排队时先写下同一批收件箱和跟进任务，开放后用这批任务看它能否在你离开时把步骤做完。"
-      ],
-      "sources": [
-        {
-          "url": "https://claude.com/product/claude-duet",
-          "handle": "claudeai",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/addyosmani/status/2113015448203862255",
-          "handle": "addyosmani",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/dotey/status/2112995995017421133",
-          "handle": "dotey",
-          "role": "analysis"
-        },
-        {
-          "url": "https://www.theverge.com/ai-artificial-intelligence/1015843/anthropic-claude-duet-ai-agent",
-          "handle": "theverge-ai",
-          "role": "report"
-        }
-      ],
-      "shift": "evening",
-      "try_url": "https://claude.com/product/claude-duet",
-      "access": "研究预览，需候补。美国区 Claude Pro 与 Max 可以排队。用量计入现有套餐，预览资格不加收。Team 与 Enterprise 的名额要等后续开放。客户端有 iOS、Android，电脑上在 claude.ai。",
-      "integration": "沿用 Claude 账号里的记忆、技能和已连接应用。官方称可接六千多个 connector（连接器）和 plugin（插件），底层是 Opus 5.5。",
-      "first_step": "打开产品页加入候补（美国区 Claude Pro 或 Max）。排队时写好同一批收件箱和跟进任务，开放后对照你现在的助手复测。其他地区先保存产品页和这批任务，等区域扩大后用同一套任务测一次。",
-      "alternatives": [
-        "现有的 Claude 对话（打开聊天后才开始干活）",
-        "把同一批收件箱任务留给现在的助手跟进"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "Claude Duet 是会主动来找你、并在你离开后继续干活的研究预览。如果你这周要比较聊天助手和这种主动助理，美国区 Pro 或 Max 现在去候补名单排队，开放后用同一批收件箱和跟进任务看它能否把步骤做完。",
-        "action": "立即行动",
-        "window": "美国区 Pro/Max 这周排队，开放后用同一批任务复测。",
-        "confidence": "高",
-        "falsifier": "如果候补名单长期不放出名额，或开放范围一直停在美国区 Pro 与 Max，或者它只会发提醒、没有把你交代的收件箱和跟进任务往前做完，就收回「这周该去排队，并用同一批任务复测」。"
-      },
-      "card_copy": {
-        "watch_reason": "主动助理研究预览开放候补，可对照现有聊天助手。",
-        "evidence_label": "多源确认",
-        "suggested_action": "立即行动",
-        "high_priority_review": true
       }
     }
   ]

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot": "2026-10-29 noon",
+  "snapshot": "2026-10-30 morning",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -44,6 +44,30 @@
     }
   ],
   "sources": [
+    {
+      "id": "prac-20261030-33f55775a138",
+      "url": "https://x.com/0xlangeai/status/2115693961876795842",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "把孩子的好奇问题做成科普短视频：五步从具体问题走到可核对成片",
+      "excerpt": "先从一个大家能想象的具体问题入手，查清数字与前提，再用参照物把抽象厚度变成画面，把答案拆成过程动画，最后核对事实并标明这是数学推演。",
+      "origin": "practice",
+      "date": "2026-10-30",
+      "verified": false
+    },
+    {
+      "id": "prac-20261030-62fb9900cc74",
+      "url": "https://x.com/realydt/status/2115675854449906089",
+      "author": "realydt",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用带视频技能的 Claude：一篇长文一句话做出像素风短片",
+      "excerpt": "先给 Claude 配好做视频的技能，再丢进你自己的长文链接并只给一句目标；让它出多方案预览后你再选定风格，由它用代码画画面并合成配乐，最后自检两轮再交片。",
+      "origin": "practice",
+      "date": "2026-10-30",
+      "verified": false
+    },
     {
       "id": "prac-20261029-e7d7777be3ab",
       "url": "https://docs.dev.runwayml.com/guides/plugin/",
