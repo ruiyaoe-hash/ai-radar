@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "generated_at": "2026-10-31T00:05:50Z",
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261031-claude-ultra-no-5h",
+      "status": "multi_source",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Claude 200 美元档改名 Ultra：已验证账号取消 5 小时限额，价格与周额度不变",
+      "date": "2026-10-31",
+      "time": "10-31 08:05",
+      "handle": "anthropic",
+      "url": "https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan",
+      "published_at": "2026-10-30T17:29:07Z",
+      "ingested_at": "2026-10-31T00:01:00Z",
+      "candidate_id": "cand-20261031-19aa741846ed",
+      "promotion_path": "normal",
+      "objective": [
+        "Anthropic 于北京时间约 10 月 31 日凌晨宣布：原每月 100 美元的 Max 5x 改名 Max，每月 200 美元的 Max 20x 改名 Ultra；价格不变，现有订阅自动换名，用户无需操作。",
+        "已验证的 Ultra 账号取消滚动 5 小时会话限额，当天先对大部分现有订阅者生效；较新账号在验证完成前保留临时限额，验证按账号与付款记录自动完成，取消时会发邮件。周用量上限不变：官方写 Ultra 每周约为 Pro 的 10 倍，另有单独的 Fable 周限额。",
+        "自己查验证：打开 Claude 设置 → 用量；若看不到「当前会话」进度条，说明已验证、5 小时限额已取消。订阅时验证手机号是另一回事，不会取消该限额。一手出处为 Claude 官方帖与帮助中心；The Verge 同日报道了改名。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/claudeai/status/2116220869479428500",
+          "handle": "claudeai",
+          "role": "primary"
+        },
+        {
+          "url": "https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan",
+          "handle": "anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1023576/max-ultra-claude",
+          "handle": "verge",
+          "role": "report"
+        },
+        {
+          "url": "https://x.com/dotey/status/2116233564823974005",
+          "handle": "dotey",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://claude.ai/settings/usage",
+      "access": "需要已订 Claude Ultra（原 Max 20x，约 200 美元/月）且账号已通过 Anthropic 自动验证。Max（100 美元）仍保留 5 小时与周两道限额。打开本卡试做链接进「用量」页：看不到「当前会话」条即已取消 5 小时限额。",
+      "integration": "适合长时间用 Claude Code / Claude 网页连跑任务、却常被 5 小时窗口打断的人。周总量没变；本来就把周额度用光的人不会多拿到额度，只是不必每隔几小时停一次。",
+      "first_step": "若你已是 200 美元档：今天打开用量页确认是否已无「当前会话」条；若仍有，等验证邮件，不要改套餐。若你在 Max（100 美元）且总被 5 小时卡住，先用真实一周任务量估是否值得升到 Ultra，而不是只看改名。",
+      "alternatives": [
+        "继续留在 Max（100 美元），接受 5 小时窗口",
+        "把长任务拆到多账号或错峰跑，不升级",
+        "对照 ChatGPT Pro 等只有周限额的订阅，按你真实连跑需求选型"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用 Claude Code 常遇到「周额度还剩、却被 5 小时窗口卡住」，已验证 Ultra 现在可以连着跑完一周额度，今天就能在用量页确认是否已生效。",
+        "action": "立即行动",
+        "window": "今天打开用量页确认验证状态；未验证则等邮件，不必改订阅。用一两天真实连跑任务看卡顿是否消失，再决定要不要为「取消 5 小时」去升级或续订 Ultra。",
+        "confidence": "高",
+        "falsifier": "若你的账号长期无法通过验证、仍看到「当前会话」限额，或你几乎从不撞 5 小时窗口、只差周总量，则不必为本改名改订阅。"
+      }
+    }
+  ],
+  "count": 1
+}

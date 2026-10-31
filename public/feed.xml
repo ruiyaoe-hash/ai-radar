@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Fri, 30 Oct 2026 21:08:44 +0800</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 08:05:52 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] Claude 200 美元档改名 Ultra：已验证账号取消 5 小时限额，价格与周额度不变</title>
+<link>https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan</link>
+<guid isPermaLink="false">evt-20261031-claude-ultra-no-5h</guid>
+<pubDate>Sat, 31 Oct 2026 01:29:07 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 于北京时间约 10 月 31 日凌晨宣布：原每月 100 美元的 Max 5x 改名 Max，每月 200 美元的 Max 20x 改名 Ultra；价格不变，现有订阅自动换名，用户无需操作。<br/>• 已验证的 Ultra 账号取消滚动 5 小时会话限额，当天先对大部分现有订阅者生效；较新账号在验证完成前保留临时限额，验证按账号与付款记录自动完成，取消时会发邮件。周用量上限不变：官方写 Ultra 每周约为 Pro 的 10 倍，另有单独的 Fable 周限额。<br/>• 自己查验证：打开 Claude 设置 → 用量；若看不到「当前会话」进度条，说明已验证、5 小时限额已取消。订阅时验证手机号是另一回事，不会取消该限额。一手出处为 Claude 官方帖与帮助中心；The Verge 同日报道了改名。<br/><strong>对你意味着什么</strong> 如果你用 Claude Code 常遇到「周额度还剩、却被 5 小时窗口卡住」，已验证 Ultra 现在可以连着跑完一周额度，今天就能在用量页确认是否已生效。<br/>建议：立即行动 · 今天打开用量页确认验证状态；未验证则等邮件，不必改订阅。用一两天真实连跑任务看卡顿是否消失，再决定要不要为「取消 5 小时」去升级或续订 Ultra。<br/>有多确定：高<br/>什么情况下当这判断作废：若你的账号长期无法通过验证、仍看到「当前会话」限额，或你几乎从不撞 5 小时窗口、只差周总量，则不必为本改名改订阅。<br/>来源 claudeai（一手）, anthropic（一手）, verge（转述）, dotey（解读）<br/>日期 2026-10-31]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录</title>
 <link>https://aicodinghunt.qiaomu.ai/</link>
@@ -272,27 +279,6 @@
 <guid isPermaLink="false">evt-20261025-impeccable-computer-skill</guid>
 <pubDate>Sat, 24 Oct 2026 23:51:16 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。<br/>• 同一套技能本身是开源的（Apache 2.0），也可在 Cursor、Claude Code、Codex 等编程助手里用命令安装：在项目根目录执行 npx impeccable install，再在助手里跑 /impeccable init。官方站点与 GitHub 仓库提供命令说明。<br/>• Computer 侧活动：使用 /impeccable 的任务在 2026 年 10 月 31 日前可享每用户约 5000 credits（积分）额度；Computer 本身仍需带 Computer 的付费套餐。若你主要在自有编程助手里做前端，可直接装开源版，不必先开通 Computer。<br/><strong>对你意味着什么</strong> 如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。<br/>建议：立即行动 · 开源版今天可装；Computer 活动额度约到 10 月 31 日。<br/>有多确定：中<br/>什么情况下当这判断作废：若在你的真实页面上改完仍不像可用产品、安装进不了你的助手，或 Computer 套餐/额度对你不可用，就收回「这周必须接这条技能」。<br/>来源 AravSrinivas（一手）, AravSrinivas（一手）, AravSrinivas（一手）, AravSrinivas（一手）<br/>日期 2026-10-25]]></description>
-</item>
-<item>
-<title>[重磅 · 新工具 · 发布] 月之暗面发布 Kimi K3.1 Pro：网页/API 当天可用，完整权重约 11 月 4 日前开权</title>
-<link>https://www.kimi.ai/blog/kimi-k3-1-pro</link>
-<guid isPermaLink="false">evt-20261024-kimi-k3-1-pro</guid>
-<pubDate>Sat, 24 Oct 2026 01:44:44 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 月之暗面（Moonshot）在 2026 年 10 月 23 日发布 Kimi K3.1 Pro：自家宣称最强的 3T 级开放权重（open-weight）模型系列首款，上下文约 100 万 token；同时放出更快的 K3.1 Pro Highspeed（约 2–3 倍速度）。<br/>• 当天即可在 Kimi 网页与 App、办公助手 Kimi Work、编程工具 Kimi Code，以及 Kimi API（模型名 kimi-k3.1-pro / kimi-k3.1-pro-highspeed）使用；完整模型权重官方写明将在 2026 年 11 月 4 日前放出。参数规模约 2.8T 总量 / 104B 激活（MoE）。<br/>• Artificial Analysis 把 K3.1 Pro 排到 Intelligence Index（智能指数）第 4、得分 55，并称权重放出后将成为当时领先的开权模型；宝玉、Nathan Lambert、Simon Willison 等关注池账号同日多源确认。官方博客另说明对网络攻防相关训练数据做了针对性削减后再开权。<br/><strong>对你意味着什么</strong> 如果你这周在选型开权或国产 API 做编程/智能体，K3.1 Pro 已可在网页和 API 试跑，权重也给出明确窗口；值得用同一批真实任务对打你现有主力模型。<br/>建议：立即行动 · 今天即可 API/网页试；完整权重盯 11 月 4 日前。<br/>有多确定：高<br/>什么情况下当这判断作废：若在你的真实任务上明显弱于现用模型，或 API 配额/价格不可接受，且开权延期或许可不合规，就收回「这周必须换主力对照」。<br/>来源 Kimi_Moonshot（一手）, Kimi_Moonshot（一手）, ArtificialAnlys（转述）, dotey（转述）, natolambert（转述）, simonw（转述）<br/>日期 2026-10-24]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 发布] DeepSeek V4.1 Flash 1017：开权小更新，编程与智能体榜面明显抬升</title>
-<link>https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017</link>
-<guid isPermaLink="false">evt-20261024-deepseek-v41-flash-1017</guid>
-<pubDate>Sat, 24 Oct 2026 01:23:09 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• DeepSeek 放出 DeepSeek-V4.1-Flash-1017：在 V4.1-Flash 上的小版本更新，Hugging Face 已提供权重（MIT），并附推理与提示编码说明。<br/>• 官方对照表显示 Terminal-Bench 4.0 从 31.2 提到 42.3，DeepSWE、Automation-Bench、Agents’ Last Exam 等编程/智能体指标同步上升，同时缩短任务耗时与输出长度。<br/>• Artificial Analysis 另报它在 Cyber Index（网络防御指数）开权模型中暂列第一；适合已在跑 DeepSeek Flash 线、或想用开权做编程智能体对照的访客本周更新权重或端点。<br/><strong>对你意味着什么</strong> 如果你的流水线已经挂着 DeepSeek Flash，这周把端点或权重升到 1017，用同一批任务看编程/智能体收益是否值得停在旧版。<br/>建议：立即行动 · 权重已公开，本周可换可测。<br/>有多确定：中<br/>什么情况下当这判断作废：若在你的任务上提升不明显，或托管价格/延迟变差，就维持旧版并观察下一版。<br/>来源 deepseek_ai（一手）, ArtificialAnlys（转述）<br/>日期 2026-10-24]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] 腾讯混元开源 Hy-Nomas：可多轮文本+相机轨迹的交互视频世界模型</title>
-<link>https://github.com/Tencent-Hunyuan/Hy-Nomas</link>
-<guid isPermaLink="false">evt-20261024-tencent-hy-nomas</guid>
-<pubDate>Sat, 24 Oct 2026 01:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 腾讯混元（Tencent Hunyuan）账号宣布开源 Hy-Nomas：面向自由交互的视频世界模型（video world model），支持用文本指令与相机轨迹多轮续写世界，并保持跨段记忆（KV cache）。<br/>• 代码仓库提供训练、推理、Web 演示与标注流程；权重在 Hugging Face（tencent/Hy-Nomas），协议 Apache-2.0。官方写明有蒸馏 8 步推理，以及单卡 RTX 4090（INT8/FP8 + CPU offload）配置。<br/>• 适合想自托管、试交互式世界生成或做机器人/仿真领域 LoRA 适配的访客；不是即开即用的消费级 App，需要按仓库文档准备环境与显存。<br/><strong>对你意味着什么</strong> 如果你这周在找可自托管的交互式世界/视频生成底座，Hy-Nomas 给出了权重+代码+单卡路径，值得按官方 demo 跑通一轮再决定是否深做。<br/>建议：立即行动 · 仓库与权重已公开，有卡即可本周试。<br/>有多确定：中<br/>什么情况下当这判断作废：若安装成本过高、多轮一致性达不到你的场景，或许可/显存不合适，就收回「这周必须自托管」。<br/>来源 TencentHunyuan（一手）, TencentHunyuan（一手）, TencentHunyuan（一手）<br/>日期 2026-10-24]]></description>
 </item>
 </channel>
 </rss>
