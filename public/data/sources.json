@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-31 16:26 北京时间",
+  "updated": "2026-10-31 19:00 北京时间",
   "sources": [
     {
       "id": "prac-20261031-be121232758a",
@@ -371,6 +371,42 @@
       "title": "先打开乔木 AI 资讯网页，再按需装 Obsidian 或 DeepSeek Harness 插件",
       "excerpt": "先网页试用乔木 AI 资讯中文阅读，再装 Obsidian 或 DeepSeek Harness 插件。",
       "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261031-ba98552db255",
+      "url": "https://x.com/0xlangeai/status/2116370262719689144",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "Orange 这篇《AI 泡沫破裂的前夜》，盘面先甩出来",
+      "excerpt": "Coding 生产力翻 10 倍，产品收入很少翻 2 倍——供给多了就便宜，像云南蓝莓增产 39%、价格腰斩",
+      "date": "2026-10-31",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261031-032a16d3e4b1",
+      "url": "https://x.com/0xlangeai/status/2116442781728244168",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "Grok Bot 社区把三千多个现成 Bot 收进一个目录，按编码、收件箱、调研、销售、财务、内容、个人事务和整队协作分类，每条带说明，点 Add 就能加，免费",
+      "excerpt": "打开评论里的目录",
+      "date": "2026-10-31",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261031-d50dbfee8742",
+      "url": "https://x.com/geekcatx/status/2116422472933466426",
+      "author": "geekcatx",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "兄弟们，前天 Codex 刚把用量翻倍，今天 Claude 立马下场抢人了",
+      "excerpt": "已验证的 Ultra 老用户，直接取消 5 小时窗口限制（新号验证前保留临时限制，解绑时会发邮件）",
+      "date": "2026-10-31",
       "origin": "practice",
       "verified": false
     }

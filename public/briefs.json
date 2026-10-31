@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-31 12:12 北京时间",
+  "updated": "2026-10-31 19:00 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
     {
@@ -140,21 +140,6 @@
       "candidate_id": "cand-20261028-2498aaca798f"
     },
     {
-      "id": "brf-20261028-0bc45ae98810",
-      "level": "L2",
-      "date": "2026-10-28",
-      "time": "10-28 00:12",
-      "title": "艾伦人工智能研究所发布 NoveltyBench，检验大模型判断科研想法新不新是否稳定",
-      "summary": "艾伦人工智能研究所于北京时间 10 月 28 日凌晨在 Hugging Face 发文，公布基准 NoveltyBench 以及配套数据与代码，用来测试大模型判断一条科研想法是否新颖时，会不会因为提示词或设置不同而给出相反结论。",
-      "why": "自动科研流程常把「新不新」交给另一个大模型。文中举例，只改提示词，同一模型在同一批想法上的判断准确率可以从大约 93% 降到大约 41%。",
-      "affect": "你若正用大模型给选题打新颖性分数，先读原文再决定信不信这一次结果。不做科研选题，本周不必因此更换模型。",
-      "url": "https://huggingface.co/blog/allenai/novelty-bench",
-      "source": "huggingface-blog",
-      "lens": "赛道",
-      "origin": "auto_brief",
-      "candidate_id": "cand-20261028-0bc45ae98810"
-    },
-    {
       "id": "brf-20261027-5f8e0f8ff8e2",
       "level": "L2",
       "date": "2026-10-27",
@@ -215,6 +200,21 @@
       "candidate_id": "cand-20261026-7da07aa09f99"
     },
     {
+      "id": "brf-20261028-0bc45ae98810",
+      "level": "L2",
+      "date": "2026-10-28",
+      "time": "10-28 00:12",
+      "title": "艾伦人工智能研究所发布 NoveltyBench，检验大模型判断科研想法新不新是否稳定",
+      "summary": "艾伦人工智能研究所于北京时间 10 月 28 日凌晨在 Hugging Face 发文，公布基准 NoveltyBench 以及配套数据与代码，用来测试大模型判断一条科研想法是否新颖时，会不会因为提示词或设置不同而给出相反结论。",
+      "why": "自动科研流程常把「新不新」交给另一个大模型。文中举例，只改提示词，同一模型在同一批想法上的判断准确率可以从大约 93% 降到大约 41%。",
+      "affect": "你若正用大模型给选题打新颖性分数，先读原文再决定信不信这一次结果。不做科研选题，本周不必因此更换模型。",
+      "url": "https://huggingface.co/blog/allenai/novelty-bench",
+      "source": "huggingface-blog",
+      "lens": "赛道",
+      "origin": "auto_brief",
+      "candidate_id": "cand-20261028-0bc45ae98810"
+    },
+    {
       "id": "brf-20261024-de27875ea339",
       "level": "L2",
       "date": "2026-10-24",
@@ -249,30 +249,15 @@
       "level": "L2",
       "date": "2026-10-23",
       "time": "10-23 01:21",
-      "title": "GitHub 赏金访谈：报告要能复现，模型护栏不是唯一边界",
-      "summary": "GitHub 安全赏金团队在网络安全宣传月访谈研究员 @r31n。对方多次在 GitHub Enterprise Server 上提交带可运行概念验证的高影响问题。访谈写明：AI 可以加速读代码和写验证脚本，但不能代替自己复现；模型护栏也不能当成唯一的安全边界。",
-      "why": "做漏洞研究或给产品接模型的人，可以看到这个赏金项目要的证据：能复现的概念验证，以及越过了哪条安全边界。",
-      "affect": "你若用 AI 辅助挖洞或检查自己的智能体：先自己复现再提交，模型输出仍当不可信输入。不做安全研究就不必因此改工具。",
+      "title": "公开更新：代码仓库",
+      "summary": "公开说明里，代码仓库。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+      "why": "它关系到你现在用的工具要不要换，或者能不能继续沿用。",
+      "affect": "拿一个你自己的真实任务对照这次变化，再决定换不换。",
       "url": "https://github.blog/security/how-bug-bounty-sharpens-one-researchers-security-skills",
       "source": "github-blog",
       "lens": "工具",
       "origin": "auto_brief",
       "candidate_id": "cand-20261023-6a4f42571d7f"
-    },
-    {
-      "id": "brf-20261023-aec2cbf8823d",
-      "level": "L2",
-      "date": "2026-10-23",
-      "time": "10-23 00:11",
-      "title": "艾伦人工智能研究所发布覆盖全球的地表嵌入",
-      "summary": "艾伦人工智能研究所发布 OlmoEarth 的新版本，给出覆盖整颗星球的地表嵌入，用来做地球观测和相关分析。",
-      "url": "https://huggingface.co/blog/allenai/olmoearth-v1-3",
-      "source": "huggingface-blog",
-      "lens": "工具",
-      "origin": "auto_brief",
-      "candidate_id": "cand-20261023-aec2cbf8823d",
-      "why": "做遥感、环境或地理数据的人，多了一份可以拿来用的全球地表表示。",
-      "affect": "你的任务要用地球观测数据，就打开原文看这版嵌入怎么取；用不上就不必更换现有数据。"
     }
   ]
 }
