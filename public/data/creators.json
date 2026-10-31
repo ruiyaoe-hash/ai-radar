@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-31 08:06 北京时间",
+  "updated": "2026-10-31 16:26 北京时间",
   "creators": [
     {
       "handle": "vista8",
@@ -18,7 +18,7 @@
       "handle": "shao__meng",
       "name": "shao__meng",
       "focus": "",
-      "source_count": 7,
+      "source_count": 8,
       "bookmarks": 0,
       "bookmark_metric": false,
       "topics": [
@@ -37,6 +37,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/0xlangeai"
+    },
+    {
+      "handle": "bozhou_ai",
+      "name": "bozhou_ai",
+      "focus": "",
+      "source_count": 2,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/bozhou_ai"
     },
     {
       "handle": "realydt",
@@ -61,18 +73,6 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/AYi_AInotes"
-    },
-    {
-      "handle": "bozhou_ai",
-      "name": "bozhou_ai",
-      "focus": "",
-      "source_count": 1,
-      "bookmarks": 0,
-      "bookmark_metric": false,
-      "topics": [
-        "hands-on"
-      ],
-      "profile_url": "https://x.com/bozhou_ai"
     },
     {
       "handle": "dhh",
@@ -121,6 +121,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/huggingface-blog"
+    },
+    {
+      "handle": "op7418",
+      "name": "op7418",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/op7418"
     },
     {
       "handle": "runwayml",

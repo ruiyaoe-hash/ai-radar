@@ -5,14 +5,35 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sat, 31 Oct 2026 12:11:47 +0800</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 16:26:18 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] 歸藏设计：把网页演示、图文卡片和排版收进 DeepSeek Harness</title>
+<link>https://github.com/op7418/dsh-guizang-design</link>
+<guid isPermaLink="false">evt-20261031-be121232758a</guid>
+<pubDate>Sat, 31 Oct 2026 10:31:27 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 歸藏发布 DeepSeek Harness 插件 dsh-guizang-design：把网页演示、图文卡片、网页排版、去 AI 味和语气档案收成一个插件。前三项共用一套设计系统和设计令牌，同一篇内容做成演示、卡片和网页时，主题与字体保持一致。<br/>• 版本要求是 dsh 0.2.1-rc.2 及以上、低于 0.3.0。推荐在侧栏插件页添加包名 dsh-guizang-design，安装后要点「立即启用」；直接关掉对话框等于装了但没打开。自建网页版可用命令行安装。桌面版不能用命令行为这个插件安装。<br/>• 作者同日说明：已经单独装过其中几个技能的，建议改用本插件并更新。网页演示含杂志风动态背景，低性能时可关掉。仓库是 op7418/dsh-guizang-design。JimLiu/baoyu-design 的 dsh-plugins 仍记在 10 月 29 日那张工具卡上。<br/><strong>对你意味着什么</strong> 如果你已经在用 DeepSeek Harness 做演示或社媒图，这个插件把网页演示、图文卡片和排版收在一起，并共用一套视觉，今天可以装上做一页小样再决定要不要替换旧技能。<br/>建议：持续观察 · 今天装上并启用，用一页中文选题生成网页演示；打不开就先不迁移旧技能。<br/>有多确定：中<br/>什么情况下当这判断作废：若你的 Harness 版本装不上、插件页没有这个包，或生成质量和现用的独立技能差不多，就不必改安装方式。<br/>来源 op7418（一手）, op7418（转述）<br/>日期 2026-10-31]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] agent-desktop：用系统无障碍树给任意编程助手加上电脑操控</title>
+<link>https://github.com/vercel-labs/agent-desktop</link>
+<guid isPermaLink="false">evt-20261031-196906bf976b</guid>
+<pubDate>Sat, 31 Oct 2026 10:23:03 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Vercel Labs 开源 agent-desktop（Apache-2.0）：一套命令行和 C 库，让编程助手通过操作系统的无障碍树读取并操作桌面应用。每个可操作控件带稳定引用，动作按引用执行后再快照核对，而不是靠截图像素去猜按钮。支持 macOS、Windows 和 Linux。<br/>• 默认走无障碍接口，不移动鼠标、不抢焦点，所以助手可以在后台操作，你继续做自己的事；需要真实键鼠时再打开有头模式。macOS 要授予辅助功能，Linux 需要当前用户的图形会话和无障碍服务，Windows 对同一完整性级别的应用通常不必另授权。<br/>• 仓库说明给出安装和最小闭环：全局安装后核对版本，对一个应用做快照，按返回的引用点击，再快照确认。也可把官方技能装进现有编程助手。社区于北京时间 10 月 31 日上午转述该仓库，本卡以 GitHub 说明为一手出处。<br/><strong>对你意味着什么</strong> 如果你希望编程助手操作本机其它应用，又不想靠截图像素去猜按钮，这条开源命令已经给出可安装的无障碍树方案，值得先在备用机上跑通一次快照。<br/>建议：持续观察 · 今天在备用机跑通快照、点击、再快照；权限或引用不稳就先不要交给日常项目。<br/>有多确定：中<br/>什么情况下当这判断作废：若安装失败、系统给不了无障碍权限，或快照对你的常用应用几乎拿不到可点控件，就不必把日常助手接到这套命令上。<br/>来源 vercel-labs（一手）, bozhou_ai（转述）<br/>日期 2026-10-31]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] Claude 200 美元档改名 Ultra：已验证账号取消 5 小时限额，价格与周额度不变</title>
 <link>https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan</link>
 <guid isPermaLink="false">evt-20261031-claude-ultra-no-5h</guid>
 <pubDate>Sat, 31 Oct 2026 01:29:07 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Anthropic 于北京时间约 10 月 31 日凌晨宣布：原每月 100 美元的 Max 5x 改名 Max，每月 200 美元的 Max 20x 改名 Ultra；价格不变，现有订阅自动换名，用户无需操作。<br/>• 已验证的 Ultra 账号取消滚动 5 小时会话限额，当天先对大部分现有订阅者生效；较新账号在验证完成前保留临时限额，验证按账号与付款记录自动完成，取消时会发邮件。周用量上限不变：官方写 Ultra 每周约为 Pro 的 10 倍，另有单独的 Fable 周限额。<br/>• 自己查验证：打开 Claude 设置 → 用量；若看不到「当前会话」进度条，说明已验证、5 小时限额已取消。订阅时验证手机号是另一回事，不会取消该限额。一手出处为 Claude 官方帖与帮助中心；The Verge 同日报道了改名。<br/><strong>对你意味着什么</strong> 如果你用 Claude Code 常遇到「周额度还剩、却被 5 小时窗口卡住」，已验证 Ultra 现在可以连着跑完一周额度，今天就能在用量页确认是否已生效。<br/>建议：立即行动 · 今天打开用量页确认验证状态；未验证则等邮件，不必改订阅。用一两天真实连跑任务看卡顿是否消失，再决定要不要为「取消 5 小时」去升级或续订 Ultra。<br/>有多确定：高<br/>什么情况下当这判断作废：若你的账号长期无法通过验证、仍看到「当前会话」限额，或你几乎从不撞 5 小时窗口、只差周总量，则不必为本改名改订阅。<br/>来源 claudeai（一手）, anthropic（一手）, verge（转述）, dotey（解读）<br/>日期 2026-10-31]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Perplexity Computer 可操控本机 Chrome：装官方扩展后沿用已登录网页</title>
+<link>https://chromewebstore.google.com/detail/perplexity/pninphncmkphpjgfffammoenglghcjii</link>
+<guid isPermaLink="false">evt-20261030-205b2ad5e72f</guid>
+<pubDate>Fri, 30 Oct 2026 23:12:31 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Perplexity 在 Chrome 网上应用店上架官方扩展：装好后，Mac 与 Windows 上的 Perplexity Computer 可以打开网站、阅读页面、填写表单，并使用你已经登录的标签页。页面写明只有你亲手发起任务时才会动浏览器，不在后台收集浏览数据。<br/>• 启用顺序写在扩展页：先安装 Computer 桌面应用，再添加扩展，然后在 Mac 的设置连接器或 Windows 的设置权限里，把所选浏览器指到刚装扩展的那个。Comet 浏览器不需要这条扩展，同类能力已经内置。<br/>• 首席执行官于北京时间 10 月 30 日晚发帖宣布桌面应用已能控制本机 Chrome，并指向该扩展。本卡以应用店页面为一手出处。今早那条简讯讲的是 Gemini Carbon 何时进 Computer；这条讲的是助手能不能操作你自己的浏览器。<br/><strong>对你意味着什么</strong> 如果你用 Perplexity 的电脑助手，却卡在它打不开你已经登录的网页，官方扩展可以把任务接到本机 Chrome。今天用一个小任务就能看它是否真的用了你的浏览器。<br/>建议：持续观察 · 今天只用一个公开网页的小任务验收；要动已登录网站时，先确认任务是你发起的。<br/>有多确定：中<br/>什么情况下当这判断作废：若扩展装上后 Computer 仍打不开你的 Chrome，或你根本不用 Perplexity 桌面应用，就不必为这条改浏览器习惯。<br/>来源 perplexity（一手）<br/>日期 2026-10-30]]></description>
 </item>
 <item>
 <title>[快讯 · 新工具 · 工具] AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录</title>

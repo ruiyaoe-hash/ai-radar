@@ -1,8 +1,126 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-31 12:11 北京时间",
+  "updated": "2026-10-31 16:26 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261031-be121232758a",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "歸藏设计：把网页演示、图文卡片和排版收进 DeepSeek Harness",
+      "date": "2026-10-31",
+      "time": "10-31 10:31",
+      "handle": "op7418",
+      "url": "https://github.com/op7418/dsh-guizang-design",
+      "published_at": "2026-10-31T02:31:27Z",
+      "ingested_at": "2026-10-31T08:25:00Z",
+      "candidate_id": "cand-20261031-be121232758a",
+      "promotion_path": "normal",
+      "objective": [
+        "歸藏发布 DeepSeek Harness 插件 dsh-guizang-design：把网页演示、图文卡片、网页排版、去 AI 味和语气档案收成一个插件。前三项共用一套设计系统和设计令牌，同一篇内容做成演示、卡片和网页时，主题与字体保持一致。",
+        "版本要求是 dsh 0.2.1-rc.2 及以上、低于 0.3.0。推荐在侧栏插件页添加包名 dsh-guizang-design，安装后要点「立即启用」；直接关掉对话框等于装了但没打开。自建网页版可用命令行安装。桌面版不能用命令行为这个插件安装。",
+        "作者同日说明：已经单独装过其中几个技能的，建议改用本插件并更新。网页演示含杂志风动态背景，低性能时可关掉。仓库是 op7418/dsh-guizang-design。JimLiu/baoyu-design 的 dsh-plugins 仍记在 10 月 29 日那张工具卡上。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/op7418/dsh-guizang-design",
+          "handle": "op7418",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/op7418/status/2116357353566302376",
+          "handle": "op7418",
+          "role": "report"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://github.com/op7418/dsh-guizang-design",
+      "access": "需要已安装 DeepSeek Harness，且版本落在插件写明的区间。桌面版走插件页面；自己跑网页版的，还需要 Node.js 与 pnpm。卡片出图第一次可能要另装浏览器内核。打开本卡试做链接核对版本和许可证后再装。",
+      "integration": "适合已经用 DeepSeek Harness 做演示、社媒图或文章排版的人。四个技能仍有独立仓库，可在 Claude Code 或 Codex 里单独用；本插件是把它们收进 Harness。",
+      "first_step": "打开 Harness 侧栏的插件页，添加包名并点立即启用。侧栏出现歸藏设计后，用一页中文选题生成一份网页演示，在浏览器里打开那个 HTML 看版式是否可用。",
+      "alternatives": [
+        "继续单独使用歸藏的演示或卡片技能，不装这个插件",
+        "继续用 baoyu-design 的 dsh-plugins 做标注式设计",
+        "在幻灯片或设计工具里手做，不交给 Harness"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你已经在用 DeepSeek Harness 做演示或社媒图，这个插件把网页演示、图文卡片和排版收在一起，并共用一套视觉，今天可以装上做一页小样再决定要不要替换旧技能。",
+        "action": "持续观察",
+        "window": "今天装上并启用，用一页中文选题生成网页演示；打不开就先不迁移旧技能。",
+        "confidence": "中",
+        "falsifier": "若你的 Harness 版本装不上、插件页没有这个包，或生成质量和现用的独立技能差不多，就不必改安装方式。"
+      },
+      "card_copy": {
+        "watch_reason": "网页演示、图文卡片和排版收进同一插件，已用 Harness 的人可以先做一页",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261031-196906bf976b",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "agent-desktop：用系统无障碍树给任意编程助手加上电脑操控",
+      "date": "2026-10-31",
+      "time": "10-31 10:23",
+      "handle": "vercel-labs",
+      "url": "https://github.com/vercel-labs/agent-desktop",
+      "published_at": "2026-10-31T02:23:03Z",
+      "ingested_at": "2026-10-31T08:25:00Z",
+      "candidate_id": "cand-20261031-196906bf976b",
+      "promotion_path": "normal",
+      "objective": [
+        "Vercel Labs 开源 agent-desktop（Apache-2.0）：一套命令行和 C 库，让编程助手通过操作系统的无障碍树读取并操作桌面应用。每个可操作控件带稳定引用，动作按引用执行后再快照核对，而不是靠截图像素去猜按钮。支持 macOS、Windows 和 Linux。",
+        "默认走无障碍接口，不移动鼠标、不抢焦点，所以助手可以在后台操作，你继续做自己的事；需要真实键鼠时再打开有头模式。macOS 要授予辅助功能，Linux 需要当前用户的图形会话和无障碍服务，Windows 对同一完整性级别的应用通常不必另授权。",
+        "仓库说明给出安装和最小闭环：全局安装后核对版本，对一个应用做快照，按返回的引用点击，再快照确认。也可把官方技能装进现有编程助手。社区于北京时间 10 月 31 日上午转述该仓库，本卡以 GitHub 说明为一手出处。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/vercel-labs/agent-desktop",
+          "handle": "vercel-labs",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/bozhou_ai/status/2116355237586014386",
+          "handle": "bozhou_ai",
+          "role": "report"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://github.com/vercel-labs/agent-desktop",
+      "access": "需要本机有 Node.js 才能走全局安装，或改从 GitHub Releases 下载对应系统的原生包。macOS 要在系统设置里打开辅助功能；Linux 需要图形会话。快照、剪贴板和截图可能含私人桌面内容，不要贴进公开日志。打开本卡试做链接先读安装与隐私说明。",
+      "integration": "适合已经在用 Cursor、Claude Code、Codex 等编程助手，又希望它能操作本机其它应用的人。通过官方技能或项目说明调用，不必换掉现有助手。",
+      "first_step": "在一台不放工作密钥的电脑上全局安装并核对版本；macOS 先按权限向导授权。然后对一个文件夹窗口做快照、按返回的引用点一次、再快照，确认界面有变化。",
+      "alternatives": [
+        "继续只用编程助手改仓库，不让它碰桌面应用",
+        "用助手自带的电脑操作，不另装这条命令",
+        "只读仓库说明，先不安装"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你希望编程助手操作本机其它应用，又不想靠截图像素去猜按钮，这条开源命令已经给出可安装的无障碍树方案，值得先在备用机上跑通一次快照。",
+        "action": "持续观察",
+        "window": "今天在备用机跑通快照、点击、再快照；权限或引用不稳就先不要交给日常项目。",
+        "confidence": "中",
+        "falsifier": "若安装失败、系统给不了无障碍权限，或快照对你的常用应用几乎拿不到可点控件，就不必把日常助手接到这套命令上。"
+      },
+      "card_copy": {
+        "watch_reason": "开源命令已能让编程助手按界面结构操作电脑，适合先在备用机试一次",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261031-claude-ultra-no-5h",
@@ -64,6 +182,60 @@
         "window": "今天打开用量页确认验证状态；未验证则等邮件，不必改订阅。用一两天真实连跑任务看卡顿是否消失，再决定要不要为「取消 5 小时」去升级或续订 Ultra。",
         "confidence": "高",
         "falsifier": "若你的账号长期无法通过验证、仍看到「当前会话」限额，或你几乎从不撞 5 小时窗口、只差周总量，则不必为本改名改订阅。"
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-205b2ad5e72f",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Perplexity Computer 可操控本机 Chrome：装官方扩展后沿用已登录网页",
+      "date": "2026-10-30",
+      "time": "10-30 23:12",
+      "handle": "perplexity",
+      "url": "https://chromewebstore.google.com/detail/perplexity/pninphncmkphpjgfffammoenglghcjii",
+      "published_at": "2026-10-30T15:12:31Z",
+      "ingested_at": "2026-10-31T08:25:00Z",
+      "candidate_id": "cand-20261030-205b2ad5e72f",
+      "promotion_path": "normal",
+      "objective": [
+        "Perplexity 在 Chrome 网上应用店上架官方扩展：装好后，Mac 与 Windows 上的 Perplexity Computer 可以打开网站、阅读页面、填写表单，并使用你已经登录的标签页。页面写明只有你亲手发起任务时才会动浏览器，不在后台收集浏览数据。",
+        "启用顺序写在扩展页：先安装 Computer 桌面应用，再添加扩展，然后在 Mac 的设置连接器或 Windows 的设置权限里，把所选浏览器指到刚装扩展的那个。Comet 浏览器不需要这条扩展，同类能力已经内置。",
+        "首席执行官于北京时间 10 月 30 日晚发帖宣布桌面应用已能控制本机 Chrome，并指向该扩展。本卡以应用店页面为一手出处。今早那条简讯讲的是 Gemini Carbon 何时进 Computer；这条讲的是助手能不能操作你自己的浏览器。"
+      ],
+      "sources": [
+        {
+          "url": "https://chromewebstore.google.com/detail/perplexity/pninphncmkphpjgfffammoenglghcjii",
+          "handle": "perplexity",
+          "role": "primary"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://chromewebstore.google.com/detail/perplexity/pninphncmkphpjgfffammoenglghcjii",
+      "access": "需要 Perplexity Computer 的 Mac 或 Windows 桌面应用，以及能安装扩展的 Chrome 或其他 Chromium 浏览器。扩展会在你发起的任务里操作已登录网站。打开本卡试做链接阅读权限说明后再装，不要装来路不明的同名扩展。",
+      "integration": "适合已经订阅并能打开 Perplexity Computer、又希望它处理邮箱、后台或内网页面的人。只在网页里聊天、不用桌面应用的人用不上。",
+      "first_step": "在 Mac 或 Windows 打开 Computer，把官方扩展装进 Chrome。到设置里把所选浏览器指到它，再派一个只需打开公开网页的小任务，确认走的是你的浏览器。",
+      "alternatives": [
+        "继续用 Perplexity 自带的浏览，不接本机 Chrome",
+        "改用已经内置浏览能力的 Comet",
+        "自己在浏览器里完成登录站点上的操作"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用 Perplexity 的电脑助手，却卡在它打不开你已经登录的网页，官方扩展可以把任务接到本机 Chrome。今天用一个小任务就能看它是否真的用了你的浏览器。",
+        "action": "持续观察",
+        "window": "今天只用一个公开网页的小任务验收；要动已登录网站时，先确认任务是你发起的。",
+        "confidence": "中",
+        "falsifier": "若扩展装上后 Computer 仍打不开你的 Chrome，或你根本不用 Perplexity 桌面应用，就不必为这条改浏览器习惯。"
+      },
+      "card_copy": {
+        "watch_reason": "官方扩展能把电脑助手接到本机浏览器，先用一个小任务看是否走你的窗口",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
       }
     },
     {
