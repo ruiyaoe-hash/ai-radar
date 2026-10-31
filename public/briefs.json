@@ -1,9 +1,39 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-31 08:06 北京时间",
+  "updated": "2026-10-31 12:12 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261031-2df997344057",
+      "level": "L2",
+      "date": "2026-10-31",
+      "time": "10-31 12:10",
+      "title": "苹果：中国大陆 Apple Intelligence 随 iOS 27.3 上线，11 月 4 日进测试版",
+      "summary": "据 The Verge 援引苹果中国新闻室：Apple Intelligence 将随 iOS 27.3 进入中国大陆；11 月 4 日先开测试版，正式版约 12 月。首批不含新一代 Siri，而是通知摘要、实时翻译、改写校对、视觉智能与消除照片物体等较早能力；部分体验接入阿里通义千问（Qwen），类似既往 ChatGPT 接入方式。",
+      "why": "中国区 iPhone 用户何时能用上系统级 AI，关系到要不要等正式版、以及本地聊天要不要另装第三方。",
+      "affect": "若你在国内用 iPhone：记下 11 月 4 日测试版与 12 月正式版窗口；不要期待这次就上最新 Siri。需要聊天助手时，留意系统里是否出现通义千问入口，再决定要不要继续用独立 App。",
+      "url": "https://www.theverge.com/tech/1023974/apple-intelligence-china-ios-27-3",
+      "source": "theverge-ai",
+      "lens": "时机",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261031-2df997344057"
+    },
+    {
+      "id": "brf-20261031-abeffedc69d4",
+      "level": "L2",
+      "date": "2026-10-31",
+      "time": "10-31 12:12",
+      "title": "Anthropic：用 Claude 代理自动搜寻「看似无害却诱发失准」的训练数据",
+      "summary": "Anthropic 于 2026 年 10 月发布研究：让 Claude 代理批量撰写微调数据，目标是让小研究模型失准（misalignment），同时骗过类似生产环境的训练数据监测器；给足迭代后代理成功，多把行为藏进虚构与角色扮演。实验模型未上线；作者视之为自动化红队压测安全系统的一步。",
+      "why": "说明「只靠扫训练文本拦风险」可能不够，和昨日 OpenAI 公开失准监测形成对照。",
+      "affect": "若你跟安全评测或自建数据过滤：把这条当官方实验结论记一笔，关注后续更接近真实训练配比的复现，而不是今天就改产品默认策略。",
+      "url": "https://alignment.anthropic.com/2026/automated-em-search/",
+      "source": "anthropic",
+      "lens": "赛道",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261031-abeffedc69d4"
+    },
     {
       "id": "brf-20261031-01c698bb28ca",
       "level": "L2",

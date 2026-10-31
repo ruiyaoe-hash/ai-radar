@@ -5,7 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sat, 31 Oct 2026 08:05:52 +0800</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 12:11:47 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>[快讯 · 新工具 · 工具] Claude 200 美元档改名 Ultra：已验证账号取消 5 小时限额，价格与周额度不变</title>
@@ -54,7 +54,7 @@
 <link>https://github.com/JimLiu/baoyu-design</link>
 <guid isPermaLink="false">evt-20261029-baoyu-design</guid>
 <pubDate>Thu, 29 Oct 2026 12:52:04 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。<br/>• 推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。<br/>• 宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。<br/>• 宝玉于北京时间 10 月 30 日下午宣布 baoyu-design v2.1：可在设计页与幻灯片上标记元素并添加评论，Agent 可读评论并回复；评论与项目数据同存。<br/><strong>对你意味着什么</strong> 如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。<br/>建议：立即行动 · 今天完成安装并用一版落地页或幻灯片跑通预览；确认模型与助手兼容后再扩到仪表盘或设计系统。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、本机 Node 环境装不上，或生成质量明显差于你现有网页工作流，就不必为本工具改流程。<br/>来源 JimLiu（一手）, dotey（转述）, dotey（转述）<br/>日期 2026-10-29]]></description>
+<description><![CDATA[<strong>背景</strong><br/>• 开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。<br/>• 推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。<br/>• 宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。<br/>• 宝玉于北京时间 10 月 30 日下午宣布 baoyu-design v2.1：可在设计页与幻灯片上标记元素并添加评论，Agent 可读评论并回复；评论与项目数据同存。<br/>• 宝玉于北京时间 10 月 31 日午间发帖：已做 DeepSeek Harness（DSH）插件，使 Claude Design 可跑在 DeepSeek Harness 上，并支持标注与评论修改；仓库路径为 JimLiu/baoyu-design 的 dsh-plugins 目录。<br/><strong>对你意味着什么</strong> 如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。<br/>建议：立即行动 · 今天完成安装并用一版落地页或幻灯片跑通预览；确认模型与助手兼容后再扩到仪表盘或设计系统。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、本机 Node 环境装不上，或生成质量明显差于你现有网页工作流，就不必为本工具改流程。<br/>来源 JimLiu（一手）, dotey（转述）, dotey（转述）, dotey（转述）, JimLiu（一手）<br/>日期 2026-10-29]]></description>
 </item>
 <item>
 <title>[快讯 · 新工具 · 工具] 情商外挂：本地开源网页，发送前按非暴力沟通改一版再说</title>
