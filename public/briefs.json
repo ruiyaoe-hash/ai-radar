@@ -1,9 +1,24 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-30T08:20:00Z",
+  "updated": "2026-10-31 08:06 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261031-01c698bb28ca",
+      "level": "L2",
+      "date": "2026-10-31",
+      "time": "10-31 08:08",
+      "title": "Perplexity：Gemini 4 Carbon 长文研究评测领先，将接入 Pro / Max 的 Computer",
+      "summary": "Perplexity 首席执行官于北京时间约 10 月 31 日凌晨发帖：内部早期评测称 Gemini 4 Carbon 是他们见过最强的长文研究与回答质量模型，并在自研 Wide-And-Deep-Research（WANDR）基准上创新高；称待令牌容量足够后，将向全部 Perplexity Pro 与 Max 用户在 Computer 里开放。",
+      "why": "Carbon 已在 DeepMind 侧放出，这条说的是它何时进到你日常用的 Perplexity Computer，关系到长文研究要不要继续押在 Perplexity。",
+      "affect": "若你已是 Perplexity Pro 或 Max：把这条当成「即将可试」的预告，等 Computer 里真能选到 Carbon 再用你自己的长文研究题对照现用模型。今天点不开就不必改用法。若你还没用 Perplexity，不必只为这条预告去开订阅。",
+      "url": "https://x.com/aravsrinivas/status/2116263856628703247",
+      "source": "aravsrinivas",
+      "lens": "时机",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261031-01c698bb28ca"
+    },
     {
       "id": "brf-20261030-939235be0c7e",
       "level": "L2",
