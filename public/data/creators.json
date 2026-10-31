@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-31 16:26 北京时间",
+  "updated": "2026-10-31 21:07 北京时间",
   "creators": [
     {
       "handle": "vista8",
@@ -51,6 +51,18 @@
       "profile_url": "https://x.com/bozhou_ai"
     },
     {
+      "handle": "op7418",
+      "name": "op7418",
+      "focus": "",
+      "source_count": 2,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/op7418"
+    },
+    {
       "handle": "realydt",
       "name": "realydt",
       "focus": "",
@@ -73,6 +85,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/AYi_AInotes"
+    },
+    {
+      "handle": "bcherny",
+      "name": "bcherny",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/bcherny"
     },
     {
       "handle": "dhh",
@@ -123,8 +147,8 @@
       "profile_url": "https://x.com/huggingface-blog"
     },
     {
-      "handle": "op7418",
-      "name": "op7418",
+      "handle": "pbakaus",
+      "name": "pbakaus",
       "focus": "",
       "source_count": 1,
       "bookmarks": 0,
@@ -132,7 +156,7 @@
       "topics": [
         "hands-on"
       ],
-      "profile_url": "https://x.com/op7418"
+      "profile_url": "https://x.com/pbakaus"
     },
     {
       "handle": "runwayml",

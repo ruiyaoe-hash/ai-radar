@@ -1,0 +1,23 @@
+{
+  "id": "prac-20261031-c1b002ea3152",
+  "kind": "工具用法",
+  "title": "把 Claude Code 搜文件的子代理调到低推理强度",
+  "author": "bcherny",
+  "url": "https://x.com/bcherny/status/2115859487068422226",
+  "time": "2026-10-30 01:33",
+  "takeaway": "子代理搜代码、读文件也在按高强度烧额度时，可以用负责人给出的开关单独调低，主代理仍负责架构。",
+  "steps": [
+    "确认你的 Claude Code 已包含该开关后，在终端用 CLAUDE_CODE_SUBAGENT_EFFORT=low claude 启动。只派搜代码或读文件的子任务，做完打开用量，看这部分是否还按原来的高强度计算。",
+    "若你已经有自定义 agent：按原帖所说，在该 agent 的配置里单独指定强度，让检索角色用 low，把架构和设计留在主代理。字段以你当前版本的说明为准。不要把需要仔细推理的子任务也降到 low。"
+  ],
+  "caution": "这不增加订阅额度，只改子代理用多强的推理。低强度可能让需要判断的子任务变粗。这里没有替你启动 Claude Code。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "已安装包含该开关的 Claude Code",
+    "知道去哪里看账号用量"
+  ],
+  "estimated_time": "二十分钟内试一次低强度启动",
+  "verified": false,
+  "candidate_id": "cand-20261031-c1b002ea3152",
+  "try_url": "https://x.com/bcherny/status/2115859487068422226"
+}

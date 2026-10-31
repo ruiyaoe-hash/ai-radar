@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sat, 31 Oct 2026 16:26:18 +0800</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 21:06:33 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] impeccable：用设计词和本地规则去掉落地页的廉价 AI 味</title>
+<link>https://github.com/pbakaus/impeccable</link>
+<guid isPermaLink="false">evt-20261031-30da51c8b4ee</guid>
+<pubDate>Sat, 31 Oct 2026 14:53:41 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• pbakaus/impeccable 是一套开源设计技能（许可 Apache-2.0）：给 Claude Code、Codex CLI、Cursor 等编程助手一套设计词，用来改已经写出来的界面，并在交付前标出常见的模板化版式。<br/>• 仓库说明分成三类用法。polish、bolder 把某一块界面往指定方向收；critique 按可用性打分并排出修改顺序，audit 检查无障碍、性能、主题和响应式。另有 62 条确定性规则专抓渐变、默认字体、卡片套卡片等套路，在本机扫描，不调用模型，也不需要 API Key。<br/>• 在项目根目录执行 npx impeccable install，重载工具后再运行 /impeccable init（Codex 上用 $impeccable init）。知识猫于北京时间 10 月 31 日下午转述了同一仓库，本卡以 GitHub 说明为一手出处。<br/><strong>对你意味着什么</strong> 如果你用 Claude Code、Codex 或 Cursor 做落地页，出来总是紫蓝渐变和套卡片，这套开源技能今天就能装上，先对一块页面做体检，再决定要不要让它改。<br/>建议：立即行动 · 今天装上，并对一块落地页跑一次设计体检或本地检测。<br/>有多确定：中<br/>什么情况下当这判断作废：若安装后命令不出现、本地检测对你的页面几乎没有发现，或改完仍和你现有设计规范冲突，就不必把整站交给它。<br/>来源 pbakaus（一手）, GeekCatX（转述）<br/>日期 2026-10-31]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] 歸藏设计：把网页演示、图文卡片和排版收进 DeepSeek Harness</title>
 <link>https://github.com/op7418/dsh-guizang-design</link>
@@ -36,11 +43,25 @@
 <description><![CDATA[<strong>背景</strong><br/>• Perplexity 在 Chrome 网上应用店上架官方扩展：装好后，Mac 与 Windows 上的 Perplexity Computer 可以打开网站、阅读页面、填写表单，并使用你已经登录的标签页。页面写明只有你亲手发起任务时才会动浏览器，不在后台收集浏览数据。<br/>• 启用顺序写在扩展页：先安装 Computer 桌面应用，再添加扩展，然后在 Mac 的设置连接器或 Windows 的设置权限里，把所选浏览器指到刚装扩展的那个。Comet 浏览器不需要这条扩展，同类能力已经内置。<br/>• 首席执行官于北京时间 10 月 30 日晚发帖宣布桌面应用已能控制本机 Chrome，并指向该扩展。本卡以应用店页面为一手出处。今早那条简讯讲的是 Gemini Carbon 何时进 Computer；这条讲的是助手能不能操作你自己的浏览器。<br/><strong>对你意味着什么</strong> 如果你用 Perplexity 的电脑助手，却卡在它打不开你已经登录的网页，官方扩展可以把任务接到本机 Chrome。今天用一个小任务就能看它是否真的用了你的浏览器。<br/>建议：持续观察 · 今天只用一个公开网页的小任务验收；要动已登录网站时，先确认任务是你发起的。<br/>有多确定：中<br/>什么情况下当这判断作废：若扩展装上后 Computer 仍打不开你的 Chrome，或你根本不用 Perplexity 桌面应用，就不必为这条改浏览器习惯。<br/>来源 perplexity（一手）<br/>日期 2026-10-30]]></description>
 </item>
 <item>
+<title>[快讯 · 新工具 · 工具] Kimi 3D Make 可连 Blender 与 CAD，先看交出来的能不能改</title>
+<link>https://x.com/Kimi_Moonshot/status/2116005725814280570</link>
+<guid isPermaLink="false">evt-20261031-69235fcdce7e</guid>
+<pubDate>Fri, 30 Oct 2026 11:14:13 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Kimi 官方于北京时间 10 月 30 日 11 时前后发帖：3D Make 已在 kimi.ai 和 Kimi Work 提供，能连接 Blender、CAD 一类工具，用来创建模型、搭建场景和开发游戏。<br/>• 知识猫于 10 月 31 日下午引用这条演示，把变化说成：从一次生成就结束的死网格，转向由 agent 去操作 Blender 和 CAD。他给出的验收只有一条：交付应是分层干净、还能精修的工程，而不是换个姿势的封闭壳体。<br/>• 官方帖确认的是能连上这些工具并生成，没有写明导出的是可编辑工程还是封闭网格。演示不能代替你自己打开文件检查。<br/><strong>对你意味着什么</strong> 如果你做三维，Kimi 已经把 3D Make 放到 kimi.ai 和 Kimi Work，值得用一个小零件看它交出来的是不是还能在 Blender 里继续编辑的文件。<br/>建议：持续观察 · 今天用一个小零件导出，并在 Blender 里试着改一层。<br/>有多确定：中<br/>什么情况下当这判断作废：若导出仍是拓扑乱、材质焊死、不能分层修改的壳体，就不要把它当成建模流程，只当一条演示。<br/>来源 Kimi_Moonshot（一手）, GeekCatX（解读）<br/>日期 2026-10-31]]></description>
+</item>
+<item>
 <title>[快讯 · 新工具 · 工具] AI Coding Hunt：把 X 上自荐的 AI Coding 小工具收成可检索图文目录</title>
 <link>https://aicodinghunt.qiaomu.ai/</link>
 <guid isPermaLink="false">evt-20261030-ai-coding-hunt</guid>
 <pubDate>Fri, 30 Oct 2026 10:57:40 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 向阳乔木（vista8）于北京时间 10 月 30 日下午发帖：把大家在 X 上自荐的 Vibe Coding（氛围编程）产品整理成网站 AI Coding Hunt，并附 Grok Bot 开发过程录屏。<br/>• 站点自称中文优先的图文猎场：聚合 Agent、插件、CLI 与开源项目等社区真实在用条目，可用本站点赞 / 社区点赞 / 社区浏览排序，并提供在线投稿；页面写明数据来自自荐帖回复，不靠广告位。<br/>• 主链 https://aicodinghunt.qiaomu.ai/ 可打开核对目录与关于说明；本卡以站点与发帖互相印证。<br/><strong>对你意味着什么</strong> 如果你经常在时间线上刷到自荐小工具却难回头找，这个中文目录把它们收成可排序猎场，今天就能按榜单挑两件亲自试。<br/>建议：可以试用 · 今天打开目录挑 2 个相关条目试用；若条目质量不稳或与你栈无关，就当发现渠道，不必改主力工具。<br/>有多确定：中<br/>什么情况下当这判断作废：若目录大量失效链接、硬广占满，或没有你需要的品类，就不必把它当成默认发现入口。<br/>来源 vista8（一手）, vista8（转述）<br/>日期 2026-10-30]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Claude Code 可把子代理推理强度单独调低，避免搜文件跟着烧额度</title>
+<link>https://x.com/bcherny/status/2115859487068422226</link>
+<guid isPermaLink="false">evt-20261031-c1b002ea3152</guid>
+<pubDate>Fri, 30 Oct 2026 01:33:07 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Claude Code 负责人 Boris Cherny 于北京时间 10 月 30 日凌晨在回复里写出刚合入的开关：用环境变量 CLAUDE_CODE_SUBAGENT_EFFORT=low 启动 claude，或在自定义 agent 配置里为不同代理分别指定强度。<br/>• 知识猫把这条回复说明给中文读者：派子代理去搜代码、读文件时，若仍继承会话的高推理强度，额度会耗在跑腿上。可以把主代理留在架构，把只做检索的子代理降到 low。<br/>• 这不改变订阅档位，也不增加每周总额度。原帖没有给出省下多少的测量；是否真省，要看用量里子代理是否还在按高强度计算。<br/><strong>对你意味着什么</strong> 如果你用 Claude Code 时，子代理一搜文件就把额度打空，现在可以只把这类跑腿的推理强度降到 low，今天就能用一条启动命令试一次。<br/>建议：立即行动 · 今天用低强度启动一次，只派搜文件的子任务对照用量。<br/>有多确定：中<br/>什么情况下当这判断作废：若你的版本不认这个环境变量、用量没有变化，或费额度的其实是主代理而不是子代理，就不必为它改工作流。需要仔细推理的子任务也不要降到 low。<br/>来源 bcherny（一手）, GeekCatX（解读）<br/>日期 2026-10-31]]></description>
 </item>
 <item>
 <title>[快讯 · 新工具 · 工具] Claude 语音模式接通 Apple CarPlay：开车时也能双手不离方向盘问问题</title>

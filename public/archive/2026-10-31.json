@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-10-31",
-  "generated_at": "2026-10-31T00:05:50Z",
+  "generated_at": "2026-10-31T13:10:00Z",
   "items": [
     {
       "schema_version": 2,
@@ -183,7 +183,184 @@
         "suggested_action": "持续观察",
         "high_priority_review": false
       }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261031-30da51c8b4ee",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "impeccable：用设计词和本地规则去掉落地页的廉价 AI 味",
+      "date": "2026-10-31",
+      "time": "10-31 14:53",
+      "handle": "pbakaus",
+      "url": "https://github.com/pbakaus/impeccable",
+      "published_at": "2026-10-31T06:53:41Z",
+      "ingested_at": "2026-10-31T13:10:00Z",
+      "candidate_id": "cand-20261031-30da51c8b4ee",
+      "promotion_path": "normal",
+      "objective": [
+        "pbakaus/impeccable 是一套开源设计技能（许可 Apache-2.0）：给 Claude Code、Codex CLI、Cursor 等编程助手一套设计词，用来改已经写出来的界面，并在交付前标出常见的模板化版式。",
+        "仓库说明分成三类用法。polish、bolder 把某一块界面往指定方向收；critique 按可用性打分并排出修改顺序，audit 检查无障碍、性能、主题和响应式。另有 62 条确定性规则专抓渐变、默认字体、卡片套卡片等套路，在本机扫描，不调用模型，也不需要 API Key。",
+        "在项目根目录执行 npx impeccable install，重载工具后再运行 /impeccable init（Codex 上用 $impeccable init）。知识猫于北京时间 10 月 31 日下午转述了同一仓库，本卡以 GitHub 说明为一手出处。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/pbakaus/impeccable",
+          "handle": "pbakaus",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/GeekCatX/status/2116423346258894986",
+          "handle": "GeekCatX",
+          "role": "report"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/pbakaus/impeccable",
+      "access": "需要本机能跑 npx，因此要有 Node.js。技能本体随安装带上，检测规则不另要模型密钥。Claude Code、Codex CLI、Cursor 都在支持列表里。打开本卡试做链接先看安装说明和许可。",
+      "integration": "适合已经用编程助手改网页、又嫌成品一眼像模板的人。装进现有工具即可，不必换助手。",
+      "first_step": "在项目根目录执行 npx impeccable install，重载后运行 /impeccable init。然后对一块具体区域运行 /impeccable critique，或用 npx impeccable detect 扫该目录。",
+      "alternatives": [
+        "继续只用口头提示词改版式，不装这套技能",
+        "只跑本地检测，不让助手改页面",
+        "沿用你已经定好的设计规范和组件库"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用 Claude Code、Codex 或 Cursor 做落地页，出来总是紫蓝渐变和套卡片，这套开源技能今天就能装上，先对一块页面做体检，再决定要不要让它改。",
+        "action": "立即行动",
+        "window": "今天装上，并对一块落地页跑一次设计体检或本地检测。",
+        "confidence": "中",
+        "falsifier": "若安装后命令不出现、本地检测对你的页面几乎没有发现，或改完仍和你现有设计规范冲突，就不必把整站交给它。"
+      },
+      "card_copy": {
+        "watch_reason": "开源设计词和本地规则能先压一压落地页的模板感",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261031-c1b002ea3152",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Claude Code 可把子代理推理强度单独调低，避免搜文件跟着烧额度",
+      "date": "2026-10-31",
+      "time": "10-30 01:33",
+      "handle": "bcherny",
+      "url": "https://x.com/bcherny/status/2115859487068422226",
+      "published_at": "2026-10-29T17:33:07Z",
+      "ingested_at": "2026-10-31T13:10:00Z",
+      "candidate_id": "cand-20261031-c1b002ea3152",
+      "promotion_path": "normal",
+      "objective": [
+        "Claude Code 负责人 Boris Cherny 于北京时间 10 月 30 日凌晨在回复里写出刚合入的开关：用环境变量 CLAUDE_CODE_SUBAGENT_EFFORT=low 启动 claude，或在自定义 agent 配置里为不同代理分别指定强度。",
+        "知识猫把这条回复说明给中文读者：派子代理去搜代码、读文件时，若仍继承会话的高推理强度，额度会耗在跑腿上。可以把主代理留在架构，把只做检索的子代理降到 low。",
+        "这不改变订阅档位，也不增加每周总额度。原帖没有给出省下多少的测量；是否真省，要看用量里子代理是否还在按高强度计算。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/bcherny/status/2115859487068422226",
+          "handle": "bcherny",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/GeekCatX/status/2116424281399734420",
+          "handle": "GeekCatX",
+          "role": "analysis"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://x.com/bcherny/status/2115859487068422226",
+      "access": "需要已安装能识别该变量的 Claude Code。原帖给出的是启动命令，以及写进自定义 agent 配置，没有另附字段说明。打开来源里的原帖核对后再改。",
+      "integration": "适合把搜代码、读文件交给子代理，又不想它们继承高强度推理的 Claude Code 用户。",
+      "first_step": "在终端用 CLAUDE_CODE_SUBAGENT_EFFORT=low claude 启动，派一个只搜文件的子任务，再看用量里这部分是否还按原来的高强度计算。",
+      "alternatives": [
+        "继续让子代理继承当前会话的推理强度",
+        "少派子代理，搜索和读文件改由主会话自己做",
+        "把费额度的检索换到别的编程助手"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用 Claude Code 时，子代理一搜文件就把额度打空，现在可以只把这类跑腿的推理强度降到 low，今天就能用一条启动命令试一次。",
+        "action": "立即行动",
+        "window": "今天用低强度启动一次，只派搜文件的子任务对照用量。",
+        "confidence": "中",
+        "falsifier": "若你的版本不认这个环境变量、用量没有变化，或费额度的其实是主代理而不是子代理，就不必为它改工作流。需要仔细推理的子任务也不要降到 low。"
+      },
+      "card_copy": {
+        "watch_reason": "子代理搜文件可以单独降推理强度，避免和主任务一起烧额度",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261031-69235fcdce7e",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Kimi 3D Make 可连 Blender 与 CAD，先看交出来的能不能改",
+      "date": "2026-10-31",
+      "time": "10-30 11:14",
+      "handle": "Kimi_Moonshot",
+      "url": "https://x.com/Kimi_Moonshot/status/2116005725814280570",
+      "published_at": "2026-10-30T03:14:13Z",
+      "ingested_at": "2026-10-31T13:10:00Z",
+      "candidate_id": "cand-20261031-69235fcdce7e",
+      "promotion_path": "normal",
+      "objective": [
+        "Kimi 官方于北京时间 10 月 30 日 11 时前后发帖：3D Make 已在 kimi.ai 和 Kimi Work 提供，能连接 Blender、CAD 一类工具，用来创建模型、搭建场景和开发游戏。",
+        "知识猫于 10 月 31 日下午引用这条演示，把变化说成：从一次生成就结束的死网格，转向由 agent 去操作 Blender 和 CAD。他给出的验收只有一条：交付应是分层干净、还能精修的工程，而不是换个姿势的封闭壳体。",
+        "官方帖确认的是能连上这些工具并生成，没有写明导出的是可编辑工程还是封闭网格。演示不能代替你自己打开文件检查。"
+      ],
+      "sources": [
+        {
+          "url": "https://x.com/Kimi_Moonshot/status/2116005725814280570",
+          "handle": "Kimi_Moonshot",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/GeekCatX/status/2116422742107209756",
+          "handle": "GeekCatX",
+          "role": "analysis"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://www.kimi.ai",
+      "access": "需要能打开 kimi.ai 或 Kimi Work 的账号。官方未在帖里写订阅门槛。打开本卡试做链接进入产品页；能不能改，要以导出到 Blender 或 CAD 之后的结果为准。",
+      "integration": "面向要在 Blender 或 CAD 里继续改模型的人，而不是只需要一张渲染图的人。",
+      "first_step": "用一个简单零件在 3D Make 里生成并导出，再在 Blender 或 CAD 里打开，看能否分层修改，而不是只转一圈预览。",
+      "alternatives": [
+        "继续用现有的三维软件手工建模",
+        "只用一次生成的网格做静帧，不进制作流程",
+        "先等别人公开可编辑的工程文件再试"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你做三维，Kimi 已经把 3D Make 放到 kimi.ai 和 Kimi Work，值得用一个小零件看它交出来的是不是还能在 Blender 里继续编辑的文件。",
+        "action": "持续观察",
+        "window": "今天用一个小零件导出，并在 Blender 里试着改一层。",
+        "confidence": "中",
+        "falsifier": "若导出仍是拓扑乱、材质焊死、不能分层修改的壳体，就不要把它当成建模流程，只当一条演示。"
+      },
+      "card_copy": {
+        "watch_reason": "官方已说能连上三维工具，仍要用能否继续编辑来验收",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
     }
   ],
-  "count": 3
+  "count": 6
 }
