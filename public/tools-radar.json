@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31 08:05 北京时间",
+  "updated": "2026-10-31 12:11 北京时间",
   "rings": {
     "推荐使用": [
       {
@@ -128,9 +128,9 @@
         "date": "2026-10-29",
         "time": "10-29 16:10",
         "try_url": "https://github.com/JimLiu/baoyu-design",
-        "access": "需要本机已装 Node.js，以及 Cursor、Claude Code、Codex 等能读写文件的编程助手。打开本卡试做链接阅读仓库说明后，在目标项目里运行安装命令把技能装进对应目录；首次建议只装 baoyu-design 或再加幻灯片技能做验收。",
+        "access": "需要本机已装 Node.js，以及 Cursor、Claude Code、Codex 等能读写文件的编程助手。打开本卡试做链接阅读仓库说明后，在目标项目里运行安装命令把技能装进对应目录；首次建议只装 baoyu-design 或再加幻灯片技能做验收。 若你已在用 DeepSeek Harness，也可按仓库 dsh-plugins 说明安装，让 Claude Design 直接跑在 Harness 里并做标注评论。",
         "integration": "适合已经在本地用 Agent 做界面稿、落地页、幻灯片或数据看板，却不想在网页 Artifacts 与本地仓库之间来回导出的人。产物进 git，可与设计系统技能共用。",
-        "first_step": "若你这周还在把设计稿从网页来回拷进项目：打开本卡试做链接，按说明安装技能，让助手为当前仓库生成一版简单落地页或幻灯片，再用本地预览改一处文案确认链路通。",
+        "first_step": "若你这周还在把设计稿从网页来回拷进项目：打开本卡试做链接，按说明安装技能，让助手为当前仓库生成一版简单落地页或幻灯片，再用本地预览改一处文案确认链路通。 已装 DeepSeek Harness 的：打开 dsh-plugins 目录按说明装插件，用一页设计稿验收标注与评论。",
         "summary": "开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。",
         "audience_value": "如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。",
         "alternatives": [
@@ -1066,9 +1066,9 @@
       "date": "2026-10-29",
       "time": "10-29 16:10",
       "try_url": "https://github.com/JimLiu/baoyu-design",
-      "access": "需要本机已装 Node.js，以及 Cursor、Claude Code、Codex 等能读写文件的编程助手。打开本卡试做链接阅读仓库说明后，在目标项目里运行安装命令把技能装进对应目录；首次建议只装 baoyu-design 或再加幻灯片技能做验收。",
+      "access": "需要本机已装 Node.js，以及 Cursor、Claude Code、Codex 等能读写文件的编程助手。打开本卡试做链接阅读仓库说明后，在目标项目里运行安装命令把技能装进对应目录；首次建议只装 baoyu-design 或再加幻灯片技能做验收。 若你已在用 DeepSeek Harness，也可按仓库 dsh-plugins 说明安装，让 Claude Design 直接跑在 Harness 里并做标注评论。",
       "integration": "适合已经在本地用 Agent 做界面稿、落地页、幻灯片或数据看板，却不想在网页 Artifacts 与本地仓库之间来回导出的人。产物进 git，可与设计系统技能共用。",
-      "first_step": "若你这周还在把设计稿从网页来回拷进项目：打开本卡试做链接，按说明安装技能，让助手为当前仓库生成一版简单落地页或幻灯片，再用本地预览改一处文案确认链路通。",
+      "first_step": "若你这周还在把设计稿从网页来回拷进项目：打开本卡试做链接，按说明安装技能，让助手为当前仓库生成一版简单落地页或幻灯片，再用本地预览改一处文案确认链路通。 已装 DeepSeek Harness 的：打开 dsh-plugins 目录按说明装插件，用一页设计稿验收标注与评论。",
       "summary": "开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。",
       "audience_value": "如果你日常设计交付卡在「网页产物 ↔ 本地仓库」之间，这套开源 Skill 把 Claude Design 一类能力收进你已经在用的本地 Agent，值得今天先装一包做一版小样验收。",
       "alternatives": [

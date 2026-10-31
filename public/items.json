@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated": "2026-10-31 08:05 北京时间",
+  "updated": "2026-10-31 12:11 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
     {
@@ -356,7 +356,8 @@
         "开源仓库 JimLiu/baoyu-design（MIT）发布 v2：把 Claude Design、Claude Slides、Claude Dashboard 以及设计系统等能力，打包成可装进 Cursor、Claude Code、Codex 等本地编程助手的 Agent Skill，产物以自包含 HTML 等形式落在本机项目目录，不再依赖 claude.ai Artifacts。",
         "推荐用 Vercel Labs 的 skills 安装器：在项目里执行 npx skills add JimLiu/baoyu-design（也可 -g 全局，或用 --agent 指定助手）。仓库说明建议搭配较强模型（如 Opus 5.5）效果更好，并可用本地编辑器与预览做双向修改。",
         "宝玉（dotey）于北京时间 10 月 29 日下午发帖宣布 v2，并指向上述 GitHub 仓库；帖内演示与 README 中英说明互相印证。",
-        "宝玉于北京时间 10 月 30 日下午宣布 baoyu-design v2.1：可在设计页与幻灯片上标记元素并添加评论，Agent 可读评论并回复；评论与项目数据同存。"
+        "宝玉于北京时间 10 月 30 日下午宣布 baoyu-design v2.1：可在设计页与幻灯片上标记元素并添加评论，Agent 可读评论并回复；评论与项目数据同存。",
+        "宝玉于北京时间 10 月 31 日午间发帖：已做 DeepSeek Harness（DSH）插件，使 Claude Design 可跑在 DeepSeek Harness 上，并支持标注与评论修改；仓库路径为 JimLiu/baoyu-design 的 dsh-plugins 目录。"
       ],
       "sources": [
         {
@@ -373,13 +374,23 @@
           "url": "https://x.com/dotey/status/2116060639533969759",
           "handle": "dotey",
           "role": "report"
+        },
+        {
+          "url": "https://x.com/dotey/status/2116336030584574076",
+          "handle": "dotey",
+          "role": "report"
+        },
+        {
+          "url": "https://github.com/JimLiu/baoyu-design/tree/main/dsh-plugins",
+          "handle": "JimLiu",
+          "role": "primary"
         }
       ],
       "shift": "other",
       "try_url": "https://github.com/JimLiu/baoyu-design",
-      "access": "需要本机已装 Node.js，以及 Cursor、Claude Code、Codex 等能读写文件的编程助手。打开本卡试做链接阅读仓库说明后，在目标项目里运行安装命令把技能装进对应目录；首次建议只装 baoyu-design 或再加幻灯片技能做验收。",
+      "access": "需要本机已装 Node.js，以及 Cursor、Claude Code、Codex 等能读写文件的编程助手。打开本卡试做链接阅读仓库说明后，在目标项目里运行安装命令把技能装进对应目录；首次建议只装 baoyu-design 或再加幻灯片技能做验收。 若你已在用 DeepSeek Harness，也可按仓库 dsh-plugins 说明安装，让 Claude Design 直接跑在 Harness 里并做标注评论。",
       "integration": "适合已经在本地用 Agent 做界面稿、落地页、幻灯片或数据看板，却不想在网页 Artifacts 与本地仓库之间来回导出的人。产物进 git，可与设计系统技能共用。",
-      "first_step": "若你这周还在把设计稿从网页来回拷进项目：打开本卡试做链接，按说明安装技能，让助手为当前仓库生成一版简单落地页或幻灯片，再用本地预览改一处文案确认链路通。",
+      "first_step": "若你这周还在把设计稿从网页来回拷进项目：打开本卡试做链接，按说明安装技能，让助手为当前仓库生成一版简单落地页或幻灯片，再用本地预览改一处文案确认链路通。 已装 DeepSeek Harness 的：打开 dsh-plugins 目录按说明装插件，用一页设计稿验收标注与评论。",
       "alternatives": [
         "继续只用 claude.ai/design 网页版 Artifacts",
         "手写 HTML / 用 Figma 等传统设计工具",
