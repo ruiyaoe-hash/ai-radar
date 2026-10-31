@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31 16:26 北京时间",
+  "updated": "2026-10-31 21:06 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://aicodinghunt.qiaomu.ai/",
@@ -73,6 +73,7 @@
     "https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan",
     "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
     "https://www.anthropic.com/research/early-progress-drug-development",
+    "https://www.kimi.ai",
     "https://www.kimi.ai/blog/kimi-k3-1-pro",
     "https://www.langchain.com/blog/design-agent",
     "https://www.perplexity.ai/products/computer",
@@ -88,13 +89,18 @@
     "https://x.com/AravSrinivas/status/2115510517871890511",
     "https://x.com/ArtificialAnlys/status/2113682654709313811",
     "https://x.com/GeekCatX/status/2115676657839382566",
+    "https://x.com/GeekCatX/status/2116422742107209756",
+    "https://x.com/GeekCatX/status/2116423346258894986",
+    "https://x.com/GeekCatX/status/2116424281399734420",
     "https://x.com/Hailuo_AI/status/2113518150440595501",
     "https://x.com/Hailuo_AI/status/2113518153242497390",
+    "https://x.com/Kimi_Moonshot/status/2116005725814280570",
     "https://x.com/Suhail/status/2115497949421883648",
     "https://x.com/TencentHunyuan/status/2113676827114053892",
     "https://x.com/addyosmani/status/2113015448203862255",
     "https://x.com/anthropicai/status/2115178675050307942",
     "https://x.com/artificialanlys/status/2114781865811063259",
+    "https://x.com/bcherny/status/2115859487068422226",
     "https://x.com/berryxia/status/2114579756633219416",
     "https://x.com/bozhou_ai/status/2116355237586014386",
     "https://x.com/claudeai/status/2113360845409583307",
@@ -198,7 +204,10 @@
     "cand-20261030-aae9c34727c3",
     "cand-20261031-196906bf976b",
     "cand-20261031-19aa741846ed",
+    "cand-20261031-30da51c8b4ee",
+    "cand-20261031-69235fcdce7e",
     "cand-20261031-be121232758a",
+    "cand-20261031-c1b002ea3152",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -247,13 +256,75 @@
     "evt-20261030-mistral-large-4",
     "evt-20261030-pika-h3-flex",
     "evt-20261031-196906bf976b",
+    "evt-20261031-30da51c8b4ee",
+    "evt-20261031-69235fcdce7e",
     "evt-20261031-be121232758a",
+    "evt-20261031-c1b002ea3152",
     "evt-20261031-claude-ultra-no-5h"
   ],
   "days": [
     {
       "date": "2026-10-31",
       "items": [
+        {
+          "schema_version": 2,
+          "id": "evt-20261031-69235fcdce7e",
+          "status": "confirmed",
+          "tag": "工具",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "Kimi 3D Make 可连 Blender 与 CAD，先看交出来的能不能改",
+          "date": "2026-10-31",
+          "time": "10-30 11:14",
+          "handle": "Kimi_Moonshot",
+          "url": "https://x.com/Kimi_Moonshot/status/2116005725814280570",
+          "published_at": "2026-10-30T03:14:13Z",
+          "ingested_at": "2026-10-31T13:10:00Z",
+          "candidate_id": "cand-20261031-69235fcdce7e",
+          "promotion_path": "normal",
+          "objective": [
+            "Kimi 官方于北京时间 10 月 30 日 11 时前后发帖：3D Make 已在 kimi.ai 和 Kimi Work 提供，能连接 Blender、CAD 一类工具，用来创建模型、搭建场景和开发游戏。",
+            "知识猫于 10 月 31 日下午引用这条演示，把变化说成：从一次生成就结束的死网格，转向由 agent 去操作 Blender 和 CAD。他给出的验收只有一条：交付应是分层干净、还能精修的工程，而不是换个姿势的封闭壳体。",
+            "官方帖确认的是能连上这些工具并生成，没有写明导出的是可编辑工程还是封闭网格。演示不能代替你自己打开文件检查。"
+          ],
+          "sources": [
+            {
+              "url": "https://x.com/Kimi_Moonshot/status/2116005725814280570",
+              "handle": "Kimi_Moonshot",
+              "role": "primary"
+            },
+            {
+              "url": "https://x.com/GeekCatX/status/2116422742107209756",
+              "handle": "GeekCatX",
+              "role": "analysis"
+            }
+          ],
+          "shift": "evening",
+          "try_url": "https://www.kimi.ai",
+          "access": "需要能打开 kimi.ai 或 Kimi Work 的账号。官方未在帖里写订阅门槛。打开本卡试做链接进入产品页；能不能改，要以导出到 Blender 或 CAD 之后的结果为准。",
+          "integration": "面向要在 Blender 或 CAD 里继续改模型的人，而不是只需要一张渲染图的人。",
+          "first_step": "用一个简单零件在 3D Make 里生成并导出，再在 Blender 或 CAD 里打开，看能否分层修改，而不是只转一圈预览。",
+          "alternatives": [
+            "继续用现有的三维软件手工建模",
+            "只用一次生成的网格做静帧，不进制作流程",
+            "先等别人公开可编辑的工程文件再试"
+          ],
+          "tool_radar": "值得关注",
+          "so_what": {
+            "lens": "工具",
+            "impact": "如果你做三维，Kimi 已经把 3D Make 放到 kimi.ai 和 Kimi Work，值得用一个小零件看它交出来的是不是还能在 Blender 里继续编辑的文件。",
+            "action": "持续观察",
+            "window": "今天用一个小零件导出，并在 Blender 里试着改一层。",
+            "confidence": "中",
+            "falsifier": "若导出仍是拓扑乱、材质焊死、不能分层修改的壳体，就不要把它当成建模流程，只当一条演示。"
+          },
+          "card_copy": {
+            "watch_reason": "官方已说能连上三维工具，仍要用能否继续编辑来验收",
+            "evidence_label": "官方原始信息",
+            "suggested_action": "持续观察",
+            "high_priority_review": false
+          }
+        },
         {
           "schema_version": 2,
           "id": "evt-20261031-claude-ultra-no-5h",

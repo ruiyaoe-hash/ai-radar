@@ -45,6 +45,42 @@
   ],
   "sources": [
     {
+      "id": "prac-20261031-30da51c8b4ee",
+      "url": "https://github.com/pbakaus/impeccable",
+      "author": "pbakaus",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 impeccable 给落地页去模板感：先初始化，再体检一块区域",
+      "excerpt": "装上设计技能，对一块落地页下设计词，再用本地规则把模板化版式标出来。",
+      "origin": "practice",
+      "date": "2026-10-31",
+      "verified": false
+    },
+    {
+      "id": "prac-20261031-c1b002ea3152",
+      "url": "https://x.com/bcherny/status/2115859487068422226",
+      "author": "bcherny",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "把 Claude Code 搜文件的子代理调到低推理强度",
+      "excerpt": "用环境变量把搜文件的子代理降到低强度，主代理仍负责架构。",
+      "origin": "practice",
+      "date": "2026-10-31",
+      "verified": false
+    },
+    {
+      "id": "prac-20261031-13c205f5e9cc",
+      "url": "https://github.com/op7418/dsh-guizang-design",
+      "author": "op7418",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用歸藏网页排版把一篇中文做成单页并导出 PDF",
+      "excerpt": "用网页排版技能生成单页，在浏览器里看窄屏，再导出 PDF。",
+      "origin": "practice",
+      "date": "2026-10-31",
+      "verified": false
+    },
+    {
       "id": "prac-20261031-be121232758a",
       "url": "https://github.com/op7418/dsh-guizang-design",
       "author": "op7418",

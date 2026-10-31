@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261031-13c205f5e9cc",
+  "kind": "Skill / 工作流",
+  "title": "用歸藏网页排版把一篇中文做成单页并导出 PDF",
+  "author": "op7418",
+  "url": "https://github.com/op7418/dsh-guizang-design",
+  "time": "2026-10-31 13:13",
+  "takeaway": "歸藏设计里的网页排版技能可以把文章排成单页：选好风格和模式，在浏览器里改样式并看窄屏，再让它导出 PDF。",
+  "steps": [
+    "先确认侧栏已有「歸藏设计」。在输入框使用 /guizang-page-skill（仓库里的目录名；作者帖写作 guizang-pages-skill），贴上一篇中文，并写明杂志风或瑞士风、忠实模式或解释模式。用浏览器打开生成的 HTML，在页面设置里改配色或字体，再把窗口拉窄，看标题和正文是否还能读。",
+    "需要 PDF 时在同一对话里说导出 PDF。页面上没有导出按钮，模型会在技能目录运行导出脚本生成 PDF。本机要有 Chrome，找不到时设置 CHROME_PATH；技能目录第一次使用可能要先安装依赖。这个技能不负责公众号排版。"
+  ],
+  "caution": "插件许可是 AGPL-3.0。导出依赖本机 Chrome。作品留在本机。这里没有替你安装或代跑导出。若侧栏还没有歸藏设计，先在插件页安装并启用后再做。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "已启用歸藏设计插件",
+    "有一篇要排成网页的中文稿",
+    "导出 PDF 时本机装有 Chrome"
+  ],
+  "estimated_time": "半小时内排出一页并导出 PDF",
+  "verified": false,
+  "candidate_id": "cand-20261031-13c205f5e9cc",
+  "try_url": "https://github.com/op7418/dsh-guizang-design"
+}

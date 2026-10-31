@@ -1,8 +1,57 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-31 16:26 北京时间",
+  "updated": "2026-10-31 21:06 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261031-30da51c8b4ee",
+      "kind": "Skill / 工作流",
+      "title": "用 impeccable 给落地页去模板感：先初始化，再体检一块区域",
+      "author": "pbakaus",
+      "url": "https://github.com/pbakaus/impeccable",
+      "time": "2026-10-31 14:53",
+      "takeaway": "落地页总像一套模板时，可以给 Claude Code、Codex CLI 或 Cursor 装上 impeccable：用设计词改某一块，并用本地规则把套路版式标出来。",
+      "steps": [
+        "在要改的网页项目根目录运行 npx impeccable install，按提示装进 Claude Code、Codex CLI 或 Cursor，并接受设计钩子。装完重载工具，在对话里运行 /impeccable init；Codex 改为 $impeccable init。这一步会写下 PRODUCT.md，后面的命令都会读它。",
+        "不要只说更好看。点名一块区域，运行 /impeccable polish 或 /impeccable bolder，例如定价卡或首屏。范围越小越不容易整页跑偏。",
+        "接着运行 /impeccable critique 和 /impeccable audit，按它排的优先级改。若不想为此再花模型额度，在终端运行 npx impeccable detect 扫源码；对比度和过小文字要再对本地预览地址扫一次。这些规则在本机运行，不用另配 API Key。"
+      ],
+      "caution": "许可是 Apache-2.0。npx 需要 Node.js。实时改页面只适用于本机仓库，不要把它注入已上线的网站。这里没有替你安装或改页面。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "本机有 Node.js，能运行 npx",
+        "已在用 Claude Code、Codex CLI 或 Cursor",
+        "有一页想改的网页项目"
+      ],
+      "estimated_time": "半小时内装好并体检一块区域",
+      "verified": false,
+      "candidate_id": "cand-20261031-30da51c8b4ee",
+      "try_url": "https://github.com/pbakaus/impeccable"
+    },
+    {
+      "id": "prac-20261031-13c205f5e9cc",
+      "kind": "Skill / 工作流",
+      "title": "用歸藏网页排版把一篇中文做成单页并导出 PDF",
+      "author": "op7418",
+      "url": "https://github.com/op7418/dsh-guizang-design",
+      "time": "2026-10-31 13:13",
+      "takeaway": "歸藏设计里的网页排版技能可以把文章排成单页：选好风格和模式，在浏览器里改样式并看窄屏，再让它导出 PDF。",
+      "steps": [
+        "先确认侧栏已有「歸藏设计」。在输入框使用 /guizang-page-skill（仓库里的目录名；作者帖写作 guizang-pages-skill），贴上一篇中文，并写明杂志风或瑞士风、忠实模式或解释模式。用浏览器打开生成的 HTML，在页面设置里改配色或字体，再把窗口拉窄，看标题和正文是否还能读。",
+        "需要 PDF 时在同一对话里说导出 PDF。页面上没有导出按钮，模型会在技能目录运行导出脚本生成 PDF。本机要有 Chrome，找不到时设置 CHROME_PATH；技能目录第一次使用可能要先安装依赖。这个技能不负责公众号排版。"
+      ],
+      "caution": "插件许可是 AGPL-3.0。导出依赖本机 Chrome。作品留在本机。这里没有替你安装或代跑导出。若侧栏还没有歸藏设计，先在插件页安装并启用后再做。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "已启用歸藏设计插件",
+        "有一篇要排成网页的中文稿",
+        "导出 PDF 时本机装有 Chrome"
+      ],
+      "estimated_time": "半小时内排出一页并导出 PDF",
+      "verified": false,
+      "candidate_id": "cand-20261031-13c205f5e9cc",
+      "try_url": "https://github.com/op7418/dsh-guizang-design"
+    },
     {
       "id": "prac-20261031-be121232758a",
       "kind": "工具用法",
@@ -171,6 +220,29 @@
       "verified": false,
       "candidate_id": "cand-20261030-6339a69aad9d",
       "try_url": "https://x.com/shao__meng/status/2115986116482613486"
+    },
+    {
+      "id": "prac-20261031-c1b002ea3152",
+      "kind": "工具用法",
+      "title": "把 Claude Code 搜文件的子代理调到低推理强度",
+      "author": "bcherny",
+      "url": "https://x.com/bcherny/status/2115859487068422226",
+      "time": "2026-10-30 01:33",
+      "takeaway": "子代理搜代码、读文件也在按高强度烧额度时，可以用负责人给出的开关单独调低，主代理仍负责架构。",
+      "steps": [
+        "确认你的 Claude Code 已包含该开关后，在终端用 CLAUDE_CODE_SUBAGENT_EFFORT=low claude 启动。只派搜代码或读文件的子任务，做完打开用量，看这部分是否还按原来的高强度计算。",
+        "若你已经有自定义 agent：按原帖所说，在该 agent 的配置里单独指定强度，让检索角色用 low，把架构和设计留在主代理。字段以你当前版本的说明为准。不要把需要仔细推理的子任务也降到 low。"
+      ],
+      "caution": "这不增加订阅额度，只改子代理用多强的推理。低强度可能让需要判断的子任务变粗。这里没有替你启动 Claude Code。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "已安装包含该开关的 Claude Code",
+        "知道去哪里看账号用量"
+      ],
+      "estimated_time": "二十分钟内试一次低强度启动",
+      "verified": false,
+      "candidate_id": "cand-20261031-c1b002ea3152",
+      "try_url": "https://x.com/bcherny/status/2115859487068422226"
     },
     {
       "id": "prac-20261029-d7d77f58c356",

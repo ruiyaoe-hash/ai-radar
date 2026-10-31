@@ -1,6 +1,11 @@
 AI Radar · 信息精选（2026-10-31）
 
-1. Claude 200 美元档改名 Ultra：已验证账号取消 5 小时限额，价格与周额度不变
+1. Kimi 3D Make 可连 Blender 与 CAD，先看交出来的能不能改
+   对你意味着什么：如果你做三维，Kimi 已经把 3D Make 放到 kimi.ai 和 Kimi Work，值得用一个小零件看它交出来的是不是还能在 Blender 里继续编辑的文件。
+   建议：持续观察 · 今天用一个小零件导出，并在 Blender 里试着改一层。
+   https://x.com/Kimi_Moonshot/status/2116005725814280570
+
+2. Claude 200 美元档改名 Ultra：已验证账号取消 5 小时限额，价格与周额度不变
    对你意味着什么：如果你用 Claude Code 常遇到「周额度还剩、却被 5 小时窗口卡住」，已验证 Ultra 现在可以连着跑完一周额度，今天就能在用量页确认是否已生效。
    建议：立即行动 · 今天打开用量页确认验证状态；未验证则等邮件，不必改订阅。用一两天真实连跑任务看卡顿是否消失，再决定要不要为「取消 5 小时」去升级或续订 Ultra。
    https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan

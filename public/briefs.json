@@ -1,9 +1,39 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-10-31 12:12 北京时间",
+  "updated": "2026-10-31 21:10 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261031-f1d60ecf8219",
+      "level": "L2",
+      "date": "2026-10-31",
+      "time": "10-31 13:42",
+      "title": "ChatGPT 可在网页和手机切换最多两个账号，桌面端与额度重置仍是预告",
+      "summary": "OpenAI 帮助中心写明：网页、iOS 与 Android 可同时登录最多两个 ChatGPT 账号并切换，对话、记忆、文件和订阅各自独立；手机里若还没有切换账号，可能仍在分批开放。Tibo 发帖称桌面端即将支持，并说接下来两天会重置、额度会积存，这两句帮助中心没有写。",
+      "why": "个人号和工作号不用反复退出；切换也不会把一边的订阅搬到另一边。",
+      "affect": "今天在网页账户菜单或手机设置里找切换账号。桌面客户端还没出现就别当成已上线。若接下来两天没有额度重置或积存，只按帮助中心已写的切换来用。",
+      "url": "https://help.openai.com/en/articles/20001068-using-multiple-chatgpt-accounts-on-web-and-mobile",
+      "source": "openai",
+      "lens": "工具",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261031-f1d60ecf8219"
+    },
+    {
+      "id": "brf-20261031-0e0e55fe4f03",
+      "level": "L2",
+      "date": "2026-10-31",
+      "time": "10-31 11:07",
+      "title": "兜售「Claude Fable 5 权重」仍未证实，文件被指来自 DeepSeek 开源分片",
+      "summary": "有人经 Dark Web Informer 转发，声称从与 Bedrock 相关的存储桶拿到约 7GB 的 Claude Fable 5 分片并出售，原帖写明未经证实。网友 toriset 指出文件与 DeepSeek-V4.1-Flash-1017 的公开分片一致，并质疑区域与总容量。宝玉核对常见分片约 7.39GB，但写明没看到卖家截图，不能逐字节比对。Anthropic 没有确认泄露。",
+      "why": "这是未经证实的兜售加上公开文件比对，不是已证实的权重失窃。《华盛顿邮报》报道的 Cathedral 办公系统事件与此无关。",
+      "affect": "不要购买所谓权重。若你要的是已公开的 DeepSeek 模型，去模型库官方页下载，不要经过卖家。",
+      "url": "https://x.com/dotey/status/2116366460939386990",
+      "source": "dotey",
+      "lens": "赛道",
+      "origin": "archive_seed",
+      "candidate_id": "cand-20261031-0e0e55fe4f03"
+    },
     {
       "id": "brf-20261031-2df997344057",
       "level": "L2",

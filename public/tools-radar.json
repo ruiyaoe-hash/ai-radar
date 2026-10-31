@@ -1,7 +1,27 @@
 {
-  "updated": "2026-10-31 16:26 北京时间",
+  "updated": "2026-10-31 21:06 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261031-30da51c8b4ee",
+        "title": "impeccable：用设计词和本地规则去掉落地页的廉价 AI 味",
+        "date": "2026-10-31",
+        "time": "10-31 14:53",
+        "try_url": "https://github.com/pbakaus/impeccable",
+        "access": "需要本机能跑 npx，因此要有 Node.js。技能本体随安装带上，检测规则不另要模型密钥。Claude Code、Codex CLI、Cursor 都在支持列表里。打开本卡试做链接先看安装说明和许可。",
+        "integration": "适合已经用编程助手改网页、又嫌成品一眼像模板的人。装进现有工具即可，不必换助手。",
+        "first_step": "在项目根目录执行 npx impeccable install，重载后运行 /impeccable init。然后对一块具体区域运行 /impeccable critique，或用 npx impeccable detect 扫该目录。",
+        "summary": "pbakaus/impeccable 是一套开源设计技能（许可 Apache-2.0）：给 Claude Code、Codex CLI、Cursor 等编程助手一套设计词，用来改已经写出来的界面，并在交付前标出常见的模板化版式。",
+        "audience_value": "如果你用 Claude Code、Codex 或 Cursor 做落地页，出来总是紫蓝渐变和套卡片，这套开源技能今天就能装上，先对一块页面做体检，再决定要不要让它改。",
+        "alternatives": [
+          "继续只用口头提示词改版式，不装这套技能",
+          "只跑本地检测，不让助手改页面",
+          "沿用你已经定好的设计规范和组件库"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261031-claude-ultra-no-5h",
         "title": "Claude 200 美元档改名 Ultra：已验证账号取消 5 小时限额，价格与周额度不变",
@@ -19,6 +39,26 @@
           "对照 ChatGPT Pro 等只有周限额的订阅，按你真实连跑需求选型"
         ],
         "status": "multi_source",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
+      {
+        "id": "evt-20261031-c1b002ea3152",
+        "title": "Claude Code 可把子代理推理强度单独调低，避免搜文件跟着烧额度",
+        "date": "2026-10-31",
+        "time": "10-30 01:33",
+        "try_url": "https://x.com/bcherny/status/2115859487068422226",
+        "access": "需要已安装能识别该变量的 Claude Code。原帖给出的是启动命令，以及写进自定义 agent 配置，没有另附字段说明。打开来源里的原帖核对后再改。",
+        "integration": "适合把搜代码、读文件交给子代理，又不想它们继承高强度推理的 Claude Code 用户。",
+        "first_step": "在终端用 CLAUDE_CODE_SUBAGENT_EFFORT=low claude 启动，派一个只搜文件的子任务，再看用量里这部分是否还按原来的高强度计算。",
+        "summary": "Claude Code 负责人 Boris Cherny 于北京时间 10 月 30 日凌晨在回复里写出刚合入的开关：用环境变量 CLAUDE_CODE_SUBAGENT_EFFORT=low 启动 claude，或在自定义 agent 配置里为不同代理分别指定强度。",
+        "audience_value": "如果你用 Claude Code 时，子代理一搜文件就把额度打空，现在可以只把这类跑腿的推理强度降到 low，今天就能用一条启动命令试一次。",
+        "alternatives": [
+          "继续让子代理继承当前会话的推理强度",
+          "少派子代理，搜索和读文件改由主会话自己做",
+          "把费额度的检索换到别的编程助手"
+        ],
+        "status": "confirmed",
         "priority": "P1",
         "stance": "推荐使用"
       },
@@ -735,6 +775,26 @@
         "stance": "值得关注"
       },
       {
+        "id": "evt-20261031-69235fcdce7e",
+        "title": "Kimi 3D Make 可连 Blender 与 CAD，先看交出来的能不能改",
+        "date": "2026-10-31",
+        "time": "10-30 11:14",
+        "try_url": "https://www.kimi.ai",
+        "access": "需要能打开 kimi.ai 或 Kimi Work 的账号。官方未在帖里写订阅门槛。打开本卡试做链接进入产品页；能不能改，要以导出到 Blender 或 CAD 之后的结果为准。",
+        "integration": "面向要在 Blender 或 CAD 里继续改模型的人，而不是只需要一张渲染图的人。",
+        "first_step": "用一个简单零件在 3D Make 里生成并导出，再在 Blender 或 CAD 里打开，看能否分层修改，而不是只转一圈预览。",
+        "summary": "Kimi 官方于北京时间 10 月 30 日 11 时前后发帖：3D Make 已在 kimi.ai 和 Kimi Work 提供，能连接 Blender、CAD 一类工具，用来创建模型、搭建场景和开发游戏。",
+        "audience_value": "如果你做三维，Kimi 已经把 3D Make 放到 kimi.ai 和 Kimi Work，值得用一个小零件看它交出来的是不是还能在 Blender 里继续编辑的文件。",
+        "alternatives": [
+          "继续用现有的三维软件手工建模",
+          "只用一次生成的网格做静帧，不进制作流程",
+          "先等别人公开可编辑的工程文件再试"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "值得关注"
+      },
+      {
         "id": "evt-20261030-205b2ad5e72f",
         "title": "Perplexity Computer 可操控本机 Chrome：装官方扩展后沿用已登录网页",
         "date": "2026-10-30",
@@ -941,6 +1001,26 @@
   },
   "stream": [
     {
+      "id": "evt-20261031-30da51c8b4ee",
+      "title": "impeccable：用设计词和本地规则去掉落地页的廉价 AI 味",
+      "date": "2026-10-31",
+      "time": "10-31 14:53",
+      "try_url": "https://github.com/pbakaus/impeccable",
+      "access": "需要本机能跑 npx，因此要有 Node.js。技能本体随安装带上，检测规则不另要模型密钥。Claude Code、Codex CLI、Cursor 都在支持列表里。打开本卡试做链接先看安装说明和许可。",
+      "integration": "适合已经用编程助手改网页、又嫌成品一眼像模板的人。装进现有工具即可，不必换助手。",
+      "first_step": "在项目根目录执行 npx impeccable install，重载后运行 /impeccable init。然后对一块具体区域运行 /impeccable critique，或用 npx impeccable detect 扫该目录。",
+      "summary": "pbakaus/impeccable 是一套开源设计技能（许可 Apache-2.0）：给 Claude Code、Codex CLI、Cursor 等编程助手一套设计词，用来改已经写出来的界面，并在交付前标出常见的模板化版式。",
+      "audience_value": "如果你用 Claude Code、Codex 或 Cursor 做落地页，出来总是紫蓝渐变和套卡片，这套开源技能今天就能装上，先对一块页面做体检，再决定要不要让它改。",
+      "alternatives": [
+        "继续只用口头提示词改版式，不装这套技能",
+        "只跑本地检测，不让助手改页面",
+        "沿用你已经定好的设计规范和组件库"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
+    {
       "id": "evt-20261031-be121232758a",
       "title": "歸藏设计：把网页演示、图文卡片和排版收进 DeepSeek Harness",
       "date": "2026-10-31",
@@ -997,6 +1077,46 @@
         "对照 ChatGPT Pro 等只有周限额的订阅，按你真实连跑需求选型"
       ],
       "status": "multi_source",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
+    {
+      "id": "evt-20261031-69235fcdce7e",
+      "title": "Kimi 3D Make 可连 Blender 与 CAD，先看交出来的能不能改",
+      "date": "2026-10-31",
+      "time": "10-30 11:14",
+      "try_url": "https://www.kimi.ai",
+      "access": "需要能打开 kimi.ai 或 Kimi Work 的账号。官方未在帖里写订阅门槛。打开本卡试做链接进入产品页；能不能改，要以导出到 Blender 或 CAD 之后的结果为准。",
+      "integration": "面向要在 Blender 或 CAD 里继续改模型的人，而不是只需要一张渲染图的人。",
+      "first_step": "用一个简单零件在 3D Make 里生成并导出，再在 Blender 或 CAD 里打开，看能否分层修改，而不是只转一圈预览。",
+      "summary": "Kimi 官方于北京时间 10 月 30 日 11 时前后发帖：3D Make 已在 kimi.ai 和 Kimi Work 提供，能连接 Blender、CAD 一类工具，用来创建模型、搭建场景和开发游戏。",
+      "audience_value": "如果你做三维，Kimi 已经把 3D Make 放到 kimi.ai 和 Kimi Work，值得用一个小零件看它交出来的是不是还能在 Blender 里继续编辑的文件。",
+      "alternatives": [
+        "继续用现有的三维软件手工建模",
+        "只用一次生成的网格做静帧，不进制作流程",
+        "先等别人公开可编辑的工程文件再试"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "值得关注"
+    },
+    {
+      "id": "evt-20261031-c1b002ea3152",
+      "title": "Claude Code 可把子代理推理强度单独调低，避免搜文件跟着烧额度",
+      "date": "2026-10-31",
+      "time": "10-30 01:33",
+      "try_url": "https://x.com/bcherny/status/2115859487068422226",
+      "access": "需要已安装能识别该变量的 Claude Code。原帖给出的是启动命令，以及写进自定义 agent 配置，没有另附字段说明。打开来源里的原帖核对后再改。",
+      "integration": "适合把搜代码、读文件交给子代理，又不想它们继承高强度推理的 Claude Code 用户。",
+      "first_step": "在终端用 CLAUDE_CODE_SUBAGENT_EFFORT=low claude 启动，派一个只搜文件的子任务，再看用量里这部分是否还按原来的高强度计算。",
+      "summary": "Claude Code 负责人 Boris Cherny 于北京时间 10 月 30 日凌晨在回复里写出刚合入的开关：用环境变量 CLAUDE_CODE_SUBAGENT_EFFORT=low 启动 claude，或在自定义 agent 配置里为不同代理分别指定强度。",
+      "audience_value": "如果你用 Claude Code 时，子代理一搜文件就把额度打空，现在可以只把这类跑腿的推理强度降到 low，今天就能用一条启动命令试一次。",
+      "alternatives": [
+        "继续让子代理继承当前会话的推理强度",
+        "少派子代理，搜索和读文件改由主会话自己做",
+        "把费额度的检索换到别的编程助手"
+      ],
+      "status": "confirmed",
       "priority": "P1",
       "stance": "推荐使用"
     },
