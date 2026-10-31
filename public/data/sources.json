@@ -1,7 +1,43 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-31 08:06 北京时间",
+  "updated": "2026-10-31 16:26 北京时间",
   "sources": [
+    {
+      "id": "prac-20261031-be121232758a",
+      "url": "https://github.com/op7418/dsh-guizang-design",
+      "author": "op7418",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "在 DeepSeek Harness 启用歸藏设计：装上插件并生成一页网页演示",
+      "excerpt": "在插件页添加歸藏设计并立即启用，再用一页中文选题生成网页演示验收。",
+      "origin": "practice",
+      "date": "2026-10-31",
+      "verified": false
+    },
+    {
+      "id": "prac-20261031-196906bf976b",
+      "url": "https://github.com/vercel-labs/agent-desktop",
+      "author": "bozhou_ai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "给编程助手装上电脑操控：先授权，再快照、点击、复核",
+      "excerpt": "先授予无障碍权限，再对一个窗口做快照、按引用点击、再快照确认。",
+      "origin": "practice",
+      "date": "2026-10-31",
+      "verified": false
+    },
+    {
+      "id": "prac-20261031-40c6eed6be23",
+      "url": "https://lucumr.pocoo.org/2026/10/29/qwen3-custom-voices/",
+      "author": "shao__meng",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 Qwen3-TTS 做自定义旁白：先抽出说话人向量，再让它带上情绪",
+      "excerpt": "用 Base 抽出说话人向量，再放进 CustomVoice 的说话人槽位并加上情绪指令。",
+      "origin": "practice",
+      "date": "2026-10-31",
+      "verified": false
+    },
     {
       "id": "prac-20261031-143dfd5a166a",
       "url": "https://x.com/vista8/status/2116200606394384451",

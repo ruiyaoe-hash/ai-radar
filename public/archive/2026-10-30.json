@@ -320,7 +320,61 @@
         "confidence": "高",
         "falsifier": "若你的机器装不下、许可证限制挡住你的分发形态，或在你的任务上明显弱于现有底座，就维持旧线并只把 Large 4 当对照样本。"
       }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261030-205b2ad5e72f",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Perplexity Computer 可操控本机 Chrome：装官方扩展后沿用已登录网页",
+      "date": "2026-10-30",
+      "time": "10-30 23:12",
+      "handle": "perplexity",
+      "url": "https://chromewebstore.google.com/detail/perplexity/pninphncmkphpjgfffammoenglghcjii",
+      "published_at": "2026-10-30T15:12:31Z",
+      "ingested_at": "2026-10-31T08:25:00Z",
+      "candidate_id": "cand-20261030-205b2ad5e72f",
+      "promotion_path": "normal",
+      "objective": [
+        "Perplexity 在 Chrome 网上应用店上架官方扩展：装好后，Mac 与 Windows 上的 Perplexity Computer 可以打开网站、阅读页面、填写表单，并使用你已经登录的标签页。页面写明只有你亲手发起任务时才会动浏览器，不在后台收集浏览数据。",
+        "启用顺序写在扩展页：先安装 Computer 桌面应用，再添加扩展，然后在 Mac 的设置连接器或 Windows 的设置权限里，把所选浏览器指到刚装扩展的那个。Comet 浏览器不需要这条扩展，同类能力已经内置。",
+        "首席执行官于北京时间 10 月 30 日晚发帖宣布桌面应用已能控制本机 Chrome，并指向该扩展。本卡以应用店页面为一手出处。今早那条简讯讲的是 Gemini Carbon 何时进 Computer；这条讲的是助手能不能操作你自己的浏览器。"
+      ],
+      "sources": [
+        {
+          "url": "https://chromewebstore.google.com/detail/perplexity/pninphncmkphpjgfffammoenglghcjii",
+          "handle": "perplexity",
+          "role": "primary"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://chromewebstore.google.com/detail/perplexity/pninphncmkphpjgfffammoenglghcjii",
+      "access": "需要 Perplexity Computer 的 Mac 或 Windows 桌面应用，以及能安装扩展的 Chrome 或其他 Chromium 浏览器。扩展会在你发起的任务里操作已登录网站。打开本卡试做链接阅读权限说明后再装，不要装来路不明的同名扩展。",
+      "integration": "适合已经订阅并能打开 Perplexity Computer、又希望它处理邮箱、后台或内网页面的人。只在网页里聊天、不用桌面应用的人用不上。",
+      "first_step": "在 Mac 或 Windows 打开 Computer，把官方扩展装进 Chrome。到设置里把所选浏览器指到它，再派一个只需打开公开网页的小任务，确认走的是你的浏览器。",
+      "alternatives": [
+        "继续用 Perplexity 自带的浏览，不接本机 Chrome",
+        "改用已经内置浏览能力的 Comet",
+        "自己在浏览器里完成登录站点上的操作"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你用 Perplexity 的电脑助手，却卡在它打不开你已经登录的网页，官方扩展可以把任务接到本机 Chrome。今天用一个小任务就能看它是否真的用了你的浏览器。",
+        "action": "持续观察",
+        "window": "今天只用一个公开网页的小任务验收；要动已登录网站时，先确认任务是你发起的。",
+        "confidence": "中",
+        "falsifier": "若扩展装上后 Computer 仍打不开你的 Chrome，或你根本不用 Perplexity 桌面应用，就不必为这条改浏览器习惯。"
+      },
+      "card_copy": {
+        "watch_reason": "官方扩展能把电脑助手接到本机浏览器，先用一个小任务看是否走你的窗口",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
     }
   ],
-  "count": 6
+  "count": 7
 }

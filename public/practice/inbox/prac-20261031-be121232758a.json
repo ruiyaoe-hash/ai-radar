@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261031-be121232758a",
+  "kind": "工具用法",
+  "title": "在 DeepSeek Harness 启用歸藏设计：装上插件并生成一页网页演示",
+  "author": "op7418",
+  "url": "https://github.com/op7418/dsh-guizang-design",
+  "time": "2026-10-31 10:31",
+  "takeaway": "已有 DeepSeek Harness 的话，可以把歸藏的演示、卡片和排版收成一个插件：装上后必须点启用，再用一页中文选题生成网页演示验收。",
+  "steps": [
+    "确认 DeepSeek Harness 落在插件要求的版本区间（0.2.1 候选版及以上、低于 0.3.0）。打开侧栏「插件」，添加包名 dsh-guizang-design，安装后点「立即启用」。若直接关掉对话框，回到插件列表把开关打开。自己跑网页版的，也可以用插件命令从包名安装，然后重启再刷新；桌面版不要走命令行。",
+    "侧栏出现「歸藏设计」后，在输入框用网页演示技能，拿一两页中文选题生成一份杂志风网页演示，用浏览器打开那个 HTML。机器较慢时按 B 关掉动态背景。若接着做图文卡片时提示缺少浏览器，再安装 Playwright 的 Chromium 后重试。"
+  ],
+  "caution": "插件许可是 AGPL-3.0，打包进去的技能另有各自许可。作品库和语气档案留在本机，点「从对话学习」时会把你写过的消息交给当前模型分析。这里没有替你安装 Harness 或代跑生成。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "已安装 DeepSeek Harness，版本落在插件要求的区间",
+    "能打开插件页面，或能自己运行网页版",
+    "有一页想做成演示的中文选题"
+  ],
+  "estimated_time": "半小时内装好并生成一页演示",
+  "verified": false,
+  "candidate_id": "cand-20261031-be121232758a",
+  "try_url": "https://github.com/op7418/dsh-guizang-design"
+}
