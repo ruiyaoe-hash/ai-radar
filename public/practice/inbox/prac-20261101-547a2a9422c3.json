@@ -1,0 +1,26 @@
+{
+  "id": "prac-20261101-547a2a9422c3",
+  "kind": "工具用法",
+  "title": "用 HackerTube 数据包做一版本地观看页：先解压，再读说明",
+  "author": "karpathy",
+  "url": "https://hackertube.org/data",
+  "time": "2026-11-01 03:56",
+  "takeaway": "数据页提供可下载的压缩包和给助手看的 DATA.md。解压后要么让编程助手按示例提示做本地页，要么自己用 JSON Lines 读出标题和主题。",
+  "steps": [
+    "打开数据页，下载 hackertube-data.zip（约 17.8 MB，17842799 字节）。解压后应能看到 DATA.md、videos.jsonl 和 mentions.jsonl。许可是开放数据署名（ODC-By 1.0），使用时注明 HackerTube。",
+    "若交给编程助手：在解压出的文件夹里打开 Claude Code 或同类助手，把数据页上的示例提示贴进去，让它先读 DATA.md，再做一版能按主题和时长筛选、并记住已看记录的本地网页。",
+    "若自己读数据：用 DATA.md 里的字段说明打开 videos.jsonl。文件是一行一个 JSON，可以用 pandas.read_json(path, lines=True) 或 jq 取出标题和主题。时长和播放量不在包里。",
+    "若还要时长、播放量或发布日期：按 DATA.md 在 Google Cloud 建一把免费的 YouTube Data API 密钥。站点按每 50 条估算，6454 条视频大约要 130 次请求。密钥只放在本机，不要提交到公开仓库。"
+  ],
+  "caution": "评论标签和简介是模型写的，页面写明会有不准。站点与 YouTube、Google、Hacker News 无隶属。这里没有替你下载或跑过这组步骤。",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "能打开 hackertube.org 并下载压缩包",
+    "要让助手做页面时，已安装 Claude Code 或同类编程助手",
+    "若要视频时长，还需能在 Google Cloud 建 YouTube 数据密钥"
+  ],
+  "estimated_time": "下载后一小时内做出一版本地页",
+  "verified": false,
+  "candidate_id": "cand-20261101-547a2a9422c3",
+  "try_url": "https://hackertube.org/data"
+}

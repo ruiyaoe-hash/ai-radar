@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "snapshot": "2026-10-31 afternoon",
+  "snapshot": "2026-11-01 afternoon",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -44,6 +44,18 @@
     }
   ],
   "sources": [
+    {
+      "id": "prac-20261101-547a2a9422c3",
+      "url": "https://hackertube.org/data",
+      "author": "karpathy",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 HackerTube 数据包做一版本地观看页：先解压，再读说明",
+      "excerpt": "下载数据包并解压，再按 DATA.md 让助手做本地页，或自己读 JSON Lines。",
+      "origin": "practice",
+      "date": "2026-11-01",
+      "verified": false
+    },
     {
       "id": "prac-20261031-30da51c8b4ee",
       "url": "https://github.com/pbakaus/impeccable",

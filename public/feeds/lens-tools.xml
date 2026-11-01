@@ -5,7 +5,7 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sun, 01 Nov 2026 08:08:41 +0800</lastBuildDate>
+<lastBuildDate>Sun, 01 Nov 2026 16:24:07 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
 <item>
 <title>[快讯 · 新工具 · 工具] Omarchy 开发版可选 Hex 听写：沿用原来的按键，安装时会下载语音模型</title>
@@ -20,6 +20,13 @@
 <guid isPermaLink="false">evt-20261101-6f498e6e8597</guid>
 <pubDate>Sun, 01 Nov 2026 04:07:26 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• baoyu-design 在版本说明里加上局域网分享：幻灯片、设计画布、设计系统和仪表盘都可以对同一 Wi-Fi 或局域网打开。分享命令会按角色给出链接，编辑可改可评，评论者只能评，查看者只看。对方打开链接填个名字就进入，保存会同步到其他已打开的页面。<br/>• 坐在这台电脑前的人是主人，可以用分享按钮看谁在线、改角色或移出，也可以关掉、重新打开或重置某一条链接。客人只能转发自己这一档以及更低档的链接。没有账号，数据不出你的网络；走的是明文网页，同一网络里拿到链接的人都能进，分享前要看防火墙有没有拦住。<br/>• 发行说明写明 DeepSeek Harness 的插件也带上了这一分享。这不是新开的设计技能：十月二十九日那张卡讲的是把它装进本地助手；这次是已经装上的人，可以让同事改同一份稿，而不必再导出文件传到群里。<br/><strong>对你意味着什么</strong> 如果你已经用这个技能出设计稿或幻灯片，今天可以在同一局域网里给同事一条编辑链接，让对方直接改字、留评论，而不必再导出文件传来传去。<br/>建议：立即行动 · 今天在同一局域网发出编辑链接，让同事改一个词并确认两边同时看见。<br/>有多确定：高<br/>什么情况下当这判断作废：若分享命令打不开、同事的链接进不去，或明文链接会经过你不想开放的网络，就继续只在本机预览，不要把稿子分享出去。<br/>来源 JimLiu（一手）, dotey（解读）<br/>日期 2026-11-01]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] HackerTube：用 Hacker News 推荐过的视频做成可打开的观看站</title>
+<link>https://hackertube.org/</link>
+<guid isPermaLink="false">evt-20261101-547a2a9422c3</guid>
+<pubDate>Sun, 01 Nov 2026 03:56:53 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Andrej Karpathy 于北京时间 11 月 1 日凌晨放出 HackerTube：不用账号的观看站，片子来自 Hacker News 上被人推荐过的 YouTube 视频。数据页写明有 6454 条视频、39834 条已标注评论，话题分类 150 个，数据包生成于 10 月 31 日。<br/>• 喜欢、稍后看和历史只存在这台浏览器里。缩略图用视频中段画面，不用上传的封面。片子经 YouTube 的隐私增强嵌入播放。站点写明与 YouTube、Google、Hacker News 没有隶属关系。<br/>• 他在博客里写，自己用 Claude Code 桌面版和 Opus 5.5，大约两小时做完并部署；亲手做的是申请 YouTube 数据密钥、开一台 VPS、买下域名。评论标注交给 Sonnet。Hacker News 帖里他报过一次用量：输入约 5.04 亿 token，其中约九成命中缓存，输出约 760 万；做网站和部署大约 100 万 Opus token。<br/><strong>对你意味着什么</strong> 如果你受够了夸张封面和重复推荐，今天可以打开这个站，看 Hacker News 上被人推荐过的片子，再决定要不要把数据包交给自己的编程助手。<br/>建议：持续观察 · 今天先看一条长讲座，能播再决定要不要下载数据自己做。<br/>有多确定：中<br/>什么情况下当这判断作废：若站点打不开、嵌入播不了，或片子和 Hacker News 讨论对不上，就继续用原来的观看方式，不必下载数据包。<br/>来源 karpathy（一手）, karpathy（一手）, karpathy（一手）<br/>日期 2026-11-01]]></description>
 </item>
 <item>
 <title>[快讯 · 新工具 · 工具] impeccable：用设计词和本地规则去掉落地页的廉价 AI 味</title>

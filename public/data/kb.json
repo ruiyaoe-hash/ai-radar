@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "snapshot": "2026-10-31 afternoon",
-  "updated": "2026-10-31 21:07 北京时间",
+  "snapshot": "2026-11-01 afternoon",
+  "updated": "2026-11-01 16:24 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,17 +43,29 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 34,
-      "creator_count": 14,
+      "source_count": 35,
+      "creator_count": 15,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 34,
+      "unverified_practice": 35,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
-      "latest": "2026-10-31"
+      "latest": "2026-11-01"
     }
   ],
   "sources": [
+    {
+      "id": "prac-20261101-547a2a9422c3",
+      "url": "https://hackertube.org/data",
+      "author": "karpathy",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 HackerTube 数据包做一版本地观看页：先解压，再读说明",
+      "excerpt": "下载数据包并解压，再按 DATA.md 让助手做本地页，或自己读 JSON Lines。",
+      "origin": "practice",
+      "date": "2026-11-01",
+      "verified": false
+    },
     {
       "id": "prac-20261031-30da51c8b4ee",
       "url": "https://github.com/pbakaus/impeccable",
@@ -607,6 +619,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/huggingface-blog"
+    },
+    {
+      "handle": "karpathy",
+      "name": "karpathy",
+      "focus": "",
+      "source_count": 1,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/karpathy"
     },
     {
       "handle": "pbakaus",
