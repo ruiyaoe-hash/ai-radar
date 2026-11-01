@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31 21:06 北京时间",
+  "updated": "2026-11-01 08:08 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://aicodinghunt.qiaomu.ai/",
@@ -29,6 +29,7 @@
     "https://github.com/JimLiu/baocut",
     "https://github.com/JimLiu/baocut/blob/main/skills/baocut/SKILL.md",
     "https://github.com/JimLiu/baoyu-design",
+    "https://github.com/JimLiu/baoyu-design/releases/tag/v2.5.0",
     "https://github.com/JimLiu/baoyu-design/tree/main/dsh-plugins",
     "https://github.com/MiniMax-AI/OpenAgentCore",
     "https://github.com/Pika-Labs/Pika-H3-Flex",
@@ -47,6 +48,7 @@
     "https://github.com/joeseesun/qiaomu-ui-learn-dsh",
     "https://github.com/langchain-ai/design-agent",
     "https://github.com/nicobailon/skill-diet",
+    "https://github.com/omacom/omarchy/pull/17186",
     "https://github.com/op7418/dsh-guizang-design",
     "https://github.com/pbakaus/impeccable",
     "https://github.com/runwayml/skills",
@@ -108,6 +110,7 @@
     "https://x.com/claudeai/status/2116220869479428500",
     "https://x.com/demishassabis/status/2115232001275924722",
     "https://x.com/dhh/status/2115575125223387320",
+    "https://x.com/dhh/status/2116643715418628268",
     "https://x.com/dotey/status/2112995995017421133",
     "https://x.com/dotey/status/2113689823311524225",
     "https://x.com/dotey/status/2114375050971296135",
@@ -117,6 +120,7 @@
     "https://x.com/dotey/status/2116060639533969759",
     "https://x.com/dotey/status/2116233564823974005",
     "https://x.com/dotey/status/2116336030584574076",
+    "https://x.com/dotey/status/2116623097839149231",
     "https://x.com/geekcatx/status/2114667608188621074",
     "https://x.com/mistralai/status/2115443720371814478",
     "https://x.com/natolambert/status/2113682066374062528",
@@ -208,6 +212,8 @@
     "cand-20261031-69235fcdce7e",
     "cand-20261031-be121232758a",
     "cand-20261031-c1b002ea3152",
+    "cand-20261101-6f498e6e8597",
+    "cand-20261101-b3e552fcc712",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -260,9 +266,75 @@
     "evt-20261031-69235fcdce7e",
     "evt-20261031-be121232758a",
     "evt-20261031-c1b002ea3152",
-    "evt-20261031-claude-ultra-no-5h"
+    "evt-20261031-claude-ultra-no-5h",
+    "evt-20261101-6f498e6e8597",
+    "evt-20261101-b3e552fcc712"
   ],
   "days": [
+    {
+      "date": "2026-11-01",
+      "items": [
+        {
+          "schema_version": 2,
+          "id": "evt-20261101-6f498e6e8597",
+          "status": "confirmed",
+          "tag": "工具",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "baoyu-design 可在局域网发链接：同事能改稿、评论，并实时看见",
+          "date": "2026-11-01",
+          "time": "11-01 04:07",
+          "handle": "dotey",
+          "url": "https://github.com/JimLiu/baoyu-design/releases/tag/v2.5.0",
+          "published_at": "2026-10-31T20:07:26Z",
+          "ingested_at": "2026-11-01T00:07:44Z",
+          "candidate_id": "cand-20261101-6f498e6e8597",
+          "promotion_path": "normal",
+          "objective": [
+            "baoyu-design 在版本说明里加上局域网分享：幻灯片、设计画布、设计系统和仪表盘都可以对同一 Wi-Fi 或局域网打开。分享命令会按角色给出链接，编辑可改可评，评论者只能评，查看者只看。对方打开链接填个名字就进入，保存会同步到其他已打开的页面。",
+            "坐在这台电脑前的人是主人，可以用分享按钮看谁在线、改角色或移出，也可以关掉、重新打开或重置某一条链接。客人只能转发自己这一档以及更低档的链接。没有账号，数据不出你的网络；走的是明文网页，同一网络里拿到链接的人都能进，分享前要看防火墙有没有拦住。",
+            "发行说明写明 DeepSeek Harness 的插件也带上了这一分享。这不是新开的设计技能：十月二十九日那张卡讲的是把它装进本地助手；这次是已经装上的人，可以让同事改同一份稿，而不必再导出文件传到群里。"
+          ],
+          "sources": [
+            {
+              "url": "https://github.com/JimLiu/baoyu-design/releases/tag/v2.5.0",
+              "handle": "JimLiu",
+              "role": "primary"
+            },
+            {
+              "url": "https://x.com/dotey/status/2116623097839149231",
+              "handle": "dotey",
+              "role": "analysis"
+            }
+          ],
+          "shift": "morning",
+          "try_url": "https://github.com/JimLiu/baoyu-design/releases/tag/v2.5.0",
+          "access": "需要已装这个技能，以及能跑其本地编辑页的 Node。幻灯片、设计画布和设计系统要较新的 Node，仪表盘要求更高一档。同事必须和你在同一局域网。打开本卡试做链接先看发行说明里的分享一节，再决定要不要把链接发出去。",
+          "integration": "适合已经用 baoyu-design 做幻灯片或设计稿、又需要同事当场改字或留评论的人。只在自己电脑上看稿的人用不上。",
+          "first_step": "把技能更新到带分享的版本。打开一份幻灯片或设计稿，运行该技能的分享命令，把编辑链接发给同一网络里的同事，请对方改一个词，确认你的页面同时变化。发出前看防火墙是否拦住。",
+          "alternatives": [
+            "继续只在本机预览，不把链接发给同事",
+            "导出网页或 PDF 再传到群里，不开放编辑",
+            "仍用带账号的网页设计工具做协同"
+          ],
+          "tool_radar": "推荐使用",
+          "so_what": {
+            "lens": "工具",
+            "impact": "如果你已经用这个技能出设计稿或幻灯片，今天可以在同一局域网里给同事一条编辑链接，让对方直接改字、留评论，而不必再导出文件传来传去。",
+            "action": "立即行动",
+            "window": "今天在同一局域网发出编辑链接，让同事改一个词并确认两边同时看见。",
+            "confidence": "高",
+            "falsifier": "若分享命令打不开、同事的链接进不去，或明文链接会经过你不想开放的网络，就继续只在本机预览，不要把稿子分享出去。"
+          },
+          "card_copy": {
+            "watch_reason": "局域网分享已写进版本说明，同事可用链接改稿或只读",
+            "evidence_label": "官方原始信息",
+            "suggested_action": "立即行动",
+            "high_priority_review": false
+          }
+        }
+      ]
+    },
     {
       "date": "2026-10-31",
       "items": [

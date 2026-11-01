@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-27 16:14 北京时间",
+  "updated": "2026-11-01 08:07 北京时间",
   "note": "跨过一天仍然值得跟踪的领域进展。写不清价值的不会出现在这里。",
   "items": [
     {
@@ -13,6 +13,17 @@
       "url": "https://mp.weixin.qq.com/s/I_hNNAf7LFBf5nJ0rEJHig",
       "source": "dotey",
       "candidate_id": "cand-20261027-fbb1db839747"
+    },
+    {
+      "id": "watch-20261031-f69eb9d83611",
+      "date": "2026-10-31",
+      "title": "DeepSeek Harness 的 Super-agent 仍是研究原型：少盯会话，先别当成品",
+      "summary": "仓库说明：这是绑在一个代码仓库上的主动编码代理，可听 GitHub，也可选飞书；有人交代或规则允许才开工，做完在原对话回复。长文讨论用路由与工人分开、事件驱动和云端常驻，减轻人同时盯住多个会话。仓库写明它不是正式产品，和长文也不完全一致，有些设计还没写进代码。",
+      "why": "如果你的编程助手已经多到要人来回切会话，这条给出的方向是人只做分派和验收。现在能看的是研究代码和未解的安全边界，不是可以换上的日常助手。",
+      "affect": "这周不必替换现有助手。若要跟踪，先读仓库里的原则和安装说明，看它要的 GitHub 或飞书授权你能不能接受；作者把凭据与入侵面标成还没解。",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype",
+      "source": "deepseek-ai",
+      "candidate_id": "cand-20261031-f69eb9d83611"
     }
   ]
 }
