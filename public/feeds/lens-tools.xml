@@ -5,8 +5,22 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sat, 31 Oct 2026 21:06:33 +0800</lastBuildDate>
+<lastBuildDate>Sun, 01 Nov 2026 08:08:41 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] Omarchy 开发版可选 Hex 听写：沿用原来的按键，安装时会下载语音模型</title>
+<link>https://github.com/omacom/omarchy/pull/17186</link>
+<guid isPermaLink="false">evt-20261101-b3e552fcc712</guid>
+<pubDate>Sun, 01 Nov 2026 05:29:21 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• DHH 把 Hex 加进 Omarchy 开发版的听写选项，与另外两种已有后端并列。设置里的默认项可以选择它，移除菜单里可以卸掉。安装命令会从发行版软件源安装程序，并在终端下载语音模型、启用服务后选中它。<br/>• 说话仍用原来的按键：右 Alt、F9，或 Super 加 Ctrl 加 X。松开后由系统把识别出的字键入光标处。作者写过 Hex 自己的粘贴进不了终端，所以改成停下后再键入；这一步合并前还没有在真机上再测一次。软件包拉取请求已合并，若源里还没有这个包，安装会失败。<br/><strong>对你意味着什么</strong> 如果你在 Omarchy 上靠听写写字，开发版已经能把 Hex 选成后端，并继续用原来的按键。说完的字能不能进终端，还要用你自己的一句话验收。<br/>建议：持续观察 · 今天在开发版装上并说一句，确认文字进到光标处再决定是否换掉现用听写。<br/>有多确定：中<br/>什么情况下当这判断作废：若安装因为软件源里没有这个包而失败，或说完话文字进不了终端和输入框，就保持原来的听写，不要为这次合并去换。<br/>来源 dhh（一手）, dhh（一手）<br/>日期 2026-11-01]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] baoyu-design 可在局域网发链接：同事能改稿、评论，并实时看见</title>
+<link>https://github.com/JimLiu/baoyu-design/releases/tag/v2.5.0</link>
+<guid isPermaLink="false">evt-20261101-6f498e6e8597</guid>
+<pubDate>Sun, 01 Nov 2026 04:07:26 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• baoyu-design 在版本说明里加上局域网分享：幻灯片、设计画布、设计系统和仪表盘都可以对同一 Wi-Fi 或局域网打开。分享命令会按角色给出链接，编辑可改可评，评论者只能评，查看者只看。对方打开链接填个名字就进入，保存会同步到其他已打开的页面。<br/>• 坐在这台电脑前的人是主人，可以用分享按钮看谁在线、改角色或移出，也可以关掉、重新打开或重置某一条链接。客人只能转发自己这一档以及更低档的链接。没有账号，数据不出你的网络；走的是明文网页，同一网络里拿到链接的人都能进，分享前要看防火墙有没有拦住。<br/>• 发行说明写明 DeepSeek Harness 的插件也带上了这一分享。这不是新开的设计技能：十月二十九日那张卡讲的是把它装进本地助手；这次是已经装上的人，可以让同事改同一份稿，而不必再导出文件传到群里。<br/><strong>对你意味着什么</strong> 如果你已经用这个技能出设计稿或幻灯片，今天可以在同一局域网里给同事一条编辑链接，让对方直接改字、留评论，而不必再导出文件传来传去。<br/>建议：立即行动 · 今天在同一局域网发出编辑链接，让同事改一个词并确认两边同时看见。<br/>有多确定：高<br/>什么情况下当这判断作废：若分享命令打不开、同事的链接进不去，或明文链接会经过你不想开放的网络，就继续只在本机预览，不要把稿子分享出去。<br/>来源 JimLiu（一手）, dotey（解读）<br/>日期 2026-11-01]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] impeccable：用设计词和本地规则去掉落地页的廉价 AI 味</title>
 <link>https://github.com/pbakaus/impeccable</link>
@@ -293,13 +307,6 @@
 <guid isPermaLink="false">evt-20261026-baocut-skill</guid>
 <pubDate>Sun, 25 Oct 2026 23:14:29 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• 宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。<br/>• 技能说明在 GitHub 仓库 JimLiu/baocut 的 skills/baocut/SKILL.md。BaoCut 本身负责转录、字幕对齐、翻译与时间线编辑；技能负责把「档案馆 / 纪录片」一类版面要求交给智能体执行。<br/>• 同作者后续还公开了一条可用的历史演讲视频提示词模板（人物、年份、场合、章节与审片流程），适合先出简报再出片，避免直接烘焙导出。<br/><strong>对你意味着什么</strong> 如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。<br/>建议：立即行动 · 技能与示例提示词今天即可对照原文试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若 BaoCut 装不上、技能与你的助手不兼容，或导出质量达不到可发布标准，就收回「这周接这条工作流」。<br/>来源 dotey（一手）, dotey（一手）, dotey（一手）<br/>日期 2026-10-26]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] Perplexity Computer 上架 Impeccable：减少智能体界面「模板感」的开源设计技能</title>
-<link>https://x.com/AravSrinivas/status/2114021917586014449</link>
-<guid isPermaLink="false">evt-20261025-impeccable-computer-skill</guid>
-<pubDate>Sat, 24 Oct 2026 23:51:16 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Perplexity 首席执行官宣布：开源技能 Impeccable 已进入 Computer（Perplexity 的多步智能体产品）技能市场。它用来检查并改界面，目标是少出现常见的「一眼 AI 模板」外观，例如到处用同一套字体、紫蓝渐变、卡片套卡片。<br/>• 同一套技能本身是开源的（Apache 2.0），也可在 Cursor、Claude Code、Codex 等编程助手里用命令安装：在项目根目录执行 npx impeccable install，再在助手里跑 /impeccable init。官方站点与 GitHub 仓库提供命令说明。<br/>• Computer 侧活动：使用 /impeccable 的任务在 2026 年 10 月 31 日前可享每用户约 5000 credits（积分）额度；Computer 本身仍需带 Computer 的付费套餐。若你主要在自有编程助手里做前端，可直接装开源版，不必先开通 Computer。<br/><strong>对你意味着什么</strong> 如果你这周用智能体写或改界面，又讨厌千篇一律的模板外观，Impeccable 提供可安装的设计检查与改写技能；Computer 用户还能赶在约 10 月 31 日前用活动额度试。<br/>建议：立即行动 · 开源版今天可装；Computer 活动额度约到 10 月 31 日。<br/>有多确定：中<br/>什么情况下当这判断作废：若在你的真实页面上改完仍不像可用产品、安装进不了你的助手，或 Computer 套餐/额度对你不可用，就收回「这周必须接这条技能」。<br/>来源 AravSrinivas（一手）, AravSrinivas（一手）, AravSrinivas（一手）, AravSrinivas（一手）<br/>日期 2026-10-25]]></description>
 </item>
 </channel>
 </rss>
