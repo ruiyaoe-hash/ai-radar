@@ -1,8 +1,34 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-01 16:24 北京时间",
+  "updated": "2026-11-01 21:09 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261101-01010d1e02ed",
+      "kind": "Skill / 工作流",
+      "title": "照 Karpathy 的做法把编码交给助手：桌面版、中等力度、人只做三件手工",
+      "author": "karpathy",
+      "url": "https://karpathy.bearblog.dev/hacker-tube/",
+      "time": "2026-11-01 15:31",
+      "takeaway": "他在博客里写明自己做这个观看站时的用法：用 Mac 桌面版 Claude Code，默认把 Opus 5.5 放在中等力度，自己不读写代码；人只在间隙里建密钥、开服务器、买域名，再把地址交给助手去部署。",
+      "steps": [
+        "安装并打开 Claude Code 的 Mac 桌面版。之后不在终端里读写代码或跑命令，要做的事都在对话里交给助手。",
+        "把默认模型设为 Opus 5.5，力度只开中等，不要拉到最高档。他写这个观看站时用的就是这一档。",
+        "趁助手在干活，自己做它做不了的三件：在 Google Cloud 后台建一把查询 YouTube 视频信息的密钥、开一台服务器、买下域名。",
+        "服务器起来之后，把地址交给助手，让它完成系统更新、部署、安全加固和优化。密钥留在自己电脑上，不要放进公开仓库。"
+      ],
+      "caution": "力度和两小时是他做这个观看站时的自述，换一个项目不会一样。这里没有替你安装桌面版，也没有开过服务器。数据包怎么下载，看同一天另一张做法；这张只讲他把编码交给助手。",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "已安装 Claude Code 的 Mac 桌面版",
+        "能在 Google Cloud 建 YouTube 数据密钥",
+        "能开一台服务器并购买域名"
+      ],
+      "estimated_time": "他这个项目大约两小时",
+      "verified": false,
+      "candidate_id": "cand-20261101-01010d1e02ed",
+      "try_url": "https://karpathy.bearblog.dev/hacker-tube/"
+    },
     {
       "id": "prac-20261101-547a2a9422c3",
       "kind": "工具用法",

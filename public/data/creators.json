@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-01 16:24 北京时间",
+  "updated": "2026-11-01 21:09 北京时间",
   "creators": [
     {
       "handle": "vista8",
@@ -49,6 +49,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/bozhou_ai"
+    },
+    {
+      "handle": "karpathy",
+      "name": "karpathy",
+      "focus": "",
+      "source_count": 2,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/karpathy"
     },
     {
       "handle": "op7418",
@@ -145,18 +157,6 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/huggingface-blog"
-    },
-    {
-      "handle": "karpathy",
-      "name": "karpathy",
-      "focus": "",
-      "source_count": 1,
-      "bookmarks": 0,
-      "bookmark_metric": false,
-      "topics": [
-        "hands-on"
-      ],
-      "profile_url": "https://x.com/karpathy"
     },
     {
       "handle": "pbakaus",

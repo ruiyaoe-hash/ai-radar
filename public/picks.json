@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01 16:24 北京时间",
+  "updated": "2026-11-01 21:09 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://aicodinghunt.qiaomu.ai/",
@@ -38,12 +38,14 @@
     "https://github.com/andyhuo520/digital-human-koubo",
     "https://github.com/ayi-ai/qingshang-waigua",
     "https://github.com/baidu/Unlimited-OCR",
+    "https://github.com/benjitaylor/skills",
     "https://github.com/blakeandersonw/ai-app-playbook",
     "https://github.com/debpalash/VoiceStudio",
     "https://github.com/deepseek-ai/deepseek-harness",
     "https://github.com/designfuchen/word-atlas",
     "https://github.com/emilkowalski/skills",
     "https://github.com/expo/skills",
+    "https://github.com/google/elephant-goldfish-model",
     "https://github.com/joeseesun/qiaomu-design",
     "https://github.com/joeseesun/qiaomu-ui-learn-dsh",
     "https://github.com/langchain-ai/design-agent",
@@ -216,9 +218,11 @@
     "cand-20261031-69235fcdce7e",
     "cand-20261031-be121232758a",
     "cand-20261031-c1b002ea3152",
+    "cand-20261101-40c932810d0e",
     "cand-20261101-547a2a9422c3",
     "cand-20261101-6f498e6e8597",
     "cand-20261101-b3e552fcc712",
+    "cand-20261101-c1500297c060",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -272,9 +276,11 @@
     "evt-20261031-be121232758a",
     "evt-20261031-c1b002ea3152",
     "evt-20261031-claude-ultra-no-5h",
+    "evt-20261101-40c932810d0e",
     "evt-20261101-547a2a9422c3",
     "evt-20261101-6f498e6e8597",
-    "evt-20261101-b3e552fcc712"
+    "evt-20261101-b3e552fcc712",
+    "evt-20261101-c1500297c060"
   ],
   "days": [
     {

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-11-01",
-  "generated_at": "2026-11-01T08:23:08Z",
+  "generated_at": "2026-11-01T13:10:00Z",
   "items": [
     {
       "schema_version": 2,
@@ -183,7 +183,116 @@
         "suggested_action": "持续观察",
         "high_priority_review": false
       }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261101-40c932810d0e",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Stageshow：让编程助手做出像真产品的界面插画和短演示",
+      "date": "2026-11-01",
+      "time": "11-01 08:36",
+      "handle": "benjitaylor",
+      "url": "https://github.com/benjitaylor/skills",
+      "published_at": "2026-11-01T00:36:38Z",
+      "ingested_at": "2026-11-01T13:10:00Z",
+      "candidate_id": "cand-20261101-40c932810d0e",
+      "promotion_path": "normal",
+      "objective": [
+        "Benji Taylor 把 Stageshow 放在公开仓库里。它让编程助手用网页组件做假的产品界面，包括静帧、短动画、光标走查和网格卡片。",
+        "技能说明写明，大部分质量在写代码之前定完：媒介和尺寸、外观、三到五拍的故事、整份复制最近的金标示例再改成自己的产品、真正要读的文字数量、动作编排，以及拍下来对照金标。",
+        "说明里点了五种常见翻车：细节堆得太多、简得像线框、整扇窗口塞进一张卡片、每块一样平，以及没有按简报里的风格做。",
+        "仓库写明这些是编排过的插画，不是去自动点击一个真实应用。拍片检查通过只是必要步骤，人仍要自己看一遍成片。安装命令写在说明开头：npx skills add benjitaylor/skills --skill stageshow。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/benjitaylor/skills",
+          "handle": "benjitaylor",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/benjitaylor/skills",
+      "access": "需要能运行安装命令的 Node，以及一个会读取技能文件的编程助手。打开本卡试做链接，按仓库说明安装。不做这种插画的人用不上。",
+      "integration": "适合要做营销页、功能卡片或文档头图，并希望成品是可改的网页组件而不是一张图的人。",
+      "first_step": "打开仓库说明，在已安装 Node 的电脑上运行其中的安装命令，把技能加进编程助手，再让它按最近的金标示例做一张产品插画，然后自己看一遍成片。",
+      "alternatives": [
+        "继续让助手直接画界面，不装这个技能",
+        "用设计软件手做出图",
+        "只看仓库里的示例，不装进自己的项目"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你要在营销页或文档头图里放一段像真产品的界面，今天可以装上这个技能，让助手按金标示例来做，而不是直接生成一张不好改的图。",
+        "action": "立即行动",
+        "window": "今天装上这个技能，让助手做一张产品插画，自己看过再决定要不要留。",
+        "confidence": "中",
+        "falsifier": "若安装命令失败、助手读不到技能，或做出来仍是整扇窗口贴进卡片，就不要把它当成默认出图流程。"
+      },
+      "card_copy": {
+        "watch_reason": "开源技能可装进编程助手，用来做像真产品的插画",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261101-c1500297c060",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "大象与金鱼：写代码前用开源插件起草规格，再用全新上下文挑刺",
+      "date": "2026-11-01",
+      "time": "11-01 14:02",
+      "handle": "google",
+      "url": "https://github.com/google/elephant-goldfish-model",
+      "published_at": "2026-11-01T06:02:04Z",
+      "ingested_at": "2026-11-01T13:10:00Z",
+      "candidate_id": "cand-20261101-c1500297c060",
+      "promotion_path": "normal",
+      "objective": [
+        "Google 的公开仓库提供一套开源插件：带着项目上下文的会话负责起草规格，另一条没有先前对话的新会话只看文档和它引用的材料，人来做取舍并批准，然后再写代码。仓库首页写明，这不是受官方支持的 Google 产品。",
+        "安装说明列出多条路径。命令行版 Antigravity、Claude Code 和 Codex 通过了自动安装、评审隔离和完整流程夹具。独立的 Antigravity 桌面环境不提供评审所需的全新上下文，说明写明暂不支持。",
+        "只复制技能目录会读不到评审提示，需要安装完整插件。小的明确修补不必走这套。需要先做设计取舍时，新开会话，先写成概念说明，再起草设计文档，然后用新会话评审，批准后再让助手实现。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/google/elephant-goldfish-model",
+          "handle": "google",
+          "role": "primary"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://github.com/google/elephant-goldfish-model",
+      "access": "需要一个已在安装说明里通过夹具的编程助手，并新开会话。打开本卡试做链接看安装表。只修一个已经清楚的小问题，用不上这套。",
+      "integration": "适合下一个功能要先写规格、再让助手实现的人。它不替换你的编程助手。",
+      "first_step": "按仓库说明，在你已经在用的编程助手里安装完整插件，新开会话，对一个还没写代码的功能先做一轮起草。若评审不能新开上下文，就停下来。",
+      "alternatives": [
+        "继续用原来的设计笔记，不装这个插件",
+        "小修补直接改代码，不先写规格",
+        "只读仓库里的架构说明，不安装"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你下一个功能要先定规格再写代码，这个插件把起草和挑刺拆开：起草的会话记得上下文，评审用没看过先前讨论的新会话。",
+        "action": "持续观察",
+        "window": "今天在现用的编程助手里装上完整插件，用一个还没开工的功能试一轮起草。",
+        "confidence": "中",
+        "falsifier": "若你的助手不在已通过夹具的名单里，或评审因为不能新开上下文而中止，就继续用原来的设计笔记，不要为了这个插件更换助手。"
+      },
+      "card_copy": {
+        "watch_reason": "开源插件把起草规格和全新上下文的评审拆开",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
     }
   ],
-  "count": 3
+  "count": 5
 }

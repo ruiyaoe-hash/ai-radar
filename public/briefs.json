@@ -1,9 +1,23 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-11-01 08:07 北京时间",
+  "updated": "2026-11-01 21:10 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261101-71d189cd9404",
+      "level": "L2",
+      "date": "2026-11-01",
+      "time": "11-01 16:18",
+      "title": "十月编程助手技能仓库的增速榜：工程流程、去模板界面、把系统画成图",
+      "summary": "邵蒙转发论坛上的十月榜，前十大致落在三条线：工程流程（Matt Pocock、Ponytail、Superpowers、Addy Osmani）、界面去模板（Impeccable、Taste、Hallmark）、图示与代码理解（Anatomy、Diagram Design、Graphify）。增长数字是原帖自报，这里没有逐个核对星标。",
+      "why": "选技能时可以按这周要做的活对上一条线，而不是从空白仓库开始翻。",
+      "affect": "你若已在用这类编程助手技能，打开原帖看仓库名再决定要不要装。没有这条需求，不必因为榜单更换现用技能。",
+      "url": "https://www.reddit.com/r/codex/comments/1xkl5dz/top_10_fastestgrowing_codex_skill_repos_october/",
+      "source": "shao__meng",
+      "lens": "工具",
+      "candidate_id": "cand-20261101-71d189cd9404"
+    },
     {
       "id": "brf-20261031-4c7376f0ccc7",
       "level": "L2",

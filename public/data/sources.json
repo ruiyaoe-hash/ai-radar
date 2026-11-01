@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-01 16:24 北京时间",
+  "updated": "2026-11-01 21:09 北京时间",
   "sources": [
     {
       "id": "prac-20261101-547a2a9422c3",
@@ -10,6 +10,18 @@
       "type": "教程",
       "title": "用 HackerTube 数据包做一版本地观看页：先解压，再读说明",
       "excerpt": "下载数据包并解压，再按 DATA.md 让助手做本地页，或自己读 JSON Lines。",
+      "origin": "practice",
+      "date": "2026-11-01",
+      "verified": false
+    },
+    {
+      "id": "prac-20261101-01010d1e02ed",
+      "url": "https://karpathy.bearblog.dev/hacker-tube/",
+      "author": "karpathy",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "照 Karpathy 的做法把编码交给助手：桌面版、中等力度、人只做三件手工",
+      "excerpt": "默认用桌面版和中等力度，人只补密钥、服务器和域名，再把地址交给助手部署。",
       "origin": "practice",
       "date": "2026-11-01",
       "verified": false
