@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-01 16:24 北京时间",
+  "updated": "2026-11-01 17:27 北京时间",
   "creators": [
     {
       "handle": "vista8",
@@ -25,6 +25,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/shao__meng"
+    },
+    {
+      "handle": "realydt",
+      "name": "realydt",
+      "focus": "",
+      "source_count": 3,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/realydt"
     },
     {
       "handle": "0xlangeai",
@@ -61,18 +73,6 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/op7418"
-    },
-    {
-      "handle": "realydt",
-      "name": "realydt",
-      "focus": "",
-      "source_count": 2,
-      "bookmarks": 0,
-      "bookmark_metric": false,
-      "topics": [
-        "hands-on"
-      ],
-      "profile_url": "https://x.com/realydt"
     },
     {
       "handle": "AYi_AInotes",

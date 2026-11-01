@@ -463,6 +463,18 @@
       "date": "2026-10-28",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261101-c1500297c060",
+      "url": "https://x.com/realydt/status/2116772745220395318",
+      "author": "realydt",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "这两天看到谷歌开源了一款内部工具，叫“大象—金鱼模型”（Elephant-Goldfish Model）",
+      "excerpt": "一条金鱼负责拍板，检查文件路径、数据结构和函数签名是不是全都清清楚楚",
+      "date": "2026-11-01",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": []

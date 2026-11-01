@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-11-01 afternoon",
-  "updated": "2026-11-01 16:24 北京时间",
+  "updated": "2026-11-01 17:27 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,11 +43,11 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 35,
+      "source_count": 36,
       "creator_count": 15,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 35,
+      "unverified_practice": 36,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
       "latest": "2026-11-01"
@@ -473,6 +473,18 @@
       "date": "2026-10-28",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261101-c1500297c060",
+      "url": "https://x.com/realydt/status/2116772745220395318",
+      "author": "realydt",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "这两天看到谷歌开源了一款内部工具，叫“大象—金鱼模型”（Elephant-Goldfish Model）",
+      "excerpt": "一条金鱼负责拍板，检查文件路径、数据结构和函数签名是不是全都清清楚楚",
+      "date": "2026-11-01",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": [
@@ -499,6 +511,18 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/shao__meng"
+    },
+    {
+      "handle": "realydt",
+      "name": "realydt",
+      "focus": "",
+      "source_count": 3,
+      "bookmarks": 0,
+      "bookmark_metric": false,
+      "topics": [
+        "hands-on"
+      ],
+      "profile_url": "https://x.com/realydt"
     },
     {
       "handle": "0xlangeai",
@@ -535,18 +559,6 @@
         "hands-on"
       ],
       "profile_url": "https://x.com/op7418"
-    },
-    {
-      "handle": "realydt",
-      "name": "realydt",
-      "focus": "",
-      "source_count": 2,
-      "bookmarks": 0,
-      "bookmark_metric": false,
-      "topics": [
-        "hands-on"
-      ],
-      "profile_url": "https://x.com/realydt"
     },
     {
       "handle": "AYi_AInotes",
