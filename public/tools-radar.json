@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01 08:08 北京时间",
+  "updated": "2026-11-01 16:24 北京时间",
   "rings": {
     "推荐使用": [
       {
@@ -775,6 +775,26 @@
         "stance": "值得关注"
       },
       {
+        "id": "evt-20261101-547a2a9422c3",
+        "title": "HackerTube：用 Hacker News 推荐过的视频做成可打开的观看站",
+        "date": "2026-11-01",
+        "time": "11-01 03:56",
+        "try_url": "https://hackertube.org/",
+        "access": "打开网页即可看，没有账号。想自己做一版，需要下载约 17.8 MB 的压缩包，并有 Claude Code 或同类编程助手；时长和播放量还要一把免费的 YouTube Data API 密钥。打开本卡试做链接先看首页。",
+        "integration": "适合不想看默认推荐、又想从 Hacker News 讨论过的讲座和演示里挑片子的人。它不替换你的编程助手。",
+        "first_step": "今天打开首页，挑一条长讲座看几分钟，确认嵌入能播。若要自己做一版，再到数据页下载压缩包，按那里的说明交给编程助手或自己读取。",
+        "summary": "Andrej Karpathy 于北京时间 11 月 1 日凌晨放出 HackerTube：不用账号的观看站，片子来自 Hacker News 上被人推荐过的 YouTube 视频。数据页写明有 6454 条视频、39834 条已标注评论，话题分类 150 个，数据包生成于 10 月 31 日。",
+        "audience_value": "如果你受够了夸张封面和重复推荐，今天可以打开这个站，看 Hacker News 上被人推荐过的片子，再决定要不要把数据包交给自己的编程助手。",
+        "alternatives": [
+          "继续用 YouTube 的首页推荐",
+          "只在 Hacker News 里点开视频链接，不换观看站",
+          "只看站点，不下载数据包"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "值得关注"
+      },
+      {
         "id": "evt-20261031-be121232758a",
         "title": "歸藏设计：把网页演示、图文卡片和排版收进 DeepSeek Harness",
         "date": "2026-10-31",
@@ -1079,6 +1099,26 @@
       "status": "confirmed",
       "priority": "P1",
       "stance": "推荐使用"
+    },
+    {
+      "id": "evt-20261101-547a2a9422c3",
+      "title": "HackerTube：用 Hacker News 推荐过的视频做成可打开的观看站",
+      "date": "2026-11-01",
+      "time": "11-01 03:56",
+      "try_url": "https://hackertube.org/",
+      "access": "打开网页即可看，没有账号。想自己做一版，需要下载约 17.8 MB 的压缩包，并有 Claude Code 或同类编程助手；时长和播放量还要一把免费的 YouTube Data API 密钥。打开本卡试做链接先看首页。",
+      "integration": "适合不想看默认推荐、又想从 Hacker News 讨论过的讲座和演示里挑片子的人。它不替换你的编程助手。",
+      "first_step": "今天打开首页，挑一条长讲座看几分钟，确认嵌入能播。若要自己做一版，再到数据页下载压缩包，按那里的说明交给编程助手或自己读取。",
+      "summary": "Andrej Karpathy 于北京时间 11 月 1 日凌晨放出 HackerTube：不用账号的观看站，片子来自 Hacker News 上被人推荐过的 YouTube 视频。数据页写明有 6454 条视频、39834 条已标注评论，话题分类 150 个，数据包生成于 10 月 31 日。",
+      "audience_value": "如果你受够了夸张封面和重复推荐，今天可以打开这个站，看 Hacker News 上被人推荐过的片子，再决定要不要把数据包交给自己的编程助手。",
+      "alternatives": [
+        "继续用 YouTube 的首页推荐",
+        "只在 Hacker News 里点开视频链接，不换观看站",
+        "只看站点，不下载数据包"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "值得关注"
     },
     {
       "id": "evt-20261031-30da51c8b4ee",

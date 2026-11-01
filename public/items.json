@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated": "2026-11-01 08:08 北京时间",
+  "updated": "2026-11-01 16:24 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
     {
@@ -117,6 +117,70 @@
         "watch_reason": "局域网分享已写进版本说明，同事可用链接改稿或只读",
         "evidence_label": "官方原始信息",
         "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261101-547a2a9422c3",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "HackerTube：用 Hacker News 推荐过的视频做成可打开的观看站",
+      "date": "2026-11-01",
+      "time": "11-01 03:56",
+      "handle": "karpathy",
+      "url": "https://hackertube.org/",
+      "published_at": "2026-10-31T19:56:53Z",
+      "ingested_at": "2026-11-01T08:23:08Z",
+      "candidate_id": "cand-20261101-547a2a9422c3",
+      "promotion_path": "normal",
+      "objective": [
+        "Andrej Karpathy 于北京时间 11 月 1 日凌晨放出 HackerTube：不用账号的观看站，片子来自 Hacker News 上被人推荐过的 YouTube 视频。数据页写明有 6454 条视频、39834 条已标注评论，话题分类 150 个，数据包生成于 10 月 31 日。",
+        "喜欢、稍后看和历史只存在这台浏览器里。缩略图用视频中段画面，不用上传的封面。片子经 YouTube 的隐私增强嵌入播放。站点写明与 YouTube、Google、Hacker News 没有隶属关系。",
+        "他在博客里写，自己用 Claude Code 桌面版和 Opus 5.5，大约两小时做完并部署；亲手做的是申请 YouTube 数据密钥、开一台 VPS、买下域名。评论标注交给 Sonnet。Hacker News 帖里他报过一次用量：输入约 5.04 亿 token，其中约九成命中缓存，输出约 760 万；做网站和部署大约 100 万 Opus token。"
+      ],
+      "sources": [
+        {
+          "url": "https://karpathy.bearblog.dev/hacker-tube/",
+          "handle": "karpathy",
+          "role": "primary"
+        },
+        {
+          "url": "https://hackertube.org/data",
+          "handle": "karpathy",
+          "role": "primary"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=50319510",
+          "handle": "karpathy",
+          "role": "primary"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://hackertube.org/",
+      "access": "打开网页即可看，没有账号。想自己做一版，需要下载约 17.8 MB 的压缩包，并有 Claude Code 或同类编程助手；时长和播放量还要一把免费的 YouTube Data API 密钥。打开本卡试做链接先看首页。",
+      "integration": "适合不想看默认推荐、又想从 Hacker News 讨论过的讲座和演示里挑片子的人。它不替换你的编程助手。",
+      "first_step": "今天打开首页，挑一条长讲座看几分钟，确认嵌入能播。若要自己做一版，再到数据页下载压缩包，按那里的说明交给编程助手或自己读取。",
+      "alternatives": [
+        "继续用 YouTube 的首页推荐",
+        "只在 Hacker News 里点开视频链接，不换观看站",
+        "只看站点，不下载数据包"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你受够了夸张封面和重复推荐，今天可以打开这个站，看 Hacker News 上被人推荐过的片子，再决定要不要把数据包交给自己的编程助手。",
+        "action": "持续观察",
+        "window": "今天先看一条长讲座，能播再决定要不要下载数据自己做。",
+        "confidence": "中",
+        "falsifier": "若站点打不开、嵌入播不了，或片子和 Hacker News 讨论对不上，就继续用原来的观看方式，不必下载数据包。"
+      },
+      "card_copy": {
+        "watch_reason": "观看站已经能打开，数据包也可以交给编程助手做自己的版本",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
         "high_priority_review": false
       }
     },
