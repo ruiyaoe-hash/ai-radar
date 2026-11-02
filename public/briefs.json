@@ -1,9 +1,37 @@
 {
   "schema_version": 1,
   "level": "L2",
-  "updated": "2026-11-01 21:10 北京时间",
+  "updated": "2026-11-02 12:20 北京时间",
   "note": "事实简讯。已经出现在信息精选、实战手册或专题观察里的，不会再出现在这里。",
   "items": [
+    {
+      "id": "brf-20261102-fa895a6f06ee",
+      "level": "L2",
+      "date": "2026-11-02",
+      "time": "11-01 21:37",
+      "title": "会上说 Anthropic 日合并约三万：人审的是证据包",
+      "summary": "Addy Osmani 在 AI Engineer 会上说，Anthropic 每天合并大约从五月的两千五升到约三万。Claude 先做审查，并附上端到端、浏览器、检查和测试，以及截图或录屏；人核对的是这包证据。这是会议发言，不是官方博客。",
+      "why": "写得快不等于发得快。敢合并，靠的是你能拿出什么证据，而不是再找人把改动逐行看完。",
+      "affect": "若编程助手已经在帮你开合并请求：先写清自家产品里验证要跑哪些测试和界面记录，再谈自动合并。对不上就继续人工看关键路径。",
+      "url": "https://www.youtube.com/watch?v=AnsXWH2_EBU",
+      "source": "shao__meng",
+      "lens": "模式",
+      "candidate_id": "cand-20261101-fa895a6f06ee"
+    },
+    {
+      "id": "brf-20261102-4f0767ee4aae",
+      "level": "L2",
+      "date": "2026-11-02",
+      "time": "11-01 22:32",
+      "title": "斯坦福 CS329A：自学改进智能体，播放列表收齐九讲",
+      "summary": "课程页写明这是二零二五年秋季的研究生课 Self-Improving AI Agents，由 Aakanksha Chowdhery 与 Azalia Mirhoseini 主讲，目标是做出能自我改进的智能体。斯坦福在线的播放列表标了九个视频，从课程概览排到后面的研究题。",
+      "why": "想按顺序看智能体怎样自我改进，不必从零搜论文，可以顺着这九讲往下看。",
+      "affect": "这周若在做智能体或验证，从播放列表第一讲看起，并用课程页 cs329a.stanford.edu 对大纲。不跟这个方向，就不必为此改现有安排。",
+      "url": "https://www.youtube.com/playlist?list=PLangBM27OtEA",
+      "source": "shao__meng",
+      "lens": "赛道",
+      "candidate_id": "cand-20261101-4f0767ee4aae"
+    },
     {
       "id": "brf-20261101-71d189cd9404",
       "level": "L2",

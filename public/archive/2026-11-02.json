@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-02",
+  "generated_at": "2026-11-02T04:20:00Z",
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261102-86e780fd100d",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "OpenRouter 教程：代码审查先在沙箱里跑通，再交补丁",
+      "date": "2026-11-02",
+      "time": "11-02 09:47",
+      "handle": "shao__meng",
+      "url": "https://openrouter.ai/blog/tutorials/ai-code-review/",
+      "published_at": "2026-11-02T01:47:20Z",
+      "ingested_at": "2026-11-02T04:20:00Z",
+      "candidate_id": "cand-20261102-86e780fd100d",
+      "promotion_path": "normal",
+      "objective": [
+        "OpenRouter 的教程给出一份只用 Python 标准库的脚本 review.py。它把这次改动的文件、你点名的测试和 diff 上传到托管的 Linux 沙箱，让模型写一小段脚本把问题跑出来，再以 V4A 补丁提出修改。每条发现会标成已确认，并附上命令和输出；跑不出来的标成未确认。",
+        "教程写明这份脚本可以在自己的电脑上跑，也可以放进推送前的钩子或 GitHub Actions。完整报告写到仓库里的 .git/ai-review.json。达到你设定的严重级别时，脚本以非零状态退出，推送可以被拦住。官方在一份含五个缺陷的改动上试过，单次大约一到四分钟。",
+        "变更文件会进入你的 OpenRouter 工作区，审查时发给模型供应商。教程要求只对允许外传的代码运行，密钥不要放进这些文件。脚本退出前会删掉已上传的文件。补丁先落到你电脑上的一份副本，沙箱里的检查仍然对着原来的代码。"
+      ],
+      "sources": [
+        {
+          "url": "https://openrouter.ai/blog/tutorials/ai-code-review/",
+          "handle": "shao__meng",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/shao__meng/status/2117071027784056947",
+          "handle": "shao__meng",
+          "role": "analysis"
+        }
+      ],
+      "shift": "other",
+      "try_url": "https://openrouter.ai/blog/tutorials/ai-code-review/",
+      "access": "需要一把 OpenRouter 的接口密钥，以及本机能跑 Python 3 的代码仓库。文件会上传后再交给模型供应商。打开本卡的试做链接，按教程把脚本存成 review.py。",
+      "integration": "适合已经用编程助手改代码、又希望审查结论能用命令复现的团队。它不替换你现有的测试和人工看关键改动。",
+      "first_step": "在一份不含密钥、允许外传的小改动上，按教程保存 review.py，设好接口密钥，运行 python3 review.py，再打开 .git/ai-review.json，看每条发现有没有命令和输出。",
+      "alternatives": [
+        "继续只让模型阅读 diff，不在沙箱里复现",
+        "只跑仓库里已有的测试和静态检查",
+        "关键路径仍由人看，不把这次脚本接进合并闸门"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你的团队正在把编程助手接进代码审查，今天可以按这篇教程试一次：没有附上命令和输出的发现，不要当成已经坐实。",
+        "action": "立即行动",
+        "window": "今天在一份允许外传的小改动上跑一遍，看哪些发现附上了命令和输出。",
+        "confidence": "高",
+        "falsifier": "若脚本在你的仓库里跑不起来，沙箱复现不了你关心的缺陷，或代码不能离开内网，就不要把它接进合并闸门，继续用现有测试和人工审查。"
+      },
+      "card_copy": {
+        "watch_reason": "官方教程给出可在沙箱里复现问题的审查脚本",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    }
+  ],
+  "count": 1
+}

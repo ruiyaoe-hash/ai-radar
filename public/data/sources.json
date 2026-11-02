@@ -1,7 +1,19 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-01 21:09 北京时间",
+  "updated": "2026-11-02 12:19 北京时间",
   "sources": [
+    {
+      "id": "prac-20261102-39830ef2c4c5",
+      "url": "https://github.com/joeseesun/qiaomu-simpleui",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "在 Kindle 上装乔木 SimpleUI：微信读书、AI 资讯，手机扫码配模型",
+      "excerpt": "在已装好 KOReader 的 Kindle 上换乔木首页，再接微信读书，并用手机扫码配置模型。",
+      "origin": "practice",
+      "date": "2026-11-02",
+      "verified": false
+    },
     {
       "id": "prac-20261101-547a2a9422c3",
       "url": "https://hackertube.org/data",

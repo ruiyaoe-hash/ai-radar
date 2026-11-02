@@ -1,0 +1,27 @@
+{
+  "id": "prac-20261102-39830ef2c4c5",
+  "kind": "硬件",
+  "title": "在 Kindle 上装乔木 SimpleUI：微信读书、AI 资讯，手机扫码配模型",
+  "author": "vista8",
+  "url": "https://github.com/joeseesun/qiaomu-simpleui",
+  "time": "2026-11-02 00:23",
+  "takeaway": "作者在自己的 Kindle Paperwhite 5 上换上定制的 KOReader 首页：底栏进微信读书和乔木资讯，划线可以问模型，模型用手机扫码配置。",
+  "steps": [
+    "先让这台 Kindle 能运行 KOReader，版本用二零二六年三月或更新，并打开自带的封面浏览插件。作者用的是越狱后的 Paperwhite 5。安装阅读器本体按 KOReader 官方说明做，这里不写越狱命令。",
+    "退出 KOReader。若已经装过旧的首页插件，先备份插件目录和设置目录里同名的 simpleui 文件夹。Kindle 上插件放在设备存储的 koreader 插件目录里，替换前先退出阅读器。",
+    "打开作者仓库的发布页，下载乔木首页插件的压缩包，不要下载网页自动打包的源码。用同一页的校验和核对后解压，放进 KOReader 的插件目录并替换旧插件，然后重启阅读器。",
+    "要微信读书时，再下载微信读书插件的发布包，同样核对校验和，放进同一个插件目录。重启后打开工具菜单里的微信读书，用手机微信读书应用里申请的密钥扫码登录。登录必须本人完成。",
+    "配模型时打开工具菜单里的乔木 AI，选择用手机配置。手机和 Kindle 连同一个无线网，扫码后选择服务，粘贴接口密钥，测试连接再保存。之后划线可以翻译或提问，回答会逐字出现。"
+  ],
+  "caution": "仓库写明这是测试版，实机记录集中在作者自己的 Kindle。越狱可能失去保修，固件弄错也可能变砖。这里没有替你越狱，也没有在真机上跑过这些步骤。配置页走局域网明文，只在信任的网络填写密钥。",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "一台已能运行 KOReader 的 Kindle",
+    "能从 GitHub Releases 下载并核对校验和",
+    "手机上有一个可用的模型接口密钥"
+  ],
+  "estimated_time": "替换插件大约半小时",
+  "verified": false,
+  "candidate_id": "cand-20261102-39830ef2c4c5",
+  "try_url": "https://github.com/joeseesun/qiaomu-simpleui"
+}

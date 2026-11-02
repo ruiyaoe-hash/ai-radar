@@ -1,7 +1,27 @@
 {
-  "updated": "2026-11-01 21:09 北京时间",
+  "updated": "2026-11-02 12:19 北京时间",
   "rings": {
     "推荐使用": [
+      {
+        "id": "evt-20261102-86e780fd100d",
+        "title": "OpenRouter 教程：代码审查先在沙箱里跑通，再交补丁",
+        "date": "2026-11-02",
+        "time": "11-02 09:47",
+        "try_url": "https://openrouter.ai/blog/tutorials/ai-code-review/",
+        "access": "需要一把 OpenRouter 的接口密钥，以及本机能跑 Python 3 的代码仓库。文件会上传后再交给模型供应商。打开本卡的试做链接，按教程把脚本存成 review.py。",
+        "integration": "适合已经用编程助手改代码、又希望审查结论能用命令复现的团队。它不替换你现有的测试和人工看关键改动。",
+        "first_step": "在一份不含密钥、允许外传的小改动上，按教程保存 review.py，设好接口密钥，运行 python3 review.py，再打开 .git/ai-review.json，看每条发现有没有命令和输出。",
+        "summary": "OpenRouter 的教程给出一份只用 Python 标准库的脚本 review.py。它把这次改动的文件、你点名的测试和 diff 上传到托管的 Linux 沙箱，让模型写一小段脚本把问题跑出来，再以 V4A 补丁提出修改。每条发现会标成已确认，并附上命令和输出；跑不出来的标成未确认。",
+        "audience_value": "如果你的团队正在把编程助手接进代码审查，今天可以按这篇教程试一次：没有附上命令和输出的发现，不要当成已经坐实。",
+        "alternatives": [
+          "继续只让模型阅读 diff，不在沙箱里复现",
+          "只跑仓库里已有的测试和静态检查",
+          "关键路径仍由人看，不把这次脚本接进合并闸门"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "推荐使用"
+      },
       {
         "id": "evt-20261101-40c932810d0e",
         "title": "Stageshow：让编程助手做出像真产品的界面插画和短演示",
@@ -1100,6 +1120,26 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261102-86e780fd100d",
+      "title": "OpenRouter 教程：代码审查先在沙箱里跑通，再交补丁",
+      "date": "2026-11-02",
+      "time": "11-02 09:47",
+      "try_url": "https://openrouter.ai/blog/tutorials/ai-code-review/",
+      "access": "需要一把 OpenRouter 的接口密钥，以及本机能跑 Python 3 的代码仓库。文件会上传后再交给模型供应商。打开本卡的试做链接，按教程把脚本存成 review.py。",
+      "integration": "适合已经用编程助手改代码、又希望审查结论能用命令复现的团队。它不替换你现有的测试和人工看关键改动。",
+      "first_step": "在一份不含密钥、允许外传的小改动上，按教程保存 review.py，设好接口密钥，运行 python3 review.py，再打开 .git/ai-review.json，看每条发现有没有命令和输出。",
+      "summary": "OpenRouter 的教程给出一份只用 Python 标准库的脚本 review.py。它把这次改动的文件、你点名的测试和 diff 上传到托管的 Linux 沙箱，让模型写一小段脚本把问题跑出来，再以 V4A 补丁提出修改。每条发现会标成已确认，并附上命令和输出；跑不出来的标成未确认。",
+      "audience_value": "如果你的团队正在把编程助手接进代码审查，今天可以按这篇教程试一次：没有附上命令和输出的发现，不要当成已经坐实。",
+      "alternatives": [
+        "继续只让模型阅读 diff，不在沙箱里复现",
+        "只跑仓库里已有的测试和静态检查",
+        "关键路径仍由人看，不把这次脚本接进合并闸门"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "推荐使用"
+    },
     {
       "id": "evt-20261101-c1500297c060",
       "title": "大象与金鱼：写代码前用开源插件起草规格，再用全新上下文挑刺",
