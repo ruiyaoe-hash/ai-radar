@@ -1,8 +1,89 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-02 12:19 北京时间",
+  "updated": "2026-11-02 16:16 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261102-3363416fad47",
+      "kind": "工具用法",
+      "title": "盲测两家审稿模型：先在长文里埋错，锁好答案再揭晓",
+      "author": "realydt",
+      "url": "https://x.com/RealYDT/status/2117165559955808317",
+      "time": "2026-11-02 16:02",
+      "takeaway": "在自己的长文里埋入固定错误，并加几句看着像错、其实没错的句子。两家模型打乱文件名轮流跑，打完分再对照事先锁死的答案表。",
+      "steps": [
+        "复制一篇你自己已经发过的长文。每轮埋入 12 处错：数字对不上、常识错、推断说过头、前后矛盾、同音错字。答案表和判定标准在开跑前写好，之后不改。",
+        "再放进 3 句读起来像有问题、核对后其实正确的句子，用来看模型会不会误报。",
+        "在 Codex 里把要比的两档推理强度都开到 xhigh（最高推理档），交替各跑 3 次。文件名打乱，打完分再揭晓是哪一档。",
+        "按锁死的标准数命中和误报，并记下耗时和用量。差距没有达到你事先定的门槛，就记成这次没测出差别，耗时和用量单独比较。"
+      ],
+      "caution": "阿良用自己的两篇长文做了四轮。Astra 命中 143/144、误报 0，Sol 命中 139/144、误报 1，他判定没过事先写好的门槛。这组数字只属于那两篇稿。这里没有替你跑过。选不到这两档时，换成你实际能选的两档，埋错、锁答案和揭晓顺序保持不变。",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "能在 Codex 里切换至少两档模型",
+        "有一篇可以复制来埋错的自己的长文"
+      ],
+      "estimated_time": "四轮大约一个下午",
+      "verified": false,
+      "candidate_id": "cand-20261102-3363416fad47",
+      "try_url": "https://x.com/RealYDT/status/2117165559955808317",
+      "published_at": "2026-11-02T08:02:59Z",
+      "ingested_at": "2026-11-02T08:15:00Z"
+    },
+    {
+      "id": "prac-20261102-cd313bbc7fba",
+      "kind": "工具用法",
+      "title": "用 DuckDB 查 Hacker News 月度归档：先读一个月再下载",
+      "author": "vista8",
+      "url": "https://huggingface.co/datasets/open-index/hacker-news",
+      "time": "2026-11-02 14:41",
+      "takeaway": "仓库按月存放 Hacker News 的帖子和评论。先用 DuckDB 直接读云端一个月，确认标题和时间对得上，再决定要不要下到本机。",
+      "steps": [
+        "打开数据集页，在文件列表里找到 data 目录。月份文件从 2006 年 10 月排到 2026 年 8 月。许可是开放数据署名（ODC-By）。页面说明里的起止日期若和列表不一致，以列表里真实存在的月份为准。",
+        "本机装好 DuckDB，先只查一个月。执行 SELECT title, time FROM read_parquet('hf://datasets/open-index/hacker-news/data/2024/2024-01.parquet') WHERE type = 1 LIMIT 20。type 为 1 是帖子，2 是评论。作者列名叫 by，要用时写成带双引号的 by。",
+        "看返回的标题和时间是不是落在你选的那个月。对不上就停，改查文件列表里实际有的月份。",
+        "需要整年时，把路径里的单月文件换成 data/2024/*.parquet。要下到本机时，用 huggingface-cli 只下载正在查的那一个月，例如 data/2024/2024-01.parquet，仓库类型选 dataset。"
+      ],
+      "caution": "这是 Hacker News 的帖子、评论、招聘和投票归档，查询会访问 Hugging Face。页面说明的起止日期，以及名叫 today 的目录，都和仓库文件列表对不上，以列表为准。这里没有替你跑过查询。",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "本机能安装 DuckDB",
+        "查询时可以访问 Hugging Face"
+      ],
+      "estimated_time": "读一个月大约十几分钟",
+      "verified": false,
+      "candidate_id": "cand-20261102-cd313bbc7fba",
+      "try_url": "https://huggingface.co/datasets/open-index/hacker-news",
+      "published_at": "2026-11-02T06:41:25Z",
+      "ingested_at": "2026-11-02T08:15:00Z"
+    },
+    {
+      "id": "prac-20261102-1b5ac744b1f3",
+      "kind": "Skill / 工作流",
+      "title": "让 Claude 按面向数据重写慢代码：先改布局，再删缓存",
+      "author": "jarredsumner",
+      "url": "https://x.com/jarredsumner/status/2117037940031496252",
+      "time": "2026-11-02 07:35",
+      "takeaway": "把慢代码交给 Claude 时，按面向数据重写：哈希表改成扁平数组，删掉现有缓存，并检查字段要不要改成连续排列。",
+      "steps": [
+        "打开一段你觉得慢的代码，让 Claude 按面向数据（data-oriented design）重写。先问哈希表能不能换成一块连续的扁平数组，把指针改成数组下标，并把最常用的数据塞进下标的高位。",
+        "接着写上这一句：删掉现有缓存，这一轮不再添加新缓存。缓存还留着，通常说明数据怎么摆还没改完。",
+        "再问这段数据要不要改成数组结构体：同一个字段排成连续数组，方便按字段一起读取。改完后用原来的字段含义对照一遍。",
+        "用你原来的慢用例再跑一遍，看耗时和结果是否仍对。结果对不上就撤回这次改动。提示词本身不能代替这次复跑。"
+      ],
+      "caution": "这四句是 Jarred Sumner 给 Claude 做性能优化时的习惯问法，阿良帖里做了中文转述，原文是英文。这里没有替你改过代码，也没有测过能快多少。先在副本上试，确认结果仍对再留下改动。",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "已能把这段代码交给 Claude",
+        "有一个你自己的慢用例，用来对比改前改后"
+      ],
+      "estimated_time": "一轮问答加复跑",
+      "verified": false,
+      "candidate_id": "cand-20261102-1b5ac744b1f3",
+      "try_url": "https://x.com/jarredsumner/status/2117037940031496252",
+      "published_at": "2026-11-01T23:35:52Z",
+      "ingested_at": "2026-11-02T08:15:00Z"
+    },
     {
       "id": "prac-20261102-39830ef2c4c5",
       "kind": "硬件",
