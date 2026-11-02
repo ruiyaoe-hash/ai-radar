@@ -1,8 +1,8 @@
-AI Radar · 信息精选（2026-11-01）
+AI Radar · 信息精选（2026-11-02）
 
-1. baoyu-design 可在局域网发链接：同事能改稿、评论，并实时看见
-   对你意味着什么：如果你已经用这个技能出设计稿或幻灯片，今天可以在同一局域网里给同事一条编辑链接，让对方直接改字、留评论，而不必再导出文件传来传去。
-   建议：立即行动 · 今天在同一局域网发出编辑链接，让同事改一个词并确认两边同时看见。
-   https://github.com/JimLiu/baoyu-design/releases/tag/v2.5.0
+1. OpenRouter 教程：代码审查先在沙箱里跑通，再交补丁
+   对你意味着什么：如果你的团队正在把编程助手接进代码审查，今天可以按这篇教程试一次：没有附上命令和输出的发现，不要当成已经坐实。
+   建议：立即行动 · 今天在一份允许外传的小改动上跑一遍，看哪些发现附上了命令和输出。
+   https://openrouter.ai/blog/tutorials/ai-code-review/
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html

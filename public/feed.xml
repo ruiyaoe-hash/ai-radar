@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Sun, 01 Nov 2026 21:09:29 +0800</lastBuildDate>
+<lastBuildDate>Mon, 02 Nov 2026 12:19:50 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] OpenRouter 教程：代码审查先在沙箱里跑通，再交补丁</title>
+<link>https://openrouter.ai/blog/tutorials/ai-code-review/</link>
+<guid isPermaLink="false">evt-20261102-86e780fd100d</guid>
+<pubDate>Mon, 02 Nov 2026 09:47:20 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• OpenRouter 的教程给出一份只用 Python 标准库的脚本 review.py。它把这次改动的文件、你点名的测试和 diff 上传到托管的 Linux 沙箱，让模型写一小段脚本把问题跑出来，再以 V4A 补丁提出修改。每条发现会标成已确认，并附上命令和输出；跑不出来的标成未确认。<br/>• 教程写明这份脚本可以在自己的电脑上跑，也可以放进推送前的钩子或 GitHub Actions。完整报告写到仓库里的 .git/ai-review.json。达到你设定的严重级别时，脚本以非零状态退出，推送可以被拦住。官方在一份含五个缺陷的改动上试过，单次大约一到四分钟。<br/>• 变更文件会进入你的 OpenRouter 工作区，审查时发给模型供应商。教程要求只对允许外传的代码运行，密钥不要放进这些文件。脚本退出前会删掉已上传的文件。补丁先落到你电脑上的一份副本，沙箱里的检查仍然对着原来的代码。<br/><strong>对你意味着什么</strong> 如果你的团队正在把编程助手接进代码审查，今天可以按这篇教程试一次：没有附上命令和输出的发现，不要当成已经坐实。<br/>建议：立即行动 · 今天在一份允许外传的小改动上跑一遍，看哪些发现附上了命令和输出。<br/>有多确定：高<br/>什么情况下当这判断作废：若脚本在你的仓库里跑不起来，沙箱复现不了你关心的缺陷，或代码不能离开内网，就不要把它接进合并闸门，继续用现有测试和人工审查。<br/>来源 shao__meng（一手）, shao__meng（解读）<br/>日期 2026-11-02]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] 大象与金鱼：写代码前用开源插件起草规格，再用全新上下文挑刺</title>
 <link>https://github.com/google/elephant-goldfish-model</link>
@@ -314,41 +321,6 @@
 <guid isPermaLink="false">evt-20261027-gpt61-terra</guid>
 <pubDate>Tue, 27 Oct 2026 02:06:27 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• OpenAI 于 2026-10-26（上海时间已入 10-27）发布 GPT-6.1 Terra：主打更快、更省的电脑操作（Computer Use）与视觉理解，官方称能看懂屏幕、跨应用点选与输入，并改进日常写作。相对上一代 GPT-5.6 Terra，标准 API 价约降 50%；模型名 gpt-6.1-terra。<br/>• 可用性：ChatGPT Work 与 Codex 向 Plus、Pro、Enterprise、Edu 用户推出，订阅内不另加收模型费；开发者可走 OpenAI API。官方称在 Agents’ Last Exam 等电脑操作评测上明显强于 GPT-5.6 Terra，并在约十分之一的每 token 价格下追平 GPT-6 Astra 的表现，平均完成任务更快。<br/>• 同日 OpenAI 官方线程、CEO Sam Altman、Artificial Analysis 与宝玉等多路关注池账号交叉确认；Artificial Analysis 另给出编程智能体与幻觉率等第三方读数。复杂极限编程任务官方仍更推荐 GPT-6.1 Sol / GPT-6 Astra。<br/><strong>对你意味着什么</strong> 如果你这周在付费用 ChatGPT / Codex，或按 token 跑大量电脑操作与看图任务，Terra 把「更强电脑操作」和「大约一半 API 价」叠在同一档，值得立刻用真实任务对打现用主力。<br/>建议：立即行动 · Plus 及以上与 API 今天即可试；盯官方配额与地区开关是否已开到你的账户。<br/>有多确定：高<br/>什么情况下当这判断作废：若你的账户尚未开放、真实电脑操作仍明显弱于 Astra/Sol，或按量费用并未下降，就收回「这周把批处理与电脑操作切到 Terra」。<br/>来源 openai（一手）, openai（一手）, openai（一手）, openai（一手）, openai（一手）, openai（一手）, sama（转述）, artificialanlys（转述）, dotey（转述）<br/>日期 2026-10-27]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] VoiceStudio：本机开源配音套件，可替代部分 ElevenLabs 流水线</title>
-<link>https://x.com/geekcatx/status/2114667608188621074</link>
-<guid isPermaLink="false">evt-20261026-voicestudio</guid>
-<pubDate>Mon, 26 Oct 2026 18:37:01 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• VoiceStudio（AGPL-3.0）是本地开源语音工具：语音克隆、音色设计、视频配音、听写转写、有声书等，README 称覆盖约 646 种语言，并带本地 API 与 MCP（模型上下文协议）便于挂到 Codex / Claude Code。<br/>• 仓库在 GitHub 日榜热度很高（约 8.8 万星量级，以仓库页为准）；可从 Releases 下载或按文档本机安装。<br/>• 商用前必读许可：软件 AGPL；默认 OmniVoice 模型权重标注非商用——接单/商用需按文档换引擎或取得授权，不要默认「开源=可商用」。<br/><strong>对你意味着什么</strong> 如果你要做语音克隆、配音或有声书，又不想整条流水线都放在 ElevenLabs 上，VoiceStudio 把这些步骤收成本机套件；许可和默认模型权重会限制能不能接商用单。<br/>建议：立即行动 · 仓库今天可下载或按文档安装，先用短样本试音。<br/>有多确定：中<br/>什么情况下当这判断作废：若本机装不上、样音质量达不到可交付、硬件带不动，或许可与默认权重不允许你的商用用途，就收回「用它替换那部分 ElevenLabs 流水线」。<br/>来源 geekcatx（转述）, geekcatx（一手）<br/>日期 2026-10-26]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] Graphify：把整仓建成可查询知识图，少让编程助手反复搜文件</title>
-<link>https://x.com/shao__meng/status/2114642398936502394</link>
-<guid isPermaLink="false">evt-20261026-graphify</guid>
-<pubDate>Mon, 26 Oct 2026 16:56:50 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Graphify（Apache-2.0 开源）给 Claude Code / Cursor / Codex / Gemini CLI 等编程助手加 `/graphify` 技能：对代码做本地 tree-sitter AST（抽象语法树）解析，把仓库（可含文档、PDF 等）建成可查询知识图，而不是向量库。<br/>• 在本机安装命令行：执行 uv tool install graphifyy，也可以改用 pipx。装好后执行 graphify install，把技能注册进编程助手。然后在项目里运行 /graphify .。完成后，graphify-out 目录里会有 graph.json、可以点开的 graph.html，以及 GRAPH_REPORT.md。<br/>• 边带 EXTRACTED/INFERRED 标记；也可用 graphify-mcp 把已有图挂进助手。官网另有 Graphify Cloud（常开记忆/跨仓），与开源 CLI 分开看待；仓库宣传的「降 80% token」要以你自己的仓规模与是否真接图查询为准。<br/><strong>对你意味着什么</strong> 如果你用 Claude Code、Cursor 或同类助手改一个大仓库，又烦它反复搜文件，Graphify 把仓库收成可查询的知识图，查询可以少扫无关文件。<br/>建议：立即行动 · 开源命令行今天就能安装，并对一个真实仓库跑一次。<br/>有多确定：中<br/>什么情况下当这判断作废：若安装或技能注册失败、图盖不住你的仓库，或助手并没有改去查这张图、省下的用量也对不上，就收回「这周用它少搜文件」。<br/>来源 shao__meng（转述）, Graphify-Labs（一手）<br/>日期 2026-10-26]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] 数字人口播技能开源：一张照片做说话数字人短视频</title>
-<link>https://x.com/saccc_c/status/2114621995409379654</link>
-<guid isPermaLink="false">evt-20261026-digital-human-koubo</guid>
-<pubDate>Mon, 26 Oct 2026 15:35:46 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 开源仓库 andyhuo520/digital-human-koubo（MIT）把「一张照片生成会说话的数字人口播视频」收成可给 Claude Code / Codex / OpenClaw 等使用的 Agent Skill：含 Renoise MCP 生成、多种剪辑风格与一批包装组件。<br/>• 作者侧（berryxia）称教程已升级为可自动化、可稳定输出的技能包，技能在 GitHub 免费使用；数字资产链路示例使用 Renoise AI，也可按自己的资源替换。<br/>• 关注池博主转发给出仓库入口；适合先克隆仓库读技能说明，再在本机助手里试一条口播样片。<br/><strong>对你意味着什么</strong> 如果你要批量做「一张脸 + 一段词」的口播短视频，这个开源技能把生成与包装步骤收进助手可调用的流程，比每次从零拼提示更省事。<br/>建议：立即行动 · 仓库今天即可对照安装试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能与你的助手不兼容、Renoise 等依赖不可用或费用过高，或样片质量达不到可发布标准，就收回「这周接这条工作流」。<br/>来源 saccc_c（转述）, berryxia（一手）, andyhuo520（一手）<br/>日期 2026-10-26]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] GEOInflow：自托管看清哪些 AI 爬虫在抓你的站</title>
-<link>https://x.com/vista8/status/2114579446795788675</link>
-<guid isPermaLink="false">evt-20261026-geoinflow</guid>
-<pubDate>Mon, 26 Oct 2026 12:46:41 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 猎看科技与北京日报社智源 GEO 联合开源 GEOInflow（MIT）：把网站访客、AI 搜索引荐、服务器抓取日志和内容目录放进同一套自托管分析里，回答「哪些 AI 在抓站、抓了哪些页、关键页有没有被抓到、AI 搜索带来了多少访问与转化」。<br/>• 内置约 61 类 AI 爬虫身份与用途分类（训练 / AI 搜索 / 用户触发等），也覆盖常规网站统计（PV/UV、事件漏斗、热力图等）。核心统计默认不依赖模型 API Key，数据留在自有服务器。<br/>• 官方仓库提供 Docker 一键部署脚本；默认本机 http://127.0.0.1:3002，首次账号见仓库说明，登录后应立即改密。<br/><strong>对你意味着什么</strong> 如果你靠内容被 AI 搜索引用或抓取，却一直看不到爬虫与引荐数据，GEOInflow 把「谁在抓、抓了啥、有没有转化」收成可自托管的看板，比凭感觉改 GEO 更有依据。<br/>建议：立即行动 · 仓库与 Docker 部署说明今天即可对照试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若你的环境装不上 Docker、日志接不进、或爬虫识别与你业务无关，就收回「这周上这套监测」。<br/>来源 vista8（转述）, yaojingang（一手）, yaojingang（一手）<br/>日期 2026-10-26]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] BaoCut 技能：用智能体做双语排版与史料感视频</title>
-<link>https://x.com/dotey/status/2114375050971296135</link>
-<guid isPermaLink="false">evt-20261026-baocut-skill</guid>
-<pubDate>Sun, 25 Oct 2026 23:14:29 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 宝玉演示：装好 BaoCut 应用，并启用其开源技能（Skill）后，可让编程助手按提示把演讲或影像做成带设计感的版面视频：局部放画面、双语字幕、章节副标题，再按内容插入相关历史图片。<br/>• 技能说明在 GitHub 仓库 JimLiu/baocut 的 skills/baocut/SKILL.md。BaoCut 本身负责转录、字幕对齐、翻译与时间线编辑；技能负责把「档案馆 / 纪录片」一类版面要求交给智能体执行。<br/>• 同作者后续还公开了一条可用的历史演讲视频提示词模板（人物、年份、场合、章节与审片流程），适合先出简报再出片，避免直接烘焙导出。<br/><strong>对你意味着什么</strong> 如果你在做中英字幕、章节化和史料配图的短视频，BaoCut 技能把「版面要求」收成可复用的智能体流程，比每次从零写提示更稳。<br/>建议：立即行动 · 技能与示例提示词今天即可对照原文试用。<br/>有多确定：中<br/>什么情况下当这判断作废：若 BaoCut 装不上、技能与你的助手不兼容，或导出质量达不到可发布标准，就收回「这周接这条工作流」。<br/>来源 dotey（一手）, dotey（一手）, dotey（一手）<br/>日期 2026-10-26]]></description>
 </item>
 </channel>
 </rss>
