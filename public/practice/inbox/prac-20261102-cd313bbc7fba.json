@@ -1,0 +1,27 @@
+{
+  "id": "prac-20261102-cd313bbc7fba",
+  "kind": "工具用法",
+  "title": "用 DuckDB 查 Hacker News 月度归档：先读一个月再下载",
+  "author": "vista8",
+  "url": "https://huggingface.co/datasets/open-index/hacker-news",
+  "time": "2026-11-02 14:41",
+  "takeaway": "仓库按月存放 Hacker News 的帖子和评论。先用 DuckDB 直接读云端一个月，确认标题和时间对得上，再决定要不要下到本机。",
+  "steps": [
+    "打开数据集页，在文件列表里找到 data 目录。月份文件从 2006 年 10 月排到 2026 年 8 月。许可是开放数据署名（ODC-By）。页面说明里的起止日期若和列表不一致，以列表里真实存在的月份为准。",
+    "本机装好 DuckDB，先只查一个月。执行 SELECT title, time FROM read_parquet('hf://datasets/open-index/hacker-news/data/2024/2024-01.parquet') WHERE type = 1 LIMIT 20。type 为 1 是帖子，2 是评论。作者列名叫 by，要用时写成带双引号的 by。",
+    "看返回的标题和时间是不是落在你选的那个月。对不上就停，改查文件列表里实际有的月份。",
+    "需要整年时，把路径里的单月文件换成 data/2024/*.parquet。要下到本机时，用 huggingface-cli 只下载正在查的那一个月，例如 data/2024/2024-01.parquet，仓库类型选 dataset。"
+  ],
+  "caution": "这是 Hacker News 的帖子、评论、招聘和投票归档，查询会访问 Hugging Face。页面说明的起止日期，以及名叫 today 的目录，都和仓库文件列表对不上，以列表为准。这里没有替你跑过查询。",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "本机能安装 DuckDB",
+    "查询时可以访问 Hugging Face"
+  ],
+  "estimated_time": "读一个月大约十几分钟",
+  "verified": false,
+  "candidate_id": "cand-20261102-cd313bbc7fba",
+  "try_url": "https://huggingface.co/datasets/open-index/hacker-news",
+  "published_at": "2026-11-02T06:41:25Z",
+  "ingested_at": "2026-11-02T08:15:00Z"
+}

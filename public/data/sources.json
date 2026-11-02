@@ -1,7 +1,43 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-02 12:19 北京时间",
+  "updated": "2026-11-02 16:16 北京时间",
   "sources": [
+    {
+      "id": "prac-20261102-3363416fad47",
+      "url": "https://x.com/RealYDT/status/2117165559955808317",
+      "author": "realydt",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "盲测两家审稿模型：先在长文里埋错，锁好答案再揭晓",
+      "excerpt": "在长文里埋入固定错误和诱饵句，两档模型打乱文件名轮流跑，打完分再揭晓。",
+      "origin": "practice",
+      "date": "2026-11-02",
+      "verified": false
+    },
+    {
+      "id": "prac-20261102-cd313bbc7fba",
+      "url": "https://huggingface.co/datasets/open-index/hacker-news",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "用 DuckDB 查 Hacker News 月度归档：先读一个月再下载",
+      "excerpt": "用 DuckDB 直接读一个月的帖子，确认时间和标题对得上，再决定要不要下载。",
+      "origin": "practice",
+      "date": "2026-11-02",
+      "verified": false
+    },
+    {
+      "id": "prac-20261102-1b5ac744b1f3",
+      "url": "https://x.com/jarredsumner/status/2117037940031496252",
+      "author": "jarredsumner",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "让 Claude 按面向数据重写慢代码：先改布局，再删缓存",
+      "excerpt": "让 Claude 把哈希表改成扁平数组，删掉缓存，并检查字段要不要连续排列。",
+      "origin": "practice",
+      "date": "2026-11-02",
+      "verified": false
+    },
     {
       "id": "prac-20261102-39830ef2c4c5",
       "url": "https://github.com/joeseesun/qiaomu-simpleui",
