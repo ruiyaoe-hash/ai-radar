@@ -1,10 +1,11 @@
 {
-  "updated": "2026-11-02 12:19 北京时间",
+  "updated": "2026-11-02 21:05 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://aicodinghunt.qiaomu.ai/",
     "https://airss.qiaomu.ai/",
     "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
+    "https://arxiv.org/abs/2610.08699",
     "https://basecamp.com/ai",
     "https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/",
     "https://chromewebstore.google.com/detail/perplexity/pninphncmkphpjgfffammoenglghcjii",
@@ -57,6 +58,7 @@
     "https://github.com/unclebob/ub-mode",
     "https://github.com/vercel-labs/agent-desktop",
     "https://github.com/yaojingang/GEOInflow",
+    "https://hackerpapers.qiaomu.ai/",
     "https://hackertube.org/",
     "https://hackertube.org/data",
     "https://huggingface.co/Pika-Labs/Pika-H3-Flex",
@@ -69,6 +71,7 @@
     "https://huggingface.co/tencent/Hy-Nomas",
     "https://impeccable.style",
     "https://karpathy.bearblog.dev/hacker-tube/",
+    "https://nanomuse.cn/",
     "https://news.ycombinator.com/item?id=50319510",
     "https://openai.com/index/decisions-api",
     "https://openai.com/index/introducing-gpt-6-1-terra",
@@ -146,11 +149,13 @@
     "https://x.com/shao__meng/status/2115345069570212202",
     "https://x.com/shao__meng/status/2115392731333951528",
     "https://x.com/shao__meng/status/2117071027784056947",
+    "https://x.com/shao__meng/status/2117171145342644530",
     "https://x.com/simonw/status/2113718487529267593",
     "https://x.com/vista8/status/2114579446795788675",
     "https://x.com/vista8/status/2115293920955605424",
     "https://x.com/vista8/status/2115446064593674587",
     "https://x.com/vista8/status/2116001563420586192",
+    "https://x.com/vista8/status/2117176698336842027",
     "https://x.com/yaojingang/status/2114576054018818536"
   ],
   "blocked_ids": [
@@ -225,7 +230,9 @@
     "cand-20261101-6f498e6e8597",
     "cand-20261101-b3e552fcc712",
     "cand-20261101-c1500297c060",
+    "cand-20261102-7cd12fad0e07",
     "cand-20261102-86e780fd100d",
+    "cand-20261102-f3fea67acd54",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -284,7 +291,9 @@
     "evt-20261101-6f498e6e8597",
     "evt-20261101-b3e552fcc712",
     "evt-20261101-c1500297c060",
-    "evt-20261102-86e780fd100d"
+    "evt-20261102-7cd12fad0e07",
+    "evt-20261102-86e780fd100d",
+    "evt-20261102-f3fea67acd54"
   ],
   "days": [
     {
