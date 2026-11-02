@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "snapshot": "2026-11-01 evening",
-  "updated": "2026-11-01 21:09 北京时间",
+  "updated": "2026-11-02 10:39 北京时间",
   "note": "五个方向仍在。主题、原帖和博主从 2026-10-23 起重新收录。没有素材的主题不写入本文件。",
   "tracks": [
     {
@@ -43,14 +43,14 @@
         "动手前对照原文核对命令、授权和费用。"
       ],
       "status": "active",
-      "source_count": 36,
+      "source_count": 37,
       "creator_count": 15,
       "has_bookmarks": false,
       "demand_samples": 0,
-      "unverified_practice": 36,
+      "unverified_practice": 37,
       "verified_practice": 0,
       "demand_refreshed_at": "2026-10-23 08:00 北京时间",
-      "latest": "2026-11-01"
+      "latest": "2026-11-02"
     }
   ],
   "sources": [
@@ -485,6 +485,18 @@
       "date": "2026-10-28",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261102-518e68750202",
+      "url": "https://x.com/0xlangeai/status/2117064397793206553",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "卡兹克折腾了近 𝟭 年的 Agent 自动化，核心就一句：别等你开窗口才干活，用事件把起点从人身上拿掉",
+      "excerpt": "自动化中台：飞书、邮件、告警、定时任务统一成事件，按 rules.json 叫醒对应 Agent，去重，只在必须拍板时推飞书卡片",
+      "date": "2026-11-02",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": [
@@ -516,7 +528,7 @@
       "handle": "0xlangeai",
       "name": "0xlangeai",
       "focus": "",
-      "source_count": 2,
+      "source_count": 3,
       "bookmarks": 0,
       "bookmark_metric": false,
       "topics": [

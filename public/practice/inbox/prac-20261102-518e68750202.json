@@ -1,0 +1,21 @@
+{
+  "id": "prac-20261102-518e68750202",
+  "kind": "工具用法",
+  "title": "卡兹克折腾了近 𝟭 年的 Agent 自动化，核心就一句：别等你开窗口才干活，用事件把起点从人身上拿掉",
+  "author": "0xlangeai",
+  "url": "https://x.com/0xlangeai/status/2117064397793206553",
+  "time": "2026-11-02 09:21",
+  "takeaway": "自动化中台：飞书、邮件、告警、定时任务统一成事件，按 rules.json 叫醒对应 Agent，去重，只在必须拍板时推飞书卡片",
+  "steps": [
+    "自动化中台：飞书、邮件、告警、定时任务统一成事件，按 rules.json 叫醒对应 Agent，去重，只在必须拍板时推飞书卡片。",
+    "执行侧：Claude Opus 5.5 扛复杂开发和决策。"
+  ],
+  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "difficulty": "入门",
+  "prerequisites": [
+    "原文里用到的账号或软件"
+  ],
+  "estimated_time": "按步骤做完",
+  "verified": false,
+  "candidate_id": "cand-20261102-518e68750202"
+}
