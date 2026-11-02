@@ -523,6 +523,18 @@
       "date": "2026-10-28",
       "origin": "practice",
       "verified": false
+    },
+    {
+      "id": "prac-20261102-ffad0ee1166b",
+      "url": "https://x.com/0xlangeai/status/2117247887180808202",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "分享个 Grok Bot Pages 技巧 , Grok Bot 的 Pages 链接，默认别人打不开",
+      "excerpt": "改成公开，或指定分享给对方账号 https://t.co/yMm6QoMwTE https://t.co/Tl61qWvcsQ",
+      "date": "2026-11-02",
+      "origin": "practice",
+      "verified": false
     }
   ],
   "creators": []

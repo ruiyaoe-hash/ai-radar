@@ -1,8 +1,29 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-02 16:16 北京时间",
+  "updated": "2026-11-03 06:50 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261102-ffad0ee1166b",
+      "kind": "工具用法",
+      "title": "分享个 Grok Bot Pages 技巧 , Grok Bot 的 Pages 链接，默认别人打不开",
+      "author": "0xlangeai",
+      "url": "https://x.com/0xlangeai/status/2117247887180808202",
+      "time": "2026-11-02 21:30",
+      "takeaway": "改成公开，或指定分享给对方账号 https://t.co/yMm6QoMwTE https://t.co/Tl61qWvcsQ",
+      "steps": [
+        "点页面上的分享控件。",
+        "改成公开，或指定分享给对方账号 https://t.co/yMm6QoMwTE https://t.co/Tl61qWvcsQ。"
+      ],
+      "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+      "difficulty": "入门",
+      "prerequisites": [
+        "原文里用到的账号或软件"
+      ],
+      "estimated_time": "按步骤做完",
+      "verified": false,
+      "candidate_id": "cand-20261102-ffad0ee1166b"
+    },
     {
       "id": "prac-20261102-3363416fad47",
       "kind": "工具用法",
