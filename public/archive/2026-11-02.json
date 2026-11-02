@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-11-02",
-  "generated_at": "2026-11-02T04:20:00Z",
+  "generated_at": "2026-11-02T13:10:00Z",
   "items": [
     {
       "schema_version": 2,
@@ -61,7 +61,132 @@
         "suggested_action": "立即行动",
         "high_priority_review": false
       }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261102-7cd12fad0e07",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "HackerPapers：先从必读 30 篇读起，再按年份翻讨论过的论文",
+      "date": "2026-11-02",
+      "time": "11-02 16:47",
+      "handle": "vista8",
+      "url": "https://hackerpapers.qiaomu.ai/",
+      "published_at": "2026-11-02T08:47:14Z",
+      "ingested_at": "2026-11-02T13:10:00Z",
+      "candidate_id": "cand-20261102-7cd12fad0e07",
+      "promotion_path": "normal",
+      "objective": [
+        "向阳乔木在北京时间 11 月 2 日下午放出 HackerPapers。站点从 Hacker News 2006 年以来的投稿里，挑出链接本身就是论文的帖子，首页写着 8,000 多篇，每篇有中文标题。",
+        "关于页写明筛选顺序：先读 446 万条链接投稿，再让模型去掉新闻、博客和幻灯片，并把同一篇论文的多次投稿合并。讨论最热的 1,500 篇配上中文导读，并翻译高赞评论。导读由模型生成，页面要求以原文为准。",
+        "论文库可以按年份筛选。页面注明源数据里 2023 年的帖子分数记录不全，2026 年还没过完，这两年收录偏少。数据来自 Hugging Face 上的 Hacker News 完整存档，许可写的是开放数据署名（ODC-BY）。",
+        "必读区是讨论最热的 30 篇，每篇都有中文导读。页面建议不知道从哪读起时，从这里开始。帖里说的电子书库还在做，这里不把它当成已经能用。"
+      ],
+      "sources": [
+        {
+          "url": "https://hackerpapers.qiaomu.ai/",
+          "handle": "vista8",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/vista8/status/2117176698336842027",
+          "handle": "vista8",
+          "role": "analysis"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://hackerpapers.qiaomu.ai/",
+      "access": "打开网页就能读，不用账号。分类、导读和评论翻译由模型生成，可能有误。数据来自 Hacker News 完整存档。打开本卡的试做链接，从必读开始。",
+      "integration": "适合想用中文导读进入这些论文、暂时不自己查原始存档的人。它不替换论文原文。",
+      "first_step": "打开首页进入必读 30 篇，挑一篇看中文导读，再点进原文核对一处关键说法。对不上就停在原文。",
+      "alternatives": [
+        "继续只在 Hacker News 上点开论文链接",
+        "用 DuckDB 自己查同一份 Hacker News 月度存档",
+        "只读必读里的一篇，不按年份翻全库"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周想读 Hacker News 上讨论过的论文，又不想先装查询工具，今天可以从必读 30 篇里打开一篇，对照原文看导读有没有读错。",
+        "action": "持续观察",
+        "window": "今天打开必读里的一篇，看中文导读和原文是否对得上。",
+        "confidence": "中",
+        "falsifier": "若站点打不开、必读列表是空的，或抽查的导读和原文对不上，就不要拿它当阅读起点，继续读论文原文。"
+      },
+      "card_copy": {
+        "watch_reason": "中文导读已经挂在站点上，读的时候仍要对照原文",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261102-f3fea67acd54",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "nanoMuse：开源个人智能体可装到自己的手机和电脑上",
+      "date": "2026-11-02",
+      "time": "11-02 16:25",
+      "handle": "nanoMuse",
+      "url": "https://nanomuse.cn/",
+      "published_at": "2026-11-02T08:25:10Z",
+      "ingested_at": "2026-11-02T13:10:00Z",
+      "candidate_id": "cand-20261102-f3fea67acd54",
+      "promotion_path": "normal",
+      "objective": [
+        "邵蒙于北京时间 11 月 2 日发帖，指向浙江大学十月的一份报告，以及可以下载的 nanoMuse。报告把个人智能体定义成跑在你自己设备上的软件，并对照 Meta 的 Muse。报告写 Muse 跑在对方云里，而且目前在美国销售。这是报告里的说法。",
+        "项目站写明同一套智能体可以放在 Android 手机、iPhone、iPad、Mac、Windows、Linux 和网页上。几台设备共用一个账号和同一段对话：在手机上说一句，由电脑执行，要确认的事回到你手里的那台设备。它是谁、记得你什么、何时主动开口，都写成你可以打开修改的 Markdown 文件。许可是 GPL-3.0 或更高版本。",
+        "每一次调用都要经过站上所称的 Sentinel。删除、发送或付款之前，它会先停下来问你。报告写明 iPhone 上没有屏幕操作，因为 iOS 不允许一个应用去操作另一个应用。Android 和电脑可以隔着屏幕动手。",
+        "下载页当前版本是 1.0.9，日期写着 2026 年 10 月 29 日。Android 提供安装包，iPhone 和 iPad 走测试版安装，桌面有 Windows、macOS 和 Linux 安装包，页面写明这些桌面包装未经公证。用自己的接口密钥时可以不登录。网页演示写明免费用半小时，并需要较宽的屏幕。这里没有替你安装。"
+      ],
+      "sources": [
+        {
+          "url": "https://nanomuse.cn/",
+          "handle": "nanoMuse",
+          "role": "primary"
+        },
+        {
+          "url": "https://arxiv.org/abs/2610.08699",
+          "handle": "nanoMuse",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/shao__meng/status/2117171145342644530",
+          "handle": "nanoMuse",
+          "role": "analysis"
+        }
+      ],
+      "shift": "evening",
+      "try_url": "https://nanomuse.cn/",
+      "access": "需要 Android 8 以上的手机，或 Windows 10、macOS 12、Linux 之一。iPhone 目前是测试版安装。桌面安装包未经公证，第一次要按系统提示放行。也可以先不装，用电脑打开网页演示。打开本卡试做链接看下载和文档。",
+      "integration": "适合想把个人智能体放在自己的设备上，并在危险操作前被问一句的人。它不替换你已经在用的编程助手。",
+      "first_step": "用电脑打开网页演示并登录，让它做一件可以撤回的小事，看执行前会不会停下来问你。要装到自己的机器上，再按下载页选择一个系统。",
+      "alternatives": [
+        "继续用现有的云端对话，不安装本地智能体",
+        "只读这份报告，先不下载安装包",
+        "只用自己的接口密钥，不登录社区中继"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周在选一个能装在自己手机和电脑上的个人智能体，今天可以先打开网页演示，或只装一台设备，看它在删除、发送或付款之前会不会停下来问你。",
+        "action": "持续观察",
+        "window": "今天先开演示或只装一台设备，不要同时换掉现有助手。",
+        "confidence": "中",
+        "falsifier": "若安装包下不动，演示登录后做不了一件可以撤回的小事，或者删除和付款前并不停下来问你，就不要把它换成日常助手。"
+      },
+      "card_copy": {
+        "watch_reason": "安装包和网页演示都在，危险操作前是否会问你要自己试",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
     }
   ],
-  "count": 1
+  "count": 3
 }
