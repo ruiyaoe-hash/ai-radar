@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看行业动态。</description>
 <language>zh-cn</language>
-<lastBuildDate>Thu, 29 Oct 2026 09:22:26 +0800</lastBuildDate>
+<lastBuildDate>Tue, 03 Nov 2026 12:08:00 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tracks.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 行业动态 · 研究] MIT 实验：不重新训练，只改掉 Qwen 的复读，数学正确率从 7.9% 升到 48.1%</title>
+<link>https://rikiyat.github.io/blog/weight-space-programming/</link>
+<guid isPermaLink="false">evt-20261103-64cbb07b8c19</guid>
+<pubDate>Tue, 03 Nov 2026 08:06:53 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 麻省理工学院计算机科学与人工智能实验室的四位研究者，在 11 月 2 日发表的博客里把这件事叫做权重空间编程（Weight-Space Programming）：让前沿模型直接读写神经网络里的数字，不写训练循环，也不用梯度。<br/>• 他们让 GPT-6 Astra 在 Python 环境里改 Qwen3.5-0.8B。它从第 15 层和第 19 层各 64 个输出列里，减掉一个和复读有关的方向，共改 131072 个权重，大约占全部的 0.016%。练习只用训练集里的题，评测题不给它看。<br/>• 给到 50 次前向时，数学测验 MATH-500 从 7.9% 升到 48.1%，应用题 GSM8K 从 13.8% 升到 67.1%，指令遵循 IFEval 从 21.0% 升到 62.3%。答满长度上限的比例从 93.0% 降到 33.1%。只给 10 次或 25 次时，复读基本还在。<br/>• 作者写明，这次主要是拿掉挡住已有能力的复读，不是把模型本来没有的数学加进去。很少复读的 Gemma 3 270M 用同样做法，数学成绩几乎不动。改过的权重和全部实验日志已经公开。这些数字仍是作者自己的评测。<br/><strong>对你意味着什么</strong> 如果你今天会引用「数学涨了大约 6 倍」，先把原因说完整：涨幅主要来自少复读、把已经会做的题做完，不是小模型凭空多了数学能力。要核对，打开作者博客和实验日志。<br/>建议：持续观察 · 这周先读博客里的对照实验，再决定要不要引用这组数字。<br/>有多确定：中<br/>什么情况下当这判断作废：若按博客里的采样重跑，数学正确率仍接近 7.9%，答满长度上限的比例也没有下降，或者公开日志对不上所说的那一处改动，就收回「改掉复读就能拉开这组数字」。<br/>来源 rikiyat（一手）, RikiyaT（一手）, RikiyaT（一手）, dotey（解读）, shao__meng（解读）<br/>日期 2026-11-03]]></description>
+</item>
 <item>
 <title>[重磅 · 行业动态 · 发布] DeepMind 发布 Gemini 4 Carbon：强调长程工程与网络安全，本周先给部分防御方试用</title>
 <link>https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model</link>
