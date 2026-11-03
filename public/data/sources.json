@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-03 08:11 北京时间",
+  "updated": "2026-11-03 11:58 北京时间",
   "sources": [
     {
       "id": "prac-20261103-3181c67b4306",
@@ -491,6 +491,18 @@
       "title": "先打开乔木 AI 资讯网页，再按需装 Obsidian 或 DeepSeek Harness 插件",
       "excerpt": "先网页试用乔木 AI 资讯中文阅读，再装 Obsidian 或 DeepSeek Harness 插件。",
       "date": "2026-10-28",
+      "origin": "practice",
+      "verified": false
+    },
+    {
+      "id": "prac-20261103-c8bf27ac5118",
+      "url": "https://x.com/0xlangeai/status/2117290252092223615",
+      "author": "0xlangeai",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "SpaceXAI 做 Grok Bot 的 lauren（@poteto，约 25 万粉，前 Cursor / Meta / Netflix）把 的工程约束摊开了",
+      "excerpt": "模拟完全确定性，高分上传统服务器整局回放验作弊",
+      "date": "2026-11-03",
       "origin": "practice",
       "verified": false
     }

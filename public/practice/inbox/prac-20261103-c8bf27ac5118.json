@@ -1,0 +1,24 @@
+{
+  "id": "prac-20261103-c8bf27ac5118",
+  "kind": "创意作品",
+  "title": "SpaceXAI 做 Grok Bot 的 lauren（@poteto，约 25 万粉，前 Cursor / Meta / Netflix）把 的工程约束摊开了",
+  "author": "0xlangeai",
+  "url": "https://x.com/0xlangeai/status/2117290252092223615",
+  "time": "2026-11-03 00:18",
+  "takeaway": "模拟完全确定性，高分上传统服务器整局回放验作弊",
+  "steps": [
+    "热路径文件用 .hot.ts，lint 禁分配，游戏循环几乎不造垃圾。",
+    "故事、过场、系统状态机全用 TLA+ 查。",
+    "模拟完全确定性，高分上传统服务器整局回放验作弊。",
+    "没有音频文件，音乐音效在浏览器里现场合成。",
+    "首包超预算就 build 失败。"
+  ],
+  "caution": "动手前对照原文核对命令、授权和费用。这里没有替你跑过这组步骤。",
+  "difficulty": "进阶",
+  "prerequisites": [
+    "原文里用到的账号或软件"
+  ],
+  "estimated_time": "按步骤做完",
+  "verified": false,
+  "candidate_id": "cand-20261103-c8bf27ac5118"
+}
