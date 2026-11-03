@@ -1,8 +1,77 @@
 {
   "schema_version": 2,
-  "updated": "2026-11-03 08:23 北京时间",
+  "updated": "2026-11-03 12:08 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261103-64cbb07b8c19",
+      "status": "confirmed",
+      "tag": "研究",
+      "lens": "赛道",
+      "priority": "P1",
+      "title": "MIT 实验：不重新训练，只改掉 Qwen 的复读，数学正确率从 7.9% 升到 48.1%",
+      "date": "2026-11-03",
+      "time": "11-03 08:06",
+      "handle": "rikiyat",
+      "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+      "published_at": "2026-11-03T00:06:53Z",
+      "ingested_at": "2026-11-03T04:15:00Z",
+      "candidate_id": "cand-20261103-64cbb07b8c19",
+      "block_ids": [
+        "cand-20261103-2c6d08f37872",
+        "cand-20261103-25e7e4b647f8"
+      ],
+      "promotion_path": "normal",
+      "objective": [
+        "麻省理工学院计算机科学与人工智能实验室的四位研究者，在 11 月 2 日发表的博客里把这件事叫做权重空间编程（Weight-Space Programming）：让前沿模型直接读写神经网络里的数字，不写训练循环，也不用梯度。",
+        "他们让 GPT-6 Astra 在 Python 环境里改 Qwen3.5-0.8B。它从第 15 层和第 19 层各 64 个输出列里，减掉一个和复读有关的方向，共改 131072 个权重，大约占全部的 0.016%。练习只用训练集里的题，评测题不给它看。",
+        "给到 50 次前向时，数学测验 MATH-500 从 7.9% 升到 48.1%，应用题 GSM8K 从 13.8% 升到 67.1%，指令遵循 IFEval 从 21.0% 升到 62.3%。答满长度上限的比例从 93.0% 降到 33.1%。只给 10 次或 25 次时，复读基本还在。",
+        "作者写明，这次主要是拿掉挡住已有能力的复读，不是把模型本来没有的数学加进去。很少复读的 Gemma 3 270M 用同样做法，数学成绩几乎不动。改过的权重和全部实验日志已经公开。这些数字仍是作者自己的评测。"
+      ],
+      "sources": [
+        {
+          "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+          "handle": "rikiyat",
+          "role": "primary"
+        },
+        {
+          "url": "https://github.com/RikiyaT/lm_understand-logs",
+          "handle": "RikiyaT",
+          "role": "primary"
+        },
+        {
+          "url": "https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming",
+          "handle": "RikiyaT",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2117408133773705525",
+          "handle": "dotey",
+          "role": "analysis"
+        },
+        {
+          "url": "https://x.com/shao__meng/status/2117417782585541109",
+          "handle": "shao__meng",
+          "role": "analysis"
+        }
+      ],
+      "shift": "other",
+      "so_what": {
+        "lens": "赛道",
+        "impact": "如果你今天会引用「数学涨了大约 6 倍」，先把原因说完整：涨幅主要来自少复读、把已经会做的题做完，不是小模型凭空多了数学能力。要核对，打开作者博客和实验日志。",
+        "action": "持续观察",
+        "window": "这周先读博客里的对照实验，再决定要不要引用这组数字。",
+        "confidence": "中",
+        "falsifier": "若按博客里的采样重跑，数学正确率仍接近 7.9%，答满长度上限的比例也没有下降，或者公开日志对不上所说的那一处改动，就收回「改掉复读就能拉开这组数字」。"
+      },
+      "card_copy": {
+        "watch_reason": "涨幅主要来自少复读，改过的权重和实验日志可以打开核对",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261103-dc8e18535a8a",
