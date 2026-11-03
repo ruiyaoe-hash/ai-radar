@@ -1,8 +1,8 @@
-AI Radar · 信息精选（2026-11-02）
+AI Radar · 信息精选（2026-11-03）
 
-1. OpenRouter 教程：代码审查先在沙箱里跑通，再交补丁
-   对你意味着什么：如果你的团队正在把编程助手接进代码审查，今天可以按这篇教程试一次：没有附上命令和输出的发现，不要当成已经坐实。
-   建议：立即行动 · 今天在一份允许外传的小改动上跑一遍，看哪些发现附上了命令和输出。
-   https://openrouter.ai/blog/tutorials/ai-code-review/
+1. Claude 消息线程公开测试：长对话少传历史，价格不变
+   对你意味着什么：如果你已经用这个接口跑长时间的编程或电脑操作智能体，今天可以在一条真实的长对话上打开消息线程，看开始回复是否更快。线程本身不降价。
+   建议：立即行动 · 今天在一条已有的长对话上试一轮，并确认本地仍留着完整记录。
+   https://platform.claude.com/docs/en/build-with-claude/message-threads
 
 看板 https://ruiyaoe-hash.github.io/ai-radar/today.html

@@ -1,8 +1,37 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-02 16:16 北京时间",
+  "updated": "2026-11-03 08:23 北京时间",
   "note": "能照着做的步骤才会出现在这里。没有写清步骤的分享不会上这一页。",
   "items": [
+    {
+      "id": "prac-20261103-3181c67b4306",
+      "kind": "工具用法",
+      "title": "把 EPUB 先试译三段再整本发到 Kindle：配对后选中文对照",
+      "author": "vista8",
+      "url": "https://github.com/joeseesun/kindle-push-macos",
+      "time": "2026-11-03 01:12",
+      "takeaway": "在已经装着 KOReader 的 Kindle 上，用这款 Mac 应用先试译三段正文。译文可接受，再把整本中文对照发到阅读器。",
+      "steps": [
+        "在 macOS 14 或更新的 Mac 上打开终端，运行 brew install python pandoc，装上说明要求的 Python 3.10 或更新，以及 Pandoc 3.8 或更新。",
+        "从仓库的 Releases 下载应用压缩包，解压后放进「应用程序」。应用是本地临时签名。系统若提示无法验证开发者，由你决定是否打开。",
+        "按仓库里的首次配置，用 USB 把接收端写到已经装好 KOReader 的 Kindle 上，并完成配对。发布包不含密钥，不能跳过。之后 Mac 和 Kindle 要在同一局域网。",
+        "打开应用的翻译设置，安装翻译组件，选一个服务并登录或填好密钥。拖入一本你有权翻译的 EPUB，选择中文对照，先点「先试译 3 段」。试译不会发送。",
+        "三段译文和原文对得上，再点「翻译并发送」。到 Kindle 的 KOReader 里打开 documents/我的文章。失败或取消的译本不会自动发出。"
+      ],
+      "caution": "说明只实机写了 Kindle Paperwhite 3。其他型号和 Intel 芯片的 Mac 还没有按页面做完测试。翻译会把正文交给所选模型服务并可能计费。这个应用不包含越狱工具。这里没有替你安装或翻译过。",
+      "difficulty": "进阶",
+      "prerequisites": [
+        "系统为 macOS 14 或更新，并且已经装好 Homebrew",
+        "Kindle 已经装好 KOReader 及其远程登录插件",
+        "有一本你有权处理的 EPUB，以及一个模型服务"
+      ],
+      "estimated_time": "配对后试译大约一小时",
+      "verified": false,
+      "candidate_id": "cand-20261103-3181c67b4306",
+      "try_url": "https://github.com/joeseesun/kindle-push-macos",
+      "published_at": "2026-11-02T17:12:31Z",
+      "ingested_at": "2026-11-03T00:25:00Z"
+    },
     {
       "id": "prac-20261102-3363416fad47",
       "kind": "工具用法",

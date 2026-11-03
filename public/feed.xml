@@ -5,8 +5,29 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>会影响下一步的信号。北京时间每天 08:00 主报；工作日 21:00 晚班。</description>
 <language>zh-cn</language>
-<lastBuildDate>Mon, 02 Nov 2026 21:05:14 +0800</lastBuildDate>
+<lastBuildDate>Tue, 03 Nov 2026 08:23:39 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feed.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] Claude 消息线程公开测试：长对话少传历史，价格不变</title>
+<link>https://platform.claude.com/docs/en/build-with-claude/message-threads</link>
+<guid isPermaLink="false">evt-20261103-dc8e18535a8a</guid>
+<pubDate>Tue, 03 Nov 2026 03:06:08 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• Anthropic 在北京时间 11 月 3 日凌晨，把开发者调用 Claude 的消息接口上的消息线程开成公开测试。第一轮仍发送完整对话；之后每一轮只发送新消息，以及上一条回复的编号。服务器把这段对话暂存在内存里，不写进硬盘。<br/>• 官方文章写明，Claude Code 已对多数用户默认打开。在大约 50 万到 100 万 token 的请求上，从发出请求到开始输出的等待时间，中位数大约缩短 35%。文档写明价格和速率限制都不变，因为模型每一轮仍会读完整对话。<br/>• 线程在最后一次请求过了 5 分钟后过期，并且最迟在最后一次使用后 1 小时删除。过期后再续接会返回找不到，这时要用自己保存的完整对话重新建立。每次请求都要带上文档里的测试版请求头。文档写明它不算零数据保留：对话只在内存里加密暂存，不写硬盘。已经打开医疗数据合规准备的组织会被拒绝。<br/>• 文档写明，批量接口、单独计数 token，以及对话压缩，目前不能和线程一起用。可用范围是 Claude 自己的接口，以及亚马逊云、谷歌云上由 Anthropic 托管的版本，和微软的 Foundry。<br/><strong>对你意味着什么</strong> 如果你已经用这个接口跑长时间的编程或电脑操作智能体，今天可以在一条真实的长对话上打开消息线程，看开始回复是否更快。线程本身不降价。<br/>建议：立即行动 · 今天在一条已有的长对话上试一轮，并确认本地仍留着完整记录。<br/>有多确定：高<br/>什么情况下当这判断作废：若续接失败后，按文档用完整对话也重开不了，或你的组织因医疗数据合规被拒绝，就不要把现有调用改成依赖线程。<br/>来源 anthropic（一手）, anthropic（一手）, ClaudeDevs（一手）, dotey（解读）<br/>日期 2026-11-03]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] Kindle 推送：把 EPUB 译成中文对照，再发到已装阅读器的 Kindle</title>
+<link>https://github.com/joeseesun/kindle-push-macos</link>
+<guid isPermaLink="false">evt-20261103-3181c67b4306</guid>
+<pubDate>Tue, 03 Nov 2026 01:12:31 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 向阳乔木在北京时间 11 月 3 日凌晨放出 Kindle 推送的 Mac 应用。它在一套已有的无线传输工具上，加上把 EPUB 译成原文和简体中文逐段对照。翻译引擎用的是开源项目，版本说明写的是 1.3.2。<br/>• 说明书写明需要 macOS 14 或更新，以及 Homebrew 里的 Python 和 Pandoc。Kindle 必须已经装好 KOReader 和它的远程登录插件。这个应用不带越狱工具。<br/>• 翻译时先试译 3 段正文，再翻译整本并发送。试译不会发送。失败或取消的译本不会自动发出。直接发送不把文章上传到云端；一旦选择翻译，正文会交给配置的模型服务，费用由该服务计算。<br/>• 实机说明只写了 Kindle Paperwhite 3 这一台。其他型号，以及 Intel 芯片的 Mac，说明写明还没有做完实机测试。应用是本地临时签名，没有苹果的开发者公证。<br/><strong>对你意味着什么</strong> 如果你的 Kindle 已经装着 KOReader，今天可以按说明先试译 3 段，再决定要不要把整本译成中文对照发过去。没有这种设备，就不必为它改阅读流程。<br/>建议：持续观察 · 今天只试译 3 段。译文和费用可接受，再发送整本。<br/>有多确定：中<br/>什么情况下当这判断作废：若应用打不开、配对失败，或试译的 3 段和原文对不上，就不要翻译整本，继续用你现在的读法。<br/>来源 vista8（一手）, vista8（解读）<br/>日期 2026-11-03]]></description>
+</item>
+<item>
+<title>[快讯 · 新工具 · 工具] 黑客书架：按多少不同的人在 Hacker News 提过一本书来排</title>
+<link>https://hackerbooks.qiaomu.ai/</link>
+<guid isPermaLink="false">evt-20261103-2251484b78e7</guid>
+<pubDate>Tue, 03 Nov 2026 00:20:20 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• 向阳乔木在北京时间 11 月 3 日零点过后放出黑客书架。站点数据写着 15362 本书，来自 Hacker News 的评论，年份从 2007 到 2026，按多少不同的人提到过来排序。<br/>• 页面可以进入今日书架、值得读精选、历史总榜、趋势和上升最快。作者在帖里写，可以从一本书跳到 Goodreads 和豆瓣的书评。<br/>• 同一条帖子还写了可以跳到 zlib 检索下载。那不是购买，也不是图书馆借阅。这里不把它当成找书的下一步。短评和站外链接都要回到原来的讨论核对。<br/><strong>对你意味着什么</strong> 如果你这周想找一本技术或通识书，可以先打开值得读精选，看有多少不同的人提过它，再回到原来的讨论核对，而不是只看站点上的一句介绍。<br/>建议：持续观察 · 今天打开精选里的一本，核对讨论来源后再决定要不要读。<br/>有多确定：中<br/>什么情况下当这判断作废：若站点打不开、精选是空的，或抽查的一本书和 Hacker News 的讨论对不上，就不要拿它当书单，继续用你原来的来源。<br/>来源 vista8（一手）, vista8（解读）<br/>日期 2026-11-03]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] HackerPapers：先从必读 30 篇读起，再按年份翻讨论过的论文</title>
 <link>https://hackerpapers.qiaomu.ai/</link>
@@ -286,55 +307,6 @@
 <guid isPermaLink="false">evt-20261028-genie-4</guid>
 <pubDate>Wed, 28 Oct 2026 00:01:38 +0800</pubDate>
 <description><![CDATA[<strong>背景</strong><br/>• Google DeepMind 于北京时间 10 月 28 日凌晨发文，宣布世界模型 Genie 4：可实时交互生成场景，并原生同时生成环境音、音乐与人物对话。<br/>• 官方称四项能力升级：自然语言实时改场景、更强物理与人物动作拟真、原生音频，以及用 Gemini 3.8 Flash 在环内做多步推理与连贯引导；单次连续交互约可到两分钟量级（较 Genie 3 约一分钟更长）。<br/>• 当前为研究预览，先向可信测试者开放，随后面向 Google AI Ultra 订阅者的 Project Genie，以及 Gemini API / Google AI Studio 早期合作方；Demis Hassabis 与 The Verge 同日交叉确认同一发布。<br/><strong>对你意味着什么</strong> 这是前沿实验室把「可玩、可听、可改」的实时世界模拟又推进一步，对机器人训练环境、预可视化与交互体验原型有长线意义；大众访客眼下多数还进不了正式产品，本周工具栈不必因此大换。<br/>建议：持续观察 · 先读 DeepMind 博文；有 Ultra 或想试用可关注 Project Genie 等待名单，勿把演示当成已全面开放。<br/>有多确定：高<br/>什么情况下当这判断作废：若官方撤回 Genie 4 发布表述、可信测试者与 Ultra 路线图长期无进展，或独立评测表明实时拟真与音频能力明显达不到文中宣称，就收回「Genie 4 已实质推进实时世界模拟」。<br/>来源 deepmind（一手）, demishassabis（一手）, theverge（转述）<br/>日期 2026-10-28]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] skill-diet：给 Agent Skill 减重，用同任务评测保证「更瘦但不更差」</title>
-<link>https://github.com/nicobailon/skill-diet</link>
-<guid isPermaLink="false">evt-20261027-skill-diet</guid>
-<pubDate>Tue, 27 Oct 2026 21:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• nicobailon 开源的 skill-diet 是管其他 skill 的元技能：一边把臃肿说明压薄并校对过时命令，一边给后续每次改 skill 立规矩；官方称实测可砍掉约七到八成 token 且评测不掉点。<br/><strong>对你意味着什么</strong> 如果你在 Cursor、Codex 或 Claude Code 里堆了不少 Skills，又开始感到上下文被说明书吃掉，skill-diet 把「减重 + 防回潮」做成可一键试的流程。<br/>建议：立即行动 · 今天装好，对一个真实臃肿技能跑一轮对照评测。<br/>有多确定：中<br/>什么情况下当这判断作废：若装不上、瘦身后同任务评测变差，或说明并没有变薄，就收回「这周用它给臃肿技能减重」。<br/>来源 nicobailon（一手）<br/>日期 2026-10-27]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] DeepSeek Harness：一切皆插件的开源 Agent 壳，本地一条命令就能开 Web</title>
-<link>https://github.com/deepseek-ai/deepseek-harness</link>
-<guid isPermaLink="false">evt-20261027-deepseek-harness</guid>
-<pubDate>Tue, 27 Oct 2026 21:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• DeepSeek 开源的 DeepSeek Harness（dsh）把 Agent 壳做成「一切皆插件」架构；中文圈今晚开始密集试用热门插件，适合爱折腾、又想控制成本的本机用户。<br/><strong>对你意味着什么</strong> 如果你已经在付高价跑编程助手，又想用 DeepSeek 的性价比搭一套可扩展本机壳，dsh 给出了官方入口和正在冒头的插件市场，值得先跑通 Web 再决定深做。<br/>建议：立即行动 · 今天拉起本机网页，用一条真实任务看插件是否稳。<br/>有多确定：中<br/>什么情况下当这判断作废：若本机网页拉不起来、插件装不上，或真实任务跑不稳，就收回「这周用它搭可插拔本地壳」。<br/>来源 deepseek-ai（一手）, deepseek-ai（一手）<br/>日期 2026-10-27]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] huashu-art-motion：用代码把画做成动画的艺术风格 Skill</title>
-<link>https://github.com/alchaincyf/huashu-art-motion</link>
-<guid isPermaLink="false">evt-20261027-huashu-art-motion</guid>
-<pubDate>Tue, 27 Oct 2026 21:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 花叔开源的 huashu-art-motion 把数十种艺术风格和解说语法做成给 coding agent 用的 Skill，用代码驱动画面运动，而不是只出静帧。<br/><strong>对你意味着什么</strong> 如果你用编程助手做短片或演示动画，又嫌通用视频模型不好控风格，这套 Skill 把「选定风格 → 写出会动的画」收成可安装流程。<br/>建议：立即行动 · 今天装好，对照样片先生成一段可运行片段。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能装不上、片段跑不起来，或运动与风格对不上样片，就收回「这周用它做代码驱动的短动画」。<br/>来源 alchaincyf（一手）<br/>日期 2026-10-27]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] OpenAgentCore：自托管的 OpenAI Agents API，一套 Core 可换多种 Agent 与模型</title>
-<link>https://github.com/MiniMax-AI/OpenAgentCore</link>
-<guid isPermaLink="false">evt-20261027-openagentcore</guid>
-<pubDate>Tue, 27 Oct 2026 16:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• MiniMax 开源的 OpenAgentCore 是可自托管的 OpenAI Agents API 实现：对外保持同一套 API，对内把 harness、模型、沙箱和工作区做成可替换协议，避免业务绑死在某一家实现上。<br/><strong>对你意味着什么</strong> 如果你在做 Agent 产品或内网智能体，又不想把业务死绑在某一家托管 Agents API 上，这套开源 Core 让你用熟悉的 OpenAI SDK 自建，并按需换 Codex / Claude Code / 自有模型。<br/>建议：立即行动 · 仓库今天可装，并对一条真实任务开 Session 试跑。<br/>有多确定：中<br/>什么情况下当这判断作废：若 Core 装不上、项目 Key 指过去后 Session 跑不起来，或换不了 harness 与模型，就收回「这周用它自建 Agents API」。<br/>来源 MiniMax-AI（一手）<br/>日期 2026-10-27]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] ub-mode：把 Clean Code / TDD 纪律装进编程助手的三段式技能</title>
-<link>https://github.com/unclebob/ub-mode</link>
-<guid isPermaLink="false">evt-20261027-ub-mode</guid>
-<pubDate>Tue, 27 Oct 2026 16:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• Clean Code 作者 Uncle Bob 开源的 ub-mode，把「先让它工作、再用可机器量的门槛做对、最后用日志与小提交收尾」写成给 coding agent 用的技能，并配上 CRAP / 重复 / 变异测试等闸门工具。<br/><strong>对你意味着什么</strong> 如果你用 Claude Code、Cursor 或 Codex 改生产代码，又担心助手只求能跑、不管可维护，ub-mode 把纪律和可机器量的门槛直接塞进助手流程。<br/>建议：立即行动 · 今天把技能装进助手，对一个真实小改动走完一轮。<br/>有多确定：中<br/>什么情况下当这判断作废：若技能装不上、唤起后并不按三段式拦住草率补丁，就收回「这周用它约束编程助手的大改」。<br/>来源 unclebob（一手）<br/>日期 2026-10-27]]></description>
-</item>
-<item>
-<title>[快讯 · 新工具 · 工具] 文心 Unlimited OCR 2：开源超长文档解析，页数几乎不再设上限</title>
-<link>https://github.com/baidu/Unlimited-OCR</link>
-<guid isPermaLink="false">evt-20261027-unlimited-ocr-2</guid>
-<pubDate>Tue, 27 Oct 2026 16:00:00 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• 百度于 2026-10-27 开源文心 Unlimited OCR 2：用稀疏参考滑动窗口注意力（SR-SWA）把超长文档的单步解码开销压到近似恒定，官方称可一次解析任意页数文档，并在多页与百页级基准上给出领先读数。<br/><strong>对你意味着什么</strong> 如果你经常把厚扫描件、长研报丢给模型却卡在页数或显存上，Unlimited OCR 2 把「先拆成可引用正文」这一步开源化了，值得用你自己的长文档试一次。<br/>建议：立即行动 · 今天用一小叠页图跑一次，对照原文看跨页是否接上。<br/>有多确定：中<br/>什么情况下当这判断作废：若模型卡跑不通、跨页表格和标题接不上，或页数与显存仍然卡住，就收回「这周用它拆长扫描件」。<br/>来源 baidu（一手）, baidu（一手）<br/>日期 2026-10-27]]></description>
-</item>
-<item>
-<title>[重磅 · 新工具 · 发布] OpenAI 发布 GPT-6.1 Terra：Plus 及以上可用、不另收费，API 价约减半，电脑操作追平 Astra 档</title>
-<link>https://openai.com/index/introducing-gpt-6-1-terra</link>
-<guid isPermaLink="false">evt-20261027-gpt61-terra</guid>
-<pubDate>Tue, 27 Oct 2026 02:06:27 +0800</pubDate>
-<description><![CDATA[<strong>背景</strong><br/>• OpenAI 于 2026-10-26（上海时间已入 10-27）发布 GPT-6.1 Terra：主打更快、更省的电脑操作（Computer Use）与视觉理解，官方称能看懂屏幕、跨应用点选与输入，并改进日常写作。相对上一代 GPT-5.6 Terra，标准 API 价约降 50%；模型名 gpt-6.1-terra。<br/>• 可用性：ChatGPT Work 与 Codex 向 Plus、Pro、Enterprise、Edu 用户推出，订阅内不另加收模型费；开发者可走 OpenAI API。官方称在 Agents’ Last Exam 等电脑操作评测上明显强于 GPT-5.6 Terra，并在约十分之一的每 token 价格下追平 GPT-6 Astra 的表现，平均完成任务更快。<br/>• 同日 OpenAI 官方线程、CEO Sam Altman、Artificial Analysis 与宝玉等多路关注池账号交叉确认；Artificial Analysis 另给出编程智能体与幻觉率等第三方读数。复杂极限编程任务官方仍更推荐 GPT-6.1 Sol / GPT-6 Astra。<br/><strong>对你意味着什么</strong> 如果你这周在付费用 ChatGPT / Codex，或按 token 跑大量电脑操作与看图任务，Terra 把「更强电脑操作」和「大约一半 API 价」叠在同一档，值得立刻用真实任务对打现用主力。<br/>建议：立即行动 · Plus 及以上与 API 今天即可试；盯官方配额与地区开关是否已开到你的账户。<br/>有多确定：高<br/>什么情况下当这判断作废：若你的账户尚未开放、真实电脑操作仍明显弱于 Astra/Sol，或按量费用并未下降，就收回「这周把批处理与电脑操作切到 Terra」。<br/>来源 openai（一手）, openai（一手）, openai（一手）, openai（一手）, openai（一手）, openai（一手）, sama（转述）, artificialanlys（转述）, dotey（转述）<br/>日期 2026-10-27]]></description>
 </item>
 </channel>
 </rss>

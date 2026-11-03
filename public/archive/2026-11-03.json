@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-03",
+  "generated_at": "2026-11-03T00:25:00Z",
+  "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261103-dc8e18535a8a",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Claude 消息线程公开测试：长对话少传历史，价格不变",
+      "date": "2026-11-03",
+      "time": "11-03 03:06",
+      "handle": "anthropic",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/message-threads",
+      "published_at": "2026-11-02T19:06:08Z",
+      "ingested_at": "2026-11-03T00:25:00Z",
+      "candidate_id": "cand-20261103-dc8e18535a8a",
+      "promotion_path": "normal",
+      "objective": [
+        "Anthropic 在北京时间 11 月 3 日凌晨，把开发者调用 Claude 的消息接口上的消息线程开成公开测试。第一轮仍发送完整对话；之后每一轮只发送新消息，以及上一条回复的编号。服务器把这段对话暂存在内存里，不写进硬盘。",
+        "官方文章写明，Claude Code 已对多数用户默认打开。在大约 50 万到 100 万 token 的请求上，从发出请求到开始输出的等待时间，中位数大约缩短 35%。文档写明价格和速率限制都不变，因为模型每一轮仍会读完整对话。",
+        "线程在最后一次请求过了 5 分钟后过期，并且最迟在最后一次使用后 1 小时删除。过期后再续接会返回找不到，这时要用自己保存的完整对话重新建立。每次请求都要带上文档里的测试版请求头。文档写明它不算零数据保留：对话只在内存里加密暂存，不写硬盘。已经打开医疗数据合规准备的组织会被拒绝。",
+        "文档写明，批量接口、单独计数 token，以及对话压缩，目前不能和线程一起用。可用范围是 Claude 自己的接口，以及亚马逊云、谷歌云上由 Anthropic 托管的版本，和微软的 Foundry。"
+      ],
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/build-with-claude/message-threads",
+          "handle": "anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://claude.com/resources/articles/message-threads",
+          "handle": "anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/ClaudeDevs/status/2117332449382510884",
+          "handle": "ClaudeDevs",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2117339521683448221",
+          "handle": "dotey",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://platform.claude.com/docs/en/build-with-claude/message-threads",
+      "access": "需要一把已经能调用 Claude 消息接口的密钥。公开测试要在每一轮带上文档里的测试版请求头。已经打开医疗数据合规准备的组织会被拒绝。需要零数据保留承诺的团队，不要把线程当成符合该承诺的存储。打开本卡试做链接，看第一轮和第二轮的示例。",
+      "integration": "适合已经用这个接口跑长时间编程或电脑操作智能体、又在意每一轮上传要等多久的人。它不换模型，也不降低 token 费用。",
+      "first_step": "按文档发第一轮，带上新建线程的参数和测试版请求头，记下返回的消息编号。下一轮只发一句新消息和这个编号，确认能接上。本地仍留着完整对话，以便过期后重开。",
+      "alternatives": [
+        "继续每一轮重发完整历史，不打开线程",
+        "只靠提示词缓存省费用，不改上传方式",
+        "等稳定版再改现有智能体的调用"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你已经用这个接口跑长时间的编程或电脑操作智能体，今天可以在一条真实的长对话上打开消息线程，看开始回复是否更快。线程本身不降价。",
+        "action": "立即行动",
+        "window": "今天在一条已有的长对话上试一轮，并确认本地仍留着完整记录。",
+        "confidence": "高",
+        "falsifier": "若续接失败后，按文档用完整对话也重开不了，或你的组织因医疗数据合规被拒绝，就不要把现有调用改成依赖线程。"
+      },
+      "card_copy": {
+        "watch_reason": "长对话可以少传历史，价格不变，过期后要能重开",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261103-2251484b78e7",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "黑客书架：按多少不同的人在 Hacker News 提过一本书来排",
+      "date": "2026-11-03",
+      "time": "11-03 00:20",
+      "handle": "vista8",
+      "url": "https://hackerbooks.qiaomu.ai/",
+      "published_at": "2026-11-02T16:20:20Z",
+      "ingested_at": "2026-11-03T00:25:00Z",
+      "candidate_id": "cand-20261103-2251484b78e7",
+      "promotion_path": "normal",
+      "objective": [
+        "向阳乔木在北京时间 11 月 3 日零点过后放出黑客书架。站点数据写着 15362 本书，来自 Hacker News 的评论，年份从 2007 到 2026，按多少不同的人提到过来排序。",
+        "页面可以进入今日书架、值得读精选、历史总榜、趋势和上升最快。作者在帖里写，可以从一本书跳到 Goodreads 和豆瓣的书评。",
+        "同一条帖子还写了可以跳到 zlib 检索下载。那不是购买，也不是图书馆借阅。这里不把它当成找书的下一步。短评和站外链接都要回到原来的讨论核对。"
+      ],
+      "sources": [
+        {
+          "url": "https://hackerbooks.qiaomu.ai/",
+          "handle": "vista8",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/vista8/status/2117290723255226820",
+          "handle": "vista8",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://hackerbooks.qiaomu.ai/best",
+      "access": "打开网页就能看，不用账号。数据文件的生成日期写着 2026 年 11 月 2 日。打开本卡试做链接，先看值得读精选。",
+      "integration": "适合想从 Hacker News 的讨论里找下一本要读的书的人。它不替换豆瓣、图书馆或你已经在用的书单。",
+      "first_step": "打开值得读精选，点开一本，核对提到它的讨论是不是你关心的那类。要更多书评，再去作者帖里说的豆瓣或 Goodreads，不要从下载入口开始。",
+      "alternatives": [
+        "继续只在 Hacker News 里搜书名",
+        "沿用豆瓣或图书馆的书单，不看这个站",
+        "只看历史总榜的前几本，不往下翻"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周想找一本技术或通识书，可以先打开值得读精选，看有多少不同的人提过它，再回到原来的讨论核对，而不是只看站点上的一句介绍。",
+        "action": "持续观察",
+        "window": "今天打开精选里的一本，核对讨论来源后再决定要不要读。",
+        "confidence": "中",
+        "falsifier": "若站点打不开、精选是空的，或抽查的一本书和 Hacker News 的讨论对不上，就不要拿它当书单，继续用你原来的来源。"
+      },
+      "card_copy": {
+        "watch_reason": "按不同的人提到的次数排书，短评仍要回原讨论核对",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261103-3181c67b4306",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Kindle 推送：把 EPUB 译成中文对照，再发到已装阅读器的 Kindle",
+      "date": "2026-11-03",
+      "time": "11-03 01:12",
+      "handle": "vista8",
+      "url": "https://github.com/joeseesun/kindle-push-macos",
+      "published_at": "2026-11-02T17:12:31Z",
+      "ingested_at": "2026-11-03T00:25:00Z",
+      "candidate_id": "cand-20261103-3181c67b4306",
+      "promotion_path": "normal",
+      "objective": [
+        "向阳乔木在北京时间 11 月 3 日凌晨放出 Kindle 推送的 Mac 应用。它在一套已有的无线传输工具上，加上把 EPUB 译成原文和简体中文逐段对照。翻译引擎用的是开源项目，版本说明写的是 1.3.2。",
+        "说明书写明需要 macOS 14 或更新，以及 Homebrew 里的 Python 和 Pandoc。Kindle 必须已经装好 KOReader 和它的远程登录插件。这个应用不带越狱工具。",
+        "翻译时先试译 3 段正文，再翻译整本并发送。试译不会发送。失败或取消的译本不会自动发出。直接发送不把文章上传到云端；一旦选择翻译，正文会交给配置的模型服务，费用由该服务计算。",
+        "实机说明只写了 Kindle Paperwhite 3 这一台。其他型号，以及 Intel 芯片的 Mac，说明写明还没有做完实机测试。应用是本地临时签名，没有苹果的开发者公证。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/joeseesun/kindle-push-macos",
+          "handle": "vista8",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/vista8/status/2117303854308212895",
+          "handle": "vista8",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/joeseesun/kindle-push-macos",
+      "access": "需要 macOS 14 或更新的 Mac，以及已经装好 KOReader 的 Kindle。Mac 和 Kindle 要在同一局域网。翻译还要一个模型服务的登录或密钥。打开本卡试做链接看说明，再决定要不要下载。",
+      "integration": "适合已经在 Kindle 上用 KOReader 读书，又想把自己有权处理的 EPUB 做成中文对照的人。没有这种设备的人用不上。",
+      "first_step": "打开仓库说明，确认系统要求和首次配置。设备已经配对时，拖入一本你有权翻译的 EPUB，先试译 3 段，译文可接受再点翻译并发送。",
+      "alternatives": [
+        "继续在电脑上读原文，不翻译也不推送",
+        "只用应用把文章转成 EPUB 发过去，不调用模型",
+        "等说明写明你的 Kindle 型号测过再装"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你的 Kindle 已经装着 KOReader，今天可以按说明先试译 3 段，再决定要不要把整本译成中文对照发过去。没有这种设备，就不必为它改阅读流程。",
+        "action": "持续观察",
+        "window": "今天只试译 3 段。译文和费用可接受，再发送整本。",
+        "confidence": "中",
+        "falsifier": "若应用打不开、配对失败，或试译的 3 段和原文对不上，就不要翻译整本，继续用你现在的读法。"
+      },
+      "card_copy": {
+        "watch_reason": "可先试译三段再整本发送，只适用于已装阅读器的 Kindle",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    }
+  ],
+  "count": 3
+}

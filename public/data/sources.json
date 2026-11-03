@@ -1,7 +1,19 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-02 16:16 北京时间",
+  "updated": "2026-11-03 08:11 北京时间",
   "sources": [
+    {
+      "id": "prac-20261103-3181c67b4306",
+      "url": "https://github.com/joeseesun/kindle-push-macos",
+      "author": "vista8",
+      "topic": "hands-on",
+      "type": "教程",
+      "title": "把 EPUB 先试译三段再整本发到 Kindle：配对后选中文对照",
+      "excerpt": "先试译三段正文，译文可接受再把整本中文对照发到已装 KOReader 的 Kindle。",
+      "origin": "practice",
+      "date": "2026-11-03",
+      "verified": false
+    },
     {
       "id": "prac-20261102-3363416fad47",
       "url": "https://x.com/RealYDT/status/2117165559955808317",

@@ -1,8 +1,197 @@
 {
   "schema_version": 2,
-  "updated": "2026-11-02 21:05 北京时间",
+  "updated": "2026-11-03 08:23 北京时间",
   "window_note": "看板展示近几日信号（约 7 天 / 最多约 50 条）；更早日期见本周归档。",
   "items": [
+    {
+      "schema_version": 2,
+      "id": "evt-20261103-dc8e18535a8a",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Claude 消息线程公开测试：长对话少传历史，价格不变",
+      "date": "2026-11-03",
+      "time": "11-03 03:06",
+      "handle": "anthropic",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/message-threads",
+      "published_at": "2026-11-02T19:06:08Z",
+      "ingested_at": "2026-11-03T00:25:00Z",
+      "candidate_id": "cand-20261103-dc8e18535a8a",
+      "promotion_path": "normal",
+      "objective": [
+        "Anthropic 在北京时间 11 月 3 日凌晨，把开发者调用 Claude 的消息接口上的消息线程开成公开测试。第一轮仍发送完整对话；之后每一轮只发送新消息，以及上一条回复的编号。服务器把这段对话暂存在内存里，不写进硬盘。",
+        "官方文章写明，Claude Code 已对多数用户默认打开。在大约 50 万到 100 万 token 的请求上，从发出请求到开始输出的等待时间，中位数大约缩短 35%。文档写明价格和速率限制都不变，因为模型每一轮仍会读完整对话。",
+        "线程在最后一次请求过了 5 分钟后过期，并且最迟在最后一次使用后 1 小时删除。过期后再续接会返回找不到，这时要用自己保存的完整对话重新建立。每次请求都要带上文档里的测试版请求头。文档写明它不算零数据保留：对话只在内存里加密暂存，不写硬盘。已经打开医疗数据合规准备的组织会被拒绝。",
+        "文档写明，批量接口、单独计数 token，以及对话压缩，目前不能和线程一起用。可用范围是 Claude 自己的接口，以及亚马逊云、谷歌云上由 Anthropic 托管的版本，和微软的 Foundry。"
+      ],
+      "sources": [
+        {
+          "url": "https://platform.claude.com/docs/en/build-with-claude/message-threads",
+          "handle": "anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://claude.com/resources/articles/message-threads",
+          "handle": "anthropic",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/ClaudeDevs/status/2117332449382510884",
+          "handle": "ClaudeDevs",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/dotey/status/2117339521683448221",
+          "handle": "dotey",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://platform.claude.com/docs/en/build-with-claude/message-threads",
+      "access": "需要一把已经能调用 Claude 消息接口的密钥。公开测试要在每一轮带上文档里的测试版请求头。已经打开医疗数据合规准备的组织会被拒绝。需要零数据保留承诺的团队，不要把线程当成符合该承诺的存储。打开本卡试做链接，看第一轮和第二轮的示例。",
+      "integration": "适合已经用这个接口跑长时间编程或电脑操作智能体、又在意每一轮上传要等多久的人。它不换模型，也不降低 token 费用。",
+      "first_step": "按文档发第一轮，带上新建线程的参数和测试版请求头，记下返回的消息编号。下一轮只发一句新消息和这个编号，确认能接上。本地仍留着完整对话，以便过期后重开。",
+      "alternatives": [
+        "继续每一轮重发完整历史，不打开线程",
+        "只靠提示词缓存省费用，不改上传方式",
+        "等稳定版再改现有智能体的调用"
+      ],
+      "tool_radar": "推荐使用",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你已经用这个接口跑长时间的编程或电脑操作智能体，今天可以在一条真实的长对话上打开消息线程，看开始回复是否更快。线程本身不降价。",
+        "action": "立即行动",
+        "window": "今天在一条已有的长对话上试一轮，并确认本地仍留着完整记录。",
+        "confidence": "高",
+        "falsifier": "若续接失败后，按文档用完整对话也重开不了，或你的组织因医疗数据合规被拒绝，就不要把现有调用改成依赖线程。"
+      },
+      "card_copy": {
+        "watch_reason": "长对话可以少传历史，价格不变，过期后要能重开",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "立即行动",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261103-3181c67b4306",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "Kindle 推送：把 EPUB 译成中文对照，再发到已装阅读器的 Kindle",
+      "date": "2026-11-03",
+      "time": "11-03 01:12",
+      "handle": "vista8",
+      "url": "https://github.com/joeseesun/kindle-push-macos",
+      "published_at": "2026-11-02T17:12:31Z",
+      "ingested_at": "2026-11-03T00:25:00Z",
+      "candidate_id": "cand-20261103-3181c67b4306",
+      "promotion_path": "normal",
+      "objective": [
+        "向阳乔木在北京时间 11 月 3 日凌晨放出 Kindle 推送的 Mac 应用。它在一套已有的无线传输工具上，加上把 EPUB 译成原文和简体中文逐段对照。翻译引擎用的是开源项目，版本说明写的是 1.3.2。",
+        "说明书写明需要 macOS 14 或更新，以及 Homebrew 里的 Python 和 Pandoc。Kindle 必须已经装好 KOReader 和它的远程登录插件。这个应用不带越狱工具。",
+        "翻译时先试译 3 段正文，再翻译整本并发送。试译不会发送。失败或取消的译本不会自动发出。直接发送不把文章上传到云端；一旦选择翻译，正文会交给配置的模型服务，费用由该服务计算。",
+        "实机说明只写了 Kindle Paperwhite 3 这一台。其他型号，以及 Intel 芯片的 Mac，说明写明还没有做完实机测试。应用是本地临时签名，没有苹果的开发者公证。"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/joeseesun/kindle-push-macos",
+          "handle": "vista8",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/vista8/status/2117303854308212895",
+          "handle": "vista8",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://github.com/joeseesun/kindle-push-macos",
+      "access": "需要 macOS 14 或更新的 Mac，以及已经装好 KOReader 的 Kindle。Mac 和 Kindle 要在同一局域网。翻译还要一个模型服务的登录或密钥。打开本卡试做链接看说明，再决定要不要下载。",
+      "integration": "适合已经在 Kindle 上用 KOReader 读书，又想把自己有权处理的 EPUB 做成中文对照的人。没有这种设备的人用不上。",
+      "first_step": "打开仓库说明，确认系统要求和首次配置。设备已经配对时，拖入一本你有权翻译的 EPUB，先试译 3 段，译文可接受再点翻译并发送。",
+      "alternatives": [
+        "继续在电脑上读原文，不翻译也不推送",
+        "只用应用把文章转成 EPUB 发过去，不调用模型",
+        "等说明写明你的 Kindle 型号测过再装"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你的 Kindle 已经装着 KOReader，今天可以按说明先试译 3 段，再决定要不要把整本译成中文对照发过去。没有这种设备，就不必为它改阅读流程。",
+        "action": "持续观察",
+        "window": "今天只试译 3 段。译文和费用可接受，再发送整本。",
+        "confidence": "中",
+        "falsifier": "若应用打不开、配对失败，或试译的 3 段和原文对不上，就不要翻译整本，继续用你现在的读法。"
+      },
+      "card_copy": {
+        "watch_reason": "可先试译三段再整本发送，只适用于已装阅读器的 Kindle",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
+    {
+      "schema_version": 2,
+      "id": "evt-20261103-2251484b78e7",
+      "status": "confirmed",
+      "tag": "工具",
+      "lens": "工具",
+      "priority": "P1",
+      "title": "黑客书架：按多少不同的人在 Hacker News 提过一本书来排",
+      "date": "2026-11-03",
+      "time": "11-03 00:20",
+      "handle": "vista8",
+      "url": "https://hackerbooks.qiaomu.ai/",
+      "published_at": "2026-11-02T16:20:20Z",
+      "ingested_at": "2026-11-03T00:25:00Z",
+      "candidate_id": "cand-20261103-2251484b78e7",
+      "promotion_path": "normal",
+      "objective": [
+        "向阳乔木在北京时间 11 月 3 日零点过后放出黑客书架。站点数据写着 15362 本书，来自 Hacker News 的评论，年份从 2007 到 2026，按多少不同的人提到过来排序。",
+        "页面可以进入今日书架、值得读精选、历史总榜、趋势和上升最快。作者在帖里写，可以从一本书跳到 Goodreads 和豆瓣的书评。",
+        "同一条帖子还写了可以跳到 zlib 检索下载。那不是购买，也不是图书馆借阅。这里不把它当成找书的下一步。短评和站外链接都要回到原来的讨论核对。"
+      ],
+      "sources": [
+        {
+          "url": "https://hackerbooks.qiaomu.ai/",
+          "handle": "vista8",
+          "role": "primary"
+        },
+        {
+          "url": "https://x.com/vista8/status/2117290723255226820",
+          "handle": "vista8",
+          "role": "analysis"
+        }
+      ],
+      "shift": "morning",
+      "try_url": "https://hackerbooks.qiaomu.ai/best",
+      "access": "打开网页就能看，不用账号。数据文件的生成日期写着 2026 年 11 月 2 日。打开本卡试做链接，先看值得读精选。",
+      "integration": "适合想从 Hacker News 的讨论里找下一本要读的书的人。它不替换豆瓣、图书馆或你已经在用的书单。",
+      "first_step": "打开值得读精选，点开一本，核对提到它的讨论是不是你关心的那类。要更多书评，再去作者帖里说的豆瓣或 Goodreads，不要从下载入口开始。",
+      "alternatives": [
+        "继续只在 Hacker News 里搜书名",
+        "沿用豆瓣或图书馆的书单，不看这个站",
+        "只看历史总榜的前几本，不往下翻"
+      ],
+      "tool_radar": "值得关注",
+      "so_what": {
+        "lens": "工具",
+        "impact": "如果你这周想找一本技术或通识书，可以先打开值得读精选，看有多少不同的人提过它，再回到原来的讨论核对，而不是只看站点上的一句介绍。",
+        "action": "持续观察",
+        "window": "今天打开精选里的一本，核对讨论来源后再决定要不要读。",
+        "confidence": "中",
+        "falsifier": "若站点打不开、精选是空的，或抽查的一本书和 Hacker News 的讨论对不上，就不要拿它当书单，继续用你原来的来源。"
+      },
+      "card_copy": {
+        "watch_reason": "按不同的人提到的次数排书，短评仍要回原讨论核对",
+        "evidence_label": "官方原始信息",
+        "suggested_action": "持续观察",
+        "high_priority_review": false
+      }
+    },
     {
       "schema_version": 2,
       "id": "evt-20261102-7cd12fad0e07",
@@ -2234,380 +2423,6 @@
         "window": "先读 DeepMind 博文；有 Ultra 或想试用可关注 Project Genie 等待名单，勿把演示当成已全面开放。",
         "confidence": "高",
         "falsifier": "若官方撤回 Genie 4 发布表述、可信测试者与 Ultra 路线图长期无进展，或独立评测表明实时拟真与音频能力明显达不到文中宣称，就收回「Genie 4 已实质推进实时世界模拟」。"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261027-skill-diet",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "skill-diet：给 Agent Skill 减重，用同任务评测保证「更瘦但不更差」",
-      "date": "2026-10-27",
-      "time": "10-27 21:00",
-      "handle": "nicobailon",
-      "url": "https://github.com/nicobailon/skill-diet",
-      "candidate_id": "cand-20261027-beb6329a03c2",
-      "promotion_path": "normal",
-      "objective": [
-        "nicobailon 开源的 skill-diet 是管其他 skill 的元技能：一边把臃肿说明压薄并校对过时命令，一边给后续每次改 skill 立规矩；官方称实测可砍掉约七到八成 token 且评测不掉点。"
-      ],
-      "sources": [
-        {
-          "url": "https://github.com/nicobailon/skill-diet",
-          "handle": "nicobailon",
-          "role": "primary"
-        }
-      ],
-      "shift": "evening",
-      "try_url": "https://github.com/nicobailon/skill-diet",
-      "access": "开源技能。Codex / Cursor 等：npx skills add nicobailon/skill-diet -g；Claude Code 可用 /plugin install skill-diet --marketplace nicobailon/skill-diet；Pi 可用 pi install npm:skill-diet。",
-      "integration": "装好后对助手说「把某某 skill 做一次 diet」或「这个 skill 还跟得上当前 CLI 吗」。它会压薄 SKILL.md、核对工具说明是否过时，并在旧版/新版/无 skill 同任务评测里至少不输才留下瘦身版。",
-      "first_step": "若你这周已经觉得某个 skill 又长又旧：先装 skill-diet，点名一个真实臃肿 skill 跑一轮 diet，对照评测结果再决定要不要替换原文件。",
-      "alternatives": [
-        "继续手改 SKILL.md，不跑对照评测",
-        "直接删掉冷门 skill，不做系统性瘦身",
-        "换更短的自写规则，不用元技能"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你在 Cursor、Codex 或 Claude Code 里堆了不少 Skills，又开始感到上下文被说明书吃掉，skill-diet 把「减重 + 防回潮」做成可一键试的流程。",
-        "action": "立即行动",
-        "window": "今天装好，对一个真实臃肿技能跑一轮对照评测。",
-        "confidence": "中",
-        "falsifier": "若装不上、瘦身后同任务评测变差，或说明并没有变薄，就收回「这周用它给臃肿技能减重」。"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261027-deepseek-harness",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "DeepSeek Harness：一切皆插件的开源 Agent 壳，本地一条命令就能开 Web",
-      "date": "2026-10-27",
-      "time": "10-27 21:00",
-      "handle": "deepseek-ai",
-      "url": "https://github.com/deepseek-ai/deepseek-harness",
-      "candidate_id": "cand-20261027-1e6d7b52f823",
-      "promotion_path": "normal",
-      "block_ids": [
-        "cand-20261027-af0555d9f26d"
-      ],
-      "objective": [
-        "DeepSeek 开源的 DeepSeek Harness（dsh）把 Agent 壳做成「一切皆插件」架构；中文圈今晚开始密集试用热门插件，适合爱折腾、又想控制成本的本机用户。"
-      ],
-      "sources": [
-        {
-          "url": "https://github.com/deepseek-ai/deepseek-harness",
-          "handle": "deepseek-ai",
-          "role": "primary"
-        },
-        {
-          "url": "https://deepseek-harness.github.io/deepseek-harness/",
-          "handle": "deepseek-ai",
-          "role": "primary"
-        }
-      ],
-      "shift": "evening",
-      "try_url": "https://github.com/deepseek-ai/deepseek-harness",
-      "access": "开发者预览、迭代快，可能有破坏性变更。需 Node.js。本机试跑：npx @deepseek-ai/dsh web，默认打开 http://127.0.0.1:3080。也可用源码 pnpm install && pnpm run build && pnpm dsh web。跑前先读仓库 SAFETY.md。",
-      "integration": "插件生态走 GitHub topic:dsh-plugin；社区里常见 dsh-market、侧边栏增强、余额小组件、上下文与宠物类插件。文档站：https://deepseek-harness.github.io/deepseek-harness/",
-      "first_step": "若你这周想用便宜的 DeepSeek 模型搭可插拔本地壳：先 npx @deepseek-ai/dsh web 拉起界面，装一两个你真正会用的插件（例如市场或侧边栏），用一条真实任务看稳定性和权限边界。",
-      "alternatives": [
-        "继续只用 Claude Code / Codex / Cursor，不换壳",
-        "直接调 DeepSeek API，自写薄封装",
-        "等正式版后再试，避开开发者预览的破坏性变更"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你已经在付高价跑编程助手，又想用 DeepSeek 的性价比搭一套可扩展本机壳，dsh 给出了官方入口和正在冒头的插件市场，值得先跑通 Web 再决定深做。",
-        "action": "立即行动",
-        "window": "今天拉起本机网页，用一条真实任务看插件是否稳。",
-        "confidence": "中",
-        "falsifier": "若本机网页拉不起来、插件装不上，或真实任务跑不稳，就收回「这周用它搭可插拔本地壳」。"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261027-huashu-art-motion",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "huashu-art-motion：用代码把画做成动画的艺术风格 Skill",
-      "date": "2026-10-27",
-      "time": "10-27 21:00",
-      "handle": "alchaincyf",
-      "url": "https://github.com/alchaincyf/huashu-art-motion",
-      "candidate_id": "cand-20261027-87d3f0a3c7f1",
-      "promotion_path": "normal",
-      "objective": [
-        "花叔开源的 huashu-art-motion 把数十种艺术风格和解说语法做成给 coding agent 用的 Skill，用代码驱动画面运动，而不是只出静帧。"
-      ],
-      "sources": [
-        {
-          "url": "https://github.com/alchaincyf/huashu-art-motion",
-          "handle": "alchaincyf",
-          "role": "primary"
-        }
-      ],
-      "shift": "evening",
-      "try_url": "https://github.com/alchaincyf/huashu-art-motion",
-      "access": "开源 Skill。一行安装：npx skills add alchaincyf/huashu-art-motion。需要能跑代码并导出视频/动画的编程助手宿主；完整样片可在仓库 Releases 下载。",
-      "integration": "面向 Claude Code 等支持 Skills 的 coding agent；仓库内含多种艺术风格、解说语法与参数化片段参考。Open Design 等项目已收录适配版并保留上游出处。",
-      "first_step": "若你这周要做一段有明确画风的短动画：先装好 huashu-art-motion，选一种风格让助手生成可运行片段，对照 Releases 样片看运动与风格是否对得上，再扩成整段。",
-      "alternatives": [
-        "继续用通用视频/图生视频模型出片",
-        "纯手工 After Effects / Rive，不用 Agent Skill",
-        "只用静帧提示词，不做代码驱动动画"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你用编程助手做短片或演示动画，又嫌通用视频模型不好控风格，这套 Skill 把「选定风格 → 写出会动的画」收成可安装流程。",
-        "action": "立即行动",
-        "window": "今天装好，对照样片先生成一段可运行片段。",
-        "confidence": "中",
-        "falsifier": "若技能装不上、片段跑不起来，或运动与风格对不上样片，就收回「这周用它做代码驱动的短动画」。"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261027-openagentcore",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "OpenAgentCore：自托管的 OpenAI Agents API，一套 Core 可换多种 Agent 与模型",
-      "date": "2026-10-27",
-      "time": "10-27 16:00",
-      "handle": "MiniMax-AI",
-      "url": "https://github.com/MiniMax-AI/OpenAgentCore",
-      "candidate_id": "cand-20261027-0b00f791dd01",
-      "promotion_path": "normal",
-      "objective": [
-        "MiniMax 开源的 OpenAgentCore 是可自托管的 OpenAI Agents API 实现：对外保持同一套 API，对内把 harness、模型、沙箱和工作区做成可替换协议，避免业务绑死在某一家实现上。"
-      ],
-      "sources": [
-        {
-          "url": "https://github.com/MiniMax-AI/OpenAgentCore",
-          "handle": "MiniMax-AI",
-          "role": "primary"
-        }
-      ],
-      "shift": "other",
-      "try_url": "https://github.com/MiniMax-AI/OpenAgentCore",
-      "access": "MIT 开源。Linux/macOS 可用官方安装脚本：curl -fsSL https://github.com/MiniMax-AI/OpenAgentCore/releases/latest/download/install.sh | bash；Windows 用对应 PowerShell 安装脚本。装好后在控制台签发项目 API Key，把 OPENAI_BASE_URL 指到你的 Core /v1。",
-      "integration": "用官方 OpenAI SDK 或裸 HTTP 调 Agents API；每个 Session 可选 Codex、Claude Code 或 MiniMax Code 等 harness，模型与沙箱（Docker / microsandbox / E2B / 本机）按协议替换。",
-      "first_step": "若你这周想把 Codex / Claude Code 接到自建 Agents API：先按仓库 README 装好 Core 与 Web，签发一把项目 Key，把 OPENAI_BASE_URL 指过去，用一条真实任务开一个 Session 试跑。",
-      "alternatives": [
-        "继续直接用 OpenAI 托管 Agents API",
-        "自研一层网关，不接开源 Core",
-        "只用单机 Claude Code / Codex，不做统一 API"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你在做 Agent 产品或内网智能体，又不想把业务死绑在某一家托管 Agents API 上，这套开源 Core 让你用熟悉的 OpenAI SDK 自建，并按需换 Codex / Claude Code / 自有模型。",
-        "action": "立即行动",
-        "window": "仓库今天可装，并对一条真实任务开 Session 试跑。",
-        "confidence": "中",
-        "falsifier": "若 Core 装不上、项目 Key 指过去后 Session 跑不起来，或换不了 harness 与模型，就收回「这周用它自建 Agents API」。"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261027-ub-mode",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "ub-mode：把 Clean Code / TDD 纪律装进编程助手的三段式技能",
-      "date": "2026-10-27",
-      "time": "10-27 16:00",
-      "handle": "unclebob",
-      "url": "https://github.com/unclebob/ub-mode",
-      "candidate_id": "cand-20261027-2bf84d7ad75d",
-      "promotion_path": "normal",
-      "objective": [
-        "Clean Code 作者 Uncle Bob 开源的 ub-mode，把「先让它工作、再用可机器量的门槛做对、最后用日志与小提交收尾」写成给 coding agent 用的技能，并配上 CRAP / 重复 / 变异测试等闸门工具。"
-      ],
-      "sources": [
-        {
-          "url": "https://github.com/unclebob/ub-mode",
-          "handle": "unclebob",
-          "role": "primary"
-        }
-      ],
-      "shift": "other",
-      "try_url": "https://github.com/unclebob/ub-mode",
-      "access": "开源技能包。把仓库里的 SKILL.md 拷到本机助手技能目录（例如 ~/.claude/skills/ub-mode/SKILL.md、~/.cursor/skills/ub-mode/SKILL.md 或 ~/.grok/skills/ub-mode/SKILL.md），然后用 /ub-mode 唤起。",
-      "integration": "配合 companion 工具 crapper / dryer / mutator（同作者仓库）做 CRAP、重复与变异测试闸门；适合 Claude Code、Cursor、Codex、Grok 等支持 Skills 的编程助手。",
-      "first_step": "若你这周常让编程助手直接大改代码：先装好 ub-mode，对一个真实小改动唤起 /ub-mode，按「先跑通 → 再做对 → 养成习惯」走完一轮，看它是否拦住了草率补丁。",
-      "alternatives": [
-        "继续用手写 AGENTS.md / 项目规则约束助手",
-        "只用测试与 CI，不装专门技能",
-        "采用更重的完整 Uncle Bob 技能包（第三方合集）"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你用 Claude Code、Cursor 或 Codex 改生产代码，又担心助手只求能跑、不管可维护，ub-mode 把纪律和可机器量的门槛直接塞进助手流程。",
-        "action": "立即行动",
-        "window": "今天把技能装进助手，对一个真实小改动走完一轮。",
-        "confidence": "中",
-        "falsifier": "若技能装不上、唤起后并不按三段式拦住草率补丁，就收回「这周用它约束编程助手的大改」。"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261027-unlimited-ocr-2",
-      "status": "confirmed",
-      "tag": "工具",
-      "lens": "工具",
-      "priority": "P1",
-      "title": "文心 Unlimited OCR 2：开源超长文档解析，页数几乎不再设上限",
-      "date": "2026-10-27",
-      "time": "10-27 16:00",
-      "handle": "baidu",
-      "url": "https://github.com/baidu/Unlimited-OCR",
-      "candidate_id": "cand-20261027-cbd1a5e6bbff",
-      "promotion_path": "normal",
-      "block_ids": [
-        "cand-20261027-3227fd5115c7"
-      ],
-      "objective": [
-        "百度于 2026-10-27 开源文心 Unlimited OCR 2：用稀疏参考滑动窗口注意力（SR-SWA）把超长文档的单步解码开销压到近似恒定，官方称可一次解析任意页数文档，并在多页与百页级基准上给出领先读数。"
-      ],
-      "sources": [
-        {
-          "url": "https://github.com/baidu/Unlimited-OCR",
-          "handle": "baidu",
-          "role": "primary"
-        },
-        {
-          "url": "https://huggingface.co/baidu/Unlimited-OCR-2",
-          "handle": "baidu",
-          "role": "primary"
-        }
-      ],
-      "shift": "other",
-      "try_url": "https://github.com/baidu/Unlimited-OCR",
-      "access": "MIT 开源。代码见 GitHub baidu/Unlimited-OCR；权重在 Hugging Face baidu/Unlimited-OCR-2。本机需 CUDA 与较新的 transformers/torch；Hugging Face 模型卡给了 Transformers 快速试用与 SGLang 服务示例。百度云也提供托管解析接口（额度另计）。",
-      "integration": "多页用 infer_multi 一次吃完整本扫描件；单页用 infer。输出可含正文、表格、公式与阅读顺序，适合喂给后续研报解读或入库流水线。",
-      "first_step": "若你这周要拆一本几十页以上的扫描 PDF / 研报：先到 Hugging Face 拉 baidu/Unlimited-OCR-2，按模型卡用一小叠页图跑 infer_multi，对照原文看跨页表格与标题是否还能接上。",
-      "alternatives": [
-        "继续用上一代 Unlimited OCR 或通用多模态模型逐页拼",
-        "只用云厂商文档解析 API，不自托管",
-        "传统 OCR + 自写跨页拼接"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你经常把厚扫描件、长研报丢给模型却卡在页数或显存上，Unlimited OCR 2 把「先拆成可引用正文」这一步开源化了，值得用你自己的长文档试一次。",
-        "action": "立即行动",
-        "window": "今天用一小叠页图跑一次，对照原文看跨页是否接上。",
-        "confidence": "中",
-        "falsifier": "若模型卡跑不通、跨页表格和标题接不上，或页数与显存仍然卡住，就收回「这周用它拆长扫描件」。"
-      }
-    },
-    {
-      "schema_version": 2,
-      "id": "evt-20261027-gpt61-terra",
-      "status": "confirmed",
-      "tag": "发布",
-      "lens": "工具",
-      "priority": "P0",
-      "title": "OpenAI 发布 GPT-6.1 Terra：Plus 及以上可用、不另收费，API 价约减半，电脑操作追平 Astra 档",
-      "date": "2026-10-27",
-      "time": "10-27 08:00",
-      "handle": "openai",
-      "url": "https://openai.com/index/introducing-gpt-6-1-terra",
-      "published_at": "2026-10-26T18:06:27Z",
-      "ingested_at": "2026-10-26T23:57:41Z",
-      "candidate_id": "cand-20261027-c31b6b275e00",
-      "promotion_path": "normal",
-      "objective": [
-        "OpenAI 于 2026-10-26（上海时间已入 10-27）发布 GPT-6.1 Terra：主打更快、更省的电脑操作（Computer Use）与视觉理解，官方称能看懂屏幕、跨应用点选与输入，并改进日常写作。相对上一代 GPT-5.6 Terra，标准 API 价约降 50%；模型名 gpt-6.1-terra。",
-        "可用性：ChatGPT Work 与 Codex 向 Plus、Pro、Enterprise、Edu 用户推出，订阅内不另加收模型费；开发者可走 OpenAI API。官方称在 Agents’ Last Exam 等电脑操作评测上明显强于 GPT-5.6 Terra，并在约十分之一的每 token 价格下追平 GPT-6 Astra 的表现，平均完成任务更快。",
-        "同日 OpenAI 官方线程、CEO Sam Altman、Artificial Analysis 与宝玉等多路关注池账号交叉确认；Artificial Analysis 另给出编程智能体与幻觉率等第三方读数。复杂极限编程任务官方仍更推荐 GPT-6.1 Sol / GPT-6 Astra。"
-      ],
-      "sources": [
-        {
-          "url": "https://openai.com/index/introducing-gpt-6-1-terra",
-          "handle": "openai",
-          "role": "primary"
-        },
-        {
-          "url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
-          "handle": "openai",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/openai/status/2114780711664398349",
-          "handle": "openai",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/openai/status/2114780720170164735",
-          "handle": "openai",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/openai/status/2114780715086754261",
-          "handle": "openai",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/openai/status/2114780717188272382",
-          "handle": "openai",
-          "role": "primary"
-        },
-        {
-          "url": "https://x.com/sama/status/2114818620782248024",
-          "handle": "sama",
-          "role": "report"
-        },
-        {
-          "url": "https://x.com/artificialanlys/status/2114781865811063259",
-          "handle": "artificialanlys",
-          "role": "report"
-        },
-        {
-          "url": "https://x.com/dotey/status/2114790675279413738",
-          "handle": "dotey",
-          "role": "report"
-        }
-      ],
-      "shift": "morning",
-      "try_url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
-      "access": "ChatGPT Work / Codex：Plus、Pro、Enterprise、Edu 可用，不另加模型费。API 模型名 gpt-6.1-terra；官方标准价约 $1 / $5 每百万输入/输出 token（缓存输入更低），相对 GPT-5.6 Terra 约减半。",
-      "integration": "可作聊天、Codex 编程助手与 Responses/Chat Completions API 后端；适合高量电脑操作、表单录入、看图后动作与日常文案。极限复杂编程仍可对照 Sol / Astra。",
-      "first_step": "用你本周一条真实的跨应用电脑操作或看图填表任务，在 ChatGPT Work / Codex 或 API 选 gpt-6.1-terra，对照现用的 Astra / Sol / 上一代 Terra，记延迟、费用和完成质量。",
-      "alternatives": [
-        "继续用 GPT-6 Astra / GPT-6.1 Sol 做最难编程与智能体",
-        "继续用 Claude Opus 等竞品对照电脑操作与费用",
-        "只在低价模型上跑批处理，不换主力对话模型"
-      ],
-      "tool_radar": "推荐使用",
-      "so_what": {
-        "lens": "工具",
-        "impact": "如果你这周在付费用 ChatGPT / Codex，或按 token 跑大量电脑操作与看图任务，Terra 把「更强电脑操作」和「大约一半 API 价」叠在同一档，值得立刻用真实任务对打现用主力。",
-        "action": "立即行动",
-        "window": "Plus 及以上与 API 今天即可试；盯官方配额与地区开关是否已开到你的账户。",
-        "confidence": "高",
-        "falsifier": "若你的账户尚未开放、真实电脑操作仍明显弱于 Astra/Sol，或按量费用并未下降，就收回「这周把批处理与电脑操作切到 Terra」。"
-      },
-      "card_copy": {
-        "watch_reason": "前沿实验室新模型族：电脑操作可用、订阅内上线、API 约减半，多源同日确认。",
-        "evidence_label": "多源确认",
-        "suggested_action": "立即行动",
-        "high_priority_review": true
       }
     }
   ]
