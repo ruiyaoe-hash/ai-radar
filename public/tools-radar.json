@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03 08:23 北京时间",
+  "updated": "2026-11-03 16:19 北京时间",
   "rings": {
     "推荐使用": [
       {
@@ -815,6 +815,26 @@
     ],
     "值得关注": [
       {
+        "id": "evt-20261103-a1c8ef2ac3d0",
+        "title": "baoyu-design 放出 Motion：动画在本地播放器里边写边出现",
+        "date": "2026-11-03",
+        "time": "11-03 10:23",
+        "try_url": "https://github.com/JimLiu/baoyu-design/blob/master/README.zh-CN.md",
+        "access": "需要本机的 Node.js，以及 Cursor、Claude Code、Codex 这类能读写文件的编程助手。导出 MP4 需要 Chrome。DeepSeek Harness 桌面版可以按插件名安装，不必先克隆仓库。打开本卡试做链接看版本说明后再装。",
+        "integration": "适合已经用这个仓库做幻灯片或设计稿、又想做短动画并且不想干等整段渲染的人。只看静态稿的人可以先留在原来的编辑器里。",
+        "first_step": "按仓库说明只安装 claude-motion。重启助手后让它做一条十几秒的短片，打开它给出的本机播放器，确认画面在写入时就能看见，再改一句台词看那一帧是否重写。",
+        "summary": "baoyu-design 在 11 月 2 日的 2.8.0 说明里放出 Motion。技能 claude-motion 让编程助手把每一场动画写成代码，本地播放器里能看见这场正在写出来。改一句台词、拖动一场的长度，或在 Tweaks 里换样式，都是重写那一刻，不用等整段视频渲染完。",
+        "audience_value": "如果你已经在用 baoyu-design，今天可以把技能更新到带 Motion 的版本，做一条十几秒的短片，看播放器能否在写入时就出现画面。",
+        "alternatives": [
+          "继续只用幻灯片和设计画布",
+          "等整段渲染完成后再看成品",
+          "沿用你现在的剪辑软件做短片"
+        ],
+        "status": "confirmed",
+        "priority": "P1",
+        "stance": "值得关注"
+      },
+      {
         "id": "evt-20261103-3181c67b4306",
         "title": "Kindle 推送：把 EPUB 译成中文对照，再发到已装阅读器的 Kindle",
         "date": "2026-11-03",
@@ -1220,6 +1240,26 @@
     "暂缓": []
   },
   "stream": [
+    {
+      "id": "evt-20261103-a1c8ef2ac3d0",
+      "title": "baoyu-design 放出 Motion：动画在本地播放器里边写边出现",
+      "date": "2026-11-03",
+      "time": "11-03 10:23",
+      "try_url": "https://github.com/JimLiu/baoyu-design/blob/master/README.zh-CN.md",
+      "access": "需要本机的 Node.js，以及 Cursor、Claude Code、Codex 这类能读写文件的编程助手。导出 MP4 需要 Chrome。DeepSeek Harness 桌面版可以按插件名安装，不必先克隆仓库。打开本卡试做链接看版本说明后再装。",
+      "integration": "适合已经用这个仓库做幻灯片或设计稿、又想做短动画并且不想干等整段渲染的人。只看静态稿的人可以先留在原来的编辑器里。",
+      "first_step": "按仓库说明只安装 claude-motion。重启助手后让它做一条十几秒的短片，打开它给出的本机播放器，确认画面在写入时就能看见，再改一句台词看那一帧是否重写。",
+      "summary": "baoyu-design 在 11 月 2 日的 2.8.0 说明里放出 Motion。技能 claude-motion 让编程助手把每一场动画写成代码，本地播放器里能看见这场正在写出来。改一句台词、拖动一场的长度，或在 Tweaks 里换样式，都是重写那一刻，不用等整段视频渲染完。",
+      "audience_value": "如果你已经在用 baoyu-design，今天可以把技能更新到带 Motion 的版本，做一条十几秒的短片，看播放器能否在写入时就出现画面。",
+      "alternatives": [
+        "继续只用幻灯片和设计画布",
+        "等整段渲染完成后再看成品",
+        "沿用你现在的剪辑软件做短片"
+      ],
+      "status": "confirmed",
+      "priority": "P1",
+      "stance": "值得关注"
+    },
     {
       "id": "evt-20261103-dc8e18535a8a",
       "title": "Claude 消息线程公开测试：长对话少传历史，价格不变",

@@ -5,8 +5,15 @@
 <link>https://ruiyaoe-hash.github.io/ai-radar/</link>
 <description>只看新工具。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 03 Nov 2026 08:23:39 +0800</lastBuildDate>
+<lastBuildDate>Tue, 03 Nov 2026 16:19:09 +0800</lastBuildDate>
 <atom:link href="https://ruiyaoe-hash.github.io/ai-radar/feeds/lens-tools.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>[快讯 · 新工具 · 工具] baoyu-design 放出 Motion：动画在本地播放器里边写边出现</title>
+<link>https://github.com/JimLiu/baoyu-design/blob/master/CHANGELOG.md</link>
+<guid isPermaLink="false">evt-20261103-a1c8ef2ac3d0</guid>
+<pubDate>Tue, 03 Nov 2026 10:23:28 +0800</pubDate>
+<description><![CDATA[<strong>背景</strong><br/>• baoyu-design 在 11 月 2 日的 2.8.0 说明里放出 Motion。技能 claude-motion 让编程助手把每一场动画写成代码，本地播放器里能看见这场正在写出来。改一句台词、拖动一场的长度，或在 Tweaks 里换样式，都是重写那一刻，不用等整段视频渲染完。<br/>• 播放器可以导出 MP4 或 GIF。命令行导出需要本机有 Chrome。带旁白的片子最长 15 分钟、最多 40 场，每场一段配音，要用你自己的语音服务，或导入已经录好的音频。字幕跟着台词走，并处理中文换行。<br/>• 另一个技能 motion-director 负责把要说的话写成旁白、配音并对齐画面，需要和 claude-motion 一起装。DeepSeek Harness 桌面版有对应插件 dsh-claude-motion，评论以及播放器上的继续、完成、做动画和问助手，会送到助手。<br/>• 已经在用幻灯片或设计画布的人，把技能更新到这一版再装 Motion。这一版还让同一类稿件共用一个本地端口，分享链接带上新的路径，旧版本发出的链接会失效。<br/><strong>对你意味着什么</strong> 如果你已经在用 baoyu-design，今天可以把技能更新到带 Motion 的版本，做一条十几秒的短片，看播放器能否在写入时就出现画面。<br/>建议：持续观察 · 今天只做一条十几秒的短片，确认边写边能看见再决定要不要加旁白。<br/>有多确定：中<br/>什么情况下当这判断作废：若播放器要等整段渲染才出第一帧，或改一句台词后画面不重写，就继续用你现在的出片方式。<br/>来源 JimLiu（一手）, JimLiu（一手）<br/>日期 2026-11-03]]></description>
+</item>
 <item>
 <title>[快讯 · 新工具 · 工具] Claude 消息线程公开测试：长对话少传历史，价格不变</title>
 <link>https://platform.claude.com/docs/en/build-with-claude/message-threads</link>
