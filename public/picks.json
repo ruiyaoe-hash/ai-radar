@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03 16:19 北京时间",
+  "updated": "2026-11-05 11:35 北京时间",
   "per_day": 3,
   "blocked_urls": [
     "https://aicodinghunt.qiaomu.ai/",
@@ -26,6 +26,7 @@
     "https://gemini.google.com",
     "https://gemini.google.com/",
     "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure",
+    "https://github.blog/open-source/maintainers/arnis-turns-any-place-on-earth-into-a-minecraft-world",
     "https://github.com/Appllama/appllama-skills",
     "https://github.com/Graphify-Labs/graphify",
     "https://github.com/JimLiu/baocut",
@@ -177,6 +178,7 @@
   "blocked_ids": [
     "brf-20261021-2d9435d5289c",
     "brf-20261022-76c720a455a2",
+    "brf-20261104-2825bde85d54",
     "cand-20261021-2d9435d5289c",
     "cand-20261022-5b11ed122be0",
     "cand-20261022-6fc43125f1db",
@@ -256,6 +258,7 @@
     "cand-20261103-64cbb07b8c19",
     "cand-20261103-a1c8ef2ac3d0",
     "cand-20261103-dc8e18535a8a",
+    "cand-20261104-2825bde85d54",
     "evt-20261023-anthropic-claude-duet",
     "evt-20261023-claude-auto-mode-default",
     "evt-20261023-minimax-design-mcp",
@@ -324,6 +327,45 @@
     "evt-20261103-dc8e18535a8a"
   ],
   "days": [
+    {
+      "date": "2026-11-04",
+      "items": [
+        {
+          "schema_version": 2,
+          "id": "brf-20261104-2825bde85d54",
+          "status": "confirmed",
+          "tag": "简讯",
+          "lens": "工具",
+          "priority": "P1",
+          "title": "公开更新：代码仓库",
+          "summary": "公开说明里，代码仓库。这句中文说明发生了什么，名字和版本以链接里的原文为准。",
+          "date": "2026-11-04",
+          "url": "https://github.blog/open-source/maintainers/arnis-turns-any-place-on-earth-into-a-minecraft-world",
+          "handle": "github-blog",
+          "objective": [
+            "公开说明里，代码仓库。这句中文说明发生了什么，名字和版本以链接里的原文为准。"
+          ],
+          "sources": [
+            {
+              "url": "https://github.blog/open-source/maintainers/arnis-turns-any-place-on-earth-into-a-minecraft-world",
+              "handle": "github-blog",
+              "role": "primary"
+            }
+          ],
+          "so_what": {
+            "lens": "工具",
+            "impact": "它关系到你现在用的工具要不要换，或者能不能继续沿用。",
+            "action": "持续观察",
+            "window": "拿一个你自己的真实任务对照这次变化，再决定换不换。",
+            "falsifier": "如果原文事后被更正，或者这件事和你这周要做的事对不上，就不必为此改安排。"
+          },
+          "candidate_id": "cand-20261104-2825bde85d54",
+          "time": "11-04 00:00",
+          "fill_reason": "empty_day",
+          "promoted_from": "brief"
+        }
+      ]
+    },
     {
       "date": "2026-11-03",
       "items": [
